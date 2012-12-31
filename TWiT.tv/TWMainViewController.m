@@ -18,7 +18,7 @@
 
 - (void)awakeFromNib
 {
-    if([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad)
+    if(UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPad)
     {
         self.clearsSelectionOnViewWillAppear = NO;
         self.contentSizeForViewInPopover = CGSizeMake(320.0, 600.0);
@@ -30,14 +30,14 @@
 {
     [super viewDidLoad];
 	
-    sectionVisible = 1;
+    sectionVisible = 0;
     
     // Do any additional setup after loading the view, typically from a nib.
     //self.navigationItem.leftBarButtonItem = self.editButtonItem;
 
     //UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject:)];
     //self.navigationItem.rightBarButtonItem = addButton;
-    self.detailViewController = (TWEpisodeViewController*)[[self.splitViewController.viewControllers lastObject] topViewController];
+    self.episodeViewController = (TWEpisodeViewController*)[[self.splitViewController.viewControllers lastObject] topViewController];
 }
 
 /*
@@ -117,6 +117,7 @@
         episodesButton.frame = CGRectMake(1, 2, 158, 24);
         [episodesButton setTitle:@"EPISODES" forState:UIControlStateNormal];
         episodesButton.tag = 0;
+        episodesButton.selected = (sectionVisible == 0);
         [episodesButton addTarget:self action:@selector(switchVisibleSection:) forControlEvents:UIControlEventTouchUpInside];
         [episodesButton setTitleShadowColor:[UIColor colorWithWhite:0 alpha:0.25f] forState:UIControlStateSelected];
         [episodesButton setTitleShadowColor:[UIColor colorWithWhite:1 alpha:0.25f] forState:UIControlStateNormal];
@@ -133,6 +134,7 @@
         showsButton.frame = CGRectMake(161, 2, 158, 24);
         [showsButton setTitle:@"SHOWS" forState:UIControlStateNormal];
         showsButton.tag = 1;
+        showsButton.selected = (sectionVisible == 1);
         [showsButton addTarget:self action:@selector(switchVisibleSection:) forControlEvents:UIControlEventTouchUpInside];
         [showsButton setTitleShadowColor:[UIColor colorWithWhite:1 alpha:0.25f] forState:UIControlStateNormal];
         [showsButton setBackgroundImage:buttonDownBackground forState:UIControlStateHighlighted];
@@ -198,19 +200,19 @@
         }
     }   
 }
-*/
+
 - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // The table view should not be re-orderable.
     return NO;
 }
-
+*/
 - (void)tableView:(UITableView*)tableView didSelectRowAtIndexPath:(NSIndexPath*)indexPath
 {
-    if([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad)
+    if(UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPad)
     {
         NSManagedObject *object = [self.fetchedResultsController objectAtIndexPath:indexPath];
-        self.detailViewController.detailItem = object;
+        self.episodeViewController.detailItem = object;
     }
 }
 
@@ -235,6 +237,7 @@
         return _fetchedResultsController;
     
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    
     // Edit the entity name as appropriate.
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"Event" inManagedObjectContext:self.managedObjectContext];
     [fetchRequest setEntity:entity];
@@ -255,18 +258,15 @@
     self.fetchedResultsController = aFetchedResultsController;
     
 	NSError *error = nil;
-	if (![self.fetchedResultsController performFetch:&error])
+	if(![self.fetchedResultsController performFetch:&error])
     {
-	     // Replace this implementation with code to handle the error appropriately.
-	     // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development. 
 	    NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-	    abort();
 	}
     
     return _fetchedResultsController;
 }    
 
-- (void)controllerWillChangeContent:(NSFetchedResultsController *)controller
+- (void)controllerWillChangeContent:(NSFetchedResultsController*)controller
 {
     [self.tableView beginUpdates];
 }
