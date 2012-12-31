@@ -6,6 +6,7 @@
 //  Copyright (c) 2012 Stuart Moore. All rights reserved.
 //
 
+#import <QuartzCore/QuartzCore.h>
 #import "TWMainViewController.h"
 #import "TWEpisodeViewController.h"
 
@@ -17,7 +18,7 @@
 
 - (void)awakeFromNib
 {
-    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad)
+    if([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad)
     {
         self.clearsSelectionOnViewWillAppear = NO;
         self.contentSizeForViewInPopover = CGSizeMake(320.0, 600.0);
@@ -28,7 +29,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
+	
+    sectionVisible = 1;
+    
+    // Do any additional setup after loading the view, typically from a nib.
     //self.navigationItem.leftBarButtonItem = self.editButtonItem;
 
     //UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject:)];
@@ -71,31 +75,112 @@
     return [sectionInfo numberOfObjects];
 }
 
-- (NSString*)tableView:(UITableView*)aTableView titleForHeaderInSection:(NSInteger)section
+- (float)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    return @"Contents";
+    if(section == 0)
+        return 28;
+    
+    return 0;
+}
+
+- (float)tableView:(UITableView*)tableView heightForRowAtIndexPath:(NSIndexPath*)indexPath
+{
+
+    if(sectionVisible == 0)
+        return 44;
+    else if(sectionVisible == 1)
+        return 100;
+
+    return 44;
+}
+
+- (UIView*)tableView:(UITableView*)tableView viewForHeaderInSection:(NSInteger)section
+{
+    if(section == 0)
+    {
+        float width = tableView.frame.size.width;
+        UIView *sectionHeader = [[UIView alloc] initWithFrame:CGRectMake(0, 0, width, 28)];
+        sectionHeader.backgroundColor = [UIColor colorWithWhite:244/255.0 alpha:1];
+        
+        UILabel *topLine = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 320, 1)];
+        topLine.backgroundColor = [UIColor colorWithWhite:1 alpha:1];
+        [sectionHeader addSubview:topLine];
+        
+        UILabel *botLine = [[UILabel alloc] initWithFrame:CGRectMake(0, 27, 320, 1)];
+        botLine.backgroundColor = [UIColor colorWithWhite:222/255.0 alpha:1];
+        [sectionHeader addSubview:botLine];
+        
+        UIImage *buttonUpBackground = [[UIImage imageNamed:@"main-header-button-up.png"] stretchableImageWithLeftCapWidth:4 topCapHeight:11];
+        UIImage *buttonDownBackground = [[UIImage imageNamed:@"main-header-button.png"] stretchableImageWithLeftCapWidth:4 topCapHeight:11];
+        
+        UIButton *episodesButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        episodesButton.frame = CGRectMake(1, 2, 158, 24);
+        [episodesButton setTitle:@"EPISODES" forState:UIControlStateNormal];
+        episodesButton.tag = 0;
+        [episodesButton addTarget:self action:@selector(switchVisibleSection:) forControlEvents:UIControlEventTouchUpInside];
+        [episodesButton setTitleShadowColor:[UIColor colorWithWhite:0 alpha:0.25f] forState:UIControlStateSelected];
+        [episodesButton setTitleShadowColor:[UIColor colorWithWhite:1 alpha:0.25f] forState:UIControlStateNormal];
+        [episodesButton setBackgroundImage:buttonDownBackground forState:UIControlStateHighlighted];
+        [episodesButton setBackgroundImage:buttonDownBackground forState:UIControlStateSelected];
+        [episodesButton setBackgroundImage:buttonUpBackground forState:UIControlStateNormal];
+        episodesButton.titleLabel.shadowOffset = CGSizeMake(0, 1);
+        [episodesButton setTitleColor:[UIColor colorWithWhite:132/255.0 alpha:1] forState:UIControlStateNormal];
+        [episodesButton setTitleColor:[UIColor colorWithWhite:244/255.0 alpha:1] forState:UIControlStateSelected];
+        [episodesButton.titleLabel setFont:[UIFont boldSystemFontOfSize:14]];
+        [sectionHeader addSubview:episodesButton];
+        
+        UIButton *showsButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        showsButton.frame = CGRectMake(161, 2, 158, 24);
+        [showsButton setTitle:@"SHOWS" forState:UIControlStateNormal];
+        showsButton.tag = 1;
+        [showsButton addTarget:self action:@selector(switchVisibleSection:) forControlEvents:UIControlEventTouchUpInside];
+        [showsButton setTitleShadowColor:[UIColor colorWithWhite:1 alpha:0.25f] forState:UIControlStateNormal];
+        [showsButton setBackgroundImage:buttonDownBackground forState:UIControlStateHighlighted];
+        [showsButton setBackgroundImage:buttonDownBackground forState:UIControlStateSelected];
+        [showsButton setBackgroundImage:buttonUpBackground forState:UIControlStateNormal];
+        showsButton.titleLabel.shadowOffset = CGSizeMake(0, 1);
+        [showsButton setTitleColor:[UIColor colorWithWhite:132/255.0 alpha:1] forState:UIControlStateNormal];
+        [showsButton setTitleColor:[UIColor colorWithWhite:244/255.0 alpha:1] forState:UIControlStateSelected];
+        [showsButton setTitleShadowColor:[UIColor colorWithWhite:0 alpha:0.25f] forState:UIControlStateSelected];
+        [showsButton.titleLabel setFont:[UIFont boldSystemFontOfSize:14]];
+        [sectionHeader addSubview:showsButton];
+        
+        sectionHeader.layer.shadowColor = [[UIColor colorWithWhite:0 alpha:0.5f] CGColor];
+        sectionHeader.layer.shadowOffset = CGSizeMake(0, 3);
+        sectionHeader.layer.shadowOpacity = 0; // TODO: ACTIVATE ON SCROLL!
+        sectionHeader.layer.shadowRadius = 3;
+        
+        return sectionHeader;
+    }
+    return nil;
+}
+
+- (void)switchVisibleSection:(UIButton*)sender
+{
+    sectionVisible = sender.tag;
+    [self.tableView reloadData];
 }
 
 - (UITableViewCell*)tableView:(UITableView*)tableView cellForRowAtIndexPath:(NSIndexPath*)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"episodeCell"];
+    NSString *identifier = (sectionVisible == 0) ? @"episodeCell" : @"showsCell";
+    
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
     
     if(!cell)
-    {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"episodeCell"];
-    }
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
     
     [self configureCell:cell atIndexPath:indexPath];
     
     return cell;
 }
-
+/*
 - (BOOL)tableView:(UITableView*)tableView canEditRowAtIndexPath:(NSIndexPath*)indexPath
 {
     // Return NO if you do not want the specified item to be editable.
     return NO;
 }
-/*
+
 - (void)tableView:(UITableView*)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath*)indexPath
 {
     if (editingStyle == UITableViewCellEditingStyleDelete)
@@ -120,22 +205,25 @@
     return NO;
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+- (void)tableView:(UITableView*)tableView didSelectRowAtIndexPath:(NSIndexPath*)indexPath
 {
-    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad)
+    if([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad)
     {
-        NSManagedObject *object = [[self fetchedResultsController] objectAtIndexPath:indexPath];
+        NSManagedObject *object = [self.fetchedResultsController objectAtIndexPath:indexPath];
         self.detailViewController.detailItem = object;
     }
 }
 
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+- (void)prepareForSegue:(UIStoryboardSegue*)segue sender:(id)sender
 {
-    if ([[segue identifier] isEqualToString:@"episodeDetail"])
+    if([segue.identifier isEqualToString:@"episodeDetail"])
     {
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-        NSManagedObject *object = [[self fetchedResultsController] objectAtIndexPath:indexPath];
-        [[segue destinationViewController] setDetailItem:object];
+        NSManagedObject *object = [self.fetchedResultsController objectAtIndexPath:indexPath];
+        [segue.destinationViewController setDetailItem:object];
+    }
+    else if([segue.identifier isEqualToString:@"showDetail"])
+    {
     }
 }
 
@@ -143,10 +231,8 @@
 
 - (NSFetchedResultsController*)fetchedResultsController
 {
-    if (_fetchedResultsController != nil)
-    {
+    if(_fetchedResultsController != nil)
         return _fetchedResultsController;
-    }
     
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     // Edit the entity name as appropriate.
@@ -185,7 +271,7 @@
     [self.tableView beginUpdates];
 }
 
-- (void)controller:(NSFetchedResultsController *)controller didChangeSection:(id <NSFetchedResultsSectionInfo>)sectionInfo
+- (void)controller:(NSFetchedResultsController*)controller didChangeSection:(id <NSFetchedResultsSectionInfo>)sectionInfo
            atIndex:(NSUInteger)sectionIndex forChangeType:(NSFetchedResultsChangeType)type
 {
     switch(type)
@@ -200,9 +286,9 @@
     }
 }
 
-- (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject
-       atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type
-      newIndexPath:(NSIndexPath *)newIndexPath
+- (void)controller:(NSFetchedResultsController*)controller didChangeObject:(id)anObject
+       atIndexPath:(NSIndexPath*)indexPath forChangeType:(NSFetchedResultsChangeType)type
+      newIndexPath:(NSIndexPath*)newIndexPath
 {
     UITableView *tableView = self.tableView;
     
@@ -242,10 +328,13 @@
 }
  */
 
-- (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
+- (void)configureCell:(UITableViewCell*)cell atIndexPath:(NSIndexPath*)indexPath
 {
-    NSManagedObject *object = [self.fetchedResultsController objectAtIndexPath:indexPath];
-    cell.textLabel.text = [[object valueForKey:@"timeStamp"] description];
+    if([cell.reuseIdentifier isEqualToString:@"episodeCell"])
+    {
+        NSManagedObject *object = [self.fetchedResultsController objectAtIndexPath:indexPath];
+        cell.textLabel.text = [[object valueForKey:@"timeStamp"] description];
+    }
 }
 
 - (void)didReceiveMemoryWarning

@@ -13,6 +13,9 @@
 #import <CoreData/CoreData.h>
 
 @interface TWMainViewController : UITableViewController <NSFetchedResultsControllerDelegate>
+{
+    int sectionVisible;
+}
 
 @property (strong, nonatomic) TWEpisodeViewController *detailViewController;
 
