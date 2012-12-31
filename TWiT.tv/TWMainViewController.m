@@ -7,8 +7,7 @@
 //
 
 #import "TWMainViewController.h"
-
-#import "TWDetailViewController.h"
+#import "TWEpisodeViewController.h"
 
 @interface TWMainViewController ()
 - (void)configureCell:(UITableViewCell*)cell atIndexPath:(NSIndexPath*)indexPath;
@@ -34,7 +33,7 @@
 
     //UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject:)];
     //self.navigationItem.rightBarButtonItem = addButton;
-    self.detailViewController = (TWDetailViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
+    self.detailViewController = (TWEpisodeViewController*)[[self.splitViewController.viewControllers lastObject] topViewController];
 }
 
 /*
@@ -72,25 +71,32 @@
     return [sectionInfo numberOfObjects];
 }
 
-- (NSString *)tableView:(UITableView *)aTableView titleForHeaderInSection:(NSInteger)section
+- (NSString*)tableView:(UITableView*)aTableView titleForHeaderInSection:(NSInteger)section
 {
     return @"Contents";
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+- (UITableViewCell*)tableView:(UITableView*)tableView cellForRowAtIndexPath:(NSIndexPath*)indexPath
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"episodeCell"];
+    
+    if(!cell)
+    {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"episodeCell"];
+    }
+    
     [self configureCell:cell atIndexPath:indexPath];
+    
     return cell;
 }
 
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+- (BOOL)tableView:(UITableView*)tableView canEditRowAtIndexPath:(NSIndexPath*)indexPath
 {
     // Return NO if you do not want the specified item to be editable.
     return NO;
 }
 /*
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+- (void)tableView:(UITableView*)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath*)indexPath
 {
     if (editingStyle == UITableViewCellEditingStyleDelete)
     {

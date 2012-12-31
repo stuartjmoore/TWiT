@@ -1,19 +1,19 @@
 //
-//  TWDetailViewController.m
+//  TWEpisodeViewController.m
 //  TWiT.tv
 //
 //  Created by Stuart Moore on 12/29/12.
 //  Copyright (c) 2012 Stuart Moore. All rights reserved.
 //
 
-#import "TWDetailViewController.h"
+#import "TWEpisodeViewController.h"
 
-@interface TWDetailViewController ()
+@interface TWEpisodeViewController ()
 @property (strong, nonatomic) UIPopoverController *masterPopoverController;
 - (void)configureView;
 @end
 
-@implementation TWDetailViewController
+@implementation TWEpisodeViewController
 
 #pragma mark - Managing the detail item
 

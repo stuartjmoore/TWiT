@@ -8,13 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
-@class TWDetailViewController;
+@class TWEpisodeViewController;
 
 #import <CoreData/CoreData.h>
 
 @interface TWMainViewController : UITableViewController <NSFetchedResultsControllerDelegate>
 
-@property (strong, nonatomic) TWDetailViewController *detailViewController;
+@property (strong, nonatomic) TWEpisodeViewController *detailViewController;
 
 @property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;

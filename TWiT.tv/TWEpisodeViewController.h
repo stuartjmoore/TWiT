@@ -1,5 +1,5 @@
 //
-//  TWDetailViewController.h
+//  TWEpisodeViewController.h
 //  TWiT.tv
 //
 //  Created by Stuart Moore on 12/29/12.
@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface TWDetailViewController : UIViewController <UISplitViewControllerDelegate>
+@interface TWEpisodeViewController : UIViewController <UISplitViewControllerDelegate>
 
 @property (strong, nonatomic) id detailItem;
 
