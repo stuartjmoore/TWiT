@@ -224,6 +224,7 @@
 		170BA1571691CDA00022FE4D /* twil600.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 170BA13E1691CDA00022FE4D /* twil600.jpg */; };
 		170BA1581691CDA00022FE4D /* twit600.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 170BA13F1691CDA00022FE4D /* twit600.jpg */; };
 		170BA1591691CDA00022FE4D /* ww600.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 170BA1401691CDA00022FE4D /* ww600.jpg */; };
+		170BA15B1691D0FC0022FE4D /* TWMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 170BA15A1691D0FC0022FE4D /* TWMainViewController.m */; };
 		17BB1D03168F72AF00221F7E /* TWChannelObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 17BB1D02168F72AF00221F7E /* TWChannelObject.m */; };
 		17E5114F168F496E00DCE89C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17E5114E168F496E00DCE89C /* UIKit.framework */; };
 		17E51151168F496E00DCE89C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17E51150168F496E00DCE89C /* Foundation.framework */; };
@@ -238,7 +239,6 @@
 		17E5116A168F496E00DCE89C /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 17E51168168F496E00DCE89C /* MainStoryboard_iPhone.storyboard */; };
 		17E5116D168F496E00DCE89C /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 17E5116B168F496E00DCE89C /* MainStoryboard_iPad.storyboard */; };
 		17E51170168F496E00DCE89C /* TWiT_tv.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 17E5116E168F496E00DCE89C /* TWiT_tv.xcdatamodeld */; };
-		17E51173168F496E00DCE89C /* TWMasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 17E51172168F496E00DCE89C /* TWMasterViewController.m */; };
 		17E51176168F496E00DCE89C /* TWDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 17E51175168F496E00DCE89C /* TWDetailViewController.m */; };
 /* End PBXBuildFile section */
 
@@ -461,6 +461,7 @@
 		170BA13E1691CDA00022FE4D /* twil600.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = twil600.jpg; path = "Resources/Shows Cache/Album Art/twil600.jpg"; sourceTree = SOURCE_ROOT; };
 		170BA13F1691CDA00022FE4D /* twit600.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = twit600.jpg; path = "Resources/Shows Cache/Album Art/twit600.jpg"; sourceTree = SOURCE_ROOT; };
 		170BA1401691CDA00022FE4D /* ww600.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = ww600.jpg; path = "Resources/Shows Cache/Album Art/ww600.jpg"; sourceTree = SOURCE_ROOT; };
+		170BA15A1691D0FC0022FE4D /* TWMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWMainViewController.m; sourceTree = "<group>"; };
 		17BB1D01168F72AF00221F7E /* TWChannelObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWChannelObject.h; sourceTree = "<group>"; };
 		17BB1D02168F72AF00221F7E /* TWChannelObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWChannelObject.m; sourceTree = "<group>"; };
 		17E5114A168F496E00DCE89C /* TWiT.tv.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TWiT.tv.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -480,8 +481,7 @@
 		17E51169168F496E00DCE89C /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
 		17E5116C168F496E00DCE89C /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPad.storyboard; sourceTree = "<group>"; };
 		17E5116F168F496E00DCE89C /* TWiT_tv.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TWiT_tv.xcdatamodel; sourceTree = "<group>"; };
-		17E51171168F496E00DCE89C /* TWMasterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TWMasterViewController.h; sourceTree = "<group>"; };
-		17E51172168F496E00DCE89C /* TWMasterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TWMasterViewController.m; sourceTree = "<group>"; };
+		17E51171168F496E00DCE89C /* TWMainViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TWMainViewController.h; sourceTree = "<group>"; };
 		17E51174168F496E00DCE89C /* TWDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TWDetailViewController.h; sourceTree = "<group>"; };
 		17E51175168F496E00DCE89C /* TWDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TWDetailViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -806,8 +806,8 @@
 				17E51160168F496E00DCE89C /* TWAppDelegate.m */,
 				17E51168168F496E00DCE89C /* MainStoryboard_iPhone.storyboard */,
 				17E5116B168F496E00DCE89C /* MainStoryboard_iPad.storyboard */,
-				17E51171168F496E00DCE89C /* TWMasterViewController.h */,
-				17E51172168F496E00DCE89C /* TWMasterViewController.m */,
+				17E51171168F496E00DCE89C /* TWMainViewController.h */,
+				170BA15A1691D0FC0022FE4D /* TWMainViewController.m */,
 				17E51174168F496E00DCE89C /* TWDetailViewController.h */,
 				17E51175168F496E00DCE89C /* TWDetailViewController.m */,
 				17E5116E168F496E00DCE89C /* TWiT_tv.xcdatamodeld */,
@@ -1120,9 +1120,9 @@
 				17E5115D168F496E00DCE89C /* main.m in Sources */,
 				17E51161168F496E00DCE89C /* TWAppDelegate.m in Sources */,
 				17E51170168F496E00DCE89C /* TWiT_tv.xcdatamodeld in Sources */,
-				17E51173168F496E00DCE89C /* TWMasterViewController.m in Sources */,
 				17E51176168F496E00DCE89C /* TWDetailViewController.m in Sources */,
 				17BB1D03168F72AF00221F7E /* TWChannelObject.m in Sources */,
+				170BA15B1691D0FC0022FE4D /* TWMainViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
