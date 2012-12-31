@@ -20,6 +20,6 @@
 @property (strong, nonatomic) TWEpisodeViewController *episodeViewController;
 
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
-@property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
+@property (strong, nonatomic) NSFetchedResultsController *fetchedEpisodesController;
 
 @end

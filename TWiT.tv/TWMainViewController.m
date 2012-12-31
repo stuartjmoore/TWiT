@@ -43,8 +43,8 @@
 /*
 - (void)insertNewObject:(id)sender
 {
-    NSManagedObjectContext *context = [self.fetchedResultsController managedObjectContext];
-    NSEntityDescription *entity = [[self.fetchedResultsController fetchRequest] entity];
+    NSManagedObjectContext *context = [self.fetchedEpisodesController managedObjectContext];
+    NSEntityDescription *entity = [[self.fetchedEpisodesController fetchRequest] entity];
     NSManagedObject *newManagedObject = [NSEntityDescription insertNewObjectForEntityForName:[entity name] inManagedObjectContext:context];
     
     // If appropriate, configure the new managed object.
@@ -66,12 +66,12 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return [[self.fetchedResultsController sections] count];
+    return self.fetchedEpisodesController.sections.count;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    id <NSFetchedResultsSectionInfo> sectionInfo = [self.fetchedResultsController sections][section];
+    id <NSFetchedResultsSectionInfo> sectionInfo = self.fetchedEpisodesController.sections[section];
     return [sectionInfo numberOfObjects];
 }
 
@@ -187,8 +187,8 @@
 {
     if (editingStyle == UITableViewCellEditingStyleDelete)
     {
-        NSManagedObjectContext *context = [self.fetchedResultsController managedObjectContext];
-        [context deleteObject:[self.fetchedResultsController objectAtIndexPath:indexPath]];
+        NSManagedObjectContext *context = [self.fetchedEpisodesController managedObjectContext];
+        [context deleteObject:[self.fetchedEpisodesController objectAtIndexPath:indexPath]];
         
         NSError *error = nil;
         if (![context save:&error])
@@ -211,7 +211,7 @@
 {
     if(UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPad)
     {
-        NSManagedObject *object = [self.fetchedResultsController objectAtIndexPath:indexPath];
+        NSManagedObject *object = [self.fetchedEpisodesController objectAtIndexPath:indexPath];
         self.episodeViewController.detailItem = object;
     }
 }
@@ -221,7 +221,7 @@
     if([segue.identifier isEqualToString:@"episodeDetail"])
     {
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-        NSManagedObject *object = [self.fetchedResultsController objectAtIndexPath:indexPath];
+        NSManagedObject *object = [self.fetchedEpisodesController objectAtIndexPath:indexPath];
         [segue.destinationViewController setDetailItem:object];
     }
     else if([segue.identifier isEqualToString:@"showDetail"])
@@ -231,10 +231,10 @@
 
 #pragma mark - Fetched results controller
 
-- (NSFetchedResultsController*)fetchedResultsController
+- (NSFetchedResultsController*)fetchedEpisodesController
 {
-    if(_fetchedResultsController != nil)
-        return _fetchedResultsController;
+    if(_fetchedEpisodesController != nil)
+        return _fetchedEpisodesController;
     
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     
@@ -253,17 +253,17 @@
     
     // Edit the section name key path and cache name if appropriate.
     // nil for section name key path means "no sections".
-    NSFetchedResultsController *aFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:@"Master"];
-    aFetchedResultsController.delegate = self;
-    self.fetchedResultsController = aFetchedResultsController;
+    NSFetchedResultsController *aFetchedEpisodesController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:@"Master"];
+    aFetchedEpisodesController.delegate = self;
+    self.fetchedEpisodesController = aFetchedEpisodesController;
     
 	NSError *error = nil;
-	if(![self.fetchedResultsController performFetch:&error])
+	if(![self.fetchedEpisodesController performFetch:&error])
     {
 	    NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
 	}
     
-    return _fetchedResultsController;
+    return _fetchedEpisodesController;
 }    
 
 - (void)controllerWillChangeContent:(NSFetchedResultsController*)controller
@@ -332,7 +332,7 @@
 {
     if([cell.reuseIdentifier isEqualToString:@"episodeCell"])
     {
-        NSManagedObject *object = [self.fetchedResultsController objectAtIndexPath:indexPath];
+        NSManagedObject *object = [self.fetchedEpisodesController objectAtIndexPath:indexPath];
         cell.textLabel.text = [[object valueForKey:@"timeStamp"] description];
     }
 }
