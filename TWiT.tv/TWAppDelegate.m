@@ -7,7 +7,7 @@
 //
 
 #import "TWAppDelegate.h"
-#import "TWMasterViewController.h"
+#import "TWMainViewController.h"
 #import "TWChannelObject.h"
 
 @implementation TWAppDelegate
@@ -24,18 +24,18 @@
     // Override point for customization after application launch.
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad)
     {
-        UISplitViewController *splitViewController = (UISplitViewController *)self.window.rootViewController;
+        UISplitViewController *splitViewController = (UISplitViewController*)self.window.rootViewController;
         UINavigationController *navigationController = [splitViewController.viewControllers lastObject];
         splitViewController.delegate = (id)navigationController.topViewController;
         
         UINavigationController *masterNavigationController = splitViewController.viewControllers[0];
-        TWMasterViewController *controller = (TWMasterViewController *)masterNavigationController.topViewController;
+        TWMainViewController *controller = (TWMainViewController*)masterNavigationController.topViewController;
         controller.managedObjectContext = self.managedObjectContext;
     }
     else
     {
-        UINavigationController *navigationController = (UINavigationController *)self.window.rootViewController;
-        TWMasterViewController *controller = (TWMasterViewController *)navigationController.topViewController;
+        UINavigationController *navigationController = (UINavigationController*)self.window.rootViewController;
+        TWMainViewController *controller = (TWMainViewController*)navigationController.topViewController;
         controller.managedObjectContext = self.managedObjectContext;
     }
     return YES;

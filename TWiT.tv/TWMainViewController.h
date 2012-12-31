@@ -1,5 +1,5 @@
 //
-//  TWMasterViewController.h
+//  TWMainViewController.h
 //  TWiT.tv
 //
 //  Created by Stuart Moore on 12/29/12.
@@ -12,7 +12,7 @@
 
 #import <CoreData/CoreData.h>
 
-@interface TWMasterViewController : UITableViewController <NSFetchedResultsControllerDelegate>
+@interface TWMainViewController : UITableViewController <NSFetchedResultsControllerDelegate>
 
 @property (strong, nonatomic) TWDetailViewController *detailViewController;
 

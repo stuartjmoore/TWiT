@@ -1,20 +1,20 @@
 //
-//  TWMasterViewController.m
+//  TWMainViewController.m
 //  TWiT.tv
 //
 //  Created by Stuart Moore on 12/29/12.
 //  Copyright (c) 2012 Stuart Moore. All rights reserved.
 //
 
-#import "TWMasterViewController.h"
+#import "TWMainViewController.h"
 
 #import "TWDetailViewController.h"
 
-@interface TWMasterViewController ()
+@interface TWMainViewController ()
 - (void)configureCell:(UITableViewCell*)cell atIndexPath:(NSIndexPath*)indexPath;
 @end
 
-@implementation TWMasterViewController
+@implementation TWMainViewController
 
 - (void)awakeFromNib
 {
@@ -135,7 +135,7 @@
 
 #pragma mark - Fetched results controller
 
-- (NSFetchedResultsController *)fetchedResultsController
+- (NSFetchedResultsController*)fetchedResultsController
 {
     if (_fetchedResultsController != nil)
     {
