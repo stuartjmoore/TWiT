@@ -239,7 +239,7 @@
 		17E5116A168F496E00DCE89C /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 17E51168168F496E00DCE89C /* MainStoryboard_iPhone.storyboard */; };
 		17E5116D168F496E00DCE89C /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 17E5116B168F496E00DCE89C /* MainStoryboard_iPad.storyboard */; };
 		17E51170168F496E00DCE89C /* TWiT_tv.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 17E5116E168F496E00DCE89C /* TWiT_tv.xcdatamodeld */; };
-		17E51176168F496E00DCE89C /* TWDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 17E51175168F496E00DCE89C /* TWDetailViewController.m */; };
+		17E51176168F496E00DCE89C /* TWEpisodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 17E51175168F496E00DCE89C /* TWEpisodeViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -482,8 +482,8 @@
 		17E5116C168F496E00DCE89C /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPad.storyboard; sourceTree = "<group>"; };
 		17E5116F168F496E00DCE89C /* TWiT_tv.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TWiT_tv.xcdatamodel; sourceTree = "<group>"; };
 		17E51171168F496E00DCE89C /* TWMainViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TWMainViewController.h; sourceTree = "<group>"; };
-		17E51174168F496E00DCE89C /* TWDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TWDetailViewController.h; sourceTree = "<group>"; };
-		17E51175168F496E00DCE89C /* TWDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TWDetailViewController.m; sourceTree = "<group>"; };
+		17E51174168F496E00DCE89C /* TWEpisodeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TWEpisodeViewController.h; sourceTree = "<group>"; };
+		17E51175168F496E00DCE89C /* TWEpisodeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TWEpisodeViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -808,8 +808,8 @@
 				17E5116B168F496E00DCE89C /* MainStoryboard_iPad.storyboard */,
 				17E51171168F496E00DCE89C /* TWMainViewController.h */,
 				170BA15A1691D0FC0022FE4D /* TWMainViewController.m */,
-				17E51174168F496E00DCE89C /* TWDetailViewController.h */,
-				17E51175168F496E00DCE89C /* TWDetailViewController.m */,
+				17E51174168F496E00DCE89C /* TWEpisodeViewController.h */,
+				17E51175168F496E00DCE89C /* TWEpisodeViewController.m */,
 				17E5116E168F496E00DCE89C /* TWiT_tv.xcdatamodeld */,
 				17BB1CFF168F728C00221F7E /* Objects */,
 				170BA1271691CD5B0022FE4D /* Resources */,
@@ -1120,7 +1120,7 @@
 				17E5115D168F496E00DCE89C /* main.m in Sources */,
 				17E51161168F496E00DCE89C /* TWAppDelegate.m in Sources */,
 				17E51170168F496E00DCE89C /* TWiT_tv.xcdatamodeld in Sources */,
-				17E51176168F496E00DCE89C /* TWDetailViewController.m in Sources */,
+				17E51176168F496E00DCE89C /* TWEpisodeViewController.m in Sources */,
 				17BB1D03168F72AF00221F7E /* TWChannelObject.m in Sources */,
 				170BA15B1691D0FC0022FE4D /* TWMainViewController.m in Sources */,
 			);
