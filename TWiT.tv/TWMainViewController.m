@@ -64,14 +64,25 @@
 */
 #pragma mark - Table View
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+- (NSInteger)numberOfSectionsInTableView:(UITableView*)tableView
 {
-    return self.fetchedEpisodesController.sections.count;
+    if(sectionVisible == 0)
+        return self.fetchedEpisodesController.sections.count;
+    else if(sectionVisible == 1)
+        return self.fetchedShowsController.sections.count;
+    
+    return 0;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    id <NSFetchedResultsSectionInfo> sectionInfo = self.fetchedEpisodesController.sections[section];
+    id <NSFetchedResultsSectionInfo> sectionInfo;
+    
+    if(sectionVisible == 0)
+        sectionInfo = self.fetchedEpisodesController.sections[section];
+    else if(sectionVisible == 1)
+        sectionInfo = self.fetchedShowsController.sections[section];
+    
     return [sectionInfo numberOfObjects];
 }
 
@@ -264,7 +275,42 @@
 	}
     
     return _fetchedEpisodesController;
-}    
+}
+- (NSFetchedResultsController*)fetchedShowsController
+{
+    if(_fetchedShowsController != nil)
+        return _fetchedShowsController;
+    
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    
+    // Edit the entity name as appropriate.
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Event" inManagedObjectContext:self.managedObjectContext];
+    [fetchRequest setEntity:entity];
+    
+    // Set the batch size to a suitable number.
+    [fetchRequest setFetchBatchSize:20];
+    
+    // Edit the sort key as appropriate.
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"timeStamp" ascending:NO];
+    NSArray *sortDescriptors = @[sortDescriptor];
+    
+    [fetchRequest setSortDescriptors:sortDescriptors];
+    
+    // Edit the section name key path and cache name if appropriate.
+    // nil for section name key path means "no sections".
+    NSFetchedResultsController *aFetchedShowsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:@"Master"];
+    aFetchedShowsController.delegate = self;
+    self.fetchedShowsController = aFetchedShowsController;
+    
+	NSError *error = nil;
+	if(![self.fetchedShowsController performFetch:&error])
+    {
+	    NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+	}
+    
+    return _fetchedShowsController;
+}
+
 
 - (void)controllerWillChangeContent:(NSFetchedResultsController*)controller
 {
@@ -340,6 +386,11 @@
     {
         NSManagedObject *object = [self.fetchedEpisodesController objectAtIndexPath:indexPath];
         cell.textLabel.text = [[object valueForKey:@"timeStamp"] description];
+    }
+    else if([cell.reuseIdentifier isEqualToString:@"showsCell"])
+    {
+        //NSManagedObject *object = [self.fetchedShowsController objectAtIndexPath:indexPath];
+        //cell.textLabel.text = [[object valueForKey:@"timeStamp"] description];
     }
 }
 

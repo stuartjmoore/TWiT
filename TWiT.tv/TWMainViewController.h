@@ -21,5 +21,6 @@
 
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (strong, nonatomic) NSFetchedResultsController *fetchedEpisodesController;
+@property (strong, nonatomic) NSFetchedResultsController *fetchedShowsController;
 
 @end
