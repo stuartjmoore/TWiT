@@ -225,6 +225,7 @@
 		170BA1581691CDA00022FE4D /* twit600.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 170BA13F1691CDA00022FE4D /* twit600.jpg */; };
 		170BA1591691CDA00022FE4D /* ww600.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 170BA1401691CDA00022FE4D /* ww600.jpg */; };
 		170BA15B1691D0FC0022FE4D /* TWMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 170BA15A1691D0FC0022FE4D /* TWMainViewController.m */; };
+		170BA15D1691D5E70022FE4D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 170BA15C1691D5E70022FE4D /* QuartzCore.framework */; };
 		17BB1D03168F72AF00221F7E /* TWChannelObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 17BB1D02168F72AF00221F7E /* TWChannelObject.m */; };
 		17E5114F168F496E00DCE89C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17E5114E168F496E00DCE89C /* UIKit.framework */; };
 		17E51151168F496E00DCE89C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17E51150168F496E00DCE89C /* Foundation.framework */; };
@@ -462,6 +463,7 @@
 		170BA13F1691CDA00022FE4D /* twit600.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = twit600.jpg; path = "Resources/Shows Cache/Album Art/twit600.jpg"; sourceTree = SOURCE_ROOT; };
 		170BA1401691CDA00022FE4D /* ww600.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = ww600.jpg; path = "Resources/Shows Cache/Album Art/ww600.jpg"; sourceTree = SOURCE_ROOT; };
 		170BA15A1691D0FC0022FE4D /* TWMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWMainViewController.m; sourceTree = "<group>"; };
+		170BA15C1691D5E70022FE4D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		17BB1D01168F72AF00221F7E /* TWChannelObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWChannelObject.h; sourceTree = "<group>"; };
 		17BB1D02168F72AF00221F7E /* TWChannelObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWChannelObject.m; sourceTree = "<group>"; };
 		17E5114A168F496E00DCE89C /* TWiT.tv.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TWiT.tv.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -491,6 +493,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				170BA15D1691D5E70022FE4D /* QuartzCore.framework in Frameworks */,
 				17E5114F168F496E00DCE89C /* UIKit.framework in Frameworks */,
 				17E51151168F496E00DCE89C /* Foundation.framework in Frameworks */,
 				17E51153168F496E00DCE89C /* CoreGraphics.framework in Frameworks */,
@@ -795,6 +798,7 @@
 				17E51150168F496E00DCE89C /* Foundation.framework */,
 				17E51152168F496E00DCE89C /* CoreGraphics.framework */,
 				17E51154168F496E00DCE89C /* CoreData.framework */,
+				170BA15C1691D5E70022FE4D /* QuartzCore.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
