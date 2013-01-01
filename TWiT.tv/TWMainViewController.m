@@ -383,8 +383,8 @@
 {
     if([cell.reuseIdentifier isEqualToString:@"episodeCell"])
     {
-        NSManagedObject *object = [self.fetchedEpisodesController objectAtIndexPath:indexPath];
-        cell.textLabel.text = [[object valueForKey:@"timeStamp"] description];
+        //NSManagedObject *object = [self.fetchedEpisodesController objectAtIndexPath:indexPath];
+        //cell.textLabel.text = [[object valueForKey:@"timeStamp"] description];
     }
     else if([cell.reuseIdentifier isEqualToString:@"showsCell"])
     {
