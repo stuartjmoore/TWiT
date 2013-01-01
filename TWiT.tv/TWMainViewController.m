@@ -10,6 +10,7 @@
 #import "TWMainViewController.h"
 #import "TWEpisodeViewController.h"
 #import "TWEpisodeCell.h"
+#import "TWShowsCell.h"
 
 @interface TWMainViewController ()
 - (void)configureCell:(UITableViewCell*)cell atIndexPath:(NSIndexPath*)indexPath;
@@ -182,7 +183,7 @@
     if(!cell && [identifier isEqualToString:@"episodeCell"])
         cell = [[TWEpisodeCell alloc] initWithStyle:NO reuseIdentifier:identifier];
     else if(!cell && [identifier isEqualToString:@"showsCell"])
-        cell = [[UITableViewCell alloc] initWithStyle:NO reuseIdentifier:identifier];
+        cell = [[TWShowsCell alloc] initWithStyle:NO reuseIdentifier:identifier];
     
     [self configureCell:cell atIndexPath:indexPath];
 
@@ -393,7 +394,13 @@
     else if([cell.reuseIdentifier isEqualToString:@"showsCell"])
     {
         //NSManagedObject *object = [self.fetchedShowsController objectAtIndexPath:indexPath];
-        //cell.textLabel.text = [[object valueForKey:@"timeStamp"] description];
+        
+        ((TWShowsCell*)cell).spacing = 14;
+        ((TWShowsCell*)cell).size = 88;
+        ((TWShowsCell*)cell).columns = 3;
+        
+        NSArray *shows = @[[UIImage imageNamed:@"aaa600.jpg"], [UIImage imageNamed:@"byb600.jpg"], [UIImage imageNamed:@"fr600.jpg"]];
+        [(TWShowsCell*)cell setShows:shows];
     }
 }
 
