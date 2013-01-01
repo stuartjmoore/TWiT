@@ -78,14 +78,23 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    id <NSFetchedResultsSectionInfo> sectionInfo;
+    id <NSFetchedResultsSectionInfo>sectionInfo;
     
     if(sectionVisible == TWSectionEpisodes)
+    {
         sectionInfo = self.fetchedEpisodesController.sections[section];
+        
+        return sectionInfo.numberOfObjects;
+    }
     else if(sectionVisible == TWSectionShows)
+    {
         sectionInfo = self.fetchedShowsController.sections[section];
+        int num = sectionInfo.numberOfObjects;
+        
+        return ceil(num/3.0);
+    }
     
-    return [sectionInfo numberOfObjects];
+    return 0;
 }
 
 - (float)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
@@ -384,22 +393,43 @@
 
 - (void)configureCell:(UITableViewCell*)cell atIndexPath:(NSIndexPath*)indexPath
 {
-    NSLog(@"configure %@", cell);
     if([cell.reuseIdentifier isEqualToString:@"episodeCell"])
     {
         NSManagedObject *object = [self.fetchedEpisodesController objectAtIndexPath:indexPath];
+        ((TWEpisodeCell*)cell).albumArt.image = [UIImage imageNamed:@"aaa600.jpg"];
         ((TWEpisodeCell*)cell).titleLabel.text = [[object valueForKey:@"timeStamp"] description];
         ((TWEpisodeCell*)cell).subtitleLabel.text = @"subtitle";
     }
     else if([cell.reuseIdentifier isEqualToString:@"showsCell"])
     {
-        //NSManagedObject *object = [self.fetchedShowsController objectAtIndexPath:indexPath];
+        // TODO: CACHE THIS MUCHERFUCKER!
         
         ((TWShowsCell*)cell).spacing = 14;
         ((TWShowsCell*)cell).size = 88;
         ((TWShowsCell*)cell).columns = 3;
         
-        NSArray *shows = @[[UIImage imageNamed:@"aaa600.jpg"], [UIImage imageNamed:@"byb600.jpg"], [UIImage imageNamed:@"fr600.jpg"]];
+        id <NSFetchedResultsSectionInfo>sectionInfo = self.fetchedShowsController.sections[indexPath.section];
+        int num = sectionInfo.numberOfObjects;
+        int columns = ((TWShowsCell*)cell).columns;
+        
+        NSMutableArray *shows = [NSMutableArray array];
+        for(int column = 0; column < columns; column++)
+        {
+            int index = indexPath.row*columns + column;
+            if(num > index)
+            {
+                if(column == 0)
+                    [shows addObject:[UIImage imageNamed:@"aaa600.jpg"]];
+                else if(column == 1)
+                    [shows addObject:[UIImage imageNamed:@"byb600.jpg"]];
+                else if(column == 2)
+                    [shows addObject:[UIImage imageNamed:@"fr600.jpg"]];
+                
+                //NSIndexPath *columnedIndexPath = [NSIndexPath indexPathForRow:index inSection:indexPath.section];
+                //NSManagedObject *show = [self.fetchedShowsController objectAtIndexPath:columnedIndexPath];
+                //[shows addObject:show];
+            }
+        }
         [(TWShowsCell*)cell setShows:shows];
     }
 }
