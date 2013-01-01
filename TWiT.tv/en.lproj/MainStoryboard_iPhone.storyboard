@@ -34,7 +34,7 @@
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         </view>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="detailDisclosureButton" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="episodeCell" rowHeight="62" id="lJ0-d7-vTF">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="detailDisclosureButton" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="episodeCell" rowHeight="62" id="lJ0-d7-vTF" customClass="TWEpisodeCell">
                                 <rect key="frame" x="0.0" y="202" width="320" height="62"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -64,6 +64,9 @@
                                 </view>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
+                                    <outlet property="albumArtImage" destination="ds1-f0-g2c" id="tR9-43-Zy1"/>
+                                    <outlet property="subtitleLabel" destination="F1Q-Xo-pjV" id="mrQ-Ll-sBU"/>
+                                    <outlet property="titleLabel" destination="rhp-Iq-4sC" id="Ptu-7D-No7"/>
                                     <segue destination="21" kind="push" identifier="episodeDetail" id="YiW-0V-IC2"/>
                                 </connections>
                             </tableViewCell>
@@ -238,6 +241,14 @@
         </scene>
     </scenes>
     <classes>
+        <class className="TWEpisodeCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TWEpisodeCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="albumArtImage" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="subtitleLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="titleLabel" candidateClass="UILabel"/>
+            </relationships>
+        </class>
         <class className="TWEpisodeViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/TWEpisodeViewController.h"/>
             <relationships>

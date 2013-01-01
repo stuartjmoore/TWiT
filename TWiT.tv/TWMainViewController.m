@@ -9,6 +9,7 @@
 #import <QuartzCore/QuartzCore.h>
 #import "TWMainViewController.h"
 #import "TWEpisodeViewController.h"
+#import "TWEpisodeCell.h"
 
 @interface TWMainViewController ()
 - (void)configureCell:(UITableViewCell*)cell atIndexPath:(NSIndexPath*)indexPath;
@@ -176,14 +177,15 @@
 - (UITableViewCell*)tableView:(UITableView*)tableView cellForRowAtIndexPath:(NSIndexPath*)indexPath
 {
     NSString *identifier = (sectionVisible == TWSectionEpisodes) ? @"episodeCell" : @"showsCell";
-    
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
     
-    if(!cell)
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
+    if(!cell && [identifier isEqualToString:@"episodeCell"])
+        cell = [[TWEpisodeCell alloc] initWithStyle:NO reuseIdentifier:identifier];
+    else if(!cell && [identifier isEqualToString:@"showsCell"])
+        cell = [[UITableViewCell alloc] initWithStyle:NO reuseIdentifier:identifier];
     
     [self configureCell:cell atIndexPath:indexPath];
-    
+
     return cell;
 }
 /*
@@ -381,10 +383,12 @@
 
 - (void)configureCell:(UITableViewCell*)cell atIndexPath:(NSIndexPath*)indexPath
 {
+    NSLog(@"configure %@", cell);
     if([cell.reuseIdentifier isEqualToString:@"episodeCell"])
     {
-        //NSManagedObject *object = [self.fetchedEpisodesController objectAtIndexPath:indexPath];
-        //cell.textLabel.text = [[object valueForKey:@"timeStamp"] description];
+        NSManagedObject *object = [self.fetchedEpisodesController objectAtIndexPath:indexPath];
+        ((TWEpisodeCell*)cell).titleLabel.text = [[object valueForKey:@"timeStamp"] description];
+        ((TWEpisodeCell*)cell).subtitleLabel.text = @"subtitle";
     }
     else if([cell.reuseIdentifier isEqualToString:@"showsCell"])
     {

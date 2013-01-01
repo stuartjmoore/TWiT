@@ -25,7 +25,6 @@ typedef NS_ENUM(NSInteger, TWSection)
 @property (strong, nonatomic) TWEpisodeViewController *episodeViewController;
 
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
-@property (strong, nonatomic) NSFetchedResultsController *fetchedEpisodesController;
-@property (strong, nonatomic) NSFetchedResultsController *fetchedShowsController;
+@property (strong, nonatomic) NSFetchedResultsController *fetchedEpisodesController, *fetchedShowsController;
 
 @end
