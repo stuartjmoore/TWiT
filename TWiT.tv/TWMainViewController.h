@@ -7,14 +7,19 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <CoreData/CoreData.h>
+
+typedef NS_ENUM(NSInteger, TWSection)
+{
+    TWSectionEpisodes,
+    TWSectionShows
+};
 
 @class TWEpisodeViewController;
 
-#import <CoreData/CoreData.h>
-
 @interface TWMainViewController : UITableViewController <NSFetchedResultsControllerDelegate>
 {
-    int sectionVisible;
+    TWSection sectionVisible;
 }
 
 @property (strong, nonatomic) TWEpisodeViewController *episodeViewController;

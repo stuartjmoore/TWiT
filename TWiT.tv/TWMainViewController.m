@@ -30,7 +30,7 @@
 {
     [super viewDidLoad];
 	
-    sectionVisible = 0;
+    sectionVisible = TWSectionEpisodes;
     
     // Do any additional setup after loading the view, typically from a nib.
     //self.navigationItem.leftBarButtonItem = self.editButtonItem;
@@ -66,9 +66,9 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView*)tableView
 {
-    if(sectionVisible == 0)
+    if(sectionVisible == TWSectionEpisodes)
         return self.fetchedEpisodesController.sections.count;
-    else if(sectionVisible == 1)
+    else if(sectionVisible == TWSectionShows)
         return self.fetchedShowsController.sections.count;
     
     return 0;
@@ -78,9 +78,9 @@
 {
     id <NSFetchedResultsSectionInfo> sectionInfo;
     
-    if(sectionVisible == 0)
+    if(sectionVisible == TWSectionEpisodes)
         sectionInfo = self.fetchedEpisodesController.sections[section];
-    else if(sectionVisible == 1)
+    else if(sectionVisible == TWSectionShows)
         sectionInfo = self.fetchedShowsController.sections[section];
     
     return [sectionInfo numberOfObjects];
@@ -96,11 +96,10 @@
 
 - (float)tableView:(UITableView*)tableView heightForRowAtIndexPath:(NSIndexPath*)indexPath
 {
-
-    if(sectionVisible == 0)
-        return 44;
-    else if(sectionVisible == 1)
-        return 100;
+    if(sectionVisible == TWSectionEpisodes)
+        return 62;
+    else if(sectionVisible == TWSectionShows)
+        return 102;
 
     return 44;
 }
@@ -127,8 +126,8 @@
         UIButton *episodesButton = [UIButton buttonWithType:UIButtonTypeCustom];
         episodesButton.frame = CGRectMake(1, 2, 158, 24);
         [episodesButton setTitle:@"EPISODES" forState:UIControlStateNormal];
-        episodesButton.tag = 0;
-        episodesButton.selected = (sectionVisible == 0);
+        episodesButton.tag = TWSectionEpisodes;
+        episodesButton.selected = (sectionVisible == episodesButton.tag);
         [episodesButton addTarget:self action:@selector(switchVisibleSection:) forControlEvents:UIControlEventTouchUpInside];
         [episodesButton setTitleShadowColor:[UIColor colorWithWhite:0 alpha:0.25f] forState:UIControlStateSelected];
         [episodesButton setTitleShadowColor:[UIColor colorWithWhite:1 alpha:0.25f] forState:UIControlStateNormal];
@@ -144,8 +143,8 @@
         UIButton *showsButton = [UIButton buttonWithType:UIButtonTypeCustom];
         showsButton.frame = CGRectMake(161, 2, 158, 24);
         [showsButton setTitle:@"SHOWS" forState:UIControlStateNormal];
-        showsButton.tag = 1;
-        showsButton.selected = (sectionVisible == 1);
+        showsButton.tag = TWSectionShows;
+        showsButton.selected = (sectionVisible == showsButton.tag);
         [showsButton addTarget:self action:@selector(switchVisibleSection:) forControlEvents:UIControlEventTouchUpInside];
         [showsButton setTitleShadowColor:[UIColor colorWithWhite:1 alpha:0.25f] forState:UIControlStateNormal];
         [showsButton setBackgroundImage:buttonDownBackground forState:UIControlStateHighlighted];
@@ -176,7 +175,7 @@
 
 - (UITableViewCell*)tableView:(UITableView*)tableView cellForRowAtIndexPath:(NSIndexPath*)indexPath
 {
-    NSString *identifier = (sectionVisible == 0) ? @"episodeCell" : @"showsCell";
+    NSString *identifier = (sectionVisible == TWSectionEpisodes) ? @"episodeCell" : @"showsCell";
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
     
