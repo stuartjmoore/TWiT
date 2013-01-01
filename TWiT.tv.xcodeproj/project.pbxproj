@@ -226,6 +226,7 @@
 		170BA1591691CDA00022FE4D /* ww600.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 170BA1401691CDA00022FE4D /* ww600.jpg */; };
 		170BA15B1691D0FC0022FE4D /* TWMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 170BA15A1691D0FC0022FE4D /* TWMainViewController.m */; };
 		170BA15D1691D5E70022FE4D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 170BA15C1691D5E70022FE4D /* QuartzCore.framework */; };
+		170E02A8169324480072CFA6 /* TWEpisodeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 170E02A7169324480072CFA6 /* TWEpisodeCell.m */; };
 		17BB1D03168F72AF00221F7E /* TWChannelObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 17BB1D02168F72AF00221F7E /* TWChannelObject.m */; };
 		17E5114F168F496E00DCE89C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17E5114E168F496E00DCE89C /* UIKit.framework */; };
 		17E51151168F496E00DCE89C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17E51150168F496E00DCE89C /* Foundation.framework */; };
@@ -464,6 +465,8 @@
 		170BA1401691CDA00022FE4D /* ww600.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = ww600.jpg; path = "Resources/Shows Cache/Album Art/ww600.jpg"; sourceTree = SOURCE_ROOT; };
 		170BA15A1691D0FC0022FE4D /* TWMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWMainViewController.m; sourceTree = "<group>"; };
 		170BA15C1691D5E70022FE4D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		170E02A6169324480072CFA6 /* TWEpisodeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWEpisodeCell.h; sourceTree = "<group>"; };
+		170E02A7169324480072CFA6 /* TWEpisodeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWEpisodeCell.m; sourceTree = "<group>"; };
 		17BB1D01168F72AF00221F7E /* TWChannelObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWChannelObject.h; sourceTree = "<group>"; };
 		17BB1D02168F72AF00221F7E /* TWChannelObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWChannelObject.m; sourceTree = "<group>"; };
 		17E5114A168F496E00DCE89C /* TWiT.tv.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TWiT.tv.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -765,6 +768,15 @@
 			name = Resources;
 			sourceTree = "<group>";
 		};
+		170E02A4169322130072CFA6 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				170E02A6169324480072CFA6 /* TWEpisodeCell.h */,
+				170E02A7169324480072CFA6 /* TWEpisodeCell.m */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
 		17BB1CFF168F728C00221F7E /* Objects */ = {
 			isa = PBXGroup;
 			children = (
@@ -815,6 +827,7 @@
 				17E51174168F496E00DCE89C /* TWEpisodeViewController.h */,
 				17E51175168F496E00DCE89C /* TWEpisodeViewController.m */,
 				17E5116E168F496E00DCE89C /* TWiT_tv.xcdatamodeld */,
+				170E02A4169322130072CFA6 /* Views */,
 				17BB1CFF168F728C00221F7E /* Objects */,
 				170BA1271691CD5B0022FE4D /* Resources */,
 				17E51157168F496E00DCE89C /* Supporting Files */,
@@ -1127,6 +1140,7 @@
 				17E51176168F496E00DCE89C /* TWEpisodeViewController.m in Sources */,
 				17BB1D03168F72AF00221F7E /* TWChannelObject.m in Sources */,
 				170BA15B1691D0FC0022FE4D /* TWMainViewController.m in Sources */,
+				170E02A8169324480072CFA6 /* TWEpisodeCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
