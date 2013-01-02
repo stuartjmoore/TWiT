@@ -17,6 +17,15 @@
     [super viewDidLoad];
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    [self.tableView addObserver:self forKeyPath:@"contentOffset"
+                        options:(NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld)
+                        context:NULL];
+}
+
 #pragma mark - Actions
 
 - (void)prepareForSegue:(UIStoryboardSegue*)segue sender:(id)sender
@@ -30,6 +39,35 @@
 }
 
 #pragma mark - Table
+
+- (void)observeValueForKeyPath:(NSString*)keyPath ofObject:(id)object change:(NSDictionary*)change context:(void*)context
+{
+    UIAccessibilityPostNotification(UIAccessibilityLayoutChangedNotification, nil);
+    
+    CGPoint newPoint = [[change valueForKey:NSKeyValueChangeNewKey] CGPointValue];
+    
+    if(object == self.tableView)
+    {
+        if(newPoint.y < 0)
+        {
+            CGRect frame = self.headerView.frame;
+            frame.origin.y = newPoint.y;
+            frame.size.height = ceilf(headerHeight-newPoint.y);
+            self.headerView.frame = frame;
+            
+            self.tableView.scrollIndicatorInsets = UIEdgeInsetsMake(frame.size.height, 0, 0, 1);
+        }
+        else
+        {
+            CGRect frame = self.headerView.frame;
+            frame.origin.y = 0;
+            frame.size.height = headerHeight;
+            self.headerView.frame = frame;
+            
+            self.tableView.scrollIndicatorInsets = UIEdgeInsetsMake(headerHeight, 0, 0, 1);
+        }
+    }
+}
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -169,6 +207,13 @@
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [self.tableView removeObserver:self forKeyPath:@"contentOffset"];
+    
+    [super viewWillDisappear:animated];
 }
 
 @end

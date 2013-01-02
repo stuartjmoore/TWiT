@@ -134,7 +134,7 @@
             frame.size.height = ceilf(headerHeight-newPoint.y);
             self.headerView.frame = frame;
             
-            self.tableView.scrollIndicatorInsets = UIEdgeInsetsMake(frame.size.height+28, 0, 0, 1);
+            self.tableView.scrollIndicatorInsets = UIEdgeInsetsMake(frame.size.height+self.sectionHeader.frame.size.height, 0, 0, 1);
             self.sectionHeader.layer.shadowOpacity = 0;
         }
         else
@@ -144,7 +144,7 @@
             frame.size.height = headerHeight;
             self.headerView.frame = frame;
             
-            self.tableView.scrollIndicatorInsets = UIEdgeInsetsMake(headerHeight+28, 0, 0, 1);
+            self.tableView.scrollIndicatorInsets = UIEdgeInsetsMake(headerHeight+self.sectionHeader.frame.size.height, 0, 0, 1);
             self.sectionHeader.layer.shadowOpacity = newPoint.y-headerHeight < 0 ? 0 : (newPoint.y-headerHeight)/20;
         }
     }
@@ -471,6 +471,8 @@
 - (void)viewWillDisappear:(BOOL)animated
 {
     [self.tableView removeObserver:self forKeyPath:@"contentOffset"];
+    
+    [super viewWillDisappear:animated];
 }
 
 @end
