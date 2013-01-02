@@ -8,6 +8,8 @@
 
 #import <QuartzCore/QuartzCore.h>
 #import "TWMainViewController.h"
+
+#import "TWShowViewController.h"
 #import "TWEpisodeViewController.h"
 #import "TWEpisodeCell.h"
 
@@ -19,11 +21,15 @@
 
 - (void)awakeFromNib
 {
+    /* 
+     TODO: iPad
+
+     Don't clear selection, and link to episode container view.
+     
     if(UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPad)
-    {
-        //self.clearsSelectionOnViewWillAppear = NO;
-        //self.contentSizeForViewInPopover = CGSizeMake(320.0, 600.0);
-    }
+        self.clearsSelectionOnViewWillAppear = NO;
+    */
+    
     [super awakeFromNib];
 }
 
@@ -31,16 +37,14 @@
 {
     [super viewDidLoad];
 	
-    // TODO: Save?
+    // TODO: Save state?
     sectionVisible = TWSectionShows;
     
-    //self.navigationItem.leftBarButtonItem = self.editButtonItem;
-
-    //UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject:)];
-    //self.navigationItem.rightBarButtonItem = addButton;
-    
-    //self.episodeViewController = (TWEpisodeViewController*)[[self.splitViewController.viewControllers lastObject] topViewController];
-}
+    /*
+    UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject:)];
+    self.navigationItem.rightBarButtonItem = addButton;
+    */
+ }
 
 /*
 - (void)insertNewObject:(id)sender
@@ -75,11 +79,6 @@
 
 - (void)tableView:(UITableView*)tableView didSelectRowAtIndexPath:(NSIndexPath*)indexPath
 {
-    if(UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPad)
-    {
-        //NSManagedObject *object = [self.fetchedEpisodesController objectAtIndexPath:indexPath];
-        //self.episodeViewController.detailItem = object;
-    }
 }
 
 - (void)tableView:(UITableView*)tableView didSelectColumn:(int)column AtIndexPath:(NSIndexPath*)indexPath
@@ -98,7 +97,8 @@
     }
     else if([segue.identifier isEqualToString:@"showDetail"])
     {
-        //int index = [sender[@"row"] intValue]*3 + [sender[@"column"] intValue];
+        //TWShowsCell *showCell = (TWShowsCell*)[self.tableView cellForRowAtIndexPath:self.tableView.indexPathForSelectedRow];
+        //int index = [sender[@"row"] intValue]*showCell.columns + [sender[@"column"] intValue];
         //NSIndexPath *indexPath = [NSIndexPath indexPathForRow:index inSection:[sender[@"section"] intValue]];
         
         //NSManagedObject *show = [self.fetchedShowsController objectAtIndexPath:indexPath];
@@ -141,7 +141,7 @@
     return 0;
 }
 
-- (float)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+- (float)tableView:(UITableView*)tableView heightForHeaderInSection:(NSInteger)section
 {
     if(section == 0)
         return 28;
@@ -156,7 +156,7 @@
     else if(sectionVisible == TWSectionShows)
         return 102;
 
-    return 44;
+    return 0;
 }
 
 - (UIView*)tableView:(UITableView*)tableView viewForHeaderInSection:(NSInteger)section
@@ -236,37 +236,57 @@
 
     return cell;
 }
-/*
-- (BOOL)tableView:(UITableView*)tableView canEditRowAtIndexPath:(NSIndexPath*)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return NO;
-}
 
-- (void)tableView:(UITableView*)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath*)indexPath
+#pragma mark - Configure
+
+- (void)configureCell:(UITableViewCell*)cell atIndexPath:(NSIndexPath*)indexPath
 {
-    if (editingStyle == UITableViewCellEditingStyleDelete)
+    if([cell.reuseIdentifier isEqualToString:@"episodeCell"])
     {
-        NSManagedObjectContext *context = [self.fetchedEpisodesController managedObjectContext];
-        [context deleteObject:[self.fetchedEpisodesController objectAtIndexPath:indexPath]];
+        NSManagedObject *object = [self.fetchedEpisodesController objectAtIndexPath:indexPath];
+        TWEpisodeCell *episodeCell = (TWEpisodeCell*)cell;
         
-        NSError *error = nil;
-        if (![context save:&error])
+        episodeCell.albumArt.image = [UIImage imageNamed:@"aaa600.jpg"];
+        episodeCell.titleLabel.text = [[object valueForKey:@"timeStamp"] description];
+        episodeCell.subtitleLabel.text = @"subtitle";
+    }
+    else if([cell.reuseIdentifier isEqualToString:@"showsCell"])
+    {
+        // TODO: CACHE THIS MUCHERFUCKER!
+        TWShowsCell *showsCell = (TWShowsCell*)cell;
+        
+        showsCell.spacing = 14;
+        showsCell.size = 88;
+        showsCell.columns = 3;
+        showsCell.delegate = self;
+        showsCell.table = self.tableView;
+        showsCell.indexPath = indexPath;
+        
+        id <NSFetchedResultsSectionInfo>sectionInfo = self.fetchedShowsController.sections[indexPath.section];
+        int num = sectionInfo.numberOfObjects;
+        int columns = showsCell.columns;
+        
+        NSMutableArray *shows = [NSMutableArray array];
+        for(int column = 0; column < columns; column++)
         {
-             // Replace this implementation with code to handle the error appropriately.
-             // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development. 
-            NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-            abort();
+            int index = indexPath.row*columns + column;
+            if(num > index)
+            {
+                if(column == 0)
+                    [shows addObject:[UIImage imageNamed:@"aaa600.jpg"]];
+                else if(column == 1)
+                    [shows addObject:[UIImage imageNamed:@"byb600.jpg"]];
+                else if(column == 2)
+                    [shows addObject:[UIImage imageNamed:@"fr600.jpg"]];
+                
+                //NSIndexPath *columnedIndexPath = [NSIndexPath indexPathForRow:index inSection:indexPath.section];
+                //NSManagedObject *show = [self.fetchedShowsController objectAtIndexPath:columnedIndexPath];
+                //[shows addObject:show];
+            }
         }
-    }   
+        [showsCell setShows:shows];
+    }
 }
-
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // The table view should not be re-orderable.
-    return NO;
-}
-*/
 
 #pragma mark - Fetched results controller
 
@@ -282,7 +302,7 @@
     [fetchRequest setEntity:entity];
     
     // Set the batch size to a suitable number.
-    [fetchRequest setFetchBatchSize:20];
+    [fetchRequest setFetchBatchSize:10];
     
     // Edit the sort key as appropriate.
     NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"timeStamp" ascending:NO];
@@ -316,7 +336,7 @@
     [fetchRequest setEntity:entity];
     
     // Set the batch size to a suitable number.
-    [fetchRequest setFetchBatchSize:20];
+    [fetchRequest setFetchBatchSize:15];
     
     // Edit the sort key as appropriate.
     NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"timeStamp" ascending:NO];
@@ -398,63 +418,7 @@
     [self.tableView endUpdates];
 }
 
-/*
-// Implementing the above methods to update the table view in response to individual changes may have performance implications if a large number of changes are made simultaneously. If this proves to be an issue, you can instead just implement controllerDidChangeContent: which notifies the delegate that all section and object changes have been processed. 
- 
- - (void)controllerDidChangeContent:(NSFetchedResultsController*)controller
-{
-    // In the simplest, most efficient, case, reload the table view.
-    [self.tableView reloadData];
-}
- */
-
-#pragma mark - Configure
-
-- (void)configureCell:(UITableViewCell*)cell atIndexPath:(NSIndexPath*)indexPath
-{
-    if([cell.reuseIdentifier isEqualToString:@"episodeCell"])
-    {
-        NSManagedObject *object = [self.fetchedEpisodesController objectAtIndexPath:indexPath];
-        ((TWEpisodeCell*)cell).albumArt.image = [UIImage imageNamed:@"aaa600.jpg"];
-        ((TWEpisodeCell*)cell).titleLabel.text = [[object valueForKey:@"timeStamp"] description];
-        ((TWEpisodeCell*)cell).subtitleLabel.text = @"subtitle";
-    }
-    else if([cell.reuseIdentifier isEqualToString:@"showsCell"])
-    {
-        // TODO: CACHE THIS MUCHERFUCKER!
-        
-        ((TWShowsCell*)cell).spacing = 14;
-        ((TWShowsCell*)cell).size = 88;
-        ((TWShowsCell*)cell).columns = 3;
-        ((TWShowsCell*)cell).delegate = self;
-        ((TWShowsCell*)cell).table = self.tableView;
-        ((TWShowsCell*)cell).indexPath = indexPath;
-        
-        id <NSFetchedResultsSectionInfo>sectionInfo = self.fetchedShowsController.sections[indexPath.section];
-        int num = sectionInfo.numberOfObjects;
-        int columns = ((TWShowsCell*)cell).columns;
-        
-        NSMutableArray *shows = [NSMutableArray array];
-        for(int column = 0; column < columns; column++)
-        {
-            int index = indexPath.row*columns + column;
-            if(num > index)
-            {
-                if(column == 0)
-                    [shows addObject:[UIImage imageNamed:@"aaa600.jpg"]];
-                else if(column == 1)
-                    [shows addObject:[UIImage imageNamed:@"byb600.jpg"]];
-                else if(column == 2)
-                    [shows addObject:[UIImage imageNamed:@"fr600.jpg"]];
-                
-                //NSIndexPath *columnedIndexPath = [NSIndexPath indexPathForRow:index inSection:indexPath.section];
-                //NSManagedObject *show = [self.fetchedShowsController objectAtIndexPath:columnedIndexPath];
-                //[shows addObject:show];
-            }
-        }
-        [(TWShowsCell*)cell setShows:shows];
-    }
-}
+#pragma mark - Kill
 
 - (void)didReceiveMemoryWarning
 {

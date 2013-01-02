@@ -10,10 +10,6 @@
 #import "TWEpisodeViewController.h"
 #import "TWEpisodeCell.h"
 
-@interface TWShowViewController ()
-
-@end
-
 @implementation TWShowViewController
 
 - (void)viewDidLoad
@@ -37,7 +33,7 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 1;
+    return self.fetchedEpisodesController.sections.count;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -87,7 +83,7 @@
     [fetchRequest setEntity:entity];
     
     // Set the batch size to a suitable number.
-    [fetchRequest setFetchBatchSize:20];
+    [fetchRequest setFetchBatchSize:10];
     
     // Edit the sort key as appropriate.
     NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"timeStamp" ascending:NO];
@@ -167,6 +163,8 @@
 {
     [self.tableView endUpdates];
 }
+
+#pragma mark - Kill
 
 - (void)didReceiveMemoryWarning
 {
