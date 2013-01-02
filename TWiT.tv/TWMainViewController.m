@@ -135,9 +135,7 @@
             self.headerView.frame = frame;
             
             self.tableView.scrollIndicatorInsets = UIEdgeInsetsMake(frame.size.height+28, 0, 0, 1);
-            //self.sectionHeader.layer.shadowOpacity = 0;
-            //UIView *whiteLine = self.sectionHeader.subviews.lastObject;
-            //whiteLine.alpha = 1;
+            self.sectionHeader.layer.shadowOpacity = 0;
         }
         else
         {
@@ -147,9 +145,7 @@
             self.headerView.frame = frame;
             
             self.tableView.scrollIndicatorInsets = UIEdgeInsetsMake(headerHeight+28, 0, 0, 1);
-            //self.sectionHeader.layer.shadowOpacity = newPoint.y-headerHeight < 0 ? 0 : (newPoint.y-headerHeight)/20;
-            //UIView *whiteLine = self.sectionHeader.subviews.lastObject;
-            //whiteLine.alpha = newPoint.y-headerHeight < 0 ? 1 : 0;
+            self.sectionHeader.layer.shadowOpacity = newPoint.y-headerHeight < 0 ? 0 : (newPoint.y-headerHeight)/20;
         }
     }
 }
@@ -203,21 +199,15 @@
     return 0;
 }
 
+// TODO: Add white line to top of shows section, bottom of episodes section
+
 - (UIView*)tableView:(UITableView*)tableView viewForHeaderInSection:(NSInteger)section
 {
     if(section == 0)
     {
         float width = tableView.frame.size.width;
-        UIView *sectionHeader = [[UIView alloc] initWithFrame:CGRectMake(0, 0, width, 28)];
-        sectionHeader.backgroundColor = [UIColor colorWithWhite:244/255.0 alpha:1];
-        
-        UILabel *topLine = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 320, 1)];
-        topLine.backgroundColor = [UIColor colorWithWhite:1 alpha:1];
-        [sectionHeader addSubview:topLine];
-        
-        UILabel *botLine = [[UILabel alloc] initWithFrame:CGRectMake(0, 27, 320, 1)];
-        botLine.backgroundColor = [UIColor colorWithWhite:222/255.0 alpha:1];
-        [sectionHeader addSubview:botLine];
+        self.sectionHeader = [[UIView alloc] initWithFrame:CGRectMake(0, 0, width, 28)];
+        self.sectionHeader.backgroundColor = [UIColor colorWithWhite:244/255.0 alpha:1];
         
         UIImage *buttonUpBackground = [[UIImage imageNamed:@"main-header-button-up.png"] stretchableImageWithLeftCapWidth:4 topCapHeight:11];
         UIImage *buttonDownBackground = [[UIImage imageNamed:@"main-header-button.png"] stretchableImageWithLeftCapWidth:4 topCapHeight:11];
@@ -237,7 +227,7 @@
         [episodesButton setTitleColor:[UIColor colorWithWhite:132/255.0 alpha:1] forState:UIControlStateNormal];
         [episodesButton setTitleColor:[UIColor colorWithWhite:244/255.0 alpha:1] forState:UIControlStateSelected];
         [episodesButton.titleLabel setFont:[UIFont boldSystemFontOfSize:14]];
-        [sectionHeader addSubview:episodesButton];
+        [self.sectionHeader addSubview:episodesButton];
         
         UIButton *showsButton = [UIButton buttonWithType:UIButtonTypeCustom];
         showsButton.frame = CGRectMake(161, 2, 158, 24);
@@ -254,14 +244,23 @@
         [showsButton setTitleColor:[UIColor colorWithWhite:244/255.0 alpha:1] forState:UIControlStateSelected];
         [showsButton setTitleShadowColor:[UIColor colorWithWhite:0 alpha:0.25f] forState:UIControlStateSelected];
         [showsButton.titleLabel setFont:[UIFont boldSystemFontOfSize:14]];
-        [sectionHeader addSubview:showsButton];
+        [self.sectionHeader addSubview:showsButton];
         
-        sectionHeader.layer.shadowColor = [[UIColor colorWithWhite:0 alpha:0.5f] CGColor];
-        sectionHeader.layer.shadowOffset = CGSizeMake(0, 3);
-        sectionHeader.layer.shadowOpacity = 0; // TODO: ACTIVATE ON SCROLL!
-        sectionHeader.layer.shadowRadius = 3;
+        UILabel *topLine = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 320, 1)];
+        topLine.backgroundColor = [UIColor colorWithWhite:1 alpha:1];
+        [self.sectionHeader addSubview:topLine];
         
-        return sectionHeader;
+        UILabel *botLine = [[UILabel alloc] initWithFrame:CGRectMake(0, 27, 320, 1)];
+        botLine.backgroundColor = [UIColor colorWithWhite:222/255.0 alpha:1];
+        [self.sectionHeader addSubview:botLine];
+        
+        float offest = self.tableView.contentOffset.y-headerHeight;
+        self.sectionHeader.layer.shadowOpacity = offest < 0 ? 0 : offest/20;
+        self.sectionHeader.layer.shadowColor = [[UIColor colorWithWhite:0 alpha:0.5f] CGColor];
+        self.sectionHeader.layer.shadowOffset = CGSizeMake(0, 3);
+        self.sectionHeader.layer.shadowRadius = 3;
+        
+        return self.sectionHeader;
     }
     return nil;
 }

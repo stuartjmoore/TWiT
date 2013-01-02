@@ -31,5 +31,6 @@ typedef NS_ENUM(NSInteger, TWSection)
 @property (strong, nonatomic) NSFetchedResultsController *fetchedEpisodesController, *fetchedShowsController;
 
 @property (weak, nonatomic) IBOutlet UIView *headerView;
+@property (strong, nonatomic) UIView *sectionHeader;
 
 @end
