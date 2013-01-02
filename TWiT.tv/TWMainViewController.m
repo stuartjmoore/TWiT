@@ -31,7 +31,8 @@
 {
     [super viewDidLoad];
 	
-    sectionVisible = TWSectionEpisodes;
+    // TODO: Save?
+    sectionVisible = TWSectionShows;
     
     // Do any additional setup after loading the view, typically from a nib.
     //self.navigationItem.leftBarButtonItem = self.editButtonItem;
