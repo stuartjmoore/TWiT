@@ -38,7 +38,7 @@
     [super viewDidLoad];
 	
     // TODO: Save state?
-    sectionVisible = TWSectionShows;
+    sectionVisible = TWSectionEpisodes;
     
     /*
     UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject:)];
@@ -91,7 +91,7 @@
          {
              self.tableView.contentOffset = CGPointMake(0, 0);
              sender.transform = CGAffineTransformMakeRotation(0);
-             [sender setImage:[UIImage imageNamed:@"toolbar-disclose"] forState:UIControlStateNormal];
+             [sender setImage:[UIImage imageNamed:@"toolbar-schedule-arrow"] forState:UIControlStateNormal];
          }];
     }
     else
@@ -101,7 +101,7 @@
          {
              self.tableView.contentOffset = CGPointMake(0, -self.view.bounds.size.height+headerHeight);
              sender.transform = CGAffineTransformMakeRotation(M_PI);
-             [sender setImage:[UIImage imageNamed:@"toolbar-disclose-up"] forState:UIControlStateNormal];
+             [sender setImage:[UIImage imageNamed:@"toolbar-schedule-arrow-up"] forState:UIControlStateNormal];
          }];
     }
 }

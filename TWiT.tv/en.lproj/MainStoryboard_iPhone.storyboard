@@ -145,11 +145,15 @@
                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="toolbar-schedule-background.png" id="P9Z-br-4NL">
+                                    <rect key="frame" x="284" y="113" width="22" height="25"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
+                                </imageView>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="dFy-JX-fFf">
-                                    <rect key="frame" x="256" y="114" width="55" height="55"/>
+                                    <rect key="frame" x="268" y="98" width="55" height="55"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                    <state key="normal" image="toolbar-disclose.png" backgroundImage="icon-schedule.png">
+                                    <state key="normal" image="toolbar-schedule-arrow.png">
                                         <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
@@ -555,13 +559,14 @@
         <image name="button-orange-left.png" width="7" height="38"/>
         <image name="button-orange-right.png" width="7" height="38"/>
         <image name="icon-play.png" width="55" height="55"/>
-        <image name="icon-schedule.png" width="55" height="55"/>
         <image name="quick-play.png" width="20" height="21"/>
         <image name="toolbar-disclose.png" width="27" height="17"/>
         <image name="toolbar-email.png" width="26" height="17"/>
         <image name="toolbar-fav-off.png" width="27" height="24"/>
         <image name="toolbar-phone.png" width="22" height="21"/>
         <image name="toolbar-remind-off.png" width="26" height="24"/>
+        <image name="toolbar-schedule-arrow.png" width="22" height="25"/>
+        <image name="toolbar-schedule-background.png" width="22" height="25"/>
     </resources>
     <classes>
         <class className="TWEpisodeCell" superclassName="UITableViewCell">
