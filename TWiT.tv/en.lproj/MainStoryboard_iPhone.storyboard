@@ -60,9 +60,10 @@
                                     <rect key="frame" x="14" y="34" width="182" height="38"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                    <size key="titleShadowOffset" width="0.0" height="1"/>
                                     <state key="normal" title="Watch" backgroundImage="button-orange-left.png">
                                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="titleShadowColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
                                     <state key="highlighted">
                                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -72,9 +73,10 @@
                                     <rect key="frame" x="196" y="34" width="110" height="38"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                    <size key="titleShadowOffset" width="0.0" height="1"/>
                                     <state key="normal" title="Listen" backgroundImage="button-orange-right.png">
                                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="titleShadowColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
                                     <state key="highlighted">
                                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -200,7 +202,7 @@
                                                     <rect key="frame" x="271" y="9" width="44" height="44"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                                    <state key="normal" title="▶">
+                                                    <state key="normal" image="quick-play.png">
                                                         <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
@@ -305,8 +307,8 @@
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             </view>
-                            <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" text="00" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" id="42m-il-qRa">
-                                <rect key="frame" x="7" y="188" width="51" height="44"/>
+                            <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" text="888" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" id="42m-il-qRa">
+                                <rect key="frame" x="4" y="184" width="51" height="51"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.95999999999999996" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
@@ -314,17 +316,18 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" text="Guests &amp; Guests" lineBreakMode="tailTruncation" minimumFontSize="10" id="27">
-                                <rect key="frame" x="66" y="188" width="242" height="44"/>
+                                <rect key="frame" x="63" y="184" width="253" height="51"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.95999999999999996" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" id="kHn-pA-l64">
+                            <textView clipsSubviews="YES" contentMode="scaleToFill" editable="NO" id="kHn-pA-l64">
                                 <rect key="frame" x="13" y="231" width="295" height="208"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="0.95999999999999996" alpha="1" colorSpace="calibratedWhite"/>
+                                <inset key="contentInset" minX="0.0" minY="-8" maxX="0.0" maxY="-8"/>
                                 <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -500,7 +503,7 @@
                                                     <rect key="frame" x="271" y="9" width="44" height="44"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                                    <state key="normal" title="▶">
+                                                    <state key="normal" image="quick-play.png">
                                                         <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
@@ -553,6 +556,7 @@
         <image name="button-orange-right.png" width="7" height="38"/>
         <image name="icon-play.png" width="55" height="55"/>
         <image name="icon-schedule.png" width="55" height="55"/>
+        <image name="quick-play.png" width="20" height="21"/>
         <image name="toolbar-disclose.png" width="27" height="17"/>
         <image name="toolbar-email.png" width="26" height="17"/>
         <image name="toolbar-fav-off.png" width="27" height="24"/>
@@ -609,6 +613,6 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="OfB-Q1-3Dp"/>
+        <segue reference="YiW-0V-IC2"/>
     </inferredMetricsTieBreakers>
 </document>
