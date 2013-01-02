@@ -424,6 +424,9 @@
                                     <state key="highlighted">
                                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
+                                    <connections>
+                                        <action selector="openDetailView:" destination="Gce-uE-xEB" eventType="touchUpInside" id="ajd-Qz-Q9v"/>
+                                    </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="mX0-26-T3l">
                                     <rect key="frame" x="198" y="129" width="44" height="44"/>
@@ -530,6 +533,7 @@
                     <connections>
                         <outlet property="albumArt" destination="9Pf-ll-gDx" id="hgL-7U-mye"/>
                         <outlet property="descLabel" destination="t4B-Xm-fQu" id="VJs-kM-EmS"/>
+                        <outlet property="detailButton" destination="sXR-zZ-QyH" id="PE9-es-8is"/>
                         <outlet property="headerView" destination="pLL-ju-QN4" id="J2u-rf-KaM"/>
                         <outlet property="posterView" destination="bLR-aO-beq" id="3cJ-CN-Kwa"/>
                         <outlet property="scheduleLabel" destination="YOP-FU-NnC" id="R0N-Of-ocU"/>
@@ -584,8 +588,10 @@
         <class className="TWShowViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/TWShowViewController.h"/>
             <relationships>
+                <relationship kind="action" name="openDetailView:" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="albumArt" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="descLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="detailButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="headerView" candidateClass="UIView"/>
                 <relationship kind="outlet" name="posterView" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="scheduleLabel" candidateClass="UILabel"/>
