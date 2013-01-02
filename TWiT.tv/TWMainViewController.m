@@ -34,12 +34,12 @@
     // TODO: Save?
     sectionVisible = TWSectionShows;
     
-    // Do any additional setup after loading the view, typically from a nib.
     //self.navigationItem.leftBarButtonItem = self.editButtonItem;
 
     //UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject:)];
     //self.navigationItem.rightBarButtonItem = addButton;
-    self.episodeViewController = (TWEpisodeViewController*)[[self.splitViewController.viewControllers lastObject] topViewController];
+    
+    //self.episodeViewController = (TWEpisodeViewController*)[[self.splitViewController.viewControllers lastObject] topViewController];
 }
 
 /*
@@ -67,6 +67,12 @@
 
 #pragma mark - Actions
 
+- (void)switchVisibleSection:(UIButton*)sender
+{
+    sectionVisible = sender.tag;
+    [self.tableView reloadData];
+}
+
 - (void)tableView:(UITableView*)tableView didSelectRowAtIndexPath:(NSIndexPath*)indexPath
 {
     if(UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPad)
@@ -92,9 +98,13 @@
     }
     else if([segue.identifier isEqualToString:@"showDetail"])
     {
-        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:[sender[@"row"] intValue] inSection:[sender[@"section"] intValue]];
-        NSLog(@"%@", indexPath);
-        NSLog(@"%@", sender);
+        //int index = [sender[@"row"] intValue]*3 + [sender[@"column"] intValue];
+        //NSIndexPath *indexPath = [NSIndexPath indexPathForRow:index inSection:[sender[@"section"] intValue]];
+        
+        //NSManagedObject *show = [self.fetchedShowsController objectAtIndexPath:indexPath];
+        //[segue.destinationViewController setShow:show];
+        
+        [segue.destinationViewController setManagedObjectContext:self.managedObjectContext];
     }
 }
 
@@ -210,12 +220,6 @@
         return sectionHeader;
     }
     return nil;
-}
-
-- (void)switchVisibleSection:(UIButton*)sender
-{
-    sectionVisible = sender.tag;
-    [self.tableView reloadData];
 }
 
 - (UITableViewCell*)tableView:(UITableView*)tableView cellForRowAtIndexPath:(NSIndexPath*)indexPath
@@ -403,6 +407,8 @@
     [self.tableView reloadData];
 }
  */
+
+#pragma mark - Configure
 
 - (void)configureCell:(UITableViewCell*)cell atIndexPath:(NSIndexPath*)indexPath
 {
