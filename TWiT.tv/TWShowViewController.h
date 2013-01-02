@@ -20,8 +20,6 @@
 @property (weak, nonatomic) IBOutlet UIImageView *albumArt, *posterView;
 @property (weak, nonatomic) IBOutlet UILabel *scheduleLabel, *descLabel;
 
-@property (weak, nonatomic) IBOutlet UIButton *detailButton;
-
 - (IBAction)openDetailView:(UIButton*)sender;
 
 @end

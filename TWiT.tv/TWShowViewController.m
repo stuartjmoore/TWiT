@@ -46,8 +46,8 @@
         [UIView animateWithDuration:0.3f animations:^
         {
             self.tableView.contentOffset = CGPointMake(0, 0);
-            self.detailButton.transform = CGAffineTransformMakeRotation(0);
-            [self.detailButton setImage:[UIImage imageNamed:@"toolbar-disclose"] forState:UIControlStateNormal];
+            sender.transform = CGAffineTransformMakeRotation(0);
+            [sender setImage:[UIImage imageNamed:@"toolbar-disclose"] forState:UIControlStateNormal];
         }];
     }
     else
@@ -56,8 +56,8 @@
         [UIView animateWithDuration:0.3f animations:^
         {
             self.tableView.contentOffset = CGPointMake(0, -self.view.bounds.size.height+headerHeight);
-            self.detailButton.transform = CGAffineTransformMakeRotation(M_PI);
-            [self.detailButton setImage:[UIImage imageNamed:@"toolbar-disclose-up"] forState:UIControlStateNormal];
+            sender.transform = CGAffineTransformMakeRotation(M_PI);
+            [sender setImage:[UIImage imageNamed:@"toolbar-disclose-up"] forState:UIControlStateNormal];
         }];
     }
 }

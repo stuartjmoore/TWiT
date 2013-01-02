@@ -80,6 +80,32 @@
 
 #pragma mark - Actions
 
+// TODO: Use a smaller disclose icon, unrotate schedule icon
+
+- (IBAction)openScheduleView:(UIButton*)sender
+{
+    if(self.tableView.contentOffset.y <= -self.view.bounds.size.height+headerHeight)
+    {
+        self.tableView.scrollEnabled = YES;
+        [UIView animateWithDuration:0.3f animations:^
+         {
+             self.tableView.contentOffset = CGPointMake(0, 0);
+             sender.transform = CGAffineTransformMakeRotation(0);
+             [sender setImage:[UIImage imageNamed:@"toolbar-disclose"] forState:UIControlStateNormal];
+         }];
+    }
+    else
+    {
+        self.tableView.scrollEnabled = NO;
+        [UIView animateWithDuration:0.3f animations:^
+         {
+             self.tableView.contentOffset = CGPointMake(0, -self.view.bounds.size.height+headerHeight);
+             sender.transform = CGAffineTransformMakeRotation(M_PI);
+             [sender setImage:[UIImage imageNamed:@"toolbar-disclose-up"] forState:UIControlStateNormal];
+         }];
+    }
+}
+
 - (void)switchVisibleSection:(UIButton*)sender
 {
     sectionVisible = sender.tag;

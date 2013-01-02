@@ -33,4 +33,6 @@ typedef NS_ENUM(NSInteger, TWSection)
 @property (weak, nonatomic) IBOutlet UIView *headerView;
 @property (strong, nonatomic) UIView *sectionHeader;
 
+- (IBAction)openScheduleView:(UIButton*)sender;
+
 @end
