@@ -22,8 +22,8 @@
 {
     if(UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPad)
     {
-        self.clearsSelectionOnViewWillAppear = NO;
-        self.contentSizeForViewInPopover = CGSizeMake(320.0, 600.0);
+        //self.clearsSelectionOnViewWillAppear = NO;
+        //self.contentSizeForViewInPopover = CGSizeMake(320.0, 600.0);
     }
     [super awakeFromNib];
 }
@@ -233,8 +233,8 @@
 {
     if(UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPad)
     {
-        NSManagedObject *object = [self.fetchedEpisodesController objectAtIndexPath:indexPath];
-        self.episodeViewController.detailItem = object;
+        //NSManagedObject *object = [self.fetchedEpisodesController objectAtIndexPath:indexPath];
+        //self.episodeViewController.detailItem = object;
     }
 }
 
