@@ -15,10 +15,6 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self)
     {
-        _spacing = 14;
-        _size = 88;
-        _columns = 3;
-        _visibleColumns = 0;
     }
     return self;
 }
@@ -45,8 +41,8 @@
     for(UIImage *show in shows)
     {
         int column = [shows indexOfObject:show];
-        CGRect frame = CGRectMake(self.spacing+column*(self.size+self.spacing), self.spacing/2,
-                                  self.size, self.size);
+        float x = self.spacing+column*(self.size+self.spacing);
+        CGRect frame = CGRectMake(x, self.spacing/2, self.size, self.size);
         
         CGContextSetShadow(context, CGSizeMake(0, 2), 4);
         
@@ -63,6 +59,24 @@
 - (void)drawRect:(CGRect)rect
 {
     [self.icons drawInRect:self.bounds];
+}
+
+#pragma mark - Touches
+
+- (void)touchesBegan:(NSSet*)touches withEvent:(UIEvent*)event
+{
+    UITouch *touch = touches.anyObject;
+    CGPoint location = [touch locationInView:self];
+    
+    for(int column = 0; column < self.visibleColumns; column++)
+    {
+        float x = self.spacing+column*(self.size+self.spacing);
+        if(CGRectContainsPoint(CGRectMake(x, self.spacing/2, self.size, self.size), location))
+        {
+            //[self.delegate tableView:self.tableView didSelectColumn:column AtIndexPath:self.indexPath];
+            NSLog(@"hello");
+        }
+    }
 }
 
 @end
