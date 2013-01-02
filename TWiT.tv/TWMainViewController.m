@@ -10,7 +10,6 @@
 #import "TWMainViewController.h"
 #import "TWEpisodeViewController.h"
 #import "TWEpisodeCell.h"
-#import "TWShowsCell.h"
 
 @interface TWMainViewController ()
 - (void)configureCell:(UITableViewCell*)cell atIndexPath:(NSIndexPath*)indexPath;
@@ -64,6 +63,40 @@
     }
 }
 */
+
+#pragma mark - Actions
+
+- (void)tableView:(UITableView*)tableView didSelectRowAtIndexPath:(NSIndexPath*)indexPath
+{
+    if(UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPad)
+    {
+        //NSManagedObject *object = [self.fetchedEpisodesController objectAtIndexPath:indexPath];
+        //self.episodeViewController.detailItem = object;
+    }
+}
+
+- (void)tableView:(UITableView*)tableView didSelectColumn:(int)column AtIndexPath:(NSIndexPath*)indexPath
+{
+    NSDictionary *sender = @{@"section":@(indexPath.section), @"row":@(indexPath.row), @"column":@(column)};
+    [self performSegueWithIdentifier:@"showDetail" sender:sender];
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue*)segue sender:(id)sender
+{
+    if([segue.identifier isEqualToString:@"episodeDetail"])
+    {
+        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+        NSManagedObject *object = [self.fetchedEpisodesController objectAtIndexPath:indexPath];
+        [segue.destinationViewController setDetailItem:object];
+    }
+    else if([segue.identifier isEqualToString:@"showDetail"])
+    {
+        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:[sender[@"row"] intValue] inSection:[sender[@"section"] intValue]];
+        NSLog(@"%@", indexPath);
+        NSLog(@"%@", sender);
+    }
+}
+
 #pragma mark - Table View
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView*)tableView
@@ -229,27 +262,6 @@
     return NO;
 }
 */
-- (void)tableView:(UITableView*)tableView didSelectRowAtIndexPath:(NSIndexPath*)indexPath
-{
-    if(UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPad)
-    {
-        //NSManagedObject *object = [self.fetchedEpisodesController objectAtIndexPath:indexPath];
-        //self.episodeViewController.detailItem = object;
-    }
-}
-
-- (void)prepareForSegue:(UIStoryboardSegue*)segue sender:(id)sender
-{
-    if([segue.identifier isEqualToString:@"episodeDetail"])
-    {
-        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-        NSManagedObject *object = [self.fetchedEpisodesController objectAtIndexPath:indexPath];
-        [segue.destinationViewController setDetailItem:object];
-    }
-    else if([segue.identifier isEqualToString:@"showDetail"])
-    {
-    }
-}
 
 #pragma mark - Fetched results controller
 
@@ -407,6 +419,9 @@
         ((TWShowsCell*)cell).spacing = 14;
         ((TWShowsCell*)cell).size = 88;
         ((TWShowsCell*)cell).columns = 3;
+        ((TWShowsCell*)cell).delegate = self;
+        ((TWShowsCell*)cell).table = self.tableView;
+        ((TWShowsCell*)cell).indexPath = indexPath;
         
         id <NSFetchedResultsSectionInfo>sectionInfo = self.fetchedShowsController.sections[indexPath.section];
         int num = sectionInfo.numberOfObjects;

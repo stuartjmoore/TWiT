@@ -8,7 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol TWiTShowGridCellDelegate <NSObject>
+- (void)tableView:(UITableView*)tableView didSelectColumn:(int)column AtIndexPath:(NSIndexPath*)indexPath;
+@end
+
 @interface TWShowsCell : UITableViewCell
+
+@property (nonatomic, weak) id<TWiTShowGridCellDelegate> delegate;
+@property (nonatomic, strong) NSIndexPath *indexPath;
+@property (nonatomic, weak) UITableView *table;
 
 @property (nonatomic, strong) UIImage *icons;
 @property (nonatomic) NSInteger spacing, size, columns, visibleColumns;

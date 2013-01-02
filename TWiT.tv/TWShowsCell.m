@@ -73,8 +73,7 @@
         float x = self.spacing+column*(self.size+self.spacing);
         if(CGRectContainsPoint(CGRectMake(x, self.spacing/2, self.size, self.size), location))
         {
-            //[self.delegate tableView:self.tableView didSelectColumn:column AtIndexPath:self.indexPath];
-            NSLog(@"hello");
+            [self.delegate tableView:self.table didSelectColumn:column AtIndexPath:self.indexPath];
         }
     }
 }

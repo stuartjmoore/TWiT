@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
+#import "TWShowsCell.h"
 
 typedef NS_ENUM(NSInteger, TWSection)
 {
@@ -17,7 +18,7 @@ typedef NS_ENUM(NSInteger, TWSection)
 
 @class TWEpisodeViewController;
 
-@interface TWMainViewController : UITableViewController <NSFetchedResultsControllerDelegate>
+@interface TWMainViewController : UITableViewController <NSFetchedResultsControllerDelegate, TWiTShowGridCellDelegate>
 {
     TWSection sectionVisible;
 }

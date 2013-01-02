@@ -113,6 +113,9 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
+                                <connections>
+                                    <segue destination="Gce-uE-xEB" kind="push" identifier="showDetail" id="uDP-QL-0Qw"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <sections/>
@@ -163,7 +166,7 @@
             <objects>
                 <tableViewController storyboardIdentifier="showDetail" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Gce-uE-xEB" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="lcT-MQ-Chp">
-                        <rect key="frame" x="0.0" y="20" width="320" height="548"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <view key="tableHeaderView" contentMode="scaleToFill" id="pLL-ju-QN4">
