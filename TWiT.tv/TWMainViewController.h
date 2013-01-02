@@ -10,6 +10,8 @@
 #import <CoreData/CoreData.h>
 #import "TWShowsCell.h"
 
+#define headerHeight 180
+
 typedef NS_ENUM(NSInteger, TWSection)
 {
     TWSectionEpisodes,
@@ -27,5 +29,7 @@ typedef NS_ENUM(NSInteger, TWSection)
 
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (strong, nonatomic) NSFetchedResultsController *fetchedEpisodesController, *fetchedShowsController;
+
+@property (weak, nonatomic) IBOutlet UIView *headerView;
 
 @end

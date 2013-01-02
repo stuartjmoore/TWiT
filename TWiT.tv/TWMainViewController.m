@@ -44,7 +44,16 @@
     UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject:)];
     self.navigationItem.rightBarButtonItem = addButton;
     */
- }
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    [self.tableView addObserver:self forKeyPath:@"contentOffset"
+                        options:(NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld)
+                        context:NULL];
+}
 
 /*
 - (void)insertNewObject:(id)sender
@@ -109,6 +118,41 @@
 }
 
 #pragma mark - Table View
+
+- (void)observeValueForKeyPath:(NSString*)keyPath ofObject:(id)object change:(NSDictionary*)change context:(void*)context
+{
+    UIAccessibilityPostNotification(UIAccessibilityLayoutChangedNotification, nil);
+    
+    CGPoint newPoint = [[change valueForKey:NSKeyValueChangeNewKey] CGPointValue];
+    
+    if(object == self.tableView)
+    {
+        if(newPoint.y < 0)
+        {
+            CGRect frame = self.headerView.frame;
+            frame.origin.y = newPoint.y;
+            frame.size.height = ceilf(headerHeight-newPoint.y);
+            self.headerView.frame = frame;
+            
+            self.tableView.scrollIndicatorInsets = UIEdgeInsetsMake(frame.size.height+28, 0, 0, 1);
+            //self.sectionHeader.layer.shadowOpacity = 0;
+            //UIView *whiteLine = self.sectionHeader.subviews.lastObject;
+            //whiteLine.alpha = 1;
+        }
+        else
+        {
+            CGRect frame = self.headerView.frame;
+            frame.origin.y = 0;
+            frame.size.height = headerHeight;
+            self.headerView.frame = frame;
+            
+            self.tableView.scrollIndicatorInsets = UIEdgeInsetsMake(headerHeight+28, 0, 0, 1);
+            //self.sectionHeader.layer.shadowOpacity = newPoint.y-headerHeight < 0 ? 0 : (newPoint.y-headerHeight)/20;
+            //UIView *whiteLine = self.sectionHeader.subviews.lastObject;
+            //whiteLine.alpha = newPoint.y-headerHeight < 0 ? 1 : 0;
+        }
+    }
+}
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView*)tableView
 {
@@ -423,6 +467,11 @@
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [self.tableView removeObserver:self forKeyPath:@"contentOffset"];
 }
 
 @end
