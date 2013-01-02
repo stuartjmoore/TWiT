@@ -228,6 +228,12 @@
 		170BA15D1691D5E70022FE4D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 170BA15C1691D5E70022FE4D /* QuartzCore.framework */; };
 		170E02A8169324480072CFA6 /* TWEpisodeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 170E02A7169324480072CFA6 /* TWEpisodeCell.m */; };
 		170E02AB169328910072CFA6 /* TWShowsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 170E02AA169328910072CFA6 /* TWShowsCell.m */; };
+		176A62471694B2BA00B121F4 /* toolbar-schedule-arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 176A62431694B2BA00B121F4 /* toolbar-schedule-arrow.png */; };
+		176A62481694B2BA00B121F4 /* toolbar-schedule-arrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 176A62441694B2BA00B121F4 /* toolbar-schedule-arrow@2x.png */; };
+		176A62491694B2BA00B121F4 /* toolbar-schedule-background.png in Resources */ = {isa = PBXBuildFile; fileRef = 176A62451694B2BA00B121F4 /* toolbar-schedule-background.png */; };
+		176A624A1694B2BA00B121F4 /* toolbar-schedule-background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 176A62461694B2BA00B121F4 /* toolbar-schedule-background@2x.png */; };
+		176A624E1694B3C500B121F4 /* toolbar-schedule-arrow-up.png in Resources */ = {isa = PBXBuildFile; fileRef = 176A624C1694B3C500B121F4 /* toolbar-schedule-arrow-up.png */; };
+		176A624F1694B3C500B121F4 /* toolbar-schedule-arrow-up@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 176A624D1694B3C500B121F4 /* toolbar-schedule-arrow-up@2x.png */; };
 		17AFF029169462EA0053A33C /* TWShowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 17AFF028169462EA0053A33C /* TWShowViewController.m */; };
 		17BB1D03168F72AF00221F7E /* TWChannelObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 17BB1D02168F72AF00221F7E /* TWChannelObject.m */; };
 		17E5114F168F496E00DCE89C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17E5114E168F496E00DCE89C /* UIKit.framework */; };
@@ -471,6 +477,12 @@
 		170E02A7169324480072CFA6 /* TWEpisodeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWEpisodeCell.m; sourceTree = "<group>"; };
 		170E02A9169328910072CFA6 /* TWShowsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWShowsCell.h; sourceTree = "<group>"; };
 		170E02AA169328910072CFA6 /* TWShowsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWShowsCell.m; sourceTree = "<group>"; };
+		176A62431694B2BA00B121F4 /* toolbar-schedule-arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "toolbar-schedule-arrow.png"; path = "Resources/Images/toolbar-schedule-arrow.png"; sourceTree = SOURCE_ROOT; };
+		176A62441694B2BA00B121F4 /* toolbar-schedule-arrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "toolbar-schedule-arrow@2x.png"; path = "Resources/Images/toolbar-schedule-arrow@2x.png"; sourceTree = SOURCE_ROOT; };
+		176A62451694B2BA00B121F4 /* toolbar-schedule-background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "toolbar-schedule-background.png"; path = "Resources/Images/toolbar-schedule-background.png"; sourceTree = SOURCE_ROOT; };
+		176A62461694B2BA00B121F4 /* toolbar-schedule-background@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "toolbar-schedule-background@2x.png"; path = "Resources/Images/toolbar-schedule-background@2x.png"; sourceTree = SOURCE_ROOT; };
+		176A624C1694B3C500B121F4 /* toolbar-schedule-arrow-up.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "toolbar-schedule-arrow-up.png"; path = "Resources/Images/toolbar-schedule-arrow-up.png"; sourceTree = SOURCE_ROOT; };
+		176A624D1694B3C500B121F4 /* toolbar-schedule-arrow-up@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "toolbar-schedule-arrow-up@2x.png"; path = "Resources/Images/toolbar-schedule-arrow-up@2x.png"; sourceTree = SOURCE_ROOT; };
 		17AFF027169462EA0053A33C /* TWShowViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWShowViewController.h; sourceTree = "<group>"; };
 		17AFF028169462EA0053A33C /* TWShowViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWShowViewController.m; sourceTree = "<group>"; };
 		17BB1D01168F72AF00221F7E /* TWChannelObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWChannelObject.h; sourceTree = "<group>"; };
@@ -516,6 +528,12 @@
 		170B9F6E1691CD540022FE4D /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				176A624C1694B3C500B121F4 /* toolbar-schedule-arrow-up.png */,
+				176A624D1694B3C500B121F4 /* toolbar-schedule-arrow-up@2x.png */,
+				176A62431694B2BA00B121F4 /* toolbar-schedule-arrow.png */,
+				176A62441694B2BA00B121F4 /* toolbar-schedule-arrow@2x.png */,
+				176A62451694B2BA00B121F4 /* toolbar-schedule-background.png */,
+				176A62461694B2BA00B121F4 /* toolbar-schedule-background@2x.png */,
 				170B9F6F1691CD540022FE4D /* button-blue-left.png */,
 				170B9F701691CD540022FE4D /* button-blue-left@2x.png */,
 				170B9F711691CD540022FE4D /* button-blue-mid.png */,
@@ -1134,6 +1152,12 @@
 				170BA1571691CDA00022FE4D /* twil600.jpg in Resources */,
 				170BA1581691CDA00022FE4D /* twit600.jpg in Resources */,
 				170BA1591691CDA00022FE4D /* ww600.jpg in Resources */,
+				176A62471694B2BA00B121F4 /* toolbar-schedule-arrow.png in Resources */,
+				176A62481694B2BA00B121F4 /* toolbar-schedule-arrow@2x.png in Resources */,
+				176A62491694B2BA00B121F4 /* toolbar-schedule-background.png in Resources */,
+				176A624A1694B2BA00B121F4 /* toolbar-schedule-background@2x.png in Resources */,
+				176A624E1694B3C500B121F4 /* toolbar-schedule-arrow-up.png in Resources */,
+				176A624F1694B3C500B121F4 /* toolbar-schedule-arrow-up@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
