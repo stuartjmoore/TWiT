@@ -15,6 +15,15 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    // TODO: Configure header view
+    
+    [self.descLabel setText:@"Now that there is the Tec-9, a crappy spray gun from South Miami. This gun is advertised as the most popular gun in American crime. Do you believe that shit? It actually says that in the little book that comes with it: the most popular gun in American crime. Like they're actually proud of that shit."];
+    
+    CGSize maxSize = CGSizeMake(self.descLabel.frame.size.width, CGFLOAT_MAX);
+    CGSize size = [self.descLabel.text sizeWithFont:self.descLabel.font constrainedToSize:maxSize];
+    CGRect frame = self.descLabel.frame;
+    frame.size.height = size.height;
+    self.descLabel.frame = frame;
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -129,7 +138,6 @@
         ((TWEpisodeCell*)cell).subtitleLabel.text = @"subtitle";
     }
 }
-
 
 #pragma mark - Fetched results controller
 
