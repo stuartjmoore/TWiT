@@ -13,4 +13,7 @@
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (strong, nonatomic) NSFetchedResultsController *fetchedEpisodesController;
 
+@property (weak, nonatomic) IBOutlet UIImageView *albumArt, *posterView;
+@property (weak, nonatomic) IBOutlet UILabel *scheduleLabel, *descLabel;
+
 @end

@@ -528,6 +528,12 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Show" id="Asz-4h-TSi"/>
+                    <connections>
+                        <outlet property="albumArt" destination="9Pf-ll-gDx" id="hgL-7U-mye"/>
+                        <outlet property="descLabel" destination="t4B-Xm-fQu" id="VJs-kM-EmS"/>
+                        <outlet property="posterView" destination="bLR-aO-beq" id="3cJ-CN-Kwa"/>
+                        <outlet property="scheduleLabel" destination="YOP-FU-NnC" id="R0N-Of-ocU"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Cfp-rV-zhT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -574,6 +580,12 @@
         </class>
         <class className="TWShowViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/TWShowViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="albumArt" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="descLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="posterView" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="scheduleLabel" candidateClass="UILabel"/>
+            </relationships>
         </class>
         <class className="TWShowsCell" superclassName="UITableViewCell">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/TWShowsCell.h"/>
