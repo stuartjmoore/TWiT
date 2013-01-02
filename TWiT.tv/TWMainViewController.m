@@ -40,10 +40,10 @@
     // TODO: Save state?
     sectionVisible = TWSectionEpisodes;
     
-    /*
+    
     UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject:)];
     self.navigationItem.rightBarButtonItem = addButton;
-    */
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -55,7 +55,7 @@
                         context:NULL];
 }
 
-/*
+
 - (void)insertNewObject:(id)sender
 {
     NSManagedObjectContext *context = [self.fetchedEpisodesController managedObjectContext];
@@ -76,7 +76,7 @@
         abort();
     }
 }
-*/
+
 
 #pragma mark - Actions
 
@@ -431,13 +431,14 @@
 
 - (void)controllerWillChangeContent:(NSFetchedResultsController*)controller
 {
-    [self.tableView beginUpdates];
+    if(controller == self.fetchedEpisodesController && sectionVisible == TWSectionEpisodes)
+        [self.tableView beginUpdates];
 }
 
 - (void)controller:(NSFetchedResultsController*)controller didChangeSection:(id <NSFetchedResultsSectionInfo>)sectionInfo
            atIndex:(NSUInteger)sectionIndex forChangeType:(NSFetchedResultsChangeType)type
 {
-    if(controller == self.fetchedEpisodesController)
+    if(controller == self.fetchedEpisodesController && sectionVisible == TWSectionEpisodes)
     {
         switch(type)
         {
@@ -456,10 +457,10 @@
        atIndexPath:(NSIndexPath*)indexPath forChangeType:(NSFetchedResultsChangeType)type
       newIndexPath:(NSIndexPath*)newIndexPath
 {
-    UITableView *tableView = self.tableView;
-    
-    if(controller == self.fetchedEpisodesController)
+    if(controller == self.fetchedEpisodesController && sectionVisible == TWSectionEpisodes)
     {
+        UITableView *tableView = self.tableView;
+        
         switch(type)
         {
             case NSFetchedResultsChangeInsert:
@@ -484,7 +485,10 @@
 
 - (void)controllerDidChangeContent:(NSFetchedResultsController*)controller
 {
-    [self.tableView endUpdates];
+    if(controller == self.fetchedEpisodesController && sectionVisible == TWSectionEpisodes)
+        [self.tableView endUpdates];
+    else
+        [self.tableView reloadData];
 }
 
 #pragma mark - Kill
