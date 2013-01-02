@@ -14,4 +14,8 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *detailDescriptionLabel;
 
+@property (weak, nonatomic) IBOutlet UIImageView *posterView;
+@property (weak, nonatomic) IBOutlet UILabel *dateLabel, *timeLabel, *numberLabel, *guestsLabel;
+@property (weak, nonatomic) IBOutlet UITextView *descLabel;
+
 @end

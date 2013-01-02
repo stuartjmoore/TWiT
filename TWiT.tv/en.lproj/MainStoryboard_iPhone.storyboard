@@ -338,7 +338,13 @@
                     </view>
                     <navigationItem key="navigationItem" title="Episode" id="26"/>
                     <connections>
+                        <outlet property="dateLabel" destination="nnd-I2-iMv" id="IjK-bg-MdQ"/>
+                        <outlet property="descLabel" destination="kHn-pA-l64" id="jdW-hD-O1Z"/>
                         <outlet property="detailDescriptionLabel" destination="27" id="28"/>
+                        <outlet property="guestsLabel" destination="27" id="Pa8-oF-puR"/>
+                        <outlet property="numberLabel" destination="42m-il-qRa" id="Ppl-qb-kQB"/>
+                        <outlet property="posterView" destination="CDu-qi-wy9" id="w6u-Wi-KmL"/>
+                        <outlet property="timeLabel" destination="80k-Vh-V1k" id="M2e-kC-6Ye"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="23" sceneMemberID="firstResponder"/>
@@ -554,7 +560,13 @@
         <class className="TWEpisodeViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/TWEpisodeViewController.h"/>
             <relationships>
+                <relationship kind="outlet" name="dateLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="descLabel" candidateClass="UITextView"/>
                 <relationship kind="outlet" name="detailDescriptionLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="guestsLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="numberLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="posterView" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="timeLabel" candidateClass="UILabel"/>
             </relationships>
         </class>
         <class className="TWMainViewController" superclassName="UITableViewController">
