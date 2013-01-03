@@ -220,7 +220,7 @@
              }
              
              
-             NSPredicate *pred = [NSPredicate predicateWithFormat:@"quality == %@", feed.quality];
+             NSPredicate *pred = [NSPredicate predicateWithFormat:@"quality == %d", feed.quality];
              NSSet *enclosures = [episode.enclosures filteredSetUsingPredicate:pred];
              
              NSManagedObjectContext *context = self.managedObjectContext;
