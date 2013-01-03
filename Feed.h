@@ -9,19 +9,19 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-typedef NS_ENUM(int16_t, TWFeedQuality)
+typedef NS_ENUM(int16_t, TWQuality)
 {
-    TWFeedQualityAudio,
-    TWFeedQualityMobile,
-    TWFeedQualityHigh,
-    TWFeedQualityHD
+    TWQualityAudio,
+    TWQualityMobile,
+    TWQualityHigh,
+    TWQualityHD
 };
 
-typedef NS_ENUM(int16_t, TWFeedType)
+typedef NS_ENUM(int16_t, TWType)
 {
-    TWFeedTypeAudio,
-    TWFeedTypeVideo,
-    TWFeedTypeYouTube
+    TWTypeAudio,
+    TWTypeVideo,
+    TWTypeYouTube
 };
 
 @class Show;
@@ -29,8 +29,8 @@ typedef NS_ENUM(int16_t, TWFeedType)
 @interface Feed : NSManagedObject
 
 @property (nonatomic, strong) NSString *title, *subtitle, *url;
-@property (nonatomic) TWFeedQuality quality;
-@property (nonatomic) TWFeedType type;
+@property (nonatomic) TWQuality quality;
+@property (nonatomic) TWType type;
 @property (nonatomic, strong) NSDate *lastUpdated;
 @property (nonatomic, strong) Show *show;
 

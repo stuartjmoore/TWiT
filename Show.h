@@ -24,7 +24,7 @@
 @property (nonatomic, strong) NSSet *episodes, *feeds;
 
 - (void)updateEpisodes;
-- (void)updateRSSFeed:(Feed*)feed;
+- (void)updatePodcastFeed:(Feed*)feed;
 
 @end
 

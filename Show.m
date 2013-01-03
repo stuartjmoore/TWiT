@@ -7,6 +7,7 @@
 //
 
 #import "Show.h"
+#import "Feed.h"
 #import "Episode.h"
 
 #define MAX_EPISODES 50
@@ -16,7 +17,7 @@
 @dynamic desc, email, favorite, hosts, phone, published, remind, schedule, sort, title, titleAcronym, titleInSchedule, website, albumArt, channel, episodes, feeds;
 
 #pragma mark - Update Episodes
-/*
+
 - (void)updateEpisodes
 {
     for(Feed *feed in self.feeds)
@@ -44,14 +45,14 @@
                  {
                      feed.lastUpdated = lastModified;
                      [feed.managedObjectContext save:nil];
-                     [self updateRSSFeed:feed];
+                     [self updatePodcastFeed:feed];
                  }
              }
          }];
     }
 }
-
-- (void)updateRSSFeed:(Feed*)feed
+/*
+- (void)updatePodcastFeed:(Feed*)feed
 {
     NSURLRequest *urlRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:feed.url]];
     [NSURLConnection sendAsynchronousRequest:urlRequest queue:[NSOperationQueue mainQueue]
