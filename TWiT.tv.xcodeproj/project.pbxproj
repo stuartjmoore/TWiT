@@ -228,6 +228,7 @@
 		170BA15D1691D5E70022FE4D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 170BA15C1691D5E70022FE4D /* QuartzCore.framework */; };
 		170E02A8169324480072CFA6 /* TWEpisodeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 170E02A7169324480072CFA6 /* TWEpisodeCell.m */; };
 		170E02AB169328910072CFA6 /* TWShowsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 170E02AA169328910072CFA6 /* TWShowsCell.m */; };
+		176380A716960E280060D076 /* Stream.m in Sources */ = {isa = PBXBuildFile; fileRef = 176380A616960E280060D076 /* Stream.m */; };
 		176A62471694B2BA00B121F4 /* toolbar-schedule-arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 176A62431694B2BA00B121F4 /* toolbar-schedule-arrow.png */; };
 		176A62481694B2BA00B121F4 /* toolbar-schedule-arrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 176A62441694B2BA00B121F4 /* toolbar-schedule-arrow@2x.png */; };
 		176A62491694B2BA00B121F4 /* toolbar-schedule-background.png in Resources */ = {isa = PBXBuildFile; fileRef = 176A62451694B2BA00B121F4 /* toolbar-schedule-background.png */; };
@@ -483,6 +484,8 @@
 		170E02A7169324480072CFA6 /* TWEpisodeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWEpisodeCell.m; sourceTree = "<group>"; };
 		170E02A9169328910072CFA6 /* TWShowsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWShowsCell.h; sourceTree = "<group>"; };
 		170E02AA169328910072CFA6 /* TWShowsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWShowsCell.m; sourceTree = "<group>"; };
+		176380A516960E280060D076 /* Stream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Stream.h; sourceTree = "<group>"; };
+		176380A616960E280060D076 /* Stream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Stream.m; sourceTree = "<group>"; };
 		176A62431694B2BA00B121F4 /* toolbar-schedule-arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "toolbar-schedule-arrow.png"; path = "Resources/Images/toolbar-schedule-arrow.png"; sourceTree = SOURCE_ROOT; };
 		176A62441694B2BA00B121F4 /* toolbar-schedule-arrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "toolbar-schedule-arrow@2x.png"; path = "Resources/Images/toolbar-schedule-arrow@2x.png"; sourceTree = SOURCE_ROOT; };
 		176A62451694B2BA00B121F4 /* toolbar-schedule-background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "toolbar-schedule-background.png"; path = "Resources/Images/toolbar-schedule-background.png"; sourceTree = SOURCE_ROOT; };
@@ -836,6 +839,8 @@
 			children = (
 				176AF17B1695CC3300A35BFC /* Channel.h */,
 				176AF17C1695CC3300A35BFC /* Channel.m */,
+				176380A516960E280060D076 /* Stream.h */,
+				176380A616960E280060D076 /* Stream.m */,
 				176AF1781695C8E700A35BFC /* Show.h */,
 				176AF1791695C8E700A35BFC /* Show.m */,
 				176AF1891695DE6000A35BFC /* Feed.h */,
@@ -1221,6 +1226,7 @@
 				176AF18B1695DE6000A35BFC /* Feed.m in Sources */,
 				176AF18E1695DFE900A35BFC /* Enclosure.m in Sources */,
 				176AF1911695E0DF00A35BFC /* Poster.m in Sources */,
+				176380A716960E280060D076 /* Stream.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
