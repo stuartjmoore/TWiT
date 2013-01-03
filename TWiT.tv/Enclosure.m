@@ -13,4 +13,10 @@
 
 @dynamic path, quality, subtitle, title, type, url, episode;
 
+- (void)prepareForDeletion
+{
+    if([NSFileManager.defaultManager fileExistsAtPath:self.path])
+        [NSFileManager.defaultManager removeItemAtPath:self.path error:nil];
+}
+
 @end
