@@ -23,6 +23,9 @@
 @property (nonatomic, strong) Channel *channel;
 @property (nonatomic, strong) NSSet *episodes, *feeds;
 
+- (void)updateEpisodes;
+- (void)updateRSSFeed:(Feed*)feed;
+
 @end
 
 @interface Show (CoreDataGeneratedAccessors)

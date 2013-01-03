@@ -237,6 +237,7 @@
 		176AF1731695C3EB00A35BFC /* Episode.m in Sources */ = {isa = PBXBuildFile; fileRef = 176AF1721695C3EB00A35BFC /* Episode.m */; };
 		176AF17A1695C8E700A35BFC /* Show.m in Sources */ = {isa = PBXBuildFile; fileRef = 176AF1791695C8E700A35BFC /* Show.m */; };
 		176AF17D1695CC3300A35BFC /* Channel.m in Sources */ = {isa = PBXBuildFile; fileRef = 176AF17C1695CC3300A35BFC /* Channel.m */; };
+		176AF1851695DDB100A35BFC /* XMLReader.m in Sources */ = {isa = PBXBuildFile; fileRef = 176AF1841695DDB100A35BFC /* XMLReader.m */; };
 		17AFF029169462EA0053A33C /* TWShowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 17AFF028169462EA0053A33C /* TWShowViewController.m */; };
 		17E5114F168F496E00DCE89C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17E5114E168F496E00DCE89C /* UIKit.framework */; };
 		17E51151168F496E00DCE89C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17E51150168F496E00DCE89C /* Foundation.framework */; };
@@ -491,6 +492,8 @@
 		176AF1791695C8E700A35BFC /* Show.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Show.m; path = ../Show.m; sourceTree = "<group>"; };
 		176AF17B1695CC3300A35BFC /* Channel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Channel.h; sourceTree = "<group>"; };
 		176AF17C1695CC3300A35BFC /* Channel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Channel.m; sourceTree = "<group>"; };
+		176AF1831695DDB100A35BFC /* XMLReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMLReader.h; sourceTree = "<group>"; };
+		176AF1841695DDB100A35BFC /* XMLReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLReader.m; sourceTree = "<group>"; };
 		17AFF027169462EA0053A33C /* TWShowViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWShowViewController.h; sourceTree = "<group>"; };
 		17AFF028169462EA0053A33C /* TWShowViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWShowViewController.m; sourceTree = "<group>"; };
 		17E5114A168F496E00DCE89C /* TWiT.tv.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TWiT.tv.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -810,6 +813,15 @@
 			name = Views;
 			sourceTree = "<group>";
 		};
+		176AF1821695DDB100A35BFC /* XML-to-NSDictionary */ = {
+			isa = PBXGroup;
+			children = (
+				176AF1831695DDB100A35BFC /* XMLReader.h */,
+				176AF1841695DDB100A35BFC /* XMLReader.m */,
+			);
+			path = "XML-to-NSDictionary";
+			sourceTree = "<group>";
+		};
 		17BB1CFF168F728C00221F7E /* Objects */ = {
 			isa = PBXGroup;
 			children = (
@@ -876,6 +888,7 @@
 		17E51157168F496E00DCE89C /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				176AF1821695DDB100A35BFC /* XML-to-NSDictionary */,
 				17E51158168F496E00DCE89C /* TWiT.tv-Info.plist */,
 				17E51159168F496E00DCE89C /* InfoPlist.strings */,
 				17E5115C168F496E00DCE89C /* main.m */,
@@ -1189,6 +1202,7 @@
 				176AF1731695C3EB00A35BFC /* Episode.m in Sources */,
 				176AF17A1695C8E700A35BFC /* Show.m in Sources */,
 				176AF17D1695CC3300A35BFC /* Channel.m in Sources */,
+				176AF1851695DDB100A35BFC /* XMLReader.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
