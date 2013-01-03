@@ -18,7 +18,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // TODO: Configure header view
+    
+    [self.show updateEpisodes];
     
     self.title = self.show.title;
     self.descLabel.text = self.show.desc;
