@@ -159,7 +159,11 @@
                  if(!guests)
                      guests = @"";
                  
-                 guests = [guests stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+                 NSRange r;
+                 while((r = [guests rangeOfString:@"<[^>]+>" options:NSRegularExpressionSearch]).location != NSNotFound)
+                     guests = [guests stringByReplacingCharactersInRange:r withString:@""];
+                 
+                 //guests = [guests stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
              }
              
              NSString *posterURL = [NSString stringWithFormat:@"http://twit.tv/files/imagecache/slideshow-slide/%@%.4d.jpg", self.titleAcronym.lowercaseString, number];
