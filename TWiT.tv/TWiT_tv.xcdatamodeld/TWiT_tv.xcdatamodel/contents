@@ -5,7 +5,7 @@
         <attribute name="url" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="show" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Show" inverseName="albumArt" inverseEntity="Show" syncable="YES"/>
     </entity>
-    <entity name="Channel" representedClassName="TWChannelObject" syncable="YES">
+    <entity name="Channel" representedClassName="Channel" syncable="YES">
         <attribute name="desc" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="published" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="scheduleURL" optional="YES" attributeType="String" syncable="YES"/>

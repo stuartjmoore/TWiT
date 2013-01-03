@@ -13,6 +13,7 @@
 #import "TWEpisodeViewController.h"
 #import "TWEpisodeCell.h"
 
+#import "Show.h"
 #import "Episode.h"
 
 @interface TWMainViewController ()
@@ -60,22 +61,22 @@
 
 - (void)insertNewObject:(id)sender
 {
-    /*
+    
     NSManagedObjectContext *context = self.fetchedShowsController.managedObjectContext;
     NSString *name = self.fetchedShowsController.fetchRequest.entity.name;
-    NSManagedObject *show = [NSEntityDescription insertNewObjectForEntityForName:name inManagedObjectContext:context];
+    Show *show = [NSEntityDescription insertNewObjectForEntityForName:name inManagedObjectContext:context];
     
-    [show setValue:@"DATABASES! YOLO!" forKey:@"title"];
-    [show setValue:@"Now that there is the Tec-9, a crappy spray gun from South Miami. This gun is advertised as the most popular gun in American crime. Do you believe that shit? It actually says that in the little book that comes with it: the most popular gun in American crime. Like they're actually proud of that shit." forKey:@"desc"];
-    [show setValue:@0 forKey:@"sort"];
+    show.title = @"STRONG TYPING! YOLO!";
+    show.desc = @"Now that there is the Tec-9, a crappy spray gun from South Miami. This gun is advertised as the most popular gun in American crime. Do you believe that shit?";
+    show.sort = 1;
     
     NSError *error = nil;
     if(![context save:&error])
     {
         NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
     }
-    */
     
+    /*
     NSManagedObjectContext *context = self.fetchedEpisodesController.managedObjectContext;
     NSString *name = self.fetchedEpisodesController.fetchRequest.entity.name;
     Episode *episode = [NSEntityDescription insertNewObjectForEntityForName:name inManagedObjectContext:context];
@@ -89,7 +90,7 @@
     {
         NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
     }
-    
+    */
 }
 
 
@@ -151,7 +152,7 @@
         TWShowsCell *showCell = (TWShowsCell*)[self.tableView cellForRowAtIndexPath:self.tableView.indexPathForSelectedRow];
         int index = [sender[@"row"] intValue]*showCell.columns + [sender[@"column"] intValue];
         NSIndexPath *indexPath = [NSIndexPath indexPathForRow:index inSection:[sender[@"section"] intValue]];
-        NSManagedObject *show = [self.fetchedShowsController objectAtIndexPath:indexPath];
+        Show *show = [self.fetchedShowsController objectAtIndexPath:indexPath];
         
         [segue.destinationViewController setShow:show];
         [segue.destinationViewController setManagedObjectContext:self.managedObjectContext];
@@ -398,7 +399,7 @@
                     [shows addObject:[UIImage imageNamed:@"fr600.jpg"]];
                 
                 //NSIndexPath *columnedIndexPath = [NSIndexPath indexPathForRow:index inSection:indexPath.section];
-                //NSManagedObject *show = [self.fetchedShowsController objectAtIndexPath:columnedIndexPath];
+                //Show *show = [self.fetchedShowsController objectAtIndexPath:columnedIndexPath];
                 //[shows addObject:show];
             }
         }

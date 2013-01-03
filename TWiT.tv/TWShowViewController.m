@@ -10,6 +10,7 @@
 #import "TWEpisodeViewController.h"
 #import "TWEpisodeCell.h"
 
+#import "Show.h"
 #import "Episode.h"
 
 @implementation TWShowViewController
@@ -19,8 +20,8 @@
     [super viewDidLoad];
     // TODO: Configure header view
     
-    self.title = [self.show valueForKey:@"title"];
-    self.descLabel.text = [self.show valueForKey:@"desc"];
+    self.title = self.show.title;
+    self.descLabel.text = self.show.desc;
     
     CGSize maxSize = CGSizeMake(self.descLabel.frame.size.width, CGFLOAT_MAX);
     CGSize size = [self.descLabel.text sizeWithFont:self.descLabel.font constrainedToSize:maxSize];

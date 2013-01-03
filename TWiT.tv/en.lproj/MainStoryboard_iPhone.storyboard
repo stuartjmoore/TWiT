@@ -570,7 +570,6 @@
             <relationships>
                 <relationship kind="outlet" name="dateLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="descLabel" candidateClass="UITextView"/>
-                <relationship kind="outlet" name="detailDescriptionLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="guestsLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="numberLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="posterView" candidateClass="UIImageView"/>
