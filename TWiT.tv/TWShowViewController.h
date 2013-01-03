@@ -16,7 +16,6 @@
 
 @property (strong, nonatomic) Show *show;
 
-@property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (strong, nonatomic) NSFetchedResultsController *fetchedEpisodesController;
 
 @property (weak, nonatomic) IBOutlet UIView *headerView;

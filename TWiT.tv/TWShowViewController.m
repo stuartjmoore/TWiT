@@ -178,7 +178,7 @@
         return _fetchedEpisodesController;
     
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Episode" inManagedObjectContext:self.managedObjectContext];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Episode" inManagedObjectContext:self.show.managedObjectContext];
     NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"published" ascending:NO];
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"show = %@", self.show];
     
@@ -188,7 +188,7 @@
     [fetchRequest setPredicate:predicate];
     
     // TODO: Single Cache?
-    NSFetchedResultsController *controller = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:[NSString stringWithFormat:@"EpisodesOf%@", self.show.title]];
+    NSFetchedResultsController *controller = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.show.managedObjectContext sectionNameKeyPath:nil cacheName:[NSString stringWithFormat:@"EpisodesOf%@", self.show.title]];
     controller.delegate = self;
     self.fetchedEpisodesController = controller;
     

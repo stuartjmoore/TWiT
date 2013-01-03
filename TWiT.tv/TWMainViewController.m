@@ -149,7 +149,6 @@
         Show *show = [self.fetchedShowsController objectAtIndexPath:indexPath];
         
         [segue.destinationViewController setShow:show];
-        [segue.destinationViewController setManagedObjectContext:self.managedObjectContext];
     }
 }
 
