@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
+
 #import "TWShowsCell.h"
 
 #define headerHeight 180
@@ -18,12 +19,14 @@ typedef NS_ENUM(NSInteger, TWSection)
     TWSectionShows
 };
 
-@class TWEpisodeViewController;
+@class TWEpisodeViewController, Channel;
 
 @interface TWMainViewController : UITableViewController <NSFetchedResultsControllerDelegate, TWiTShowGridCellDelegate>
 {
     TWSection sectionVisible;
 }
+
+@property (strong, nonatomic) Channel *channel;
 
 @property (strong, nonatomic) TWEpisodeViewController *episodeViewController;
 

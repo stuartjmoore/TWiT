@@ -38,6 +38,7 @@
         UINavigationController *navigationController = (UINavigationController*)self.window.rootViewController;
         TWMainViewController *controller = (TWMainViewController*)navigationController.topViewController;
         controller.managedObjectContext = self.managedObjectContext;
+        //controller.channel = channel;
     }
     
     return YES;

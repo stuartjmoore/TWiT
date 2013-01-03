@@ -13,6 +13,7 @@
 #import "TWEpisodeViewController.h"
 #import "TWEpisodeCell.h"
 
+#import "Channel.h"
 #import "Show.h"
 #import "Episode.h"
 
@@ -44,6 +45,7 @@
     sectionVisible = TWSectionEpisodes;
     
     
+    // TODO: Remove Add Button
     UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject:)];
     self.navigationItem.rightBarButtonItem = addButton;
     
@@ -58,39 +60,24 @@
                         context:NULL];
 }
 
+#pragma mark - DEBUG
 
 - (void)insertNewObject:(id)sender
 {
-    /*
     NSManagedObjectContext *context = self.fetchedShowsController.managedObjectContext;
     NSString *name = self.fetchedShowsController.fetchRequest.entity.name;
     Show *show = [NSEntityDescription insertNewObjectForEntityForName:name inManagedObjectContext:context];
     
     show.title = @"STRONG TYPING! YOLO!";
     show.desc = @"Now that there is the Tec-9, a crappy spray gun from South Miami. This gun is advertised as the most popular gun in American crime. Do you believe that shit?";
-    show.sort = 1;
+    show.sort = self.channel.shows.count + 1;
+    [self.channel addShowsObject:show];
     
     NSError *error = nil;
     if(![context save:&error])
     {
         NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
     }
-    */
-    
-    NSManagedObjectContext *context = self.fetchedEpisodesController.managedObjectContext;
-    NSString *name = self.fetchedEpisodesController.fetchRequest.entity.name;
-    Episode *episode = [NSEntityDescription insertNewObjectForEntityForName:name inManagedObjectContext:context];
-    
-    episode.title = @"CORE DATARZ :)";
-    episode.guests = @"Mhm.";
-    episode.published = [NSDate date];
-
-    NSError *error = nil;
-    if(![context save:&error])
-    {
-        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-    }
-    
 }
 
 
