@@ -10,6 +10,8 @@
 #import "TWEpisodeViewController.h"
 #import "TWEpisodeCell.h"
 
+#import "Episode.h"
+
 @implementation TWShowViewController
 
 - (void)viewDidLoad
@@ -43,8 +45,8 @@
     if([segue.identifier isEqualToString:@"episodeDetail"])
     {
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-        NSManagedObject *object = [self.fetchedEpisodesController objectAtIndexPath:indexPath];
-        [segue.destinationViewController setEpisode:object];
+        Episode *episode = [self.fetchedEpisodesController objectAtIndexPath:indexPath];
+        [segue.destinationViewController setEpisode:episode];
     }
 }
 
@@ -130,12 +132,12 @@
 {
     if([cell.reuseIdentifier isEqualToString:@"episodeCell"])
     {
-        NSManagedObject *object = [self.fetchedEpisodesController objectAtIndexPath:indexPath];
+        Episode *episode = [self.fetchedEpisodesController objectAtIndexPath:indexPath];
         TWEpisodeCell *episodeCell = (TWEpisodeCell*)cell;
         
         episodeCell.albumArt.image = [UIImage imageNamed:@"aaa600.jpg"];
-        episodeCell.titleLabel.text = [object valueForKey:@"title"];
-        episodeCell.subtitleLabel.text = [object valueForKey:@"guests"];
+        episodeCell.titleLabel.text = episode.title;
+        episodeCell.subtitleLabel.text = episode.guests;
     }
 }
 
@@ -150,12 +152,12 @@
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"Episode" inManagedObjectContext:self.managedObjectContext];
     NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"published" ascending:NO];
     
+    // TODO: only get episodes from current show
+    
     [fetchRequest setFetchBatchSize:10];
     [fetchRequest setEntity:entity];
     [fetchRequest setSortDescriptors:@[sortDescriptor]];
     
-    // Edit the section name key path and cache name if appropriate.
-    // nil for section name key path means "no sections".
     NSFetchedResultsController *controller = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:@"Master"];
     controller.delegate = self;
     self.fetchedEpisodesController = controller;

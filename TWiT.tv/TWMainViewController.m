@@ -13,6 +13,8 @@
 #import "TWEpisodeViewController.h"
 #import "TWEpisodeCell.h"
 
+#import "Episode.h"
+
 @interface TWMainViewController ()
 - (void)configureCell:(UITableViewCell*)cell atIndexPath:(NSIndexPath*)indexPath;
 @end
@@ -58,6 +60,7 @@
 
 - (void)insertNewObject:(id)sender
 {
+    /*
     NSManagedObjectContext *context = self.fetchedShowsController.managedObjectContext;
     NSString *name = self.fetchedShowsController.fetchRequest.entity.name;
     NSManagedObject *show = [NSEntityDescription insertNewObjectForEntityForName:name inManagedObjectContext:context];
@@ -71,22 +74,22 @@
     {
         NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
     }
+    */
     
-    /*
     NSManagedObjectContext *context = self.fetchedEpisodesController.managedObjectContext;
     NSString *name = self.fetchedEpisodesController.fetchRequest.entity.name;
-    NSManagedObject *episode = [NSEntityDescription insertNewObjectForEntityForName:name inManagedObjectContext:context];
+    Episode *episode = [NSEntityDescription insertNewObjectForEntityForName:name inManagedObjectContext:context];
     
-    [episode setValue:@"OMG CORE DATARZ!" forKey:@"title"];
-    [episode setValue:@"Yay!" forKey:@"guests"];
-    [episode setValue:[NSDate date] forKey:@"published"];
-    
+    episode.title = @"CORE DATARZ :)";
+    episode.guests = @"Mhm.";
+    episode.published = [NSDate date];
+
     NSError *error = nil;
     if(![context save:&error])
     {
         NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
     }
-    */
+    
 }
 
 
@@ -139,18 +142,18 @@
     if([segue.identifier isEqualToString:@"episodeDetail"])
     {
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-        NSManagedObject *object = [self.fetchedEpisodesController objectAtIndexPath:indexPath];
-        [segue.destinationViewController setEpisode:object];
+        Episode *episode = [self.fetchedEpisodesController objectAtIndexPath:indexPath];
+        
+        [segue.destinationViewController setEpisode:episode];
     }
     else if([segue.identifier isEqualToString:@"showDetail"])
     {
         TWShowsCell *showCell = (TWShowsCell*)[self.tableView cellForRowAtIndexPath:self.tableView.indexPathForSelectedRow];
         int index = [sender[@"row"] intValue]*showCell.columns + [sender[@"column"] intValue];
         NSIndexPath *indexPath = [NSIndexPath indexPathForRow:index inSection:[sender[@"section"] intValue]];
-        
         NSManagedObject *show = [self.fetchedShowsController objectAtIndexPath:indexPath];
-        [segue.destinationViewController setShow:show];
         
+        [segue.destinationViewController setShow:show];
         [segue.destinationViewController setManagedObjectContext:self.managedObjectContext];
     }
 }
@@ -358,12 +361,12 @@
 {
     if([cell.reuseIdentifier isEqualToString:@"episodeCell"])
     {
-        NSManagedObject *object = [self.fetchedEpisodesController objectAtIndexPath:indexPath];
+        Episode *episode = [self.fetchedEpisodesController objectAtIndexPath:indexPath];
         TWEpisodeCell *episodeCell = (TWEpisodeCell*)cell;
         
         episodeCell.albumArt.image = [UIImage imageNamed:@"aaa600.jpg"];
-        episodeCell.titleLabel.text = [object valueForKey:@"title"];
-        episodeCell.subtitleLabel.text = [object valueForKey:@"guests"];
+        episodeCell.titleLabel.text = episode.title;
+        episodeCell.subtitleLabel.text = episode.guests;
     }
     else if([cell.reuseIdentifier isEqualToString:@"showsCell"])
     {

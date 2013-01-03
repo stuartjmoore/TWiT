@@ -8,6 +8,8 @@
 
 #import "TWEpisodeViewController.h"
 
+#import "Episode.h"
+
 @interface TWEpisodeViewController ()
 @property (strong, nonatomic) UIPopoverController *masterPopoverController;
 - (void)configureView;
@@ -42,9 +44,9 @@
 {
     if(self.episode)
     {
-        self.title = [self.episode valueForKey:@"title"];
-        self.guestsLabel.text = [self.episode valueForKey:@"guests"];
-        self.dateLabel.text = [[self.episode valueForKey:@"published"] description];
+        self.title = self.episode.title;
+        self.guestsLabel.text = self.episode.guests;
+        self.dateLabel.text = self.episode.published.description;
     }
 }
 /*
