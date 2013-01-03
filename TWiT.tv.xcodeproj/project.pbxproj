@@ -234,6 +234,7 @@
 		176A624A1694B2BA00B121F4 /* toolbar-schedule-background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 176A62461694B2BA00B121F4 /* toolbar-schedule-background@2x.png */; };
 		176A624E1694B3C500B121F4 /* toolbar-schedule-arrow-up.png in Resources */ = {isa = PBXBuildFile; fileRef = 176A624C1694B3C500B121F4 /* toolbar-schedule-arrow-up.png */; };
 		176A624F1694B3C500B121F4 /* toolbar-schedule-arrow-up@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 176A624D1694B3C500B121F4 /* toolbar-schedule-arrow-up@2x.png */; };
+		176AF1731695C3EB00A35BFC /* Episode.m in Sources */ = {isa = PBXBuildFile; fileRef = 176AF1721695C3EB00A35BFC /* Episode.m */; };
 		17AFF029169462EA0053A33C /* TWShowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 17AFF028169462EA0053A33C /* TWShowViewController.m */; };
 		17BB1D03168F72AF00221F7E /* TWChannelObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 17BB1D02168F72AF00221F7E /* TWChannelObject.m */; };
 		17E5114F168F496E00DCE89C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17E5114E168F496E00DCE89C /* UIKit.framework */; };
@@ -483,6 +484,8 @@
 		176A62461694B2BA00B121F4 /* toolbar-schedule-background@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "toolbar-schedule-background@2x.png"; path = "Resources/Images/toolbar-schedule-background@2x.png"; sourceTree = SOURCE_ROOT; };
 		176A624C1694B3C500B121F4 /* toolbar-schedule-arrow-up.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "toolbar-schedule-arrow-up.png"; path = "Resources/Images/toolbar-schedule-arrow-up.png"; sourceTree = SOURCE_ROOT; };
 		176A624D1694B3C500B121F4 /* toolbar-schedule-arrow-up@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "toolbar-schedule-arrow-up@2x.png"; path = "Resources/Images/toolbar-schedule-arrow-up@2x.png"; sourceTree = SOURCE_ROOT; };
+		176AF1711695C3EB00A35BFC /* Episode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Episode.h; path = ../Episode.h; sourceTree = "<group>"; };
+		176AF1721695C3EB00A35BFC /* Episode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Episode.m; path = ../Episode.m; sourceTree = "<group>"; };
 		17AFF027169462EA0053A33C /* TWShowViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWShowViewController.h; sourceTree = "<group>"; };
 		17AFF028169462EA0053A33C /* TWShowViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWShowViewController.m; sourceTree = "<group>"; };
 		17BB1D01168F72AF00221F7E /* TWChannelObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWChannelObject.h; sourceTree = "<group>"; };
@@ -785,6 +788,7 @@
 		170BA1271691CD5B0022FE4D /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				17E5116E168F496E00DCE89C /* TWiT_tv.xcdatamodeld */,
 				170B9FF91691CD550022FE4D /* Settings.bundle */,
 				170B9F6E1691CD540022FE4D /* Images */,
 				170B9FFA1691CD550022FE4D /* Shows Cache */,
@@ -808,6 +812,8 @@
 			children = (
 				17BB1D01168F72AF00221F7E /* TWChannelObject.h */,
 				17BB1D02168F72AF00221F7E /* TWChannelObject.m */,
+				176AF1711695C3EB00A35BFC /* Episode.h */,
+				176AF1721695C3EB00A35BFC /* Episode.m */,
 			);
 			name = Objects;
 			sourceTree = "<group>";
@@ -854,7 +860,6 @@
 				17AFF028169462EA0053A33C /* TWShowViewController.m */,
 				17E51174168F496E00DCE89C /* TWEpisodeViewController.h */,
 				17E51175168F496E00DCE89C /* TWEpisodeViewController.m */,
-				17E5116E168F496E00DCE89C /* TWiT_tv.xcdatamodeld */,
 				170E02A4169322130072CFA6 /* Views */,
 				17BB1CFF168F728C00221F7E /* Objects */,
 				170BA1271691CD5B0022FE4D /* Resources */,
@@ -1177,6 +1182,7 @@
 				170E02A8169324480072CFA6 /* TWEpisodeCell.m in Sources */,
 				170E02AB169328910072CFA6 /* TWShowsCell.m in Sources */,
 				17AFF029169462EA0053A33C /* TWShowViewController.m in Sources */,
+				176AF1731695C3EB00A35BFC /* Episode.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
