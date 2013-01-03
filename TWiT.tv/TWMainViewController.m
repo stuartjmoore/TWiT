@@ -58,6 +58,21 @@
 
 - (void)insertNewObject:(id)sender
 {
+    NSManagedObjectContext *context = self.fetchedShowsController.managedObjectContext;
+    NSString *name = self.fetchedShowsController.fetchRequest.entity.name;
+    NSManagedObject *show = [NSEntityDescription insertNewObjectForEntityForName:name inManagedObjectContext:context];
+    
+    [show setValue:@"DATABASES! YOLO!" forKey:@"title"];
+    [show setValue:@"Now that there is the Tec-9, a crappy spray gun from South Miami. This gun is advertised as the most popular gun in American crime. Do you believe that shit? It actually says that in the little book that comes with it: the most popular gun in American crime. Like they're actually proud of that shit." forKey:@"desc"];
+    [show setValue:@0 forKey:@"sort"];
+    
+    NSError *error = nil;
+    if(![context save:&error])
+    {
+        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+    }
+    
+    /*
     NSManagedObjectContext *context = self.fetchedEpisodesController.managedObjectContext;
     NSString *name = self.fetchedEpisodesController.fetchRequest.entity.name;
     NSManagedObject *episode = [NSEntityDescription insertNewObjectForEntityForName:name inManagedObjectContext:context];
@@ -71,6 +86,7 @@
     {
         NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
     }
+    */
 }
 
 
@@ -128,12 +144,12 @@
     }
     else if([segue.identifier isEqualToString:@"showDetail"])
     {
-        //TWShowsCell *showCell = (TWShowsCell*)[self.tableView cellForRowAtIndexPath:self.tableView.indexPathForSelectedRow];
-        //int index = [sender[@"row"] intValue]*showCell.columns + [sender[@"column"] intValue];
-        //NSIndexPath *indexPath = [NSIndexPath indexPathForRow:index inSection:[sender[@"section"] intValue]];
+        TWShowsCell *showCell = (TWShowsCell*)[self.tableView cellForRowAtIndexPath:self.tableView.indexPathForSelectedRow];
+        int index = [sender[@"row"] intValue]*showCell.columns + [sender[@"column"] intValue];
+        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:index inSection:[sender[@"section"] intValue]];
         
-        //NSManagedObject *show = [self.fetchedShowsController objectAtIndexPath:indexPath];
-        //[segue.destinationViewController setShow:show];
+        NSManagedObject *show = [self.fetchedShowsController objectAtIndexPath:indexPath];
+        [segue.destinationViewController setShow:show];
         
         [segue.destinationViewController setManagedObjectContext:self.managedObjectContext];
     }
@@ -422,25 +438,18 @@
         return _fetchedShowsController;
     
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Show" inManagedObjectContext:self.managedObjectContext];
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"sort" ascending:NO];
     
-    // Edit the entity name as appropriate.
-    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Event" inManagedObjectContext:self.managedObjectContext];
-    [fetchRequest setEntity:entity];
-    
-    // Set the batch size to a suitable number.
     [fetchRequest setFetchBatchSize:15];
-    
-    // Edit the sort key as appropriate.
-    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"timeStamp" ascending:NO];
-    NSArray *sortDescriptors = @[sortDescriptor];
-    
-    [fetchRequest setSortDescriptors:sortDescriptors];
+    [fetchRequest setEntity:entity];
+    [fetchRequest setSortDescriptors:@[sortDescriptor]];
     
     // Edit the section name key path and cache name if appropriate.
     // nil for section name key path means "no sections".
-    NSFetchedResultsController *aFetchedShowsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:@"Master"];
-    aFetchedShowsController.delegate = self;
-    self.fetchedShowsController = aFetchedShowsController;
+    NSFetchedResultsController *controller = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:@"Master"];
+    controller.delegate = self;
+    self.fetchedShowsController = controller;
     
 	NSError *error = nil;
 	if(![self.fetchedShowsController performFetch:&error])

@@ -12,6 +12,8 @@
 
 @interface TWShowViewController : UITableViewController <NSFetchedResultsControllerDelegate>
 
+@property (strong, nonatomic) id show;
+
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (strong, nonatomic) NSFetchedResultsController *fetchedEpisodesController;
 

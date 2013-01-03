@@ -87,14 +87,14 @@
         <relationship name="channel" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Channel" inverseName="streams" inverseEntity="Channel" syncable="YES"/>
     </entity>
     <elements>
-        <element name="AlbumArt" positionX="-9" positionY="-36" width="128" height="88"/>
+        <element name="AlbumArt" positionX="0" positionY="-36" width="119" height="88"/>
         <element name="Channel" positionX="-180" positionY="90" width="128" height="148"/>
-        <element name="Enclosure" positionX="169" positionY="444" width="128" height="148"/>
+        <element name="Enclosure" positionX="171" positionY="444" width="126" height="148"/>
         <element name="Episode" positionX="171" positionY="90" width="128" height="253"/>
         <element name="Event" positionX="403" positionY="189" width="128" height="60"/>
-        <element name="Feed" positionX="7" positionY="441" width="128" height="148"/>
+        <element name="Feed" positionX="7" positionY="441" width="119" height="148"/>
         <element name="Poster" positionX="169" positionY="-36" width="128" height="88"/>
         <element name="Show" positionX="-2" positionY="90" width="128" height="298"/>
-        <element name="Stream" positionX="-173" positionY="450" width="128" height="133"/>
+        <element name="Stream" positionX="-173" positionY="450" width="119" height="133"/>
     </elements>
 </model>
