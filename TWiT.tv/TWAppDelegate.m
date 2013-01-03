@@ -8,7 +8,7 @@
 
 #import "TWAppDelegate.h"
 #import "TWMainViewController.h"
-#import "TWChannelObject.h"
+#import "Channel.h"
 
 @implementation TWAppDelegate
 
@@ -16,8 +16,8 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary*)launchOptions
 {
-    TWChannelObject *channel = [[TWChannelObject alloc] init];
-    [channel updateShows];
+    //Channel *channel = [[Channel alloc] init];
+    //[channel updateShows];
     
     // Override point for customization after application launch.
     if([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad)
