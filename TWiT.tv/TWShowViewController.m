@@ -102,25 +102,25 @@
     }
 }
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+- (NSInteger)numberOfSectionsInTableView:(UITableView*)tableView
 {
     return self.fetchedEpisodesController.sections.count;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+- (NSInteger)tableView:(UITableView*)tableView numberOfRowsInSection:(NSInteger)section
 {
     id <NSFetchedResultsSectionInfo>sectionInfo = self.fetchedEpisodesController.sections[section];
     return sectionInfo.numberOfObjects;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+- (UITableViewCell *)tableView:(UITableView*)tableView cellForRowAtIndexPath:(NSIndexPath*)indexPath
 {
     NSString *identifier = @"episodeCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
-    
+    /*
     if(!cell)
         cell = [[TWEpisodeCell alloc] initWithStyle:NO reuseIdentifier:identifier];
-    
+    */
     [self configureCell:cell atIndexPath:indexPath];
     
     return cell;
