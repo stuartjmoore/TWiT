@@ -31,6 +31,7 @@ typedef NS_ENUM(NSInteger, TWSection)
 @property (strong, nonatomic) NSFetchedResultsController *fetchedEpisodesController, *fetchedShowsController;
 
 @property (weak, nonatomic) IBOutlet UIView *headerView;
+@property (weak, nonatomic) IBOutlet UITableView *scheduleTable;
 @property (strong, nonatomic) UIView *sectionHeader;
 
 - (IBAction)openScheduleView:(UIButton*)sender;

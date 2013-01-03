@@ -178,30 +178,44 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView*)tableView
 {
-    if(sectionVisible == TWSectionEpisodes)
-        return self.fetchedEpisodesController.sections.count;
-    else if(sectionVisible == TWSectionShows)
-        return self.fetchedShowsController.sections.count;
+    if(tableView == self.tableView)
+    {
+        if(sectionVisible == TWSectionEpisodes)
+            return self.fetchedEpisodesController.sections.count;
+        else if(sectionVisible == TWSectionShows)
+            return self.fetchedShowsController.sections.count;
+    }
+    else if(tableView == self.scheduleTable)
+    {
+        return 1;
+    }
     
     return 0;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    id <NSFetchedResultsSectionInfo>sectionInfo;
-    
-    if(sectionVisible == TWSectionEpisodes)
+    if(tableView == self.tableView)
     {
-        sectionInfo = self.fetchedEpisodesController.sections[section];
+        id <NSFetchedResultsSectionInfo>sectionInfo;
         
-        return sectionInfo.numberOfObjects;
+        if(sectionVisible == TWSectionEpisodes)
+        {
+            sectionInfo = self.fetchedEpisodesController.sections[section];
+            
+            return sectionInfo.numberOfObjects;
+        }
+        else if(sectionVisible == TWSectionShows)
+        {
+            sectionInfo = self.fetchedShowsController.sections[section];
+            int num = sectionInfo.numberOfObjects;
+            
+            return ceil(num/3.0);
+        }
     }
-    else if(sectionVisible == TWSectionShows)
+    else if(tableView == self.scheduleTable)
     {
-        sectionInfo = self.fetchedShowsController.sections[section];
-        int num = sectionInfo.numberOfObjects;
-        
-        return ceil(num/3.0);
+        return 20;
     }
     
     return 0;
@@ -209,19 +223,29 @@
 
 - (float)tableView:(UITableView*)tableView heightForHeaderInSection:(NSInteger)section
 {
-    if(section == 0)
-        return 28;
+    if(tableView == self.tableView)
+    {
+        if(section == 0)
+            return 28;
+    }
     
     return 0;
 }
 
 - (float)tableView:(UITableView*)tableView heightForRowAtIndexPath:(NSIndexPath*)indexPath
 {
-    if(sectionVisible == TWSectionEpisodes)
-        return 62;
-    else if(sectionVisible == TWSectionShows)
-        return 102;
-
+    if(tableView == self.tableView)
+    {
+        if(sectionVisible == TWSectionEpisodes)
+            return 62;
+        else if(sectionVisible == TWSectionShows)
+            return 102;
+    }
+    else if(tableView == self.scheduleTable)
+    {
+        return 20;
+    }
+    
     return 0;
 }
 
@@ -229,7 +253,7 @@
 
 - (UIView*)tableView:(UITableView*)tableView viewForHeaderInSection:(NSInteger)section
 {
-    if(section == 0)
+    if(tableView == self.tableView && section == 0)
     {
         float width = tableView.frame.size.width;
         self.sectionHeader = [[UIView alloc] initWithFrame:CGRectMake(0, 0, width, 28)];
@@ -293,17 +317,35 @@
 
 - (UITableViewCell*)tableView:(UITableView*)tableView cellForRowAtIndexPath:(NSIndexPath*)indexPath
 {
-    NSString *identifier = (sectionVisible == TWSectionEpisodes) ? @"episodeCell" : @"showsCell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
+    if(tableView == self.tableView)
+    {
+        NSString *identifier = (sectionVisible == TWSectionEpisodes) ? @"episodeCell" : @"showsCell";
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
+        /*
+        if(!cell && [identifier isEqualToString:@"episodeCell"])
+            cell = [[TWEpisodeCell alloc] initWithStyle:NO reuseIdentifier:identifier];
+        else if(!cell && [identifier isEqualToString:@"showsCell"])
+            cell = [[TWShowsCell alloc] initWithStyle:NO reuseIdentifier:identifier];
+        */
+        [self configureCell:cell atIndexPath:indexPath];
+        
+        return cell;
+    }
+    else if(tableView == self.scheduleTable)
+    {
+        NSString *identifier = @"scheduleCell";
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
+        /*
+        if(!cell)
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue2 reuseIdentifier:identifier];
+        */
+        cell.textLabel.text = @"1:00p";
+        cell.detailTextLabel.text = @"Tech News Today";
+        
+        return cell;
+    }
     
-    if(!cell && [identifier isEqualToString:@"episodeCell"])
-        cell = [[TWEpisodeCell alloc] initWithStyle:NO reuseIdentifier:identifier];
-    else if(!cell && [identifier isEqualToString:@"showsCell"])
-        cell = [[TWShowsCell alloc] initWithStyle:NO reuseIdentifier:identifier];
-    
-    [self configureCell:cell atIndexPath:indexPath];
-
-    return cell;
+    return nil;
 }
 
 #pragma mark - Configure
