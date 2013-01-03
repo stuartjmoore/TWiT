@@ -22,6 +22,7 @@
     [self.show updateEpisodes];
     
     self.title = self.show.title;
+    self.scheduleLabel.text = self.show.schedule;
     self.descLabel.text = self.show.desc;
     
     CGSize maxSize = CGSizeMake(self.descLabel.frame.size.width, CGFLOAT_MAX);
@@ -187,7 +188,6 @@
     [fetchRequest setSortDescriptors:@[sortDescriptor]];
     [fetchRequest setPredicate:predicate];
     
-    // TODO: Single Cache?
     NSFetchedResultsController *controller = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.show.managedObjectContext sectionNameKeyPath:nil cacheName:[NSString stringWithFormat:@"EpisodesOf%@", self.show.title]];
     controller.delegate = self;
     self.fetchedEpisodesController = controller;
