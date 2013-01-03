@@ -117,10 +117,7 @@
 {
     NSString *identifier = @"episodeCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
-    /*
-    if(!cell)
-        cell = [[TWEpisodeCell alloc] initWithStyle:NO reuseIdentifier:identifier];
-    */
+
     [self configureCell:cell atIndexPath:indexPath];
     
     return cell;

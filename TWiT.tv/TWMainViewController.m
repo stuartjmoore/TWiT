@@ -321,12 +321,7 @@
     {
         NSString *identifier = (sectionVisible == TWSectionEpisodes) ? @"episodeCell" : @"showsCell";
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
-        /*
-        if(!cell && [identifier isEqualToString:@"episodeCell"])
-            cell = [[TWEpisodeCell alloc] initWithStyle:NO reuseIdentifier:identifier];
-        else if(!cell && [identifier isEqualToString:@"showsCell"])
-            cell = [[TWShowsCell alloc] initWithStyle:NO reuseIdentifier:identifier];
-        */
+
         [self configureCell:cell atIndexPath:indexPath];
         
         return cell;
@@ -335,10 +330,7 @@
     {
         NSString *identifier = @"scheduleCell";
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
-        /*
-        if(!cell)
-            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue2 reuseIdentifier:identifier];
-        */
+
         cell.textLabel.text = @"1:00p";
         cell.detailTextLabel.text = @"Tech News Today";
         
