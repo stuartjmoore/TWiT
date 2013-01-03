@@ -127,7 +127,7 @@
 
 - (void)tableView:(UITableView*)tableView didSelectColumn:(int)column AtIndexPath:(NSIndexPath*)indexPath
 {
-    NSDictionary *sender = @{@"section":@(indexPath.section), @"row":@(indexPath.row), @"column":@(column)};
+    NSDictionary *sender = @{@"indexPath":indexPath, @"column":@(column)};
     [self performSegueWithIdentifier:@"showDetail" sender:sender];
 }
 
@@ -142,9 +142,10 @@
     }
     else if([segue.identifier isEqualToString:@"showDetail"])
     {
-        TWShowsCell *showCell = (TWShowsCell*)[self.tableView cellForRowAtIndexPath:self.tableView.indexPathForSelectedRow];
-        int index = [sender[@"row"] intValue]*showCell.columns + [sender[@"column"] intValue];
-        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:index inSection:[sender[@"section"] intValue]];
+        NSIndexPath *rowPath = sender[@"indexPath"];
+        TWShowsCell *showCell = (TWShowsCell*)[self.tableView cellForRowAtIndexPath:rowPath];
+        int index = rowPath.row*showCell.columns + [sender[@"column"] intValue];
+        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:index inSection:rowPath.section];
         Show *show = [self.fetchedShowsController objectAtIndexPath:indexPath];
         
         [segue.destinationViewController setShow:show];
