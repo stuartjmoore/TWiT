@@ -178,14 +178,15 @@
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"Episode" inManagedObjectContext:self.managedObjectContext];
     NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"published" ascending:NO];
-    
-    // TODO: only get episodes from current show
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"show = %@", self.show];
     
     [fetchRequest setFetchBatchSize:10];
     [fetchRequest setEntity:entity];
     [fetchRequest setSortDescriptors:@[sortDescriptor]];
+    [fetchRequest setPredicate:predicate];
     
-    NSFetchedResultsController *controller = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:@"Master"];
+    // TODO: Single Cache?
+    NSFetchedResultsController *controller = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:[NSString stringWithFormat:@"EpisodesOf%@", self.show.title]];
     controller.delegate = self;
     self.fetchedEpisodesController = controller;
     
@@ -268,6 +269,11 @@
     [self.tableView removeObserver:self forKeyPath:@"contentOffset"];
     
     [super viewWillDisappear:animated];
+}
+
+- (void)viewDidUnload
+{
+    self.fetchedEpisodesController = nil;
 }
 
 @end

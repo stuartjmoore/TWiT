@@ -68,7 +68,7 @@
     NSString *name = self.fetchedShowsController.fetchRequest.entity.name;
     Show *show = [NSEntityDescription insertNewObjectForEntityForName:name inManagedObjectContext:context];
     
-    show.title = @"STRONG TYPING! YOLO!";
+    show.title = @"Before You Buy";
     show.desc = @"Now that there is the Tec-9, a crappy spray gun from South Miami. This gun is advertised as the most popular gun in American crime. Do you believe that shit?";
     show.sort = self.channel.shows.count + 1;
     [self.channel addShowsObject:show];
@@ -411,7 +411,7 @@
     
     // Edit the section name key path and cache name if appropriate.
     // nil for section name key path means "no sections".
-    NSFetchedResultsController *controller = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:@"Master"];
+    NSFetchedResultsController *controller = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:@"UnwatchedEpisodes"];
     controller.delegate = self;
     self.fetchedEpisodesController = controller;
     
@@ -438,7 +438,7 @@
     
     // Edit the section name key path and cache name if appropriate.
     // nil for section name key path means "no sections".
-    NSFetchedResultsController *controller = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:@"Master"];
+    NSFetchedResultsController *controller = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:@"Shows"];
     controller.delegate = self;
     self.fetchedShowsController = controller;
     
@@ -526,6 +526,12 @@
     [self.tableView removeObserver:self forKeyPath:@"contentOffset"];
     
     [super viewWillDisappear:animated];
+}
+
+- (void)viewDidUnload
+{
+    self.fetchedShowsController = nil;
+    self.fetchedEpisodesController = nil;
 }
 
 @end
