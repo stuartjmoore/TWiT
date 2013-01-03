@@ -6,9 +6,13 @@
 //  Copyright (c) 2013 Stuart Moore. All rights reserved.
 //
 
+#import "XMLReader.h"
+
 #import "Show.h"
+#import "Poster.h"
 #import "Feed.h"
 #import "Episode.h"
+#import "Enclosure.h"
 
 #define MAX_EPISODES 50
 
@@ -51,7 +55,7 @@
          }];
     }
 }
-/*
+
 - (void)updatePodcastFeed:(Feed*)feed
 {
     NSURLRequest *urlRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:feed.url]];
@@ -151,17 +155,13 @@
                  if(!guests)
                      guests = @"";
                  
-                  //NSRange r;
-                  //while((r = [guests rangeOfString:@"<[^>]+>" options:NSRegularExpressionSearch]).location != NSNotFound)
-                  //    guests = [guests stringByReplacingCharactersInRange:r withString:@""];
-                  
                  guests = [guests stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
              }
              
              NSString *posterURL = [NSString stringWithFormat:@"http://twit.tv/files/imagecache/slideshow-slide/%@%.4d.jpg", self.titleAcronym.lowercaseString, number];
              
              NSString *enclosureURL = [[epiDic objectForKey:@"enclosure"] objectForKey:@"url"];
-             NSString *enclosureType = [[epiDic objectForKey:@"enclosure"] objectForKey:@"type"];
+             //NSString *enclosureType = [[epiDic objectForKey:@"enclosure"] objectForKey:@"type"];
              NSString *website = [[epiDic objectForKey:@"comments"] objectForKey:@"text"];
              
              
@@ -207,10 +207,10 @@
                  Poster *poster = [NSEntityDescription insertNewObjectForEntityForName:@"Poster"
                                                                 inManagedObjectContext:context];
                  poster.url = posterURL;
-                 poster.episode = episode;
+                 NSLog(@"null? %@", poster.episode);
                  episode.poster = poster;
+                 NSLog(@"not null? %@", poster.episode);
                  
-                 episode.show = self;
                  [self addEpisodesObject:episode];
              }
              
@@ -222,12 +222,10 @@
              Enclosure *enclosure = (enclosures.count == 0) ? [NSEntityDescription insertNewObjectForEntityForName:@"Enclosure"
                                                                                             inManagedObjectContext:context] : enclosures.anyObject;
              enclosure.url = enclosureURL;
-             enclosure.quality = feed.quality;
              enclosure.title = feed.title;
              enclosure.subtitle = feed.subtitle;
-             enclosure.hasVideo = @([enclosureType hasPrefix:@"video"]);
-             enclosure.episode = episode;
-             
+             enclosure.quality = feed.quality;
+             enclosure.type = feed.type;
              [episode addEnclosuresObject:enclosure];
              [context save:nil];
          }
@@ -235,5 +233,5 @@
          [[NSNotificationCenter defaultCenter] postNotificationName:@"ShowDidUpdate" object:self];
      }];
 }
-*/
+
 @end
