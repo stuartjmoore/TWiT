@@ -20,7 +20,7 @@
 
 - (void)updateShows;
 - (void)updateJSON;
-- (void)updateDatebase;
+- (void)updateDatabase;
 
 @end
 

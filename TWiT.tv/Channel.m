@@ -7,7 +7,9 @@
 //
 
 #import "Channel.h"
+#import "Stream.h"
 #import "Show.h"
+#import "AlbumArt.h"
 
 @implementation Channel
 
@@ -123,23 +125,109 @@
                         return;
                 }
              
-                [self updateDatebase];
+                [self updateDatabase];
             }];
         }
         else if(updateDatabase)
         {
-            [self updateDatebase];
+            [self updateDatabase];
         }
     }];
 }
 
-- (void)updateDatebase
+- (void)updateDatabase
 {
     NSString *JSONPath = [NSBundle.mainBundle.resourcePath stringByAppendingPathComponent:@"TWiT.json"];
     NSData *JSONData = [NSData dataWithContentsOfFile:JSONPath];
     NSDictionary *JSON = [NSJSONSerialization JSONObjectWithData:JSONData options:0 error:nil];
     
-    NSLog(@"%@", JSON);
+    //NSLog(@"%@", JSON);
+    
+    NSString *pubDate = [[JSON objectForKey:@"live"] objectForKey:@"pubdate"];
+    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+    [dateFormat setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSSZ"];
+    NSDate *published = [dateFormat dateFromString:pubDate];
+    
+    if(!self.published || [self.published laterDate:published] == published)
+    {
+        self.title = [[JSON objectForKey:@"live"] objectForKey:@"title"];
+        self.scheduleURL = [[JSON objectForKey:@"live"] objectForKey:@"schedule"];
+        self.published = published;
+        
+        for(Stream *stream in self.streams)
+            [self.managedObjectContext deleteObject:stream];
+        
+        for(NSDictionary *url in [[JSON objectForKey:@"live"] objectForKey:@"urls"])
+        {
+            Stream *stream = [NSEntityDescription insertNewObjectForEntityForName:@"Stream" inManagedObjectContext:self.managedObjectContext];
+            stream.url = [url objectForKey:@"location"];
+            stream.type = [[url objectForKey:@"type"] isEqualToString:@"video"] ? TWTypeVideo : TWTypeAudio;
+            stream.title = [url objectForKey:@"title"];
+            stream.subtitle = [url objectForKey:@"subtitle"];
+            stream.quality = [[url objectForKey:@"quality"] intValue];
+            
+            [self addStreamsObject:stream];
+        }
+    }
+    
+    // ---
+    
+    for(NSDictionary *showDictionary in [JSON objectForKey:@"shows"])
+    {
+        NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+        [fetchRequest setEntity:[NSEntityDescription entityForName:@"Show" inManagedObjectContext:self.managedObjectContext]];
+        [fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"title == %@", [showDictionary objectForKey:@"title"]]];
+        
+        NSArray *fetchedShows = [self.managedObjectContext executeFetchRequest:fetchRequest error:nil];
+        Show *show = fetchedShows.lastObject ?: [NSEntityDescription insertNewObjectForEntityForName:@"Show" inManagedObjectContext:self.managedObjectContext];
+        
+        NSString *pubDate = [showDictionary objectForKey:@"pubdate"];
+        NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+        [dateFormat setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSSZ"];
+        NSDate *published = [dateFormat dateFromString:pubDate];
+        
+        if(!show.published || [show.published laterDate:published] == published)
+        {
+            show.title = [showDictionary objectForKey:@"title"];
+            show.titleAcronym = [showDictionary objectForKey:@"short_title"];
+            show.titleInSchedule = [showDictionary objectForKey:@"schedule_title"];
+            show.desc = [showDictionary objectForKey:@"desc"];
+            show.schedule = [showDictionary objectForKey:@"schedule"];
+            show.hosts = [showDictionary objectForKey:@"hosts"];
+            show.email = [showDictionary objectForKey:@"email"];
+            show.phone = [showDictionary objectForKey:@"phone"];
+            show.website = [showDictionary objectForKey:@"website"];
+            show.sort = [[showDictionary objectForKey:@"id"] intValue];
+            show.published = published;
+            
+            NSString *albumArtURL = [showDictionary objectForKey:@"album_art"];
+            AlbumArt *albumArt = [NSEntityDescription insertNewObjectForEntityForName:@"AlbumArt"
+                                                               inManagedObjectContext:self.managedObjectContext];
+            albumArt.url = albumArtURL;
+            show.albumArt = albumArt;
+            
+            for(Feed *feed in show.feeds)
+                [self.managedObjectContext deleteObject:feed];
+            
+            for(NSDictionary *url in [showDictionary objectForKey:@"urls"])
+            {
+                Feed *feed = [NSEntityDescription insertNewObjectForEntityForName:@"Feed" inManagedObjectContext:self.managedObjectContext];
+                feed.url = [url objectForKey:@"location"];
+                feed.type = [[url objectForKey:@"type"] isEqualToString:@"video"] ? TWTypeVideo : TWTypeAudio;
+                feed.title = [url objectForKey:@"title"];
+                feed.subtitle = [url objectForKey:@"subtitle"];
+                feed.quality = [[url objectForKey:@"quality"] intValue];
+                
+                [show addFeedsObject:feed];
+            }
+            
+            [self addShowsObject:show];
+        }
+    }
+    
+    NSLog(@"%@", self);
+    
+    [self.managedObjectContext save:nil];
 }
 
 - (NSURL*)applicationDocumentsDirectory
