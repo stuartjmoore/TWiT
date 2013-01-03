@@ -165,6 +165,7 @@
         episodeCell.albumArt.image = [UIImage imageNamed:@"aaa600.jpg"];
         episodeCell.titleLabel.text = episode.title;
         episodeCell.subtitleLabel.text = episode.guests;
+        episodeCell.numberLabel.text = @(episode.number).stringValue;
     }
 }
 

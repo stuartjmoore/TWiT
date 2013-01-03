@@ -47,6 +47,7 @@
         self.title = self.episode.title;
         self.guestsLabel.text = self.episode.guests;
         self.dateLabel.text = self.episode.published.description;
+        self.numberLabel.text = @(self.episode.number).stringValue;
     }
 }
 /*
