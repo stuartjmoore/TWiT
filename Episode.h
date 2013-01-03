@@ -13,16 +13,16 @@
 
 @interface Episode : NSManagedObject
 
-@property (nonatomic, retain) NSString *title, *guests, *desc;
+@property (nonatomic, strong) NSString *title, *guests, *desc;
 @property (nonatomic) int16_t number;
-@property (nonatomic) NSDate *published;
+@property (nonatomic, strong) NSDate *published;
 @property (nonatomic) int16_t duration, lastTimecode;
 @property (nonatomic) BOOL watched;
 @property (nonatomic) int16_t downloadedQuality, downloadState;
-@property (nonatomic, retain) NSString *website;
-@property (nonatomic, retain) NSSet *enclosures;
-@property (nonatomic, retain) Poster *poster;
-@property (nonatomic, retain) Show *show;
+@property (nonatomic, strong) NSString *website;
+@property (nonatomic, strong) NSSet *enclosures;
+@property (nonatomic, strong) Poster *poster;
+@property (nonatomic, strong) Show *show;
 
 @end
 

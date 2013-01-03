@@ -13,15 +13,15 @@
 
 @interface Show : NSManagedObject
 
-@property (nonatomic, retain) NSString *title, *titleAcronym, *titleInSchedule;
-@property (nonatomic, retain) NSString *desc, *hosts, *schedule;
-@property (nonatomic, retain) NSString *email, *phone, *website;
-@property (nonatomic) NSDate *published;
+@property (nonatomic, strong) NSString *title, *titleAcronym, *titleInSchedule;
+@property (nonatomic, strong) NSString *desc, *hosts, *schedule;
+@property (nonatomic, strong) NSString *email, *phone, *website;
+@property (nonatomic, strong) NSDate *published;
 @property (nonatomic) BOOL favorite, remind;
 @property (nonatomic) int16_t sort;
-@property (nonatomic, retain) AlbumArt *albumArt;
-@property (nonatomic, retain) Channel *channel;
-@property (nonatomic, retain) NSSet *episodes, *feeds;
+@property (nonatomic, strong) AlbumArt *albumArt;
+@property (nonatomic, strong) Channel *channel;
+@property (nonatomic, strong) NSSet *episodes, *feeds;
 
 @end
 

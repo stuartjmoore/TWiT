@@ -236,8 +236,8 @@
 		176A624F1694B3C500B121F4 /* toolbar-schedule-arrow-up@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 176A624D1694B3C500B121F4 /* toolbar-schedule-arrow-up@2x.png */; };
 		176AF1731695C3EB00A35BFC /* Episode.m in Sources */ = {isa = PBXBuildFile; fileRef = 176AF1721695C3EB00A35BFC /* Episode.m */; };
 		176AF17A1695C8E700A35BFC /* Show.m in Sources */ = {isa = PBXBuildFile; fileRef = 176AF1791695C8E700A35BFC /* Show.m */; };
+		176AF17D1695CC3300A35BFC /* Channel.m in Sources */ = {isa = PBXBuildFile; fileRef = 176AF17C1695CC3300A35BFC /* Channel.m */; };
 		17AFF029169462EA0053A33C /* TWShowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 17AFF028169462EA0053A33C /* TWShowViewController.m */; };
-		17BB1D03168F72AF00221F7E /* TWChannelObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 17BB1D02168F72AF00221F7E /* TWChannelObject.m */; };
 		17E5114F168F496E00DCE89C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17E5114E168F496E00DCE89C /* UIKit.framework */; };
 		17E51151168F496E00DCE89C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17E51150168F496E00DCE89C /* Foundation.framework */; };
 		17E51153168F496E00DCE89C /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17E51152168F496E00DCE89C /* CoreGraphics.framework */; };
@@ -489,10 +489,10 @@
 		176AF1721695C3EB00A35BFC /* Episode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Episode.m; path = ../Episode.m; sourceTree = "<group>"; };
 		176AF1781695C8E700A35BFC /* Show.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Show.h; path = ../Show.h; sourceTree = "<group>"; };
 		176AF1791695C8E700A35BFC /* Show.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Show.m; path = ../Show.m; sourceTree = "<group>"; };
+		176AF17B1695CC3300A35BFC /* Channel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Channel.h; sourceTree = "<group>"; };
+		176AF17C1695CC3300A35BFC /* Channel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Channel.m; sourceTree = "<group>"; };
 		17AFF027169462EA0053A33C /* TWShowViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWShowViewController.h; sourceTree = "<group>"; };
 		17AFF028169462EA0053A33C /* TWShowViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWShowViewController.m; sourceTree = "<group>"; };
-		17BB1D01168F72AF00221F7E /* TWChannelObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWChannelObject.h; sourceTree = "<group>"; };
-		17BB1D02168F72AF00221F7E /* TWChannelObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWChannelObject.m; sourceTree = "<group>"; };
 		17E5114A168F496E00DCE89C /* TWiT.tv.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TWiT.tv.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		17E5114E168F496E00DCE89C /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		17E51150168F496E00DCE89C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -813,8 +813,8 @@
 		17BB1CFF168F728C00221F7E /* Objects */ = {
 			isa = PBXGroup;
 			children = (
-				17BB1D01168F72AF00221F7E /* TWChannelObject.h */,
-				17BB1D02168F72AF00221F7E /* TWChannelObject.m */,
+				176AF17B1695CC3300A35BFC /* Channel.h */,
+				176AF17C1695CC3300A35BFC /* Channel.m */,
 				176AF1781695C8E700A35BFC /* Show.h */,
 				176AF1791695C8E700A35BFC /* Show.m */,
 				176AF1711695C3EB00A35BFC /* Episode.h */,
@@ -1182,13 +1182,13 @@
 				17E51161168F496E00DCE89C /* TWAppDelegate.m in Sources */,
 				17E51170168F496E00DCE89C /* TWiT_tv.xcdatamodeld in Sources */,
 				17E51176168F496E00DCE89C /* TWEpisodeViewController.m in Sources */,
-				17BB1D03168F72AF00221F7E /* TWChannelObject.m in Sources */,
 				170BA15B1691D0FC0022FE4D /* TWMainViewController.m in Sources */,
 				170E02A8169324480072CFA6 /* TWEpisodeCell.m in Sources */,
 				170E02AB169328910072CFA6 /* TWShowsCell.m in Sources */,
 				17AFF029169462EA0053A33C /* TWShowViewController.m in Sources */,
 				176AF1731695C3EB00A35BFC /* Episode.m in Sources */,
 				176AF17A1695C8E700A35BFC /* Show.m in Sources */,
+				176AF17D1695CC3300A35BFC /* Channel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
