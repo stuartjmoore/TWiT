@@ -16,7 +16,7 @@
     </entity>
     <entity name="Enclosure" representedClassName="Enclosure" syncable="YES">
         <attribute name="path" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="quality" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="quality" optional="YES" attributeType="Integer 16" minValueString="0" defaultValueString="0" syncable="YES"/>
         <attribute name="subtitle" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="type" optional="YES" attributeType="Integer 16" minValueString="0" defaultValueString="0" syncable="YES"/>
@@ -38,12 +38,6 @@
         <relationship name="enclosures" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Enclosure" inverseName="episode" inverseEntity="Enclosure" syncable="YES"/>
         <relationship name="poster" optional="YES" minCount="1" maxCount="1" deletionRule="Cascade" destinationEntity="Poster" inverseName="episode" inverseEntity="Poster" syncable="YES"/>
         <relationship name="show" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Show" inverseName="episodes" inverseEntity="Show" syncable="YES"/>
-    </entity>
-    <entity name="Event">
-        <attribute name="timeStamp" optional="YES" attributeType="Date">
-            <userInfo/>
-        </attribute>
-        <userInfo/>
     </entity>
     <entity name="Feed" representedClassName="Feed" syncable="YES">
         <attribute name="lastUpdated" optional="YES" attributeType="Date" syncable="YES"/>
@@ -79,10 +73,10 @@
         <relationship name="feeds" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Feed" inverseName="show" inverseEntity="Feed" syncable="YES"/>
     </entity>
     <entity name="Stream" representedClassName="Stream" syncable="YES">
-        <attribute name="hasVideo" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="quality" optional="YES" attributeType="Integer 16" minValueString="0" defaultValueString="0" syncable="YES"/>
         <attribute name="subtitle" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="type" optional="YES" attributeType="Integer 16" minValueString="0" defaultValueString="0" syncable="YES"/>
         <attribute name="url" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="channel" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Channel" inverseName="streams" inverseEntity="Channel" syncable="YES"/>
     </entity>
@@ -91,10 +85,9 @@
         <element name="Channel" positionX="-180" positionY="90" width="128" height="148"/>
         <element name="Enclosure" positionX="171" positionY="444" width="126" height="148"/>
         <element name="Episode" positionX="171" positionY="90" width="128" height="253"/>
-        <element name="Event" positionX="403" positionY="189" width="128" height="60"/>
-        <element name="Feed" positionX="7" positionY="441" width="119" height="148"/>
+        <element name="Feed" positionX="7" positionY="446" width="119" height="148"/>
         <element name="Poster" positionX="169" positionY="-36" width="128" height="88"/>
         <element name="Show" positionX="-2" positionY="90" width="128" height="298"/>
-        <element name="Stream" positionX="-173" positionY="450" width="119" height="133"/>
+        <element name="Stream" positionX="-173" positionY="459" width="119" height="133"/>
     </elements>
 </model>
