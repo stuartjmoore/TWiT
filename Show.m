@@ -36,11 +36,15 @@
              NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse*)response;
              if([httpResponse respondsToSelector:@selector(allHeaderFields)])
              {
+                 if(httpResponse.statusCode != 200)
+                     return;
+                 
                  NSDictionary *metaData = [httpResponse allHeaderFields];
                  NSString *lastModifiedString = [metaData objectForKey:@"Last-Modified"];
                  
                  NSDateFormatter *df = [[NSDateFormatter alloc] init];
                  df.timeZone = [NSTimeZone timeZoneWithAbbreviation:@"GMT"];
+                 df.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US"];
                  df.dateFormat = @"EEE',' dd MMM yyyy HH':'mm':'ss 'GMT'";
                  
                  NSDate *lastModified = [df dateFromString:lastModifiedString];
@@ -207,9 +211,6 @@
                  Poster *poster = [NSEntityDescription insertNewObjectForEntityForName:@"Poster"
                                                                 inManagedObjectContext:context];
                  poster.url = posterURL;
-                 NSLog(@"null? %@", poster.episode);
-                 episode.poster = poster;
-                 NSLog(@"not null? %@", poster.episode);
                  
                  [self addEpisodesObject:episode];
              }
