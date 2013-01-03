@@ -329,7 +329,6 @@
                     <connections>
                         <outlet property="dateLabel" destination="nnd-I2-iMv" id="IjK-bg-MdQ"/>
                         <outlet property="descLabel" destination="kHn-pA-l64" id="jdW-hD-O1Z"/>
-                        <outlet property="detailDescriptionLabel" destination="27" id="28"/>
                         <outlet property="guestsLabel" destination="27" id="Pa8-oF-puR"/>
                         <outlet property="numberLabel" destination="42m-il-qRa" id="Ppl-qb-kQB"/>
                         <outlet property="posterView" destination="CDu-qi-wy9" id="w6u-Wi-KmL"/>

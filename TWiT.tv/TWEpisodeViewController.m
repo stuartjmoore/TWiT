@@ -23,11 +23,11 @@
 
 #pragma mark - Episode
 
-- (void)setDetailItem:(id)detailItem
+- (void)setDetailItem:(id)episode
 {
-    if(_detailItem != detailItem)
+    if(_episode != episode)
     {
-        _detailItem = detailItem;
+        _episode = episode;
         
         [self configureView];
     }
@@ -40,12 +40,14 @@
 
 - (void)configureView
 {
-    if(self.detailItem)
+    if(self.episode)
     {
-        self.detailDescriptionLabel.text = [[self.detailItem valueForKey:@"timeStamp"] description];
+        self.title = [self.episode valueForKey:@"title"];
+        self.guestsLabel.text = [self.episode valueForKey:@"guests"];
+        self.dateLabel.text = [[self.episode valueForKey:@"published"] description];
     }
 }
-
+/*
 #pragma mark - Split view
 
 - (void)splitViewController:(UISplitViewController*)splitController willHideViewController:(UIViewController *)viewController withBarButtonItem:(UIBarButtonItem *)barButtonItem forPopoverController:(UIPopoverController *)popoverController
@@ -60,7 +62,7 @@
     [self.navigationItem setLeftBarButtonItem:nil animated:YES];
     self.masterPopoverController = nil;
 }
-
+*/
 #pragma mark - Kill
 
 - (void)didReceiveMemoryWarning

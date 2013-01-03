@@ -58,22 +58,18 @@
 
 - (void)insertNewObject:(id)sender
 {
-    NSManagedObjectContext *context = [self.fetchedEpisodesController managedObjectContext];
-    NSEntityDescription *entity = [[self.fetchedEpisodesController fetchRequest] entity];
-    NSManagedObject *newManagedObject = [NSEntityDescription insertNewObjectForEntityForName:[entity name] inManagedObjectContext:context];
+    NSManagedObjectContext *context = self.fetchedEpisodesController.managedObjectContext;
+    NSString *name = self.fetchedEpisodesController.fetchRequest.entity.name;
+    NSManagedObject *episode = [NSEntityDescription insertNewObjectForEntityForName:name inManagedObjectContext:context];
     
-    // If appropriate, configure the new managed object.
-    // Normally you should use accessor methods, but using KVC here avoids the need to add a custom class to the template.
-    [newManagedObject setValue:[NSDate date] forKey:@"timeStamp"];
+    [episode setValue:@"OMG CORE DATARZ!" forKey:@"title"];
+    [episode setValue:@"Yay!" forKey:@"guests"];
+    [episode setValue:[NSDate date] forKey:@"published"];
     
-    // Save the context.
     NSError *error = nil;
-    if (![context save:&error])
+    if(![context save:&error])
     {
-         // Replace this implementation with code to handle the error appropriately.
-         // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development. 
         NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-        abort();
     }
 }
 
@@ -128,7 +124,7 @@
     {
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
         NSManagedObject *object = [self.fetchedEpisodesController objectAtIndexPath:indexPath];
-        [segue.destinationViewController setDetailItem:object];
+        [segue.destinationViewController setEpisode:object];
     }
     else if([segue.identifier isEqualToString:@"showDetail"])
     {
@@ -350,8 +346,8 @@
         TWEpisodeCell *episodeCell = (TWEpisodeCell*)cell;
         
         episodeCell.albumArt.image = [UIImage imageNamed:@"aaa600.jpg"];
-        episodeCell.titleLabel.text = [[object valueForKey:@"timeStamp"] description];
-        episodeCell.subtitleLabel.text = @"subtitle";
+        episodeCell.titleLabel.text = [object valueForKey:@"title"];
+        episodeCell.subtitleLabel.text = [object valueForKey:@"guests"];
     }
     else if([cell.reuseIdentifier isEqualToString:@"showsCell"])
     {
@@ -399,25 +395,18 @@
         return _fetchedEpisodesController;
     
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Episode" inManagedObjectContext:self.managedObjectContext];
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"published" ascending:NO];
     
-    // Edit the entity name as appropriate.
-    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Event" inManagedObjectContext:self.managedObjectContext];
-    [fetchRequest setEntity:entity];
-    
-    // Set the batch size to a suitable number.
     [fetchRequest setFetchBatchSize:10];
-    
-    // Edit the sort key as appropriate.
-    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"timeStamp" ascending:NO];
-    NSArray *sortDescriptors = @[sortDescriptor];
-    
-    [fetchRequest setSortDescriptors:sortDescriptors];
+    [fetchRequest setEntity:entity];
+    [fetchRequest setSortDescriptors:@[sortDescriptor]];
     
     // Edit the section name key path and cache name if appropriate.
     // nil for section name key path means "no sections".
-    NSFetchedResultsController *aFetchedEpisodesController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:@"Master"];
-    aFetchedEpisodesController.delegate = self;
-    self.fetchedEpisodesController = aFetchedEpisodesController;
+    NSFetchedResultsController *controller = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:@"Master"];
+    controller.delegate = self;
+    self.fetchedEpisodesController = controller;
     
 	NSError *error = nil;
 	if(![self.fetchedEpisodesController performFetch:&error])

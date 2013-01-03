@@ -43,7 +43,7 @@
     {
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
         NSManagedObject *object = [self.fetchedEpisodesController objectAtIndexPath:indexPath];
-        [segue.destinationViewController setDetailItem:object];
+        [segue.destinationViewController setEpisode:object];
     }
 }
 
@@ -130,9 +130,11 @@
     if([cell.reuseIdentifier isEqualToString:@"episodeCell"])
     {
         NSManagedObject *object = [self.fetchedEpisodesController objectAtIndexPath:indexPath];
-        ((TWEpisodeCell*)cell).numberLabel.text = @"11";
-        ((TWEpisodeCell*)cell).titleLabel.text = [[object valueForKey:@"timeStamp"] description];
-        ((TWEpisodeCell*)cell).subtitleLabel.text = @"subtitle";
+        TWEpisodeCell *episodeCell = (TWEpisodeCell*)cell;
+        
+        episodeCell.albumArt.image = [UIImage imageNamed:@"aaa600.jpg"];
+        episodeCell.titleLabel.text = [object valueForKey:@"title"];
+        episodeCell.subtitleLabel.text = [object valueForKey:@"guests"];
     }
 }
 
@@ -144,25 +146,18 @@
         return _fetchedEpisodesController;
     
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Episode" inManagedObjectContext:self.managedObjectContext];
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"published" ascending:NO];
     
-    // Edit the entity name as appropriate.
-    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Event" inManagedObjectContext:self.managedObjectContext];
-    [fetchRequest setEntity:entity];
-    
-    // Set the batch size to a suitable number.
     [fetchRequest setFetchBatchSize:10];
-    
-    // Edit the sort key as appropriate.
-    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"timeStamp" ascending:NO];
-    NSArray *sortDescriptors = @[sortDescriptor];
-    
-    [fetchRequest setSortDescriptors:sortDescriptors];
+    [fetchRequest setEntity:entity];
+    [fetchRequest setSortDescriptors:@[sortDescriptor]];
     
     // Edit the section name key path and cache name if appropriate.
     // nil for section name key path means "no sections".
-    NSFetchedResultsController *aFetchedEpisodesController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:@"Master"];
-    aFetchedEpisodesController.delegate = self;
-    self.fetchedEpisodesController = aFetchedEpisodesController;
+    NSFetchedResultsController *controller = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:@"Master"];
+    controller.delegate = self;
+    self.fetchedEpisodesController = controller;
     
 	NSError *error = nil;
 	if(![self.fetchedEpisodesController performFetch:&error])
