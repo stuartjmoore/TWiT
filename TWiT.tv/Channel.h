@@ -19,6 +19,8 @@
 @property (nonatomic, strong) NSSet *shows, *streams;
 
 - (void)updateShows;
+- (void)updateJSON;
+- (void)updateDatebase;
 
 @end
 

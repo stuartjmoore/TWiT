@@ -16,8 +16,14 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary*)launchOptions
 {
-    //Channel *channel = [[Channel alloc] init];
-    //[channel updateShows];
+    NSManagedObjectContext *context = self.managedObjectContext;
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    [fetchRequest setEntity:[NSEntityDescription entityForName:@"Channel" inManagedObjectContext:context]];
+    
+    NSArray *fetchedChannels = [context executeFetchRequest:fetchRequest error:nil];
+    Channel *channel = fetchedChannels.lastObject ?: [NSEntityDescription insertNewObjectForEntityForName:@"Channel" inManagedObjectContext:context];
+    
+    [channel updateShows];
     
     // Override point for customization after application launch.
     if([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad)
@@ -38,7 +44,7 @@
         UINavigationController *navigationController = (UINavigationController*)self.window.rootViewController;
         TWMainViewController *controller = (TWMainViewController*)navigationController.topViewController;
         controller.managedObjectContext = self.managedObjectContext;
-        //controller.channel = channel;
+        controller.channel = channel;
     }
     
     return YES;
