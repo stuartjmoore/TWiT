@@ -61,7 +61,7 @@
 
 - (void)insertNewObject:(id)sender
 {
-    
+    /*
     NSManagedObjectContext *context = self.fetchedShowsController.managedObjectContext;
     NSString *name = self.fetchedShowsController.fetchRequest.entity.name;
     Show *show = [NSEntityDescription insertNewObjectForEntityForName:name inManagedObjectContext:context];
@@ -75,8 +75,8 @@
     {
         NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
     }
+    */
     
-    /*
     NSManagedObjectContext *context = self.fetchedEpisodesController.managedObjectContext;
     NSString *name = self.fetchedEpisodesController.fetchRequest.entity.name;
     Episode *episode = [NSEntityDescription insertNewObjectForEntityForName:name inManagedObjectContext:context];
@@ -90,7 +90,7 @@
     {
         NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
     }
-    */
+    
 }
 
 
