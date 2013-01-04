@@ -97,7 +97,6 @@
             {
                 NSLog(@"Downloaded Album Art named %@", url.lastPathComponent);
                 
-                NSString *cachedPath = [cachedDir stringByAppendingPathComponent:@"url.lastPathComponent"];
                 self.path = cachedPath;
                 [data writeToFile:cachedPath atomically:NO];
                 
