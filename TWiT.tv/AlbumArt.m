@@ -26,6 +26,11 @@
     [self didChangeValueForKey:@"url"];
     
     NSURL *url = [NSURL URLWithString:URLString];
+    NSString *cachedDir = [[self.applicationDocumentsDirectory URLByAppendingPathComponent:@"albumArt"] path];
+    NSString *cachedPath = [cachedDir stringByAppendingPathComponent:url.lastPathComponent];
+    
+    if(![NSFileManager.defaultManager fileExistsAtPath:cachedDir])
+        [NSFileManager.defaultManager createDirectoryAtPath:cachedDir withIntermediateDirectories:NO attributes:nil error:nil];
     
     if(url.fragment)
     {
@@ -33,22 +38,27 @@
         NSString *resourceName = [NSString stringWithFormat:@"%@%@.%@", fileName, url.fragment, url.pathExtension];
         NSString *resourcePath = [NSBundle.mainBundle.resourcePath stringByAppendingPathComponent:resourceName];
         
-        NSString *cachedDir = [[self.applicationDocumentsDirectory URLByAppendingPathComponent:@"albumArt"] path];
-        NSString *cachedPath = [cachedDir stringByAppendingPathComponent:url.lastPathComponent];
-        
         if([NSFileManager.defaultManager fileExistsAtPath:resourcePath]
         && ![NSFileManager.defaultManager fileExistsAtPath:cachedPath])
         {
-            if(![NSFileManager.defaultManager fileExistsAtPath:cachedDir])
-                [NSFileManager.defaultManager createDirectoryAtPath:cachedDir
-                                        withIntermediateDirectories:NO
-                                                         attributes:nil
-                                                              error:nil];
-            
             [NSFileManager.defaultManager copyItemAtPath:resourcePath toPath:cachedPath error:nil];
+            self.path = cachedPath;
+            
+            return;
         }
     }
     
+    NSURLRequest *urlRequest = [NSURLRequest requestWithURL:url];
+    [NSURLConnection sendAsynchronousRequest:urlRequest queue:NSOperationQueue.mainQueue
+    completionHandler:^(NSURLResponse *response, NSData *data, NSError *error)
+    {
+        NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse*)response;
+        if([httpResponse respondsToSelector:@selector(statusCode)] && httpResponse.statusCode == 200)
+        {
+            [data writeToFile:cachedPath atomically:NO];
+            self.path = cachedPath;
+        }
+    }];
 }
 
 - (void)prepareForDeletion
