@@ -116,8 +116,7 @@
 
 - (void)prepareForDeletion
 {
-    if([NSFileManager.defaultManager fileExistsAtPath:self.path])
-        [NSFileManager.defaultManager removeItemAtPath:self.path error:nil];
+    self.path = nil;
 }
 
 - (NSURL*)applicationDocumentsDirectory
