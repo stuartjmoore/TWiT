@@ -55,11 +55,7 @@
         
         if(!self.path && [NSFileManager.defaultManager fileExistsAtPath:cachedPath])
         {
-            [self willChangeValueForKey:@"image"];
-            [self willChangeValueForKey:@"path"];
-            [self setPrimitiveValue:cachedPath forKey:@"path"];
-            [self didChangeValueForKey:@"path"];
-            [self didChangeValueForKey:@"image"];
+            self.path = cachedPath;
         }
     }
     
@@ -117,6 +113,9 @@
 
 - (void)setPath:(NSString*)path
 {
+    if([path isEqualToString:self.path])
+        return;
+    
     if([NSFileManager.defaultManager fileExistsAtPath:self.path])
         [NSFileManager.defaultManager removeItemAtPath:self.path error:nil];
         
