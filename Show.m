@@ -234,8 +234,6 @@
              [episode addEnclosuresObject:enclosure];
              [context save:nil];
          }
-         
-         [[NSNotificationCenter defaultCenter] postNotificationName:@"ShowDidUpdate" object:self];
      }];
 }
 

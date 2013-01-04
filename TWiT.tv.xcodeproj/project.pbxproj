@@ -199,8 +199,8 @@
 		170BA1231691CD550022FE4D /* ww-poster.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 170BA0491691CD550022FE4D /* ww-poster.jpg */; };
 		170BA1241691CD550022FE4D /* ww-poster@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 170BA04A1691CD550022FE4D /* ww-poster@2x.jpg */; };
 		170BA1251691CD550022FE4D /* TWiT.json in Resources */ = {isa = PBXBuildFile; fileRef = 170BA04B1691CD550022FE4D /* TWiT.json */; };
-		170BA1411691CDA00022FE4D /* aaa600.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 170BA1281691CDA00022FE4D /* aaa600.jpg */; };
-		170BA1421691CDA00022FE4D /* byb600.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 170BA1291691CDA00022FE4D /* byb600.jpg */; };
+		170BA1411691CDA00022FE4D /* aaa600.1353196800.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 170BA1281691CDA00022FE4D /* aaa600.1353196800.jpg */; };
+		170BA1421691CDA00022FE4D /* byb600.1353196800.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 170BA1291691CDA00022FE4D /* byb600.1353196800.jpg */; };
 		170BA1431691CDA00022FE4D /* dgw600.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 170BA12A1691CDA00022FE4D /* dgw600.jpg */; };
 		170BA1441691CDA00022FE4D /* floss600.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 170BA12B1691CDA00022FE4D /* floss600.jpg */; };
 		170BA1451691CDA00022FE4D /* fr600.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 170BA12C1691CDA00022FE4D /* fr600.jpg */; };
@@ -454,8 +454,8 @@
 		170BA0491691CD550022FE4D /* ww-poster.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "ww-poster.jpg"; sourceTree = "<group>"; };
 		170BA04A1691CD550022FE4D /* ww-poster@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "ww-poster@2x.jpg"; sourceTree = "<group>"; };
 		170BA04B1691CD550022FE4D /* TWiT.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = TWiT.json; sourceTree = "<group>"; };
-		170BA1281691CDA00022FE4D /* aaa600.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = aaa600.jpg; path = "Resources/Shows Cache/Album Art/aaa600.jpg"; sourceTree = SOURCE_ROOT; };
-		170BA1291691CDA00022FE4D /* byb600.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = byb600.jpg; path = "Resources/Shows Cache/Album Art/byb600.jpg"; sourceTree = SOURCE_ROOT; };
+		170BA1281691CDA00022FE4D /* aaa600.1353196800.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = aaa600.1353196800.jpg; path = "Resources/Shows Cache/Album Art/aaa600.1353196800.jpg"; sourceTree = SOURCE_ROOT; };
+		170BA1291691CDA00022FE4D /* byb600.1353196800.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = byb600.1353196800.jpg; path = "Resources/Shows Cache/Album Art/byb600.1353196800.jpg"; sourceTree = SOURCE_ROOT; };
 		170BA12A1691CDA00022FE4D /* dgw600.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = dgw600.jpg; path = "Resources/Shows Cache/Album Art/dgw600.jpg"; sourceTree = SOURCE_ROOT; };
 		170BA12B1691CDA00022FE4D /* floss600.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = floss600.jpg; path = "Resources/Shows Cache/Album Art/floss600.jpg"; sourceTree = SOURCE_ROOT; };
 		170BA12C1691CDA00022FE4D /* fr600.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = fr600.jpg; path = "Resources/Shows Cache/Album Art/fr600.jpg"; sourceTree = SOURCE_ROOT; };
@@ -715,8 +715,8 @@
 		170B9FFB1691CD550022FE4D /* Album Art */ = {
 			isa = PBXGroup;
 			children = (
-				170BA1281691CDA00022FE4D /* aaa600.jpg */,
-				170BA1291691CDA00022FE4D /* byb600.jpg */,
+				170BA1281691CDA00022FE4D /* aaa600.1353196800.jpg */,
+				170BA1291691CDA00022FE4D /* byb600.1353196800.jpg */,
 				170BA12A1691CDA00022FE4D /* dgw600.jpg */,
 				170BA12B1691CDA00022FE4D /* floss600.jpg */,
 				170BA12C1691CDA00022FE4D /* fr600.jpg */,
@@ -1175,8 +1175,8 @@
 				170BA1231691CD550022FE4D /* ww-poster.jpg in Resources */,
 				170BA1241691CD550022FE4D /* ww-poster@2x.jpg in Resources */,
 				170BA1251691CD550022FE4D /* TWiT.json in Resources */,
-				170BA1411691CDA00022FE4D /* aaa600.jpg in Resources */,
-				170BA1421691CDA00022FE4D /* byb600.jpg in Resources */,
+				170BA1411691CDA00022FE4D /* aaa600.1353196800.jpg in Resources */,
+				170BA1421691CDA00022FE4D /* byb600.1353196800.jpg in Resources */,
 				170BA1431691CDA00022FE4D /* dgw600.jpg in Resources */,
 				170BA1441691CDA00022FE4D /* floss600.jpg in Resources */,
 				170BA1451691CDA00022FE4D /* fr600.jpg in Resources */,
