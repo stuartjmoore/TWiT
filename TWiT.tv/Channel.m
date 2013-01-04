@@ -182,9 +182,11 @@
         Show *show = fetchedShows.lastObject ?: [NSEntityDescription insertNewObjectForEntityForName:@"Show" inManagedObjectContext:self.managedObjectContext];
         
         NSString *pubDate = [showDictionary objectForKey:@"pubdate"];
-        NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
-        [dateFormat setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSSZ"];
-        NSDate *published = [dateFormat dateFromString:pubDate];
+        NSDateFormatter *df = [[NSDateFormatter alloc] init];
+        df.dateFormat = @"yyyy-MM-dd'T'HH:mm:ss.SSS'Z'";
+        df.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US"];
+        df.timeZone = [NSTimeZone timeZoneWithAbbreviation:@"GMT"];
+        NSDate *published = [df dateFromString:pubDate];
         
         if(!show.published || [show.published laterDate:published] == published)
         {
@@ -224,8 +226,6 @@
             [self addShowsObject:show];
         }
     }
-    
-    NSLog(@"%@", self);
     
     [self.managedObjectContext save:nil];
 }
