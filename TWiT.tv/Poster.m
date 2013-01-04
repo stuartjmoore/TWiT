@@ -114,6 +114,7 @@
                  
                  // TODO: post notification
              }
+             // Else, use cached poster
          }];
     }
 }

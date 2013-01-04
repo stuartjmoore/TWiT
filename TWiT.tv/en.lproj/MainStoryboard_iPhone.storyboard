@@ -362,7 +362,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="180"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" image="generic.jpg" id="nv5-bp-fY8">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" image="generic.jpg" id="nv5-bp-fY8">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="180"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         </imageView>
@@ -564,6 +564,50 @@
         <image name="toolbar-schedule-arrow.png" width="22" height="25"/>
         <image name="toolbar-schedule-background.png" width="22" height="25"/>
     </resources>
+    <classes>
+        <class className="TWEpisodeCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TWEpisodeCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="albumArt" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="numberLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="subtitleLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="titleLabel" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="TWEpisodeViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TWEpisodeViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="dateLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="descLabel" candidateClass="UITextView"/>
+                <relationship kind="outlet" name="guestsLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="numberLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="posterView" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="timeLabel" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="TWMainViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TWMainViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="openScheduleView:" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="headerView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="scheduleTable" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+        <class className="TWShowViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TWShowViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="openDetailView:" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="albumArt" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="descLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="headerView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="posterView" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="scheduleLabel" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="TWShowsCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TWShowsCell.h"/>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
