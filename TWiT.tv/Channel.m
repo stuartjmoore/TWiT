@@ -6,6 +6,8 @@
 //  Copyright (c) 2013 Stuart Moore. All rights reserved.
 //
 
+#import "NSManagedObjectContext+ConvenienceMethods.h"
+
 #import "Channel.h"
 #import "Stream.h"
 #import "Show.h"
@@ -159,7 +161,7 @@
         
         for(NSDictionary *url in [[JSON objectForKey:@"live"] objectForKey:@"urls"])
         {
-            Stream *stream = [NSEntityDescription insertNewObjectForEntityForName:@"Stream" inManagedObjectContext:self.managedObjectContext];
+            Stream *stream = [self.managedObjectContext insertEntity:@"Stream"];
             stream.url = [url objectForKey:@"location"];
             stream.type = [[url objectForKey:@"type"] isEqualToString:@"video"] ? TWTypeVideo : TWTypeAudio;
             stream.title = [url objectForKey:@"title"];
@@ -174,12 +176,8 @@
     
     for(NSDictionary *showDictionary in [JSON objectForKey:@"shows"])
     {
-        NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-        [fetchRequest setEntity:[NSEntityDescription entityForName:@"Show" inManagedObjectContext:self.managedObjectContext]];
-        [fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"title == %@", [showDictionary objectForKey:@"title"]]];
-        
-        NSArray *fetchedShows = [self.managedObjectContext executeFetchRequest:fetchRequest error:nil];
-        Show *show = fetchedShows.lastObject ?: [NSEntityDescription insertNewObjectForEntityForName:@"Show" inManagedObjectContext:self.managedObjectContext];
+        NSSet *fetchedShows = [self.managedObjectContext fetchEntities:@"Show" withPredicate:@"title == %@", [showDictionary objectForKey:@"title"]];
+        Show *show = fetchedShows.anyObject ?: [self.managedObjectContext insertEntity:@"Show"];
         
         NSString *pubDate = [showDictionary objectForKey:@"pubdate"];
         NSDateFormatter *df = [[NSDateFormatter alloc] init];
@@ -202,13 +200,8 @@
             show.sort = [[showDictionary objectForKey:@"id"] intValue];
             show.published = published;
             
-            if(show.albumArt)
-                [self.managedObjectContext deleteObject:show.albumArt];
-            
-            NSString *albumArtURL = [showDictionary objectForKey:@"album_art"];
-            AlbumArt *albumArt = [NSEntityDescription insertNewObjectForEntityForName:@"AlbumArt"
-                                                               inManagedObjectContext:self.managedObjectContext];
-            albumArt.url = albumArtURL;
+            AlbumArt *albumArt = show.albumArt ?: [self.managedObjectContext insertEntity:@"AlbumArt"];
+            albumArt.url = [showDictionary objectForKey:@"album_art"];
             show.albumArt = albumArt;
             
             for(Feed *feed in show.feeds)
@@ -216,7 +209,7 @@
             
             for(NSDictionary *url in [showDictionary objectForKey:@"urls"])
             {
-                Feed *feed = [NSEntityDescription insertNewObjectForEntityForName:@"Feed" inManagedObjectContext:self.managedObjectContext];
+                Feed *feed = [self.managedObjectContext insertEntity:@"Feed"];
                 feed.url = [url objectForKey:@"location"];
                 feed.type = [[url objectForKey:@"type"] isEqualToString:@"video"] ? TWTypeVideo : TWTypeAudio;
                 feed.title = [url objectForKey:@"title"];
