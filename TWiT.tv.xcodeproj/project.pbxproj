@@ -244,6 +244,7 @@
 		17C43B841696DFD60066C79F /* ww-poster.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 17C43B351696DFD60066C79F /* ww-poster.jpg */; };
 		17C43B851696DFD60066C79F /* ww-poster@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 17C43B361696DFD60066C79F /* ww-poster@2x.jpg */; };
 		17C43B861696DFD60066C79F /* TWiT.json in Resources */ = {isa = PBXBuildFile; fileRef = 17C43B371696DFD60066C79F /* TWiT.json */; };
+		17C43B931696FC220066C79F /* NSManagedObjectContext+ConvenienceMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = 17C43B921696FC220066C79F /* NSManagedObjectContext+ConvenienceMethods.m */; };
 		17E5114F168F496E00DCE89C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17E5114E168F496E00DCE89C /* UIKit.framework */; };
 		17E51151168F496E00DCE89C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17E51150168F496E00DCE89C /* Foundation.framework */; };
 		17E51153168F496E00DCE89C /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17E51152168F496E00DCE89C /* CoreGraphics.framework */; };
@@ -511,6 +512,8 @@
 		17C43B351696DFD60066C79F /* ww-poster.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "ww-poster.jpg"; sourceTree = "<group>"; };
 		17C43B361696DFD60066C79F /* ww-poster@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "ww-poster@2x.jpg"; sourceTree = "<group>"; };
 		17C43B371696DFD60066C79F /* TWiT.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = TWiT.json; sourceTree = "<group>"; };
+		17C43B911696FC220066C79F /* NSManagedObjectContext+ConvenienceMethods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSManagedObjectContext+ConvenienceMethods.h"; sourceTree = "<group>"; };
+		17C43B921696FC220066C79F /* NSManagedObjectContext+ConvenienceMethods.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSManagedObjectContext+ConvenienceMethods.m"; sourceTree = "<group>"; };
 		17E5114A168F496E00DCE89C /* TWiT.tv.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TWiT.tv.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		17E5114E168F496E00DCE89C /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		17E51150168F496E00DCE89C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -858,6 +861,15 @@
 			path = Screenshots;
 			sourceTree = "<group>";
 		};
+		17C43B8F1696FBCB0066C79F /* Catergories */ = {
+			isa = PBXGroup;
+			children = (
+				17C43B911696FC220066C79F /* NSManagedObjectContext+ConvenienceMethods.h */,
+				17C43B921696FC220066C79F /* NSManagedObjectContext+ConvenienceMethods.m */,
+			);
+			name = Catergories;
+			sourceTree = "<group>";
+		};
 		17E5113F168F496E00DCE89C = {
 			isa = PBXGroup;
 			children = (
@@ -902,6 +914,7 @@
 				17E51175168F496E00DCE89C /* TWEpisodeViewController.m */,
 				170E02A4169322130072CFA6 /* Views */,
 				17BB1CFF168F728C00221F7E /* Objects */,
+				17C43B8F1696FBCB0066C79F /* Catergories */,
 				170BA1271691CD5B0022FE4D /* Resources */,
 				17E51157168F496E00DCE89C /* Supporting Files */,
 			);
@@ -1231,6 +1244,7 @@
 				176AF1911695E0DF00A35BFC /* Poster.m in Sources */,
 				176380A716960E280060D076 /* Stream.m in Sources */,
 				176380AA16960FDD0060D076 /* AlbumArt.m in Sources */,
+				17C43B931696FC220066C79F /* NSManagedObjectContext+ConvenienceMethods.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
