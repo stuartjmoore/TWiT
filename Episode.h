@@ -26,6 +26,9 @@
 @property (nonatomic, strong) Poster *poster;
 @property (nonatomic, strong) Show *show;
 
+- (NSString*)durationString;
+- (NSString*)publishedString;
+
 @end
 
 @interface Episode (CoreDataGeneratedAccessors)
