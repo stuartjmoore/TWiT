@@ -25,7 +25,6 @@
 		170BA05B1691CD550022FE4D /* button-orange-right@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 170B9F7E1691CD540022FE4D /* button-orange-right@2x.png */; };
 		170BA05C1691CD550022FE4D /* chatRoom.css in Resources */ = {isa = PBXBuildFile; fileRef = 170B9F7F1691CD540022FE4D /* chatRoom.css */; };
 		170BA05D1691CD550022FE4D /* coach-marks-close.png in Resources */ = {isa = PBXBuildFile; fileRef = 170B9F801691CD540022FE4D /* coach-marks-close.png */; };
-		170BA05E1691CD550022FE4D /* coach-marks.png in Resources */ = {isa = PBXBuildFile; fileRef = 170B9F811691CD540022FE4D /* coach-marks.png */; };
 		170BA05F1691CD550022FE4D /* download-cancel-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 170B9F821691CD540022FE4D /* download-cancel-icon.png */; };
 		170BA0601691CD550022FE4D /* download-cancel-icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 170B9F831691CD540022FE4D /* download-cancel-icon@2x.png */; };
 		170BA0611691CD550022FE4D /* download-delete-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 170B9F841691CD540022FE4D /* download-delete-icon.png */; };
@@ -1000,7 +999,6 @@
 				170BA05B1691CD550022FE4D /* button-orange-right@2x.png in Resources */,
 				170BA05C1691CD550022FE4D /* chatRoom.css in Resources */,
 				170BA05D1691CD550022FE4D /* coach-marks-close.png in Resources */,
-				170BA05E1691CD550022FE4D /* coach-marks.png in Resources */,
 				170BA05F1691CD550022FE4D /* download-cancel-icon.png in Resources */,
 				170BA0601691CD550022FE4D /* download-cancel-icon@2x.png in Resources */,
 				170BA0611691CD550022FE4D /* download-delete-icon.png in Resources */,
