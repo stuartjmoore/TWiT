@@ -46,7 +46,7 @@
         if([NSFileManager.defaultManager fileExistsAtPath:resourcePath]
         && ![NSFileManager.defaultManager fileExistsAtPath:cachedPath])
         {
-            NSLog(@"Copying %@ named %@", folder, url.lastPathComponent);
+            //NSLog(@"Copying %@ named %@", folder, url.lastPathComponent);
             
             self.path = cachedPath;
             [NSFileManager.defaultManager copyItemAtPath:resourcePath toPath:cachedPath error:nil];
@@ -83,7 +83,7 @@
     
     if(downloadFromServer)
     {
-        NSLog(@"Downloading %@ named %@", folder, url.lastPathComponent);
+        //NSLog(@"Downloading %@ named %@", folder, url.lastPathComponent);
         
         NSURLRequest *urlRequest = [NSURLRequest requestWithURL:url];
         [NSURLConnection sendAsynchronousRequest:urlRequest queue:NSOperationQueue.mainQueue
@@ -92,7 +92,7 @@
             NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse*)response;
             if([httpResponse respondsToSelector:@selector(statusCode)] && httpResponse.statusCode == 200)
             {
-                NSLog(@"Downloaded %@ named %@", folder, url.lastPathComponent);
+                //NSLog(@"Downloaded %@ named %@", folder, url.lastPathComponent);
                 
                 self.path = cachedPath;
                 [data writeToFile:cachedPath atomically:NO];
