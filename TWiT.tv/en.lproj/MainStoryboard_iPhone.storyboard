@@ -37,7 +37,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="360" height="180"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" image="aaa-poster.jpg" id="nYS-gc-BrI">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" image="generic.jpg" id="nYS-gc-BrI">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="180"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         </imageView>
@@ -254,9 +254,10 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="180"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="aaa-poster.jpg" id="CDu-qi-wy9">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" image="generic.jpg" id="CDu-qi-wy9">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="180"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                     </imageView>
                                     <view contentMode="scaleToFill" id="bgb-ur-uur" userLabel="Blackground">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="180"/>
@@ -356,7 +357,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="180"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" image="aaa-poster.jpg" id="nv5-bp-fY8">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" image="generic.jpg" id="nv5-bp-fY8">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="180"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         </imageView>
@@ -365,7 +366,7 @@
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.59999999999999998" colorSpace="calibratedWhite"/>
                                         </view>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="aaa600.jpg" id="6cJ-5V-8Lf">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="generic.jpg" id="6cJ-5V-8Lf">
                                             <rect key="frame" x="8" y="8" width="96" height="96"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         </imageView>
@@ -541,10 +542,9 @@
         </scene>
     </scenes>
     <resources>
-        <image name="aaa-poster.jpg" width="320" height="180"/>
-        <image name="aaa600.jpg" width="600" height="600"/>
         <image name="button-orange-left.png" width="7" height="38"/>
         <image name="button-orange-right.png" width="7" height="38"/>
+        <image name="generic.jpg" width="600" height="600"/>
         <image name="icon-play.png" width="55" height="55"/>
         <image name="quick-play.png" width="20" height="21"/>
         <image name="toolbar-disclose.png" width="27" height="17"/>
@@ -605,6 +605,6 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="YiW-0V-IC2"/>
+        <segue reference="OfB-Q1-3Dp"/>
     </inferredMetricsTieBreakers>
 </document>
