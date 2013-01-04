@@ -46,11 +46,6 @@
     // TODO: Save state?
     sectionVisible = TWSectionEpisodes;
     
-    
-    // TODO: Remove Add Button
-    UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject:)];
-    self.navigationItem.rightBarButtonItem = addButton;
-    
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -61,32 +56,6 @@
                         options:(NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld)
                         context:NULL];
 }
-
-#pragma mark - DEBUG
-
-- (void)insertNewObject:(id)sender
-{
-    NSManagedObjectContext *context = self.fetchedShowsController.managedObjectContext;
-    NSString *name = self.fetchedShowsController.fetchRequest.entity.name;
-    Show *show = [NSEntityDescription insertNewObjectForEntityForName:name inManagedObjectContext:context];
-    
-    show.title = @"Before You Buy";
-    show.desc = @"Now that there is the Tec-9, a crappy spray gun from South Miami. This gun is advertised as the most popular gun in American crime. Do you believe that shit?";
-    show.sort = self.channel.shows.count + 1;
-    
-    Feed *feed = [NSEntityDescription insertNewObjectForEntityForName:@"Feed" inManagedObjectContext:context];
-    feed.url = @"http://feeds.twit.tv/tnt_video_small";
-    [show addFeedsObject:feed];
-    
-    [self.channel addShowsObject:show];
-    
-    NSError *error = nil;
-    if(![context save:&error])
-    {
-        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-    }
-}
-
 
 #pragma mark - Actions
 

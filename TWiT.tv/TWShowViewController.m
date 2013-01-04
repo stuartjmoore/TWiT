@@ -33,11 +33,6 @@
     CGRect frame = self.descLabel.frame;
     frame.size.height = size.height;
     self.descLabel.frame = frame;
-    
-    
-    // TODO: Remove Add Button
-    UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject:)];
-    self.navigationItem.rightBarButtonItem = addButton;
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -47,27 +42,6 @@
     [self.tableView addObserver:self forKeyPath:@"contentOffset"
                         options:(NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld)
                         context:NULL];
-}
-
-#pragma mark - DEBUG
-
-- (void)insertNewObject:(id)sender
-{
-    NSManagedObjectContext *context = self.fetchedEpisodesController.managedObjectContext;
-    NSString *name = self.fetchedEpisodesController.fetchRequest.entity.name;
-    Episode *episode = [NSEntityDescription insertNewObjectForEntityForName:name inManagedObjectContext:context];
-    
-    episode.title = @"CORE DATARZ :)";
-    episode.guests = @"Mhm.";
-    episode.published = [NSDate date];
-    episode.number = self.show.episodes.count + 1;
-    [self.show addEpisodesObject:episode];
-    
-    NSError *error = nil;
-    if(![context save:&error])
-    {
-        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-    }
 }
 
 #pragma mark - Actions
