@@ -11,6 +11,7 @@
 #import "TWEpisodeCell.h"
 
 #import "Show.h"
+#import "AlbumArt.h"
 #import "Episode.h"
 
 @implementation TWShowViewController
@@ -22,6 +23,7 @@
     [self.show updateEpisodes];
     
     self.title = self.show.title;
+    self.albumArt.image = self.show.albumArt.image;
     self.scheduleLabel.text = self.show.schedule;
     self.descLabel.text = self.show.desc;
     
