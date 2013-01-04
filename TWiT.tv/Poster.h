@@ -16,4 +16,6 @@
 @property (nonatomic, retain) NSString *url, *path;
 @property (nonatomic, retain) Episode *episode;
 
+- (UIImage*)image;
+
 @end

@@ -45,6 +45,7 @@
     if(self.episode)
     {
         self.title = self.episode.title;
+        self.posterView.image = self.episode.poster.image;
         self.guestsLabel.text = self.episode.guests;
         self.dateLabel.text = self.episode.published.description;
         self.numberLabel.text = @(self.episode.number).stringValue;
