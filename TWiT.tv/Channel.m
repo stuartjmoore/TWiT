@@ -130,7 +130,7 @@
                 [self updateDatabase];
             }];
         }
-        else if(updateDatabase)
+        //else if(updateDatabase)
         {
             [self updateDatabase];
         }
@@ -186,7 +186,7 @@
         df.timeZone = [NSTimeZone timeZoneWithAbbreviation:@"GMT"];
         NSDate *published = [df dateFromString:pubDate];
         
-        if(!show.published || [show.published laterDate:published] == published)
+        //if(!show.published || [show.published laterDate:published] == published)
         {
             show.title = [showDictionary objectForKey:@"title"];
             show.titleAcronym = [showDictionary objectForKey:@"short_title"];

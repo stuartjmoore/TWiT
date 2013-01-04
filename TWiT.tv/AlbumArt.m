@@ -47,10 +47,8 @@
         {
             NSLog(@"Copying Album Art named %@", url.lastPathComponent);
             
-            [self willChangeValueForKey:@"image"];
-            [NSFileManager.defaultManager copyItemAtPath:resourcePath toPath:cachedPath error:nil];
             self.path = cachedPath;
-            [self didChangeValueForKey:@"image"];
+            [NSFileManager.defaultManager copyItemAtPath:resourcePath toPath:cachedPath error:nil];
             
             return;
         }
@@ -73,10 +71,9 @@
         {
             NSLog(@"Downloaded Album Art named %@", url.lastPathComponent);
             
-            [self willChangeValueForKey:@"image"];
-            [data writeToFile:cachedPath atomically:NO];
+            NSString *cachedPath = [cachedDir stringByAppendingPathComponent:@"url.lastPathComponent"];
             self.path = cachedPath;
-            [self didChangeValueForKey:@"image"];
+            [data writeToFile:cachedPath atomically:NO];
             
             if(url.fragment)
             {
@@ -89,6 +86,18 @@
             // TODO: post notification
         }
     }];
+}
+
+- (void)setPath:(NSString*)path
+{
+    if([NSFileManager.defaultManager fileExistsAtPath:self.path])
+        [NSFileManager.defaultManager removeItemAtPath:self.path error:nil];
+        
+    [self willChangeValueForKey:@"image"];
+    [self willChangeValueForKey:@"path"];
+    [self setPrimitiveValue:path forKey:@"path"];
+    [self didChangeValueForKey:@"path"];
+    [self didChangeValueForKey:@"image"];
 }
 
 - (void)prepareForDeletion
