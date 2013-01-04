@@ -387,12 +387,7 @@
             {
                 NSIndexPath *columnedIndexPath = [NSIndexPath indexPathForRow:index inSection:indexPath.section];
                 Show *show = [self.fetchedShowsController objectAtIndexPath:columnedIndexPath];
-                //[shows addObject:show];
-                
-                if(show.albumArt.image)
-                    [shows addObject:show.albumArt.image];
-                else
-                    [shows addObject:[UIImage imageNamed:@"generic.jpg"]];
+                [shows addObject:show];
             }
         }
         [showsCell setShows:shows];

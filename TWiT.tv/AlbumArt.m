@@ -16,7 +16,7 @@
 
 - (UIImage*)image
 {
-    return [UIImage imageWithContentsOfFile:self.path];
+    return [UIImage imageWithContentsOfFile:self.path] ?: [UIImage imageNamed:@"generic.jpg"];
 }
 
 - (void)setUrl:(NSString*)URLString
@@ -51,6 +51,15 @@
             [NSFileManager.defaultManager copyItemAtPath:resourcePath toPath:cachedPath error:nil];
             
             return;
+        }
+        
+        if(!self.path && [NSFileManager.defaultManager fileExistsAtPath:cachedPath])
+        {
+            [self willChangeValueForKey:@"image"];
+            [self willChangeValueForKey:@"path"];
+            [self setPrimitiveValue:cachedPath forKey:@"path"];
+            [self didChangeValueForKey:@"path"];
+            [self didChangeValueForKey:@"image"];
         }
     }
     

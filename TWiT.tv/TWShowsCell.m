@@ -7,6 +7,7 @@
 //
 
 #import "TWShowsCell.h"
+#import "Show.h"
 
 @implementation TWShowsCell
 
@@ -26,19 +27,8 @@
     CGContextRef context = UIGraphicsGetCurrentContext();
     CGContextSetFillColorWithColor(context, [UIColor colorWithWhite:245/255.0 alpha:1].CGColor);
     CGContextFillRect(context, self.bounds);
-    /*
+    
     for(Show *show in shows)
-    {
-        int column = [shows indexOfObject:show];
-        CGRect frame = CGRectMake(self.spacing+column*(self.size+self.spacing), self.spacing/2, self.size, self.size);
-        
-        CGContextSetShadow(context, CGSizeMake(0, 2), 4);
-        
-        UIImage *image = show.albumArt.image;
-        [image drawInRect:frame];
-    }
-    */
-    for(UIImage *show in shows)
     {
         int column = [shows indexOfObject:show];
         float x = self.spacing+column*(self.size+self.spacing);
@@ -46,7 +36,8 @@
         
         CGContextSetShadow(context, CGSizeMake(0, 2), 4);
         
-        [show drawInRect:frame];
+        UIImage *image = show.albumArt.image;
+        [image drawInRect:frame];
     }
     
     self.icons = UIGraphicsGetImageFromCurrentImageContext();
