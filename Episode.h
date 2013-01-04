@@ -9,7 +9,9 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@class Enclosure, Poster, Show;
+#import "Poster.h"
+
+@class Enclosure, Show;
 
 @interface Episode : NSManagedObject
 

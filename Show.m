@@ -26,6 +26,7 @@
     NSPredicate *pred = [NSPredicate predicateWithFormat:@"poster.path != nil"];
     NSSet *episodes = [self.episodes filteredSetUsingPredicate:pred];
     Episode *episode = episodes.anyObject;
+    
     return episode.poster;
 }
 
@@ -223,6 +224,7 @@
                  
                  Poster *poster = [context insertEntity:@"Poster"];
                  poster.url = posterURL;
+                 episode.poster = poster;
                  
                  [self addEpisodesObject:episode];
              }
