@@ -15,6 +15,7 @@
 
 #import "Channel.h"
 #import "Show.h"
+#import "AlbumArt.h"
 #import "Feed.h"
 #import "Episode.h"
 
@@ -43,7 +44,7 @@
     [super viewDidLoad];
 	
     // TODO: Save state?
-    sectionVisible = TWSectionEpisodes;
+    sectionVisible = TWSectionShows;
     
     
     // TODO: Remove Add Button
@@ -384,16 +385,16 @@
             int index = indexPath.row*columns + column;
             if(num > index)
             {
-                if(column == 0)
-                    [shows addObject:[UIImage imageNamed:@"aaa600.jpg"]];
-                else if(column == 1)
-                    [shows addObject:[UIImage imageNamed:@"byb600.jpg"]];
-                else if(column == 2)
-                    [shows addObject:[UIImage imageNamed:@"fr600.jpg"]];
-                
-                //NSIndexPath *columnedIndexPath = [NSIndexPath indexPathForRow:index inSection:indexPath.section];
-                //Show *show = [self.fetchedShowsController objectAtIndexPath:columnedIndexPath];
+                NSIndexPath *columnedIndexPath = [NSIndexPath indexPathForRow:index inSection:indexPath.section];
+                Show *show = [self.fetchedShowsController objectAtIndexPath:columnedIndexPath];
                 //[shows addObject:show];
+                
+                if(column == 0)
+                    [shows addObject:show.albumArt.image];
+                else if(column == 1)
+                    [shows addObject:show.albumArt.image];
+                else if(column == 2)
+                    [shows addObject:show.albumArt.image];
             }
         }
         [showsCell setShows:shows];

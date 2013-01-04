@@ -21,9 +21,11 @@
 
 - (void)setUrl:(NSString*)URLString
 {
+    [self willChangeValueForKey:@"image"];
     [self willChangeValueForKey:@"url"];
     [self setPrimitiveValue:URLString forKey:@"url"];
     [self didChangeValueForKey:@"url"];
+    [self didChangeValueForKey:@"image"];
     
     NSURL *url = [NSURL URLWithString:URLString];
     NSString *cachedDir = [[self.applicationDocumentsDirectory URLByAppendingPathComponent:@"albumArt"] path];
