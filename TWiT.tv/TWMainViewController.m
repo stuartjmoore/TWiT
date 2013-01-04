@@ -44,7 +44,7 @@
     [super viewDidLoad];
 	
     // TODO: Save state?
-    sectionVisible = TWSectionShows;
+    sectionVisible = TWSectionEpisodes;
     
     
     // TODO: Remove Add Button

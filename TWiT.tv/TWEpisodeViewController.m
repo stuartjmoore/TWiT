@@ -46,9 +46,11 @@
     {
         self.title = self.episode.title;
         self.posterView.image = self.episode.poster.image;
+        self.dateLabel.text = self.episode.publishedString;
+        self.timeLabel.text = self.episode.durationString;
         self.guestsLabel.text = self.episode.guests;
-        self.dateLabel.text = self.episode.published.description;
         self.numberLabel.text = @(self.episode.number).stringValue;
+        self.descLabel.text = self.episode.desc;
     }
 }
 /*
