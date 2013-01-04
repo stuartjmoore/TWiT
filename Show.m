@@ -30,6 +30,123 @@
     return episode.poster;
 }
 
+- (NSString*)scheduleString
+{
+    NSString *scheduleString = self.schedule;
+    NSMutableArray *dayStrings = [NSMutableArray array];
+    NSString *timeString = @"";
+    if([scheduleString rangeOfString:@"@"].location != NSNotFound)
+    {
+        NSArray *daysAndTime = [scheduleString componentsSeparatedByString:@"@"];
+        scheduleString = @"";
+        
+        int TZDiff = ([[NSTimeZone timeZoneWithName:@"America/Los_Angeles"] secondsFromGMT]
+                      -[[NSTimeZone localTimeZone] secondsFromGMT])/60/60*100;
+        
+        int time = [[daysAndTime objectAtIndex:1] intValue];
+        time -= TZDiff;
+        BOOL nextDay = NO;
+        if(time >= 2400)
+        {
+            time -= 2400;
+            nextDay = YES;
+        }
+        
+        if(time/100 == 0)
+            timeString = [NSString stringWithFormat:@"12:%.2da", time%100];
+        else if(time/100 <= 12)
+            timeString = [NSString stringWithFormat:@"%d:%.2da", time/100, time%100];
+        else
+            timeString = [NSString stringWithFormat:@"%d:%.2dp", time/100-12, time%100];
+        
+        NSArray *days = [[daysAndTime objectAtIndex:0] componentsSeparatedByString:@","];
+        for(NSString *dayString in days)
+        {
+            NSInteger day = -1;
+            if([dayString isEqualToString:@"SU"])
+                day = 1;
+            else if([dayString isEqualToString:@"MO"])
+                day = 2;
+            else if([dayString isEqualToString:@"TU"])
+                day = 3;
+            else if([dayString isEqualToString:@"WE"])
+                day = 4;
+            else if([dayString isEqualToString:@"TH"])
+                day = 5;
+            else if([dayString isEqualToString:@"FR"])
+                day = 6;
+            else if([dayString isEqualToString:@"SA"])
+                day = 7;
+            if(day < 0)
+                day += 7;
+            
+            if(nextDay)
+            {
+                day++;
+                if(day >= 8)
+                    day = 0;
+            }
+            
+            if(days.count <= 2)
+            {
+                if(day == 1)
+                    [dayStrings addObject:@"Sundays"];
+                else if(day == 2)
+                    [dayStrings addObject:@"Mondays"];
+                else if(day == 3)
+                    [dayStrings addObject:@"Tuesdays"];
+                else if(day == 4)
+                    [dayStrings addObject:@"Wednesdays"];
+                else if(day == 5)
+                    [dayStrings addObject:@"Thursdays"];
+                else if(day == 6)
+                    [dayStrings addObject:@"Fridays"];
+                else if(day == 7)
+                    [dayStrings addObject:@"Saturdays"];
+            }
+            else
+            {
+                if(day == 1)
+                    [dayStrings addObject:@"Sun"];
+                else if(day == 2)
+                    [dayStrings addObject:@"Mon"];
+                else if(day == 3)
+                    [dayStrings addObject:@"Tues"];
+                else if(day == 4)
+                    [dayStrings addObject:@"Wed"];
+                else if(day == 5)
+                    [dayStrings addObject:@"Thur"];
+                else if(day == 6)
+                    [dayStrings addObject:@"Fri"];
+                else if(day == 7)
+                    [dayStrings addObject:@"Sat"];
+            }
+        }
+        
+        for(NSString *dayString in dayStrings)
+        {
+            scheduleString = [scheduleString stringByAppendingString:dayString];
+            
+            if(dayString != [dayStrings lastObject])
+            {
+                if(dayString != [dayStrings objectAtIndex:dayStrings.count-2])
+                    scheduleString = [scheduleString stringByAppendingString:@", "];
+                else
+                    scheduleString = [scheduleString stringByAppendingString:@" & "];
+            }
+        }
+        
+        if([scheduleString isEqualToString:@"Mon, Tues, Wed, Thur & Fri"])
+            scheduleString = @"Weekdays";
+        else if([scheduleString isEqualToString:@"Saturdays & Sundays"])
+            scheduleString = @"Weekends";
+        
+        scheduleString = [scheduleString stringByAppendingString:@" @ "];
+        scheduleString = [scheduleString stringByAppendingString:timeString];
+    }
+    return scheduleString;
+}
+
 #pragma mark - Update Episodes
 
 - (void)updateEpisodes
