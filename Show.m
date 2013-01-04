@@ -21,6 +21,14 @@
 
 @dynamic desc, email, favorite, hosts, phone, published, remind, schedule, sort, title, titleAcronym, titleInSchedule, website, albumArt, channel, episodes, feeds;
 
+- (Poster*)poster
+{
+    NSPredicate *pred = [NSPredicate predicateWithFormat:@"poster.path != nil"];
+    NSSet *episodes = [self.episodes filteredSetUsingPredicate:pred];
+    Episode *episode = episodes.anyObject;
+    return episode.poster;
+}
+
 #pragma mark - Update Episodes
 
 - (void)updateEpisodes
@@ -231,6 +239,7 @@
              enclosure.quality = feed.quality;
              enclosure.type = feed.type;
              [episode addEnclosuresObject:enclosure];
+             
              [context save:nil];
          }
      }];

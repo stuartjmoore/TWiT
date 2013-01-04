@@ -25,6 +25,8 @@
 @property (nonatomic, strong) Channel *channel;
 @property (nonatomic, strong) NSSet *episodes, *feeds;
 
+- (Poster*)poster;
+
 - (void)updateEpisodes;
 - (void)updatePodcastFeed:(Feed*)feed;
 
