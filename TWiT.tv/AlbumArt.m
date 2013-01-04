@@ -9,6 +9,7 @@
 #import "AlbumArt.h"
 #import "Show.h"
 
+#define folder @"albumArt"
 
 @implementation AlbumArt
 
@@ -28,7 +29,7 @@
     [self didChangeValueForKey:@"image"];
     
     NSURL *url = [NSURL URLWithString:URLString];
-    NSString *cachedDir = [[self.applicationDocumentsDirectory URLByAppendingPathComponent:@"albumArt"] path];
+    NSString *cachedDir = [[self.applicationDocumentsDirectory URLByAppendingPathComponent:folder] path];
     NSString *cachedPath = [cachedDir stringByAppendingPathComponent:url.lastPathComponent];
     
     if(![NSFileManager.defaultManager fileExistsAtPath:cachedDir])
@@ -45,7 +46,7 @@
         if([NSFileManager.defaultManager fileExistsAtPath:resourcePath]
         && ![NSFileManager.defaultManager fileExistsAtPath:cachedPath])
         {
-            NSLog(@"Copying Album Art named %@", url.lastPathComponent);
+            NSLog(@"Copying %@ named %@", folder, url.lastPathComponent);
             
             self.path = cachedPath;
             [NSFileManager.defaultManager copyItemAtPath:resourcePath toPath:cachedPath error:nil];
@@ -82,7 +83,7 @@
     
     if(downloadFromServer)
     {
-        NSLog(@"Downloading Album Art named %@", url.lastPathComponent);
+        NSLog(@"Downloading %@ named %@", folder, url.lastPathComponent);
         
         NSURLRequest *urlRequest = [NSURLRequest requestWithURL:url];
         [NSURLConnection sendAsynchronousRequest:urlRequest queue:NSOperationQueue.mainQueue
@@ -91,7 +92,7 @@
             NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse*)response;
             if([httpResponse respondsToSelector:@selector(statusCode)] && httpResponse.statusCode == 200)
             {
-                NSLog(@"Downloaded Album Art named %@", url.lastPathComponent);
+                NSLog(@"Downloaded %@ named %@", folder, url.lastPathComponent);
                 
                 self.path = cachedPath;
                 [data writeToFile:cachedPath atomically:NO];
@@ -118,7 +119,7 @@
     if((!_path || [_path isEqualToString:@""]) && self.url)
     {
         NSURL *url = [NSURL URLWithString:self.url];
-        NSString *cachedDir = [[self.applicationDocumentsDirectory URLByAppendingPathComponent:@"albumArt"] path];
+        NSString *cachedDir = [[self.applicationDocumentsDirectory URLByAppendingPathComponent:folder] path];
         NSString *cachedPath = [cachedDir stringByAppendingPathComponent:url.lastPathComponent];
         
         if([NSFileManager.defaultManager fileExistsAtPath:cachedPath])
@@ -137,9 +138,9 @@
     return _path;
 }
 
-- (void)setPath:(NSString*)path
+- (void)setPath:(NSString*)_path
 {
-    if([path isEqualToString:self.path])
+    if([_path isEqualToString:self.path])
         return;
     
     if([NSFileManager.defaultManager fileExistsAtPath:self.path])
@@ -147,7 +148,7 @@
         
     [self willChangeValueForKey:@"image"];
     [self willChangeValueForKey:@"path"];
-    [self setPrimitiveValue:path forKey:@"path"];
+    [self setPrimitiveValue:_path forKey:@"path"];
     [self didChangeValueForKey:@"path"];
     [self didChangeValueForKey:@"image"];
 }
