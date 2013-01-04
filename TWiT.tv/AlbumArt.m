@@ -56,19 +56,24 @@
     
     // ---
     
-    NSError *error = nil;
+    BOOL downloadFromServer = YES;
     
-    NSDictionary *fileAttributes = [NSFileManager.defaultManager attributesOfItemAtPath:cachedPath error:&error];
-    
-    if(error)
-        return;
-    
-    NSDate *lastModifiedLocal = [fileAttributes fileModificationDate];
-    NSDate *lastModifiedServer = [NSDate dateWithTimeIntervalSince1970:url.fragment.floatValue];
+    if(url.fragment)
+    {
+        NSError *error = nil;
+        
+        NSDictionary *fileAttributes = [NSFileManager.defaultManager attributesOfItemAtPath:cachedPath error:&error];
+        
+        if(error)
+            return;
+        
+        NSDate *lastModifiedLocal = [fileAttributes fileModificationDate];
+        NSDate *lastModifiedServer = [NSDate dateWithTimeIntervalSince1970:url.fragment.floatValue];
+        
+        downloadFromServer = (!lastModifiedLocal) || ([lastModifiedLocal laterDate:lastModifiedServer] == lastModifiedServer);
+    }
     
     // ---
-    
-    BOOL downloadFromServer = (!lastModifiedLocal) || ([lastModifiedLocal laterDate:lastModifiedServer] == lastModifiedServer);
     
     if(downloadFromServer)
     {
