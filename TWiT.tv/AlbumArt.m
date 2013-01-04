@@ -14,10 +14,10 @@
 
 @dynamic path, url, show;
 
-// TODO: Name pre-downloaded art and posters the same as in JSON.
-// TODO: Download the files if not available, else copy.
-// TODO: Create image accessor.
-
+- (UIImage*)image
+{
+    return [UIImage imageWithContentsOfFile:self.path];
+}
 
 - (void)setUrl:(NSString*)URLString
 {
@@ -32,6 +32,8 @@
     if(![NSFileManager.defaultManager fileExistsAtPath:cachedDir])
         [NSFileManager.defaultManager createDirectoryAtPath:cachedDir withIntermediateDirectories:NO attributes:nil error:nil];
     
+    // ---
+    
     if(url.fragment)
     {
         NSString *fileName = [url.lastPathComponent stringByReplacingOccurrencesOfString:url.pathExtension withString:@""];
@@ -41,12 +43,22 @@
         if([NSFileManager.defaultManager fileExistsAtPath:resourcePath]
         && ![NSFileManager.defaultManager fileExistsAtPath:cachedPath])
         {
+            NSLog(@"Copying Album Art named %@", url.lastPathComponent);
+            
             [NSFileManager.defaultManager copyItemAtPath:resourcePath toPath:cachedPath error:nil];
             self.path = cachedPath;
             
             return;
         }
     }
+    
+    // ---
+    
+    // TODO: Check NSFileModificationDate?
+    
+    // ---
+    
+    NSLog(@"Downloading Album Art named %@", url.lastPathComponent);
     
     NSURLRequest *urlRequest = [NSURLRequest requestWithURL:url];
     [NSURLConnection sendAsynchronousRequest:urlRequest queue:NSOperationQueue.mainQueue
@@ -55,8 +67,17 @@
         NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse*)response;
         if([httpResponse respondsToSelector:@selector(statusCode)] && httpResponse.statusCode == 200)
         {
+            NSLog(@"Downloaded Album Art named %@", url.lastPathComponent);
+            
             [data writeToFile:cachedPath atomically:NO];
             self.path = cachedPath;
+            
+            if(url.fragment)
+            {
+                NSDate *lastModified = [NSDate dateWithTimeIntervalSince1970:url.fragment.floatValue];
+                NSDictionary *fileAttributes = [NSDictionary dictionaryWithObject:lastModified forKey:NSFileModificationDate];
+                [NSFileManager.defaultManager setAttributes:fileAttributes ofItemAtPath:cachedPath error:nil];
+            }
         }
     }];
 }

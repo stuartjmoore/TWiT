@@ -16,4 +16,6 @@
 @property (nonatomic, retain) NSString *path, *url;
 @property (nonatomic, retain) Show *show;
 
+- (UIImage*)image;
+
 @end
