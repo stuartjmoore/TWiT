@@ -11,7 +11,7 @@
 
 #import "AlbumArt.h"
 
-@class AlbumArt, Episode, Feed, Channel;
+@class AlbumArt, Episode, Feed, Channel, Poster;
 
 @interface Show : NSManagedObject
 
