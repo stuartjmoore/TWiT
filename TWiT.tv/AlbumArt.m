@@ -111,6 +111,32 @@
     }
 }
 
+- (NSString*)path
+{
+    NSString *_path = [self primitiveValueForKey:@"path"];
+    
+    if((!_path || [_path isEqualToString:@""]) && self.url)
+    {
+        NSURL *url = [NSURL URLWithString:self.url];
+        NSString *cachedDir = [[self.applicationDocumentsDirectory URLByAppendingPathComponent:@"albumArt"] path];
+        NSString *cachedPath = [cachedDir stringByAppendingPathComponent:url.lastPathComponent];
+        
+        if([NSFileManager.defaultManager fileExistsAtPath:cachedPath])
+        {
+            _path = cachedPath;
+            [self willChangeValueForKey:@"image"];
+            [self willChangeValueForKey:@"path"];
+            [self setPrimitiveValue:_path forKey:@"path"];
+            [self didChangeValueForKey:@"path"];
+            [self didChangeValueForKey:@"image"];
+            
+            [self.managedObjectContext save:nil];
+        }
+    }
+    
+    return _path;
+}
+
 - (void)setPath:(NSString*)path
 {
     if([path isEqualToString:self.path])
