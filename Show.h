@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
+#import "AlbumArt.h"
+
 @class AlbumArt, Episode, Feed, Channel;
 
 @interface Show : NSManagedObject
