@@ -170,7 +170,8 @@
             frame.size.height = ceilf(headerHeight-newPoint.y);
             self.headerView.frame = frame;
             
-            self.tableView.scrollIndicatorInsets = UIEdgeInsetsMake(frame.size.height+self.sectionHeader.frame.size.height, 0, 0, 1);
+            float sectionHeaderHeight = [self.tableView.delegate tableView:self.tableView heightForHeaderInSection:0];
+            self.tableView.scrollIndicatorInsets = UIEdgeInsetsMake(frame.size.height+sectionHeaderHeight, 0, 0, 0);
             self.sectionHeader.layer.shadowOpacity = 0;
         }
         else
@@ -180,7 +181,8 @@
             frame.size.height = headerHeight;
             self.headerView.frame = frame;
             
-            self.tableView.scrollIndicatorInsets = UIEdgeInsetsMake(headerHeight+self.sectionHeader.frame.size.height, 0, 0, 1);
+            float sectionHeaderHeight = [self.tableView.delegate tableView:self.tableView heightForHeaderInSection:0];
+            self.tableView.scrollIndicatorInsets = UIEdgeInsetsMake(headerHeight+sectionHeaderHeight, 0, 0, 0);
             self.sectionHeader.layer.shadowOpacity = newPoint.y-headerHeight < 0 ? 0 : (newPoint.y-headerHeight)/20;
         }
     }
