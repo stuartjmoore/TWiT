@@ -64,7 +64,7 @@
     
     BOOL downloadFromServer = YES;
     
-    if(url.fragment)
+    if(url.fragment && [NSFileManager.defaultManager fileExistsAtPath:cachedPath])
     {
         NSError *error = nil;
         
