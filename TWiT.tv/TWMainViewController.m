@@ -389,12 +389,10 @@
                 Show *show = [self.fetchedShowsController objectAtIndexPath:columnedIndexPath];
                 //[shows addObject:show];
                 
-                if(column == 0)
+                if(show.albumArt.image)
                     [shows addObject:show.albumArt.image];
-                else if(column == 1)
-                    [shows addObject:show.albumArt.image];
-                else if(column == 2)
-                    [shows addObject:show.albumArt.image];
+                else
+                    [shows addObject:[UIImage imageNamed:@"generic.jpg"]];
             }
         }
         [showsCell setShows:shows];

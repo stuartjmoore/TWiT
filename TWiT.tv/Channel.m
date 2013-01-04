@@ -141,7 +141,7 @@
     NSData *JSONData = [NSData dataWithContentsOfFile:JSONPath];
     NSDictionary *JSON = [NSJSONSerialization JSONObjectWithData:JSONData options:0 error:nil];
     
-    //NSLog(@"%@", JSON);
+    // ---
     
     NSString *pubDate = [[JSON objectForKey:@"live"] objectForKey:@"pubdate"];
     NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
@@ -201,6 +201,9 @@
             show.website = [showDictionary objectForKey:@"website"];
             show.sort = [[showDictionary objectForKey:@"id"] intValue];
             show.published = published;
+            
+            if(show.albumArt)
+                [self.managedObjectContext deleteObject:show.albumArt];
             
             NSString *albumArtURL = [showDictionary objectForKey:@"album_art"];
             AlbumArt *albumArt = [NSEntityDescription insertNewObjectForEntityForName:@"AlbumArt"
