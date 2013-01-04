@@ -6,6 +6,7 @@
 //  Copyright (c) 2013 Stuart Moore. All rights reserved.
 //
 
+#import "NSManagedObjectContext+ConvenienceMethods.h"
 #import "XMLReader.h"
 
 #import "Show.h"
@@ -202,7 +203,7 @@
                  }
                  
                  NSManagedObjectContext *context = self.managedObjectContext;
-                 episode = [NSEntityDescription insertNewObjectForEntityForName:@"Episode" inManagedObjectContext:context];
+                 episode = [context insertEntity:@"Episode"];
                  episode.title = title;
                  episode.desc = desc;
                  episode.duration = duration;
@@ -212,8 +213,7 @@
                  episode.number = number;
                  episode.watched = firstLoad;
                  
-                 Poster *poster = [NSEntityDescription insertNewObjectForEntityForName:@"Poster"
-                                                                inManagedObjectContext:context];
+                 Poster *poster = [context insertEntity:@"Poster"];
                  poster.url = posterURL;
                  
                  [self addEpisodesObject:episode];
@@ -224,8 +224,7 @@
              NSSet *enclosures = [episode.enclosures filteredSetUsingPredicate:pred];
              
              NSManagedObjectContext *context = self.managedObjectContext;
-             Enclosure *enclosure = (enclosures.count == 0) ? [NSEntityDescription insertNewObjectForEntityForName:@"Enclosure"
-                                                                                            inManagedObjectContext:context] : enclosures.anyObject;
+             Enclosure *enclosure = (enclosures.count == 0) ? [context insertEntity:@"Enclosure"] : enclosures.anyObject;
              enclosure.url = enclosureURL;
              enclosure.title = feed.title;
              enclosure.subtitle = feed.subtitle;
