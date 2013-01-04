@@ -56,36 +56,50 @@
     
     // ---
     
-    // TODO: Check NSFileModificationDate?
+    NSError *error = nil;
+    
+    NSDictionary *fileAttributes = [NSFileManager.defaultManager attributesOfItemAtPath:cachedPath error:&error];
+    
+    if(error)
+        return;
+    
+    NSDate *lastModifiedLocal = [fileAttributes fileModificationDate];
+    NSDate *lastModifiedServer = [NSDate dateWithTimeIntervalSince1970:url.fragment.floatValue];
     
     // ---
     
-    NSLog(@"Downloading Album Art named %@", url.lastPathComponent);
+    BOOL downloadFromServer = (!lastModifiedLocal) || ([lastModifiedLocal laterDate:lastModifiedServer] == lastModifiedServer);
     
-    NSURLRequest *urlRequest = [NSURLRequest requestWithURL:url];
-    [NSURLConnection sendAsynchronousRequest:urlRequest queue:NSOperationQueue.mainQueue
-    completionHandler:^(NSURLResponse *response, NSData *data, NSError *error)
+    if(downloadFromServer)
     {
-        NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse*)response;
-        if([httpResponse respondsToSelector:@selector(statusCode)] && httpResponse.statusCode == 200)
+        NSLog(@"Downloading Album Art named %@", url.lastPathComponent);
+        
+        NSURLRequest *urlRequest = [NSURLRequest requestWithURL:url];
+        [NSURLConnection sendAsynchronousRequest:urlRequest queue:NSOperationQueue.mainQueue
+        completionHandler:^(NSURLResponse *response, NSData *data, NSError *error)
         {
-            NSLog(@"Downloaded Album Art named %@", url.lastPathComponent);
-            
-            NSString *cachedPath = [cachedDir stringByAppendingPathComponent:@"url.lastPathComponent"];
-            self.path = cachedPath;
-            [data writeToFile:cachedPath atomically:NO];
-            
-            if(url.fragment)
+            NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse*)response;
+            if([httpResponse respondsToSelector:@selector(statusCode)] && httpResponse.statusCode == 200)
             {
-                NSDate *lastModified = [NSDate dateWithTimeIntervalSince1970:url.fragment.floatValue];
-                NSDictionary *fileAttributes = [NSDictionary dictionaryWithObject:lastModified forKey:NSFileModificationDate];
-                [NSFileManager.defaultManager setAttributes:fileAttributes ofItemAtPath:cachedPath error:nil];
+                NSLog(@"Downloaded Album Art named %@", url.lastPathComponent);
+                
+                NSString *cachedPath = [cachedDir stringByAppendingPathComponent:@"url.lastPathComponent"];
+                self.path = cachedPath;
+                [data writeToFile:cachedPath atomically:NO];
+                
+                if(url.fragment)
+                {
+                    NSDate *lastModified = [NSDate dateWithTimeIntervalSince1970:url.fragment.floatValue];
+                    NSDictionary *fileAttributes = [NSDictionary dictionaryWithObject:lastModified forKey:NSFileModificationDate];
+                    [NSFileManager.defaultManager setAttributes:fileAttributes ofItemAtPath:cachedPath error:nil];
+                }
+                
+                [self.managedObjectContext save:nil];
+                
+                // TODO: post notification
             }
-            
-            [self.managedObjectContext save:nil];
-            // TODO: post notification
-        }
-    }];
+        }];
+    }
 }
 
 - (void)setPath:(NSString*)path
