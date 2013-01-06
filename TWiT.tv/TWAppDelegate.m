@@ -23,7 +23,7 @@
     NSArray *fetchedChannels = [context executeFetchRequest:fetchRequest error:nil];
     Channel *channel = fetchedChannels.lastObject ?: [NSEntityDescription insertNewObjectForEntityForName:@"Channel" inManagedObjectContext:context];
     
-    [channel updateShows];
+    [channel update];
     
     if([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad)
     {

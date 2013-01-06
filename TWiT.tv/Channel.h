@@ -18,9 +18,12 @@
 @property (nonatomic, strong) NSDate *published;
 @property (nonatomic, strong) NSSet *shows, *streams;
 
-- (void)updateShows;
+@property (strong, nonatomic) NSMutableArray *days;
+
+- (void)update;
 - (void)updateJSON;
 - (void)updateDatabase;
+- (void)reloadSchedule;
 
 @end
 
