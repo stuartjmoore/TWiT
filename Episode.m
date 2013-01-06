@@ -14,10 +14,10 @@
 
 - (NSString*)durationString
 {
-    NSInteger ti = self.duration;
-    NSInteger seconds = ti % 60;
-    NSInteger minutes = (ti / 60) % 60;
-    NSInteger hours = (ti / 3600);
+    NSInteger interval = self.duration;
+    NSInteger seconds = interval % 60;
+    NSInteger minutes = (interval / 60) % 60;
+    NSInteger hours = (interval / 3600);
     
     return [NSString stringWithFormat:@"%02i:%02i:%02i", hours, minutes, seconds];
 }
