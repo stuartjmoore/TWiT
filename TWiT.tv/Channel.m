@@ -16,7 +16,7 @@
 @implementation Channel
 
 @dynamic desc, published, scheduleURL, title, website, shows, streams;
-@synthesize days = _days;
+@synthesize schedule = _schedule;
 
 - (void)update
 {
@@ -230,7 +230,7 @@
 
 - (void)reloadSchedule
 {
-    self.days = [NSMutableArray array];
+    self.schedule = [NSMutableArray array];
     
     NSDate *startMin = [NSDate date];
     NSDate *startMax = [startMin dateByAddingTimeInterval:60*60*24*7];
@@ -318,15 +318,14 @@
                  if(daysAway < 0)
                      continue;
                  
-                 while(daysAway >= self.days.count)
-                     [self.days addObject:[NSMutableArray array]];
+                 while(daysAway >= self.schedule.count)
+                     [self.schedule addObject:[NSMutableArray array]];
                  
-                 NSMutableArray *shows = [self.days objectAtIndex:daysAway];
-                 
+                 NSMutableArray *shows = [self.schedule objectAtIndex:daysAway];
                  [shows addObject:showDictionary];
              }
              
-             for(NSMutableArray *shows in self.days)
+             for(NSMutableArray *shows in self.schedule)
              {
                  [shows sortUsingComparator:(NSComparator)^(id obj1, id obj2)
                   {
@@ -337,7 +336,7 @@
              }
          }
          
-         [[NSNotificationCenter defaultCenter] postNotificationName:@"ScheduleDidUpdate" object:self userInfo:nil];
+         [NSNotificationCenter.defaultCenter postNotificationName:@"ScheduleDidUpdate" object:self.schedule userInfo:nil];
      }];
 }
 

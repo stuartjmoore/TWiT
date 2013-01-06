@@ -46,6 +46,10 @@
     // TODO: Save state?
     sectionVisible = TWSectionEpisodes;
     
+    [NSNotificationCenter.defaultCenter addObserver:self
+                                           selector:@selector(reloadSchedule:)
+                                               name:@"ScheduleDidUpdate"
+                                             object:nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -168,7 +172,7 @@
     }
     else if(tableView == self.scheduleTable)
     {
-        return 1;
+        return self.channel.schedule.count;
     }
     
     return 0;
@@ -196,7 +200,7 @@
     }
     else if(tableView == self.scheduleTable)
     {
-        return 20;
+        return [self.channel.schedule[section] count];
     }
     
     return 0;
@@ -208,6 +212,10 @@
     {
         if(section == 0)
             return 28;
+    }
+    else if(tableView == self.scheduleTable)
+    {
+        return 20;
     }
     
     return 0;
@@ -234,9 +242,10 @@
 
 - (UIView*)tableView:(UITableView*)tableView viewForHeaderInSection:(NSInteger)section
 {
+    float width = tableView.frame.size.width;
+    
     if(tableView == self.tableView && section == 0)
     {
-        float width = tableView.frame.size.width;
         self.sectionHeader = [[UIView alloc] initWithFrame:CGRectMake(0, 0, width, 28)];
         self.sectionHeader.backgroundColor = [UIColor colorWithWhite:244/255.0 alpha:1];
         
@@ -293,6 +302,29 @@
         
         return self.sectionHeader;
     }
+    else if(tableView == self.scheduleTable)
+    {
+        UIView *header = [[UIView alloc] initWithFrame:CGRectMake(0, 0, width, 20)];
+        UILabel *headerLabel = [[UILabel alloc] initWithFrame:CGRectMake(107, 0, width-107, 20)];
+       
+        headerLabel.backgroundColor = [UIColor clearColor];
+        headerLabel.textColor = [UIColor whiteColor];
+        headerLabel.font = [UIFont systemFontOfSize:12];
+        
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setDateFormat:@"EEEE"];
+        NSDate *startTime = self.channel.schedule[section][0][@"startDate"];
+        headerLabel.text = [dateFormatter stringFromDate:startTime];
+        
+        if(section == 0)
+            headerLabel.text = @"Today";
+        else if(section == 1)
+            headerLabel.text = @"Tomorrow";
+        
+        [header addSubview:headerLabel];
+        return header;
+    }
+    
     return nil;
 }
 
@@ -311,9 +343,15 @@
     {
         NSString *identifier = @"scheduleCell";
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
-
-        cell.textLabel.text = @"1:00p";
-        cell.detailTextLabel.text = @"Tech News Today";
+        
+        NSDictionary *show = self.channel.schedule[indexPath.section][indexPath.row];
+        
+        NSDateFormatter *dateFormatterLocal = [[NSDateFormatter alloc] init];
+        [dateFormatterLocal setTimeZone:[NSTimeZone localTimeZone]];
+        [dateFormatterLocal setDateFormat:@"h:mm a"];
+        cell.textLabel.text = [dateFormatterLocal stringFromDate:show[@"startDate"]];
+        
+        cell.detailTextLabel.text = show[@"title"];
         
         return cell;
     }
@@ -365,6 +403,43 @@
     }
 }
 
+- (void)reloadSchedule:(NSNotification*)notification
+{
+    NSArray *schedule = notification.object;
+    NSArray *today = schedule[0];
+    
+    for(NSDictionary *show in today)
+    {
+        if([show[@"startDate"] timeIntervalSinceNow] < 0
+        && [show[@"endDate"] timeIntervalSinceNow] > 0)
+        {
+            self.liveTimeLabel.text = @"LIVE";
+            self.liveTitleLabel.text = show[@"title"];
+            
+            break;
+        }
+        
+        if([show[@"startDate"] timeIntervalSinceNow] > 0
+        && [show[@"endDate"] timeIntervalSinceNow] > 0)
+        {
+            NSInteger interval = [show[@"startDate"] timeIntervalSinceNow];
+            NSInteger minutes = (interval / 60) % 60;
+            NSInteger hours = (interval / 3600);
+            
+            if(interval > 10*60)
+                self.liveTimeLabel.text = [NSString stringWithFormat:@"%ih %02im", hours, minutes];
+            else
+                self.liveTimeLabel.text = @"Pre-show";
+            
+            self.liveTitleLabel.text = show[@"title"];
+            
+            break;
+        }
+    }
+    
+    [self.scheduleTable reloadData];
+}
+
 #pragma mark - Fetched results controller
 
 - (NSFetchedResultsController*)fetchedEpisodesController
@@ -375,14 +450,16 @@
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"Episode" inManagedObjectContext:self.managedObjectContext];
     NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"published" ascending:NO];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"watched = NO"];
     
     [fetchRequest setFetchBatchSize:10];
     [fetchRequest setEntity:entity];
     [fetchRequest setSortDescriptors:@[sortDescriptor]];
+    [fetchRequest setPredicate:predicate];
     
     // Edit the section name key path and cache name if appropriate.
     // nil for section name key path means "no sections".
-    NSFetchedResultsController *controller = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:@"UnwatchedEpisodes"];
+    NSFetchedResultsController *controller = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:@"UnwatchedEpisode"];
     controller.delegate = self;
     self.fetchedEpisodesController = controller;
     
@@ -503,6 +580,8 @@
 {
     self.fetchedShowsController = nil;
     self.fetchedEpisodesController = nil;
+    
+    [NSNotificationCenter.defaultCenter removeObserver:self name:@"ScheduleDidUpdate" object:nil];
 }
 
 @end
