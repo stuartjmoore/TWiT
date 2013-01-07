@@ -6,6 +6,8 @@
 //  Copyright (c) 2013 Stuart Moore. All rights reserved.
 //
 
+#import <QuartzCore/QuartzCore.h>
+
 #import "TWShowViewController.h"
 #import "TWEpisodeViewController.h"
 #import "TWEpisodeCell.h"
@@ -38,6 +40,18 @@
     CGRect frame = self.descLabel.frame;
     frame.size.height = size.height;
     self.descLabel.frame = frame;
+    
+    CAGradientLayer *liveGradient = [CAGradientLayer layer];
+    liveGradient.anchorPoint = CGPointMake(0, 0);
+    liveGradient.position = CGPointMake(0, 0);
+    liveGradient.startPoint = CGPointMake(0, 1);
+    liveGradient.endPoint = CGPointMake(0, 0);
+    liveGradient.bounds = self.gradientView.bounds;
+    liveGradient.colors = [NSArray arrayWithObjects:
+                           (id)[UIColor colorWithWhite:0 alpha:1].CGColor,
+                           (id)[UIColor colorWithWhite:0 alpha:0.6f].CGColor,
+                           (id)[UIColor colorWithWhite:0 alpha:0].CGColor, nil];
+    [self.gradientView.layer addSublayer:liveGradient];
 }
 
 - (void)viewWillAppear:(BOOL)animated
