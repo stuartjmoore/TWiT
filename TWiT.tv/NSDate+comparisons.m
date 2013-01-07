@@ -38,4 +38,13 @@
     return [simpleSelf isEqualToDate:simpleToday];
 }
 
+- (BOOL)isBeforeNow
+{
+    return [self timeIntervalSinceNow] < 0;
+}
+- (BOOL)isAfterNow
+{
+    return [self timeIntervalSinceNow] > 0;
+}
+
 @end

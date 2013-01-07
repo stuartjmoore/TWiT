@@ -13,4 +13,7 @@
 - (BOOL)isToday;
 - (BOOL)isTomorrow;
 
+- (BOOL)isBeforeNow;
+- (BOOL)isAfterNow;
+
 @end

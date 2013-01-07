@@ -182,16 +182,17 @@
         
         for(NSDictionary *show in today)
         {
-            if([show[@"startDate"] timeIntervalSinceNow] < 0
-            && [show[@"endDate"] timeIntervalSinceNow] > 0)
+            NSDate *startDate = show[@"startDate"];
+            NSDate *endDate = show[@"startDate"];
+            
+            if(startDate.isBeforeNow && endDate.isAfterNow)
             {
                 if(today.lastObject == show)
                     count--;
                 break;
             }
             
-            if([show[@"startDate"] timeIntervalSinceNow] > 0
-            && [show[@"endDate"] timeIntervalSinceNow] > 0)
+            if(startDate.isAfterNow && endDate.isAfterNow)
             {
                 if(today.lastObject == show)
                     count--;
@@ -242,6 +243,11 @@
     }
     else if(tableView == self.scheduleTable)
     {
+        int sectionNum = section + (self.channel.schedule.count-tableView.numberOfSections);
+        NSDate *startTime = self.channel.schedule[sectionNum][0][@"startDate"];
+        
+        if(startTime.isToday)
+            return 0;
         return 20;
     }
     
@@ -332,7 +338,11 @@
     else if(tableView == self.scheduleTable)
     {
         int sectionNum = section + (self.channel.schedule.count-tableView.numberOfSections);
+        NSDate *startTime = self.channel.schedule[sectionNum][0][@"startDate"];
         
+        if(startTime.isToday)
+            return nil;
+            
         UIView *header = [[UIView alloc] initWithFrame:CGRectMake(0, 0, width, 20)];
         UILabel *headerLabel = [[UILabel alloc] initWithFrame:CGRectMake(107, 0, width-107, 20)];
        
@@ -342,12 +352,9 @@
         
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
         [dateFormatter setDateFormat:@"EEEE"];
-        NSDate *startTime = self.channel.schedule[sectionNum][0][@"startDate"];
         headerLabel.text = [dateFormatter stringFromDate:startTime];
         
-        if(startTime.isToday)
-            headerLabel.text = @"Today";
-        else if(startTime.isTomorrow)
+        if(startTime.isTomorrow)
             headerLabel.text = @"Tomorrow";
         
         [header addSubview:headerLabel];
@@ -474,8 +481,10 @@
     
     for(NSDictionary *show in today)
     {
-        if([show[@"startDate"] timeIntervalSinceNow] < 0
-        && [show[@"endDate"] timeIntervalSinceNow] > 0)
+        NSDate *startDate = show[@"startDate"];
+        NSDate *endDate = show[@"startDate"];
+        
+        if(startDate.isBeforeNow && endDate.isAfterNow)
         {
             self.liveTimeLabel.text = @"LIVE";
             self.liveTitleLabel.text = show[@"title"];
@@ -483,8 +492,7 @@
             break;
         }
         
-        if([show[@"startDate"] timeIntervalSinceNow] > 0
-        && [show[@"endDate"] timeIntervalSinceNow] > 0)
+        if(startDate.isAfterNow && endDate.isAfterNow)
         {
             NSInteger interval = [show[@"startDate"] timeIntervalSinceNow];
             NSInteger minutes = (interval / 60) % 60;
