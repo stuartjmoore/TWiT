@@ -494,6 +494,9 @@
                                             <state key="highlighted">
                                                 <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
+                                            <connections>
+                                                <action selector="email:" destination="Gce-uE-xEB" eventType="touchUpInside" id="cKG-WF-3rF"/>
+                                            </connections>
                                         </button>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="BGQ-R4-EEs">
                                             <rect key="frame" x="256" y="129" width="44" height="44"/>
@@ -506,6 +509,9 @@
                                             <state key="highlighted">
                                                 <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
+                                            <connections>
+                                                <action selector="phone:" destination="Gce-uE-xEB" eventType="touchUpInside" id="L9M-X6-n6G"/>
+                                            </connections>
                                         </button>
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
@@ -663,7 +669,9 @@
         <class className="TWShowViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/TWShowViewController.h"/>
             <relationships>
+                <relationship kind="action" name="email:" candidateClass="UIButton"/>
                 <relationship kind="action" name="openDetailView:" candidateClass="UIButton"/>
+                <relationship kind="action" name="phone:" candidateClass="UIButton"/>
                 <relationship kind="action" name="setFavorite:" candidateClass="UIButton"/>
                 <relationship kind="action" name="setReminder:" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="albumArt" candidateClass="UIImageView"/>

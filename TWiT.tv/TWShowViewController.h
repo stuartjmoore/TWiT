@@ -7,12 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <MessageUI/MFMailComposeViewController.h>
 
 #define headerHeight 180
 
 @class Show;
 
-@interface TWShowViewController : UITableViewController <NSFetchedResultsControllerDelegate>
+@interface TWShowViewController : UITableViewController <NSFetchedResultsControllerDelegate, MFMailComposeViewControllerDelegate>
 
 @property (strong, nonatomic) Show *show;
 
@@ -25,7 +26,10 @@
 @property (weak, nonatomic) IBOutlet UIImageView *albumArt, *posterView;
 @property (weak, nonatomic) IBOutlet UILabel *scheduleLabel, *descLabel;
 
+- (IBAction)setFavorite:(UIButton*)sender;
 - (IBAction)setReminder:(UIButton*)sender;
 - (IBAction)openDetailView:(UIButton*)sender;
+- (IBAction)email:(UIButton*)sender;
+- (IBAction)phone:(UIButton*)sender;
 
 @end
