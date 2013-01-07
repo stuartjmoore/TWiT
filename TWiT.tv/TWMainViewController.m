@@ -259,7 +259,7 @@
         if(sectionVisible == TWSectionEpisodes)
             return 62;
         else if(sectionVisible == TWSectionShows)
-            return 102;
+            return 107;
     }
     else if(tableView == self.scheduleTable)
     {
