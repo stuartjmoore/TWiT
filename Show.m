@@ -74,6 +74,9 @@
             components.second = 0;
             
             NSDate *date = [NSCalendar.currentCalendar dateFromComponents:components];
+            
+            // TODO: subtract ten minutes
+            
             [dates addObject:date];
         }
     }
@@ -201,7 +204,16 @@
 #pragma mark -
 
 - (void)setFavorite:(BOOL)favorite
-{    
+{
+    if(favorite)
+    {
+        // TODO: set newest ep unwatched
+    }
+    else
+    {
+        // TODO: set all watched
+    }
+    
     [self willChangeValueForKey:@"favorite"];
     [self setPrimitiveValue:@(favorite) forKey:@"favorite"];
     [self didChangeValueForKey:@"favorite"];

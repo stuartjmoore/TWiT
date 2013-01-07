@@ -233,6 +233,7 @@
 		17E5116D168F496E00DCE89C /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 17E5116B168F496E00DCE89C /* MainStoryboard_iPad.storyboard */; };
 		17E51170168F496E00DCE89C /* TWiT_tv.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 17E5116E168F496E00DCE89C /* TWiT_tv.xcdatamodeld */; };
 		17E51176168F496E00DCE89C /* TWEpisodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 17E51175168F496E00DCE89C /* TWEpisodeViewController.m */; };
+		17F668D1169B34FC00525F65 /* TWScheduleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 17F668D0169B34FC00525F65 /* TWScheduleViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -484,6 +485,8 @@
 		17E51171168F496E00DCE89C /* TWMainViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TWMainViewController.h; sourceTree = "<group>"; };
 		17E51174168F496E00DCE89C /* TWEpisodeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TWEpisodeViewController.h; sourceTree = "<group>"; };
 		17E51175168F496E00DCE89C /* TWEpisodeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TWEpisodeViewController.m; sourceTree = "<group>"; };
+		17F668CF169B34FC00525F65 /* TWScheduleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWScheduleViewController.h; sourceTree = "<group>"; };
+		17F668D0169B34FC00525F65 /* TWScheduleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWScheduleViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -839,6 +842,8 @@
 				17AFF028169462EA0053A33C /* TWShowViewController.m */,
 				17E51174168F496E00DCE89C /* TWEpisodeViewController.h */,
 				17E51175168F496E00DCE89C /* TWEpisodeViewController.m */,
+				17F668CF169B34FC00525F65 /* TWScheduleViewController.h */,
+				17F668D0169B34FC00525F65 /* TWScheduleViewController.m */,
 				170E02A4169322130072CFA6 /* Views */,
 				17BB1CFF168F728C00221F7E /* Objects */,
 				17C43B8F1696FBCB0066C79F /* Catergories */,
@@ -1145,6 +1150,7 @@
 				17C43B931696FC220066C79F /* NSManagedObjectContext+ConvenienceMethods.m in Sources */,
 				170561DE169ACB8C00E59244 /* TWShowTableCell.m in Sources */,
 				170561E2169AD61800E59244 /* NSDate+comparisons.m in Sources */,
+				17F668D1169B34FC00525F65 /* TWScheduleViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
