@@ -172,7 +172,32 @@
     }
     else if(tableView == self.scheduleTable)
     {
-        return self.channel.schedule.count;
+        if(self.channel.schedule.count == 0)
+            return 0;
+        
+        //NSArray *today = self.channel.schedule[0];
+        int count = self.channel.schedule.count;
+        /*
+        for(NSDictionary *show in today)
+        {
+            if([show[@"startDate"] timeIntervalSinceNow] < 0
+            && [show[@"endDate"] timeIntervalSinceNow] > 0)
+            {
+                if(today.lastObject == show)
+                    count--;
+                break;
+            }
+            
+            if([show[@"startDate"] timeIntervalSinceNow] > 0
+            && [show[@"endDate"] timeIntervalSinceNow] > 0)
+            {
+                if(today.lastObject == show)
+                    count--;
+                break;
+            }
+        }
+        */
+        return count;
     }
     
     return 0;
@@ -344,7 +369,8 @@
         NSString *identifier = @"scheduleCell";
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
         
-        NSDictionary *show = self.channel.schedule[indexPath.section][indexPath.row];
+        int section = indexPath.section;// + (self.channel.schedule.count-tableView.numberOfSections);
+        NSDictionary *show = self.channel.schedule[section][indexPath.row];
         
         NSDateFormatter *dateFormatterLocal = [[NSDateFormatter alloc] init];
         [dateFormatterLocal setTimeZone:[NSTimeZone localTimeZone]];
@@ -374,6 +400,39 @@
     }
     else if([cell.reuseIdentifier isEqualToString:@"showsCell"])
     {
+        TWShowTableCell *showsCell = (TWShowTableCell*)cell;
+        id <NSFetchedResultsSectionInfo>sectionInfo = self.fetchedShowsController.sections[indexPath.section];
+        int num = sectionInfo.numberOfObjects;
+        int columns = showsCell.columns;
+        
+        for(int column = 0; column < columns; column++)
+        {
+            int index = indexPath.row*columns + column;
+            if(num > index)
+            {
+                NSIndexPath *columnedIndexPath = [NSIndexPath indexPathForRow:index inSection:indexPath.section];
+                __block Show *show = [self.fetchedShowsController objectAtIndexPath:columnedIndexPath];
+                NSString *albumArtPath = show.albumArt.path;
+                
+                dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0ul);
+                
+                dispatch_async(queue, ^{
+                    UIImage *albumArt = [UIImage imageWithContentsOfFile:albumArtPath] ?: [UIImage imageNamed:@"generic.jpg"];
+                    
+                    dispatch_sync(dispatch_get_main_queue(), ^{
+                        if(column == 0)
+                            [showsCell.showOneButton setImage:albumArt forState:UIControlStateNormal];
+                        if(column == 1)
+                            [showsCell.showTwoButton setImage:albumArt forState:UIControlStateNormal];
+                        if(column == 2)
+                            [showsCell.showThreeButton setImage:albumArt forState:UIControlStateNormal];
+                    });
+                    
+                });
+            }
+        }
+        
+        /*
         // TODO: CACHE THIS MUCHERFUCKER!
         TWShowsCell *showsCell = (TWShowsCell*)cell;
         
@@ -400,6 +459,7 @@
             }
         }
         [showsCell setShows:shows];
+         */
     }
 }
 

@@ -10,6 +10,7 @@
 #import <CoreData/CoreData.h>
 
 #import "TWShowsCell.h"
+#import "TWShowTableCell.h"
 
 #define headerHeight 180
 
