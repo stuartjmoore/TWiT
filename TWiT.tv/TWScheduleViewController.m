@@ -37,10 +37,32 @@
     return [self.schedule[section] count];
 }
 
+- (float)tableView:(UITableView*)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSArray *day = self.schedule[indexPath.section];
+    NSDictionary *show = day[indexPath.row];
+    
+    float duration = [[show objectForKey:@"duration"] floatValue];
+    float height = 50.0f*(duration/60.0f);
+    /*
+    if(indexPath.row+1 < day.count)
+    {
+        NSDictionary *nextShow = [day objectAtIndex:(indexPath.row+1)];
+        NSDate *startDate = [nextShow objectForKey:@"startDate"];
+        NSDate *endDate = [show objectForKey:@"endDate"];
+        
+        if(![startDate isEqualToDate:endDate])
+        {
+            height += 10;
+        }
+    }
+    */
+    return height;
+}
 
 - (float)tableView:(UITableView*)tableView heightForHeaderInSection:(NSInteger)section
 {
-    return 20;
+    return 21;
 }
 
 - (UIView*)tableView:(UITableView*)tableView viewForHeaderInSection:(NSInteger)section
@@ -48,23 +70,36 @@
     float width = tableView.frame.size.width;
     NSDate *startTime = self.schedule[section][0][@"startDate"];
     
-    UIView *header = [[UIView alloc] initWithFrame:CGRectMake(0, 0, width, 20)];
-    UILabel *headerLabel = [[UILabel alloc] initWithFrame:CGRectMake(107, 0, width-107, 20)];
+    UIView *header = [[UIView alloc] initWithFrame:CGRectMake(0, 0, width, 21)];
+    header.backgroundColor = [UIColor colorWithWhite:237/255.0 alpha:1];
     
-    headerLabel.backgroundColor = [UIColor clearColor];
-    //headerLabel.textColor = [UIColor whiteColor];
-    headerLabel.font = [UIFont systemFontOfSize:12];
+    UILabel *title = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, width, 19)];
+    
+    title.backgroundColor = [UIColor clearColor];
+    title.font = [UIFont boldSystemFontOfSize:12];
+    title.textAlignment = UITextAlignmentCenter;
+    title.shadowColor = [UIColor colorWithWhite:1 alpha:1];
+    title.shadowOffset = CGSizeMake(0, 1);
+    title.textColor = [UIColor colorWithWhite:132/255.0 alpha:1];
     
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"EEEE"];
-    headerLabel.text = [dateFormatter stringFromDate:startTime];
+    title.text = [dateFormatter stringFromDate:startTime];
     
     if(startTime.isToday)
-        headerLabel.text = @"Today";
+        title.text = @"Today";
     else if(startTime.isTomorrow)
-        headerLabel.text = @"Tomorrow";
+        title.text = @"Tomorrow";
     
-    [header addSubview:headerLabel];
+    [header addSubview:title];
+    
+    
+    UIView *botLine = [[UIView alloc] initWithFrame:CGRectMake(0, header.frame.size.height, width, 1)];
+    botLine.autoresizingMask = UIViewAutoresizingFlexibleTopMargin;
+    botLine.backgroundColor = [UIColor whiteColor];
+    [header addSubview:botLine];
+    
+    
     return header;
 }
 
@@ -72,6 +107,17 @@
 {
     static NSString *CellIdentifier = @"scheduleCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    float width = tableView.frame.size.width;
+    
+    UIView *topLine = [[UIView alloc] initWithFrame:CGRectMake(0, 0, width, 1)];
+    topLine.backgroundColor = [UIColor whiteColor];
+    [cell.contentView addSubview:topLine];
+    
+    UIView *botLine = [[UIView alloc] initWithFrame:CGRectMake(0, cell.contentView.frame.size.height-1, width, 1)];
+    botLine.autoresizingMask = UIViewAutoresizingFlexibleTopMargin;
+    botLine.backgroundColor = [UIColor colorWithWhite:222/255.0 alpha:1];
+    [cell.contentView addSubview:botLine];
+    
     
     NSDictionary *show = self.schedule[indexPath.section][indexPath.row];
     
