@@ -94,6 +94,7 @@
             {
                 //NSLog(@"Downloaded %@ named %@", folder, url.lastPathComponent);
                 
+                // TODO: Shrink file to largest needed size on iPhone and iPad
                 self.path = cachedPath;
                 [data writeToFile:cachedPath atomically:NO];
                 
