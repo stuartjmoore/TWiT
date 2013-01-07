@@ -7,6 +7,8 @@
 //
 
 #import <QuartzCore/QuartzCore.h>
+#import "NSDate+comparisons.h"
+
 #import "TWMainViewController.h"
 
 #import "TWShowViewController.h"
@@ -175,9 +177,9 @@
         if(self.channel.schedule.count == 0)
             return 0;
         
-        //NSArray *today = self.channel.schedule[0];
+        NSArray *today = self.channel.schedule[0];
         int count = self.channel.schedule.count;
-        /*
+        
         for(NSDictionary *show in today)
         {
             if([show[@"startDate"] timeIntervalSinceNow] < 0
@@ -196,7 +198,6 @@
                 break;
             }
         }
-        */
         return count;
     }
     
@@ -225,7 +226,8 @@
     }
     else if(tableView == self.scheduleTable)
     {
-        return [self.channel.schedule[section] count];
+        int sectionNum = section + (self.channel.schedule.count-tableView.numberOfSections);
+        return [self.channel.schedule[sectionNum] count];
     }
     
     return 0;
@@ -329,6 +331,8 @@
     }
     else if(tableView == self.scheduleTable)
     {
+        int sectionNum = section + (self.channel.schedule.count-tableView.numberOfSections);
+        
         UIView *header = [[UIView alloc] initWithFrame:CGRectMake(0, 0, width, 20)];
         UILabel *headerLabel = [[UILabel alloc] initWithFrame:CGRectMake(107, 0, width-107, 20)];
        
@@ -338,12 +342,12 @@
         
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
         [dateFormatter setDateFormat:@"EEEE"];
-        NSDate *startTime = self.channel.schedule[section][0][@"startDate"];
+        NSDate *startTime = self.channel.schedule[sectionNum][0][@"startDate"];
         headerLabel.text = [dateFormatter stringFromDate:startTime];
         
-        if(section == 0)
+        if(startTime.isToday)
             headerLabel.text = @"Today";
-        else if(section == 1)
+        else if(startTime.isTomorrow)
             headerLabel.text = @"Tomorrow";
         
         [header addSubview:headerLabel];
@@ -369,7 +373,7 @@
         NSString *identifier = @"scheduleCell";
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
         
-        int section = indexPath.section;// + (self.channel.schedule.count-tableView.numberOfSections);
+        int section = indexPath.section + (self.channel.schedule.count-tableView.numberOfSections);
         NSDictionary *show = self.channel.schedule[section][indexPath.row];
         
         NSDateFormatter *dateFormatterLocal = [[NSDateFormatter alloc] init];
