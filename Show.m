@@ -15,7 +15,7 @@
 #import "Episode.h"
 #import "Enclosure.h"
 
-#define MAX_EPISODES 50
+#define MAX_EPISODES 5
 
 @implementation Show
 
@@ -409,18 +409,26 @@
                  if(self.episodes.count >= MAX_EPISODES)
                  {
                      NSSortDescriptor *descriptor = [NSSortDescriptor sortDescriptorWithKey:@"published" ascending:NO];
-                     NSArray *descriptors = [NSArray arrayWithObject:descriptor];
-                     NSArray *sortedEpisodes = [self.episodes sortedArrayUsingDescriptors:descriptors];
+                     NSArray *sortedEpisodes = [self.episodes sortedArrayUsingDescriptors:@[descriptor]];
                      Episode *oldestEpisode = sortedEpisodes.lastObject;
                      
-                     if([published laterDate:oldestEpisode.published] == oldestEpisode.published)
+                     NSLog(@"new - %d - %@ - %@", number, published, title);
+                     NSLog(@"vs");
+                     NSLog(@"old - %d - %@ - %@", oldestEpisode.number, oldestEpisode.published, oldestEpisode.title);
+                     
+                     NSLog(@"if - %d", [published compare:oldestEpisode.published]);
+                     
+                     if([published compare:oldestEpisode.published] == NSOrderedAscending)
                      {
+                         NSLog(@"find a new ep");
                          continue;
                      }
                      else
                      {
+                         NSLog(@"delete oldy");
                          [self removeEpisodesObject:oldestEpisode];
                      }
+                     NSLog(@"---");
                  }
                  
                  NSManagedObjectContext *context = self.managedObjectContext;
@@ -453,9 +461,9 @@
              enclosure.quality = feed.quality;
              enclosure.type = feed.type;
              [episode addEnclosuresObject:enclosure];
-             
-             [context save:nil];
          }
+         
+         [self.managedObjectContext save:nil];
      }];
 }
 
