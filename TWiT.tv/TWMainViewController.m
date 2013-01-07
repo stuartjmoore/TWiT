@@ -119,7 +119,7 @@
     else if([segue.identifier isEqualToString:@"showDetail"])
     {
         NSIndexPath *rowPath = sender[@"indexPath"];
-        TWShowsCell *showCell = (TWShowsCell*)[self.tableView cellForRowAtIndexPath:rowPath];
+        TWShowTableCell *showCell = (TWShowTableCell*)[self.tableView cellForRowAtIndexPath:rowPath];
         int index = rowPath.row*showCell.columns + [sender[@"column"] intValue];
         NSIndexPath *indexPath = [NSIndexPath indexPathForRow:index inSection:rowPath.section];
         Show *show = [self.fetchedShowsController objectAtIndexPath:indexPath];
@@ -416,6 +416,20 @@
     else if([cell.reuseIdentifier isEqualToString:@"showsCell"])
     {
         TWShowTableCell *showsCell = (TWShowTableCell*)cell;
+        showsCell.delegate = self;
+        showsCell.table = self.tableView;
+        showsCell.indexPath = indexPath;
+        
+        showsCell.showOneButton.tag = 0;
+        [showsCell.showOneButton addTarget:showsCell action:@selector(selectColumn:) forControlEvents:UIControlEventTouchUpInside];
+        
+        showsCell.showTwoButton.tag = 1;
+        [showsCell.showTwoButton addTarget:showsCell action:@selector(selectColumn:) forControlEvents:UIControlEventTouchUpInside];
+        
+        showsCell.showThreeButton.tag = 2;
+        [showsCell.showThreeButton addTarget:showsCell action:@selector(selectColumn:) forControlEvents:UIControlEventTouchUpInside];
+        
+        
         id <NSFetchedResultsSectionInfo>sectionInfo = self.fetchedShowsController.sections[indexPath.section];
         int num = sectionInfo.numberOfObjects;
         int columns = showsCell.columns;

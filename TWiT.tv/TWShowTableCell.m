@@ -23,11 +23,9 @@
     return self;
 }
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated
+- (void)selectColumn:(UIButton*)sender
 {
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
+    [self.delegate tableView:self.table didSelectColumn:sender.tag AtIndexPath:self.indexPath];
 }
 
 @end
