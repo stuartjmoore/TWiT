@@ -536,6 +536,22 @@
         }
     }
     
+    
+    NSPredicate *p = [NSPredicate predicateWithFormat:@"%@ == title OR %@ == titleInSchedule",
+                      self.liveTitleLabel.text, self.liveTitleLabel.text];
+    Show *show = [[self.channel.shows filteredSetUsingPredicate:p] anyObject];
+    
+    if(show)
+    {
+        self.livePosterView.image = show.poster.image ?: show.albumArt.image;
+    }
+    else
+    {
+        Show *show = self.channel.shows.anyObject;
+        self.livePosterView.image = show.poster.image;
+    }
+    
+    
     [self.scheduleTable reloadData];
 }
 

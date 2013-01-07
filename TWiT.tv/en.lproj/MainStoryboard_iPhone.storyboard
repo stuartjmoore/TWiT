@@ -38,7 +38,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="360" height="180"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" image="generic.jpg" id="nYS-gc-BrI">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" image="generic.jpg" id="nYS-gc-BrI">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="180"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         </imageView>
@@ -276,6 +276,7 @@
                     <navigationItem key="navigationItem" title="TWiT" id="36"/>
                     <connections>
                         <outlet property="headerView" destination="7ZG-JS-fuA" id="BgD-Ht-vsJ"/>
+                        <outlet property="livePosterView" destination="nYS-gc-BrI" id="0Fb-MD-v8b"/>
                         <outlet property="liveTimeLabel" destination="qic-N3-e3p" id="LKy-Qm-X1E"/>
                         <outlet property="liveTitleLabel" destination="3sf-ex-lxR" id="38x-zI-Kwf"/>
                         <outlet property="scheduleTable" destination="al8-rz-t9s" id="Mgc-o8-SkF"/>
@@ -659,6 +660,7 @@
             <relationships>
                 <relationship kind="action" name="openScheduleView:" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="headerView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="livePosterView" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="liveTimeLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="liveTitleLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="scheduleTable" candidateClass="UITableView"/>
@@ -699,6 +701,6 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="OfB-Q1-3Dp"/>
+        <segue reference="YiW-0V-IC2"/>
     </inferredMetricsTieBreakers>
 </document>

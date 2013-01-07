@@ -35,6 +35,7 @@ typedef NS_ENUM(NSInteger, TWSection)
 
 @property (weak, nonatomic) IBOutlet UIView *headerView;
 @property (weak, nonatomic) IBOutlet UILabel *liveTimeLabel, *liveTitleLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *livePosterView;
 @property (weak, nonatomic) IBOutlet UITableView *scheduleTable;
 @property (strong, nonatomic) UIView *sectionHeader;
 
