@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		170561DE169ACB8C00E59244 /* TWShowTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 170561DD169ACB8C00E59244 /* TWShowTableCell.m */; };
 		170561E2169AD61800E59244 /* NSDate+comparisons.m in Sources */ = {isa = PBXBuildFile; fileRef = 170561E1169AD61800E59244 /* NSDate+comparisons.m */; };
+		170561F0169AFD2F00E59244 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 170561EF169AFD2F00E59244 /* MessageUI.framework */; };
 		170BA04C1691CD550022FE4D /* button-blue-left.png in Resources */ = {isa = PBXBuildFile; fileRef = 170B9F6F1691CD540022FE4D /* button-blue-left.png */; };
 		170BA04D1691CD550022FE4D /* button-blue-left@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 170B9F701691CD540022FE4D /* button-blue-left@2x.png */; };
 		170BA04E1691CD550022FE4D /* button-blue-mid.png in Resources */ = {isa = PBXBuildFile; fileRef = 170B9F711691CD540022FE4D /* button-blue-mid.png */; };
@@ -239,6 +240,7 @@
 		170561DD169ACB8C00E59244 /* TWShowTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWShowTableCell.m; sourceTree = "<group>"; };
 		170561E0169AD61800E59244 /* NSDate+comparisons.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+comparisons.h"; sourceTree = "<group>"; };
 		170561E1169AD61800E59244 /* NSDate+comparisons.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+comparisons.m"; sourceTree = "<group>"; };
+		170561EF169AFD2F00E59244 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		170B9F6F1691CD540022FE4D /* button-blue-left.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "button-blue-left.png"; sourceTree = "<group>"; };
 		170B9F701691CD540022FE4D /* button-blue-left@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "button-blue-left@2x.png"; sourceTree = "<group>"; };
 		170B9F711691CD540022FE4D /* button-blue-mid.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "button-blue-mid.png"; sourceTree = "<group>"; };
@@ -489,6 +491,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				170561F0169AFD2F00E59244 /* MessageUI.framework in Frameworks */,
 				170BA15D1691D5E70022FE4D /* QuartzCore.framework in Frameworks */,
 				17E5114F168F496E00DCE89C /* UIKit.framework in Frameworks */,
 				17E51151168F496E00DCE89C /* Foundation.framework in Frameworks */,
@@ -813,6 +816,7 @@
 		17E5114D168F496E00DCE89C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				170561EF169AFD2F00E59244 /* MessageUI.framework */,
 				17E5114E168F496E00DCE89C /* UIKit.framework */,
 				17E51150168F496E00DCE89C /* Foundation.framework */,
 				17E51152168F496E00DCE89C /* CoreGraphics.framework */,
