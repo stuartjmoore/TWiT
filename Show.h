@@ -26,6 +26,7 @@
 @property (nonatomic, strong) NSSet *episodes, *feeds;
 
 - (Poster*)poster;
+- (NSDate*)scheduleDate;
 - (NSString*)scheduleString;
 
 - (void)updateEpisodes;

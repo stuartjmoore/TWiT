@@ -30,6 +30,19 @@
     return episode.poster;
 }
 
+- (NSDate*)scheduleDate
+{
+    NSDateComponents *components = [[NSDateComponents alloc] init];
+    components.timeZone = [NSTimeZone timeZoneWithName:@"America/Los_Angeles"];
+    components.weekday = 1;
+    components.weekdayOrdinal = 1;
+    components.hour = 6;
+    components.minute = 0;
+    components.second = 0;
+    
+    return [NSCalendar.currentCalendar dateFromComponents:components];
+}
+
 - (NSString*)scheduleString
 {
     NSString *scheduleString = self.schedule;
@@ -159,19 +172,33 @@
 }
 
 - (void)setRemind:(BOOL)remind
-{/*
-    UILocalNotification *notification = [[UILocalNotification alloc] init];
-    notification.fireDate = [NSDate date];
-    notification.timeZone = [NSTimeZone defaultTimeZone];
+{
+    NSArray *notifications = UIApplication.sharedApplication.scheduledLocalNotifications;
     
-    notification.alertBody = @"Notification triggered";
-    notification.alertAction = @"Details";
+    for(UILocalNotification *notification in notifications)
+        if([notification.userInfo[@"title"] isEqualToString:self.titleAcronym])
+            [UIApplication.sharedApplication cancelLocalNotification:notification];
     
-    NSDictionary *infoDict = @{ @"" : @"" };
-    notification.userInfo = infoDict;
+    if(remind)
+    {
+        NSDate *fireDate = self.scheduleDate;
+        
+        UILocalNotification *notification = [[UILocalNotification alloc] init];
+        notification.timeZone = [NSTimeZone timeZoneWithName:@"America/Los_Angeles"];
+        notification.repeatInterval = NSWeekCalendarUnit;
+        notification.fireDate = fireDate;
+        
+        notification.alertBody = @"Show Starting";
+        notification.alertAction = @"Watch";
+        
+        notification.userInfo = @{ @"title" : self.titleAcronym };
+        
+        [UIApplication.sharedApplication scheduleLocalNotification:notification];
+    }
     
-    [UIApplication.sharedApplication scheduleLocalNotification:notification];
-    */
+   
+    NSLog(@"%@", UIApplication.sharedApplication.scheduledLocalNotifications);
+    
     
     [self willChangeValueForKey:@"remind"];
     [self setPrimitiveValue:@(remind) forKey:@"remind"];
