@@ -462,7 +462,7 @@
         }
         
         /*
-        // TODO: CACHE THIS MUCHERFUCKER!
+        // CACHE THIS MUCHERFUCKER
         TWShowsCell *showsCell = (TWShowsCell*)cell;
         
         showsCell.spacing = 14;

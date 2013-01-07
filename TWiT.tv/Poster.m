@@ -20,10 +20,18 @@
 {
     NSString *_path = self.path ?: self.episode.show.poster.path;
     
-    if(_path)
-        return [UIImage imageWithContentsOfFile:_path];
-    else
-        return [UIImage imageWithContentsOfFile:self.episode.show.albumArt.path];
+    if(!_path)
+    {
+        NSString *resourceName = [NSString stringWithFormat:@"%@-poster.png", self.episode.show.titleAcronym.lowercaseString];
+        NSString *resourcePath = [NSBundle.mainBundle.resourcePath stringByAppendingPathComponent:resourceName];
+        
+        if([NSFileManager.defaultManager fileExistsAtPath:resourcePath])
+            _path = resourcePath;
+        else
+            _path = self.episode.show.albumArt.path;
+    }
+    
+    return [UIImage imageWithContentsOfFile:_path];
 }
 
 - (void)setUrl:(NSString*)URLString
@@ -114,7 +122,6 @@
                  
                  // TODO: post notification
              }
-             // Else, use cached poster
          }];
     }
 }
