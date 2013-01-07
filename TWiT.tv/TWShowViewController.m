@@ -26,7 +26,7 @@
     
     self.title = self.show.title;
     self.albumArt.image = self.show.albumArt.image;
-    self.posterView.image = self.show.poster.image ?: self.show.albumArt.image;
+    self.posterView.image = self.show.poster.image;
     self.scheduleLabel.text = self.show.scheduleString;
     self.descLabel.text = self.show.desc;
     

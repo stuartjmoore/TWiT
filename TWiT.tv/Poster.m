@@ -22,7 +22,7 @@
     
     if(!_path)
     {
-        NSString *resourceName = [NSString stringWithFormat:@"%@-poster.png", self.episode.show.titleAcronym.lowercaseString];
+        NSString *resourceName = [NSString stringWithFormat:@"%@-poster.jpg", self.episode.show.titleAcronym.lowercaseString];
         NSString *resourcePath = [NSBundle.mainBundle.resourcePath stringByAppendingPathComponent:resourceName];
         
         if([NSFileManager.defaultManager fileExistsAtPath:resourcePath])
