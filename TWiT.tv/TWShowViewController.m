@@ -141,7 +141,19 @@
         Episode *episode = [self.fetchedEpisodesController objectAtIndexPath:indexPath];
         TWEpisodeCell *episodeCell = (TWEpisodeCell*)cell;
         
-        episodeCell.albumArt.image = [UIImage imageNamed:@"aaa600.jpg"];
+        if(!episode.watched)
+        {
+            episodeCell.numberLabel.textColor = [UIColor colorWithRed:239/255.0 green:79/255.0 blue:61/255.0 alpha:1];
+            episodeCell.numberLabel.shadowColor = [UIColor blackColor];
+            episodeCell.numberLabel.shadowOffset = CGSizeMake(0, 1);
+        }
+        else
+        {
+            episodeCell.numberLabel.textColor = [UIColor blackColor];
+            episodeCell.numberLabel.shadowColor = [UIColor clearColor];
+            episodeCell.numberLabel.shadowOffset = CGSizeMake(0, 0);
+        }
+        
         episodeCell.titleLabel.text = episode.title;
         episodeCell.subtitleLabel.text = episode.guests;
         episodeCell.numberLabel.text = @(episode.number).stringValue;

@@ -264,7 +264,6 @@
                                     <outlet property="showOneButton" destination="rMH-HV-Kdi" id="WVU-kG-eOW"/>
                                     <outlet property="showThreeButton" destination="KKn-LP-Oow" id="bww-me-TJL"/>
                                     <outlet property="showTwoButton" destination="ggv-M9-GU2" id="v86-Aa-Qdt"/>
-                                    <segue destination="Gce-uE-xEB" kind="push" identifier="showDetail" id="uDP-QL-0Qw"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -280,6 +279,7 @@
                         <outlet property="liveTimeLabel" destination="qic-N3-e3p" id="LKy-Qm-X1E"/>
                         <outlet property="liveTitleLabel" destination="3sf-ex-lxR" id="38x-zI-Kwf"/>
                         <outlet property="scheduleTable" destination="al8-rz-t9s" id="Mgc-o8-SkF"/>
+                        <segue destination="Gce-uE-xEB" kind="push" identifier="showDetail" id="faS-ri-65R"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="17" sceneMemberID="firstResponder"/>

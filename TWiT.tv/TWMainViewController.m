@@ -408,7 +408,7 @@
     {
         Episode *episode = [self.fetchedEpisodesController objectAtIndexPath:indexPath];
         TWEpisodeCell *episodeCell = (TWEpisodeCell*)cell;
-        
+
         episodeCell.albumArt.image = episode.show.albumArt.image;
         episodeCell.titleLabel.text = episode.title;
         episodeCell.subtitleLabel.text = episode.show.title;
