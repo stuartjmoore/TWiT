@@ -46,7 +46,18 @@
         controller.channel = channel;
     }
     
+    
+    UILocalNotification *notification = [launchOptions objectForKey:UIApplicationLaunchOptionsLocalNotificationKey];
+    if(notification)
+    {
+    }
+    
+    
     return YES;
+}
+
+- (void)application:(UIApplication*)application didReceiveLocalNotification:(UILocalNotification*)notification
+{
 }
 							
 - (void)applicationWillResignActive:(UIApplication *)application
