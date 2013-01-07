@@ -15,6 +15,8 @@
 #import "TWEpisodeViewController.h"
 #import "TWEpisodeCell.h"
 
+#import "TWScheduleViewController.h"
+
 #import "Channel.h"
 #import "Show.h"
 #import "AlbumArt.h"
@@ -144,6 +146,10 @@
         Show *show = [self.fetchedShowsController objectAtIndexPath:indexPath];
         
         [segue.destinationViewController setShow:show];
+    }
+    else if([segue.identifier isEqualToString:@"scheduleView"])
+    {
+        [segue.destinationViewController setSchedule:self.channel.schedule];
     }
 }
 
