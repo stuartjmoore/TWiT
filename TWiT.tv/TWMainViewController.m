@@ -27,6 +27,16 @@
 
 @implementation TWMainViewController
 
+- (id)initWithCoder:(NSCoder *)aDecoder
+{
+    self = [super initWithCoder:aDecoder];
+    if(self)
+    {
+        
+    }
+    return self;
+}
+
 - (void)awakeFromNib
 {
     /* 
@@ -36,7 +46,7 @@
      
     if(UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPad)
         self.clearsSelectionOnViewWillAppear = NO;
-    */
+     */
     
     [super awakeFromNib];
 }
@@ -52,6 +62,15 @@
                                            selector:@selector(reloadSchedule:)
                                                name:@"ScheduleDidUpdate"
                                              object:nil];
+    
+    
+    UIImage *leftOrangeBackground = [self.watchButton backgroundImageForState:UIControlStateNormal];
+    leftOrangeBackground = [leftOrangeBackground stretchableImageWithLeftCapWidth:5 topCapHeight:0];
+    [self.watchButton setBackgroundImage:leftOrangeBackground forState:UIControlStateNormal];
+    
+    UIImage *rightOrangeBackground = [self.listenButton backgroundImageForState:UIControlStateNormal];
+    rightOrangeBackground = [rightOrangeBackground stretchableImageWithLeftCapWidth:1 topCapHeight:0];
+    [self.listenButton setBackgroundImage:rightOrangeBackground forState:UIControlStateNormal];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -68,7 +87,7 @@
 // TODO: Use a smaller disclose icon, unrotate schedule icon
 
 - (IBAction)openScheduleView:(UIButton*)sender
-{
+{/*
     if(self.tableView.contentOffset.y <= -self.view.bounds.size.height+headerHeight)
     {
         self.tableView.scrollEnabled = YES;
@@ -88,7 +107,7 @@
              sender.transform = CGAffineTransformMakeRotation(M_PI);
              [sender setImage:[UIImage imageNamed:@"toolbar-schedule-arrow-up"] forState:UIControlStateNormal];
          }];
-    }
+    }*/
 }
 
 - (void)switchVisibleSection:(UIButton*)sender
