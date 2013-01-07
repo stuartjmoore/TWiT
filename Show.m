@@ -147,6 +147,39 @@
     return scheduleString;
 }
 
+#pragma mark -
+
+- (void)setFavorite:(BOOL)favorite
+{    
+    [self willChangeValueForKey:@"favorite"];
+    [self setPrimitiveValue:@(favorite) forKey:@"favorite"];
+    [self didChangeValueForKey:@"favorite"];
+    
+    [self.managedObjectContext save:nil];
+}
+
+- (void)setRemind:(BOOL)remind
+{/*
+    UILocalNotification *notification = [[UILocalNotification alloc] init];
+    notification.fireDate = [NSDate date];
+    notification.timeZone = [NSTimeZone defaultTimeZone];
+    
+    notification.alertBody = @"Notification triggered";
+    notification.alertAction = @"Details";
+    
+    NSDictionary *infoDict = @{ @"" : @"" };
+    notification.userInfo = infoDict;
+    
+    [UIApplication.sharedApplication scheduleLocalNotification:notification];
+    */
+    
+    [self willChangeValueForKey:@"remind"];
+    [self setPrimitiveValue:@(remind) forKey:@"remind"];
+    [self didChangeValueForKey:@"remind"];
+    
+    [self.managedObjectContext save:nil];
+}
+
 #pragma mark - Update Episodes
 
 - (void)updateEpisodes
