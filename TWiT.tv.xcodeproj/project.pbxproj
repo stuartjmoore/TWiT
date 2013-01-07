@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		170561DE169ACB8C00E59244 /* TWShowTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 170561DD169ACB8C00E59244 /* TWShowTableCell.m */; };
+		170561E2169AD61800E59244 /* NSDate+comparisons.m in Sources */ = {isa = PBXBuildFile; fileRef = 170561E1169AD61800E59244 /* NSDate+comparisons.m */; };
 		170BA04C1691CD550022FE4D /* button-blue-left.png in Resources */ = {isa = PBXBuildFile; fileRef = 170B9F6F1691CD540022FE4D /* button-blue-left.png */; };
 		170BA04D1691CD550022FE4D /* button-blue-left@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 170B9F701691CD540022FE4D /* button-blue-left@2x.png */; };
 		170BA04E1691CD550022FE4D /* button-blue-mid.png in Resources */ = {isa = PBXBuildFile; fileRef = 170B9F711691CD540022FE4D /* button-blue-mid.png */; };
@@ -236,6 +237,8 @@
 /* Begin PBXFileReference section */
 		170561DC169ACB8C00E59244 /* TWShowTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWShowTableCell.h; sourceTree = "<group>"; };
 		170561DD169ACB8C00E59244 /* TWShowTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWShowTableCell.m; sourceTree = "<group>"; };
+		170561E0169AD61800E59244 /* NSDate+comparisons.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+comparisons.h"; sourceTree = "<group>"; };
+		170561E1169AD61800E59244 /* NSDate+comparisons.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+comparisons.m"; sourceTree = "<group>"; };
 		170B9F6F1691CD540022FE4D /* button-blue-left.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "button-blue-left.png"; sourceTree = "<group>"; };
 		170B9F701691CD540022FE4D /* button-blue-left@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "button-blue-left@2x.png"; sourceTree = "<group>"; };
 		170B9F711691CD540022FE4D /* button-blue-mid.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "button-blue-mid.png"; sourceTree = "<group>"; };
@@ -784,6 +787,8 @@
 			children = (
 				17C43B911696FC220066C79F /* NSManagedObjectContext+ConvenienceMethods.h */,
 				17C43B921696FC220066C79F /* NSManagedObjectContext+ConvenienceMethods.m */,
+				170561E0169AD61800E59244 /* NSDate+comparisons.h */,
+				170561E1169AD61800E59244 /* NSDate+comparisons.m */,
 			);
 			name = Catergories;
 			sourceTree = "<group>";
@@ -1135,6 +1140,7 @@
 				176380AA16960FDD0060D076 /* AlbumArt.m in Sources */,
 				17C43B931696FC220066C79F /* NSManagedObjectContext+ConvenienceMethods.m in Sources */,
 				170561DE169ACB8C00E59244 /* TWShowTableCell.m in Sources */,
+				170561E2169AD61800E59244 /* NSDate+comparisons.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
