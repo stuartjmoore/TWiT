@@ -30,17 +30,52 @@
     return episode.poster;
 }
 
-- (NSDate*)scheduleDate
+- (NSArray*)scheduleDates
 {
-    NSDateComponents *components = [[NSDateComponents alloc] init];
-    components.timeZone = [NSTimeZone timeZoneWithName:@"America/Los_Angeles"];
-    components.weekday = 1;
-    components.weekdayOrdinal = 1;
-    components.hour = 6;
-    components.minute = 0;
-    components.second = 0;
+    NSMutableArray *dates = [NSMutableArray array];
+    int day, hour, minute;
     
-    return [NSCalendar.currentCalendar dateFromComponents:components];
+    if([self.schedule rangeOfString:@"@"].location != NSNotFound)
+    {
+        NSArray *daysAndTime = [self.schedule componentsSeparatedByString:@"@"];
+        
+        int time = [daysAndTime[1] intValue];
+        hour = time/100;
+        minute = time%100;
+        
+        NSArray *days = [daysAndTime[0] componentsSeparatedByString:@","];
+        for(NSString *dayString in days)
+        {
+            if([dayString isEqualToString:@"SU"])
+                day = 1;
+            else if([dayString isEqualToString:@"MO"])
+                day = 2;
+            else if([dayString isEqualToString:@"TU"])
+                day = 3;
+            else if([dayString isEqualToString:@"WE"])
+                day = 4;
+            else if([dayString isEqualToString:@"TH"])
+                day = 5;
+            else if([dayString isEqualToString:@"FR"])
+                day = 6;
+            else if([dayString isEqualToString:@"SA"])
+                day = 7;
+            
+            NSDateComponents *components = [[NSDateComponents alloc] init];
+            components.timeZone = [NSTimeZone timeZoneWithName:@"America/Los_Angeles"];
+            components.year = 2012;
+            components.weekday = day;
+            components.weekdayOrdinal = 1;
+            components.hour = hour;
+            components.minute = minute;
+            components.second = 0;
+            
+            NSDate *date = [NSCalendar.currentCalendar dateFromComponents:components];
+            [dates addObject:date];
+        }
+    }
+    
+    return dates;
 }
 
 - (NSString*)scheduleString
@@ -181,23 +216,20 @@
     
     if(remind)
     {
-        NSDate *fireDate = self.scheduleDate;
-        
-        UILocalNotification *notification = [[UILocalNotification alloc] init];
-        notification.timeZone = [NSTimeZone timeZoneWithName:@"America/Los_Angeles"];
-        notification.repeatInterval = NSWeekCalendarUnit;
-        notification.fireDate = fireDate;
-        
-        notification.alertBody = @"Show Starting";
-        notification.alertAction = @"Watch";
-        
-        notification.userInfo = @{ @"title" : self.titleAcronym };
-        
-        [UIApplication.sharedApplication scheduleLocalNotification:notification];
+        for(NSDate *fireDate in self.scheduleDates)
+        {
+            UILocalNotification *notification = [[UILocalNotification alloc] init];
+            notification.repeatInterval = NSWeekCalendarUnit;
+            notification.fireDate = fireDate;
+            
+            notification.alertBody = @"Show Starting";
+            notification.alertAction = @"Watch";
+            
+            notification.userInfo = @{ @"title" : self.titleAcronym };
+            
+            [UIApplication.sharedApplication scheduleLocalNotification:notification];
+        }
     }
-    
-   
-    NSLog(@"%@", UIApplication.sharedApplication.scheduledLocalNotifications);
     
     
     [self willChangeValueForKey:@"remind"];
