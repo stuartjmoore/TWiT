@@ -28,6 +28,11 @@
     self.scheduleLabel.text = self.show.scheduleString;
     self.descLabel.text = self.show.desc;
     
+    self.favoriteButton.selected = self.show.favorite;
+    self.remindButton.selected = self.show.remind;
+    self.emailButton.hidden = !self.show.email;
+    self.phoneButton.hidden = !self.show.phone;
+    
     CGSize maxSize = CGSizeMake(self.descLabel.frame.size.width, CGFLOAT_MAX);
     CGSize size = [self.descLabel.text sizeWithFont:self.descLabel.font constrainedToSize:maxSize];
     CGRect frame = self.descLabel.frame;
@@ -46,14 +51,16 @@
 
 #pragma mark - Actions
 
-- (void)prepareForSegue:(UIStoryboardSegue*)segue sender:(id)sender
+- (IBAction)setFavorite:(UIButton*)sender
 {
-    if([segue.identifier isEqualToString:@"episodeDetail"])
-    {
-        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-        Episode *episode = [self.fetchedEpisodesController objectAtIndexPath:indexPath];
-        [segue.destinationViewController setEpisode:episode];
-    }
+    self.show.favorite = !self.show.favorite;
+    sender.selected = self.show.favorite;
+}
+
+- (IBAction)setReminder:(UIButton*)sender
+{
+    self.show.remind = !self.show.remind;
+    sender.selected = self.show.remind;
 }
 
 - (IBAction)openDetailView:(UIButton*)sender
@@ -248,11 +255,16 @@
     [self.tableView endUpdates];
 }
 
-#pragma mark - Kill
+#pragma mark - Leave
 
-- (void)didReceiveMemoryWarning
+- (void)prepareForSegue:(UIStoryboardSegue*)segue sender:(id)sender
 {
-    [super didReceiveMemoryWarning];
+    if([segue.identifier isEqualToString:@"episodeDetail"])
+    {
+        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+        Episode *episode = [self.fetchedEpisodesController objectAtIndexPath:indexPath];
+        [segue.destinationViewController setEpisode:episode];
+    }
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -265,6 +277,11 @@
 - (void)viewDidUnload
 {
     self.fetchedEpisodesController = nil;
+}
+
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
 }
 
 @end

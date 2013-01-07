@@ -19,10 +19,13 @@
 @property (strong, nonatomic) NSFetchedResultsController *fetchedEpisodesController;
 
 @property (weak, nonatomic) IBOutlet UIView *headerView;
+@property (weak, nonatomic) IBOutlet UIButton *favoriteButton, *remindButton;
+@property (weak, nonatomic) IBOutlet UIButton *emailButton, *phoneButton;
 
 @property (weak, nonatomic) IBOutlet UIImageView *albumArt, *posterView;
 @property (weak, nonatomic) IBOutlet UILabel *scheduleLabel, *descLabel;
 
+- (IBAction)setReminder:(UIButton*)sender;
 - (IBAction)openDetailView:(UIButton*)sender;
 
 @end
