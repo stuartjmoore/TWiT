@@ -46,7 +46,7 @@
     [super viewDidLoad];
 	
     // TODO: Save state?
-    sectionVisible = TWSectionEpisodes;
+    sectionVisible = TWSectionShows;
     
     [NSNotificationCenter.defaultCenter addObserver:self
                                            selector:@selector(reloadSchedule:)
