@@ -27,6 +27,9 @@
     NSSet *episodes = [self.episodes filteredSetUsingPredicate:pred];
     Episode *episode = episodes.anyObject;
     
+    if(!episode)
+        episode = self.episodes.anyObject;
+    
     return episode.poster;
 }
 
