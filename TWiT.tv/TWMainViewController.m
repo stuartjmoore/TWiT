@@ -136,6 +136,7 @@
     UIAccessibilityPostNotification(UIAccessibilityLayoutChangedNotification, nil);
     
     CGPoint newPoint = [[change valueForKey:NSKeyValueChangeNewKey] CGPointValue];
+    float height = (UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPhone) ? mainHeaderHeight : mainHeaderHeight_iPad;
     
     if(object == self.tableView)
     {
@@ -143,7 +144,7 @@
         {
             CGRect frame = self.headerView.frame;
             frame.origin.y = newPoint.y;
-            frame.size.height = ceilf(headerHeight-newPoint.y);
+            frame.size.height = ceilf(height-newPoint.y);
             self.headerView.frame = frame;
             
             float sectionHeaderHeight = [self.tableView.delegate tableView:self.tableView heightForHeaderInSection:0];
@@ -154,12 +155,12 @@
         {
             CGRect frame = self.headerView.frame;
             frame.origin.y = 0;
-            frame.size.height = headerHeight;
+            frame.size.height = height;
             self.headerView.frame = frame;
             
             float sectionHeaderHeight = [self.tableView.delegate tableView:self.tableView heightForHeaderInSection:0];
-            self.tableView.scrollIndicatorInsets = UIEdgeInsetsMake(headerHeight+sectionHeaderHeight, 0, 0, 0);
-            self.sectionHeader.layer.shadowOpacity = newPoint.y-headerHeight < 0 ? 0 : (newPoint.y-headerHeight)/20;
+            self.tableView.scrollIndicatorInsets = UIEdgeInsetsMake(height+sectionHeaderHeight, 0, 0, 0);
+            self.sectionHeader.layer.shadowOpacity = newPoint.y-height < 0 ? 0 : (newPoint.y-height)/20;
         }
     }
 }
@@ -338,7 +339,7 @@
         botLine.backgroundColor = [UIColor colorWithWhite:222/255.0 alpha:1];
         [self.sectionHeader addSubview:botLine];
         
-        float offest = self.tableView.contentOffset.y-headerHeight;
+        float offest = self.tableView.contentOffset.y-mainHeaderHeight;
         self.sectionHeader.layer.shadowOpacity = offest < 0 ? 0 : offest/20;
         self.sectionHeader.layer.shadowColor = [[UIColor colorWithWhite:0 alpha:0.5f] CGColor];
         self.sectionHeader.layer.shadowOffset = CGSizeMake(0, 3);
@@ -518,21 +519,11 @@
     } while(tryTomorrow);
 
     
-    
     NSPredicate *p = [NSPredicate predicateWithFormat:@"%@ BEGINSWITH title OR %@ BEGINSWITH titleInSchedule",
                       self.liveTitleLabel.text, self.liveTitleLabel.text];
-    Show *show = [[self.channel.shows filteredSetUsingPredicate:p] anyObject];
-    
-    if(show)
-    {
-        self.livePosterView.image = show.poster.image ?: show.albumArt.image;
-    }
-    else
-    {
-        Show *show = self.channel.shows.anyObject;
-        self.livePosterView.image = show.poster.image;
-    }
-    
+    Show *show = [[self.channel.shows filteredSetUsingPredicate:p] anyObject] ?: self.channel.shows.anyObject;
+    self.livePosterView.image = show.poster.image ?: show.albumArt.image;
+    self.liveAlbumArtView.image = show.albumArt.image;
     
     [self.scheduleTable reloadData];
 }

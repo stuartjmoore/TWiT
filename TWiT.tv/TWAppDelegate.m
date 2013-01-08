@@ -35,6 +35,7 @@
         TWMainViewController *controller = (TWMainViewController*)masterNavigationController.topViewController;
         
         controller.managedObjectContext = self.managedObjectContext;
+        controller.channel = channel;
     }
     else
     {

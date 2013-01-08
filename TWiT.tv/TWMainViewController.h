@@ -11,7 +11,8 @@
 
 #import "TWShowsCell.h"
 
-#define headerHeight 180
+#define mainHeaderHeight 180
+#define mainHeaderHeight_iPad 62
 
 typedef NS_ENUM(NSInteger, TWSection)
 {
@@ -36,7 +37,7 @@ typedef NS_ENUM(NSInteger, TWSection)
 @property (weak, nonatomic) IBOutlet UIView *headerView;
 @property (weak, nonatomic) IBOutlet UIButton *watchButton, *listenButton;
 @property (weak, nonatomic) IBOutlet UILabel *liveTimeLabel, *liveTitleLabel;
-@property (weak, nonatomic) IBOutlet UIImageView *livePosterView;
+@property (weak, nonatomic) IBOutlet UIImageView *livePosterView, *liveAlbumArtView;
 @property (weak, nonatomic) IBOutlet UITableView *scheduleTable;
 @property (strong, nonatomic) UIView *sectionHeader;
 
