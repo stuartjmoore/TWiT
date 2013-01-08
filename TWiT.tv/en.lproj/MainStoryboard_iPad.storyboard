@@ -31,6 +31,42 @@
                         <view key="tableHeaderView" contentMode="scaleToFill" id="W2V-kI-3EY">
                             <rect key="frame" x="0.0" y="0.0" width="703" height="220"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <view clipsSubviews="YES" contentMode="scaleToFill" id="aRa-WB-LVf">
+                                    <rect key="frame" x="0.0" y="0.0" width="703" height="220"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" id="Shz-Pt-aQ0">
+                                            <rect key="frame" x="0.0" y="0.0" width="703" height="220"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                        </imageView>
+                                        <view contentMode="scaleToFill" id="rfi-L6-BRt">
+                                            <rect key="frame" x="0.0" y="0.0" width="703" height="220"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.34999999999999998" colorSpace="calibratedWhite"/>
+                                        </view>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="653-SW-okE">
+                                            <rect key="frame" x="20" y="179" width="97" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                            <color key="shadowColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                            <size key="shadowOffset" width="0.0" height="1"/>
+                                        </label>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="U1M-Nu-E1D">
+                                            <rect key="frame" x="125" y="179" width="558" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                            <color key="shadowColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                            <size key="shadowOffset" width="0.0" height="1"/>
+                                        </label>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                </view>
+                            </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         </view>
                         <prototypes>
@@ -51,6 +87,10 @@
                     </tableView>
                     <navigationItem key="navigationItem" id="YYM-cP-mU2"/>
                     <connections>
+                        <outlet property="headerView" destination="aRa-WB-LVf" id="U5N-Kw-pDP"/>
+                        <outlet property="livePosterView" destination="Shz-Pt-aQ0" id="nTY-R7-bzN"/>
+                        <outlet property="liveTimeLabel" destination="653-SW-okE" id="dLP-rt-7Fs"/>
+                        <outlet property="liveTitleLabel" destination="U1M-Nu-E1D" id="yc8-hu-iH5"/>
                         <segue destination="4" kind="push" identifier="episodeDetail" id="Czy-jh-lh2"/>
                     </connections>
                 </tableViewController>

@@ -160,7 +160,19 @@
     UIAccessibilityPostNotification(UIAccessibilityLayoutChangedNotification, nil);
     
     CGPoint newPoint = [[change valueForKey:NSKeyValueChangeNewKey] CGPointValue];
-    float height = (UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPhone) ? mainHeaderHeight : mainHeaderHeight_iPad;
+    float height = 0;
+    
+    if(UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPhone)
+    {
+        height = mainHeaderHeight;
+    }
+    else
+    {
+        if(self == [self.splitViewController.viewControllers[0] topViewController])
+            height = mainHeaderHeight_iPad;
+        else
+            height = mainHeaderHeight_iPad_shows;
+    }
     
     if(object == self.tableView)
     {
