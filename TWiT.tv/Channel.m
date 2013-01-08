@@ -245,8 +245,8 @@
     
     NSURLRequest *urlRequest = [NSURLRequest requestWithURL:JSONURLString];
     [NSURLConnection sendAsynchronousRequest:urlRequest queue:NSOperationQueue.mainQueue
-                           completionHandler:^(NSURLResponse *response, NSData *data, NSError *error)
-     {
+    completionHandler:^(NSURLResponse *response, NSData *data, NSError *error)
+    {
          NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse*)response;
          if([httpResponse respondsToSelector:@selector(statusCode)] && httpResponse.statusCode == 200)
          {
@@ -335,7 +335,11 @@
                   }];
              }
          }
-         
+         else
+         {
+             self.schedule = nil;
+         }
+        
          [NSNotificationCenter.defaultCenter postNotificationName:@"ScheduleDidUpdate" object:self.schedule userInfo:nil];
      }];
 }

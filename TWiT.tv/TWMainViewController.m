@@ -208,7 +208,7 @@
         for(NSDictionary *show in today)
         {
             NSDate *startDate = show[@"startDate"];
-            NSDate *endDate = show[@"startDate"];
+            NSDate *endDate = show[@"endDate"];
             
             if(startDate.isBeforeNow && endDate.isAfterNow)
             {
@@ -216,8 +216,7 @@
                     count--;
                 break;
             }
-            
-            if(startDate.isAfterNow && endDate.isAfterNow)
+            else if(startDate.isAfterNow && endDate.isAfterNow)
             {
                 if(today.lastObject == show)
                     count--;
@@ -294,6 +293,11 @@
             return 0;
         
         if(indexPath.row == 0)
+            return 0;
+        
+        NSDate *previousStartTime = self.channel.schedule[indexPath.section][indexPath.row-1][@"startDate"];
+        
+        if(previousStartTime.isBeforeNow)
             return 0;
         
         return 20;
@@ -411,12 +415,22 @@
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
         
         NSDictionary *show = self.channel.schedule[indexPath.section][indexPath.row];
+        NSInteger interval = [show[@"startDate"] timeIntervalSinceNow];
         
-        NSDateFormatter *dateFormatterLocal = [[NSDateFormatter alloc] init];
-        [dateFormatterLocal setTimeZone:[NSTimeZone localTimeZone]];
-        [dateFormatterLocal setDateFormat:@"h:mm a"];
-        cell.textLabel.text = [dateFormatterLocal stringFromDate:show[@"startDate"]];
-        
+        if(interval > 5*60*60) // More than 5 hours away
+        {
+            NSDateFormatter *dateFormatterLocal = [[NSDateFormatter alloc] init];
+            [dateFormatterLocal setTimeZone:[NSTimeZone localTimeZone]];
+            [dateFormatterLocal setDateFormat:@"h:mm a"];
+            cell.textLabel.text = [dateFormatterLocal stringFromDate:show[@"startDate"]];
+        }
+        else if(interval > 10*60) // 5 hours away
+        {
+            NSInteger minutes = (interval / 60) % 60;
+            NSInteger hours = (interval / 3600);
+            cell.textLabel.text = [NSString stringWithFormat:@"%ih %02im", hours, minutes];
+        }
+
         cell.detailTextLabel.text = show[@"title"];
         
         return cell;
@@ -520,46 +534,57 @@
 - (void)reloadSchedule:(NSNotification*)notification
 {
     NSArray *schedule = notification.object;
-    NSArray *today = schedule[0];
     
-    for(NSDictionary *show in today)
+    BOOL tryTomorrow = YES;
+    int i = 0;
+    do
     {
-        NSDate *startDate = show[@"startDate"];
-        NSDate *endDate = show[@"startDate"];
-        
-        if(startDate.isBeforeNow && endDate.isAfterNow)
+        NSArray *today = schedule[i];
+        for(NSDictionary *show in today)
         {
-            self.liveTimeLabel.text = @"LIVE";
-            self.liveTitleLabel.text = show[@"title"];
+            NSDate *startDate = show[@"startDate"];
+            NSDate *endDate = show[@"endDate"];
             
-            break;
-        }
-        
-        if(startDate.isAfterNow && endDate.isAfterNow)
-        {
-            NSInteger interval = [show[@"startDate"] timeIntervalSinceNow];
-            
-            if(interval > 5*60*60) // More than 5 hours away
+            if(startDate.isBeforeNow && endDate.isAfterNow)
             {
-                NSDateFormatter *dateFormatterLocal = [[NSDateFormatter alloc] init];
-                [dateFormatterLocal setTimeZone:[NSTimeZone localTimeZone]];
-                [dateFormatterLocal setDateFormat:@"h:mm a"];
-                self.liveTimeLabel.text = [dateFormatterLocal stringFromDate:show[@"startDate"]];
+                self.liveTimeLabel.text = @"LIVE";
+                self.liveTitleLabel.text = show[@"title"];
+                tryTomorrow = NO;
+                break;
             }
-            else if(interval > 10*60) // 5 hours to 10 minutes away
+            else if(startDate.isAfterNow && endDate.isAfterNow)
             {
-                NSInteger minutes = (interval / 60) % 60;
-                NSInteger hours = (interval / 3600);
-                self.liveTimeLabel.text = [NSString stringWithFormat:@"%ih %02im", hours, minutes];
+                NSInteger interval = startDate.timeIntervalSinceNow;
+                
+                if(interval > 24*60*60) // More than 24 hours away
+                {
+                    self.liveTimeLabel.text = @"Tomorrow";
+                }
+                else if(interval > 5*60*60) // More than 5 hours away
+                {
+                    NSDateFormatter *dateFormatterLocal = [[NSDateFormatter alloc] init];
+                    [dateFormatterLocal setTimeZone:[NSTimeZone localTimeZone]];
+                    [dateFormatterLocal setDateFormat:@"h:mm a"];
+                    self.liveTimeLabel.text = [dateFormatterLocal stringFromDate:startDate];
+                }
+                else if(interval > 10*60) // 5 hours to 10 minutes away
+                {
+                    NSInteger minutes = (interval / 60) % 60;
+                    NSInteger hours = (interval / 3600);
+                    self.liveTimeLabel.text = [NSString stringWithFormat:@"%ih %02im", hours, minutes];
+                }
+                else // 10 minutes away
+                    self.liveTimeLabel.text = @"Pre-show";
+                
+                self.liveTitleLabel.text = show[@"title"];
+                
+                tryTomorrow = NO;
+                break;
             }
-            else // 10 minutes away
-                self.liveTimeLabel.text = @"Pre-show";
-            
-            self.liveTitleLabel.text = show[@"title"];
-            
-            break;
         }
-    }
+        i++;
+    } while(tryTomorrow);
+
     
     
     NSPredicate *p = [NSPredicate predicateWithFormat:@"%@ == title OR %@ == titleInSchedule",
