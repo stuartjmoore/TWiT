@@ -122,6 +122,13 @@
                  
                  // TODO: post notification
              }
+             else
+             {
+                 [self willChangeValueForKey:@"url"];
+                 [self setPrimitiveValue:nil forKey:@"url"];
+                 [self didChangeValueForKey:@"url"];
+                 [self.managedObjectContext save:nil];
+             }
          }];
     }
 }
