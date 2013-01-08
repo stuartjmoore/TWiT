@@ -424,23 +424,14 @@
                      NSArray *sortedEpisodes = [self.episodes sortedArrayUsingDescriptors:@[descriptor]];
                      Episode *oldestEpisode = sortedEpisodes.lastObject;
                      
-                     NSLog(@"new - %d - %@ - %@", number, published, title);
-                     NSLog(@"vs");
-                     NSLog(@"old - %d - %@ - %@", oldestEpisode.number, oldestEpisode.published, oldestEpisode.title);
-                     
-                     NSLog(@"if - %d", [published compare:oldestEpisode.published]);
-                     
                      if([published compare:oldestEpisode.published] == NSOrderedAscending)
                      {
-                         NSLog(@"find a new ep");
                          continue;
                      }
                      else
                      {
-                         NSLog(@"delete oldy");
                          [self removeEpisodesObject:oldestEpisode];
                      }
-                     NSLog(@"---");
                  }
                  
                  NSManagedObjectContext *context = self.managedObjectContext;
