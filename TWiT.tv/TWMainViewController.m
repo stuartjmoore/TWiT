@@ -119,8 +119,19 @@
 
 - (void)tableView:(UITableView*)tableView didSelectColumn:(int)column AtIndexPath:(NSIndexPath*)indexPath
 {
-    NSDictionary *sender = @{@"indexPath":indexPath, @"column":@(column)};
-    [self performSegueWithIdentifier:@"showDetail" sender:sender];
+    TWShowsCell *showCell = (TWShowsCell*)[self.tableView cellForRowAtIndexPath:indexPath];
+    int index = indexPath.row*showCell.columns + column;
+    NSIndexPath *showIndexPath = [NSIndexPath indexPathForRow:index inSection:indexPath.section];
+    Show *show = [self.fetchedShowsController objectAtIndexPath:showIndexPath];
+    
+    if(UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPad)
+    {
+        NSLog(@"%@", show);
+    }
+    else
+    {
+        [self performSegueWithIdentifier:@"showDetail" sender:show];
+    }
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue*)segue sender:(id)sender
@@ -134,13 +145,7 @@
     }
     else if([segue.identifier isEqualToString:@"showDetail"])
     {
-        NSIndexPath *rowPath = sender[@"indexPath"];
-        TWShowsCell *showCell = (TWShowsCell*)[self.tableView cellForRowAtIndexPath:rowPath];
-        int index = rowPath.row*showCell.columns + [sender[@"column"] intValue];
-        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:index inSection:rowPath.section];
-        Show *show = [self.fetchedShowsController objectAtIndexPath:indexPath];
-        
-        [segue.destinationViewController setShow:show];
+        [segue.destinationViewController setShow:sender];
     }
     else if([segue.identifier isEqualToString:@"scheduleView"])
     {
