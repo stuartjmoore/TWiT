@@ -35,15 +35,10 @@
     {
         self.clearsSelectionOnViewWillAppear = NO;
         
-        UINavigationController *masterNavigationController = self.splitViewController.viewControllers[0];
-        if(self == masterNavigationController.topViewController)
-        {
+        if(self == [self.splitViewController.viewControllers[0] topViewController])
             sectionVisible = TWSectionEpisodes;
-        }
         else
-        {
             sectionVisible = TWSectionShows;
-        }
     }
     else
     {
@@ -168,7 +163,7 @@
     }
     else
     {
-        if(self == [self.splitViewController.viewControllers[0] topViewController])
+        if(sectionVisible == TWSectionEpisodes)
             height = mainHeaderHeight_iPad;
         else
             height = mainHeaderHeight_iPad_shows;
