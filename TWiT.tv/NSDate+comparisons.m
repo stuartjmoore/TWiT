@@ -40,11 +40,11 @@
 
 - (BOOL)isBeforeNow
 {
-    return [self timeIntervalSinceNow] - 86400 + 86400 < 0;
+    return [self timeIntervalSinceNow] /*- 86400*/ < 0;
 }
 - (BOOL)isAfterNow
 {
-    return [self timeIntervalSinceNow] - 86400 + 86400 > 0;
+    return [self timeIntervalSinceNow] /*- 86400*/ > 0;
 }
 
 @end

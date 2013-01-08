@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
 
-#import "TWShowTableCell.h"
+#import "TWShowsCell.h"
 
 #define headerHeight 180
 
