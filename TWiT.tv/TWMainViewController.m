@@ -41,14 +41,8 @@
 
 - (void)awakeFromNib
 {
-    /* 
-     TODO: iPad
-
-     Don't clear selection, and link to episode container view.
-     
     if(UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPad)
         self.clearsSelectionOnViewWillAppear = NO;
-     */
     
     [super awakeFromNib];
 }
@@ -58,7 +52,7 @@
     [super viewDidLoad];
 	
     // TODO: Save state?
-    sectionVisible = TWSectionShows;
+    sectionVisible = TWSectionEpisodes;
     
     [NSNotificationCenter.defaultCenter addObserver:self
                                            selector:@selector(reloadSchedule:)
@@ -73,6 +67,9 @@
     UIImage *rightOrangeBackground = [self.listenButton backgroundImageForState:UIControlStateNormal];
     rightOrangeBackground = [rightOrangeBackground stretchableImageWithLeftCapWidth:1 topCapHeight:0];
     [self.listenButton setBackgroundImage:rightOrangeBackground forState:UIControlStateNormal];
+    
+    
+    self.episodeViewController = (TWEpisodeViewController*)[self.splitViewController.viewControllers.lastObject topViewController];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -86,32 +83,6 @@
 
 #pragma mark - Actions
 
-// TODO: Use a smaller disclose icon, unrotate schedule icon
-
-- (IBAction)openScheduleView:(UIButton*)sender
-{/*
-    if(self.tableView.contentOffset.y <= -self.view.bounds.size.height+headerHeight)
-    {
-        self.tableView.scrollEnabled = YES;
-        [UIView animateWithDuration:0.3f animations:^
-         {
-             self.tableView.contentOffset = CGPointMake(0, 0);
-             sender.transform = CGAffineTransformMakeRotation(0);
-             [sender setImage:[UIImage imageNamed:@"toolbar-schedule-arrow"] forState:UIControlStateNormal];
-         }];
-    }
-    else
-    {
-        self.tableView.scrollEnabled = NO;
-        [UIView animateWithDuration:0.3f animations:^
-         {
-             self.tableView.contentOffset = CGPointMake(0, -self.view.bounds.size.height+headerHeight);
-             sender.transform = CGAffineTransformMakeRotation(M_PI);
-             [sender setImage:[UIImage imageNamed:@"toolbar-schedule-arrow-up"] forState:UIControlStateNormal];
-         }];
-    }*/
-}
-
 - (void)switchVisibleSection:(UIButton*)sender
 {
     sectionVisible = sender.tag;
@@ -120,6 +91,11 @@
 
 - (void)tableView:(UITableView*)tableView didSelectRowAtIndexPath:(NSIndexPath*)indexPath
 {
+    if(UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPad)
+    {
+        Episode *episode = [self.fetchedEpisodesController objectAtIndexPath:indexPath];
+        self.episodeViewController.episode = episode;
+    }
 }
 
 - (void)tableView:(UITableView*)tableView didSelectColumn:(int)column AtIndexPath:(NSIndexPath*)indexPath
@@ -259,7 +235,7 @@
 
 - (float)tableView:(UITableView*)tableView heightForHeaderInSection:(NSInteger)section
 {
-    if(tableView == self.tableView)
+    if(tableView == self.tableView && UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPhone)
     {
         if(section == 0)
             return 28;
@@ -312,7 +288,7 @@
 {
     float width = tableView.frame.size.width;
     
-    if(tableView == self.tableView && section == 0)
+    if(tableView == self.tableView && section == 0 && UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPhone)
     {
         self.sectionHeader = [[UIView alloc] initWithFrame:CGRectMake(0, 0, width, 28)];
         self.sectionHeader.backgroundColor = [UIColor colorWithWhite:244/255.0 alpha:1];

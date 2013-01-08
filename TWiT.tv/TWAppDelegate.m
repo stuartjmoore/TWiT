@@ -33,10 +33,8 @@
         
         UINavigationController *masterNavigationController = splitViewController.viewControllers[0];
         TWMainViewController *controller = (TWMainViewController*)masterNavigationController.topViewController;
-        controller.managedObjectContext = self.managedObjectContext;
         
-        // TODO: Create TWSplitViewContoller
-        // TODO: Create subcontrollers manually, container view not in iOS 5
+        controller.managedObjectContext = self.managedObjectContext;
     }
     else
     {
