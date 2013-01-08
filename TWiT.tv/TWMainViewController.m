@@ -458,40 +458,8 @@
         showsCell.delegate = self;
         showsCell.table = self.tableView;
         showsCell.indexPath = indexPath;
-        /*
-        id <NSFetchedResultsSectionInfo>sectionInfo = self.fetchedShowsController.sections[indexPath.section];
-        int num = sectionInfo.numberOfObjects;
-        int columns = showsCell.columns;
-        
-        for(int column = 0; column < columns; column++)
-        {
-            int index = indexPath.row*columns + column;
-            if(num > index)
-            {
-                NSIndexPath *columnedIndexPath = [NSIndexPath indexPathForRow:index inSection:indexPath.section];
-                __block Show *show = [self.fetchedShowsController objectAtIndexPath:columnedIndexPath];
-                NSString *albumArtPath = show.albumArt.path;
-                
-                dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0ul);
-                
-                dispatch_async(queue, ^{
-                    UIImage *albumArt = [UIImage imageWithContentsOfFile:albumArtPath] ?: [UIImage imageNamed:@"generic.jpg"];
-                    
-                    dispatch_sync(dispatch_get_main_queue(), ^{
-                        if(column == 0)
-                            [showsCell.showOneButton setImage:albumArt forState:UIControlStateNormal];
-                        if(column == 1)
-                            [showsCell.showTwoButton setImage:albumArt forState:UIControlStateNormal];
-                        if(column == 2)
-                            [showsCell.showThreeButton setImage:albumArt forState:UIControlStateNormal];
-                    });
-                    
-                });
-            }
-        }
-        */
-        
-        // CACHE THIS MUCHERFUCKER
+
+        // TODO: CACHE THIS MUCHERFUCKER
         
         showsCell.spacing = 14;
         showsCell.size = 88;

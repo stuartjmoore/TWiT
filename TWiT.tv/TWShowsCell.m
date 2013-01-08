@@ -20,6 +20,15 @@
     return self;
 }
 
+/*
+dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0ul);
+dispatch_async(queue, ^{
+    dispatch_sync(dispatch_get_main_queue(), ^{
+    });
+    
+});
+*/
+ 
 - (void)setShows:(NSArray*)shows
 {
     UIGraphicsBeginImageContextWithOptions(self.frame.size, YES, UIScreen.mainScreen.scale);
