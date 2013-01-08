@@ -154,6 +154,8 @@
             
             [self.managedObjectContext save:nil];
         }
+        
+        // TODO: Download (iCloud sync)
     }
     
     return _path;
