@@ -35,7 +35,7 @@
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <view clipsSubviews="YES" contentMode="scaleToFill" id="7ZG-JS-fuA">
-                                    <rect key="frame" x="0.0" y="0.0" width="360" height="180"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="180"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" image="generic.jpg" id="nYS-gc-BrI">
@@ -103,7 +103,6 @@
                                                 <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
                                             <connections>
-                                                <action selector="openScheduleView:" destination="12" eventType="touchUpInside" id="LE7-fg-cx5"/>
                                                 <segue destination="t6z-Tc-dkI" kind="push" identifier="scheduleView" id="Cvm-qO-gzq"/>
                                             </connections>
                                         </button>
@@ -677,7 +676,6 @@
         <class className="TWMainViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/TWMainViewController.h"/>
             <relationships>
-                <relationship kind="action" name="openScheduleView:" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="headerView" candidateClass="UIView"/>
                 <relationship kind="outlet" name="listenButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="livePosterView" candidateClass="UIImageView"/>
