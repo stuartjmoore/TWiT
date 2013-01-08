@@ -10,7 +10,7 @@
 
 @class Episode;
 
-@interface TWEpisodeViewController : UIViewController <UISplitViewControllerDelegate>
+@interface TWEpisodeViewController : UIViewController
 
 @property (strong, nonatomic) Episode *episode;
 

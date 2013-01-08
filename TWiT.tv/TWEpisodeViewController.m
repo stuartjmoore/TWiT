@@ -10,11 +10,6 @@
 
 #import "Episode.h"
 
-@interface TWEpisodeViewController ()
-@property (strong, nonatomic) UIPopoverController *masterPopoverController;
-- (void)configureView;
-@end
-
 @implementation TWEpisodeViewController
 
 - (void)viewDidLoad
@@ -46,13 +41,6 @@
         self.numberLabel.text = @(self.episode.number).stringValue;
         self.descLabel.text = self.episode.desc;
     }
-}
-
-#pragma mark - Split view
-
-- (BOOL)splitViewController:(UISplitViewController*)svc shouldHideViewController:(UIViewController*)vc inOrientation:(UIInterfaceOrientation)orientation
-{
-    return NO;
 }
 
 #pragma mark - Kill

@@ -11,15 +11,6 @@
 
 @implementation TWShowsCell
 
-- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
-{
-    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
-    if (self)
-    {
-    }
-    return self;
-}
-
 /*
 dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0ul);
 dispatch_async(queue, ^{
@@ -53,6 +44,7 @@ dispatch_async(queue, ^{
     UIGraphicsEndImageContext();
     
     self.visibleColumns = shows.count;
+    
     [self setNeedsDisplayInRect:self.bounds];
 }
 

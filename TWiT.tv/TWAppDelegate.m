@@ -28,14 +28,17 @@
     if([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad)
     {
         UISplitViewController *splitViewController = (UISplitViewController*)self.window.rootViewController;
-        UINavigationController *navigationController = [splitViewController.viewControllers lastObject];
-        splitViewController.delegate = (id)navigationController.topViewController;
         
         UINavigationController *masterNavigationController = splitViewController.viewControllers[0];
-        TWMainViewController *controller = (TWMainViewController*)masterNavigationController.topViewController;
+        TWMainViewController *masterController = (TWMainViewController*)masterNavigationController.topViewController;
+        masterController.managedObjectContext = self.managedObjectContext;
+        masterController.channel = channel;
+        splitViewController.delegate = masterController;
         
-        controller.managedObjectContext = self.managedObjectContext;
-        controller.channel = channel;
+        UINavigationController *detailNavigationController = splitViewController.viewControllers[1];
+        TWMainViewController *detailController = (TWMainViewController*)detailNavigationController.topViewController;
+        detailController.managedObjectContext = self.managedObjectContext;
+        detailController.channel = channel;
     }
     else
     {

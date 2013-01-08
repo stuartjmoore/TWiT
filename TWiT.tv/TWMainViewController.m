@@ -32,7 +32,24 @@
 - (void)awakeFromNib
 {
     if(UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPad)
+    {
         self.clearsSelectionOnViewWillAppear = NO;
+        
+        UINavigationController *masterNavigationController = self.splitViewController.viewControllers[0];
+        if(self == masterNavigationController.topViewController)
+        {
+            sectionVisible = TWSectionEpisodes;
+        }
+        else
+        {
+            sectionVisible = TWSectionShows;
+        }
+    }
+    else
+    {
+        // TODO: Save state?
+        sectionVisible = TWSectionEpisodes;
+    }
     
     [super awakeFromNib];
 }
@@ -40,9 +57,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	
-    // TODO: Save state?
-    sectionVisible = TWSectionEpisodes;
     
     [NSNotificationCenter.defaultCenter addObserver:self
                                            selector:@selector(reloadSchedule:)
@@ -57,9 +71,6 @@
     UIImage *rightOrangeBackground = [self.listenButton backgroundImageForState:UIControlStateNormal];
     rightOrangeBackground = [rightOrangeBackground stretchableImageWithLeftCapWidth:1 topCapHeight:0];
     [self.listenButton setBackgroundImage:rightOrangeBackground forState:UIControlStateNormal];
-    
-    
-    self.episodeViewController = (TWEpisodeViewController*)[self.splitViewController.viewControllers.lastObject topViewController];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -81,14 +92,27 @@
 
 - (IBAction)loadLiveDetail:(UIButton*)sender
 {
-    [self.tableView deselectRowAtIndexPath:self.tableView.indexPathForSelectedRow animated:YES];
+    if(self.episodeViewController && UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPad)
+    {
+        [self.tableView deselectRowAtIndexPath:self.tableView.indexPathForSelectedRow animated:YES];
+    
+        UINavigationController *detailNavigationController = self.splitViewController.viewControllers[1];
+        [detailNavigationController popViewControllerAnimated:YES];
+        
+        self.episodeViewController = nil;
+    }
 }
 
 - (void)tableView:(UITableView*)tableView didSelectRowAtIndexPath:(NSIndexPath*)indexPath
 {
-    if(UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPad)
+    if(!self.episodeViewController && UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPad)
     {
+        UINavigationController *detailNavigationController = self.splitViewController.viewControllers[1];
+        TWMainViewController *showsViewController = (TWMainViewController*)detailNavigationController.topViewController;
+        [showsViewController performSegueWithIdentifier:@"episodeDetail" sender:nil];
+        
         Episode *episode = [self.fetchedEpisodesController objectAtIndexPath:indexPath];
+        self.episodeViewController = detailNavigationController.viewControllers.lastObject;
         self.episodeViewController.episode = episode;
     }
 }
@@ -255,7 +279,12 @@
         if(sectionVisible == TWSectionEpisodes)
             return 62;
         else if(sectionVisible == TWSectionShows)
-            return 102;
+        {
+            if(UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPad)
+                return 150;
+            else
+                return 102;
+        }
     }
     else if(tableView == self.scheduleTable)
     {
@@ -430,15 +459,21 @@
         showsCell.delegate = self;
         showsCell.table = self.tableView;
         showsCell.indexPath = indexPath;
-
+        
         // TODO: CACHE THIS MUCHERFUCKER
         
-        showsCell.spacing = 14;
-        showsCell.size = 88;
-        showsCell.columns = 3;
-        showsCell.delegate = self;
-        showsCell.table = self.tableView;
-        showsCell.indexPath = indexPath;
+        if(UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPad)
+        {
+            showsCell.spacing = 26;
+            showsCell.size = 114;
+            showsCell.columns = 3;
+        }
+        else
+        {
+            showsCell.spacing = 14;
+            showsCell.size = 88;
+            showsCell.columns = 3;
+        }
         
         id <NSFetchedResultsSectionInfo>sectionInfo = self.fetchedShowsController.sections[indexPath.section];
         int num = sectionInfo.numberOfObjects;
@@ -643,6 +678,16 @@
         [self.tableView endUpdates];
     else
         [self.tableView reloadData];
+}
+
+#pragma mark - Split view
+
+- (BOOL)splitViewController:(UISplitViewController*)svc shouldHideViewController:(UIViewController*)vc inOrientation:(UIInterfaceOrientation)orientation
+{
+    return NO;
+}
+- (void)splitViewController:(UISplitViewController*)svc willShowViewController:(UIViewController*)aViewController invalidatingBarButtonItem:(UIBarButtonItem*)button
+{
 }
 
 #pragma mark - Kill
