@@ -36,12 +36,6 @@
     self.emailButton.hidden = !self.show.email;
     self.phoneButton.hidden = !self.show.phone;
     
-    CGSize maxSize = CGSizeMake(self.descLabel.frame.size.width, CGFLOAT_MAX);
-    CGSize size = [self.descLabel.text sizeWithFont:self.descLabel.font constrainedToSize:maxSize];
-    CGRect frame = self.descLabel.frame;
-    frame.size.height = size.height;
-    self.descLabel.frame = frame;
-    
     CAGradientLayer *liveGradient = [CAGradientLayer layer];
     liveGradient.anchorPoint = CGPointMake(0, 0);
     liveGradient.position = CGPointMake(0, 0);
@@ -58,6 +52,12 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    
+    CGSize maxSize = CGSizeMake(self.descLabel.frame.size.width, CGFLOAT_MAX);
+    CGSize size = [self.descLabel.text sizeWithFont:self.descLabel.font constrainedToSize:maxSize];
+    CGRect frame = self.descLabel.frame;
+    frame.size.height = size.height;
+    self.descLabel.frame = frame;
     
     [self.tableView addObserver:self forKeyPath:@"contentOffset"
                         options:(NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld)
@@ -137,10 +137,16 @@
 
 - (void)tableView:(UITableView*)tableView didSelectRowAtIndexPath:(NSIndexPath*)indexPath
 {
+    UINavigationController *detailNavigationController = self.splitViewController.viewControllers[1];
+    
+    if(self.episodeViewController)
+    {
+        self.episodeViewController = nil;
+        [detailNavigationController popViewControllerAnimated:NO];
+    }
+    
     if(!self.episodeViewController && UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPad)
     {
-        UINavigationController *detailNavigationController = self.splitViewController.viewControllers[1];
-
         TWShowViewController *showsViewController = (TWShowViewController*)detailNavigationController.topViewController;
         [showsViewController performSegueWithIdentifier:@"episodeDetail" sender:nil];
         

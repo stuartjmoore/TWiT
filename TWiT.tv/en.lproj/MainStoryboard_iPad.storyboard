@@ -111,7 +111,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="703" height="180"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" image="generic.jpg" id="nOc-fK-AKH">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" image="generic.jpg" id="nOc-fK-AKH">
                                         <rect key="frame" x="0.0" y="0.0" width="703" height="180"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
@@ -216,14 +216,34 @@
                             <rect key="frame" x="0.0" y="0.0" width="703" height="704"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" id="krn-gW-mOh">
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" id="krn-gW-mOh">
                                     <rect key="frame" x="0.0" y="0.0" width="703" height="241"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 </imageView>
+                                <view contentMode="scaleToFill" id="xEL-WW-OLU">
+                                    <rect key="frame" x="0.0" y="0.0" width="703" height="241"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.34999999999999998" colorSpace="calibratedWhite"/>
+                                </view>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" id="0hJ-5x-bg3">
                                     <rect key="frame" x="243" y="20" width="217" height="201"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 </imageView>
+                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="HhL-rt-zsF">
+                                    <rect key="frame" x="20" y="287" width="663" height="397"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Ons-d5-dgY">
+                                    <rect key="frame" x="20" y="258" width="663" height="21"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         </view>
@@ -246,7 +266,9 @@
                     <navigationItem key="navigationItem" id="uuM-ML-ekX"/>
                     <connections>
                         <outlet property="albumArt" destination="0hJ-5x-bg3" id="yO2-ga-qnS"/>
+                        <outlet property="descLabel" destination="HhL-rt-zsF" id="oAc-hA-7Pu"/>
                         <outlet property="posterView" destination="krn-gW-mOh" id="UEe-Oh-rCZ"/>
+                        <outlet property="scheduleLabel" destination="Ons-d5-dgY" id="Z6r-LL-SJM"/>
                         <segue destination="4" kind="push" identifier="episodeDetail" id="skx-i3-uhT"/>
                     </connections>
                 </tableViewController>
