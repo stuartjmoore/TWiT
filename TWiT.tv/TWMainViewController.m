@@ -119,9 +119,17 @@
     NSIndexPath *showIndexPath = [NSIndexPath indexPathForRow:index inSection:indexPath.section];
     Show *show = [self.fetchedShowsController objectAtIndexPath:showIndexPath];
     
+    // TODO: [show updateEpisodes];
+    
     if(UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPad)
     {
-        NSLog(@"%@", show);
+        UINavigationController *masterNavigationController = self.splitViewController.viewControllers[0];
+        TWMainViewController *showsViewController = (TWMainViewController*)masterNavigationController.topViewController;
+        [showsViewController performSegueWithIdentifier:@"showDetail" sender:show];
+        
+        UINavigationController *detailNavigationController = self.splitViewController.viewControllers[1];
+        TWMainViewController *showDetailViewController = (TWMainViewController*)detailNavigationController.topViewController;
+        [showDetailViewController performSegueWithIdentifier:@"showDetail" sender:show];
     }
     else
     {

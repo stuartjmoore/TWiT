@@ -8,6 +8,7 @@
 
 #import <QuartzCore/QuartzCore.h>
 
+#import "TWMainViewController.h"
 #import "TWShowViewController.h"
 #import "TWEpisodeViewController.h"
 #import "TWEpisodeCell.h"
@@ -132,6 +133,21 @@
 {
     NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"tel://%@", self.show.phone]];
     [UIApplication.sharedApplication openURL:url];
+}
+
+- (void)tableView:(UITableView*)tableView didSelectRowAtIndexPath:(NSIndexPath*)indexPath
+{
+    if(!self.episodeViewController && UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPad)
+    {
+        UINavigationController *detailNavigationController = self.splitViewController.viewControllers[1];
+
+        TWShowViewController *showsViewController = (TWShowViewController*)detailNavigationController.topViewController;
+        [showsViewController performSegueWithIdentifier:@"episodeDetail" sender:nil];
+        
+        Episode *episode = [self.fetchedEpisodesController objectAtIndexPath:indexPath];
+        self.episodeViewController = detailNavigationController.viewControllers.lastObject;
+        self.episodeViewController.episode = episode;
+    }
 }
 
 #pragma mark - Table

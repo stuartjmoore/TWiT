@@ -17,6 +17,7 @@
 
 @property (strong, nonatomic) Show *show;
 
+@property (strong, nonatomic) TWEpisodeViewController *episodeViewController;
 @property (strong, nonatomic) NSFetchedResultsController *fetchedEpisodesController;
 
 @property (weak, nonatomic) IBOutlet UIView *headerView, *gradientView;
