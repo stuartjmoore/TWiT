@@ -118,8 +118,19 @@
     botLine.backgroundColor = [UIColor colorWithWhite:222/255.0 alpha:1];
     [cell.contentView addSubview:botLine];
     
-    
     NSDictionary *show = self.schedule[indexPath.section][indexPath.row];
+    NSDate *endDate = show[@"endDate"];
+    
+    if(endDate.isBeforeNow)
+    {
+        cell.textLabel.textColor = [UIColor grayColor];
+        cell.detailTextLabel.textColor = [UIColor grayColor];
+    }
+    else
+    {
+        cell.textLabel.textColor = [UIColor blackColor];
+        cell.detailTextLabel.textColor = [UIColor blackColor];
+    }
     
     NSDateFormatter *dateFormatterLocal = [[NSDateFormatter alloc] init];
     [dateFormatterLocal setTimeZone:[NSTimeZone localTimeZone]];
