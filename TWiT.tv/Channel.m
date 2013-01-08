@@ -271,6 +271,14 @@
                  showTitle = [showTitle stringByReplacingOccurrencesOfString:@"&amp;" withString:@"&"];
                  showTitle = [showTitle stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
                  
+                 
+                 NSPredicate *p = [NSPredicate predicateWithFormat:@"%@ BEGINSWITH title OR %@ BEGINSWITH titleInSchedule", showTitle, showTitle];
+                 Show *show = [[self.shows filteredSetUsingPredicate:p] anyObject];
+                 
+                 if(show)
+                     showTitle = show.title;
+                     
+                 
                  if(startTimeString.length > 20)
                      startTimeString = [startTimeString stringByReplacingOccurrencesOfString:@":"
                                                                                   withString:@""

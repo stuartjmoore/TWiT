@@ -587,7 +587,7 @@
 
     
     
-    NSPredicate *p = [NSPredicate predicateWithFormat:@"%@ == title OR %@ == titleInSchedule",
+    NSPredicate *p = [NSPredicate predicateWithFormat:@"%@ BEGINSWITH title OR %@ BEGINSWITH titleInSchedule",
                       self.liveTitleLabel.text, self.liveTitleLabel.text];
     Show *show = [[self.channel.shows filteredSetUsingPredicate:p] anyObject];
     
