@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		170561DE169ACB8C00E59244 /* TWShowTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 170561DD169ACB8C00E59244 /* TWShowTableCell.m */; };
 		170561E2169AD61800E59244 /* NSDate+comparisons.m in Sources */ = {isa = PBXBuildFile; fileRef = 170561E1169AD61800E59244 /* NSDate+comparisons.m */; };
 		170561F0169AFD2F00E59244 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 170561EF169AFD2F00E59244 /* MessageUI.framework */; };
 		170561F7169B18BD00E59244 /* dgw-poster.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 170561F6169B18BB00E59244 /* dgw-poster.jpg */; };
@@ -237,8 +236,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		170561DC169ACB8C00E59244 /* TWShowTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWShowTableCell.h; sourceTree = "<group>"; };
-		170561DD169ACB8C00E59244 /* TWShowTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWShowTableCell.m; sourceTree = "<group>"; };
 		170561E0169AD61800E59244 /* NSDate+comparisons.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+comparisons.h"; sourceTree = "<group>"; };
 		170561E1169AD61800E59244 /* NSDate+comparisons.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+comparisons.m"; sourceTree = "<group>"; };
 		170561EF169AFD2F00E59244 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
@@ -676,8 +673,6 @@
 				170E02A7169324480072CFA6 /* TWEpisodeCell.m */,
 				170E02A9169328910072CFA6 /* TWShowsCell.h */,
 				170E02AA169328910072CFA6 /* TWShowsCell.m */,
-				170561DC169ACB8C00E59244 /* TWShowTableCell.h */,
-				170561DD169ACB8C00E59244 /* TWShowTableCell.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -1148,7 +1143,6 @@
 				176380A716960E280060D076 /* Stream.m in Sources */,
 				176380AA16960FDD0060D076 /* AlbumArt.m in Sources */,
 				17C43B931696FC220066C79F /* NSManagedObjectContext+ConvenienceMethods.m in Sources */,
-				170561DE169ACB8C00E59244 /* TWShowTableCell.m in Sources */,
 				170561E2169AD61800E59244 /* NSDate+comparisons.m in Sources */,
 				17F668D1169B34FC00525F65 /* TWScheduleViewController.m in Sources */,
 			);
