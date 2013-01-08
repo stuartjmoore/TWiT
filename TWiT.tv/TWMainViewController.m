@@ -29,16 +29,6 @@
 
 @implementation TWMainViewController
 
-- (id)initWithCoder:(NSCoder *)aDecoder
-{
-    self = [super initWithCoder:aDecoder];
-    if(self)
-    {
-        
-    }
-    return self;
-}
-
 - (void)awakeFromNib
 {
     if(UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPad)
@@ -87,6 +77,11 @@
 {
     sectionVisible = sender.tag;
     [self.tableView reloadData];
+}
+
+- (IBAction)loadLiveDetail:(UIButton*)sender
+{
+    [self.tableView deselectRowAtIndexPath:self.tableView.indexPathForSelectedRow animated:YES];
 }
 
 - (void)tableView:(UITableView*)tableView didSelectRowAtIndexPath:(NSIndexPath*)indexPath

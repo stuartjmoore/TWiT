@@ -41,6 +41,8 @@ typedef NS_ENUM(NSInteger, TWSection)
 @property (weak, nonatomic) IBOutlet UITableView *scheduleTable;
 @property (strong, nonatomic) UIView *sectionHeader;
 
+- (IBAction)loadLiveDetail:(UIButton*)sender;
+
 - (void)reloadSchedule:(NSNotification*)notification;
 
 @end
