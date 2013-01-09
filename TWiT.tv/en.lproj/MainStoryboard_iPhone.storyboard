@@ -305,7 +305,7 @@
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             </view>
-                            <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" text="888" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" id="42m-il-qRa">
+                            <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" text="1888" textAlignment="center" lineBreakMode="middleTruncation" minimumFontSize="18" adjustsLetterSpacingToFitWidth="YES" id="42m-il-qRa">
                                 <rect key="frame" x="4" y="184" width="51" height="51"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.95999999999999996" alpha="1" colorSpace="calibratedWhite"/>
@@ -561,7 +561,7 @@
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </view>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="gk7-bS-7Vv">
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="88" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.79999999999999993" adjustsLetterSpacingToFitWidth="YES" id="gk7-bS-7Vv">
                                                     <rect key="frame" x="7" y="7" width="48" height="48"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
@@ -652,6 +652,68 @@
         <image name="toolbar-remind-on.png" width="26" height="24"/>
         <image name="toolbar-schedule-background.png" width="22" height="25"/>
     </resources>
+    <classes>
+        <class className="TWEpisodeCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TWEpisodeCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="albumArt" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="numberLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="subtitleLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="titleLabel" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="TWEpisodeViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TWEpisodeViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="dateLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="descLabel" candidateClass="UITextView"/>
+                <relationship kind="outlet" name="guestsLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="numberLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="posterView" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="timeLabel" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="TWMainViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TWMainViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="loadLiveDetail:" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="headerView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="listenButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="liveAlbumArtView" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="livePosterView" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="liveTimeLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="liveTitleLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="scheduleTable" candidateClass="UITableView"/>
+                <relationship kind="outlet" name="watchButton" candidateClass="UIButton"/>
+            </relationships>
+        </class>
+        <class className="TWScheduleViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TWScheduleViewController.h"/>
+        </class>
+        <class className="TWShowViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TWShowViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="email:" candidateClass="UIButton"/>
+                <relationship kind="action" name="openDetailView:" candidateClass="UIButton"/>
+                <relationship kind="action" name="phone:" candidateClass="UIButton"/>
+                <relationship kind="action" name="setFavorite:" candidateClass="UIButton"/>
+                <relationship kind="action" name="setReminder:" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="albumArt" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="descLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="emailButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="favoriteButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="gradientView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="headerView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="phoneButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="posterView" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="remindButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="scheduleLabel" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="TWShowsCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TWShowsCell.h"/>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

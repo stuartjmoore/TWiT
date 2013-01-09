@@ -15,6 +15,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
     [self configureView];
 }
 
@@ -37,9 +38,10 @@
         self.posterView.image = self.episode.poster.image;
         self.dateLabel.text = self.episode.publishedString;
         self.timeLabel.text = self.episode.durationString;
-        self.guestsLabel.text = self.episode.guests;
         self.numberLabel.text = @(self.episode.number).stringValue;
         self.descLabel.text = self.episode.desc;
+        
+        self.guestsLabel.text = self.episode.guests;
     }
 }
 
