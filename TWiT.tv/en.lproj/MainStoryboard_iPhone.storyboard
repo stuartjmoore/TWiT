@@ -270,7 +270,12 @@
                                     <view contentMode="scaleToFill" id="bgb-ur-uur" userLabel="Blackground">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="180"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                        <color key="backgroundColor" white="0.0" alpha="0.35000000000000003" colorSpace="calibratedWhite"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.14999999999999999" colorSpace="calibratedWhite"/>
+                                    </view>
+                                    <view contentMode="scaleToFill" id="Qtz-va-wze" userLabel="Gradient">
+                                        <rect key="frame" x="0.0" y="126" width="320" height="54"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="LMT-eZ-zHd">
                                         <rect key="frame" x="132" y="63" width="55" height="55"/>
@@ -313,7 +318,7 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" text="Guests &amp; Guests" lineBreakMode="tailTruncation" minimumFontSize="10" id="27">
+                            <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" text="Guests &amp; Guests" lineBreakMode="tailTruncation" numberOfLines="2" adjustsFontSizeToFit="NO" id="27">
                                 <rect key="frame" x="63" y="184" width="253" height="51"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.95999999999999996" alpha="1" colorSpace="calibratedWhite"/>
@@ -342,6 +347,7 @@
                     <connections>
                         <outlet property="dateLabel" destination="nnd-I2-iMv" id="IjK-bg-MdQ"/>
                         <outlet property="descLabel" destination="kHn-pA-l64" id="jdW-hD-O1Z"/>
+                        <outlet property="gradientView" destination="Qtz-va-wze" id="tqY-WE-CQ4"/>
                         <outlet property="guestsLabel" destination="27" id="Pa8-oF-puR"/>
                         <outlet property="numberLabel" destination="42m-il-qRa" id="Ppl-qb-kQB"/>
                         <outlet property="posterView" destination="CDu-qi-wy9" id="w6u-Wi-KmL"/>
@@ -667,6 +673,7 @@
             <relationships>
                 <relationship kind="outlet" name="dateLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="descLabel" candidateClass="UITextView"/>
+                <relationship kind="outlet" name="gradientView" candidateClass="UIView"/>
                 <relationship kind="outlet" name="guestsLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="numberLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="posterView" candidateClass="UIImageView"/>

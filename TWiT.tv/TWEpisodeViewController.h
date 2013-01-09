@@ -15,6 +15,7 @@
 @property (strong, nonatomic) Episode *episode;
 
 @property (weak, nonatomic) IBOutlet UIImageView *posterView;
+@property (weak, nonatomic) IBOutlet UIView *gradientView;
 @property (weak, nonatomic) IBOutlet UILabel *dateLabel, *timeLabel, *numberLabel, *guestsLabel;
 @property (weak, nonatomic) IBOutlet UITextView *descLabel;
 
