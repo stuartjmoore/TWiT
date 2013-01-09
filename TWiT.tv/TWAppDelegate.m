@@ -30,39 +30,23 @@
     if([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad)
     {
         TWSplitViewContainer *splitViewContainer = (TWSplitViewContainer*)self.window.rootViewController;
+        splitViewContainer.view = splitViewContainer.view;
         
         UINavigationController *masterController = [splitViewContainer.storyboard instantiateViewControllerWithIdentifier:@"masterController"];
         TWMainViewController *episodesController = (TWMainViewController*)masterController.topViewController;
         episodesController.managedObjectContext = self.managedObjectContext;
         episodesController.channel = channel;
-        masterController.view.frame = CGRectMake(0, 0, 320, 1004);
+        masterController.view.frame = splitViewContainer.masterContainer.bounds;
         [splitViewContainer addChildViewController:masterController];
-        [splitViewContainer.view addSubview:masterController.view];
+        [splitViewContainer.masterContainer addSubview:masterController.view];
 
         UINavigationController *detailController = [splitViewContainer.storyboard instantiateViewControllerWithIdentifier:@"detailController"];
         TWMainViewController *showsController = (TWMainViewController*)detailController.topViewController;
         showsController.managedObjectContext = self.managedObjectContext;
         showsController.channel = channel;
-        [splitViewContainer addChildViewController:masterController];
-        detailController.view.frame = CGRectMake(320, 0, 768-320, 1004);
-        [splitViewContainer.view addSubview:detailController.view];
-
-        
-        
-        /*
-        UISplitViewController *splitViewController = (UISplitViewController*)self.window.rootViewController;
-        
-        UINavigationController *masterNavigationController = splitViewController.viewControllers[0];
-        TWMainViewController *masterController = (TWMainViewController*)masterNavigationController.topViewController;
-        masterController.managedObjectContext = self.managedObjectContext;
-        masterController.channel = channel;
-        splitViewController.delegate = masterController;
-        
-        UINavigationController *detailNavigationController = splitViewController.viewControllers[1];
-        TWMainViewController *detailController = (TWMainViewController*)detailNavigationController.topViewController;
-        detailController.managedObjectContext = self.managedObjectContext;
-        detailController.channel = channel;
-        */
+        detailController.view.frame = splitViewContainer.detailContainer.bounds;
+        [splitViewContainer addChildViewController:detailController];
+        [splitViewContainer.detailContainer addSubview:detailController.view];
     }
     else
     {
