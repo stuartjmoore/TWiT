@@ -76,7 +76,9 @@
             
             NSDate *date = [NSCalendar.currentCalendar dateFromComponents:components];
             
-            // TODO: subtract ten minutes
+            NSDateComponents *offsetComponents = [[NSDateComponents alloc] init];
+            [offsetComponents setMinute:-10];
+            date = [NSCalendar.currentCalendar dateByAddingComponents:offsetComponents toDate:date options:0];
             
             [dates addObject:date];
         }
@@ -195,7 +197,7 @@
             notification.repeatInterval = NSWeekCalendarUnit;
             notification.fireDate = fireDate;
             
-            notification.alertBody = @"Show Starting";
+            notification.alertBody = [NSString stringWithFormat:@"%@ is Starting", self.title];
             notification.alertAction = @"Watch";
             
             notification.userInfo = @{ @"title" : self.titleAcronym };
