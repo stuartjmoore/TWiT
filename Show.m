@@ -167,11 +167,13 @@
 {
     if(favorite)
     {
-        // TODO: set newest ep unwatched
+        NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"published" ascending:YES];
+        Episode *episode = [[self.episodes sortedArrayUsingDescriptors:@[sortDescriptor]] lastObject];
+        episode.watched = NO;
     }
     else
     {
-        // TODO: set all watched
+        [self.episodes makeObjectsPerformSelector:@selector(setWatched:) withObject:@YES];
     }
     
     [self willChangeValueForKey:@"favorite"];
