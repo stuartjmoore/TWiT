@@ -7,6 +7,7 @@
 //
 
 #import "NSManagedObjectContext+ConvenienceMethods.h"
+#import "NSDate+comparisons.h"
 #import "XMLReader.h"
 
 #import "Show.h"
@@ -95,9 +96,9 @@
         scheduleString = @"";
         
         int TZDiff = ([[NSTimeZone timeZoneWithName:@"America/Los_Angeles"] secondsFromGMT]
-                      -[[NSTimeZone localTimeZone] secondsFromGMT])/60/60*100;
+                      - NSTimeZone.localTimeZone.secondsFromGMT)/60/60*100;
         
-        int time = [[daysAndTime objectAtIndex:1] intValue];
+        int time = [daysAndTime[1] intValue];
         time -= TZDiff;
         BOOL nextDay = NO;
         if(time >= 2400)
@@ -116,21 +117,8 @@
         NSArray *days = [[daysAndTime objectAtIndex:0] componentsSeparatedByString:@","];
         for(NSString *dayString in days)
         {
-            NSInteger day = -1;
-            if([dayString isEqualToString:@"SU"])
-                day = 1;
-            else if([dayString isEqualToString:@"MO"])
-                day = 2;
-            else if([dayString isEqualToString:@"TU"])
-                day = 3;
-            else if([dayString isEqualToString:@"WE"])
-                day = 4;
-            else if([dayString isEqualToString:@"TH"])
-                day = 5;
-            else if([dayString isEqualToString:@"FR"])
-                day = 6;
-            else if([dayString isEqualToString:@"SA"])
-                day = 7;
+            NSInteger day = [NSDate dayFromName:dayString];
+            
             if(day < 0)
                 day += 7;
             
@@ -142,46 +130,16 @@
             }
             
             if(days.count <= 2)
-            {
-                if(day == 1)
-                    [dayStrings addObject:@"Sundays"];
-                else if(day == 2)
-                    [dayStrings addObject:@"Mondays"];
-                else if(day == 3)
-                    [dayStrings addObject:@"Tuesdays"];
-                else if(day == 4)
-                    [dayStrings addObject:@"Wednesdays"];
-                else if(day == 5)
-                    [dayStrings addObject:@"Thursdays"];
-                else if(day == 6)
-                    [dayStrings addObject:@"Fridays"];
-                else if(day == 7)
-                    [dayStrings addObject:@"Saturdays"];
-            }
+                [dayStrings addObject:[NSDate longNameFromDay:day]];
             else
-            {
-                if(day == 1)
-                    [dayStrings addObject:@"Sun"];
-                else if(day == 2)
-                    [dayStrings addObject:@"Mon"];
-                else if(day == 3)
-                    [dayStrings addObject:@"Tues"];
-                else if(day == 4)
-                    [dayStrings addObject:@"Wed"];
-                else if(day == 5)
-                    [dayStrings addObject:@"Thur"];
-                else if(day == 6)
-                    [dayStrings addObject:@"Fri"];
-                else if(day == 7)
-                    [dayStrings addObject:@"Sat"];
-            }
+                [dayStrings addObject:[NSDate shortNameFromDay:day]];
         }
         
         for(NSString *dayString in dayStrings)
         {
             scheduleString = [scheduleString stringByAppendingString:dayString];
             
-            if(dayString != [dayStrings lastObject])
+            if(dayString != dayStrings.lastObject)
             {
                 if(dayString != [dayStrings objectAtIndex:dayStrings.count-2])
                     scheduleString = [scheduleString stringByAppendingString:@", "];
@@ -396,14 +354,11 @@
                  NSRange r;
                  while((r = [guests rangeOfString:@"<[^>]+>" options:NSRegularExpressionSearch]).location != NSNotFound)
                      guests = [guests stringByReplacingCharactersInRange:r withString:@""];
-                 
-                 //guests = [guests stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
              }
              
              NSString *posterURL = [NSString stringWithFormat:@"http://twit.tv/files/imagecache/slideshow-slide/%@%.4d.jpg", self.titleAcronym.lowercaseString, number];
              
              NSString *enclosureURL = [[epiDic objectForKey:@"enclosure"] objectForKey:@"url"];
-             //NSString *enclosureType = [[epiDic objectForKey:@"enclosure"] objectForKey:@"type"];
              NSString *website = [[epiDic objectForKey:@"comments"] objectForKey:@"text"];
              
              
@@ -443,7 +398,7 @@
                  episode.website = website;
                  episode.published = published;
                  episode.number = number;
-                 episode.watched = firstLoad;
+                 episode.watched = firstLoad ?: !self.favorite;
                  
                  Poster *poster = [context insertEntity:@"Poster"];
                  poster.url = posterURL;
