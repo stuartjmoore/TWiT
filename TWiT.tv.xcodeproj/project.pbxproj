@@ -172,6 +172,7 @@
 		176AF18B1695DE6000A35BFC /* Feed.m in Sources */ = {isa = PBXBuildFile; fileRef = 176AF18A1695DE6000A35BFC /* Feed.m */; };
 		176AF18E1695DFE900A35BFC /* Enclosure.m in Sources */ = {isa = PBXBuildFile; fileRef = 176AF18D1695DFE900A35BFC /* Enclosure.m */; };
 		176AF1911695E0DF00A35BFC /* Poster.m in Sources */ = {isa = PBXBuildFile; fileRef = 176AF1901695E0DF00A35BFC /* Poster.m */; };
+		179D814A169D4A1500B54E1B /* Schedule.m in Sources */ = {isa = PBXBuildFile; fileRef = 179D8149169D4A1500B54E1B /* Schedule.m */; };
 		17AFF029169462EA0053A33C /* TWShowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 17AFF028169462EA0053A33C /* TWShowViewController.m */; };
 		17C43B381696DFD60066C79F /* aaa600.1353196800.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 17C43AE81696DFD60066C79F /* aaa600.1353196800.jpg */; };
 		17C43B391696DFD60066C79F /* byb600.1353196800.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 17C43AE91696DFD60066C79F /* byb600.1353196800.jpg */; };
@@ -414,6 +415,8 @@
 		176AF18D1695DFE900A35BFC /* Enclosure.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Enclosure.m; sourceTree = "<group>"; };
 		176AF18F1695E0DF00A35BFC /* Poster.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Poster.h; sourceTree = "<group>"; };
 		176AF1901695E0DF00A35BFC /* Poster.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Poster.m; sourceTree = "<group>"; };
+		179D8148169D4A1500B54E1B /* Schedule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Schedule.h; sourceTree = "<group>"; };
+		179D8149169D4A1500B54E1B /* Schedule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Schedule.m; sourceTree = "<group>"; };
 		17AFF027169462EA0053A33C /* TWShowViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWShowViewController.h; sourceTree = "<group>"; };
 		17AFF028169462EA0053A33C /* TWShowViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWShowViewController.m; sourceTree = "<group>"; };
 		17C43AE81696DFD60066C79F /* aaa600.1353196800.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = aaa600.1353196800.jpg; sourceTree = "<group>"; };
@@ -689,6 +692,8 @@
 		17BB1CFF168F728C00221F7E /* Objects */ = {
 			isa = PBXGroup;
 			children = (
+				179D8148169D4A1500B54E1B /* Schedule.h */,
+				179D8149169D4A1500B54E1B /* Schedule.m */,
 				176AF17B1695CC3300A35BFC /* Channel.h */,
 				176AF17C1695CC3300A35BFC /* Channel.m */,
 				176380A516960E280060D076 /* Stream.h */,
@@ -1145,6 +1150,7 @@
 				17C43B931696FC220066C79F /* NSManagedObjectContext+ConvenienceMethods.m in Sources */,
 				170561E2169AD61800E59244 /* NSDate+comparisons.m in Sources */,
 				17F668D1169B34FC00525F65 /* TWScheduleViewController.m in Sources */,
+				179D814A169D4A1500B54E1B /* Schedule.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
