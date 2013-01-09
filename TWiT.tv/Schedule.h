@@ -27,9 +27,6 @@
 
 @property (nonatomic, strong) NSArray *days;
 
-- (NSUInteger)daysAfterNow;
-
 - (Event*)currentShow;
-- (NSString*)stringFromStart:(NSDate*)startDate andEnd:(NSDate*)endDate;
 
 @end
