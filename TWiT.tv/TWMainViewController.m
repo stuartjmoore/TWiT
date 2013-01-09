@@ -469,12 +469,11 @@
         return;
     
     Event *currentShow = self.channel.schedule.currentShow;
-    
     self.liveTimeLabel.text = currentShow.until;
     self.liveTitleLabel.text = currentShow.title;
 
     Show *show = currentShow.show ?: self.channel.shows.anyObject;
-    self.livePosterView.image = show.poster.image ?: show.albumArt.image;
+    self.livePosterView.image = show.poster.image;
     self.liveAlbumArtView.image = show.albumArt.image;
     
     [self.scheduleTable reloadData];
@@ -497,9 +496,9 @@
     [fetchRequest setSortDescriptors:@[sortDescriptor]];
     [fetchRequest setPredicate:predicate];
     
-    // Edit the section name key path and cache name if appropriate.
-    // nil for section name key path means "no sections".
-    NSFetchedResultsController *controller = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:@"UnwatchedEpisode"];
+    NSFetchedResultsController *controller = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest
+                                                                                 managedObjectContext:self.managedObjectContext
+                                                                                   sectionNameKeyPath:nil cacheName:@"UnwatchedEpisode"];
     controller.delegate = self;
     self.fetchedEpisodesController = controller;
     
@@ -524,9 +523,9 @@
     [fetchRequest setEntity:entity];
     [fetchRequest setSortDescriptors:@[sortDescriptor]];
     
-    // Edit the section name key path and cache name if appropriate.
-    // nil for section name key path means "no sections".
-    NSFetchedResultsController *controller = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:@"Shows"];
+    NSFetchedResultsController *controller = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest
+                                                                                 managedObjectContext:self.managedObjectContext
+                                                                                   sectionNameKeyPath:nil cacheName:@"Shows"];
     controller.delegate = self;
     self.fetchedShowsController = controller;
     
@@ -601,7 +600,7 @@
     else
         [self.tableView reloadData];
 }
-
+/*
 #pragma mark - Split view
 
 - (BOOL)splitViewController:(UISplitViewController*)svc shouldHideViewController:(UIViewController*)vc inOrientation:(UIInterfaceOrientation)orientation
@@ -611,7 +610,7 @@
 - (void)splitViewController:(UISplitViewController*)svc willShowViewController:(UIViewController*)aViewController invalidatingBarButtonItem:(UIBarButtonItem*)button
 {
 }
-
+*/
 #pragma mark - Kill
 
 - (void)didReceiveMemoryWarning
@@ -632,6 +631,8 @@
     self.fetchedEpisodesController = nil;
     
     [NSNotificationCenter.defaultCenter removeObserver:self name:@"ScheduleDidUpdate" object:nil];
+    
+    [super viewDidUnload];
 }
 
 @end
