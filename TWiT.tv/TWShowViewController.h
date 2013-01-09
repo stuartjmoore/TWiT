@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <MessageUI/MFMailComposeViewController.h>
 
-#define headerHeight 180
+#define showHeaderHeight 180
 
 @class Show;
 

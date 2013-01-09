@@ -27,7 +27,7 @@
     
     self.title = self.show.title;
     self.albumArt.image = self.show.albumArt.image;
-    self.posterView.image = self.show.poster.image ?: self.show.albumArt.image;
+    self.posterView.image = self.show.poster.image;
     self.scheduleLabel.text = self.show.scheduleString;
     self.descLabel.text = self.show.desc;
     
@@ -80,7 +80,7 @@
 
 - (IBAction)openDetailView:(UIButton*)sender
 {
-    if(self.tableView.contentOffset.y <= -self.view.bounds.size.height+headerHeight)
+    if(self.tableView.contentOffset.y <= -self.view.bounds.size.height+showHeaderHeight)
     {
         self.tableView.scrollEnabled = YES;
         [UIView animateWithDuration:0.3f animations:^
@@ -95,7 +95,7 @@
         self.tableView.scrollEnabled = NO;
         [UIView animateWithDuration:0.3f animations:^
         {
-            self.tableView.contentOffset = CGPointMake(0, -self.view.bounds.size.height+headerHeight);
+            self.tableView.contentOffset = CGPointMake(0, -self.view.bounds.size.height+showHeaderHeight);
             sender.transform = CGAffineTransformMakeRotation(M_PI);
             [sender setImage:[UIImage imageNamed:@"toolbar-disclose-up"] forState:UIControlStateNormal];
         }];
@@ -137,6 +137,7 @@
 
 - (void)tableView:(UITableView*)tableView didSelectRowAtIndexPath:(NSIndexPath*)indexPath
 {
+    /*
     UINavigationController *detailNavigationController = self.splitViewController.viewControllers[1];
     
     if(self.episodeViewController)
@@ -154,6 +155,7 @@
         self.episodeViewController = detailNavigationController.viewControllers.lastObject;
         self.episodeViewController.episode = episode;
     }
+    */
 }
 
 #pragma mark - Table
@@ -161,29 +163,25 @@
 - (void)observeValueForKeyPath:(NSString*)keyPath ofObject:(id)object change:(NSDictionary*)change context:(void*)context
 {
     UIAccessibilityPostNotification(UIAccessibilityLayoutChangedNotification, nil);
-    
     CGPoint newPoint = [[change valueForKey:NSKeyValueChangeNewKey] CGPointValue];
     
     if(object == self.tableView)
     {
+        CGRect frame = self.headerView.frame;
         if(newPoint.y < 0)
         {
-            CGRect frame = self.headerView.frame;
             frame.origin.y = newPoint.y;
-            frame.size.height = ceilf(headerHeight-newPoint.y);
-            self.headerView.frame = frame;
+            frame.size.height = ceilf(showHeaderHeight-newPoint.y);
             
-            self.tableView.scrollIndicatorInsets = UIEdgeInsetsMake(frame.size.height, 0, 0, 1);
         }
         else
         {
-            CGRect frame = self.headerView.frame;
             frame.origin.y = 0;
-            frame.size.height = headerHeight;
-            self.headerView.frame = frame;
-            
-            self.tableView.scrollIndicatorInsets = UIEdgeInsetsMake(headerHeight, 0, 0, 1);
+            frame.size.height = showHeaderHeight;
         }
+        
+        self.headerView.frame = frame;
+        self.tableView.scrollIndicatorInsets = UIEdgeInsetsMake(frame.size.height, 0, 0, 1);
     }
 }
 

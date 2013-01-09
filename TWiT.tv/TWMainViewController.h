@@ -12,8 +12,6 @@
 #import "TWShowsCell.h"
 
 #define mainHeaderHeight 180
-#define mainHeaderHeight_iPad 62
-#define mainHeaderHeight_iPad_shows 220
 
 typedef NS_ENUM(NSInteger, TWSection)
 {

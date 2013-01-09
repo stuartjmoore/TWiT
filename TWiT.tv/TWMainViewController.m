@@ -31,7 +31,7 @@
 @implementation TWMainViewController
 
 - (void)awakeFromNib
-{
+{/*
     if(UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPad)
     {
         self.clearsSelectionOnViewWillAppear = NO;
@@ -41,7 +41,7 @@
         else
             sectionVisible = TWSectionShows;
     }
-    else
+    else*/
     {
         // TODO: Save state?
         sectionVisible = TWSectionEpisodes;
@@ -87,7 +87,7 @@
 }
 
 - (IBAction)loadLiveDetail:(UIButton*)sender
-{
+{/*
     if(self.episodeViewController && UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPad)
     {
         [self.tableView deselectRowAtIndexPath:self.tableView.indexPathForSelectedRow animated:YES];
@@ -96,11 +96,11 @@
         [detailNavigationController popViewControllerAnimated:YES];
         
         self.episodeViewController = nil;
-    }
+    }*/
 }
 
 - (void)tableView:(UITableView*)tableView didSelectRowAtIndexPath:(NSIndexPath*)indexPath
-{
+{/*
     if(!self.episodeViewController && UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPad)
     {
         UINavigationController *detailNavigationController = self.splitViewController.viewControllers[1];
@@ -110,7 +110,7 @@
         Episode *episode = [self.fetchedEpisodesController objectAtIndexPath:indexPath];
         self.episodeViewController = detailNavigationController.viewControllers.lastObject;
         self.episodeViewController.episode = episode;
-    }
+    }*/
 }
 
 - (void)tableView:(UITableView*)tableView didSelectColumn:(int)column AtIndexPath:(NSIndexPath*)indexPath
@@ -121,7 +121,7 @@
     Show *show = [self.fetchedShowsController objectAtIndexPath:showIndexPath];
     
     // TODO: [show updateEpisodes];
-    
+    /*
     if(UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPad)
     {
         UINavigationController *masterNavigationController = self.splitViewController.viewControllers[0];
@@ -132,7 +132,7 @@
         TWMainViewController *showDetailViewController = (TWMainViewController*)detailNavigationController.topViewController;
         [showDetailViewController performSegueWithIdentifier:@"showDetail" sender:show];
     }
-    else
+    else*/
     {
         [self performSegueWithIdentifier:@"showDetail" sender:show];
     }
@@ -162,46 +162,25 @@
 - (void)observeValueForKeyPath:(NSString*)keyPath ofObject:(id)object change:(NSDictionary*)change context:(void*)context
 {
     UIAccessibilityPostNotification(UIAccessibilityLayoutChangedNotification, nil);
-    
     CGPoint newPoint = [[change valueForKey:NSKeyValueChangeNewKey] CGPointValue];
-    float height = 0;
-    
-    if(UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPhone)
-    {
-        height = mainHeaderHeight;
-    }
-    else
-    {
-        if(sectionVisible == TWSectionEpisodes)
-            height = mainHeaderHeight_iPad;
-        else
-            height = mainHeaderHeight_iPad_shows;
-    }
     
     if(object == self.tableView)
     {
+        CGRect frame = self.headerView.frame;
+        
         if(newPoint.y < 0)
         {
-            CGRect frame = self.headerView.frame;
             frame.origin.y = newPoint.y;
-            frame.size.height = ceilf(height-newPoint.y);
-            self.headerView.frame = frame;
-            
-            float sectionHeaderHeight = [self.tableView.delegate tableView:self.tableView heightForHeaderInSection:0];
-            self.tableView.scrollIndicatorInsets = UIEdgeInsetsMake(frame.size.height+sectionHeaderHeight, 0, 0, 0);
-            self.sectionHeader.layer.shadowOpacity = 0;
+            frame.size.height = ceilf(mainHeaderHeight-newPoint.y);
         }
         else
         {
-            CGRect frame = self.headerView.frame;
             frame.origin.y = 0;
-            frame.size.height = height;
-            self.headerView.frame = frame;
-            
-            float sectionHeaderHeight = [self.tableView.delegate tableView:self.tableView heightForHeaderInSection:0];
-            self.tableView.scrollIndicatorInsets = UIEdgeInsetsMake(height+sectionHeaderHeight, 0, 0, 0);
-            self.sectionHeader.layer.shadowOpacity = newPoint.y-height < 0 ? 0 : (newPoint.y-height)/20;
+            frame.size.height = mainHeaderHeight;
         }
+        
+        self.headerView.frame = frame;
+        self.tableView.scrollIndicatorInsets = UIEdgeInsetsMake(frame.size.height, 0, 0, 1);
     }
 }
 
@@ -279,9 +258,9 @@
             return 62;
         else if(sectionVisible == TWSectionShows)
         {
-            if(UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPad)
+            /*if(UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPad)
                 return 150;
-            else
+            else*/
                 return 102;
         }
     }
@@ -453,14 +432,14 @@
         showsCell.indexPath = indexPath;
         
         // TODO: CACHE THIS MUCHERFUCKER
-        
+        /*
         if(UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPad)
         {
             showsCell.spacing = 26;
             showsCell.size = 114;
             showsCell.columns = 3;
         }
-        else
+        else*/
         {
             showsCell.spacing = 14;
             showsCell.size = 88;
