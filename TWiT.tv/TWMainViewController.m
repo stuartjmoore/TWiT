@@ -119,8 +119,9 @@
     int index = indexPath.row*showCell.columns + column;
     NSIndexPath *showIndexPath = [NSIndexPath indexPathForRow:index inSection:indexPath.section];
     Show *show = [self.fetchedShowsController objectAtIndexPath:showIndexPath];
+    [show updateEpisodes];
+    [self performSegueWithIdentifier:@"showDetail" sender:show];
     
-    // TODO: [show updateEpisodes];
     /*
     if(UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPad)
     {
@@ -132,10 +133,10 @@
         TWMainViewController *showDetailViewController = (TWMainViewController*)detailNavigationController.topViewController;
         [showDetailViewController performSegueWithIdentifier:@"showDetail" sender:show];
     }
-    else*/
+    else
     {
         [self performSegueWithIdentifier:@"showDetail" sender:show];
-    }
+    }*/
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue*)segue sender:(id)sender
@@ -171,12 +172,12 @@
         if(newPoint.y < 0)
         {
             frame.origin.y = newPoint.y;
-            frame.size.height = ceilf(mainHeaderHeight-newPoint.y);
+            frame.size.height = ceilf(mainHeaderHeight-newPoint.y+28);
         }
         else
         {
             frame.origin.y = 0;
-            frame.size.height = mainHeaderHeight;
+            frame.size.height = mainHeaderHeight+28;
         }
         
         self.headerView.frame = frame;

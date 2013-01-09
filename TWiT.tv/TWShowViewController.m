@@ -23,8 +23,6 @@
 {
     [super viewDidLoad];
     
-    [self.show updateEpisodes];
-    
     self.title = self.show.title;
     self.albumArt.image = self.show.albumArt.image;
     self.posterView.image = self.show.poster.image;
