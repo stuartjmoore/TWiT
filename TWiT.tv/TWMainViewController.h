@@ -22,9 +22,8 @@ typedef NS_ENUM(NSInteger, TWSection)
 @class TWEpisodeViewController, Channel;
 
 @interface TWMainViewController : UITableViewController <NSFetchedResultsControllerDelegate, UISplitViewControllerDelegate, TWiTShowGridCellDelegate>
-{
-    TWSection sectionVisible;
-}
+
+@property (assign) TWSection sectionVisible;
 
 @property (strong, nonatomic) Channel *channel;
 

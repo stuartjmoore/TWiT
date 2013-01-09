@@ -31,20 +31,15 @@
 @implementation TWMainViewController
 
 - (void)awakeFromNib
-{/*
+{
     if(UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPad)
     {
         self.clearsSelectionOnViewWillAppear = NO;
-        
-        if(self == [self.splitViewController.viewControllers[0] topViewController])
-            sectionVisible = TWSectionEpisodes;
-        else
-            sectionVisible = TWSectionShows;
     }
-    else*/
+    else
     {
         // TODO: Save state?
-        sectionVisible = TWSectionEpisodes;
+        self.sectionVisible = TWSectionEpisodes;
     }
     
     [super awakeFromNib];
@@ -73,16 +68,19 @@
 {
     [super viewWillAppear:animated];
     
-    [self.tableView addObserver:self forKeyPath:@"contentOffset"
-                        options:(NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld)
-                        context:NULL];
+    if(self.headerView)
+    {
+        [self.tableView addObserver:self forKeyPath:@"contentOffset"
+                            options:(NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld)
+                            context:NULL];
+    }
 }
 
 #pragma mark - Actions
 
 - (void)switchVisibleSection:(UIButton*)sender
 {
-    sectionVisible = sender.tag;
+    self.sectionVisible = sender.tag;
     [self.tableView reloadData];
 }
 
@@ -118,7 +116,9 @@
     TWShowsCell *showCell = (TWShowsCell*)[self.tableView cellForRowAtIndexPath:indexPath];
     int index = indexPath.row*showCell.columns + column;
     NSIndexPath *showIndexPath = [NSIndexPath indexPathForRow:index inSection:indexPath.section];
-    [self performSegueWithIdentifier:@"showDetail" sender:showIndexPath];
+ 
+    if(UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPhone)
+        [self performSegueWithIdentifier:@"showDetail" sender:showIndexPath];
     
     /*
     if(UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPad)
@@ -167,7 +167,7 @@
     UIAccessibilityPostNotification(UIAccessibilityLayoutChangedNotification, nil);
     CGPoint newPoint = [[change valueForKey:NSKeyValueChangeNewKey] CGPointValue];
     
-    if(object == self.tableView)
+    if(self.headerView && object == self.tableView)
     {
         CGRect frame = self.headerView.frame;
         
@@ -191,9 +191,9 @@
 {
     if(tableView == self.tableView)
     {
-        if(sectionVisible == TWSectionEpisodes)
+        if(self.sectionVisible == TWSectionEpisodes)
             return self.fetchedEpisodesController.sections.count;
-        else if(sectionVisible == TWSectionShows)
+        else if(self.sectionVisible == TWSectionShows)
             return self.fetchedShowsController.sections.count;
     }
     else if(tableView == self.scheduleTable)
@@ -210,13 +210,13 @@
     {
         id <NSFetchedResultsSectionInfo>sectionInfo;
         
-        if(sectionVisible == TWSectionEpisodes)
+        if(self.sectionVisible == TWSectionEpisodes)
         {
             sectionInfo = self.fetchedEpisodesController.sections[section];
             
             return sectionInfo.numberOfObjects;
         }
-        else if(sectionVisible == TWSectionShows)
+        else if(self.sectionVisible == TWSectionShows)
         {
             sectionInfo = self.fetchedShowsController.sections[section];
             int num = sectionInfo.numberOfObjects;
@@ -256,13 +256,13 @@
 {
     if(tableView == self.tableView)
     {
-        if(sectionVisible == TWSectionEpisodes)
+        if(self.sectionVisible == TWSectionEpisodes)
             return 62;
-        else if(sectionVisible == TWSectionShows)
+        else if(self.sectionVisible == TWSectionShows)
         {
-            /*if(UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPad)
+            if(UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPad)
                 return 150;
-            else*/
+            else
                 return 102;
         }
     }
@@ -308,7 +308,7 @@
         episodesButton.frame = CGRectMake(1, 2, 158, 24);
         [episodesButton setTitle:@"EPISODES" forState:UIControlStateNormal];
         episodesButton.tag = TWSectionEpisodes;
-        episodesButton.selected = (sectionVisible == episodesButton.tag);
+        episodesButton.selected = (self.sectionVisible == episodesButton.tag);
         [episodesButton addTarget:self action:@selector(switchVisibleSection:) forControlEvents:UIControlEventTouchUpInside];
         [episodesButton setTitleShadowColor:[UIColor colorWithWhite:0 alpha:0.25f] forState:UIControlStateSelected];
         [episodesButton setTitleShadowColor:[UIColor colorWithWhite:1 alpha:0.25f] forState:UIControlStateNormal];
@@ -325,7 +325,7 @@
         showsButton.frame = CGRectMake(161, 2, 158, 24);
         [showsButton setTitle:@"SHOWS" forState:UIControlStateNormal];
         showsButton.tag = TWSectionShows;
-        showsButton.selected = (sectionVisible == showsButton.tag);
+        showsButton.selected = (self.sectionVisible == showsButton.tag);
         [showsButton addTarget:self action:@selector(switchVisibleSection:) forControlEvents:UIControlEventTouchUpInside];
         [showsButton setTitleShadowColor:[UIColor colorWithWhite:1 alpha:0.25f] forState:UIControlStateNormal];
         [showsButton setBackgroundImage:buttonDownBackground forState:UIControlStateHighlighted];
@@ -386,7 +386,7 @@
 {
     if(tableView == self.tableView)
     {
-        NSString *identifier = (sectionVisible == TWSectionEpisodes) ? @"episodeCell" : @"showsCell";
+        NSString *identifier = (self.sectionVisible == TWSectionEpisodes) ? @"episodeCell" : @"showsCell";
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
 
         [self configureCell:cell atIndexPath:indexPath];
@@ -430,14 +430,14 @@
         showsCell.indexPath = indexPath;
         
         // TODO: CACHE THIS MUCHERFUCKER
-        /*
+        
         if(UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPad)
         {
             showsCell.spacing = 26;
             showsCell.size = 114;
             showsCell.columns = 3;
         }
-        else*/
+        else
         {
             showsCell.spacing = 14;
             showsCell.size = 88;
@@ -541,14 +541,14 @@
 
 - (void)controllerWillChangeContent:(NSFetchedResultsController*)controller
 {
-    if(controller == self.fetchedEpisodesController && sectionVisible == TWSectionEpisodes)
+    if(controller == self.fetchedEpisodesController && self.sectionVisible == TWSectionEpisodes)
         [self.tableView beginUpdates];
 }
 
 - (void)controller:(NSFetchedResultsController*)controller didChangeSection:(id <NSFetchedResultsSectionInfo>)sectionInfo
            atIndex:(NSUInteger)sectionIndex forChangeType:(NSFetchedResultsChangeType)type
 {
-    if(controller == self.fetchedEpisodesController && sectionVisible == TWSectionEpisodes)
+    if(controller == self.fetchedEpisodesController && self.sectionVisible == TWSectionEpisodes)
     {
         switch(type)
         {
@@ -567,7 +567,7 @@
        atIndexPath:(NSIndexPath*)indexPath forChangeType:(NSFetchedResultsChangeType)type
       newIndexPath:(NSIndexPath*)newIndexPath
 {
-    if(controller == self.fetchedEpisodesController && sectionVisible == TWSectionEpisodes)
+    if(controller == self.fetchedEpisodesController && self.sectionVisible == TWSectionEpisodes)
     {
         UITableView *tableView = self.tableView;
         
@@ -595,7 +595,7 @@
 
 - (void)controllerDidChangeContent:(NSFetchedResultsController*)controller
 {
-    if(controller == self.fetchedEpisodesController && sectionVisible == TWSectionEpisodes)
+    if(controller == self.fetchedEpisodesController && self.sectionVisible == TWSectionEpisodes)
         [self.tableView endUpdates];
     else
         [self.tableView reloadData];
@@ -620,7 +620,8 @@
 
 - (void)viewWillDisappear:(BOOL)animated
 {
-    [self.tableView removeObserver:self forKeyPath:@"contentOffset"];
+    if(self.headerView)
+        [self.tableView removeObserver:self forKeyPath:@"contentOffset"];
     
     [super viewWillDisappear:animated];
 }

@@ -7,7 +7,9 @@
 //
 
 #import "TWAppDelegate.h"
+#import "TWSplitViewContainer.h"
 #import "TWMainViewController.h"
+
 #import "Channel.h"
 
 @implementation TWAppDelegate
@@ -27,6 +29,27 @@
     
     if([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad)
     {
+        TWSplitViewContainer *splitViewContainer = (TWSplitViewContainer*)self.window.rootViewController;
+        
+        UINavigationController *masterController = [splitViewContainer.storyboard instantiateViewControllerWithIdentifier:@"masterController"];
+        TWMainViewController *episodesController = (TWMainViewController*)masterController.topViewController;
+        episodesController.managedObjectContext = self.managedObjectContext;
+        episodesController.channel = channel;
+        masterController.view.frame = CGRectMake(0, 0, 320, 1004);
+        [splitViewContainer addChildViewController:masterController];
+        [splitViewContainer.view addSubview:masterController.view];
+
+        UINavigationController *detailController = [splitViewContainer.storyboard instantiateViewControllerWithIdentifier:@"detailController"];
+        TWMainViewController *showsController = (TWMainViewController*)detailController.topViewController;
+        showsController.managedObjectContext = self.managedObjectContext;
+        showsController.channel = channel;
+        [splitViewContainer addChildViewController:masterController];
+        detailController.view.frame = CGRectMake(320, 0, 768-320, 1004);
+        [splitViewContainer.view addSubview:detailController.view];
+
+        
+        
+        /*
         UISplitViewController *splitViewController = (UISplitViewController*)self.window.rootViewController;
         
         UINavigationController *masterNavigationController = splitViewController.viewControllers[0];
@@ -39,6 +62,7 @@
         TWMainViewController *detailController = (TWMainViewController*)detailNavigationController.topViewController;
         detailController.managedObjectContext = self.managedObjectContext;
         detailController.channel = channel;
+        */
     }
     else
     {
