@@ -118,11 +118,7 @@
         cell.detailTextLabel.textColor = [UIColor blackColor];
     }
     
-    NSDateFormatter *dateFormatterLocal = [[NSDateFormatter alloc] init];
-    [dateFormatterLocal setTimeZone:[NSTimeZone localTimeZone]];
-    [dateFormatterLocal setDateFormat:@"h:mma"];
-    cell.textLabel.text = [[dateFormatterLocal stringFromDate:show.start] lowercaseString];
-    
+    cell.textLabel.text = show.time;
     cell.detailTextLabel.text = show.title;
     
     return cell;

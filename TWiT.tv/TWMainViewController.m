@@ -118,9 +118,7 @@
     TWShowsCell *showCell = (TWShowsCell*)[self.tableView cellForRowAtIndexPath:indexPath];
     int index = indexPath.row*showCell.columns + column;
     NSIndexPath *showIndexPath = [NSIndexPath indexPathForRow:index inSection:indexPath.section];
-    Show *show = [self.fetchedShowsController objectAtIndexPath:showIndexPath];
-    [show updateEpisodes];
-    [self performSegueWithIdentifier:@"showDetail" sender:show];
+    [self performSegueWithIdentifier:@"showDetail" sender:showIndexPath];
     
     /*
     if(UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPad)
@@ -150,7 +148,11 @@
     }
     else if([segue.identifier isEqualToString:@"showDetail"])
     {
-        [segue.destinationViewController setShow:sender];
+        NSIndexPath *indexPath = (NSIndexPath*)sender;
+        Show *show = [self.fetchedShowsController objectAtIndexPath:indexPath];
+        [show updateEpisodes];
+        
+        [segue.destinationViewController setShow:show];
     }
     else if([segue.identifier isEqualToString:@"scheduleView"])
     {
@@ -197,7 +199,6 @@
     else if(tableView == self.scheduleTable)
     {
         return self.channel.schedule.days.count;
-        //return self.channel.schedule.daysAfterNow;
     }
     
     return 0;
@@ -399,11 +400,7 @@
         
         Event *showEvent = self.channel.schedule.days[indexPath.section][indexPath.row];
         
-        if(showEvent.start.timeIntervalSinceNow > 24*60*60)
-            cell.textLabel.text = @"Tomorrow";
-        else
-            cell.textLabel.text = showEvent.until;
-    
+        cell.textLabel.text = showEvent.time;
         cell.detailTextLabel.text = showEvent.title;
         
         return cell;
@@ -472,6 +469,7 @@
         return;
     
     Event *currentShow = self.channel.schedule.currentShow;
+    
     self.liveTimeLabel.text = currentShow.until;
     self.liveTitleLabel.text = currentShow.title;
 

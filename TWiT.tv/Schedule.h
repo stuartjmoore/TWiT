@@ -19,6 +19,7 @@
 @property (nonatomic) NSTimeInterval duration;
 
 - (NSString*)until;
+- (NSString*)time;
 
 @end
 
