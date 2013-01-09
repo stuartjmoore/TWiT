@@ -8,6 +8,7 @@
 
 #import "NSManagedObjectContext+ConvenienceMethods.h"
 
+#import "Schedule.h"
 #import "Channel.h"
 #import "Stream.h"
 #import "Show.h"
@@ -230,7 +231,8 @@
 
 - (void)reloadSchedule
 {
-    self.schedule = [NSMutableArray array];
+    self.schedule = [[Schedule alloc] init];
+    NSMutableArray *schedule = [NSMutableArray array];
     
     NSDate *startMin = [NSDate date];
     NSDate *startMax = [startMin dateByAddingTimeInterval:60*60*24*7];
@@ -247,109 +249,111 @@
     [NSURLConnection sendAsynchronousRequest:urlRequest queue:NSOperationQueue.mainQueue
     completionHandler:^(NSURLResponse *response, NSData *data, NSError *error)
     {
-         NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse*)response;
-         if([httpResponse respondsToSelector:@selector(statusCode)] && httpResponse.statusCode == 200)
-         {
-             NSDictionary *JSON = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
-             NSArray *showEntries = JSON[@"feed"][@"entry"];
-             
-             NSCalendar *calendar = NSCalendar.currentCalendar;
-             NSDate *fromDate;
-             NSDate *toDate;
-             
-             for(NSDictionary *showEntry in showEntries)
-             {
-                 if([showEntry objectForKey:@"gd$when"] == nil)
-                     continue;
-                 
-                 NSString *showTitle = [[showEntry objectForKey:@"title"] objectForKey:@"$t"];
-                 NSString *startTimeString = [[[showEntry objectForKey:@"gd$when"] lastObject] objectForKey:@"startTime"];
-                 NSString *endTimeString = [[[showEntry objectForKey:@"gd$when"] lastObject] objectForKey:@"endTime"];
-                 
-                 showTitle = [showTitle stringByReplacingOccurrencesOfString:@"&#39;" withString:@"’"];
-                 showTitle = [showTitle stringByReplacingOccurrencesOfString:@"&#38;" withString:@"&"];
-                 showTitle = [showTitle stringByReplacingOccurrencesOfString:@"&amp;" withString:@"&"];
-                 showTitle = [showTitle stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-                 
-                 
-                 NSPredicate *p = [NSPredicate predicateWithFormat:@"%@ BEGINSWITH title OR %@ BEGINSWITH titleInSchedule", showTitle, showTitle];
-                 Show *show = [[self.shows filteredSetUsingPredicate:p] anyObject];
-                 
-                 if(show)
-                     showTitle = show.title;
-                     
-                 
-                 if(startTimeString.length > 20)
-                     startTimeString = [startTimeString stringByReplacingOccurrencesOfString:@":"
-                                                                                  withString:@""
-                                                                                     options:0
-                                                                                       range:NSMakeRange(20, startTimeString.length-20)];
-                 if(endTimeString.length > 20)
-                     endTimeString = [endTimeString stringByReplacingOccurrencesOfString:@":"
-                                                                              withString:@""
-                                                                                 options:0
-                                                                                   range:NSMakeRange(20, endTimeString.length-20)];
-                 
-                 NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-                 [dateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSSZ"];
-                 [dateFormatter setTimeZone:[NSTimeZone timeZoneWithName:@"America/Los_Angeles"]];
-                 NSDate *startDate = [dateFormatter dateFromString:startTimeString];
-                 NSDate *endDate = [dateFormatter dateFromString:endTimeString];
-                 
-                 NSDateFormatter *dateFormatterLocal = [[NSDateFormatter alloc] init];
-                 [dateFormatterLocal setTimeZone:[NSTimeZone localTimeZone]];
-                 [dateFormatterLocal setDateFormat:@"MMM dd, h:mma"];
-                 NSTimeInterval duration = [endDate timeIntervalSinceDate:startDate];
-                 
-                 NSDictionary *showDictionary = [NSDictionary dictionaryWithObjectsAndKeys:
-                                                 showTitle, @"title",
-                                                 startDate, @"startDate",
-                                                 endDate, @"endDate",
-                                                 @(duration/60.0f), @"duration",
-                                                 nil];
-                 
-                 [calendar rangeOfUnit:NSDayCalendarUnit
-                             startDate:&fromDate
-                              interval:NULL
-                               forDate:[NSDate date]];
-                 
-                 [calendar rangeOfUnit:NSDayCalendarUnit
-                             startDate:&toDate
-                              interval:NULL
-                               forDate:startDate];
-                 
-                 int daysAway = [[calendar components:NSDayCalendarUnit
-                                             fromDate:fromDate
-                                               toDate:toDate
-                                              options:0] day];
-                 
-                 if(daysAway < 0)
-                     continue;
-                 
-                 while(daysAway >= self.schedule.count)
-                     [self.schedule addObject:[NSMutableArray array]];
-                 
-                 NSMutableArray *shows = [self.schedule objectAtIndex:daysAway];
-                 [shows addObject:showDictionary];
-             }
-             
-             for(NSMutableArray *shows in self.schedule)
-             {
-                 [shows sortUsingComparator:(NSComparator)^(id obj1, id obj2)
-                  {
-                      NSDate *startA = [obj1 objectForKey:@"startDate"];
-                      NSDate *startB = [obj2 objectForKey:@"startDate"];
-                      return startB == [startA earlierDate:startB];
-                  }];
-             }
-         }
-         else
-         {
-             self.schedule = nil;
-         }
+        NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse*)response;
+        if([httpResponse respondsToSelector:@selector(statusCode)] && httpResponse.statusCode == 200)
+        {
+            NSDictionary *JSON = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+            NSArray *showEntries = JSON[@"feed"][@"entry"];
+            
+            NSCalendar *calendar = NSCalendar.currentCalendar;
+            NSDate *fromDate;
+            NSDate *toDate;
+            
+            for(NSDictionary *showEntry in showEntries)
+            {
+                if([showEntry objectForKey:@"gd$when"] == nil)
+                    continue;
+                
+                NSString *showTitle = [[showEntry objectForKey:@"title"] objectForKey:@"$t"];
+                NSString *startTimeString = [[[showEntry objectForKey:@"gd$when"] lastObject] objectForKey:@"startTime"];
+                NSString *endTimeString = [[[showEntry objectForKey:@"gd$when"] lastObject] objectForKey:@"endTime"];
+                
+                showTitle = [showTitle stringByReplacingOccurrencesOfString:@"&#39;" withString:@"’"];
+                showTitle = [showTitle stringByReplacingOccurrencesOfString:@"&#38;" withString:@"&"];
+                showTitle = [showTitle stringByReplacingOccurrencesOfString:@"&amp;" withString:@"&"];
+                showTitle = [showTitle stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+                
+                
+                NSPredicate *p = [NSPredicate predicateWithFormat:@"%@ BEGINSWITH title OR %@ BEGINSWITH titleInSchedule", showTitle, showTitle];
+                Show *show = [[self.shows filteredSetUsingPredicate:p] anyObject];
+                
+                if(show)
+                    showTitle = show.title;
+                
+                
+                if(startTimeString.length > 20)
+                    startTimeString = [startTimeString stringByReplacingOccurrencesOfString:@":"
+                                                                                 withString:@""
+                                                                                    options:0
+                                                                                      range:NSMakeRange(20, startTimeString.length-20)];
+                if(endTimeString.length > 20)
+                    endTimeString = [endTimeString stringByReplacingOccurrencesOfString:@":"
+                                                                             withString:@""
+                                                                                options:0
+                                                                                  range:NSMakeRange(20, endTimeString.length-20)];
+                
+                NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+                [dateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSSZ"];
+                [dateFormatter setTimeZone:[NSTimeZone timeZoneWithName:@"America/Los_Angeles"]];
+                NSDate *startDate = [dateFormatter dateFromString:startTimeString];
+                NSDate *endDate = [dateFormatter dateFromString:endTimeString];
+                
+                NSDateFormatter *dateFormatterLocal = [[NSDateFormatter alloc] init];
+                [dateFormatterLocal setTimeZone:[NSTimeZone localTimeZone]];
+                [dateFormatterLocal setDateFormat:@"MMM dd, h:mma"];
+                NSTimeInterval duration = [endDate timeIntervalSinceDate:startDate];
+                
+                NSDictionary *showDictionary = [NSDictionary dictionaryWithObjectsAndKeys:
+                                                showTitle, @"title",
+                                                startDate, @"startDate",
+                                                endDate, @"endDate",
+                                                @(duration/60.0f), @"duration",
+                                                nil];
+                
+                [calendar rangeOfUnit:NSDayCalendarUnit
+                            startDate:&fromDate
+                             interval:NULL
+                              forDate:[NSDate date]];
+                
+                [calendar rangeOfUnit:NSDayCalendarUnit
+                            startDate:&toDate
+                             interval:NULL
+                              forDate:startDate];
+                
+                int daysAway = [[calendar components:NSDayCalendarUnit
+                                            fromDate:fromDate
+                                              toDate:toDate
+                                             options:0] day];
+                
+                if(daysAway < 0)
+                    continue;
+                
+                while(daysAway >= schedule.count)
+                    [schedule addObject:[NSMutableArray array]];
+                
+                NSMutableArray *shows = [schedule objectAtIndex:daysAway];
+                [shows addObject:showDictionary];
+            }
+            
+            for(NSMutableArray *shows in schedule)
+            {
+                [shows sortUsingComparator:(NSComparator)^(id obj1, id obj2)
+                 {
+                     NSDate *startA = [obj1 objectForKey:@"startDate"];
+                     NSDate *startB = [obj2 objectForKey:@"startDate"];
+                     return startB == [startA earlierDate:startB];
+                 }];
+            }
+            
+            self.schedule.days = [NSArray arrayWithArray:schedule];
+        }
+        else
+        {
+            self.schedule.days = [NSArray array];
+        }
         
-         [NSNotificationCenter.defaultCenter postNotificationName:@"ScheduleDidUpdate" object:self.schedule userInfo:nil];
-     }];
+        [NSNotificationCenter.defaultCenter postNotificationName:@"ScheduleDidUpdate" object:self.schedule userInfo:nil];
+    }];
 }
 
 - (NSURL*)applicationDocumentsDirectory

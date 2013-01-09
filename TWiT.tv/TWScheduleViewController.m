@@ -7,6 +7,7 @@
 //
 
 #import "TWScheduleViewController.h"
+#import "Schedule.h"
 #import "NSDate+comparisons.h"
 
 @implementation TWScheduleViewController
@@ -29,17 +30,17 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView*)tableView
 {
-    return self.schedule.count;
+    return self.schedule.days.count;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [self.schedule[section] count];
+    return [self.schedule.days[section] count];
 }
 
 - (float)tableView:(UITableView*)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSArray *day = self.schedule[indexPath.section];
+    NSArray *day = self.schedule.days[indexPath.section];
     NSDictionary *show = day[indexPath.row];
     
     float duration = [[show objectForKey:@"duration"] floatValue];
@@ -68,7 +69,7 @@
 - (UIView*)tableView:(UITableView*)tableView viewForHeaderInSection:(NSInteger)section
 {
     float width = tableView.frame.size.width;
-    NSDate *startTime = self.schedule[section][0][@"startDate"];
+    NSDate *startTime = self.schedule.days[section][0][@"startDate"];
     
     UIView *header = [[UIView alloc] initWithFrame:CGRectMake(0, 0, width, 21)];
     header.backgroundColor = [UIColor colorWithWhite:237/255.0 alpha:1];
@@ -118,7 +119,7 @@
     botLine.backgroundColor = [UIColor colorWithWhite:222/255.0 alpha:1];
     [cell.contentView addSubview:botLine];
     
-    NSDictionary *show = self.schedule[indexPath.section][indexPath.row];
+    NSDictionary *show = self.schedule.days[indexPath.section][indexPath.row];
     NSDate *endDate = show[@"endDate"];
     
     if(endDate.isBeforeNow)

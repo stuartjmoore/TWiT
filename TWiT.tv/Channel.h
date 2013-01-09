@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@class Show, Stream;
+@class Show, Stream, Schedule;
 
 @interface Channel : NSManagedObject
 
@@ -18,7 +18,7 @@
 @property (nonatomic, strong) NSDate *published;
 @property (nonatomic, strong) NSSet *shows, *streams;
 
-@property (strong, nonatomic) NSMutableArray *schedule;
+@property (strong, nonatomic) Schedule *schedule;
 
 - (void)update;
 - (void)updateJSON;

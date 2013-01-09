@@ -8,8 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+@class Schedule;
+
 @interface TWScheduleViewController : UITableViewController
 
-@property (nonatomic, strong) NSArray *schedule;
+@property (nonatomic, strong) Schedule *schedule;
 
 @end

@@ -17,6 +17,7 @@
 
 #import "TWScheduleViewController.h"
 
+#import "Schedule.h"
 #import "Channel.h"
 #import "Show.h"
 #import "AlbumArt.h"
@@ -215,31 +216,7 @@
     }
     else if(tableView == self.scheduleTable)
     {
-        if(self.channel.schedule.count == 0)
-            return 0;
-        
-        NSArray *today = self.channel.schedule[0];
-        int count = self.channel.schedule.count;
-        
-        for(NSDictionary *show in today)
-        {
-            NSDate *startDate = show[@"startDate"];
-            NSDate *endDate = show[@"endDate"];
-            
-            if(startDate.isBeforeNow && endDate.isAfterNow)
-            {
-                if(today.lastObject == show)
-                    count--;
-                break;
-            }
-            else if(startDate.isAfterNow && endDate.isAfterNow)
-            {
-                if(today.lastObject == show)
-                    count--;
-                break;
-            }
-        }
-        return count;
+        return self.channel.schedule.daysAfterNow;
     }
     
     return 0;
@@ -267,7 +244,7 @@
     }
     else if(tableView == self.scheduleTable)
     {
-        return [self.channel.schedule[section] count];
+        return [self.channel.schedule.days[section] count];
     }
     
     return 0;
@@ -282,10 +259,11 @@
     }
     else if(tableView == self.scheduleTable)
     {
-        NSDate *startTime = self.channel.schedule[section][0][@"startDate"];
+        NSDate *startTime = self.channel.schedule.days[section][0][@"startDate"];
         
         if(startTime.isToday)
             return 0;
+        
         return 20;
     }
     
@@ -308,7 +286,7 @@
     }
     else if(tableView == self.scheduleTable)
     {
-        NSDate *startTime = self.channel.schedule[indexPath.section][indexPath.row][@"startDate"];
+        NSDate *startTime = self.channel.schedule.days[indexPath.section][indexPath.row][@"startDate"];
         
         if(startTime.isBeforeNow)
             return 0;
@@ -316,7 +294,7 @@
         if(indexPath.row == 0)
             return 0;
         
-        NSDate *previousStartTime = self.channel.schedule[indexPath.section][indexPath.row-1][@"startDate"];
+        NSDate *previousStartTime = self.channel.schedule.days[indexPath.section][indexPath.row-1][@"startDate"];
         
         if(previousStartTime.isBeforeNow)
             return 0;
@@ -393,7 +371,7 @@
     }
     else if(tableView == self.scheduleTable)
     {
-        NSDate *startTime = self.channel.schedule[section][0][@"startDate"];
+        NSDate *startTime = self.channel.schedule.days[section][0][@"startDate"];
         
         if(startTime.isToday)
             return nil;
@@ -435,7 +413,7 @@
         NSString *identifier = @"scheduleCell";
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
         
-        NSDictionary *show = self.channel.schedule[indexPath.section][indexPath.row];
+        NSDictionary *show = self.channel.schedule.days[indexPath.section][indexPath.row];
         NSInteger interval = [show[@"startDate"] timeIntervalSinceNow];
         
         if(interval > 5*60*60) // More than 5 hours away
@@ -516,58 +494,12 @@
 
 - (void)reloadSchedule:(NSNotification*)notification
 {
-    NSArray *schedule = notification.object;
+    if(self.channel.schedule != notification.object)
+        return;
     
-    BOOL tryTomorrow = YES;
-    int i = 0;
-    do
-    {
-        NSArray *today = schedule[i];
-        for(NSDictionary *show in today)
-        {
-            NSDate *startDate = show[@"startDate"];
-            NSDate *endDate = show[@"endDate"];
-            
-            if(startDate.isBeforeNow && endDate.isAfterNow)
-            {
-                self.liveTimeLabel.text = @"LIVE";
-                self.liveTitleLabel.text = show[@"title"];
-                tryTomorrow = NO;
-                break;
-            }
-            else if(startDate.isAfterNow && endDate.isAfterNow)
-            {
-                NSInteger interval = startDate.timeIntervalSinceNow;
-                
-                if(interval > 24*60*60) // More than 24 hours away
-                {
-                    self.liveTimeLabel.text = @"Tomorrow";
-                }
-                else if(interval > 5*60*60) // More than 5 hours away
-                {
-                    NSDateFormatter *dateFormatterLocal = [[NSDateFormatter alloc] init];
-                    [dateFormatterLocal setTimeZone:[NSTimeZone localTimeZone]];
-                    [dateFormatterLocal setDateFormat:@"h:mm a"];
-                    self.liveTimeLabel.text = [dateFormatterLocal stringFromDate:startDate];
-                }
-                else if(interval > 10*60) // 5 hours to 10 minutes away
-                {
-                    NSInteger minutes = (interval / 60) % 60;
-                    NSInteger hours = (interval / 3600);
-                    self.liveTimeLabel.text = [NSString stringWithFormat:@"%ih %02im", hours, minutes];
-                }
-                else // 10 minutes away
-                    self.liveTimeLabel.text = @"Pre-show";
-                
-                self.liveTitleLabel.text = show[@"title"];
-                
-                tryTomorrow = NO;
-                break;
-            }
-        }
-        i++;
-    } while(tryTomorrow);
-
+    NSDictionary *currentShow = self.channel.schedule.currentShow;
+    self.liveTitleLabel.text = currentShow[@"title"];
+    self.liveTimeLabel.text = [self.channel.schedule stringFromStart:currentShow[@"startDate"] andEnd:currentShow[@"endDate"]];
     
     NSPredicate *p = [NSPredicate predicateWithFormat:@"%@ BEGINSWITH title OR %@ BEGINSWITH titleInSchedule",
                       self.liveTitleLabel.text, self.liveTitleLabel.text];
