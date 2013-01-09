@@ -216,7 +216,8 @@
     }
     else if(tableView == self.scheduleTable)
     {
-        return self.channel.schedule.daysAfterNow;
+        return self.channel.schedule.days.count;
+        //return self.channel.schedule.daysAfterNow;
     }
     
     return 0;
@@ -259,9 +260,9 @@
     }
     else if(tableView == self.scheduleTable)
     {
-        NSDate *startTime = self.channel.schedule.days[section][0][@"startDate"];
+        Event *firstShow = self.channel.schedule.days[section][0];
         
-        if(startTime.isToday)
+        if(firstShow.start.isToday)
             return 0;
         
         return 20;
@@ -286,17 +287,20 @@
     }
     else if(tableView == self.scheduleTable)
     {
-        NSDate *startTime = self.channel.schedule.days[indexPath.section][indexPath.row][@"startDate"];
+        if(indexPath.section == 0 && indexPath.row == 0)
+            return 0;
         
-        if(startTime.isBeforeNow)
+        Event *showEvent = self.channel.schedule.days[indexPath.section][indexPath.row];
+        
+        if(showEvent.start.isBeforeNow)
             return 0;
         
         if(indexPath.row == 0)
-            return 0;
+            return 20;
         
-        NSDate *previousStartTime = self.channel.schedule.days[indexPath.section][indexPath.row-1][@"startDate"];
-        
-        if(previousStartTime.isBeforeNow)
+        Event *reviousShowEvent = self.channel.schedule.days[indexPath.section][indexPath.row];
+            
+        if(reviousShowEvent.start.isBeforeNow)
             return 0;
         
         return 20;
@@ -371,9 +375,9 @@
     }
     else if(tableView == self.scheduleTable)
     {
-        NSDate *startTime = self.channel.schedule.days[section][0][@"startDate"];
+        Event *showEvent = self.channel.schedule.days[section][0];
         
-        if(startTime.isToday)
+        if(showEvent.start.isToday)
             return nil;
             
         UIView *header = [[UIView alloc] initWithFrame:CGRectMake(0, 0, width, 20)];
@@ -385,9 +389,9 @@
         
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
         [dateFormatter setDateFormat:@"EEEE"];
-        headerLabel.text = [dateFormatter stringFromDate:startTime];
+        headerLabel.text = [dateFormatter stringFromDate:showEvent.start];
         
-        if(startTime.isTomorrow)
+        if(showEvent.start.isTomorrow)
             headerLabel.text = @"Tomorrow";
         
         [header addSubview:headerLabel];
@@ -413,15 +417,15 @@
         NSString *identifier = @"scheduleCell";
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
         
-        NSDictionary *show = self.channel.schedule.days[indexPath.section][indexPath.row];
-        NSInteger interval = [show[@"startDate"] timeIntervalSinceNow];
+        Event *showEvent = self.channel.schedule.days[indexPath.section][indexPath.row];
+        NSInteger interval = showEvent.start.timeIntervalSinceNow;
         
         if(interval > 5*60*60) // More than 5 hours away
         {
             NSDateFormatter *dateFormatterLocal = [[NSDateFormatter alloc] init];
             [dateFormatterLocal setTimeZone:[NSTimeZone localTimeZone]];
             [dateFormatterLocal setDateFormat:@"h:mm a"];
-            cell.textLabel.text = [dateFormatterLocal stringFromDate:show[@"startDate"]];
+            cell.textLabel.text = [dateFormatterLocal stringFromDate:showEvent.start];
         }
         else if(interval > 10*60) // 5 hours away
         {
@@ -430,7 +434,7 @@
             cell.textLabel.text = [NSString stringWithFormat:@"%ih %02im", hours, minutes];
         }
 
-        cell.detailTextLabel.text = show[@"title"];
+        cell.detailTextLabel.text = showEvent.title;
         
         return cell;
     }
@@ -497,12 +501,12 @@
     if(self.channel.schedule != notification.object)
         return;
     
-    NSDictionary *currentShow = self.channel.schedule.currentShow;
-    self.liveTitleLabel.text = currentShow[@"title"];
-    self.liveTimeLabel.text = [self.channel.schedule stringFromStart:currentShow[@"startDate"] andEnd:currentShow[@"endDate"]];
-    
+    Event *currentShow = self.channel.schedule.currentShow;
+    self.liveTimeLabel.text = [self.channel.schedule stringFromStart:currentShow.start andEnd:currentShow.end];
+    self.liveTitleLabel.text = currentShow.title;
+    // TODO: Use Event#show
     NSPredicate *p = [NSPredicate predicateWithFormat:@"%@ BEGINSWITH title OR %@ BEGINSWITH titleInSchedule",
-                      self.liveTitleLabel.text, self.liveTitleLabel.text];
+                                                        currentShow.title, currentShow.title];
     Show *show = [[self.channel.shows filteredSetUsingPredicate:p] anyObject] ?: self.channel.shows.anyObject;
     self.livePosterView.image = show.poster.image ?: show.albumArt.image;
     self.liveAlbumArtView.image = show.albumArt.image;

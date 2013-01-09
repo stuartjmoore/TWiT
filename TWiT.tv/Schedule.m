@@ -9,6 +9,12 @@
 #import "Schedule.h"
 #import "NSDate+comparisons.h"
 
+
+@implementation Event
+
+@end
+
+
 @implementation Schedule
 
 - (NSUInteger)daysAfterNow
@@ -16,9 +22,9 @@
     if(self.days.count == 0)
         return 0;
     
-    NSArray *today = self.days[0];
+    //NSArray *today = self.days[0];
     int count = self.days.count;
-    
+    /*
     for(NSDictionary *show in today)
     {
         NSDate *startDate = show[@"startDate"];
@@ -36,24 +42,22 @@
                 count--;
             break;
         }
-    }
+    }*/
     return count;
 }
 
-- (NSDictionary*)currentShow
+- (Event*)currentShow
 {
-    NSDictionary *currentShow;
+    Event *currentShow;
     
     BOOL tryTomorrow = YES;
     int i = 0;
     do
     {
         NSArray *today = self.days[i];
-        for(NSDictionary *show in today)
+        for(Event *show in today)
         {
-            NSDate *endDate = show[@"endDate"];
-            
-            if(endDate.isAfterNow)
+            if(show.end.isAfterNow)
             {
                 currentShow = show;
                 tryTomorrow = NO;

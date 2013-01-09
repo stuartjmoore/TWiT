@@ -7,8 +7,9 @@
 //
 
 #import "TWScheduleViewController.h"
-#import "Schedule.h"
 #import "NSDate+comparisons.h"
+
+#import "Schedule.h"
 
 @implementation TWScheduleViewController
 
@@ -40,24 +41,9 @@
 
 - (float)tableView:(UITableView*)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSArray *day = self.schedule.days[indexPath.section];
-    NSDictionary *show = day[indexPath.row];
-    
-    float duration = [[show objectForKey:@"duration"] floatValue];
-    float height = 50.0f*(duration/60.0f);
-    /*
-    if(indexPath.row+1 < day.count)
-    {
-        NSDictionary *nextShow = [day objectAtIndex:(indexPath.row+1)];
-        NSDate *startDate = [nextShow objectForKey:@"startDate"];
-        NSDate *endDate = [show objectForKey:@"endDate"];
-        
-        if(![startDate isEqualToDate:endDate])
-        {
-            height += 10;
-        }
-    }
-    */
+    Event *show = self.schedule.days[indexPath.section][indexPath.row];
+    float height = 50.0f*(show.duration/60.0f);
+
     return height;
 }
 
@@ -69,7 +55,7 @@
 - (UIView*)tableView:(UITableView*)tableView viewForHeaderInSection:(NSInteger)section
 {
     float width = tableView.frame.size.width;
-    NSDate *startTime = self.schedule.days[section][0][@"startDate"];
+    Event *show = self.schedule.days[section][0];
     
     UIView *header = [[UIView alloc] initWithFrame:CGRectMake(0, 0, width, 21)];
     header.backgroundColor = [UIColor colorWithWhite:237/255.0 alpha:1];
@@ -85,11 +71,11 @@
     
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"EEEE"];
-    title.text = [dateFormatter stringFromDate:startTime];
+    title.text = [dateFormatter stringFromDate:show.start];
     
-    if(startTime.isToday)
+    if(show.start.isToday)
         title.text = @"Today";
-    else if(startTime.isTomorrow)
+    else if(show.start.isTomorrow)
         title.text = @"Tomorrow";
     
     [header addSubview:title];
@@ -119,10 +105,9 @@
     botLine.backgroundColor = [UIColor colorWithWhite:222/255.0 alpha:1];
     [cell.contentView addSubview:botLine];
     
-    NSDictionary *show = self.schedule.days[indexPath.section][indexPath.row];
-    NSDate *endDate = show[@"endDate"];
+    Event *show = self.schedule.days[indexPath.section][indexPath.row];
     
-    if(endDate.isBeforeNow)
+    if(show.end.isBeforeNow)
     {
         cell.textLabel.textColor = [UIColor grayColor];
         cell.detailTextLabel.textColor = [UIColor grayColor];
@@ -136,9 +121,9 @@
     NSDateFormatter *dateFormatterLocal = [[NSDateFormatter alloc] init];
     [dateFormatterLocal setTimeZone:[NSTimeZone localTimeZone]];
     [dateFormatterLocal setDateFormat:@"h:mm a"];
-    cell.textLabel.text = [dateFormatterLocal stringFromDate:show[@"startDate"]];
+    cell.textLabel.text = [dateFormatterLocal stringFromDate:show.start];
     
-    cell.detailTextLabel.text = show[@"title"];
+    cell.detailTextLabel.text = show.title;
     
     return cell;
 }

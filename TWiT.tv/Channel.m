@@ -297,18 +297,7 @@
                 [dateFormatter setTimeZone:[NSTimeZone timeZoneWithName:@"America/Los_Angeles"]];
                 NSDate *startDate = [dateFormatter dateFromString:startTimeString];
                 NSDate *endDate = [dateFormatter dateFromString:endTimeString];
-                
-                NSDateFormatter *dateFormatterLocal = [[NSDateFormatter alloc] init];
-                [dateFormatterLocal setTimeZone:[NSTimeZone localTimeZone]];
-                [dateFormatterLocal setDateFormat:@"MMM dd, h:mma"];
                 NSTimeInterval duration = [endDate timeIntervalSinceDate:startDate];
-                
-                NSDictionary *showDictionary = [NSDictionary dictionaryWithObjectsAndKeys:
-                                                showTitle, @"title",
-                                                startDate, @"startDate",
-                                                endDate, @"endDate",
-                                                @(duration/60.0f), @"duration",
-                                                nil];
                 
                 [calendar rangeOfUnit:NSDayCalendarUnit
                             startDate:&fromDate
@@ -330,17 +319,23 @@
                 
                 while(daysAway >= schedule.count)
                     [schedule addObject:[NSMutableArray array]];
-                
                 NSMutableArray *shows = [schedule objectAtIndex:daysAway];
-                [shows addObject:showDictionary];
+                
+                Event *showEvent = [[Event alloc] init];
+                showEvent.title = showTitle;
+                showEvent.show = show;
+                showEvent.start = startDate;
+                showEvent.end = endDate;
+                showEvent.duration = duration/60;
+                [shows addObject:showEvent];
             }
             
             for(NSMutableArray *shows in schedule)
             {
-                [shows sortUsingComparator:(NSComparator)^(id obj1, id obj2)
+                [shows sortUsingComparator:(NSComparator)^(Event *obj1, Event *obj2)
                  {
-                     NSDate *startA = [obj1 objectForKey:@"startDate"];
-                     NSDate *startB = [obj2 objectForKey:@"startDate"];
+                     NSDate *startA = obj1.start;
+                     NSDate *startB = obj2.start;
                      return startB == [startA earlierDate:startB];
                  }];
             }

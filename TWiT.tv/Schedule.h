@@ -8,13 +8,26 @@
 
 #import <Foundation/Foundation.h>
 
+@class Show;
+
+
+@interface Event : NSObject
+
+@property (nonatomic, strong) NSString *title;
+@property (nonatomic, strong) Show *show;
+@property (nonatomic, strong) NSDate *start, *end;
+@property (nonatomic) NSTimeInterval duration;
+
+@end
+
+
 @interface Schedule : NSObject
 
 @property (nonatomic, strong) NSArray *days;
 
 - (NSUInteger)daysAfterNow;
 
-- (NSDictionary*)currentShow;
+- (Event*)currentShow;
 - (NSString*)stringFromStart:(NSDate*)startDate andEnd:(NSDate*)endDate;
 
 @end
