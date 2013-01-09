@@ -47,4 +47,63 @@
     return [self timeIntervalSinceNow] /*- 86400*/ > 0;
 }
 
++ (int)dayFromName:(NSString*)name
+{
+    if([name isEqualToString:@"SU"])
+        return 1;
+    else if([name isEqualToString:@"MO"])
+        return 2;
+    else if([name isEqualToString:@"TU"])
+        return 3;
+    else if([name isEqualToString:@"WE"])
+        return 4;
+    else if([name isEqualToString:@"TH"])
+        return 5;
+    else if([name isEqualToString:@"FR"])
+        return 6;
+    else if([name isEqualToString:@"SA"])
+        return 7;
+    
+    return -1;
+}
+
++ (NSString*)longNameFromDay:(int)day
+{
+    if(day == 1)
+        return @"Sundays";
+    else if(day == 2)
+        return @"Mondays";
+    else if(day == 3)
+        return @"Tuesdays";
+    else if(day == 4)
+        return @"Wednesdays";
+    else if(day == 5)
+        return @"Thursdays";
+    else if(day == 6)
+        return @"Fridays";
+    else if(day == 7)
+        return @"Saturdays";
+    
+    return @"";
+}
++ (NSString*)shortNameFromDay:(int)day
+{
+    if(day == 1)
+        return @"Sun";
+    else if(day == 2)
+        return @"Mon";
+    else if(day == 3)
+        return @"Tues";
+    else if(day == 4)
+        return @"Wed";
+    else if(day == 5)
+        return @"Thur";
+    else if(day == 6)
+        return @"Fri";
+    else if(day == 7)
+        return @"Sat";
+    
+    return @"";
+}
+
 @end
