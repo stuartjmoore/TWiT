@@ -418,22 +418,12 @@
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
         
         Event *showEvent = self.channel.schedule.days[indexPath.section][indexPath.row];
-        NSInteger interval = showEvent.start.timeIntervalSinceNow;
         
-        if(interval > 5*60*60) // More than 5 hours away
-        {
-            NSDateFormatter *dateFormatterLocal = [[NSDateFormatter alloc] init];
-            [dateFormatterLocal setTimeZone:[NSTimeZone localTimeZone]];
-            [dateFormatterLocal setDateFormat:@"h:mm a"];
-            cell.textLabel.text = [dateFormatterLocal stringFromDate:showEvent.start];
-        }
-        else if(interval > 10*60) // 5 hours away
-        {
-            NSInteger minutes = (interval / 60) % 60;
-            NSInteger hours = (interval / 3600);
-            cell.textLabel.text = [NSString stringWithFormat:@"%ih %02im", hours, minutes];
-        }
-
+        if(showEvent.start.timeIntervalSinceNow > 24*60*60)
+            cell.textLabel.text = @"Tomorrow";
+        else
+            cell.textLabel.text = showEvent.until;
+    
         cell.detailTextLabel.text = showEvent.title;
         
         return cell;
@@ -502,12 +492,10 @@
         return;
     
     Event *currentShow = self.channel.schedule.currentShow;
-    self.liveTimeLabel.text = [self.channel.schedule stringFromStart:currentShow.start andEnd:currentShow.end];
+    self.liveTimeLabel.text = currentShow.until;
     self.liveTitleLabel.text = currentShow.title;
-    // TODO: Use Event#show
-    NSPredicate *p = [NSPredicate predicateWithFormat:@"%@ BEGINSWITH title OR %@ BEGINSWITH titleInSchedule",
-                                                        currentShow.title, currentShow.title];
-    Show *show = [[self.channel.shows filteredSetUsingPredicate:p] anyObject] ?: self.channel.shows.anyObject;
+
+    Show *show = currentShow.show ?: self.channel.shows.anyObject;
     self.livePosterView.image = show.poster.image ?: show.albumArt.image;
     self.liveAlbumArtView.image = show.albumArt.image;
     

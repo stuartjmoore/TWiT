@@ -12,6 +12,38 @@
 
 @implementation Event
 
+- (NSString*)until
+{
+    NSString *string = @"";
+    
+    if(self.start.isBeforeNow && self.end.isAfterNow)
+    {
+        string = @"Live";
+    }
+    else if(self.start.isAfterNow && self.end.isAfterNow)
+    {
+        NSInteger interval = self.start.timeIntervalSinceNow;
+ 
+        if(interval > 5*60*60) // More than 5 hours away
+        {
+            NSDateFormatter *dateFormatterLocal = [[NSDateFormatter alloc] init];
+            [dateFormatterLocal setTimeZone:[NSTimeZone localTimeZone]];
+            [dateFormatterLocal setDateFormat:@"h:mma"];
+            string = [[dateFormatterLocal stringFromDate:self.start] lowercaseString];
+        }
+        else if(interval > 10*60) // 5 hours to 10 minutes away
+        {
+            NSInteger minutes = (interval / 60) % 60;
+            NSInteger hours = (interval / 3600);
+            string = [NSString stringWithFormat:@"%ih %02im", hours, minutes];
+        }
+        else // 10 minutes away
+            string = @"Pre-show";
+    }
+    
+    return string;
+}
+
 @end
 
 

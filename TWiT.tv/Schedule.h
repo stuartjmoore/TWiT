@@ -18,6 +18,8 @@
 @property (nonatomic, strong) NSDate *start, *end;
 @property (nonatomic) NSTimeInterval duration;
 
+- (NSString*)until;
+
 @end
 
 

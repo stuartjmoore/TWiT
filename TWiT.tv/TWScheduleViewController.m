@@ -120,8 +120,8 @@
     
     NSDateFormatter *dateFormatterLocal = [[NSDateFormatter alloc] init];
     [dateFormatterLocal setTimeZone:[NSTimeZone localTimeZone]];
-    [dateFormatterLocal setDateFormat:@"h:mm a"];
-    cell.textLabel.text = [dateFormatterLocal stringFromDate:show.start];
+    [dateFormatterLocal setDateFormat:@"h:mma"];
+    cell.textLabel.text = [[dateFormatterLocal stringFromDate:show.start] lowercaseString];
     
     cell.detailTextLabel.text = show.title;
     
