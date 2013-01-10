@@ -13,7 +13,7 @@
 
 @interface Event : NSObject
 
-@property (nonatomic, strong) NSString *title;
+@property (nonatomic, strong) NSString *title, *subtitle;
 @property (nonatomic, strong) Show *show;
 @property (nonatomic, strong) NSDate *start, *end;
 @property (nonatomic) NSTimeInterval duration;

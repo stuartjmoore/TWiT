@@ -9,7 +9,10 @@
 #import "TWScheduleViewController.h"
 #import "NSDate+comparisons.h"
 
+#import "TWScheduleCell.h"
+
 #import "Schedule.h"
+#import "Show.h"
 
 @implementation TWScheduleViewController
 
@@ -93,7 +96,7 @@
 - (UITableViewCell*)tableView:(UITableView*)tableView cellForRowAtIndexPath:(NSIndexPath*)indexPath
 {
     static NSString *CellIdentifier = @"scheduleCell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    TWScheduleCell *cell = (TWScheduleCell*)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     float width = tableView.frame.size.width;
     
     UIView *topLine = [[UIView alloc] initWithFrame:CGRectMake(0, 0, width, 1)];
@@ -106,20 +109,7 @@
     [cell.contentView addSubview:botLine];
     
     Event *show = self.schedule.days[indexPath.section][indexPath.row];
-    
-    if(show.end.isBeforeNow)
-    {
-        cell.textLabel.textColor = [UIColor grayColor];
-        cell.detailTextLabel.textColor = [UIColor grayColor];
-    }
-    else
-    {
-        cell.textLabel.textColor = [UIColor blackColor];
-        cell.detailTextLabel.textColor = [UIColor blackColor];
-    }
-    
-    cell.textLabel.text = show.time;
-    cell.detailTextLabel.text = show.title;
+    cell.event = show;
     
     return cell;
 }

@@ -265,6 +265,7 @@
                     continue;
                 
                 NSString *showTitle = [[showEntry objectForKey:@"title"] objectForKey:@"$t"];
+                NSString *showSubtitle = @"";
                 NSString *startTimeString = [[[showEntry objectForKey:@"gd$when"] lastObject] objectForKey:@"startTime"];
                 NSString *endTimeString = [[[showEntry objectForKey:@"gd$when"] lastObject] objectForKey:@"endTime"];
                 
@@ -278,8 +279,18 @@
                 Show *show = [[self.shows filteredSetUsingPredicate:p] anyObject];
                 
                 if(show)
+                {
+                    showSubtitle = [showTitle stringByReplacingOccurrencesOfString:show.titleInSchedule withString:@""];
+                    NSMutableCharacterSet *characters = [[NSMutableCharacterSet alloc] init];
+                    [characters formUnionWithCharacterSet:NSCharacterSet.whitespaceAndNewlineCharacterSet];
+                    [characters formUnionWithCharacterSet:NSCharacterSet.punctuationCharacterSet];
+                    showSubtitle = [showSubtitle stringByTrimmingCharactersInSet:characters];
+                    
                     showTitle = show.title;
-                
+                    
+                    if([showTitle isEqualToString:showSubtitle])
+                        showSubtitle = @"";
+                }
                 
                 if(startTimeString.length > 20)
                     startTimeString = [startTimeString stringByReplacingOccurrencesOfString:@":"
@@ -323,6 +334,7 @@
                 
                 Event *showEvent = [[Event alloc] init];
                 showEvent.title = showTitle;
+                showEvent.subtitle = showSubtitle;
                 showEvent.show = show;
                 showEvent.start = startDate;
                 showEvent.end = endDate;
