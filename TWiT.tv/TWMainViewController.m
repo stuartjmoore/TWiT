@@ -106,22 +106,35 @@
     
     [self.tableView reloadData];
 }
-
+/*
 - (void)tableView:(UITableView*)tableView willSelectRowAtIndexPath:(NSIndexPath*)indexPath
 {
-    if([tableView.indexPathForSelectedRow isEqual:indexPath])
-        [tableView deselectRowAtIndexPath:indexPath animated:NO];
+    if(UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPad)
+    {
+        if([tableView.indexPathForSelectedRow isEqual:indexPath])
+            [tableView deselectRowAtIndexPath:indexPath animated:NO];
+        else
+            [tableView selectRowAtIndexPath:indexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
+    }
     else
-        [tableView selectRowAtIndexPath:indexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
+    {
+        [tableView.delegate tableView:tableView didSelectRowAtIndexPath:indexPath];
+    }
 }
 - (void)tableView:(UITableView*)tableView didSelectRowAtIndexPath:(NSIndexPath*)indexPath
 {
-    
+    if(UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPad)
+    {
+    }
+    else
+    {
+        [self performSegueWithIdentifier:@"episodeDetail" sender:nil];
+    }
 }
 - (void)tableView:(UITableView*)tableView didDeselectRowAtIndexPath:(NSIndexPath*)indexPath
 {
     
-}
+}*/
 
 - (void)tableView:(UITableView*)tableView didSelectColumn:(int)column AtIndexPath:(NSIndexPath*)indexPath
 {
