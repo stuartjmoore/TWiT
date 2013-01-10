@@ -239,7 +239,20 @@
                             <outlet property="delegate" destination="12" id="15"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="TWiT" id="36"/>
+                    <navigationItem key="navigationItem" id="36">
+                        <nil key="title"/>
+                        <view key="titleView" contentMode="scaleToFill" id="4vc-3D-1C4">
+                            <rect key="frame" x="60" y="1" width="200" height="43"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            <subviews>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="navbar-logo.png" id="b7G-98-dWQ">
+                                    <rect key="frame" x="0.0" y="0.0" width="200" height="43"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                </imageView>
+                            </subviews>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        </view>
+                    </navigationItem>
                     <connections>
                         <outlet property="headerView" destination="7ZG-JS-fuA" id="BgD-Ht-vsJ"/>
                         <outlet property="listenButton" destination="c5B-oQ-fRL" id="VN7-ue-RWH"/>
@@ -670,6 +683,7 @@
         <image name="button-orange-right.png" width="7" height="38"/>
         <image name="generic.jpg" width="600" height="600"/>
         <image name="icon-play.png" width="55" height="55"/>
+        <image name="navbar-logo.png" width="200" height="43"/>
         <image name="quick-play.png" width="20" height="21"/>
         <image name="toolbar-disclose.png" width="27" height="17"/>
         <image name="toolbar-email.png" width="26" height="17"/>

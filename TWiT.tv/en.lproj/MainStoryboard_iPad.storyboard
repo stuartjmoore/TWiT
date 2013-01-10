@@ -260,7 +260,7 @@
             </objects>
             <point key="canvasLocation" x="1068" y="297"/>
         </scene>
-        <!--Main View Controller - TWiT-->
+        <!--Main View Controller-->
         <scene sceneID="juF-iD-Dwu">
             <objects>
                 <tableViewController id="jVi-vH-XBb" customClass="TWMainViewController" sceneMemberID="viewController">
@@ -316,7 +316,20 @@
                             <outlet property="delegate" destination="jVi-vH-XBb" id="D9I-IL-7Qp"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="TWiT" id="WUS-cH-ve8"/>
+                    <navigationItem key="navigationItem" id="WUS-cH-ve8">
+                        <nil key="title"/>
+                        <view key="titleView" contentMode="scaleToFill" id="0ej-nS-rnN">
+                            <rect key="frame" x="307" y="0.0" width="154" height="44"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="nav-bar-header-icon.png" id="u6n-VY-7M0">
+                                    <rect key="frame" x="0.0" y="0.0" width="154" height="44"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                </imageView>
+                            </subviews>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        </view>
+                    </navigationItem>
                     <splitViewDetailSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="number" keyPath="sectionVisible">
@@ -526,6 +539,7 @@
     <resources>
         <image name="generic.jpg" width="600" height="600"/>
         <image name="icon-play.png" width="55" height="55"/>
+        <image name="nav-bar-header-icon.png" width="154" height="44"/>
         <image name="quick-play.png" width="20" height="21"/>
     </resources>
     <classes>
