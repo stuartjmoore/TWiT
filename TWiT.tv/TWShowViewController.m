@@ -144,7 +144,15 @@
         if([tableView.indexPathForSelectedRow isEqual:indexPath])
         {
             TWSplitViewContainer *splitViewContainer = (TWSplitViewContainer*)self.navigationController.parentViewController;
-            splitViewContainer.modalContainer.hidden = YES;
+            
+            CGRect frame = splitViewContainer.modalContainer.frame;
+            frame.origin.x -= frame.size.width;
+            
+            [UIView animateWithDuration:0.3f animations:^{
+                splitViewContainer.modalContainer.frame = frame;
+            } completion:^(BOOL fin){
+                splitViewContainer.modalContainer.hidden = YES;
+            }];
             
             [tableView deselectRowAtIndexPath:indexPath animated:NO];
         }
@@ -157,7 +165,17 @@
             Episode *episode = [self.fetchedEpisodesController objectAtIndexPath:indexPath];
             episodeController.episode = episode;
             
-            splitViewContainer.modalContainer.hidden = NO;
+            if(splitViewContainer.modalContainer.hidden)
+            {
+                splitViewContainer.modalContainer.hidden = NO;
+                
+                CGRect frame = splitViewContainer.modalContainer.frame;
+                frame.origin.x += frame.size.width;
+                
+                [UIView animateWithDuration:0.3f animations:^{
+                    splitViewContainer.modalContainer.frame = frame;
+                }];
+            }
             
             [tableView selectRowAtIndexPath:indexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
         }
