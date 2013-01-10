@@ -351,21 +351,35 @@
             </objects>
             <point key="canvasLocation" x="1068" y="1343"/>
         </scene>
-        <!--Episode View Controller-->
-        <scene sceneID="hPZ-IW-nk9">
+        <!--Navigation Controller-->
+        <scene sceneID="l5G-sl-sxu">
             <objects>
-                <viewController storyboardIdentifier="modalController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="f2z-7x-qDr" customClass="TWEpisodeViewController" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="bhM-q0-MbO">
-                        <rect key="frame" x="0.0" y="20" width="448" height="768"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES"/>
+                <navigationController storyboardIdentifier="modalController" definesPresentationContext="YES" useStoryboardIdentifierAsRestorationIdentifier="YES" id="uck-cN-szW" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="kd5-6G-fKM">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="I5Z-A0-HMk" kind="relationship" relationship="rootViewController" id="fLv-aO-SEh"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="U3Q-he-bDt" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1068" y="2702"/>
+        </scene>
+        <!--Episode View Controller - Episode-->
+        <scene sceneID="Ba9-w3-7WK">
+            <objects>
+                <viewController id="I5Z-A0-HMk" customClass="TWEpisodeViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="tRV-vS-88x">
+                        <rect key="frame" x="0.0" y="64" width="768" height="960"/>
+                        <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="blackTranslucent"/>
-                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <navigationItem key="navigationItem" title="Episode" id="AVu-0y-pDD"/>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="f2c-1q-knY" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2i5-D3-Sz7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1068" y="2587"/>
+            <point key="canvasLocation" x="2048" y="2702"/>
         </scene>
         <!--Split View Container-->
         <scene sceneID="tnj-nP-lwy">
@@ -385,6 +399,11 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" red="0.1960784495" green="0.65098041299999998" blue="0.8078432083" alpha="1" colorSpace="deviceRGB"/>
                             </view>
+                            <view hidden="YES" contentMode="scaleToFill" id="dDZ-yF-lG4" userLabel="Modal Container">
+                                <rect key="frame" x="320" y="0.0" width="448" height="748"/>
+                                <autoresizingMask key="autoresizingMask" heightSizable="YES"/>
+                                <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
                             <view contentMode="scaleToFill" restorationIdentifier="" id="eM7-yO-pel" userLabel="White Line">
                                 <rect key="frame" x="321" y="0.0" width="1" height="748"/>
                                 <autoresizingMask key="autoresizingMask" heightSizable="YES"/>
@@ -403,6 +422,7 @@
                     <connections>
                         <outlet property="detailContainer" destination="ibP-we-YOh" id="8x6-xk-L58"/>
                         <outlet property="masterContainer" destination="gcn-nF-hEa" id="g3h-dK-PYp"/>
+                        <outlet property="modalContainer" destination="dDZ-yF-lG4" id="fde-2l-lqb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fmV-dE-trJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -478,6 +498,8 @@
                 <relationship kind="outlet" name="detailController" candidateClass="UIViewController"/>
                 <relationship kind="outlet" name="masterContainer" candidateClass="UIView"/>
                 <relationship kind="outlet" name="masterController" candidateClass="UIViewController"/>
+                <relationship kind="outlet" name="modalContainer" candidateClass="UIView"/>
+                <relationship kind="outlet" name="modalController" candidateClass="UIViewController"/>
             </relationships>
         </class>
     </classes>

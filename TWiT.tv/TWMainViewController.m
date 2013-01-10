@@ -109,10 +109,22 @@
     {
         if([tableView.indexPathForSelectedRow isEqual:indexPath])
         {
+            TWSplitViewContainer *splitViewContainer = (TWSplitViewContainer*)self.navigationController.parentViewController;
+            splitViewContainer.modalContainer.hidden = YES;
+            
             [tableView deselectRowAtIndexPath:indexPath animated:NO];
         }
         else
         {
+            TWSplitViewContainer *splitViewContainer = (TWSplitViewContainer*)self.navigationController.parentViewController;
+            UINavigationController *modalController = (UINavigationController*)splitViewContainer.modalController;
+            TWEpisodeViewController *episodeController = (TWEpisodeViewController*)modalController.topViewController;
+            
+            Episode *episode = [self.fetchedEpisodesController objectAtIndexPath:indexPath];
+            episodeController.episode = episode;
+            
+            splitViewContainer.modalContainer.hidden = NO;
+            
             [tableView selectRowAtIndexPath:indexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
         }
         return nil;
@@ -260,7 +272,7 @@
     }
     if(tableView == self.tableView && section == 0 && UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPad)
     {
-        return (self.sectionVisible == TWSectionShows) ? 12 : 0;
+        return (self.sectionVisible == TWSectionShows) ? 16 : 0;
     }
     else if(tableView == self.scheduleTable)
     {

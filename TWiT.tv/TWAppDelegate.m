@@ -43,6 +43,9 @@
         showsController.managedObjectContext = self.managedObjectContext;
         showsController.channel = channel;
         splitViewContainer.detailController = detailController;
+        
+        UINavigationController *modalController = [splitViewContainer.storyboard instantiateViewControllerWithIdentifier:@"modalController"];
+        splitViewContainer.modalController = modalController;
     }
     else
     {

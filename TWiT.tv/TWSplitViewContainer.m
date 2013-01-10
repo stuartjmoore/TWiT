@@ -30,4 +30,14 @@
     [self.detailContainer addSubview:detailController.view];
 }
 
+- (void)setModalController:(UIViewController*)modalController
+{
+    _modalController = modalController;
+    
+    [self addChildViewController:modalController];
+    
+    modalController.view.frame = self.modalContainer.bounds;
+    [self.modalContainer addSubview:modalController.view];
+}
+
 @end

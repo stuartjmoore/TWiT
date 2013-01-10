@@ -8,6 +8,7 @@
 
 #import <QuartzCore/QuartzCore.h>
 
+#import "TWSplitViewContainer.h"
 #import "TWMainViewController.h"
 #import "TWShowViewController.h"
 #import "TWEpisodeViewController.h"
@@ -142,10 +143,22 @@
     {
         if([tableView.indexPathForSelectedRow isEqual:indexPath])
         {
+            TWSplitViewContainer *splitViewContainer = (TWSplitViewContainer*)self.navigationController.parentViewController;
+            splitViewContainer.modalContainer.hidden = YES;
+            
             [tableView deselectRowAtIndexPath:indexPath animated:NO];
         }
         else
         {
+            TWSplitViewContainer *splitViewContainer = (TWSplitViewContainer*)self.navigationController.parentViewController;
+            UINavigationController *modalController = (UINavigationController*)splitViewContainer.modalController;
+            TWEpisodeViewController *episodeController = (TWEpisodeViewController*)modalController.topViewController;
+            
+            Episode *episode = [self.fetchedEpisodesController objectAtIndexPath:indexPath];
+            episodeController.episode = episode;
+            
+            splitViewContainer.modalContainer.hidden = NO;
+            
             [tableView selectRowAtIndexPath:indexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
         }
         return nil;
