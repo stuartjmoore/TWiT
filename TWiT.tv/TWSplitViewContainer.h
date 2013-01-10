@@ -10,6 +10,7 @@
 
 @interface TWSplitViewContainer : UIViewController
 
+@property (nonatomic, weak) IBOutlet UIViewController *masterController, *detailController;
 @property (nonatomic, weak) IBOutlet UIView *masterContainer, *detailContainer;
 
 @end

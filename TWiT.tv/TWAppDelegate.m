@@ -36,17 +36,13 @@
         TWMainViewController *episodesController = (TWMainViewController*)masterController.topViewController;
         episodesController.managedObjectContext = self.managedObjectContext;
         episodesController.channel = channel;
-        masterController.view.frame = splitViewContainer.masterContainer.bounds;
-        [splitViewContainer addChildViewController:masterController];
-        [splitViewContainer.masterContainer addSubview:masterController.view];
+        splitViewContainer.masterController = masterController;
 
         UINavigationController *detailController = [splitViewContainer.storyboard instantiateViewControllerWithIdentifier:@"detailController"];
         TWMainViewController *showsController = (TWMainViewController*)detailController.topViewController;
         showsController.managedObjectContext = self.managedObjectContext;
         showsController.channel = channel;
-        detailController.view.frame = splitViewContainer.detailContainer.bounds;
-        [splitViewContainer addChildViewController:detailController];
-        [splitViewContainer.detailContainer addSubview:detailController.view];
+        splitViewContainer.detailController = detailController;
     }
     else
     {

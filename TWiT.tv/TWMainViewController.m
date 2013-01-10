@@ -310,8 +310,6 @@
     return 0;
 }
 
-// TODO: Add white line to top of shows section, bottom of episodes section
-
 - (UIView*)tableView:(UITableView*)tableView viewForHeaderInSection:(NSInteger)section
 {
     float width = tableView.frame.size.width;

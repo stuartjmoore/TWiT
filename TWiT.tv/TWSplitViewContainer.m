@@ -10,4 +10,24 @@
 
 @implementation TWSplitViewContainer
 
+- (void)setMasterController:(UIViewController*)masterController
+{
+    _masterController = masterController;
+    
+    [self addChildViewController:masterController];
+    
+    masterController.view.frame = self.masterContainer.bounds;
+    [self.masterContainer addSubview:masterController.view];
+}
+
+- (void)setDetailController:(UIViewController *)detailController
+{
+    _detailController = detailController;
+    
+    [self addChildViewController:detailController];
+    
+    detailController.view.frame = self.detailContainer.bounds;
+    [self.detailContainer addSubview:detailController.view];
+}
+
 @end
