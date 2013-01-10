@@ -33,11 +33,7 @@
 
 - (void)awakeFromNib
 {
-    if(UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPad)
-    {
-        self.clearsSelectionOnViewWillAppear = NO;
-    }
-    else
+    if(UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPhone)
     {
         // TODO: Save state?
         self.sectionVisible = TWSectionEpisodes;
@@ -106,35 +102,26 @@
     
     [self.tableView reloadData];
 }
-/*
-- (void)tableView:(UITableView*)tableView willSelectRowAtIndexPath:(NSIndexPath*)indexPath
+
+- (NSIndexPath*)tableView:(UITableView*)tableView willSelectRowAtIndexPath:(NSIndexPath*)indexPath
 {
     if(UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPad)
     {
         if([tableView.indexPathForSelectedRow isEqual:indexPath])
+        {
+            NSLog(@"didDeselectRowAtIndexPath");
             [tableView deselectRowAtIndexPath:indexPath animated:NO];
+        }
         else
+        {
+            NSLog(@"didSelectRowAtIndexPath");
             [tableView selectRowAtIndexPath:indexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
+        }
+        return nil;
     }
-    else
-    {
-        [tableView.delegate tableView:tableView didSelectRowAtIndexPath:indexPath];
-    }
-}
-- (void)tableView:(UITableView*)tableView didSelectRowAtIndexPath:(NSIndexPath*)indexPath
-{
-    if(UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPad)
-    {
-    }
-    else
-    {
-        [self performSegueWithIdentifier:@"episodeDetail" sender:nil];
-    }
-}
-- (void)tableView:(UITableView*)tableView didDeselectRowAtIndexPath:(NSIndexPath*)indexPath
-{
     
-}*/
+    return indexPath;
+}
 
 - (void)tableView:(UITableView*)tableView didSelectColumn:(int)column AtIndexPath:(NSIndexPath*)indexPath
 {
