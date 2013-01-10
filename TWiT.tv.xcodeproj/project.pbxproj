@@ -220,6 +220,11 @@
 		17C43BA316971C140066C79F /* ttg-poster.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 17C43BA216971C140066C79F /* ttg-poster.jpg */; };
 		17C43BA516971C3F0066C79F /* sn-poster.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 17C43BA416971C3E0066C79F /* sn-poster.jpg */; };
 		17C43BA716971C850066C79F /* specials-poster.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 17C43BA616971C840066C79F /* specials-poster.jpg */; };
+		17C5A015169EC2870043A781 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 17C5A014169EC2870043A781 /* Icon.png */; };
+		17C5A018169EC2890043A781 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 17C5A017169EC2890043A781 /* Icon@2x.png */; };
+		17C5A01A169EC2900043A781 /* Icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = 17C5A019169EC2900043A781 /* Icon-72.png */; };
+		17C5A01C169EC2920043A781 /* Icon-72@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 17C5A01B169EC2920043A781 /* Icon-72@2x.png */; };
+		17C5A020169EC7FF0043A781 /* TWScheduleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 17C5A01F169EC7FF0043A781 /* TWScheduleCell.m */; };
 		17E5114F168F496E00DCE89C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17E5114E168F496E00DCE89C /* UIKit.framework */; };
 		17E51151168F496E00DCE89C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17E51150168F496E00DCE89C /* Foundation.framework */; };
 		17E51153168F496E00DCE89C /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17E51152168F496E00DCE89C /* CoreGraphics.framework */; };
@@ -468,6 +473,12 @@
 		17C43BA216971C140066C79F /* ttg-poster.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "ttg-poster.jpg"; sourceTree = "<group>"; };
 		17C43BA416971C3E0066C79F /* sn-poster.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "sn-poster.jpg"; sourceTree = "<group>"; };
 		17C43BA616971C840066C79F /* specials-poster.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "specials-poster.jpg"; sourceTree = "<group>"; };
+		17C5A014169EC2870043A781 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Icon.png; path = ../Icon.png; sourceTree = "<group>"; };
+		17C5A017169EC2890043A781 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon@2x.png"; path = "../Icon@2x.png"; sourceTree = "<group>"; };
+		17C5A019169EC2900043A781 /* Icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-72.png"; path = "../Icon-72.png"; sourceTree = "<group>"; };
+		17C5A01B169EC2920043A781 /* Icon-72@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-72@2x.png"; path = "../Icon-72@2x.png"; sourceTree = "<group>"; };
+		17C5A01E169EC7FF0043A781 /* TWScheduleCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWScheduleCell.h; sourceTree = "<group>"; };
+		17C5A01F169EC7FF0043A781 /* TWScheduleCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWScheduleCell.m; sourceTree = "<group>"; };
 		17E5114A168F496E00DCE89C /* TWiT.tv.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TWiT.tv.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		17E5114E168F496E00DCE89C /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		17E51150168F496E00DCE89C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -666,6 +677,7 @@
 			children = (
 				17E5116E168F496E00DCE89C /* TWiT_tv.xcdatamodeld */,
 				170B9FF91691CD550022FE4D /* Settings.bundle */,
+				17C5A01D169EC2B30043A781 /* Icons */,
 				17C43AE61696DFD60066C79F /* Server Cache */,
 				170B9F6E1691CD540022FE4D /* Images */,
 			);
@@ -679,6 +691,8 @@
 				170E02A7169324480072CFA6 /* TWEpisodeCell.m */,
 				170E02A9169328910072CFA6 /* TWShowsCell.h */,
 				170E02AA169328910072CFA6 /* TWShowsCell.m */,
+				17C5A01E169EC7FF0043A781 /* TWScheduleCell.h */,
+				17C5A01F169EC7FF0043A781 /* TWScheduleCell.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -800,6 +814,17 @@
 				170561E1169AD61800E59244 /* NSDate+comparisons.m */,
 			);
 			name = Catergories;
+			sourceTree = "<group>";
+		};
+		17C5A01D169EC2B30043A781 /* Icons */ = {
+			isa = PBXGroup;
+			children = (
+				17C5A01B169EC2920043A781 /* Icon-72@2x.png */,
+				17C5A019169EC2900043A781 /* Icon-72.png */,
+				17C5A017169EC2890043A781 /* Icon@2x.png */,
+				17C5A014169EC2870043A781 /* Icon.png */,
+			);
+			name = Icons;
 			sourceTree = "<group>";
 		};
 		17E5113F168F496E00DCE89C = {
@@ -1125,6 +1150,10 @@
 				17056201169B192D00E59244 /* floss-poster.jpg in Resources */,
 				17056202169B192D00E59244 /* tsh-poster.jpg in Resources */,
 				17056203169B192D00E59244 /* twil-poster.jpg in Resources */,
+				17C5A015169EC2870043A781 /* Icon.png in Resources */,
+				17C5A018169EC2890043A781 /* Icon@2x.png in Resources */,
+				17C5A01A169EC2900043A781 /* Icon-72.png in Resources */,
+				17C5A01C169EC2920043A781 /* Icon-72@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1157,6 +1186,7 @@
 				17F668D1169B34FC00525F65 /* TWScheduleViewController.m in Sources */,
 				179D814A169D4A1500B54E1B /* Schedule.m in Sources */,
 				175ECB0B169DF54F0013DB90 /* TWSplitViewContainer.m in Sources */,
+				17C5A020169EC7FF0043A781 /* TWScheduleCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
