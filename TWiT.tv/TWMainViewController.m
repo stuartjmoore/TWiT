@@ -9,6 +9,7 @@
 #import <QuartzCore/QuartzCore.h>
 #import "NSDate+comparisons.h"
 
+#import "TWSplitViewContainer.h"
 #import "TWMainViewController.h"
 
 #import "TWShowViewController.h"
@@ -118,7 +119,39 @@
     NSIndexPath *showIndexPath = [NSIndexPath indexPathForRow:index inSection:indexPath.section];
  
     if(UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPhone)
+    {
         [self performSegueWithIdentifier:@"showDetail" sender:showIndexPath];
+    }
+    else
+    {
+        TWSplitViewContainer *splitViewContainer = (TWSplitViewContainer*)self.view.window.rootViewController;
+        UINavigationController *masterController = splitViewContainer.childViewControllers[0];
+        
+        if(masterController.viewControllers.count > 1)
+        {
+            TWShowViewController *showController = (TWShowViewController*)masterController.topViewController;
+            Show *currentShow = showController.show;
+            Show *selectedShow = [self.fetchedShowsController objectAtIndexPath:showIndexPath];
+            
+            
+            if(currentShow != selectedShow)
+            {
+                [masterController popToRootViewControllerAnimated:NO];
+                TWMainViewController *episodesController = (TWMainViewController*)masterController.topViewController;
+                [episodesController performSegueWithIdentifier:@"showDetail" sender:showIndexPath];
+            }
+            else
+            {
+                [masterController popToRootViewControllerAnimated:YES];
+            }
+            
+        }
+        else
+        {
+            TWMainViewController *episodesController = (TWMainViewController*)masterController.topViewController;
+            [episodesController performSegueWithIdentifier:@"showDetail" sender:showIndexPath];
+        }
+    }
     
     /*
     if(UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPad)
