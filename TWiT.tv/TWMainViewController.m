@@ -77,25 +77,20 @@
     }
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    if(UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPad && self.sectionVisible == TWSectionShows)
+        [self.tableView reloadData];
+    
+    [super viewDidAppear:animated];
+}
+
 #pragma mark - Actions
 
 - (void)switchVisibleSection:(UIButton*)sender
 {
     self.sectionVisible = sender.tag;
     [self.tableView reloadData];
-}
-
-- (IBAction)loadLiveDetail:(UIButton*)sender
-{/*
-    if(self.episodeViewController && UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPad)
-    {
-        [self.tableView deselectRowAtIndexPath:self.tableView.indexPathForSelectedRow animated:YES];
-    
-        UINavigationController *detailNavigationController = self.splitViewController.viewControllers[1];
-        [detailNavigationController popViewControllerAnimated:YES];
-        
-        self.episodeViewController = nil;
-    }*/
 }
 
 - (void)tableView:(UITableView*)tableView didSelectRowAtIndexPath:(NSIndexPath*)indexPath
@@ -180,16 +175,17 @@
     if(self.headerView && object == self.tableView)
     {
         CGRect frame = self.headerView.frame;
+        float sectionHeaderHeight = (UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPhone) ? 28 : 0;
         
         if(newPoint.y < 0)
         {
             frame.origin.y = newPoint.y;
-            frame.size.height = ceilf(mainHeaderHeight-newPoint.y+28);
+            frame.size.height = ceilf(mainHeaderHeight-newPoint.y+sectionHeaderHeight);
         }
         else
         {
             frame.origin.y = 0;
-            frame.size.height = mainHeaderHeight+28;
+            frame.size.height = mainHeaderHeight+sectionHeaderHeight;
         }
         
         self.headerView.frame = frame;
