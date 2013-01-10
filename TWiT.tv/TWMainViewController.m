@@ -127,47 +127,24 @@
         TWSplitViewContainer *splitViewContainer = (TWSplitViewContainer*)self.view.window.rootViewController;
         UINavigationController *masterController = splitViewContainer.childViewControllers[0];
         
+        BOOL push = YES;
+        
         if(masterController.viewControllers.count > 1)
         {
             TWShowViewController *showController = (TWShowViewController*)masterController.topViewController;
             Show *currentShow = showController.show;
             Show *selectedShow = [self.fetchedShowsController objectAtIndexPath:showIndexPath];
             
-            
-            if(currentShow != selectedShow)
-            {
-                [masterController popToRootViewControllerAnimated:NO];
-                TWMainViewController *episodesController = (TWMainViewController*)masterController.topViewController;
-                [episodesController performSegueWithIdentifier:@"showDetail" sender:showIndexPath];
-            }
-            else
-            {
-                [masterController popToRootViewControllerAnimated:YES];
-            }
-            
+            push = !(currentShow == selectedShow);
+            [masterController popToRootViewControllerAnimated:!push];
         }
-        else
+        
+        if(push)
         {
             TWMainViewController *episodesController = (TWMainViewController*)masterController.topViewController;
             [episodesController performSegueWithIdentifier:@"showDetail" sender:showIndexPath];
         }
     }
-    
-    /*
-    if(UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPad)
-    {
-        UINavigationController *masterNavigationController = self.splitViewController.viewControllers[0];
-        TWMainViewController *showsViewController = (TWMainViewController*)masterNavigationController.topViewController;
-        [showsViewController performSegueWithIdentifier:@"showDetail" sender:show];
-        
-        UINavigationController *detailNavigationController = self.splitViewController.viewControllers[1];
-        TWMainViewController *showDetailViewController = (TWMainViewController*)detailNavigationController.topViewController;
-        [showDetailViewController performSegueWithIdentifier:@"showDetail" sender:show];
-    }
-    else
-    {
-        [self performSegueWithIdentifier:@"showDetail" sender:show];
-    }*/
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue*)segue sender:(id)sender
