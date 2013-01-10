@@ -16,18 +16,20 @@
 
 @implementation TWScheduleViewController
 
-- (id)initWithStyle:(UITableViewStyle)style
-{
-    self = [super initWithStyle:style];
-    if (self)
-    {
-    }
-    return self;
-}
-
 - (void)viewDidLoad
 {
+    self.title = @"Schedule";
     [super viewDidLoad];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    [NSNotificationCenter.defaultCenter addObserver:self.tableView
+                                           selector:@selector(reloadData)
+                                               name:@"ScheduleDidUpdate"
+                                             object:nil];
 }
 
 #pragma mark - Table view
@@ -114,9 +116,18 @@
     return cell;
 }
 
+#pragma mark - Leave
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [NSNotificationCenter.defaultCenter removeObserver:self name:@"ScheduleDidUpdate" object:nil];
+    
+    [super viewWillDisappear:animated];
 }
 
 @end

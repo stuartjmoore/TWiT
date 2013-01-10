@@ -240,7 +240,6 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="36">
-                        <nil key="title"/>
                         <view key="titleView" contentMode="scaleToFill" id="4vc-3D-1C4">
                             <rect key="frame" x="60" y="1" width="200" height="43"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -361,7 +360,24 @@
                         </subviews>
                         <color key="backgroundColor" white="0.95999999999999996" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Episode" id="26"/>
+                    <navigationItem key="navigationItem" id="26">
+                        <view key="titleView" contentMode="scaleToFill" id="MNc-dw-puF">
+                            <rect key="frame" x="60" y="6" width="200" height="33"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            <subviews>
+                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Episode" textAlignment="center" lineBreakMode="middleTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="AbQ-RJ-3bv">
+                                    <rect key="frame" x="0.0" y="0.0" width="200" height="33"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <nil key="highlightedColor"/>
+                                    <color key="shadowColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                    <size key="shadowOffset" width="0.0" height="1"/>
+                                </label>
+                            </subviews>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        </view>
+                    </navigationItem>
                     <connections>
                         <outlet property="dateLabel" destination="nnd-I2-iMv" id="IjK-bg-MdQ"/>
                         <outlet property="descLabel" destination="kHn-pA-l64" id="jdW-hD-O1Z"/>
@@ -438,13 +454,31 @@
                             <outlet property="delegate" destination="t6z-Tc-dkI" id="cLv-kQ-50c"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Schedule" id="RRV-PK-C4J"/>
+                    <navigationItem key="navigationItem" id="RRV-PK-C4J">
+                        <nil key="title"/>
+                        <view key="titleView" contentMode="scaleToFill" id="1yU-yK-7oI">
+                            <rect key="frame" x="60" y="6" width="200" height="33"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            <subviews>
+                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Schedule" textAlignment="center" lineBreakMode="middleTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="4IP-dz-Eju">
+                                    <rect key="frame" x="0.0" y="0.0" width="200" height="33"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <nil key="highlightedColor"/>
+                                    <color key="shadowColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                    <size key="shadowOffset" width="0.0" height="1"/>
+                                </label>
+                            </subviews>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        </view>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6Zx-Ki-4AK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="944" y="-954"/>
         </scene>
-        <!--Show View Controller - Show-->
+        <!--Show View Controller-->
         <scene sceneID="6n7-Q8-Kqg">
             <objects>
                 <tableViewController storyboardIdentifier="showDetail" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Gce-uE-xEB" customClass="TWShowViewController" sceneMemberID="viewController">
@@ -659,7 +693,25 @@
                             <outlet property="delegate" destination="Gce-uE-xEB" id="Mkk-Io-rZ3"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Show" id="Asz-4h-TSi"/>
+                    <navigationItem key="navigationItem" id="Asz-4h-TSi">
+                        <nil key="title"/>
+                        <view key="titleView" contentMode="scaleToFill" id="xBb-OW-Zro">
+                            <rect key="frame" x="60" y="6" width="200" height="33"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            <subviews>
+                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Show" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="hyy-vn-c1L">
+                                    <rect key="frame" x="0.0" y="0.0" width="200" height="33"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <nil key="highlightedColor"/>
+                                    <color key="shadowColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                    <size key="shadowOffset" width="0.0" height="1"/>
+                                </label>
+                            </subviews>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        </view>
+                    </navigationItem>
                     <connections>
                         <outlet property="albumArt" destination="6cJ-5V-8Lf" id="6zD-cZ-B6j"/>
                         <outlet property="descLabel" destination="5Ri-gY-EC7" id="KKM-eo-01b"/>
