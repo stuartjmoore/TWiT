@@ -107,18 +107,20 @@
     [self.tableView reloadData];
 }
 
+- (void)tableView:(UITableView*)tableView willSelectRowAtIndexPath:(NSIndexPath*)indexPath
+{
+    if([tableView.indexPathForSelectedRow isEqual:indexPath])
+        [tableView deselectRowAtIndexPath:indexPath animated:NO];
+    else
+        [tableView selectRowAtIndexPath:indexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
+}
 - (void)tableView:(UITableView*)tableView didSelectRowAtIndexPath:(NSIndexPath*)indexPath
-{/*
-    if(!self.episodeViewController && UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPad)
-    {
-        UINavigationController *detailNavigationController = self.splitViewController.viewControllers[1];
-        TWMainViewController *showsViewController = (TWMainViewController*)detailNavigationController.topViewController;
-        [showsViewController performSegueWithIdentifier:@"episodeDetail" sender:nil];
-        
-        Episode *episode = [self.fetchedEpisodesController objectAtIndexPath:indexPath];
-        self.episodeViewController = detailNavigationController.viewControllers.lastObject;
-        self.episodeViewController.episode = episode;
-    }*/
+{
+    
+}
+- (void)tableView:(UITableView*)tableView didDeselectRowAtIndexPath:(NSIndexPath*)indexPath
+{
+    
 }
 
 - (void)tableView:(UITableView*)tableView didSelectColumn:(int)column AtIndexPath:(NSIndexPath*)indexPath

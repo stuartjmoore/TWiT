@@ -45,6 +45,11 @@
                            (id)[UIColor colorWithWhite:0 alpha:0.6f].CGColor,
                            (id)[UIColor colorWithWhite:0 alpha:0].CGColor, nil];
     [self.gradientView.layer addSublayer:liveGradient];
+    
+    if(UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPad)
+    {
+        self.navigationItem.hidesBackButton = YES;
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -133,27 +138,20 @@
     [UIApplication.sharedApplication openURL:url];
 }
 
+- (void)tableView:(UITableView*)tableView willSelectRowAtIndexPath:(NSIndexPath*)indexPath
+{
+    if([tableView.indexPathForSelectedRow isEqual:indexPath])
+        [tableView deselectRowAtIndexPath:indexPath animated:NO];
+    else
+        [tableView selectRowAtIndexPath:indexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
+}
 - (void)tableView:(UITableView*)tableView didSelectRowAtIndexPath:(NSIndexPath*)indexPath
 {
-    /*
-    UINavigationController *detailNavigationController = self.splitViewController.viewControllers[1];
     
-    if(self.episodeViewController)
-    {
-        self.episodeViewController = nil;
-        [detailNavigationController popViewControllerAnimated:NO];
-    }
+}
+- (void)tableView:(UITableView*)tableView didDeselectRowAtIndexPath:(NSIndexPath*)indexPath
+{
     
-    if(!self.episodeViewController && UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPad)
-    {
-        TWShowViewController *showsViewController = (TWShowViewController*)detailNavigationController.topViewController;
-        [showsViewController performSegueWithIdentifier:@"episodeDetail" sender:nil];
-        
-        Episode *episode = [self.fetchedEpisodesController objectAtIndexPath:indexPath];
-        self.episodeViewController = detailNavigationController.viewControllers.lastObject;
-        self.episodeViewController.episode = episode;
-    }
-    */
 }
 
 #pragma mark - Table
