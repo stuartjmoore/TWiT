@@ -357,6 +357,7 @@
                 <navigationController storyboardIdentifier="modalController" definesPresentationContext="YES" useStoryboardIdentifierAsRestorationIdentifier="YES" id="uck-cN-szW" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="kd5-6G-fKM">
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" white="0.95999999999999996" alpha="1" colorSpace="calibratedWhite"/>
                     </navigationBar>
                     <connections>
                         <segue destination="I5Z-A0-HMk" kind="relationship" relationship="rootViewController" id="fLv-aO-SEh"/>
@@ -373,9 +374,101 @@
                     <view key="view" contentMode="scaleToFill" id="tRV-vS-88x">
                         <rect key="frame" x="0.0" y="64" width="768" height="960"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" id="4Gu-bz-hvO">
+                                <rect key="frame" x="0.0" y="0.0" width="768" height="250"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" image="generic.jpg" id="psU-ly-vl2">
+                                        <rect key="frame" x="0.0" y="0.0" width="768" height="250"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                    </imageView>
+                                    <view contentMode="scaleToFill" id="A9a-cl-Gl2" userLabel="Blackground">
+                                        <rect key="frame" x="0.0" y="0.0" width="768" height="250"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.14999999999999999" colorSpace="calibratedWhite"/>
+                                    </view>
+                                    <view contentMode="scaleToFill" id="G0c-Td-bfB" userLabel="Gradient">
+                                        <rect key="frame" x="0.0" y="196" width="768" height="54"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    </view>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="ggf-5M-3nY">
+                                        <rect key="frame" x="355" y="98" width="55" height="55"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                        <state key="normal" image="icon-play.png">
+                                            <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <state key="highlighted">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                    </button>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Sept 25, 2012" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="rtc-dj-XZ5">
+                                        <rect key="frame" x="7" y="221" width="676" height="29"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                        <color key="shadowColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                        <size key="shadowOffset" width="0.0" height="1"/>
+                                    </label>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="0:00:00" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="uYX-t3-iiD">
+                                        <rect key="frame" x="691" y="221" width="71" height="29"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                        <color key="shadowColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                        <size key="shadowOffset" width="0.0" height="1"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            </view>
+                            <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" text="1888" textAlignment="center" lineBreakMode="middleTruncation" minimumFontSize="18" adjustsLetterSpacingToFitWidth="YES" id="QzM-Dl-19k">
+                                <rect key="frame" x="8" y="258" width="51" height="51"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.95999999999999996" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" text="Guests &amp; Guests" lineBreakMode="tailTruncation" numberOfLines="2" adjustsFontSizeToFit="NO" id="Wrw-gN-UZa">
+                                <rect key="frame" x="67" y="258" width="693" height="51"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.95999999999999996" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textView clipsSubviews="YES" contentMode="scaleToFill" editable="NO" id="08T-2L-Myw">
+                                <rect key="frame" x="16" y="303" width="737" height="590"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="0.95999999999999996" alpha="1" colorSpace="calibratedWhite"/>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textView>
+                            <view contentMode="scaleToFill" id="kvo-gx-pdu">
+                                <rect key="frame" x="16" y="901" width="737" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="0.95999999999999996" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Episode" id="AVu-0y-pDD"/>
+                    <connections>
+                        <outlet property="dateLabel" destination="rtc-dj-XZ5" id="APd-kC-6Pl"/>
+                        <outlet property="descLabel" destination="08T-2L-Myw" id="DiY-1k-xGY"/>
+                        <outlet property="gradientView" destination="G0c-Td-bfB" id="3cX-Br-Vu0"/>
+                        <outlet property="guestsLabel" destination="Wrw-gN-UZa" id="fSJ-nN-ki1"/>
+                        <outlet property="numberLabel" destination="QzM-Dl-19k" id="tgf-hn-Jen"/>
+                        <outlet property="posterView" destination="psU-ly-vl2" id="3ao-WH-MHy"/>
+                        <outlet property="timeLabel" destination="uYX-t3-iiD" id="34Z-oy-ZZV"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2i5-D3-Sz7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -431,6 +524,8 @@
         </scene>
     </scenes>
     <resources>
+        <image name="generic.jpg" width="600" height="600"/>
+        <image name="icon-play.png" width="55" height="55"/>
         <image name="quick-play.png" width="20" height="21"/>
     </resources>
     <classes>
