@@ -109,12 +109,10 @@
     {
         if([tableView.indexPathForSelectedRow isEqual:indexPath])
         {
-            NSLog(@"didDeselectRowAtIndexPath");
             [tableView deselectRowAtIndexPath:indexPath animated:NO];
         }
         else
         {
-            NSLog(@"didSelectRowAtIndexPath");
             [tableView selectRowAtIndexPath:indexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
         }
         return nil;
@@ -256,10 +254,13 @@
 
 - (float)tableView:(UITableView*)tableView heightForHeaderInSection:(NSInteger)section
 {
-    if(tableView == self.tableView && UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPhone)
+    if(tableView == self.tableView && section == 0 && UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPhone)
     {
-        if(section == 0)
-            return 28;
+        return (self.sectionVisible == TWSectionShows) ? 28 : 28;
+    }
+    if(tableView == self.tableView && section == 0 && UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPad)
+    {
+        return (self.sectionVisible == TWSectionShows) ? 12 : 0;
     }
     else if(tableView == self.scheduleTable)
     {
@@ -399,7 +400,8 @@
         return header;
     }
     
-    return nil;
+    UIView *header = [[UIView alloc] init];
+    return header;
 }
 
 - (UITableViewCell*)tableView:(UITableView*)tableView cellForRowAtIndexPath:(NSIndexPath*)indexPath

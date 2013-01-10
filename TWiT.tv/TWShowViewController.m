@@ -142,12 +142,10 @@
     {
         if([tableView.indexPathForSelectedRow isEqual:indexPath])
         {
-            NSLog(@"didDeselectRowAtIndexPath");
             [tableView deselectRowAtIndexPath:indexPath animated:NO];
         }
         else
         {
-            NSLog(@"didSelectRowAtIndexPath");
             [tableView selectRowAtIndexPath:indexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
         }
         return nil;
