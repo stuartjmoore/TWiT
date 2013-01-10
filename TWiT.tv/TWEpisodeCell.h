@@ -10,6 +10,8 @@
 
 @interface TWEpisodeCell : UITableViewCell
 
+@property (nonatomic, weak) IBOutlet UIView *topLine, *bottomLine;
+
 @property (nonatomic, weak) IBOutlet UIImageView *albumArt;
 @property (nonatomic, weak) IBOutlet UILabel *numberLabel;
 

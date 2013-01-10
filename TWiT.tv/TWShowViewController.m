@@ -246,13 +246,11 @@
         {
             episodeCell.numberLabel.textColor = [UIColor colorWithRed:239/255.0 green:79/255.0 blue:61/255.0 alpha:1];
             episodeCell.numberLabel.shadowColor = [UIColor blackColor];
-            episodeCell.numberLabel.shadowOffset = CGSizeMake(0, 1);
         }
         else
         {
             episodeCell.numberLabel.textColor = [UIColor blackColor];
             episodeCell.numberLabel.shadowColor = [UIColor clearColor];
-            episodeCell.numberLabel.shadowOffset = CGSizeMake(0, 0);
         }
         
         episodeCell.titleLabel.text = episode.title;

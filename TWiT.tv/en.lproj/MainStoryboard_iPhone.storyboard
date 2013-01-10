@@ -158,7 +158,7 @@
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         </view>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="gray" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="episodeCell" rowHeight="62" id="lJ0-d7-vTF" customClass="TWEpisodeCell">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="episodeCell" rowHeight="62" id="lJ0-d7-vTF" customClass="TWEpisodeCell">
                                 <rect key="frame" x="0.0" y="208" width="320" height="62"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -184,6 +184,7 @@
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <size key="shadowOffset" width="0.0" height="1"/>
                                                 </label>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="subtitle" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="F1Q-Xo-pjV">
                                                     <rect key="frame" x="64" y="32" width="199" height="15"/>
@@ -191,6 +192,7 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <size key="shadowOffset" width="0.0" height="1"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="mb1-Fz-c5Z">
                                                     <rect key="frame" x="271" y="9" width="44" height="44"/>
@@ -210,7 +212,7 @@
                                                     <color key="backgroundColor" white="0.87" alpha="1" colorSpace="calibratedWhite"/>
                                                 </view>
                                             </subviews>
-                                            <color key="backgroundColor" white="0.95999999999999996" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -482,7 +484,7 @@
         <scene sceneID="6n7-Q8-Kqg">
             <objects>
                 <tableViewController storyboardIdentifier="showDetail" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Gce-uE-xEB" customClass="TWShowViewController" sceneMemberID="viewController">
-                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="62" sectionHeaderHeight="22" sectionFooterHeight="22" id="lcT-MQ-Chp">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="62" sectionHeaderHeight="22" sectionFooterHeight="22" id="lcT-MQ-Chp">
                         <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="0.95999999999999996" alpha="1" colorSpace="calibratedWhite"/>
@@ -614,13 +616,12 @@
                             </subviews>
                             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         </view>
-                        <view key="tableFooterView" contentMode="scaleToFill" id="Y49-fL-xLU">
+                        <imageView key="tableFooterView" userInteractionEnabled="NO" contentMode="scaleToFill" image="separator-fade-top.png" id="SiU-wg-3zc">
                             <rect key="frame" x="0.0" y="264" width="320" height="1"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                        </view>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                        </imageView>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="gray" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="episodeCell" id="0zh-Fg-sgv" customClass="TWEpisodeCell">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="episodeCell" id="0zh-Fg-sgv" customClass="TWEpisodeCell">
                                 <rect key="frame" x="0.0" y="202" width="320" height="62"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -631,17 +632,17 @@
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="61"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
-                                                <view contentMode="scaleToFill" id="2gY-yP-axN" userLabel="Top Separator">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="separator-fade-top.png" id="OOu-oA-gHG">
                                                     <rect key="frame" x="0.0" y="0.0" width="320" height="1"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                </view>
+                                                </imageView>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="88" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.79999999999999993" adjustsLetterSpacingToFitWidth="YES" id="gk7-bS-7Vv">
                                                     <rect key="frame" x="7" y="7" width="48" height="48"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
+                                                    <size key="shadowOffset" width="0.0" height="1"/>
                                                 </label>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="XwE-S8-I36">
                                                     <rect key="frame" x="64" y="13" width="199" height="20"/>
@@ -649,6 +650,7 @@
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <size key="shadowOffset" width="0.0" height="1"/>
                                                 </label>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="subtitle" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="DhU-w2-z4b">
                                                     <rect key="frame" x="64" y="32" width="199" height="15"/>
@@ -656,6 +658,7 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <size key="shadowOffset" width="0.0" height="1"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="1Vs-K1-evE">
                                                     <rect key="frame" x="271" y="9" width="44" height="44"/>
@@ -669,21 +672,22 @@
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
                                                 </button>
-                                                <view contentMode="scaleToFill" id="Itx-Yg-f5n" userLabel="Bottom Separator">
-                                                    <rect key="frame" x="0.0" y="61" width="320" height="1"/>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="separator-fade-bottom.png" id="3d9-65-kBy">
+                                                    <rect key="frame" x="0.0" y="60" width="320" height="1"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                                    <color key="backgroundColor" white="0.87" alpha="1" colorSpace="calibratedWhite"/>
-                                                </view>
+                                                </imageView>
                                             </subviews>
-                                            <color key="backgroundColor" white="0.95999999999999996" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
                                 <connections>
+                                    <outlet property="bottomLine" destination="3d9-65-kBy" id="gDC-do-6Qf"/>
                                     <outlet property="numberLabel" destination="gk7-bS-7Vv" id="UWY-c3-2sK"/>
                                     <outlet property="subtitleLabel" destination="DhU-w2-z4b" id="xWw-Yx-bYl"/>
                                     <outlet property="titleLabel" destination="XwE-S8-I36" id="0LO-0t-NoX"/>
+                                    <outlet property="topLine" destination="OOu-oA-gHG" id="WcJ-Zh-epG"/>
                                     <segue destination="21" kind="push" identifier="episodeDetail" id="OfB-Q1-3Dp"/>
                                 </connections>
                             </tableViewCell>
@@ -737,6 +741,8 @@
         <image name="icon-play.png" width="55" height="55"/>
         <image name="navbar-logo.png" width="200" height="43"/>
         <image name="quick-play.png" width="20" height="21"/>
+        <image name="separator-fade-bottom.png" width="320" height="1"/>
+        <image name="separator-fade-top.png" width="320" height="1"/>
         <image name="toolbar-disclose.png" width="27" height="17"/>
         <image name="toolbar-email.png" width="26" height="17"/>
         <image name="toolbar-fav-off.png" width="27" height="24"/>
@@ -751,9 +757,11 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/TWEpisodeCell.h"/>
             <relationships>
                 <relationship kind="outlet" name="albumArt" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="bottomLine" candidateClass="UIView"/>
                 <relationship kind="outlet" name="numberLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="subtitleLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="titleLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="topLine" candidateClass="UIView"/>
             </relationships>
         </class>
         <class className="TWEpisodeViewController" superclassName="UIViewController">
@@ -822,6 +830,6 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="OfB-Q1-3Dp"/>
+        <segue reference="YiW-0V-IC2"/>
     </inferredMetricsTieBreakers>
 </document>
