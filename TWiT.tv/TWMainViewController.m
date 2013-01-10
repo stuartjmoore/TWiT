@@ -90,6 +90,20 @@
 - (void)switchVisibleSection:(UIButton*)sender
 {
     self.sectionVisible = sender.tag;
+    
+    if(self.sectionVisible == TWSectionEpisodes)
+    {
+        UIView *footer = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.tableView.frame.size.width, 1)];
+        footer.backgroundColor = [UIColor whiteColor];
+        self.tableView.tableFooterView = footer;
+    }
+    else
+    {
+        UIView *footer = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.tableView.frame.size.width, 9)];
+        footer.backgroundColor = [UIColor clearColor];
+        self.tableView.tableFooterView = footer;
+    }
+    
     [self.tableView reloadData];
 }
 

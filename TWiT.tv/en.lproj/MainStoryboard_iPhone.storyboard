@@ -152,6 +152,11 @@
                             </subviews>
                             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         </view>
+                        <view key="tableFooterView" contentMode="scaleToFill" id="5yq-GE-vlN">
+                            <rect key="frame" x="0.0" y="372" width="320" height="1"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        </view>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="gray" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="episodeCell" rowHeight="62" id="lJ0-d7-vTF" customClass="TWEpisodeCell">
                                 <rect key="frame" x="0.0" y="208" width="320" height="62"/>
@@ -562,6 +567,11 @@
                             </subviews>
                             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         </view>
+                        <view key="tableFooterView" contentMode="scaleToFill" id="Y49-fL-xLU">
+                            <rect key="frame" x="0.0" y="264" width="320" height="1"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        </view>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="gray" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="episodeCell" id="0zh-Fg-sgv" customClass="TWEpisodeCell">
                                 <rect key="frame" x="0.0" y="202" width="320" height="62"/>
@@ -746,6 +756,6 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="YiW-0V-IC2"/>
+        <segue reference="OfB-Q1-3Dp"/>
     </inferredMetricsTieBreakers>
 </document>
