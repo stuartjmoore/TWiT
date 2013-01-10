@@ -433,7 +433,7 @@
                         <subviews>
                             <view contentMode="scaleToFill" id="4Gu-bz-hvO">
                                 <rect key="frame" x="0.0" y="0.0" width="768" height="250"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" image="generic.jpg" id="psU-ly-vl2">
                                         <rect key="frame" x="0.0" y="0.0" width="768" height="250"/>
@@ -509,7 +509,7 @@
                             </textView>
                             <view contentMode="scaleToFill" id="kvo-gx-pdu">
                                 <rect key="frame" x="16" y="901" width="737" height="44"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                         </subviews>

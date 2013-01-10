@@ -8,7 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
+@class Episode;
+
 @interface TWEpisodeCell : UITableViewCell
+
+@property (nonatomic, strong) Episode *episode;
 
 @property (nonatomic, weak) IBOutlet UIView *topLine, *bottomLine;
 

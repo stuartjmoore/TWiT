@@ -254,7 +254,7 @@
     return 0;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+- (NSInteger)tableView:(UITableView*)tableView numberOfRowsInSection:(NSInteger)section
 {
     if(tableView == self.tableView)
     {
@@ -270,8 +270,9 @@
         {
             sectionInfo = self.fetchedShowsController.sections[section];
             int num = sectionInfo.numberOfObjects;
+            int columns = UIInterfaceOrientationIsPortrait(UIDevice.currentDevice.orientation)?3:4;
             
-            return ceil(num/3.0);
+            return ceil(num/columns);
         }
     }
     else if(tableView == self.scheduleTable)
@@ -469,10 +470,7 @@
     {
         Episode *episode = [self.fetchedEpisodesController objectAtIndexPath:indexPath];
         TWEpisodeCell *episodeCell = (TWEpisodeCell*)cell;
-
-        episodeCell.albumArt.image = episode.show.albumArt.image;
-        episodeCell.titleLabel.text = episode.title;
-        episodeCell.subtitleLabel.text = episode.show.title;
+        episodeCell.episode = episode;
     }
     else if([cell.reuseIdentifier isEqualToString:@"showsCell"])
     {
@@ -485,9 +483,18 @@
         
         if(UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPad)
         {
-            showsCell.spacing = 26;
-            showsCell.size = 114;
-            showsCell.columns = 3;
+            if(UIInterfaceOrientationIsPortrait(UIDevice.currentDevice.orientation))
+            {
+                showsCell.spacing = 26;
+                showsCell.size = 114;
+                showsCell.columns = 3;
+            }
+            else if(UIInterfaceOrientationIsLandscape(UIDevice.currentDevice.orientation))
+            {
+                showsCell.spacing = 48;
+                showsCell.size = 114;
+                showsCell.columns = 4;
+            }
         }
         else
         {

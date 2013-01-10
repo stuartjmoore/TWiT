@@ -97,6 +97,29 @@
     [self saveContext];
 }
 
+#pragma mark - Settings
+
+- (NSUInteger)application:(UIApplication*)application supportedInterfaceOrientationsForWindow:(UIWindow*)window
+{
+    NSUInteger res = (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)? UIInterfaceOrientationMaskAllButUpsideDown : UIInterfaceOrientationMaskAll;
+    
+    if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+    {
+        TWSplitViewContainer *splitViewContainer = (TWSplitViewContainer*)window.rootViewController;
+        res = splitViewContainer.supportedInterfaceOrientations;
+    }
+    else if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
+    {
+        UINavigationController *navigationController = (UINavigationController*)window.rootViewController;
+        UIViewController *presented = navigationController.viewControllers.lastObject;
+        res = presented.supportedInterfaceOrientations;
+    }
+    
+    return res;
+}
+
+#pragma mark - Core Data stack
+
 - (void)saveContext
 {
     NSError *error = nil;
@@ -109,8 +132,6 @@
         } 
     }
 }
-
-#pragma mark - Core Data stack
 
 // Returns the managed object context for the application.
 // If the context doesn't already exist, it is created and bound to the persistent store coordinator for the application.

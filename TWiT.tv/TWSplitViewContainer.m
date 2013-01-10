@@ -40,4 +40,16 @@
     [self.modalContainer addSubview:modalController.view];
 }
 
+#pragma mark - Settings
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+{
+    return YES;
+}
+
+- (NSUInteger)supportedInterfaceOrientations
+{
+    return UIInterfaceOrientationMaskAll;
+}
+
 @end
