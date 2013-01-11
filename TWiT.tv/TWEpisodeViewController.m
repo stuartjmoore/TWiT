@@ -59,6 +59,24 @@
     }
 }
 
+#pragma mark - Settings
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+{
+    if(UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPad)
+        return YES;
+    else
+        return (interfaceOrientation == UIInterfaceOrientationMaskPortrait);
+}
+
+- (NSUInteger)supportedInterfaceOrientations
+{
+    if(UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPad)
+        return UIInterfaceOrientationMaskAll;
+    else
+        return UIInterfaceOrientationMaskPortrait;
+}
+
 #pragma mark - Kill
 
 - (void)didReceiveMemoryWarning

@@ -145,13 +145,15 @@
         {
             TWSplitViewContainer *splitViewContainer = (TWSplitViewContainer*)self.navigationController.parentViewController;
             
-            CGRect frame = splitViewContainer.modalContainer.frame;
+            CGRect frame = splitViewContainer.modalFlyout.frame;
             frame.origin.x -= frame.size.width;
             
             [UIView animateWithDuration:0.3f animations:^{
-                splitViewContainer.modalContainer.frame = frame;
+                splitViewContainer.modalFlyout.frame = frame;
+                splitViewContainer.modalBlackground.alpha = 0;
             } completion:^(BOOL fin){
                 splitViewContainer.modalContainer.hidden = YES;
+                splitViewContainer.modalBlackground.alpha = 1;
             }];
             
             [tableView deselectRowAtIndexPath:indexPath animated:NO];
@@ -167,13 +169,15 @@
             
             if(splitViewContainer.modalContainer.hidden)
             {
+                splitViewContainer.modalBlackground.alpha = 0;
                 splitViewContainer.modalContainer.hidden = NO;
                 
-                CGRect frame = splitViewContainer.modalContainer.frame;
+                CGRect frame = splitViewContainer.modalFlyout.frame;
                 frame.origin.x += frame.size.width;
                 
                 [UIView animateWithDuration:0.3f animations:^{
-                    splitViewContainer.modalContainer.frame = frame;
+                    splitViewContainer.modalBlackground.alpha = 1;
+                    splitViewContainer.modalFlyout.frame = frame;
                 }];
             }
             
@@ -331,6 +335,24 @@
 - (void)controllerDidChangeContent:(NSFetchedResultsController*)controller
 {
     [self.tableView endUpdates];
+}
+
+#pragma mark - Settings
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+{
+    if(UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPad)
+        return YES;
+    else
+        return (interfaceOrientation == UIInterfaceOrientationMaskPortrait);
+}
+
+- (NSUInteger)supportedInterfaceOrientations
+{
+    if(UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPad)
+        return UIInterfaceOrientationMaskAll;
+    else
+        return UIInterfaceOrientationMaskPortrait;
 }
 
 #pragma mark - Leave
