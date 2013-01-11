@@ -170,19 +170,20 @@
         TWSplitViewContainer *splitViewContainer = (TWSplitViewContainer*)self.view.window.rootViewController;
         UINavigationController *masterController = splitViewContainer.childViewControllers[0];
         
-        BOOL push = YES;
-        
         if(masterController.viewControllers.count > 1)
         {
             TWShowViewController *showController = (TWShowViewController*)masterController.topViewController;
             Show *currentShow = showController.show;
             Show *selectedShow = [self.fetchedShowsController objectAtIndexPath:showIndexPath];
             
-            push = !(currentShow == selectedShow);
-            [masterController popToRootViewControllerAnimated:!push];
+            if(currentShow == selectedShow)
+                [masterController popToRootViewControllerAnimated:YES];
+            else
+            {
+                showController.show = selectedShow;
+            }
         }
-        
-        if(push)
+        else
         {
             TWMainViewController *episodesController = (TWMainViewController*)masterController.topViewController;
             [episodesController performSegueWithIdentifier:@"showDetail" sender:showIndexPath];

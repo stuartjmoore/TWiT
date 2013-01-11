@@ -23,33 +23,33 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self configureView];
     
-    self.title = self.show.title;
-    self.albumArt.image = self.show.albumArt.image;
-    self.posterView.image = self.show.poster.image;
-    self.scheduleLabel.text = self.show.scheduleString;
-    self.descLabel.text = self.show.desc;
+    CAGradientLayer *liveGradient = [CAGradientLayer layer];
+    liveGradient.anchorPoint = CGPointMake(0, 0);
+    liveGradient.position = CGPointMake(0, 0);
+    liveGradient.startPoint = CGPointMake(0, 1);
+    liveGradient.endPoint = CGPointMake(0, 0);
+    liveGradient.bounds = self.gradientView.bounds;
     
-    self.favoriteButton.selected = self.show.favorite;
-    self.remindButton.selected = self.show.remind;
-    self.emailButton.hidden = !self.show.email;
-    self.phoneButton.hidden = !self.show.phone;
-    
-    if(self.gradientView)
+    if(UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPhone)
     {
-        CAGradientLayer *liveGradient = [CAGradientLayer layer];
-        liveGradient.anchorPoint = CGPointMake(0, 0);
-        liveGradient.position = CGPointMake(0, 0);
-        liveGradient.startPoint = CGPointMake(0, 1);
-        liveGradient.endPoint = CGPointMake(0, 0);
-        liveGradient.bounds = self.gradientView.bounds;
         liveGradient.colors = [NSArray arrayWithObjects:
                                (id)[UIColor colorWithWhite:0 alpha:1].CGColor,
                                (id)[UIColor colorWithWhite:0 alpha:0.6f].CGColor,
                                (id)[UIColor colorWithWhite:0 alpha:0].CGColor, nil];
-        [self.gradientView.layer addSublayer:liveGradient];
     }
-        
+    else
+    {
+        liveGradient.colors = [NSArray arrayWithObjects:
+                               (id)[UIColor colorWithWhite:0.96f alpha:1].CGColor,
+                               (id)[UIColor colorWithWhite:0.96f alpha:0.9f].CGColor,
+                               (id)[UIColor colorWithWhite:0.96f alpha:0].CGColor, nil];
+    }
+    
+    [self.gradientView.layer addSublayer:liveGradient];
+    
+    
     if(UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPad)
         self.navigationItem.hidesBackButton = YES;
 }
@@ -58,15 +58,44 @@
 {
     [super viewWillAppear:animated];
     
-    CGSize maxSize = CGSizeMake(self.descLabel.frame.size.width, CGFLOAT_MAX);
-    CGSize size = [self.descLabel.text sizeWithFont:self.descLabel.font constrainedToSize:maxSize];
-    CGRect frame = self.descLabel.frame;
-    frame.size.height = size.height;
-    self.descLabel.frame = frame;
-    
     [self.tableView addObserver:self forKeyPath:@"contentOffset"
                         options:(NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld)
                         context:NULL];
+}
+
+- (void)setShow:(Show*)show
+{
+    if(_show != show)
+    {
+        _show = show;
+        [self configureView];
+    }
+}
+
+- (void)configureView
+{
+    if(self.show)
+    {
+        self.title = self.show.title;
+        self.albumArt.image = self.show.albumArt.image;
+        self.posterView.image = self.show.poster.image;
+        self.scheduleLabel.text = self.show.scheduleString;
+        self.descLabel.text = self.show.desc;
+        
+        self.favoriteButton.selected = self.show.favorite;
+        self.remindButton.selected = self.show.remind;
+        self.emailButton.hidden = !self.show.email;
+        self.phoneButton.hidden = !self.show.phone;
+        
+        CGSize maxSize = CGSizeMake(self.descLabel.frame.size.width, CGFLOAT_MAX);
+        CGSize size = [self.descLabel.text sizeWithFont:self.descLabel.font constrainedToSize:maxSize];
+        CGRect frame = self.descLabel.frame;
+        frame.size.height = size.height;
+        self.descLabel.frame = frame;
+        
+        self.fetchedEpisodesController = nil;
+        [self.tableView reloadData];
+    }
 }
 
 #pragma mark - Actions
