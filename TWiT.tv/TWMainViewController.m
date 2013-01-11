@@ -180,6 +180,7 @@
                 [masterController popToRootViewControllerAnimated:YES];
             else
             {
+                [selectedShow updateEpisodes];
                 showController.show = selectedShow;
             }
         }
