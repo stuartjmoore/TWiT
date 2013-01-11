@@ -35,18 +35,21 @@
     self.emailButton.hidden = !self.show.email;
     self.phoneButton.hidden = !self.show.phone;
     
-    CAGradientLayer *liveGradient = [CAGradientLayer layer];
-    liveGradient.anchorPoint = CGPointMake(0, 0);
-    liveGradient.position = CGPointMake(0, 0);
-    liveGradient.startPoint = CGPointMake(0, 1);
-    liveGradient.endPoint = CGPointMake(0, 0);
-    liveGradient.bounds = self.gradientView.bounds;
-    liveGradient.colors = [NSArray arrayWithObjects:
-                           (id)[UIColor colorWithWhite:0 alpha:1].CGColor,
-                           (id)[UIColor colorWithWhite:0 alpha:0.6f].CGColor,
-                           (id)[UIColor colorWithWhite:0 alpha:0].CGColor, nil];
-    [self.gradientView.layer addSublayer:liveGradient];
-    
+    if(self.gradientView)
+    {
+        CAGradientLayer *liveGradient = [CAGradientLayer layer];
+        liveGradient.anchorPoint = CGPointMake(0, 0);
+        liveGradient.position = CGPointMake(0, 0);
+        liveGradient.startPoint = CGPointMake(0, 1);
+        liveGradient.endPoint = CGPointMake(0, 0);
+        liveGradient.bounds = self.gradientView.bounds;
+        liveGradient.colors = [NSArray arrayWithObjects:
+                               (id)[UIColor colorWithWhite:0 alpha:1].CGColor,
+                               (id)[UIColor colorWithWhite:0 alpha:0.6f].CGColor,
+                               (id)[UIColor colorWithWhite:0 alpha:0].CGColor, nil];
+        [self.gradientView.layer addSublayer:liveGradient];
+    }
+        
     if(UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPad)
         self.navigationItem.hidesBackButton = YES;
 }
@@ -82,7 +85,9 @@
 
 - (IBAction)openDetailView:(UIButton*)sender
 {
-    if(self.tableView.contentOffset.y <= -self.view.bounds.size.height+showHeaderHeight)
+    float headerHeight = self.tableView.tableHeaderView.frame.size.height;
+    
+    if(self.tableView.contentOffset.y <= -self.view.bounds.size.height+headerHeight)
     {
         self.tableView.scrollEnabled = YES;
         [UIView animateWithDuration:0.3f animations:^
@@ -97,7 +102,7 @@
         self.tableView.scrollEnabled = NO;
         [UIView animateWithDuration:0.3f animations:^
         {
-            self.tableView.contentOffset = CGPointMake(0, -self.view.bounds.size.height+showHeaderHeight);
+            self.tableView.contentOffset = CGPointMake(0, -self.view.bounds.size.height+headerHeight);
             sender.transform = CGAffineTransformMakeRotation(M_PI);
             [sender setImage:[UIImage imageNamed:@"toolbar-disclose-up"] forState:UIControlStateNormal];
         }];
@@ -195,6 +200,7 @@
 {
     UIAccessibilityPostNotification(UIAccessibilityLayoutChangedNotification, nil);
     CGPoint newPoint = [[change valueForKey:NSKeyValueChangeNewKey] CGPointValue];
+    float headerHeight = self.tableView.tableHeaderView.frame.size.height;
     
     if(object == self.tableView)
     {
@@ -202,13 +208,13 @@
         if(newPoint.y < 0)
         {
             frame.origin.y = newPoint.y;
-            frame.size.height = ceilf(showHeaderHeight-newPoint.y);
+            frame.size.height = ceilf(headerHeight-newPoint.y);
             
         }
         else
         {
             frame.origin.y = 0;
-            frame.size.height = showHeaderHeight;
+            frame.size.height = headerHeight;
         }
         
         self.headerView.frame = frame;

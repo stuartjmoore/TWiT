@@ -9,8 +9,6 @@
 #import <UIKit/UIKit.h>
 #import <MessageUI/MFMailComposeViewController.h>
 
-#define showHeaderHeight 180
-
 @class Show;
 
 @interface TWShowViewController : UITableViewController <NSFetchedResultsControllerDelegate, MFMailComposeViewControllerDelegate>

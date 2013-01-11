@@ -40,11 +40,12 @@
     
     modalController.view.frame = self.modalFlyout.bounds;
     [self.modalFlyout addSubview:modalController.view];
-    
+    /*
     self.modalFlyout.layer.shadowRadius = 15;
     self.modalFlyout.layer.shadowOpacity = 0.5f;
     self.modalFlyout.layer.shadowOffset = CGSizeMake(5, 0);
     self.modalFlyout.layer.shadowColor = [[UIColor blackColor] CGColor];
+    */
 }
 
 #pragma mark - Settings

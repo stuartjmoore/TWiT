@@ -187,6 +187,22 @@
             TWMainViewController *episodesController = (TWMainViewController*)masterController.topViewController;
             [episodesController performSegueWithIdentifier:@"showDetail" sender:showIndexPath];
         }
+        /*
+        [self addChildViewController:toVC];
+        [fromVC willMoveToParentViewController:nil];
+        
+        [self transitionFromViewController:fromVC
+                          toViewController:toVC
+                                  duration:0.3
+                                   options:UIViewAnimationOptionTransitionNone
+                                animations:^{
+                                    [subview1 setAlpha:0.0];
+                                }
+                                completion:^(BOOL finished) {
+                                    [fromVC removeFromParentViewController];
+                                    [toVC didMoveToParentViewController:self];
+                                }];
+        */
     }
 }
 
@@ -219,6 +235,7 @@
 {
     UIAccessibilityPostNotification(UIAccessibilityLayoutChangedNotification, nil);
     CGPoint newPoint = [[change valueForKey:NSKeyValueChangeNewKey] CGPointValue];
+    float headerHeight = self.tableView.tableHeaderView.frame.size.height;
     
     if(self.headerView && object == self.tableView)
     {
@@ -228,12 +245,12 @@
         if(newPoint.y < 0)
         {
             frame.origin.y = newPoint.y;
-            frame.size.height = ceilf(mainHeaderHeight-newPoint.y+sectionHeaderHeight);
+            frame.size.height = ceilf(headerHeight-newPoint.y+sectionHeaderHeight);
         }
         else
         {
             frame.origin.y = 0;
-            frame.size.height = mainHeaderHeight+sectionHeaderHeight;
+            frame.size.height = headerHeight+sectionHeaderHeight;
         }
         
         self.headerView.frame = frame;
@@ -402,7 +419,8 @@
         botLine.backgroundColor = [UIColor colorWithWhite:222/255.0 alpha:1];
         [self.sectionHeader addSubview:botLine];
         
-        float offest = self.tableView.contentOffset.y-mainHeaderHeight;
+        float headerHeight = self.tableView.tableHeaderView.frame.size.height;
+        float offest = self.tableView.contentOffset.y-headerHeight;
         self.sectionHeader.layer.shadowOpacity = offest < 0 ? 0 : offest/20;
         self.sectionHeader.layer.shadowColor = [[UIColor colorWithWhite:0 alpha:0.5f] CGColor];
         self.sectionHeader.layer.shadowOffset = CGSizeMake(0, 3);

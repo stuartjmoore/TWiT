@@ -11,8 +11,6 @@
 
 #import "TWShowsCell.h"
 
-#define mainHeaderHeight 180
-
 typedef NS_ENUM(NSInteger, TWSection)
 {
     TWSectionEpisodes,
