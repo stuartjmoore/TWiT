@@ -165,7 +165,7 @@
     else
     {
         TWSplitViewContainer *splitViewContainer = (TWSplitViewContainer*)self.view.window.rootViewController;
-        UINavigationController *masterController = splitViewContainer.childViewControllers[0];
+        UINavigationController *masterController = (UINavigationController*)splitViewContainer.masterController;
         
         if(masterController.viewControllers.count > 1)
         {
@@ -690,7 +690,7 @@
 {
     TWSplitViewContainer *splitViewContainer = (TWSplitViewContainer*)self.navigationController.parentViewController;
     UIViewController *playerController = [self.storyboard instantiateViewControllerWithIdentifier:@"playerController"];
-
+    
     playerController.view.frame = splitViewContainer.view.bounds;
     [splitViewContainer.view addSubview:playerController.view];
     [splitViewContainer.view sendSubviewToBack:playerController.view];
@@ -711,6 +711,7 @@
         [splitViewContainer presentViewController:playerController animated:NO completion:^{}];
         splitViewContainer.masterContainer.frame = masterFrameOriginal;
         splitViewContainer.detailContainer.frame = detailFrameOriginal;
+        [(UINavigationController*)splitViewContainer.masterController popToRootViewControllerAnimated:NO];
     }];
 }
 
