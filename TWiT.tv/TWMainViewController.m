@@ -189,22 +189,6 @@
             TWMainViewController *episodesController = (TWMainViewController*)masterController.topViewController;
             [episodesController performSegueWithIdentifier:@"showDetail" sender:showIndexPath];
         }
-        /*
-        [self addChildViewController:toVC];
-        [fromVC willMoveToParentViewController:nil];
-        
-        [self transitionFromViewController:fromVC
-                          toViewController:toVC
-                                  duration:0.3
-                                   options:UIViewAnimationOptionTransitionNone
-                                animations:^{
-                                    [subview1 setAlpha:0.0];
-                                }
-                                completion:^(BOOL finished) {
-                                    [fromVC removeFromParentViewController];
-                                    [toVC didMoveToParentViewController:self];
-                                }];
-        */
     }
 }
 
@@ -255,6 +239,12 @@
             frame.size.height = headerHeight+sectionHeaderHeight;
         }
         
+        if(UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPhone)
+        {
+            float offest = self.tableView.contentOffset.y-headerHeight;
+            self.sectionHeader.layer.shadowOpacity = offest < 0 ? 0 : offest/20;
+        }
+        
         self.headerView.frame = frame;
         self.tableView.scrollIndicatorInsets = UIEdgeInsetsMake(frame.size.height, 0, 0, 1);
     }
@@ -293,7 +283,10 @@
         {
             sectionInfo = self.fetchedShowsController.sections[section];
             int num = sectionInfo.numberOfObjects;
-            int columns = UIInterfaceOrientationIsPortrait(UIDevice.currentDevice.orientation)?3:4;
+            int columns = 3;
+
+            if(UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPad)
+                columns = (self.tableView.frame.size.width <= 448) ? 3 : 4;
             
             return ceil(num/columns);
         }
@@ -507,13 +500,15 @@
         
         if(UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPad)
         {
-            if(UIInterfaceOrientationIsPortrait(UIDevice.currentDevice.orientation))
+            //if(UIInterfaceOrientationIsPortrait(UIDevice.currentDevice.orientation))
+            if(self.tableView.frame.size.width <= 448)
             {
                 showsCell.spacing = 26;
                 showsCell.size = 114;
                 showsCell.columns = 3;
             }
-            else if(UIInterfaceOrientationIsLandscape(UIDevice.currentDevice.orientation))
+            //else if(UIInterfaceOrientationIsLandscape(UIDevice.currentDevice.orientation))
+            else
             {
                 showsCell.spacing = 48;
                 showsCell.size = 114;
@@ -684,7 +679,12 @@
         [self.tableView reloadData];
 }
 
-#pragma mark - Settings
+#pragma mark - Rotate
+
+- (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)orientation duration:(NSTimeInterval)duration
+{
+    [self.tableView reloadData];
+}
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
