@@ -235,6 +235,7 @@
 		17C5A020169EC7FF0043A781 /* TWScheduleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 17C5A01F169EC7FF0043A781 /* TWScheduleCell.m */; };
 		17C5A037169F072C0043A781 /* UINavigationItem+custom.m in Sources */ = {isa = PBXBuildFile; fileRef = 17C5A036169F072C0043A781 /* UINavigationItem+custom.m */; };
 		17D1B6B216A1CAC800B05C12 /* TWPlayButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 17D1B6B116A1CAC800B05C12 /* TWPlayButton.m */; };
+		17D1B6B516A1D38A00B05C12 /* TWSegmentedButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 17D1B6B416A1D38A00B05C12 /* TWSegmentedButton.m */; };
 		17E5114F168F496E00DCE89C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17E5114E168F496E00DCE89C /* UIKit.framework */; };
 		17E51151168F496E00DCE89C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17E51150168F496E00DCE89C /* Foundation.framework */; };
 		17E51153168F496E00DCE89C /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17E51152168F496E00DCE89C /* CoreGraphics.framework */; };
@@ -502,6 +503,8 @@
 		17C5A036169F072C0043A781 /* UINavigationItem+custom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationItem+custom.m"; sourceTree = "<group>"; };
 		17D1B6B016A1CAC800B05C12 /* TWPlayButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWPlayButton.h; sourceTree = "<group>"; };
 		17D1B6B116A1CAC800B05C12 /* TWPlayButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWPlayButton.m; sourceTree = "<group>"; };
+		17D1B6B316A1D38A00B05C12 /* TWSegmentedButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWSegmentedButton.h; sourceTree = "<group>"; };
+		17D1B6B416A1D38A00B05C12 /* TWSegmentedButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWSegmentedButton.m; sourceTree = "<group>"; };
 		17E5114A168F496E00DCE89C /* TWiT.tv.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TWiT.tv.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		17E5114E168F496E00DCE89C /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		17E51150168F496E00DCE89C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -720,6 +723,8 @@
 				17C5A036169F072C0043A781 /* UINavigationItem+custom.m */,
 				17D1B6B016A1CAC800B05C12 /* TWPlayButton.h */,
 				17D1B6B116A1CAC800B05C12 /* TWPlayButton.m */,
+				17D1B6B316A1D38A00B05C12 /* TWSegmentedButton.h */,
+				17D1B6B416A1D38A00B05C12 /* TWSegmentedButton.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -1241,6 +1246,7 @@
 				17C477F416A18CF40058E6C4 /* TWScheduleGridViewController.m in Sources */,
 				17C477F816A192B40058E6C4 /* TWPlayerViewController.m in Sources */,
 				17D1B6B216A1CAC800B05C12 /* TWPlayButton.m in Sources */,
+				17D1B6B516A1D38A00B05C12 /* TWSegmentedButton.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
