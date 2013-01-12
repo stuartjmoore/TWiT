@@ -9,6 +9,7 @@
 #import <QuartzCore/QuartzCore.h>
 
 #import "TWEpisodeViewController.h"
+#import "TWPlayButton.h"
 
 #import "Episode.h"
 
@@ -53,9 +54,10 @@
         self.dateLabel.text = self.episode.publishedString;
         self.timeLabel.text = self.episode.durationString;
         self.numberLabel.text = @(self.episode.number).stringValue;
+        self.guestsLabel.text = self.episode.guests;
         self.descLabel.text = self.episode.desc;
         
-        self.guestsLabel.text = self.episode.guests;
+        self.playButton.percentage = (self.episode.duration != 0) ? (float)self.episode.lastTimecode/(float)self.episode.duration : 0;
     }
 }
 

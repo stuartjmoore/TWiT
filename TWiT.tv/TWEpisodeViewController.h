@@ -8,13 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
-@class Episode;
+@class Episode, TWPlayButton;
 
 @interface TWEpisodeViewController : UIViewController
 
 @property (strong, nonatomic) Episode *episode;
 
 @property (weak, nonatomic) IBOutlet UIImageView *posterView;
+@property (weak, nonatomic) IBOutlet TWPlayButton *playButton;
 @property (weak, nonatomic) IBOutlet UIView *gradientView;
 @property (weak, nonatomic) IBOutlet UILabel *dateLabel, *timeLabel, *numberLabel, *guestsLabel;
 @property (weak, nonatomic) IBOutlet UITextView *descLabel;

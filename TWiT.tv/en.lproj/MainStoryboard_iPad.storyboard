@@ -644,7 +644,7 @@
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     </view>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="ggf-5M-3nY">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="ggf-5M-3nY" customClass="TWPlayButton">
                                         <rect key="frame" x="355" y="98" width="55" height="55"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
@@ -734,6 +734,7 @@
                         <outlet property="gradientView" destination="G0c-Td-bfB" id="3cX-Br-Vu0"/>
                         <outlet property="guestsLabel" destination="Wrw-gN-UZa" id="fSJ-nN-ki1"/>
                         <outlet property="numberLabel" destination="QzM-Dl-19k" id="tgf-hn-Jen"/>
+                        <outlet property="playButton" destination="ggf-5M-3nY" id="rYD-0t-gI8"/>
                         <outlet property="posterView" destination="psU-ly-vl2" id="3ao-WH-MHy"/>
                         <outlet property="timeLabel" destination="uYX-t3-iiD" id="34Z-oy-ZZV"/>
                     </connections>
@@ -843,6 +844,7 @@
                 <relationship kind="outlet" name="gradientView" candidateClass="UIView"/>
                 <relationship kind="outlet" name="guestsLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="numberLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="playButton" candidateClass="TWPlayButton"/>
                 <relationship kind="outlet" name="posterView" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="timeLabel" candidateClass="UILabel"/>
             </relationships>
@@ -858,7 +860,7 @@
                 <relationship kind="outlet" name="livePosterView" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="liveTimeLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="liveTitleLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="playButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="playButton" candidateClass="TWPlayButton"/>
                 <relationship kind="outlet" name="scheduleTable" candidateClass="UITableView"/>
                 <relationship kind="outlet" name="watchButton" candidateClass="UIButton"/>
             </relationships>
