@@ -234,6 +234,7 @@
 		17C5A01C169EC2920043A781 /* Icon-72@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 17C5A01B169EC2920043A781 /* Icon-72@2x.png */; };
 		17C5A020169EC7FF0043A781 /* TWScheduleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 17C5A01F169EC7FF0043A781 /* TWScheduleCell.m */; };
 		17C5A037169F072C0043A781 /* UINavigationItem+custom.m in Sources */ = {isa = PBXBuildFile; fileRef = 17C5A036169F072C0043A781 /* UINavigationItem+custom.m */; };
+		17D1B6B216A1CAC800B05C12 /* TWPlayButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 17D1B6B116A1CAC800B05C12 /* TWPlayButton.m */; };
 		17E5114F168F496E00DCE89C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17E5114E168F496E00DCE89C /* UIKit.framework */; };
 		17E51151168F496E00DCE89C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17E51150168F496E00DCE89C /* Foundation.framework */; };
 		17E51153168F496E00DCE89C /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17E51152168F496E00DCE89C /* CoreGraphics.framework */; };
@@ -499,6 +500,8 @@
 		17C5A01F169EC7FF0043A781 /* TWScheduleCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWScheduleCell.m; sourceTree = "<group>"; };
 		17C5A035169F072C0043A781 /* UINavigationItem+custom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationItem+custom.h"; sourceTree = "<group>"; };
 		17C5A036169F072C0043A781 /* UINavigationItem+custom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationItem+custom.m"; sourceTree = "<group>"; };
+		17D1B6B016A1CAC800B05C12 /* TWPlayButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWPlayButton.h; sourceTree = "<group>"; };
+		17D1B6B116A1CAC800B05C12 /* TWPlayButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWPlayButton.m; sourceTree = "<group>"; };
 		17E5114A168F496E00DCE89C /* TWiT.tv.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TWiT.tv.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		17E5114E168F496E00DCE89C /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		17E51150168F496E00DCE89C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -712,14 +715,11 @@
 		170E02A4169322130072CFA6 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				170E02A6169324480072CFA6 /* TWEpisodeCell.h */,
-				170E02A7169324480072CFA6 /* TWEpisodeCell.m */,
-				170E02A9169328910072CFA6 /* TWShowsCell.h */,
-				170E02AA169328910072CFA6 /* TWShowsCell.m */,
-				17C5A01E169EC7FF0043A781 /* TWScheduleCell.h */,
-				17C5A01F169EC7FF0043A781 /* TWScheduleCell.m */,
+				17D1B6AE16A1CAA600B05C12 /* Cells */,
 				17C5A035169F072C0043A781 /* UINavigationItem+custom.h */,
 				17C5A036169F072C0043A781 /* UINavigationItem+custom.m */,
+				17D1B6B016A1CAC800B05C12 /* TWPlayButton.h */,
+				17D1B6B116A1CAC800B05C12 /* TWPlayButton.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -852,6 +852,19 @@
 				17C5A014169EC2870043A781 /* Icon.png */,
 			);
 			name = Icons;
+			sourceTree = "<group>";
+		};
+		17D1B6AE16A1CAA600B05C12 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				170E02A6169324480072CFA6 /* TWEpisodeCell.h */,
+				170E02A7169324480072CFA6 /* TWEpisodeCell.m */,
+				170E02A9169328910072CFA6 /* TWShowsCell.h */,
+				170E02AA169328910072CFA6 /* TWShowsCell.m */,
+				17C5A01E169EC7FF0043A781 /* TWScheduleCell.h */,
+				17C5A01F169EC7FF0043A781 /* TWScheduleCell.m */,
+			);
+			name = Cells;
 			sourceTree = "<group>";
 		};
 		17E5113F168F496E00DCE89C = {
@@ -1227,6 +1240,7 @@
 				17C5A037169F072C0043A781 /* UINavigationItem+custom.m in Sources */,
 				17C477F416A18CF40058E6C4 /* TWScheduleGridViewController.m in Sources */,
 				17C477F816A192B40058E6C4 /* TWPlayerViewController.m in Sources */,
+				17D1B6B216A1CAC800B05C12 /* TWPlayButton.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
