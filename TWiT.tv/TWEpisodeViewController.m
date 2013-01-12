@@ -13,6 +13,7 @@
 #import "TWPlayButton.h"
 
 #import "Episode.h"
+#import "Enclosure.h"
 
 @implementation TWEpisodeViewController
 
@@ -87,7 +88,13 @@
                                                        delegate:self
                                               cancelButtonTitle:nil
                                          destructiveButtonTitle:nil
-                                              otherButtonTitles:@"HD", @"SD", @"Mobile", @"Audio", nil];
+                                              otherButtonTitles:nil];
+    
+    NSSortDescriptor *descriptor = [[NSSortDescriptor alloc] initWithKey:@"quality" ascending:NO];
+    NSArray *enclosures = [self.episode.enclosures sortedArrayUsingDescriptors:@[descriptor]];
+    
+    for(Enclosure *enclosure in enclosures)
+       [sheet addButtonWithTitle:[NSString stringWithFormat:@"%@ - %@", enclosure.title, enclosure.subtitle]];
     
     [sheet showFromRect:self.segmentedButton.downloadButton.frame inView:self.segmentedButton animated:YES];
 }
