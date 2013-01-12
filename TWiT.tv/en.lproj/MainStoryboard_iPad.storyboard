@@ -428,7 +428,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="768" height="180"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                         </imageView>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="MX3-QS-gxX">
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="MX3-QS-gxX" customClass="TWPlayButton">
                                             <rect key="frame" x="13" y="62" width="55" height="55"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
@@ -528,6 +528,7 @@
                         <outlet property="livePosterView" destination="gjT-7C-mjb" id="Frl-KJ-P9N"/>
                         <outlet property="liveTimeLabel" destination="RDO-zJ-e5N" id="VMG-ba-zSS"/>
                         <outlet property="liveTitleLabel" destination="aiw-Up-sUo" id="oYL-Gj-tuX"/>
+                        <outlet property="playButton" destination="MX3-QS-gxX" id="cqY-HZ-pKf"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZfX-Jx-z39" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -857,9 +858,13 @@
                 <relationship kind="outlet" name="livePosterView" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="liveTimeLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="liveTitleLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="playButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="scheduleTable" candidateClass="UITableView"/>
                 <relationship kind="outlet" name="watchButton" candidateClass="UIButton"/>
             </relationships>
+        </class>
+        <class className="TWPlayButton" superclassName="UIButton">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TWPlayButton.h"/>
         </class>
         <class className="TWPlayerViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/TWPlayerViewController.h"/>

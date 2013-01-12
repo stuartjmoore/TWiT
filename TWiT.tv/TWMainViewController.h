@@ -17,7 +17,7 @@ typedef NS_ENUM(NSInteger, TWSection)
     TWSectionShows
 };
 
-@class TWEpisodeViewController, Channel;
+@class TWEpisodeViewController, Channel, TWPlayButton;
 
 @interface TWMainViewController : UITableViewController <NSFetchedResultsControllerDelegate, UISplitViewControllerDelegate, TWiTShowGridCellDelegate>
 
@@ -32,6 +32,7 @@ typedef NS_ENUM(NSInteger, TWSection)
 
 @property (weak, nonatomic) IBOutlet UIView *headerView;
 @property (weak, nonatomic) IBOutlet UIButton *watchButton, *listenButton;
+@property (weak, nonatomic) IBOutlet TWPlayButton *playButton;
 @property (weak, nonatomic) IBOutlet UILabel *liveTimeLabel, *liveTitleLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *livePosterView, *liveAlbumArtView;
 @property (weak, nonatomic) IBOutlet UITableView *scheduleTable;

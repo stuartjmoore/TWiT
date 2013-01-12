@@ -15,6 +15,7 @@
 #import "TWShowViewController.h"
 #import "TWEpisodeViewController.h"
 #import "TWEpisodeCell.h"
+#import "TWPlayButton.h"
 
 #import "TWScheduleViewController.h"
 #import "TWScheduleGridViewController.h"
@@ -527,6 +528,13 @@
     Show *show = currentShow.show ?: self.channel.shows.anyObject;
     self.livePosterView.image = show.poster.image;
     self.liveAlbumArtView.image = show.albumArt.image;
+    
+    if(currentShow.start.isBeforeNow && currentShow.end.isAfterNow)
+    {
+        NSTimeInterval secondsElasped = currentShow.start.timeIntervalSinceNow;
+        NSTimeInterval secondsDuration = [currentShow.start timeIntervalSinceDate:currentShow.end];
+        self.playButton.percentage = (secondsDuration != 0) ? secondsElasped/secondsDuration : 0;
+    }
     
     [self.scheduleTable reloadData];
 }
