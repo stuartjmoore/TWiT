@@ -17,6 +17,7 @@
 #import "TWEpisodeCell.h"
 
 #import "TWScheduleViewController.h"
+#import "TWScheduleGridViewController.h"
 
 #import "Schedule.h"
 #import "Channel.h"
@@ -51,6 +52,9 @@
                                                name:@"ScheduleDidUpdate"
                                              object:nil];
     
+    [self.tableView addObserver:self forKeyPath:@"contentOffset"
+                        options:(NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld)
+                        context:NULL];
     
     UIImage *leftOrangeBackground = [self.watchButton backgroundImageForState:UIControlStateNormal];
     leftOrangeBackground = [leftOrangeBackground stretchableImageWithLeftCapWidth:5 topCapHeight:0];
@@ -64,13 +68,6 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    
-    if(self.headerView)
-    {
-        [self.tableView addObserver:self forKeyPath:@"contentOffset"
-                            options:(NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld)
-                            context:NULL];
-    }
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -189,29 +186,6 @@
             TWMainViewController *episodesController = (TWMainViewController*)masterController.topViewController;
             [episodesController performSegueWithIdentifier:@"showDetail" sender:showIndexPath];
         }
-    }
-}
-
-- (void)prepareForSegue:(UIStoryboardSegue*)segue sender:(id)sender
-{
-    if([segue.identifier isEqualToString:@"episodeDetail"])
-    {
-        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-        Episode *episode = [self.fetchedEpisodesController objectAtIndexPath:indexPath];
-        
-        [segue.destinationViewController setEpisode:episode];
-    }
-    else if([segue.identifier isEqualToString:@"showDetail"])
-    {
-        NSIndexPath *indexPath = (NSIndexPath*)sender;
-        Show *show = [self.fetchedShowsController objectAtIndexPath:indexPath];
-        [show updateEpisodes];
-        
-        [segue.destinationViewController setShow:show];
-    }
-    else if([segue.identifier isEqualToString:@"scheduleView"])
-    {
-        [segue.destinationViewController setSchedule:self.channel.schedule];
     }
 }
 
@@ -702,7 +676,66 @@
         return UIInterfaceOrientationMaskPortrait;
 }
 
-#pragma mark - Kill
+#pragma mark - Leave
+
+- (IBAction)transitionToSchedule:(UIButton*)sender
+{
+    TWSplitViewContainer *splitViewContainer = (TWSplitViewContainer*)self.navigationController.parentViewController;
+    TWScheduleGridViewController *scheduleController = [self.storyboard instantiateViewControllerWithIdentifier:@"scheduleController"];
+    
+    [splitViewContainer presentViewController:scheduleController animated:YES completion:^{}];
+}
+
+- (IBAction)transitionToPlayer:(UIButton*)sender
+{
+    TWSplitViewContainer *splitViewContainer = (TWSplitViewContainer*)self.navigationController.parentViewController;
+    UIViewController *playerController = [self.storyboard instantiateViewControllerWithIdentifier:@"playerController"];
+
+    playerController.view.frame = splitViewContainer.view.bounds;
+    [splitViewContainer.view addSubview:playerController.view];
+    [splitViewContainer.view sendSubviewToBack:playerController.view];
+    
+    CGRect masterFrameOriginal = splitViewContainer.masterContainer.frame;
+    CGRect masterFrameAnimate = masterFrameOriginal;
+    masterFrameAnimate.origin.x -= masterFrameAnimate.size.width;
+    
+    CGRect detailFrameOriginal = splitViewContainer.detailContainer.frame;
+    CGRect detailFrameAnimate = detailFrameOriginal;
+    detailFrameAnimate.origin.x += detailFrameAnimate.size.width;
+    
+    [UIView animateWithDuration:0.3f animations:^{
+        splitViewContainer.masterContainer.frame = masterFrameAnimate;
+        splitViewContainer.detailContainer.frame = detailFrameAnimate;
+    } completion:^(BOOL fin){
+        [playerController.view removeFromSuperview];
+        [splitViewContainer presentViewController:playerController animated:NO completion:^{}];
+        splitViewContainer.masterContainer.frame = masterFrameOriginal;
+        splitViewContainer.detailContainer.frame = detailFrameOriginal;
+    }];
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue*)segue sender:(id)sender
+{
+    if([segue.identifier isEqualToString:@"episodeDetail"])
+    {
+        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+        Episode *episode = [self.fetchedEpisodesController objectAtIndexPath:indexPath];
+        
+        [segue.destinationViewController setEpisode:episode];
+    }
+    else if([segue.identifier isEqualToString:@"showDetail"])
+    {
+        NSIndexPath *indexPath = (NSIndexPath*)sender;
+        Show *show = [self.fetchedShowsController objectAtIndexPath:indexPath];
+        [show updateEpisodes];
+        
+        [segue.destinationViewController setShow:show];
+    }
+    else if([segue.identifier isEqualToString:@"scheduleView"])
+    {
+        [segue.destinationViewController setSchedule:self.channel.schedule];
+    }
+}
 
 - (void)didReceiveMemoryWarning
 {
@@ -711,9 +744,6 @@
 
 - (void)viewWillDisappear:(BOOL)animated
 {
-    if(self.headerView)
-        [self.tableView removeObserver:self forKeyPath:@"contentOffset"];
-    
     [super viewWillDisappear:animated];
 }
 
@@ -722,6 +752,7 @@
     self.fetchedShowsController = nil;
     self.fetchedEpisodesController = nil;
     
+    [self.tableView removeObserver:self forKeyPath:@"contentOffset"];
     [NSNotificationCenter.defaultCenter removeObserver:self name:@"ScheduleDidUpdate" object:nil];
     
     [super viewDidUnload];

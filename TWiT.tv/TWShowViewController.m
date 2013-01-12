@@ -281,6 +281,7 @@
         Episode *episode = [self.fetchedEpisodesController objectAtIndexPath:indexPath];
         TWEpisodeCell *episodeCell = (TWEpisodeCell*)cell;
         episodeCell.episode = episode;
+        episodeCell.subtitleLabel.text = episode.guests;
     }
 }
 

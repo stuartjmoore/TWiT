@@ -20,6 +20,7 @@
     
     masterController.view.frame = self.masterContainer.bounds;
     [self.masterContainer addSubview:masterController.view];
+    [self.masterContainer sendSubviewToBack:masterController.view];
 }
 
 - (void)setDetailController:(UIViewController *)detailController
@@ -30,6 +31,7 @@
     
     detailController.view.frame = self.detailContainer.bounds;
     [self.detailContainer addSubview:detailController.view];
+    [self.detailContainer sendSubviewToBack:detailController.view];
 }
 
 - (void)setModalController:(UIViewController*)modalController
