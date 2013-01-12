@@ -9,6 +9,7 @@
 #import <QuartzCore/QuartzCore.h>
 
 #import "TWEpisodeViewController.h"
+#import "TWSegmentedButton.h"
 #import "TWPlayButton.h"
 
 #import "Episode.h"
@@ -58,7 +59,51 @@
         self.descLabel.text = self.episode.desc;
         
         self.playButton.percentage = (self.episode.duration != 0) ? (float)self.episode.lastTimecode/(float)self.episode.duration : 0;
+   
+        self.segmentedButton.buttonState = TWButtonSegmentDownload;
+        self.segmentedButton.listenEnabled = YES;
+        self.segmentedButton.watchEnabled = YES;
+        
+        [self.segmentedButton addTarget:self action:@selector(watchPressed:) forButton:TWButtonSegmentWatch];
+        [self.segmentedButton addTarget:self action:@selector(listenPressed:) forButton:TWButtonSegmentListen];
+        [self.segmentedButton addTarget:self action:@selector(downloadPressed:) forButton:TWButtonSegmentDownload];
+        [self.segmentedButton addTarget:self action:@selector(cancelPressed:) forButton:TWButtonSegmentCancel];
+        [self.segmentedButton addTarget:self action:@selector(deletePressed:) forButton:TWButtonSegmentDelete];
     }
+}
+
+#pragma mark - Actions
+
+- (void)watchPressed:(TWSegmentedButton*)sender
+{
+}
+- (void)listenPressed:(TWSegmentedButton*)sender
+{
+}
+
+- (void)downloadPressed:(TWSegmentedButton*)sender
+{
+    UIActionSheet *sheet = [[UIActionSheet alloc] initWithTitle:@"Choose Download Quality"
+                                                       delegate:self
+                                              cancelButtonTitle:nil
+                                         destructiveButtonTitle:nil
+                                              otherButtonTitles:@"HD", @"SD", @"Mobile", @"Audio", nil];
+    
+    [sheet showFromRect:self.segmentedButton.downloadButton.frame inView:self.segmentedButton animated:YES];
+}
+- (void)actionSheet:(UIActionSheet*)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if(buttonIndex == -1)
+        return;
+    
+    self.segmentedButton.buttonState = TWButtonSegmentCancel;
+}
+- (void)cancelPressed:(TWSegmentedButton*)sender
+{
+}
+
+- (void)deletePressed:(TWSegmentedButton*)sender
+{
 }
 
 #pragma mark - Settings

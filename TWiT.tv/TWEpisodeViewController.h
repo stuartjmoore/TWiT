@@ -8,9 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@class Episode, TWPlayButton;
+@class Episode, TWPlayButton, TWSegmentedButton;
 
-@interface TWEpisodeViewController : UIViewController
+@interface TWEpisodeViewController : UIViewController <UIActionSheetDelegate>
 
 @property (strong, nonatomic) Episode *episode;
 
@@ -19,5 +19,12 @@
 @property (weak, nonatomic) IBOutlet UIView *gradientView;
 @property (weak, nonatomic) IBOutlet UILabel *dateLabel, *timeLabel, *numberLabel, *guestsLabel;
 @property (weak, nonatomic) IBOutlet UITextView *descLabel;
+@property (weak, nonatomic) IBOutlet TWSegmentedButton *segmentedButton;
+
+- (void)watchPressed:(TWSegmentedButton*)sender;
+- (void)listenPressed:(TWSegmentedButton*)sender;
+- (void)downloadPressed:(TWSegmentedButton*)sender;
+- (void)cancelPressed:(TWSegmentedButton*)sender;
+- (void)deletePressed:(TWSegmentedButton*)sender;
 
 @end

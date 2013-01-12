@@ -701,8 +701,8 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textView>
-                            <view contentMode="scaleToFill" id="kvo-gx-pdu">
-                                <rect key="frame" x="16" y="901" width="737" height="44"/>
+                            <view contentMode="scaleToFill" id="kvo-gx-pdu" customClass="TWSegmentedButton">
+                                <rect key="frame" x="16" y="906" width="737" height="38"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
@@ -736,6 +736,7 @@
                         <outlet property="numberLabel" destination="QzM-Dl-19k" id="tgf-hn-Jen"/>
                         <outlet property="playButton" destination="ggf-5M-3nY" id="rYD-0t-gI8"/>
                         <outlet property="posterView" destination="psU-ly-vl2" id="3ao-WH-MHy"/>
+                        <outlet property="segmentedButton" destination="kvo-gx-pdu" id="mAh-Ic-dCI"/>
                         <outlet property="timeLabel" destination="uYX-t3-iiD" id="34Z-oy-ZZV"/>
                     </connections>
                 </viewController>
@@ -846,6 +847,7 @@
                 <relationship kind="outlet" name="numberLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="playButton" candidateClass="TWPlayButton"/>
                 <relationship kind="outlet" name="posterView" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="segmentedButton" candidateClass="TWSegmentedButton"/>
                 <relationship kind="outlet" name="timeLabel" candidateClass="UILabel"/>
             </relationships>
         </class>
@@ -879,6 +881,9 @@
             <relationships>
                 <relationship kind="action" name="close:" candidateClass="UIBarButtonItem"/>
             </relationships>
+        </class>
+        <class className="TWSegmentedButton" superclassName="UIButton">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TWSegmentedButton.h"/>
         </class>
         <class className="TWShowViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/TWShowViewController.h"/>
