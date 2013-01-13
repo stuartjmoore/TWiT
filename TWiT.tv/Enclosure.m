@@ -65,6 +65,8 @@
 
 -(void)connection:(NSURLConnection*)connection didReceiveResponse:(NSURLResponse*)response
 {
+    UIApplication.sharedApplication.networkActivityIndicatorVisible = YES;
+    
     NSURL *url = [NSURL URLWithString:self.url];
     NSString *downloadDir = [[self.applicationDocumentsDirectory URLByAppendingPathComponent:folder] path];
     NSString *downloadPath = [downloadDir stringByAppendingPathComponent:url.lastPathComponent];
@@ -120,6 +122,8 @@
 }
 - (void)closeDownload
 {
+    UIApplication.sharedApplication.networkActivityIndicatorVisible = NO;
+    
     [UIApplication.sharedApplication endBackgroundTask:self.downloadTaskID];
     
     self.downloadPath = nil;
