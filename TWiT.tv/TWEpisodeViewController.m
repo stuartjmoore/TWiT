@@ -97,9 +97,11 @@
 
 - (void)watchPressed:(TWSegmentedButton*)sender
 {
+    [self performSegueWithIdentifier:@"playerDetail" sender:sender.watchButton];
 }
 - (void)listenPressed:(TWSegmentedButton*)sender
 {
+    [self performSegueWithIdentifier:@"playerDetail" sender:sender.listenButton];
 }
 
 - (void)downloadPressed:(TWSegmentedButton*)sender
@@ -182,6 +184,12 @@
     }
 }
 
+#pragma mark - Leave
+
+- (void)prepareForSegue:(UIStoryboardSegue*)segue sender:(id)sender
+{
+    NSLog(@"%@", sender);
+}
 
 #pragma mark - Settings
 

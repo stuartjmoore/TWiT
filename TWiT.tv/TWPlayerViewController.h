@@ -8,7 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
+@class Enclosure;
+
 @interface TWPlayerViewController : UIViewController
+
+@property (nonatomic, strong) Enclosure *enclosure;
 
 - (IBAction)close:(UIBarButtonItem*)sender;
 

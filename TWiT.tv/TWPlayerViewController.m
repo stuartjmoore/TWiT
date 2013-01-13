@@ -9,7 +9,39 @@
 #import "TWPlayerViewController.h"
 #import "TWSplitViewContainer.h"
 
+#import "Episode.h"
+#import "Enclosure.h"
+
 @implementation TWPlayerViewController
+
+- (void)viewDidLoad
+{
+    
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    self.wantsFullScreenLayout = YES;
+    [UIApplication.sharedApplication setStatusBarStyle:UIStatusBarStyleBlackTranslucent animated:YES];
+    self.navigationController.navigationBar.tintColor = UIColor.blackColor;
+    self.navigationController.navigationBar.translucent = YES;
+}
+
+#pragma mark - Rotate
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+{
+    return YES;
+}
+
+- (NSUInteger)supportedInterfaceOrientations
+{
+    return UIInterfaceOrientationMaskAll;
+}
+
+#pragma mark - Leave
 
 - (IBAction)close:(UIBarButtonItem*)sender
 {
@@ -36,26 +68,15 @@
     }];
 }
 
-#pragma mark - Rotate
-
-- (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)orientation duration:(NSTimeInterval)duration
+- (void)viewWillDisappear:(BOOL)animated
 {
-}
-
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    if(UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPad)
-        return YES;
-    else
-        return (interfaceOrientation == UIInterfaceOrientationMaskPortrait);
-}
-
-- (NSUInteger)supportedInterfaceOrientations
-{
-    if(UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPad)
-        return UIInterfaceOrientationMaskAll;
-    else
-        return UIInterfaceOrientationMaskPortrait;
+    self.wantsFullScreenLayout = NO;
+    [UIApplication.sharedApplication setStatusBarStyle:UIStatusBarStyleDefault animated:YES];
+    self.navigationController.navigationBar.tintColor = [UIColor colorWithRed:0.18 green:0.44 blue:0.57 alpha:1.0];
+    self.navigationController.navigationBar.translucent = NO;
+    
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
+    [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationSlide];
 }
 
 @end
