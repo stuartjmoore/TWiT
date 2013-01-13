@@ -8,6 +8,9 @@
 
 #import "TWSegmentedButton.h"
 
+#import "Episode.h"
+#import "Enclosure.h"
+
 @implementation TWSegmentedButton
 
 - (id)initWithCoder:(NSCoder*)aDecoder
@@ -75,6 +78,19 @@
         downloadingLabel.textColor = [UIColor whiteColor];
         downloadingLabel.textAlignment = UITextAlignmentCenter;
         [self addSubview:downloadingLabel];
+        
+        [NSNotificationCenter.defaultCenter addObserver:self
+                                               selector:@selector(updateProgress:)
+                                                   name:@"enclosureDownloadDidReceiveData"
+                                                 object:nil];
+        [NSNotificationCenter.defaultCenter addObserver:self
+                                               selector:@selector(updateProgress:)
+                                                   name:@"enclosureDownloadDidFinish"
+                                                 object:nil];
+        [NSNotificationCenter.defaultCenter addObserver:self
+                                               selector:@selector(updateProgress:)
+                                                   name:@"enclosureDownloadDidFail"
+                                                 object:nil];
     }
     return self;
 }
@@ -144,23 +160,6 @@
     }
 }
 
-- (void)setProgress:(float)progress
-{
-    _progress = progress;
-    
-    CGRect frame = CGRectMake(0, 0, self.frame.size.width-self.frame.size.height, self.frame.size.height);
-    frame.size.width *= progress;
-    progressFilledView.frame = frame;
-}
-
-- (void)finishDownload:(NSNumber*)completed
-{
-    if(completed.boolValue)
-        self.buttonState = TWButtonSegmentDelete;
-    else
-        self.buttonState = TWButtonSegmentDownload;
-}
-
 - (void)addTarget:(id)target action:(SEL)action forButton:(enum TWButtonSegment)buttonType
 {
     self.target = target;
@@ -175,6 +174,42 @@
         self.cancelSelector = action;
     else if(buttonType == TWButtonSegmentDelete)
         self.deleteSelector = action;
+}
+
+#pragma mark - Download
+
+- (void)updateProgress:(NSNotification*)notification
+{
+    Enclosure *enclosure = notification.object;
+    
+    if(enclosure.episode != self.episode)
+        return;
+    
+    if([notification.name isEqualToString:@"enclosureDownloadDidReceiveData"])
+    {
+        if(self.buttonState != TWButtonSegmentCancel)
+            self.buttonState = TWButtonSegmentCancel;
+        
+        float percentage = (enclosure.expectedLength != 0) ? enclosure.downloadedLength/(float)enclosure.expectedLength : 0;
+        self.progress = percentage;
+    }
+    else if([notification.name isEqualToString:@"enclosureDownloadDidFinish"])
+    {
+        self.buttonState = TWButtonSegmentDelete;
+    }
+    else if([notification.name isEqualToString:@"enclosureDownloadDidFail"])
+    {
+        self.buttonState = TWButtonSegmentDownload;
+    }
+}
+
+- (void)setProgress:(float)progress
+{
+    _progress = progress;
+    
+    CGRect frame = CGRectMake(0, 0, self.frame.size.width-self.frame.size.height, self.frame.size.height);
+    frame.size.width *= progress;
+    progressFilledView.frame = frame;
 }
 
 #pragma clang diagnostic push
@@ -212,5 +247,13 @@
 }
 
 #pragma clang diagnostic pop
+
+
+- (void)dealloc
+{
+    [NSNotificationCenter.defaultCenter removeObserver:self name:@"enclosureDownloadDidReceiveData" object:nil];
+    [NSNotificationCenter.defaultCenter removeObserver:self name:@"enclosureDownloadDidFinish" object:nil];
+    [NSNotificationCenter.defaultCenter removeObserver:self name:@"enclosureDownloadDidFail" object:nil];
+}
 
 @end

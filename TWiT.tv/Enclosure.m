@@ -64,11 +64,8 @@
     [self.downloadingFile writeData:data];
     
     self.downloadedLength += data.length;
-    float percentage = (self.expectedLength != 0) ? self.downloadedLength/(float)self.expectedLength : 0;
     
     [NSNotificationCenter.defaultCenter postNotificationName:@"enclosureDownloadDidReceiveData" object:self];
-    
-    NSLog(@"didReceiveData, %@, %f", self.path.lastPathComponent, percentage);
 }
 
 -(void)connectionDidFinishLoading:(NSURLConnection*)connection
@@ -83,6 +80,8 @@
 }
 -(void)connection:(NSURLConnection*)connection didFailWithError:(NSError*)error
 {
+    NSLog(@"didFailWithError");
+    
     self.expectedLength = 0;
     self.downloadedLength = 0;
     

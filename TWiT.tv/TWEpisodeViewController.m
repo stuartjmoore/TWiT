@@ -61,6 +61,7 @@
         
         self.playButton.percentage = (self.episode.duration != 0) ? (float)self.episode.lastTimecode/(float)self.episode.duration : 0;
    
+        self.segmentedButton.episode = self.episode;
         self.segmentedButton.buttonState = TWButtonSegmentDownload;
         self.segmentedButton.listenEnabled = YES;
         self.segmentedButton.watchEnabled = YES;
