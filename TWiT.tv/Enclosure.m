@@ -74,11 +74,17 @@
 {
     [self.downloadConnection cancel];
     
+    if([NSFileManager.defaultManager fileExistsAtPath:self.downloadPath])
+        [NSFileManager.defaultManager removeItemAtPath:self.downloadPath error:nil];
+    
     [self closeDownload];
     [NSNotificationCenter.defaultCenter postNotificationName:@"enclosureDownloadDidFail" object:self];
 }
 -(void)connection:(NSURLConnection*)connection didFailWithError:(NSError*)error
 {
+    if([NSFileManager.defaultManager fileExistsAtPath:self.downloadPath])
+        [NSFileManager.defaultManager removeItemAtPath:self.downloadPath error:nil];
+    
     [self closeDownload];
     [NSNotificationCenter.defaultCenter postNotificationName:@"enclosureDownloadDidFail" object:self];
 }
