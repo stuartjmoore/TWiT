@@ -33,6 +33,7 @@
 
 - (void)downloadEnclosure:(Enclosure*)enclosure;
 - (void)cancelDownloads;
+- (void)deleteDownloads;
 
 @end
 

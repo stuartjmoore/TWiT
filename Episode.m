@@ -40,12 +40,14 @@
 {
     [enclosure download];
 }
+
 - (void)cancelDownloads
 {
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"downloadConnection != nil"];
     NSSet *enclosures = [self.enclosures filteredSetUsingPredicate:predicate];
     [enclosures makeObjectsPerformSelector:@selector(cancelDownload)];
 }
+
 - (NSSet*)downloadedEnclosures
 {
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"path != nil"];
@@ -55,6 +57,10 @@
         return nil;
         
     return enclosures;
+}
+- (void)deleteDownloads
+{
+    [self.downloadedEnclosures makeObjectsPerformSelector:@selector(deleteDownload)];
 }
 
 @end
