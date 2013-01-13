@@ -116,11 +116,14 @@
     for(Enclosure *enclosure in enclosures)
        [sheet addButtonWithTitle:[NSString stringWithFormat:@"%@ - %@", enclosure.title, enclosure.subtitle]];
     
+    [sheet addButtonWithTitle:@"Cancel"];
+    sheet.cancelButtonIndex = sheet.numberOfButtons - 1;
+    
     [sheet showFromRect:self.segmentedButton.downloadButton.frame inView:self.segmentedButton animated:YES];
 }
 - (void)actionSheet:(UIActionSheet*)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    if(buttonIndex == -1)
+    if(buttonIndex == -1 || buttonIndex >= actionSheet.numberOfButtons-1)
         return;
     
     NSSortDescriptor *descriptor = [[NSSortDescriptor alloc] initWithKey:@"quality" ascending:NO];
