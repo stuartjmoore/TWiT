@@ -10,7 +10,7 @@
 
 @class Episode, TWPlayButton, TWSegmentedButton;
 
-@interface TWEpisodeViewController : UIViewController <UIActionSheetDelegate>
+@interface TWEpisodeViewController : UIViewController <UIActionSheetDelegate, UIAlertViewDelegate>
 
 @property (strong, nonatomic) Episode *episode;
 

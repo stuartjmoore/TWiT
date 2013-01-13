@@ -162,8 +162,20 @@
 
 - (void)deletePressed:(TWSegmentedButton*)sender
 {
-    [self.episode deleteDownloads];
-    self.segmentedButton.buttonState = TWButtonSegmentDownload;
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Delete"
+                                                    message:@"Are you sure you want to delete this download?"
+                                                   delegate:self
+                                          cancelButtonTitle:@"Cancel"
+                                          otherButtonTitles:@"Delete", nil];
+    [alert show];
+}
+- (void)alertView:(UIAlertView*)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if(buttonIndex == 1 && [alertView.title isEqualToString:@"Delete"])
+    {
+        [self.episode deleteDownloads];
+        self.segmentedButton.buttonState = TWButtonSegmentDownload;
+    }
 }
 
 

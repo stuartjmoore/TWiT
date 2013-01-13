@@ -25,6 +25,24 @@
         [NSFileManager.defaultManager removeItemAtPath:self.path error:nil];
 }
 
+- (NSString*)path
+{
+    NSString *_path = [self primitiveValueForKey:@"path"];
+    
+    if(_path && ![NSFileManager.defaultManager fileExistsAtPath:_path])
+    {
+        _path = nil;
+        
+        [self willChangeValueForKey:@"path"];
+        [self setPrimitiveValue:nil forKey:@"path"];
+        [self didChangeValueForKey:@"path"];
+        
+        [self.managedObjectContext save:nil];
+    }
+    
+    return _path;
+}
+
 #pragma mark - Download
 
 - (void)download
