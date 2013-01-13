@@ -13,12 +13,17 @@
 
 @class Episode;
 
-@interface Enclosure : NSManagedObject
+@interface Enclosure : NSManagedObject <NSURLConnectionDelegate>
 
 @property (nonatomic, strong) NSString *title, *subtitle;
 @property (nonatomic, strong) NSString *url, *path;
 @property (nonatomic) TWQuality quality;
 @property (nonatomic) TWType type;
 @property (nonatomic, strong) Episode *episode;
+
+@property (nonatomic, strong) NSFileHandle *downloadingFile;
+@property (nonatomic) long long expectedLength, downloadedLength;
+
+- (void)download;
 
 @end

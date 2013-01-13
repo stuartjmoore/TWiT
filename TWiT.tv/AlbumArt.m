@@ -9,7 +9,7 @@
 #import "AlbumArt.h"
 #import "Show.h"
 
-#define folder @"albumArt"
+#define folder @"AlbumArt"
 
 @implementation AlbumArt
 

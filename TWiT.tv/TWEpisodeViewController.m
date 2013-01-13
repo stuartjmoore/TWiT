@@ -103,6 +103,11 @@
     if(buttonIndex == -1)
         return;
     
+    NSSortDescriptor *descriptor = [[NSSortDescriptor alloc] initWithKey:@"quality" ascending:NO];
+    NSArray *enclosures = [self.episode.enclosures sortedArrayUsingDescriptors:@[descriptor]];
+    Enclosure *enclosure = enclosures[buttonIndex];
+    [self.episode downloadEnclosure:enclosure];
+    
     self.segmentedButton.buttonState = TWButtonSegmentCancel;
 }
 - (void)cancelPressed:(TWSegmentedButton*)sender

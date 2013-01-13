@@ -354,7 +354,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textView>
-                            <view contentMode="scaleToFill" id="HTO-bF-qbl">
+                            <view contentMode="scaleToFill" id="HTO-bF-qbl" customClass="TWSegmentedButton">
                                 <rect key="frame" x="7" y="459" width="307" height="38"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
@@ -388,6 +388,7 @@
                         <outlet property="numberLabel" destination="42m-il-qRa" id="Ppl-qb-kQB"/>
                         <outlet property="playButton" destination="LMT-eZ-zHd" id="udi-UT-kLi"/>
                         <outlet property="posterView" destination="CDu-qi-wy9" id="w6u-Wi-KmL"/>
+                        <outlet property="segmentedButton" destination="HTO-bF-qbl" id="kBq-Du-3Rh"/>
                         <outlet property="timeLabel" destination="80k-Vh-V1k" id="M2e-kC-6Ye"/>
                     </connections>
                 </viewController>
@@ -775,6 +776,7 @@
                 <relationship kind="outlet" name="numberLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="playButton" candidateClass="TWPlayButton"/>
                 <relationship kind="outlet" name="posterView" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="segmentedButton" candidateClass="TWSegmentedButton"/>
                 <relationship kind="outlet" name="timeLabel" candidateClass="UILabel"/>
             </relationships>
         </class>
@@ -807,6 +809,9 @@
         </class>
         <class className="TWScheduleViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/TWScheduleViewController.h"/>
+        </class>
+        <class className="TWSegmentedButton" superclassName="UIButton">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TWSegmentedButton.h"/>
         </class>
         <class className="TWShowViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/TWShowViewController.h"/>

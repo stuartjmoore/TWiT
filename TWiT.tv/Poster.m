@@ -10,7 +10,7 @@
 #import "Show.h"
 #import "Episode.h"
 
-#define folder @"poster"
+#define folder @"Posters"
 
 @implementation Poster
 
@@ -19,17 +19,6 @@
 - (UIImage*)image
 {
     NSString *_path = self.path ?: self.episode.show.poster.path;
-    
-    if(!_path)
-    {
-        NSString *resourceName = [NSString stringWithFormat:@"%@-poster.jpg", self.episode.show.titleAcronym.lowercaseString];
-        NSString *resourcePath = [NSBundle.mainBundle.resourcePath stringByAppendingPathComponent:resourceName];
-        
-        if([NSFileManager.defaultManager fileExistsAtPath:resourcePath])
-            _path = resourcePath;
-        else
-            _path = self.episode.show.albumArt.path;
-    }
     
     return [UIImage imageWithContentsOfFile:_path];
 }
@@ -58,7 +47,7 @@
         NSString *resourcePath = [NSBundle.mainBundle.resourcePath stringByAppendingPathComponent:resourceName];
         
         if([NSFileManager.defaultManager fileExistsAtPath:resourcePath]
-           && ![NSFileManager.defaultManager fileExistsAtPath:cachedPath])
+        && ![NSFileManager.defaultManager fileExistsAtPath:cachedPath])
         {
             //NSLog(@"Copying %@ named %@", folder, url.lastPathComponent);
             
@@ -137,6 +126,17 @@
 {
     NSString *_path = [self primitiveValueForKey:@"path"];
     
+    if((!_path || [_path isEqualToString:@""]) && !self.url)
+    {
+        NSString *resourceName = [NSString stringWithFormat:@"%@-poster.jpg", self.episode.show.titleAcronym.lowercaseString];
+        NSString *resourcePath = [NSBundle.mainBundle.resourcePath stringByAppendingPathComponent:resourceName];
+        
+        if([NSFileManager.defaultManager fileExistsAtPath:resourcePath])
+            _path = resourcePath;
+        else
+            _path = self.episode.show.albumArt.path;
+    }
+    
     if((!_path || [_path isEqualToString:@""]) && self.url)
     {
         NSURL *url = [NSURL URLWithString:self.url];
@@ -154,7 +154,10 @@
             
             [self.managedObjectContext save:nil];
         }
-        
+    }
+    
+    if(_path && ![NSFileManager.defaultManager fileExistsAtPath:_path])
+    {   
         // TODO: Download (iCloud sync)
     }
     
