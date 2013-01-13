@@ -25,6 +25,7 @@
 @property (nonatomic) long long expectedLength, downloadedLength;
 @property (nonatomic, strong) NSString *downloadPath;
 @property (nonatomic, strong) NSURLConnection *downloadConnection;
+@property (nonatomic) UIBackgroundTaskIdentifier downloadTaskID;
 
 - (void)download;
 - (void)cancelDownload;

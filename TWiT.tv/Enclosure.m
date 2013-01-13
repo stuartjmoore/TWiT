@@ -15,7 +15,7 @@
 
 @dynamic path, quality, subtitle, title, type, url, episode;
 
-@synthesize downloadPath = _downloadPath;
+@synthesize downloadPath = _downloadPath, downloadTaskID = _downloadTaskID;
 @synthesize downloadingFile = _downloadingFile, downloadConnection = _downloadConnection;
 @synthesize expectedLength = _expectedLength, downloadedLength = _downloadedLength;
 
@@ -49,7 +49,11 @@
 {
     NSURL *url = [NSURL URLWithString:self.url];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+    
     self.downloadConnection = [NSURLConnection connectionWithRequest:request delegate:self];
+    self.downloadTaskID = [UIApplication.sharedApplication beginBackgroundTaskWithExpirationHandler:^{
+        [self cancelDownload];
+    }];
     
     if(!self.downloadConnection)
     {
@@ -116,6 +120,8 @@
 }
 - (void)closeDownload
 {
+    [UIApplication.sharedApplication endBackgroundTask:self.downloadTaskID];
+    
     self.downloadPath = nil;
     
     self.expectedLength = 0;
