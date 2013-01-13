@@ -9,6 +9,8 @@
 #import <QuartzCore/QuartzCore.h>
 
 #import "TWEpisodeViewController.h"
+#import "TWPlayerViewController.h"
+
 #import "TWSegmentedButton.h"
 #import "TWPlayButton.h"
 
@@ -188,7 +190,19 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue*)segue sender:(id)sender
 {
-    NSLog(@"%@", sender);
+    if(sender == self.playButton || sender == self.segmentedButton.watchButton)
+    {
+        NSSet *enclosures = [self.episode downloadedEnclosures];
+        Enclosure *enclosure = enclosures.anyObject ?: [self.episode enclosureForType:TWTypeVideo andQuality:TWQualityHigh];
+        
+        [segue.destinationViewController setEnclosure:enclosure];
+    }
+    else if(sender == self.segmentedButton.listenButton)
+    {
+        Enclosure *enclosure = [self.episode enclosureForType:TWTypeAudio andQuality:TWQualityAudio];
+        
+        [segue.destinationViewController setEnclosure:enclosure];
+    }
 }
 
 #pragma mark - Settings
