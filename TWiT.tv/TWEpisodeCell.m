@@ -87,7 +87,7 @@
     frame.size.width -= width;
     
     self.downloadBackground.frame = frame;
-    self.downloadBackground.hidden = NO;
+    self.downloadBackground.hidden = (progress == 1) ? YES : NO;
 }
 
 @end

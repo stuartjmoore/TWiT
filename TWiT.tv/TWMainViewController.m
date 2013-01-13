@@ -26,6 +26,7 @@
 #import "AlbumArt.h"
 #import "Feed.h"
 #import "Episode.h"
+#import "Enclosure.h"
 
 @interface TWMainViewController ()
 - (void)configureCell:(UITableViewCell*)cell atIndexPath:(NSIndexPath*)indexPath;
@@ -69,6 +70,19 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    
+    [NSNotificationCenter.defaultCenter addObserver:self
+                                           selector:@selector(updateProgress:)
+                                               name:@"enclosureDownloadDidReceiveData"
+                                             object:nil];
+    [NSNotificationCenter.defaultCenter addObserver:self
+                                           selector:@selector(updateProgress:)
+                                               name:@"enclosureDownloadDidFinish"
+                                             object:nil];
+    [NSNotificationCenter.defaultCenter addObserver:self
+                                           selector:@selector(updateProgress:)
+                                               name:@"enclosureDownloadDidFail"
+                                             object:nil];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -188,6 +202,48 @@
             [episodesController performSegueWithIdentifier:@"showDetail" sender:showIndexPath];
         }
     }
+}
+
+#pragma mark - Notifications
+
+- (void)reloadSchedule:(NSNotification*)notification
+{
+    if(self.channel.schedule != notification.object)
+        return;
+    
+    Event *currentShow = self.channel.schedule.currentShow;
+    self.liveTimeLabel.text = currentShow.until;
+    self.liveTitleLabel.text = currentShow.title;
+    
+    Show *show = currentShow.show ?: self.channel.shows.anyObject;
+    self.livePosterView.image = show.poster.image;
+    self.liveAlbumArtView.image = show.albumArt.image;
+    
+    if(currentShow.start.isBeforeNow && currentShow.end.isAfterNow)
+    {
+        NSTimeInterval secondsElasped = currentShow.start.timeIntervalSinceNow;
+        NSTimeInterval secondsDuration = [currentShow.start timeIntervalSinceDate:currentShow.end];
+        self.playButton.percentage = (secondsDuration != 0) ? secondsElasped/secondsDuration : 0;
+    }
+    
+    [self.scheduleTable reloadData];
+}
+
+- (void)updateProgress:(NSNotification*)notification
+{
+    if(self.sectionVisible != TWSectionEpisodes)
+        return;
+    
+    Enclosure *enclosure = notification.object;
+    Episode *episode = enclosure.episode;
+    NSIndexPath *indexPath = [self.fetchedEpisodesController indexPathForObject:episode];
+    TWEpisodeCell *cell = (TWEpisodeCell*)[self.tableView cellForRowAtIndexPath:indexPath];
+    
+    if([notification.name isEqualToString:@"enclosureDownloadDidReceiveData"])
+        cell.progress = (enclosure.expectedLength != 0)? enclosure.downloadedLength/(float)enclosure.expectedLength : 0;
+    else if([notification.name isEqualToString:@"enclosureDownloadDidFinish"]
+    || [notification.name isEqualToString:@"enclosureDownloadDidFail"])
+        cell.progress = 1;
 }
 
 #pragma mark - Table View
@@ -463,8 +519,6 @@
         Episode *episode = [self.fetchedEpisodesController objectAtIndexPath:indexPath];
         TWEpisodeCell *episodeCell = (TWEpisodeCell*)cell;
         episodeCell.episode = episode;
-        
-        episodeCell.progress = 0.5;
     }
     else if([cell.reuseIdentifier isEqualToString:@"showsCell"])
     {
@@ -516,29 +570,6 @@
         }
         [showsCell setShows:shows];
     }
-}
-
-- (void)reloadSchedule:(NSNotification*)notification
-{
-    if(self.channel.schedule != notification.object)
-        return;
-    
-    Event *currentShow = self.channel.schedule.currentShow;
-    self.liveTimeLabel.text = currentShow.until;
-    self.liveTitleLabel.text = currentShow.title;
-
-    Show *show = currentShow.show ?: self.channel.shows.anyObject;
-    self.livePosterView.image = show.poster.image;
-    self.liveAlbumArtView.image = show.albumArt.image;
-    
-    if(currentShow.start.isBeforeNow && currentShow.end.isAfterNow)
-    {
-        NSTimeInterval secondsElasped = currentShow.start.timeIntervalSinceNow;
-        NSTimeInterval secondsDuration = [currentShow.start timeIntervalSinceDate:currentShow.end];
-        self.playButton.percentage = (secondsDuration != 0) ? secondsElasped/secondsDuration : 0;
-    }
-    
-    [self.scheduleTable reloadData];
 }
 
 #pragma mark - Fetched results controller
@@ -755,6 +786,10 @@
 
 - (void)viewWillDisappear:(BOOL)animated
 {
+    [NSNotificationCenter.defaultCenter removeObserver:self name:@"enclosureDownloadDidReceiveData" object:nil];
+    [NSNotificationCenter.defaultCenter removeObserver:self name:@"enclosureDownloadDidFinish" object:nil];
+    [NSNotificationCenter.defaultCenter removeObserver:self name:@"enclosureDownloadDidFail" object:nil];
+    
     [super viewWillDisappear:animated];
 }
 
