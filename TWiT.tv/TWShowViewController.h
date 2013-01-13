@@ -31,4 +31,6 @@
 - (IBAction)email:(UIButton*)sender;
 - (IBAction)phone:(UIButton*)sender;
 
+- (void)updateProgress:(NSNotification*)notification;
+
 @end

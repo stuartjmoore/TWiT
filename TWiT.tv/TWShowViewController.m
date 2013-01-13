@@ -17,6 +17,7 @@
 #import "Show.h"
 #import "AlbumArt.h"
 #import "Episode.h"
+#import "Enclosure.h"
 
 @implementation TWShowViewController
 
@@ -61,6 +62,19 @@
     [self.tableView addObserver:self forKeyPath:@"contentOffset"
                         options:(NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld)
                         context:NULL];
+    
+    [NSNotificationCenter.defaultCenter addObserver:self
+                                           selector:@selector(updateProgress:)
+                                               name:@"enclosureDownloadDidReceiveData"
+                                             object:nil];
+    [NSNotificationCenter.defaultCenter addObserver:self
+                                           selector:@selector(updateProgress:)
+                                               name:@"enclosureDownloadDidFinish"
+                                             object:nil];
+    [NSNotificationCenter.defaultCenter addObserver:self
+                                           selector:@selector(updateProgress:)
+                                               name:@"enclosureDownloadDidFail"
+                                             object:nil];
 }
 
 - (void)setShow:(Show*)show
@@ -285,6 +299,22 @@
     }
 }
 
+#pragma mark - Notifications
+
+- (void)updateProgress:(NSNotification*)notification
+{
+    Enclosure *enclosure = notification.object;
+    Episode *episode = enclosure.episode;
+    NSIndexPath *indexPath = [self.fetchedEpisodesController indexPathForObject:episode];
+    TWEpisodeCell *cell = (TWEpisodeCell*)[self.tableView cellForRowAtIndexPath:indexPath];
+    
+    if([notification.name isEqualToString:@"enclosureDownloadDidReceiveData"])
+        cell.progress = (enclosure.expectedLength != 0)? enclosure.downloadedLength/(float)enclosure.expectedLength : 0;
+    else if([notification.name isEqualToString:@"enclosureDownloadDidFinish"]
+            || [notification.name isEqualToString:@"enclosureDownloadDidFail"])
+        cell.progress = 1;
+}
+
 #pragma mark - Fetched results controller
 
 - (NSFetchedResultsController*)fetchedEpisodesController
@@ -406,6 +436,10 @@
 - (void)viewWillDisappear:(BOOL)animated
 {
     [self.tableView removeObserver:self forKeyPath:@"contentOffset"];
+    
+    [NSNotificationCenter.defaultCenter removeObserver:self name:@"enclosureDownloadDidReceiveData" object:nil];
+    [NSNotificationCenter.defaultCenter removeObserver:self name:@"enclosureDownloadDidFinish" object:nil];
+    [NSNotificationCenter.defaultCenter removeObserver:self name:@"enclosureDownloadDidFail" object:nil];
     
     [super viewWillDisappear:animated];
 }

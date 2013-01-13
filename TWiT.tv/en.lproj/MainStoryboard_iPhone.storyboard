@@ -683,6 +683,10 @@
                                                     <rect key="frame" x="0.0" y="60" width="320" height="1"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                                 </imageView>
+                                                <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" image="linen.png" id="Jj4-AV-aiV">
+                                                    <rect key="frame" x="0.0" y="0.0" width="320" height="61"/>
+                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                </imageView>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
@@ -691,6 +695,7 @@
                                 </view>
                                 <connections>
                                     <outlet property="bottomLine" destination="3d9-65-kBy" id="gDC-do-6Qf"/>
+                                    <outlet property="downloadBackground" destination="Jj4-AV-aiV" id="BJ3-8n-z3w"/>
                                     <outlet property="numberLabel" destination="gk7-bS-7Vv" id="UWY-c3-2sK"/>
                                     <outlet property="subtitleLabel" destination="DhU-w2-z4b" id="xWw-Yx-bYl"/>
                                     <outlet property="titleLabel" destination="XwE-S8-I36" id="0LO-0t-NoX"/>
@@ -850,6 +855,6 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="YiW-0V-IC2"/>
+        <segue reference="OfB-Q1-3Dp"/>
     </inferredMetricsTieBreakers>
 </document>
