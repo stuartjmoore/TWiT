@@ -14,6 +14,8 @@
 @implementation Enclosure
 
 @dynamic path, quality, subtitle, title, type, url, episode;
+
+@synthesize downloadPath = _downloadPath;
 @synthesize downloadingFile = _downloadingFile, downloadConnection = _downloadConnection;
 @synthesize expectedLength = _expectedLength, downloadedLength = _downloadedLength;
 
@@ -28,17 +30,6 @@
 - (void)download
 {
     NSURL *url = [NSURL URLWithString:self.url];
-    NSString *downloadDir = [[self.applicationDocumentsDirectory URLByAppendingPathComponent:folder] path];
-    NSString *downloadPath = [downloadDir stringByAppendingPathComponent:url.lastPathComponent];
-    
-    if(![NSFileManager.defaultManager fileExistsAtPath:downloadDir])
-        [NSFileManager.defaultManager createDirectoryAtPath:downloadDir withIntermediateDirectories:NO attributes:nil error:nil];
-    
-    if (![NSFileManager.defaultManager fileExistsAtPath:downloadPath])
-        [NSFileManager.defaultManager createFileAtPath:downloadPath contents:nil attributes:nil];
-    
-    self.path = downloadPath;
-    
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
     self.downloadConnection = [NSURLConnection connectionWithRequest:request delegate:self];
     
@@ -52,10 +43,21 @@
 
 -(void)connection:(NSURLConnection*)connection didReceiveResponse:(NSURLResponse*)response
 {
+    NSURL *url = [NSURL URLWithString:self.url];
+    NSString *downloadDir = [[self.applicationDocumentsDirectory URLByAppendingPathComponent:folder] path];
+    NSString *downloadPath = [downloadDir stringByAppendingPathComponent:url.lastPathComponent];
+    
+    if(![NSFileManager.defaultManager fileExistsAtPath:downloadDir])
+        [NSFileManager.defaultManager createDirectoryAtPath:downloadDir withIntermediateDirectories:NO attributes:nil error:nil];
+    
+    if (![NSFileManager.defaultManager fileExistsAtPath:downloadPath])
+        [NSFileManager.defaultManager createFileAtPath:downloadPath contents:nil attributes:nil];
+    
+    self.downloadPath = downloadPath;
     self.expectedLength = response.expectedContentLength;
     self.downloadedLength = 0;
     
-    self.downloadingFile = [NSFileHandle fileHandleForWritingAtPath:self.path];
+    self.downloadingFile = [NSFileHandle fileHandleForWritingAtPath:self.downloadPath];
     [self.downloadingFile seekToEndOfFile];
 }
 -(void)connection:(NSURLConnection*)connection didReceiveData:(NSData*)data
@@ -71,23 +73,26 @@
 - (void)cancelDownload
 {
     [self.downloadConnection cancel];
-    self.downloadConnection = nil;
-}
-
--(void)connectionDidFinishLoading:(NSURLConnection*)connection
-{
-    self.expectedLength = 0;
-    self.downloadedLength = 0;
     
-    [self.downloadingFile closeFile];
-    self.downloadingFile = nil;
-    self.downloadConnection = nil;
-    
-    [NSNotificationCenter.defaultCenter postNotificationName:@"enclosureDownloadDidFinish" object:self];
+    [self closeDownload];
+    [NSNotificationCenter.defaultCenter postNotificationName:@"enclosureDownloadDidFail" object:self];
 }
 -(void)connection:(NSURLConnection*)connection didFailWithError:(NSError*)error
 {
-    NSLog(@"didFailWithError");
+    [self closeDownload];
+    [NSNotificationCenter.defaultCenter postNotificationName:@"enclosureDownloadDidFail" object:self];
+}
+-(void)connectionDidFinishLoading:(NSURLConnection*)connection
+{
+    self.path = self.downloadPath;
+    [self.managedObjectContext save:nil];
+    
+    [self closeDownload];
+    [NSNotificationCenter.defaultCenter postNotificationName:@"enclosureDownloadDidFinish" object:self];
+}
+- (void)closeDownload
+{
+    self.downloadPath = nil;
     
     self.expectedLength = 0;
     self.downloadedLength = 0;
@@ -95,8 +100,6 @@
     [self.downloadingFile closeFile];
     self.downloadingFile = nil;
     self.downloadConnection = nil;
-    
-    [NSNotificationCenter.defaultCenter postNotificationName:@"enclosureDownloadDidFail" object:self];
 }
 
 #pragma mark - Helpers

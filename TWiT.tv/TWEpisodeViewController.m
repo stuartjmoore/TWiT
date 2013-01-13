@@ -79,7 +79,9 @@
         
         self.playButton.percentage = (self.episode.duration != 0) ? (float)self.episode.lastTimecode/(float)self.episode.duration : 0;
    
-        self.segmentedButton.buttonState = TWButtonSegmentDownload;
+        
+        self.segmentedButton.buttonState = self.episode.downloadedEnclosures ? TWButtonSegmentDelete : TWButtonSegmentDownload;
+        
         self.segmentedButton.listenEnabled = YES;
         self.segmentedButton.watchEnabled = YES;
         
@@ -155,6 +157,7 @@
 
 - (void)cancelPressed:(TWSegmentedButton*)sender
 {
+    [self.episode cancelDownloads];
 }
 
 - (void)deletePressed:(TWSegmentedButton*)sender
