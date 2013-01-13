@@ -11,7 +11,10 @@
 
 @implementation Episode
 
-@dynamic desc, downloadedQuality, downloadState, duration, guests, lastTimecode, number, published, title, watched, website, enclosures, poster, show;
+@dynamic desc, downloadedQuality, downloadState, duration, guests, lastTimecode, number;
+@dynamic published, title, watched, website, enclosures, poster, show;
+
+@synthesize downloadedEnclosures = _downloadedEnclosures;
 
 - (NSString*)durationString
 {
@@ -36,6 +39,22 @@
 - (void)downloadEnclosure:(Enclosure*)enclosure
 {
     [enclosure download];
+}
+- (void)cancelDownloads
+{
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"downloadConnection != nil"];
+    NSSet *enclosures = [self.enclosures filteredSetUsingPredicate:predicate];
+    [enclosures makeObjectsPerformSelector:@selector(cancelDownload)];
+}
+- (NSSet*)downloadedEnclosures
+{
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"path != nil"];
+    NSSet *enclosures = [self.enclosures filteredSetUsingPredicate:predicate];
+    
+    if(enclosures.count == 0)
+        return nil;
+        
+    return enclosures;
 }
 
 @end
