@@ -531,14 +531,12 @@
         
         if(UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPad)
         {
-            //if(UIInterfaceOrientationIsPortrait(UIDevice.currentDevice.orientation))
             if(self.tableView.frame.size.width <= 448)
             {
                 showsCell.spacing = 26;
                 showsCell.size = 114;
                 showsCell.columns = 3;
             }
-            //else if(UIInterfaceOrientationIsLandscape(UIDevice.currentDevice.orientation))
             else
             {
                 showsCell.spacing = 48;

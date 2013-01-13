@@ -77,6 +77,10 @@
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                                     <color key="backgroundColor" white="0.87" alpha="1" colorSpace="calibratedWhite"/>
                                                 </view>
+                                                <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" image="linen.png" id="HTa-Uk-xgr">
+                                                    <rect key="frame" x="0.0" y="0.0" width="320" height="61"/>
+                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                </imageView>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
@@ -87,6 +91,7 @@
                                 <connections>
                                     <outlet property="albumArt" destination="qWx-ok-lxk" id="1t2-SE-XYc"/>
                                     <outlet property="bottomLine" destination="qm8-FM-1cZ" id="WbW-Nr-Xep"/>
+                                    <outlet property="downloadBackground" destination="HTa-Uk-xgr" id="vdi-Vd-9iC"/>
                                     <outlet property="subtitleLabel" destination="gfj-GS-Jom" id="Kdq-dl-TM5"/>
                                     <outlet property="titleLabel" destination="uTC-eL-z9Q" id="2q2-hU-LAw"/>
                                     <outlet property="topLine" destination="RQW-G7-HGb" id="xsM-rn-ULl"/>
@@ -288,6 +293,10 @@
                                                     <rect key="frame" x="0.0" y="60" width="320" height="1"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                                 </imageView>
+                                                <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" image="linen.png" id="yoN-I4-xvn">
+                                                    <rect key="frame" x="0.0" y="0.0" width="320" height="61"/>
+                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                </imageView>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
@@ -296,6 +305,7 @@
                                 </view>
                                 <connections>
                                     <outlet property="bottomLine" destination="lX7-re-d1d" id="oIZ-iT-s78"/>
+                                    <outlet property="downloadBackground" destination="yoN-I4-xvn" id="oKz-sL-FyQ"/>
                                     <outlet property="numberLabel" destination="eqJ-Od-HtW" id="0NN-AA-6DH"/>
                                     <outlet property="subtitleLabel" destination="Stt-PG-vDt" id="hHM-av-Ktb"/>
                                     <outlet property="titleLabel" destination="3hS-2B-i8a" id="41m-T6-iDP"/>
@@ -568,6 +578,7 @@
                                     <navigationItem id="WgZ-Fg-Gfu">
                                         <nil key="title"/>
                                         <barButtonItem key="leftBarButtonItem" title="Close" id="idH-uw-7MU">
+                                            <color key="tintColor" red="0.96862751250000001" green="0.96862751250000001" blue="0.96862751250000001" alpha="1" colorSpace="deviceRGB"/>
                                             <connections>
                                                 <action selector="close:" destination="fZx-vv-CDk" id="lkc-cQ-6yT"/>
                                             </connections>
@@ -815,6 +826,7 @@
         <image name="generic.jpg" width="600" height="600"/>
         <image name="icon-play.png" width="55" height="55"/>
         <image name="icon-schedule.png" width="55" height="55"/>
+        <image name="linen.png" width="320" height="61"/>
         <image name="nav-bar-header-icon.png" width="154" height="44"/>
         <image name="quick-play.png" width="20" height="21"/>
         <image name="separator-fade-bottom.png" width="320" height="1"/>
@@ -831,6 +843,7 @@
             <relationships>
                 <relationship kind="outlet" name="albumArt" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="bottomLine" candidateClass="UIView"/>
+                <relationship kind="outlet" name="downloadBackground" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="numberLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="subtitleLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="titleLabel" candidateClass="UILabel"/>
