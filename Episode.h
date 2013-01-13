@@ -29,6 +29,8 @@
 - (NSString*)durationString;
 - (NSString*)publishedString;
 
+- (void)downloadEnclosure:(Enclosure*)enclosure;
+
 @end
 
 @interface Episode (CoreDataGeneratedAccessors)

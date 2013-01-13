@@ -7,6 +7,7 @@
 //
 
 #import "Episode.h"
+#import "Enclosure.h"
 
 @implementation Episode
 
@@ -28,6 +29,13 @@
     df.dateFormat = @"MMM dd, yyyy";
     
     return [df stringFromDate:self.published];
+}
+
+#pragma mark - Download
+
+- (void)downloadEnclosure:(Enclosure*)enclosure
+{
+    [enclosure download];
 }
 
 @end
