@@ -108,6 +108,15 @@
     self.downloadConnection = nil;
 }
 
+- (void)deleteDownload
+{
+    if([NSFileManager.defaultManager fileExistsAtPath:self.path])
+        [NSFileManager.defaultManager removeItemAtPath:self.path error:nil];
+    
+    self.path = nil;
+    [self.managedObjectContext save:nil];
+}
+
 #pragma mark - Helpers
 
 - (NSURL*)applicationDocumentsDirectory

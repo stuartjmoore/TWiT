@@ -29,5 +29,6 @@
 - (void)download;
 - (void)cancelDownload;
 - (void)closeDownload;
+- (void)deleteDownload;
 
 @end

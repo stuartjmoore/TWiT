@@ -162,6 +162,8 @@
 
 - (void)deletePressed:(TWSegmentedButton*)sender
 {
+    [self.episode deleteDownloads];
+    self.segmentedButton.buttonState = TWButtonSegmentDownload;
 }
 
 
