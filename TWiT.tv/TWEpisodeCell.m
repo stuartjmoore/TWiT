@@ -76,4 +76,18 @@
     }
 }
 
+- (void)setProgress:(float)progress
+{
+    _progress = progress;
+    
+    CGRect frame = self.contentView.frame;
+    float width = frame.size.width * progress;
+    
+    frame.origin.x = width;
+    frame.size.width -= width;
+    
+    self.downloadBackground.frame = frame;
+    self.downloadBackground.hidden = NO;
+}
+
 @end

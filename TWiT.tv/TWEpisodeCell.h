@@ -22,4 +22,7 @@
 @property (nonatomic, weak) IBOutlet UILabel *titleLabel;
 @property (nonatomic, weak) IBOutlet UILabel *subtitleLabel;
 
+@property (nonatomic) float progress;
+@property (nonatomic, weak) IBOutlet UIImageView *downloadBackground;
+
 @end

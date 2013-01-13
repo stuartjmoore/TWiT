@@ -463,6 +463,8 @@
         Episode *episode = [self.fetchedEpisodesController objectAtIndexPath:indexPath];
         TWEpisodeCell *episodeCell = (TWEpisodeCell*)cell;
         episodeCell.episode = episode;
+        
+        episodeCell.progress = 0.5;
     }
     else if([cell.reuseIdentifier isEqualToString:@"showsCell"])
     {
