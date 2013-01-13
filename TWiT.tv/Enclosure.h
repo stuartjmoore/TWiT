@@ -23,7 +23,9 @@
 
 @property (nonatomic, strong) NSFileHandle *downloadingFile;
 @property (nonatomic) long long expectedLength, downloadedLength;
+@property (nonatomic, strong) NSURLConnection *downloadConnection;
 
 - (void)download;
+- (void)cancelDownload;
 
 @end

@@ -24,6 +24,7 @@
 - (void)watchPressed:(TWSegmentedButton*)sender;
 - (void)listenPressed:(TWSegmentedButton*)sender;
 - (void)downloadPressed:(TWSegmentedButton*)sender;
+- (void)updateProgress:(NSNotification*)notification;
 - (void)cancelPressed:(TWSegmentedButton*)sender;
 - (void)deletePressed:(TWSegmentedButton*)sender;
 

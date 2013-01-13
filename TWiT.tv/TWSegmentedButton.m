@@ -8,7 +8,6 @@
 
 #import "TWSegmentedButton.h"
 
-#import "Episode.h"
 #import "Enclosure.h"
 
 @implementation TWSegmentedButton
@@ -78,19 +77,6 @@
         downloadingLabel.textColor = [UIColor whiteColor];
         downloadingLabel.textAlignment = UITextAlignmentCenter;
         [self addSubview:downloadingLabel];
-        
-        [NSNotificationCenter.defaultCenter addObserver:self
-                                               selector:@selector(updateProgress:)
-                                                   name:@"enclosureDownloadDidReceiveData"
-                                                 object:nil];
-        [NSNotificationCenter.defaultCenter addObserver:self
-                                               selector:@selector(updateProgress:)
-                                                   name:@"enclosureDownloadDidFinish"
-                                                 object:nil];
-        [NSNotificationCenter.defaultCenter addObserver:self
-                                               selector:@selector(updateProgress:)
-                                                   name:@"enclosureDownloadDidFail"
-                                                 object:nil];
     }
     return self;
 }
@@ -178,31 +164,6 @@
 
 #pragma mark - Download
 
-- (void)updateProgress:(NSNotification*)notification
-{
-    Enclosure *enclosure = notification.object;
-    
-    if(enclosure.episode != self.episode)
-        return;
-    
-    if([notification.name isEqualToString:@"enclosureDownloadDidReceiveData"])
-    {
-        if(self.buttonState != TWButtonSegmentCancel)
-            self.buttonState = TWButtonSegmentCancel;
-        
-        float percentage = (enclosure.expectedLength != 0) ? enclosure.downloadedLength/(float)enclosure.expectedLength : 0;
-        self.progress = percentage;
-    }
-    else if([notification.name isEqualToString:@"enclosureDownloadDidFinish"])
-    {
-        self.buttonState = TWButtonSegmentDelete;
-    }
-    else if([notification.name isEqualToString:@"enclosureDownloadDidFail"])
-    {
-        self.buttonState = TWButtonSegmentDownload;
-    }
-}
-
 - (void)setProgress:(float)progress
 {
     _progress = progress;
@@ -247,13 +208,5 @@
 }
 
 #pragma clang diagnostic pop
-
-
-- (void)dealloc
-{
-    [NSNotificationCenter.defaultCenter removeObserver:self name:@"enclosureDownloadDidReceiveData" object:nil];
-    [NSNotificationCenter.defaultCenter removeObserver:self name:@"enclosureDownloadDidFinish" object:nil];
-    [NSNotificationCenter.defaultCenter removeObserver:self name:@"enclosureDownloadDidFail" object:nil];
-}
 
 @end

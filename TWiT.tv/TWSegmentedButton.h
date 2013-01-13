@@ -16,15 +16,11 @@ NS_OPTIONS(NSInteger, TWButtonSegment) {
     TWButtonSegmentDelete
 };
 
-@class Episode;
-
 @interface TWSegmentedButton : UIButton
 {
     UILabel *downloadingLabel;
     UIImageView *progressBackgroundView, *progressFilledView;
 }
-
-@property (nonatomic, strong) Episode *episode;
 
 @property (nonatomic) UIButton *watchButton, *listenButton, *downloadButton;
 
@@ -39,7 +35,5 @@ NS_OPTIONS(NSInteger, TWButtonSegment) {
 - (void)watchButtonPressed:(UIButton*)sender;
 - (void)listenButtonPressed:(UIButton*)sender;
 - (void)downloadButtonPressed:(UIButton*)sender;
-
-- (void)updateProgress:(NSNotification*)notification;
 
 @end

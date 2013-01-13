@@ -14,7 +14,7 @@
 @implementation Enclosure
 
 @dynamic path, quality, subtitle, title, type, url, episode;
-@synthesize downloadingFile = _downloadingFile;
+@synthesize downloadingFile = _downloadingFile, downloadConnection = _downloadConnection;
 @synthesize expectedLength = _expectedLength, downloadedLength = _downloadedLength;
 
 - (void)prepareForDeletion
@@ -40,9 +40,9 @@
     self.path = downloadPath;
     
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
-    NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+    self.downloadConnection = [NSURLConnection connectionWithRequest:request delegate:self];
     
-    if(!connection)
+    if(!self.downloadConnection)
     {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Network Error!" message:@"Please check your internet connection"  delegate:nil cancelButtonTitle:@"Okay" otherButtonTitles:nil];
         
@@ -68,6 +68,12 @@
     [NSNotificationCenter.defaultCenter postNotificationName:@"enclosureDownloadDidReceiveData" object:self];
 }
 
+- (void)cancelDownload
+{
+    [self.downloadConnection cancel];
+    self.downloadConnection = nil;
+}
+
 -(void)connectionDidFinishLoading:(NSURLConnection*)connection
 {
     self.expectedLength = 0;
@@ -75,6 +81,7 @@
     
     [self.downloadingFile closeFile];
     self.downloadingFile = nil;
+    self.downloadConnection = nil;
     
     [NSNotificationCenter.defaultCenter postNotificationName:@"enclosureDownloadDidFinish" object:self];
 }
@@ -87,9 +94,12 @@
     
     [self.downloadingFile closeFile];
     self.downloadingFile = nil;
+    self.downloadConnection = nil;
     
     [NSNotificationCenter.defaultCenter postNotificationName:@"enclosureDownloadDidFail" object:self];
 }
+
+#pragma mark - Helpers
 
 - (NSURL*)applicationDocumentsDirectory
 {

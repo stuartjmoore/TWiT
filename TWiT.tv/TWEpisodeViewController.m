@@ -36,6 +36,24 @@
     [self configureView];
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    [NSNotificationCenter.defaultCenter addObserver:self
+                                           selector:@selector(updateProgress:)
+                                               name:@"enclosureDownloadDidReceiveData"
+                                             object:nil];
+    [NSNotificationCenter.defaultCenter addObserver:self
+                                           selector:@selector(updateProgress:)
+                                               name:@"enclosureDownloadDidFinish"
+                                             object:nil];
+    [NSNotificationCenter.defaultCenter addObserver:self
+                                           selector:@selector(updateProgress:)
+                                               name:@"enclosureDownloadDidFail"
+                                             object:nil];
+}
+
 #pragma mark - Episode
 
 - (void)setEpisode:(Episode*)episode
@@ -61,7 +79,6 @@
         
         self.playButton.percentage = (self.episode.duration != 0) ? (float)self.episode.lastTimecode/(float)self.episode.duration : 0;
    
-        self.segmentedButton.episode = self.episode;
         self.segmentedButton.buttonState = TWButtonSegmentDownload;
         self.segmentedButton.listenEnabled = YES;
         self.segmentedButton.watchEnabled = YES;
@@ -111,6 +128,31 @@
     
     self.segmentedButton.buttonState = TWButtonSegmentCancel;
 }
+
+- (void)updateProgress:(NSNotification*)notification
+{
+    Enclosure *enclosure = notification.object;
+    
+    if(enclosure.episode != self.episode)
+        return;
+    
+    if([notification.name isEqualToString:@"enclosureDownloadDidReceiveData"])
+    {
+        if(self.segmentedButton.buttonState != TWButtonSegmentCancel)
+            self.segmentedButton.buttonState = TWButtonSegmentCancel;
+        
+        self.segmentedButton.progress = (enclosure.expectedLength != 0)? enclosure.downloadedLength/(float)enclosure.expectedLength : 0;
+    }
+    else if([notification.name isEqualToString:@"enclosureDownloadDidFinish"])
+    {
+        self.segmentedButton.buttonState = TWButtonSegmentDelete;
+    }
+    else if([notification.name isEqualToString:@"enclosureDownloadDidFail"])
+    {
+        self.segmentedButton.buttonState = TWButtonSegmentDownload;
+    }
+}
+
 - (void)cancelPressed:(TWSegmentedButton*)sender
 {
 }
@@ -118,6 +160,7 @@
 - (void)deletePressed:(TWSegmentedButton*)sender
 {
 }
+
 
 #pragma mark - Settings
 
@@ -142,6 +185,15 @@
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [NSNotificationCenter.defaultCenter removeObserver:self name:@"enclosureDownloadDidReceiveData" object:nil];
+    [NSNotificationCenter.defaultCenter removeObserver:self name:@"enclosureDownloadDidFinish" object:nil];
+    [NSNotificationCenter.defaultCenter removeObserver:self name:@"enclosureDownloadDidFail" object:nil];
+    
+    [super viewWillDisappear:animated];
 }
 
 @end
