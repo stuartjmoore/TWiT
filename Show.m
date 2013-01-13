@@ -165,6 +165,8 @@
 
 - (void)setFavorite:(BOOL)favorite
 {
+    // TODO: Very slow!
+    
     if(favorite)
     {
         NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"published" ascending:YES];
