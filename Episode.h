@@ -10,6 +10,7 @@
 #import <CoreData/CoreData.h>
 
 #import "Poster.h"
+#import "Feed.h"
 
 @class Enclosure, Show;
 
@@ -30,6 +31,8 @@
 
 - (NSString*)durationString;
 - (NSString*)publishedString;
+
+- (Enclosure*)enclosureForType:(enum TWType)type andQuality:(enum TWQuality)quality;
 
 - (void)downloadEnclosure:(Enclosure*)enclosure;
 - (void)cancelDownloads;

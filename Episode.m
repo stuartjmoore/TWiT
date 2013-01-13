@@ -34,6 +34,19 @@
     return [df stringFromDate:self.published];
 }
 
+#pragma mark - Episodes
+
+- (Enclosure*)enclosureForType:(enum TWType)type andQuality:(enum TWQuality)quality
+{
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"type == %d AND quality == %d", type, quality];
+    NSSet *enclosures = [self.enclosures filteredSetUsingPredicate:predicate];
+    
+    if(enclosures.count == 0)
+        return nil;
+    
+    return enclosures.anyObject;
+}
+
 #pragma mark - Download
 
 - (void)downloadEnclosure:(Enclosure*)enclosure
