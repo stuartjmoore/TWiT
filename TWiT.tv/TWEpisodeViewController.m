@@ -128,6 +128,7 @@
     Enclosure *enclosure = enclosures[buttonIndex];
     [self.episode downloadEnclosure:enclosure];
     
+    self.segmentedButton.progress = 0;
     self.segmentedButton.buttonState = TWButtonSegmentCancel;
 }
 
