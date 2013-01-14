@@ -134,19 +134,22 @@
 
 - (void)updateSeekbar
 {
-    if(!self.seekbar.highlighted && self.delegate.player.currentPlaybackTime != NAN && self.delegate.player.duration != NAN && self.delegate.player.duration > 0)
+    if(!self.seekbar.highlighted && self.delegate.player.currentPlaybackTime != NAN
+    && self.delegate.player.duration != NAN && self.delegate.player.duration > 0)
     {
         self.seekbar.value = self.delegate.player.currentPlaybackTime / self.delegate.player.duration;
         
-        int hours = self.delegate.player.currentPlaybackTime/60/60;
-        int minutes = self.delegate.player.currentPlaybackTime/60 - 60*hours;
-        int seconds = self.delegate.player.currentPlaybackTime - 60*minutes - 60*60*hours;
-        self.timeElapsedLabel.text = [NSString stringWithFormat:@"%0.1d:%0.2d:%0.2d", hours, minutes, seconds];
+        NSInteger playbackTime = self.delegate.player.currentPlaybackTime;
+        NSInteger seconds = playbackTime % 60;
+        NSInteger minutes = (playbackTime / 60) % 60;
+        NSInteger hours = (playbackTime / 3600);
+        self.timeElapsedLabel.text = [NSString stringWithFormat:@"%01i:%02i:%02i", hours, minutes, seconds];
         
-        hours = (self.delegate.player.duration-self.delegate.player.currentPlaybackTime)/60/60;
-        minutes = (self.delegate.player.duration-self.delegate.player.currentPlaybackTime)/60 - 60*hours;
-        seconds = (self.delegate.player.duration-self.delegate.player.currentPlaybackTime) - 60*minutes - 60*60*hours;
-        self.timeRemainingLabel.text = [NSString stringWithFormat:@"%0.1d:%0.2d:%0.2d", hours, minutes, seconds];
+        NSInteger remaining = self.delegate.player.duration-playbackTime;
+        seconds = remaining % 60;
+        minutes = (remaining / 60) % 60;
+        hours = (remaining / 3600);
+        self.timeRemainingLabel.text = [NSString stringWithFormat:@"%01i:%02i:%02i", hours, minutes, seconds];
         
         float rate = self.speedButton.selected ? fastSpeed : 1;
         float secondsLeft = (self.delegate.player.duration-self.delegate.player.currentPlaybackTime)/rate;
@@ -191,6 +194,37 @@
         self.delegate.player.currentPlaybackRate = 1;
         self.speedButton.selected = NO;
     }
+}
+
+
+- (IBAction)seekStart:(UISlider*)sender
+{
+}
+- (IBAction)seeking:(UISlider*)sender
+{
+    NSInteger newPlaybackTime = self.seekbar.value * self.delegate.player.duration;
+    
+    NSInteger seconds = newPlaybackTime % 60;
+    NSInteger minutes = (newPlaybackTime / 60) % 60;
+    NSInteger hours = (newPlaybackTime / 3600);
+    self.timeElapsedLabel.text = [NSString stringWithFormat:@"%01i:%02i:%02i", hours, minutes, seconds];
+    
+    NSInteger remaining = self.delegate.player.duration-newPlaybackTime;
+    seconds = remaining % 60;
+    minutes = (remaining / 60) % 60;
+    hours = (remaining / 3600);
+    self.timeRemainingLabel.text = [NSString stringWithFormat:@"%01i:%02i:%02i", hours, minutes, seconds];
+    
+    float rate = self.speedButton.selected ? fastSpeed : 1;
+    float secondsLeft = (self.delegate.player.duration-newPlaybackTime)/rate;
+    NSDate *endingTime = [[NSDate date] dateByAddingTimeInterval:secondsLeft];
+    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+    [dateFormat setDateFormat:@"h:mm"];
+    self.timeOfEndLabel.text = [NSString stringWithFormat:@"ends @ %@", [dateFormat stringFromDate:endingTime]];
+}
+- (IBAction)seekEnd:(UISlider*)sender
+{
+    self.delegate.player.currentPlaybackTime = self.delegate.player.duration * self.seekbar.value;
 }
 
 #pragma mark - Rotate

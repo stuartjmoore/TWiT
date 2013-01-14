@@ -22,6 +22,14 @@
 
 - (void)playerStateChanged:(NSNotification*)notification;
 
+- (IBAction)play:(UIButton*)sender;
+- (IBAction)rewind:(UIButton*)sender;
+- (IBAction)toggleSpeed:(UIButton*)sender;
+
+- (IBAction)seekStart:(UISlider*)sender;
+- (IBAction)seeking:(UISlider*)sender;
+- (IBAction)seekEnd:(UISlider*)sender;
+
 - (IBAction)close:(UIBarButtonItem*)sender;
 
 @end
