@@ -45,6 +45,8 @@
         return nil;
     
     return enclosures.anyObject;
+    
+    // TODO: Load all enclosures of type and less than quality, sorted by quality and if downloaded. Choose top.
 }
 
 #pragma mark - Download
