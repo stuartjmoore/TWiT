@@ -40,7 +40,7 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    [super viewWillAppear:animated];
+    self.playButton.percentage = (self.episode.duration != 0) ? (float)self.episode.lastTimecode/self.episode.duration : 0;
     
     [NSNotificationCenter.defaultCenter addObserver:self
                                            selector:@selector(updateProgress:)
@@ -54,6 +54,8 @@
                                            selector:@selector(updateProgress:)
                                                name:@"enclosureDownloadDidFail"
                                              object:nil];
+    
+    [super viewWillAppear:animated];
 }
 
 #pragma mark - Episode

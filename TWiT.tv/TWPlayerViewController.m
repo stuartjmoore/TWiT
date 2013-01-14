@@ -268,6 +268,11 @@
 
 - (void)viewWillDisappear:(BOOL)animated
 {
+    self.enclosure.episode.lastTimecode = self.delegate.player.currentPlaybackTime;
+    
+    [self.enclosure.managedObjectContext save:nil];
+    
+    
     self.wantsFullScreenLayout = NO;
     [UIApplication.sharedApplication setStatusBarStyle:UIStatusBarStyleDefault animated:YES];
     self.navigationController.navigationBar.tintColor = [UIColor colorWithRed:0.18 green:0.44 blue:0.57 alpha:1.0];
@@ -279,6 +284,8 @@
     [NSNotificationCenter.defaultCenter removeObserver:self name:MPMoviePlayerPlaybackStateDidChangeNotification object:nil];
     [NSNotificationCenter.defaultCenter removeObserver:self name:MPMoviePlayerLoadStateDidChangeNotification object:nil];
     [NSNotificationCenter.defaultCenter removeObserver:self name:MPMoviePlayerPlaybackDidFinishNotification object:nil];
+    
+    [super viewWillDisappear:animated];
 }
 
 @end
