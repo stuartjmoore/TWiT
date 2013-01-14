@@ -42,8 +42,10 @@
         if(self.delegate.player)
             [self.delegate stop];
         
+        NSURL *url = self.enclosure.path ? [NSURL fileURLWithPath:self.enclosure.path] : [NSURL URLWithString:self.enclosure.url];
+        
         self.delegate.player = [[MPMoviePlayerController alloc] init];
-        self.delegate.player.contentURL = [NSURL URLWithString:self.enclosure.url];
+        self.delegate.player.contentURL = url;
         self.delegate.player.initialPlaybackTime = self.enclosure.episode.lastTimecode;
         self.delegate.player.controlStyle = MPMovieControlStyleNone;
         self.delegate.player.shouldAutoplay = YES;
