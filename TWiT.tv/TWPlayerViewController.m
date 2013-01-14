@@ -91,9 +91,12 @@
     [super viewWillAppear:animated];
     
     self.wantsFullScreenLayout = YES;
-    [UIApplication.sharedApplication setStatusBarStyle:UIStatusBarStyleBlackTranslucent animated:YES];
     self.navigationController.navigationBar.tintColor = UIColor.blackColor;
     self.navigationController.navigationBar.translucent = YES;
+    
+    if(UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPhone)
+        [UIApplication.sharedApplication setStatusBarStyle:UIStatusBarStyleBlackTranslucent animated:YES];
+    
     
     [NSNotificationCenter.defaultCenter addObserver:self
                                            selector:@selector(playerStateChanged:)
@@ -288,9 +291,11 @@
     
     
     self.wantsFullScreenLayout = NO;
-    [UIApplication.sharedApplication setStatusBarStyle:UIStatusBarStyleDefault animated:YES];
     self.navigationController.navigationBar.tintColor = [UIColor colorWithRed:0.18 green:0.44 blue:0.57 alpha:1.0];
     self.navigationController.navigationBar.translucent = NO;
+    
+    if(UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPhone)
+        [UIApplication.sharedApplication setStatusBarStyle:UIStatusBarStyleDefault animated:YES];
     
     [self.navigationController setNavigationBarHidden:NO animated:YES];
     [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationSlide];

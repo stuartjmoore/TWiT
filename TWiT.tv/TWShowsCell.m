@@ -25,7 +25,6 @@ dispatch_async(queue, ^{
     _shows = shows;
     
     [self layoutSubviews];
-    //[self setNeedsDisplayInRect:self.bounds];
 }
 
 - (void)layoutSubviews
@@ -54,6 +53,7 @@ dispatch_async(queue, ^{
     UIGraphicsEndImageContext();
     
     self.visibleColumns = self.shows.count;
+    [self setNeedsDisplayInRect:self.bounds];
 }
 
 - (void)drawRect:(CGRect)rect
