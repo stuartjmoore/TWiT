@@ -97,6 +97,63 @@
     [self saveContext];
 }
 
+#pragma mark - Controls
+
+- (void)play
+{
+    [UIApplication.sharedApplication beginReceivingRemoteControlEvents];
+    [self becomeFirstResponder];
+    
+    [self.player play];
+}
+
+- (void)pause
+{
+    [self.player pause];
+}
+
+- (void)stop
+{
+    [UIApplication.sharedApplication endReceivingRemoteControlEvents];
+    [self resignFirstResponder];
+    
+    [self.player stop];
+    self.player = nil;
+    self.nowPlaying = nil;
+}
+
+- (void)remoteControlReceivedWithEvent:(UIEvent*)event
+{
+    if(event.type == UIEventTypeRemoteControl)
+    {
+        switch(event.subtype)
+        {
+            case UIEventSubtypeRemoteControlPlay:
+                [self play];
+                break;
+            case UIEventSubtypeRemoteControlPause:
+                [self pause];
+                break;
+            case UIEventSubtypeRemoteControlStop:
+                [self stop];
+                break;
+            case UIEventSubtypeRemoteControlTogglePlayPause:
+                if(self.player.playbackState == MPMoviePlaybackStatePlaying)
+                    [self pause];
+                else
+                    [self play];
+                break;
+            default:
+                break;
+        }
+    }
+}
+
+- (BOOL)canBecomeFirstResponder
+{
+    return YES;
+}
+
 #pragma mark - Settings
 
 - (NSUInteger)application:(UIApplication*)application supportedInterfaceOrientationsForWindow:(UIWindow*)window

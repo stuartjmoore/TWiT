@@ -8,11 +8,17 @@
 
 #import <UIKit/UIKit.h>
 
-@class Enclosure;
+@class TWAppDelegate, Enclosure;
 
 @interface TWPlayerViewController : UIViewController
 
+@property (nonatomic, weak) TWAppDelegate *delegate;
 @property (nonatomic, strong) Enclosure *enclosure;
+
+@property (nonatomic, weak) IBOutlet UIView *airplayButtonView;
+@property (nonatomic, weak) IBOutlet UIButton *qualityButton, *speedButton, *rewindButton, *playButton;
+
+- (void)playerStateChanged:(NSNotification*)notification;
 
 - (IBAction)close:(UIBarButtonItem*)sender;
 

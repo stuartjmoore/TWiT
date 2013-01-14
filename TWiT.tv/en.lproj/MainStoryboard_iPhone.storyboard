@@ -755,11 +755,111 @@
                     <view key="view" contentMode="scaleToFill" id="kx4-iO-KN0">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" id="C6H-ll-aCQ">
+                                <rect key="frame" x="0.0" y="480" width="320" height="88"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="video-toolbar-double-back.png" id="GLH-95-JtF">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="88"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    </imageView>
+                                    <button opaque="NO" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="2tA-WO-fRc">
+                                        <rect key="frame" x="141" y="46" width="37" height="37"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                        <state key="normal" image="navbar-play.png">
+                                            <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <state key="selected" image="navbar-pause.png"/>
+                                        <state key="highlighted">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="play:" destination="cwj-qn-kQX" eventType="touchUpInside" id="l1c-hy-d3L"/>
+                                        </connections>
+                                    </button>
+                                    <view contentMode="scaleToFill" id="csQ-WA-q3J">
+                                        <rect key="frame" x="5" y="46" width="128" height="37"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" id="LPg-tw-JCI">
+                                                <rect key="frame" x="0.0" y="0.0" width="37" height="37"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                            </view>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="NyF-GD-hKP">
+                                                <rect key="frame" x="45" y="0.0" width="37" height="37"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                                <state key="normal" title="Button" image="video-speed-normal.png">
+                                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <state key="selected" image="video-speed-fast.png"/>
+                                                <state key="highlighted">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="toggleSpeed:" destination="cwj-qn-kQX" eventType="touchUpInside" id="g6Y-K5-0sw"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="9Sz-QQ-muz">
+                                                <rect key="frame" x="91" y="0.0" width="37" height="37"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                                <state key="normal" title="Button" image="video-30sec.png">
+                                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <state key="highlighted">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="rewind:" destination="cwj-qn-kQX" eventType="touchUpInside" id="7V1-0O-pat"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    </view>
+                                    <view contentMode="scaleToFill" id="Fzy-LD-uH4">
+                                        <rect key="frame" x="187" y="46" width="128" height="37"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMinY="YES"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="HeG-jk-7oC">
+                                                <rect key="frame" x="10" y="0.0" width="108" height="37"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
+                                                <inset key="imageEdgeInsets" minX="-5" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                <size key="titleShadowOffset" width="0.0" height="1"/>
+                                                <state key="normal" title="Quality" image="quality-view-disclosure.png" backgroundImage="quality-view-button.png">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <color key="titleShadowColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <state key="highlighted">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="HR3-2E-48f"/>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="blackOpaque"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="blackTranslucent" prompted="NO"/>
+                    <connections>
+                        <outlet property="airplayButtonView" destination="LPg-tw-JCI" id="ejH-rZ-NgL"/>
+                        <outlet property="playButton" destination="2tA-WO-fRc" id="SQe-pX-4a4"/>
+                        <outlet property="qualityButton" destination="HeG-jk-7oC" id="sNP-D6-dN8"/>
+                        <outlet property="rewindButton" destination="9Sz-QQ-muz" id="ipc-gU-DXd"/>
+                        <outlet property="speedButton" destination="NyF-GD-hKP" id="ZlJ-ef-wvx"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7qQ-2m-2zC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -773,6 +873,10 @@
         <image name="icon-play.png" width="55" height="55"/>
         <image name="linen.png" width="320" height="61"/>
         <image name="navbar-logo.png" width="200" height="43"/>
+        <image name="navbar-pause.png" width="15" height="21"/>
+        <image name="navbar-play.png" width="17" height="21"/>
+        <image name="quality-view-button.png" width="9" height="10"/>
+        <image name="quality-view-disclosure.png" width="5" height="5"/>
         <image name="quick-play.png" width="20" height="21"/>
         <image name="separator-fade-bottom.png" width="320" height="1"/>
         <image name="separator-fade-top.png" width="320" height="1"/>
@@ -784,6 +888,10 @@
         <image name="toolbar-remind-off.png" width="26" height="24"/>
         <image name="toolbar-remind-on.png" width="26" height="24"/>
         <image name="toolbar-schedule-background.png" width="22" height="25"/>
+        <image name="video-30sec.png" width="19" height="22"/>
+        <image name="video-speed-fast.png" width="21" height="22"/>
+        <image name="video-speed-normal.png" width="21" height="22"/>
+        <image name="video-toolbar-double-back.png" width="1" height="88"/>
     </resources>
     <classes>
         <class className="TWEpisodeCell" superclassName="UITableViewCell">
@@ -835,6 +943,14 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/TWPlayerViewController.h"/>
             <relationships>
                 <relationship kind="action" name="close:" candidateClass="UIBarButtonItem"/>
+                <relationship kind="action" name="play:" candidateClass="UIButton"/>
+                <relationship kind="action" name="rewind:" candidateClass="UIButton"/>
+                <relationship kind="action" name="toggleSpeed:" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="airplayButtonView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="playButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="qualityButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="rewindButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="speedButton" candidateClass="UIButton"/>
             </relationships>
         </class>
         <class className="TWScheduleCell" superclassName="UITableViewCell">
