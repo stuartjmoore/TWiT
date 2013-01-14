@@ -34,6 +34,12 @@
 	[self.seekbar setMaximumTrackImage:[[UIImage imageNamed:@"video-seekbar-back.png"] stretchableImageWithLeftCapWidth:3 topCapHeight:3] forState:UIControlStateNormal];
 	[self.seekbar setThumbImage:[UIImage imageNamed:@"video-seekbar-thumb.png"] forState:UIControlStateNormal];
     
+    self.seekbar.value = (self.enclosure.episode.duration != 0) ? (float)self.enclosure.episode.lastTimecode / self.enclosure.episode.duration : 0;
+    
+    self.titleLabel.font = [UIFont fontWithName:@"Vollkorn-BoldItalic" size:self.titleLabel.font.pointSize];
+    self.titleLabel.text = self.enclosure.episode.show.title;
+    self.subtitleLabel.text = self.enclosure.episode.title;
+    
     
     self.delegate = (TWAppDelegate*)UIApplication.sharedApplication.delegate;
     
@@ -271,6 +277,12 @@
 - (void)viewWillDisappear:(BOOL)animated
 {
     self.enclosure.episode.lastTimecode = self.delegate.player.currentPlaybackTime;
+    
+    if(self.delegate.player.currentPlaybackTime / self.delegate.player.duration >= 0.85f)
+        self.enclosure.episode.watched = YES;
+    
+    if(self.delegate.player.playbackState != MPMoviePlaybackStatePlaying)
+        self.delegate.nowPlaying = nil;
     
     [self.enclosure.managedObjectContext save:nil];
     

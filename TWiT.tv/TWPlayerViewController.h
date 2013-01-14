@@ -15,6 +15,8 @@
 @property (nonatomic, weak) TWAppDelegate *delegate;
 @property (nonatomic, strong) Enclosure *enclosure;
 
+@property (nonatomic, weak) IBOutlet UILabel *titleLabel, *subtitleLabel;
+
 @property (nonatomic, weak) IBOutlet UISlider *seekbar;
 @property (nonatomic, weak) IBOutlet UILabel *timeElapsedLabel, *timeRemainingLabel, *timeOfEndLabel;
 @property (nonatomic, weak) IBOutlet UIView *airplayButtonView;
