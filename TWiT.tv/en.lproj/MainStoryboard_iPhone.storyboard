@@ -764,22 +764,37 @@
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="88"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     </imageView>
-                                    <button opaque="NO" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="2tA-WO-fRc">
-                                        <rect key="frame" x="141" y="46" width="37" height="37"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                        <state key="normal" image="navbar-play.png">
-                                            <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <state key="selected" image="navbar-pause.png"/>
-                                        <state key="highlighted">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="play:" destination="cwj-qn-kQX" eventType="touchUpInside" id="l1c-hy-d3L"/>
-                                        </connections>
-                                    </button>
+                                    <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" id="2Ox-hJ-Dfa">
+                                        <rect key="frame" x="8" y="3" width="302" height="23"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                    </slider>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="KZk-Py-pqO">
+                                        <rect key="frame" x="10" y="21" width="57" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                        <color key="shadowColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                        <size key="shadowOffset" width="0.0" height="1"/>
+                                    </label>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Loading…" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="XIg-yO-9vc">
+                                        <rect key="frame" x="107" y="21" width="105" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                        <color key="shadowColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                        <size key="shadowOffset" width="0.0" height="1"/>
+                                    </label>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="tCj-YC-Tn8">
+                                        <rect key="frame" x="251" y="21" width="57" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                        <color key="shadowColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                        <size key="shadowOffset" width="0.0" height="1"/>
+                                    </label>
                                     <view contentMode="scaleToFill" id="csQ-WA-q3J">
                                         <rect key="frame" x="5" y="46" width="128" height="37"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -823,6 +838,22 @@
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     </view>
+                                    <button opaque="NO" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="2tA-WO-fRc">
+                                        <rect key="frame" x="141" y="46" width="37" height="37"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                        <state key="normal" image="navbar-play.png">
+                                            <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <state key="selected" image="navbar-pause.png"/>
+                                        <state key="highlighted">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="play:" destination="cwj-qn-kQX" eventType="touchUpInside" id="l1c-hy-d3L"/>
+                                        </connections>
+                                    </button>
                                     <view contentMode="scaleToFill" id="Fzy-LD-uH4">
                                         <rect key="frame" x="187" y="46" width="128" height="37"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMinY="YES"/>
@@ -858,7 +889,11 @@
                         <outlet property="playButton" destination="2tA-WO-fRc" id="SQe-pX-4a4"/>
                         <outlet property="qualityButton" destination="HeG-jk-7oC" id="sNP-D6-dN8"/>
                         <outlet property="rewindButton" destination="9Sz-QQ-muz" id="ipc-gU-DXd"/>
+                        <outlet property="seekbar" destination="2Ox-hJ-Dfa" id="yAT-5e-YBK"/>
                         <outlet property="speedButton" destination="NyF-GD-hKP" id="ZlJ-ef-wvx"/>
+                        <outlet property="timeElapsedLabel" destination="KZk-Py-pqO" id="slI-js-NSL"/>
+                        <outlet property="timeOfEndLabel" destination="XIg-yO-9vc" id="PHK-ON-eEN"/>
+                        <outlet property="timeRemainingLabel" destination="tCj-YC-Tn8" id="3IZ-Oo-CBX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7qQ-2m-2zC" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -950,7 +985,11 @@
                 <relationship kind="outlet" name="playButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="qualityButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="rewindButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="seekbar" candidateClass="UISlider"/>
                 <relationship kind="outlet" name="speedButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="timeElapsedLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="timeOfEndLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="timeRemainingLabel" candidateClass="UILabel"/>
             </relationships>
         </class>
         <class className="TWScheduleCell" superclassName="UITableViewCell">

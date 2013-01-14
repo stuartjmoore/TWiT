@@ -30,6 +30,10 @@
     [self.airplayButtonView addSubview:airplayButton];
     self.airplayButtonView.backgroundColor = [UIColor clearColor];
     
+    [self.seekbar setMinimumTrackImage:[[UIImage imageNamed:@"video-seekbar-back.png"] stretchableImageWithLeftCapWidth:3 topCapHeight:3] forState:UIControlStateNormal];
+	[self.seekbar setMaximumTrackImage:[[UIImage imageNamed:@"video-seekbar-back.png"] stretchableImageWithLeftCapWidth:3 topCapHeight:3] forState:UIControlStateNormal];
+	[self.seekbar setThumbImage:[UIImage imageNamed:@"video-seekbar-thumb.png"] forState:UIControlStateNormal];
+    
     
     self.delegate = (TWAppDelegate*)UIApplication.sharedApplication.delegate;
     
@@ -60,6 +64,10 @@
         }
         
         [self.delegate play];
+    }
+    else
+    {
+        [self updateSeekbar];
     }
     
     self.delegate.nowPlaying = self.enclosure;
@@ -109,6 +117,7 @@
         if(self.delegate.player.playbackState == MPMoviePlaybackStatePlaying)
         {
             self.playButton.selected = YES;
+            [self updateSeekbar];
         }
         else
         {
@@ -121,6 +130,34 @@
         if([[notification.userInfo objectForKey:@"MPMoviePlayerPlaybackDidFinishReasonUserInfoKey"] intValue] == 0)
             return;
     }
+}
+
+- (void)updateSeekbar
+{
+    if(!self.seekbar.highlighted && self.delegate.player.currentPlaybackTime != NAN && self.delegate.player.duration != NAN && self.delegate.player.duration > 0)
+    {
+        self.seekbar.value = self.delegate.player.currentPlaybackTime / self.delegate.player.duration;
+        
+        int hours = self.delegate.player.currentPlaybackTime/60/60;
+        int minutes = self.delegate.player.currentPlaybackTime/60 - 60*hours;
+        int seconds = self.delegate.player.currentPlaybackTime - 60*minutes - 60*60*hours;
+        self.timeElapsedLabel.text = [NSString stringWithFormat:@"%0.1d:%0.2d:%0.2d", hours, minutes, seconds];
+        
+        hours = (self.delegate.player.duration-self.delegate.player.currentPlaybackTime)/60/60;
+        minutes = (self.delegate.player.duration-self.delegate.player.currentPlaybackTime)/60 - 60*hours;
+        seconds = (self.delegate.player.duration-self.delegate.player.currentPlaybackTime) - 60*minutes - 60*60*hours;
+        self.timeRemainingLabel.text = [NSString stringWithFormat:@"%0.1d:%0.2d:%0.2d", hours, minutes, seconds];
+        
+        float rate = self.speedButton.selected ? fastSpeed : 1;
+        float secondsLeft = (self.delegate.player.duration-self.delegate.player.currentPlaybackTime)/rate;
+        NSDate *endingTime = [[NSDate date] dateByAddingTimeInterval:secondsLeft];
+        NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+        [dateFormat setDateFormat:@"h:mm"];
+        [self.timeOfEndLabel setText:[NSString stringWithFormat:@"ends @ %@",[dateFormat stringFromDate:endingTime]]];
+    }
+    
+    if(self.delegate.player.playbackState == MPMoviePlaybackStatePlaying)
+        [self performSelector:@selector(updateSeekbar) withObject:nil afterDelay:1];
 }
 
 #pragma mark - Actions
