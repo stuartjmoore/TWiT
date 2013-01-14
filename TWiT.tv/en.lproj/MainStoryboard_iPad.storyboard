@@ -509,7 +509,7 @@
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="showsCell" id="No5-Ys-QF1" customClass="TWShowsCell">
                                 <rect key="frame" x="0.0" y="202" width="768" height="150"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                     <rect key="frame" x="0.0" y="0.0" width="768" height="149"/>
                                     <autoresizingMask key="autoresizingMask"/>

@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+@class Show;
+
 @protocol TWiTShowGridCellDelegate <NSObject>
 - (void)tableView:(UITableView*)tableView didSelectColumn:(int)column AtIndexPath:(NSIndexPath*)indexPath;
 @end
@@ -21,6 +23,6 @@
 @property (nonatomic, strong) UIImage *icons;
 @property (nonatomic) NSInteger spacing, size, columns, visibleColumns;
 
-- (void)setShows:(NSArray*)shows;
+@property (nonatomic, strong) NSArray *shows;
 
 @end

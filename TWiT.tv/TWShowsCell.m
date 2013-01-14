@@ -22,15 +22,25 @@ dispatch_async(queue, ^{
  
 - (void)setShows:(NSArray*)shows
 {
+    _shows = shows;
+    
+    [self layoutSubviews];
+    //[self setNeedsDisplayInRect:self.bounds];
+}
+
+- (void)layoutSubviews
+{
+    [super layoutSubviews];
+    
     UIGraphicsBeginImageContextWithOptions(self.frame.size, YES, UIScreen.mainScreen.scale);
     
     CGContextRef context = UIGraphicsGetCurrentContext();
     CGContextSetFillColorWithColor(context, [UIColor colorWithWhite:245/255.0 alpha:1].CGColor);
     CGContextFillRect(context, self.bounds);
     
-    for(Show *show in shows)
+    for(Show *show in self.shows)
     {
-        int column = [shows indexOfObject:show];
+        int column = [self.shows indexOfObject:show];
         float x = self.spacing+column*(self.size+self.spacing);
         CGRect frame = CGRectMake(x, self.spacing/2, self.size, self.size);
         
@@ -43,9 +53,7 @@ dispatch_async(queue, ^{
     self.icons = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     
-    self.visibleColumns = shows.count;
-    
-    [self setNeedsDisplayInRect:self.bounds];
+    self.visibleColumns = self.shows.count;
 }
 
 - (void)drawRect:(CGRect)rect

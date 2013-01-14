@@ -85,14 +85,6 @@
                                              object:nil];
 }
 
-- (void)viewDidAppear:(BOOL)animated
-{
-    if(UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPad && self.sectionVisible == TWSectionShows)
-        [self.tableView reloadData];
-    
-    [super viewDidAppear:animated];
-}
-
 #pragma mark - Actions
 
 - (void)switchVisibleSection:(UIButton*)sender
@@ -694,7 +686,8 @@
 
 #pragma mark - Rotate
 
-- (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)orientation duration:(NSTimeInterval)duration
+//- (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)orientation duration:(NSTimeInterval)duration
+- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
 {
     [self.tableView reloadData];
 }
