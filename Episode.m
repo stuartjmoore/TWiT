@@ -23,7 +23,7 @@
     NSInteger minutes = (interval / 60) % 60;
     NSInteger hours = (interval / 3600);
     
-    return [NSString stringWithFormat:@"%02i:%02i:%02i", hours, minutes, seconds];
+    return [NSString stringWithFormat:@"%01i:%02i:%02i", hours, minutes, seconds];
 }
 
 - (NSString*)publishedString
