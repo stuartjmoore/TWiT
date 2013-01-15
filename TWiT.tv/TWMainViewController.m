@@ -541,22 +541,37 @@
             showsCell.columns = 3;
         }
         
-        id <NSFetchedResultsSectionInfo>sectionInfo = self.fetchedShowsController.sections[indexPath.section];
-        int num = sectionInfo.numberOfObjects;
-        int columns = showsCell.columns;
+        self.showsTableCache = self.showsTableCache ?: [NSMutableDictionary dictionary];
+        NSDictionary *rowCache = [self.showsTableCache objectForKey:indexPath];
         
-        NSMutableArray *shows = [NSMutableArray array];
-        for(int column = 0; column < columns; column++)
+        if(!rowCache)
         {
-            int index = indexPath.row*columns + column;
-            if(num > index)
+            id <NSFetchedResultsSectionInfo>sectionInfo = self.fetchedShowsController.sections[indexPath.section];
+            int num = sectionInfo.numberOfObjects;
+            int columns = showsCell.columns;
+            
+            NSMutableArray *shows = [NSMutableArray array];
+            for(int column = 0; column < columns; column++)
             {
-                NSIndexPath *columnedIndexPath = [NSIndexPath indexPathForRow:index inSection:indexPath.section];
-                Show *show = [self.fetchedShowsController objectAtIndexPath:columnedIndexPath];
-                [shows addObject:show];
+                int index = indexPath.row*columns + column;
+                if(num > index)
+                {
+                    NSIndexPath *columnedIndexPath = [NSIndexPath indexPathForRow:index inSection:indexPath.section];
+                    Show *show = [self.fetchedShowsController objectAtIndexPath:columnedIndexPath];
+                    [shows addObject:show];
+                }
             }
+            [showsCell setShows:shows];
+            
+            rowCache = @{ @"icons" : showsCell.icons, @"visibleColumns" : @(shows.count) };
+            [self.showsTableCache setObject:rowCache forKey:indexPath];
         }
-        [showsCell setShows:shows];
+        else
+        {
+            showsCell.icons = [rowCache objectForKey:@"icons"];
+            showsCell.visibleColumns = [[rowCache objectForKey:@"visibleColumns"] integerValue];
+            [showsCell setNeedsDisplay];
+        }
     }
 }
 
@@ -812,6 +827,7 @@
 
 - (void)didReceiveMemoryWarning
 {
+    self.showsTableCache = nil;
     [super didReceiveMemoryWarning];
 }
 
