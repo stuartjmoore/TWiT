@@ -302,7 +302,7 @@
     if(self.delegate.player.playbackState != MPMoviePlaybackStatePlaying)
         [self.delegate stop];
     
-    [self.enclosure.managedObjectContext save:nil];
+    //[self.enclosure.managedObjectContext save:nil];
     
     
     self.wantsFullScreenLayout = NO;

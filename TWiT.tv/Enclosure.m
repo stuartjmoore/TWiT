@@ -37,7 +37,7 @@
         [self setPrimitiveValue:nil forKey:@"path"];
         [self didChangeValueForKey:@"path"];
         
-        [self.managedObjectContext save:nil];
+        //[self.managedObjectContext save:nil];
     }
     
     return _path;
@@ -116,7 +116,7 @@
 {
     [self.episode willChangeValueForKey:@"enclosures"];
     self.path = self.downloadPath;
-    [self.managedObjectContext save:nil];
+    //[self.managedObjectContext save:nil];
     [self.episode didChangeValueForKey:@"enclosures"];
     
     [self closeDownload];
@@ -145,7 +145,7 @@
     
     [self.episode willChangeValueForKey:@"enclosures"];
     self.path = nil;
-    [self.managedObjectContext save:nil];
+    //[self.managedObjectContext save:nil];
     [self.episode didChangeValueForKey:@"enclosures"];
 }
 

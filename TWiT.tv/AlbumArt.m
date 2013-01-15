@@ -105,7 +105,7 @@
                     [NSFileManager.defaultManager setAttributes:fileAttributes ofItemAtPath:cachedPath error:nil];
                 }
                 
-                [self.managedObjectContext save:nil];
+                //[self.managedObjectContext save:nil];
                 
                 // TODO: post notification
             }
@@ -132,7 +132,7 @@
             [self didChangeValueForKey:@"path"];
             [self didChangeValueForKey:@"image"];
             
-            [self.managedObjectContext save:nil];
+            //[self.managedObjectContext save:nil];
         }
     }
     

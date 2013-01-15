@@ -226,7 +226,7 @@
         }
     }
     
-    [self.managedObjectContext save:nil];
+    //[self.managedObjectContext save:nil];
 }
 
 - (void)reloadSchedule
