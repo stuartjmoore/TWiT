@@ -112,7 +112,7 @@
     if(UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPhone)
         [self performSegueWithIdentifier:@"playerDetail" sender:sender.listenButton];
     else
-        [self transitionToPlayer:sender.watchButton];
+        [self transitionToPlayer:sender.listenButton];
 }
 
 - (void)downloadPressed:(TWSegmentedButton*)sender
@@ -197,41 +197,33 @@
 
 #pragma mark - Leave
 
-- (void)prepareForSegue:(UIStoryboardSegue*)segue sender:(id)sender
+- (void)prepareForTransitionToPlayer:(TWPlayerViewController*)playerController sender:(id)sender
 {
     if(sender == self.playButton || sender == self.segmentedButton.watchButton)
     {
         NSSet *enclosures = [self.episode downloadedEnclosures];
         Enclosure *enclosure = enclosures.anyObject ?: [self.episode enclosureForType:TWTypeVideo andQuality:TWQualityHigh];
         
-        [segue.destinationViewController setEnclosure:enclosure];
+        playerController.enclosure = enclosure;
     }
     else if(sender == self.segmentedButton.listenButton)
     {
         Enclosure *enclosure = [self.episode enclosureForType:TWTypeAudio andQuality:TWQualityAudio];
         
-        [segue.destinationViewController setEnclosure:enclosure];
+        playerController.enclosure = enclosure;
     }
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue*)segue sender:(id)sender
+{
+    [self prepareForTransitionToPlayer:segue.destinationViewController sender:sender];
 }
 
 - (IBAction)transitionToPlayer:(UIButton*)sender
 {
     TWPlayerViewController *playerController = [self.storyboard instantiateViewControllerWithIdentifier:@"playerController"];
     playerController.splitViewContainer = self.splitViewContainer;
-    
-    if(sender == self.playButton || sender == self.segmentedButton.watchButton)
-    {
-        NSSet *enclosures = [self.episode downloadedEnclosures];
-        Enclosure *enclosure = enclosures.anyObject ?: [self.episode enclosureForType:TWTypeVideo andQuality:TWQualityHigh];
-        
-        playerController.enclosure = enclosure;
-    }
-    else if(sender == self.segmentedButton.listenButton)
-    {
-        Enclosure *enclosure = [self.episode enclosureForType:TWTypeAudio andQuality:TWQualityAudio];
-        
-        playerController.enclosure = enclosure;
-    }
+    [self prepareForTransitionToPlayer:playerController sender:sender];
     
     playerController.view.frame = self.splitViewContainer.view.bounds;
     playerController.view.autoresizingMask = 63;

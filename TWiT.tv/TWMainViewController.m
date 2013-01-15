@@ -11,6 +11,7 @@
 
 #import "TWSplitViewContainer.h"
 #import "TWMainViewController.h"
+#import "TWPlayerViewController.h"
 
 #import "TWShowViewController.h"
 #import "TWEpisodeViewController.h"
@@ -720,30 +721,47 @@
 
 - (IBAction)transitionToPlayer:(UIButton*)sender
 {
-    TWSplitViewContainer *splitViewContainer = (TWSplitViewContainer*)self.navigationController.parentViewController;
-    UIViewController *playerController = [self.storyboard instantiateViewControllerWithIdentifier:@"playerController"];
+    TWPlayerViewController *playerController = [self.storyboard instantiateViewControllerWithIdentifier:@"playerController"];
+    playerController.splitViewContainer = self.splitViewContainer;
     
-    playerController.view.frame = splitViewContainer.view.bounds;
-    [splitViewContainer.view addSubview:playerController.view];
-    [splitViewContainer.view sendSubviewToBack:playerController.view];
+    // DEBUG
+    Show *show = self.channel.shows.anyObject;
+    Episode *episode = show.episodes.anyObject;
+    Enclosure *enclosure = episode.enclosures.anyObject;
+    playerController.enclosure = enclosure;
     
-    CGRect masterFrameOriginal = splitViewContainer.masterContainer.frame;
+    playerController.view.frame = self.splitViewContainer.view.bounds;
+    playerController.view.autoresizingMask = 63;
+    [self.splitViewContainer.view addSubview:playerController.view];
+    [self.splitViewContainer.view sendSubviewToBack:playerController.view];
+    [self.splitViewContainer addChildViewController:playerController];
+    
+    CGRect masterFrameOriginal = self.splitViewContainer.masterContainer.frame;
     CGRect masterFrameAnimate = masterFrameOriginal;
     masterFrameAnimate.origin.x -= masterFrameAnimate.size.width;
     
-    CGRect detailFrameOriginal = splitViewContainer.detailContainer.frame;
+    CGRect detailFrameOriginal = self.splitViewContainer.detailContainer.frame;
     CGRect detailFrameAnimate = detailFrameOriginal;
     detailFrameAnimate.origin.x += detailFrameAnimate.size.width;
-    
+    /*
+    CGRect modalFrameOriginal = self.splitViewContainer.detailContainer.frame;
+    CGRect modalFrameAnimate = modalFrameOriginal;
+    modalFrameAnimate.origin.x += modalFrameAnimate.size.width;
+    */
     [UIView animateWithDuration:0.3f animations:^{
-        splitViewContainer.masterContainer.frame = masterFrameAnimate;
-        splitViewContainer.detailContainer.frame = detailFrameAnimate;
+        self.splitViewContainer.masterContainer.frame = masterFrameAnimate;
+        self.splitViewContainer.detailContainer.frame = detailFrameAnimate;
+        //self.splitViewContainer.modalContainer.frame = modalFrameAnimate;
     } completion:^(BOOL fin){
-        [playerController.view removeFromSuperview];
-        [splitViewContainer presentViewController:playerController animated:NO completion:^{}];
-        splitViewContainer.masterContainer.frame = masterFrameOriginal;
-        splitViewContainer.detailContainer.frame = detailFrameOriginal;
-        [(UINavigationController*)splitViewContainer.masterController popToRootViewControllerAnimated:NO];
+        [self.splitViewContainer.view bringSubviewToFront:playerController.view];
+        
+        self.splitViewContainer.masterContainer.hidden = YES;
+        self.splitViewContainer.detailContainer.hidden = YES;
+        //self.splitViewContainer.modalContainer.hidden = YES;
+        
+        self.splitViewContainer.masterContainer.frame = masterFrameOriginal;
+        self.splitViewContainer.detailContainer.frame = detailFrameOriginal;
+        //self.splitViewContainer.modalContainer.frame = modalFrameOriginal;
     }];
 }
 

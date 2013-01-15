@@ -38,12 +38,14 @@
         TWMainViewController *episodesController = (TWMainViewController*)masterController.topViewController;
         episodesController.managedObjectContext = self.managedObjectContext;
         episodesController.channel = channel;
+        episodesController.splitViewContainer = splitViewContainer;
         splitViewContainer.masterController = masterController;
 
         UINavigationController *detailController = [splitViewContainer.storyboard instantiateViewControllerWithIdentifier:@"detailController"];
         TWMainViewController *showsController = (TWMainViewController*)detailController.topViewController;
         showsController.managedObjectContext = self.managedObjectContext;
         showsController.channel = channel;
+        showsController.splitViewContainer = splitViewContainer;
         splitViewContainer.detailController = detailController;
         
         UINavigationController *modalController = [splitViewContainer.storyboard instantiateViewControllerWithIdentifier:@"modalController"];

@@ -9,6 +9,7 @@
 #import <QuartzCore/QuartzCore.h>
 
 #import "TWSplitViewContainer.h"
+#import "TWMainViewController.h"
 #import "TWEpisodeViewController.h"
 
 @implementation TWSplitViewContainer

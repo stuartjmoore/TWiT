@@ -21,6 +21,7 @@ typedef NS_ENUM(NSInteger, TWSection)
 
 @interface TWMainViewController : UITableViewController <NSFetchedResultsControllerDelegate, UISplitViewControllerDelegate, TWiTShowGridCellDelegate>
 
+@property (nonatomic, weak) TWSplitViewContainer *splitViewContainer;
 @property (assign, nonatomic) TWSection sectionVisible;
 
 @property (strong, nonatomic) Channel *channel;
