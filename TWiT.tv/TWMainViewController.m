@@ -743,25 +743,32 @@
     CGRect detailFrameOriginal = self.splitViewContainer.detailContainer.frame;
     CGRect detailFrameAnimate = detailFrameOriginal;
     detailFrameAnimate.origin.x += detailFrameAnimate.size.width;
-    /*
+    
     CGRect modalFrameOriginal = self.splitViewContainer.detailContainer.frame;
     CGRect modalFrameAnimate = modalFrameOriginal;
-    modalFrameAnimate.origin.x += modalFrameAnimate.size.width;
-    */
+    if(self.splitViewContainer.modalFlyout.frame.origin.x == 0)
+        modalFrameAnimate.origin.x += modalFrameAnimate.size.width;
+    
     [UIView animateWithDuration:0.3f animations:^{
         self.splitViewContainer.masterContainer.frame = masterFrameAnimate;
         self.splitViewContainer.detailContainer.frame = detailFrameAnimate;
-        //self.splitViewContainer.modalContainer.frame = modalFrameAnimate;
+        
+        if(self.splitViewContainer.modalFlyout.frame.origin.x == 0)
+            self.splitViewContainer.modalContainer.frame = modalFrameAnimate;
     } completion:^(BOOL fin){
         [self.splitViewContainer.view bringSubviewToFront:playerController.view];
         
         self.splitViewContainer.masterContainer.hidden = YES;
         self.splitViewContainer.detailContainer.hidden = YES;
-        //self.splitViewContainer.modalContainer.hidden = YES;
+        
+        if(self.splitViewContainer.modalFlyout.frame.origin.x == 0)
+            self.splitViewContainer.modalContainer.hidden = YES;
         
         self.splitViewContainer.masterContainer.frame = masterFrameOriginal;
         self.splitViewContainer.detailContainer.frame = detailFrameOriginal;
-        //self.splitViewContainer.modalContainer.frame = modalFrameOriginal;
+        
+        if(self.splitViewContainer.modalFlyout.frame.origin.x == 0)
+            self.splitViewContainer.modalContainer.frame = modalFrameOriginal;
     }];
 }
 
