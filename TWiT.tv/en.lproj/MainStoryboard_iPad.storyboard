@@ -71,6 +71,9 @@
                                                     <state key="highlighted">
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
+                                                    <connections>
+                                                        <action selector="quickPlayPressed:" destination="oUS-au-4Gd" eventType="touchUpInside" id="Nue-JI-D7s"/>
+                                                    </connections>
                                                 </button>
                                                 <view contentMode="scaleToFill" id="qm8-FM-1cZ" userLabel="Bottom Separator">
                                                     <rect key="frame" x="0.0" y="60" width="320" height="1"/>
@@ -92,6 +95,7 @@
                                     <outlet property="albumArt" destination="qWx-ok-lxk" id="1t2-SE-XYc"/>
                                     <outlet property="bottomLine" destination="qm8-FM-1cZ" id="WbW-Nr-Xep"/>
                                     <outlet property="downloadBackground" destination="HTa-Uk-xgr" id="vdi-Vd-9iC"/>
+                                    <outlet property="quickPlayButton" destination="0aF-XH-14R" id="Cu5-eU-2Ny"/>
                                     <outlet property="subtitleLabel" destination="gfj-GS-Jom" id="Kdq-dl-TM5"/>
                                     <outlet property="titleLabel" destination="uTC-eL-z9Q" id="2q2-hU-LAw"/>
                                     <outlet property="topLine" destination="RQW-G7-HGb" id="xsM-rn-ULl"/>
@@ -310,6 +314,7 @@
                                     <outlet property="bottomLine" destination="lX7-re-d1d" id="oIZ-iT-s78"/>
                                     <outlet property="downloadBackground" destination="yoN-I4-xvn" id="oKz-sL-FyQ"/>
                                     <outlet property="numberLabel" destination="eqJ-Od-HtW" id="0NN-AA-6DH"/>
+                                    <outlet property="quickPlayButton" destination="JAx-Yi-u6C" id="TOJ-zx-Xia"/>
                                     <outlet property="subtitleLabel" destination="Stt-PG-vDt" id="hHM-av-Ktb"/>
                                     <outlet property="titleLabel" destination="3hS-2B-i8a" id="41m-T6-iDP"/>
                                     <outlet property="topLine" destination="CS4-8Y-vuK" id="gNp-LC-9fw"/>
@@ -1009,6 +1014,7 @@
                 <relationship kind="outlet" name="bottomLine" candidateClass="UIView"/>
                 <relationship kind="outlet" name="downloadBackground" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="numberLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="quickPlayButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="subtitleLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="titleLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="topLine" candidateClass="UIView"/>

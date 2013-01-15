@@ -189,54 +189,57 @@
 
 - (void)tableView:(UITableView*)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath*)indexPath
 {
-    TWPlayerViewController *playerController = [self.storyboard instantiateViewControllerWithIdentifier:@"playerController"];
-    playerController.splitViewContainer = self.splitViewContainer;
-    
-    Episode *episode = [self.fetchedEpisodesController objectAtIndexPath:indexPath];
-    NSSet *enclosures = [episode downloadedEnclosures];
-    Enclosure *enclosure = enclosures.anyObject ?: [episode enclosureForType:TWTypeVideo andQuality:TWQualityHigh];
-    playerController.enclosure = enclosure;
-    
-    playerController.view.frame = self.splitViewContainer.view.bounds;
-    playerController.view.autoresizingMask = 63;
-    [self.splitViewContainer.view addSubview:playerController.view];
-    [self.splitViewContainer.view sendSubviewToBack:playerController.view];
-    [self.splitViewContainer addChildViewController:playerController];
-    
-    CGRect masterFrameOriginal = self.splitViewContainer.masterContainer.frame;
-    CGRect masterFrameAnimate = masterFrameOriginal;
-    masterFrameAnimate.origin.x -= masterFrameAnimate.size.width;
-    
-    CGRect detailFrameOriginal = self.splitViewContainer.detailContainer.frame;
-    CGRect detailFrameAnimate = detailFrameOriginal;
-    detailFrameAnimate.origin.x += detailFrameAnimate.size.width;
-    
-    CGRect modalFrameOriginal = self.splitViewContainer.detailContainer.frame;
-    CGRect modalFrameAnimate = modalFrameOriginal;
-    if(self.splitViewContainer.modalFlyout.frame.origin.x == 0)
-        modalFrameAnimate.origin.x += modalFrameAnimate.size.width;
-    
-    [UIView animateWithDuration:0.3f animations:^{
-        self.splitViewContainer.masterContainer.frame = masterFrameAnimate;
-        self.splitViewContainer.detailContainer.frame = detailFrameAnimate;
+    if(UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPad)
+    {
+        TWPlayerViewController *playerController = [self.storyboard instantiateViewControllerWithIdentifier:@"playerController"];
+        playerController.splitViewContainer = self.splitViewContainer;
         
+        Episode *episode = [self.fetchedEpisodesController objectAtIndexPath:indexPath];
+        NSSet *enclosures = [episode downloadedEnclosures];
+        Enclosure *enclosure = enclosures.anyObject ?: [episode enclosureForType:TWTypeVideo andQuality:TWQualityHigh];
+        playerController.enclosure = enclosure;
+        
+        playerController.view.frame = self.splitViewContainer.view.bounds;
+        playerController.view.autoresizingMask = 63;
+        [self.splitViewContainer.view addSubview:playerController.view];
+        [self.splitViewContainer.view sendSubviewToBack:playerController.view];
+        [self.splitViewContainer addChildViewController:playerController];
+        
+        CGRect masterFrameOriginal = self.splitViewContainer.masterContainer.frame;
+        CGRect masterFrameAnimate = masterFrameOriginal;
+        masterFrameAnimate.origin.x -= masterFrameAnimate.size.width;
+        
+        CGRect detailFrameOriginal = self.splitViewContainer.detailContainer.frame;
+        CGRect detailFrameAnimate = detailFrameOriginal;
+        detailFrameAnimate.origin.x += detailFrameAnimate.size.width;
+        
+        CGRect modalFrameOriginal = self.splitViewContainer.detailContainer.frame;
+        CGRect modalFrameAnimate = modalFrameOriginal;
         if(self.splitViewContainer.modalFlyout.frame.origin.x == 0)
-            self.splitViewContainer.modalContainer.frame = modalFrameAnimate;
-    } completion:^(BOOL fin){
-        [self.splitViewContainer.view bringSubviewToFront:playerController.view];
+            modalFrameAnimate.origin.x += modalFrameAnimate.size.width;
         
-        self.splitViewContainer.masterContainer.hidden = YES;
-        self.splitViewContainer.detailContainer.hidden = YES;
-        
-        if(self.splitViewContainer.modalFlyout.frame.origin.x == 0)
-            self.splitViewContainer.modalContainer.hidden = YES;
-        
-        self.splitViewContainer.masterContainer.frame = masterFrameOriginal;
-        self.splitViewContainer.detailContainer.frame = detailFrameOriginal;
-        
-        if(self.splitViewContainer.modalFlyout.frame.origin.x == 0)
-            self.splitViewContainer.modalContainer.frame = modalFrameOriginal;
-    }];
+        [UIView animateWithDuration:0.3f animations:^{
+            self.splitViewContainer.masterContainer.frame = masterFrameAnimate;
+            self.splitViewContainer.detailContainer.frame = detailFrameAnimate;
+            
+            if(self.splitViewContainer.modalFlyout.frame.origin.x == 0)
+                self.splitViewContainer.modalContainer.frame = modalFrameAnimate;
+        } completion:^(BOOL fin){
+            [self.splitViewContainer.view bringSubviewToFront:playerController.view];
+            
+            self.splitViewContainer.masterContainer.hidden = YES;
+            self.splitViewContainer.detailContainer.hidden = YES;
+            
+            if(self.splitViewContainer.modalFlyout.frame.origin.x == 0)
+                self.splitViewContainer.modalContainer.hidden = YES;
+            
+            self.splitViewContainer.masterContainer.frame = masterFrameOriginal;
+            self.splitViewContainer.detailContainer.frame = detailFrameOriginal;
+            
+            if(self.splitViewContainer.modalFlyout.frame.origin.x == 0)
+                self.splitViewContainer.modalContainer.frame = modalFrameOriginal;
+        }];
+    }
 }
 
 - (NSIndexPath*)tableView:(UITableView*)tableView willSelectRowAtIndexPath:(NSIndexPath*)indexPath
@@ -487,6 +490,15 @@
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
         Episode *episode = [self.fetchedEpisodesController objectAtIndexPath:indexPath];
         [segue.destinationViewController setEpisode:episode];
+    }
+    else if([segue.identifier isEqualToString:@"playerDetail"])
+    {
+        TWEpisodeCell *episodeCell = (TWEpisodeCell*)[[[sender superview] superview] superview];
+        Episode *episode = episodeCell.episode;
+        NSSet *enclosures = [episode downloadedEnclosures];
+        Enclosure *enclosure = enclosures.anyObject ?: [episode enclosureForType:TWTypeVideo andQuality:TWQualityHigh];
+        
+        [segue.destinationViewController setEnclosure:enclosure];
     }
 }
 

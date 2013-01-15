@@ -55,6 +55,7 @@
         
         self.topLine.hidden = YES;
         self.bottomLine.hidden = YES;
+        self.quickPlayButton.hidden = YES;
     }
     else
     {
@@ -78,6 +79,7 @@
         
         self.topLine.hidden = NO;
         self.bottomLine.hidden = NO;
+        self.quickPlayButton.hidden = NO;
     }
 }
 

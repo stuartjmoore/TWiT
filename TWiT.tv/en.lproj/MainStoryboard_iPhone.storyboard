@@ -210,6 +210,9 @@
                                                     <state key="highlighted">
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
+                                                    <connections>
+                                                        <segue destination="cwj-qn-kQX" kind="push" identifier="playerDetail" id="X16-eJ-kN7"/>
+                                                    </connections>
                                                 </button>
                                                 <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" image="linen.png" id="vck-Dq-xW8">
                                                     <rect key="frame" x="0.0" y="0.0" width="320" height="61"/>
@@ -225,6 +228,7 @@
                                 <connections>
                                     <outlet property="albumArt" destination="ds1-f0-g2c" id="baS-Gc-PJ9"/>
                                     <outlet property="downloadBackground" destination="vck-Dq-xW8" id="Ig9-f7-MHA"/>
+                                    <outlet property="quickPlayButton" destination="mb1-Fz-c5Z" id="Ss9-54-5Gj"/>
                                     <outlet property="subtitleLabel" destination="F1Q-Xo-pjV" id="mrQ-Ll-sBU"/>
                                     <outlet property="titleLabel" destination="rhp-Iq-4sC" id="Ptu-7D-No7"/>
                                     <segue destination="21" kind="push" identifier="episodeDetail" id="YiW-0V-IC2"/>
@@ -681,6 +685,9 @@
                                                     <state key="highlighted">
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
+                                                    <connections>
+                                                        <segue destination="cwj-qn-kQX" kind="push" identifier="playerDetail" id="ksD-ns-qej"/>
+                                                    </connections>
                                                 </button>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="separator-fade-bottom.png" id="3d9-65-kBy">
                                                     <rect key="frame" x="0.0" y="60" width="320" height="1"/>
@@ -700,6 +707,7 @@
                                     <outlet property="bottomLine" destination="3d9-65-kBy" id="gDC-do-6Qf"/>
                                     <outlet property="downloadBackground" destination="Jj4-AV-aiV" id="BJ3-8n-z3w"/>
                                     <outlet property="numberLabel" destination="gk7-bS-7Vv" id="UWY-c3-2sK"/>
+                                    <outlet property="quickPlayButton" destination="1Vs-K1-evE" id="pxB-4S-eWn"/>
                                     <outlet property="subtitleLabel" destination="DhU-w2-z4b" id="xWw-Yx-bYl"/>
                                     <outlet property="titleLabel" destination="XwE-S8-I36" id="0LO-0t-NoX"/>
                                     <outlet property="topLine" destination="OOu-oA-gHG" id="WcJ-Zh-epG"/>
@@ -966,10 +974,12 @@
         <class className="TWEpisodeCell" superclassName="UITableViewCell">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/TWEpisodeCell.h"/>
             <relationships>
+                <relationship kind="action" name="quickPlayPressed:" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="albumArt" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="bottomLine" candidateClass="UIView"/>
                 <relationship kind="outlet" name="downloadBackground" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="numberLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="quickPlayButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="subtitleLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="titleLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="topLine" candidateClass="UIView"/>
@@ -1076,6 +1086,7 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="OfB-Q1-3Dp"/>
+        <segue reference="YiW-0V-IC2"/>
+        <segue reference="X16-eJ-kN7"/>
     </inferredMetricsTieBreakers>
 </document>
