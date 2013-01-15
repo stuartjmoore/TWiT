@@ -703,7 +703,8 @@
 //- (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)orientation duration:(NSTimeInterval)duration
 - (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
 {
-    [self.tableView reloadData];
+    if(self.sectionVisible == TWSectionShows)
+        [self.tableView reloadData];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -737,11 +738,12 @@
     TWPlayerViewController *playerController = [self.storyboard instantiateViewControllerWithIdentifier:@"playerController"];
     playerController.splitViewContainer = self.splitViewContainer;
     
-    // DEBUG
+    // TODO: Change to Live
     Show *show = self.channel.shows.anyObject;
     Episode *episode = show.episodes.anyObject;
     Enclosure *enclosure = episode.enclosures.anyObject;
     playerController.enclosure = enclosure;
+    // DEBUG
     
     playerController.view.frame = self.splitViewContainer.view.bounds;
     playerController.view.autoresizingMask = 63;

@@ -21,7 +21,12 @@
     self.titleLabel.text = episode.title;
     self.subtitleLabel.text = episode.show.title;
     
-    if(!episode.watched)
+    if(self.selected)
+    {
+        self.numberLabel.textColor = [UIColor whiteColor];
+        self.numberLabel.shadowColor = [UIColor blackColor];
+    }
+    else if(!episode.watched)
     {
         self.numberLabel.textColor = [UIColor colorWithRed:239/255.0 green:79/255.0 blue:61/255.0 alpha:1];
         self.numberLabel.shadowColor = [UIColor blackColor];
