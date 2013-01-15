@@ -114,8 +114,10 @@
 }
 -(void)connectionDidFinishLoading:(NSURLConnection*)connection
 {
+    [self.episode willChangeValueForKey:@"enclosures"];
     self.path = self.downloadPath;
     [self.managedObjectContext save:nil];
+    [self.episode didChangeValueForKey:@"enclosures"];
     
     [self closeDownload];
     [NSNotificationCenter.defaultCenter postNotificationName:@"enclosureDownloadDidFinish" object:self];
@@ -141,8 +143,10 @@
     if([NSFileManager.defaultManager fileExistsAtPath:self.path])
         [NSFileManager.defaultManager removeItemAtPath:self.path error:nil];
     
+    [self.episode willChangeValueForKey:@"enclosures"];
     self.path = nil;
     [self.managedObjectContext save:nil];
+    [self.episode didChangeValueForKey:@"enclosures"];
 }
 
 #pragma mark - Helpers

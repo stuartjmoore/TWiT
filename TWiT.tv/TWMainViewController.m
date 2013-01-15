@@ -570,7 +570,7 @@
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"Episode" inManagedObjectContext:self.managedObjectContext];
     NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"published" ascending:NO];
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"watched = NO"];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"watched = NO OR ANY enclosures.path != nil"];
     
     [fetchRequest setFetchBatchSize:10];
     [fetchRequest setEntity:entity];
