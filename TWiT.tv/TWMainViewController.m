@@ -823,6 +823,9 @@
         NSIndexPath *indexPath = (NSIndexPath*)sender;
         Show *show = [self.fetchedShowsController objectAtIndexPath:indexPath];
         [show updateEpisodes];
+    
+        if(UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPad)
+            [segue.destinationViewController setSplitViewContainer:self.splitViewContainer];
         
         [segue.destinationViewController setShow:show];
     }

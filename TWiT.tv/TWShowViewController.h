@@ -15,6 +15,7 @@
 
 @property (strong, nonatomic) Show *show;
 
+@property (weak, nonatomic) TWSplitViewContainer *splitViewContainer;
 @property (strong, nonatomic) TWEpisodeViewController *episodeViewController;
 @property (strong, nonatomic) NSFetchedResultsController *fetchedEpisodesController;
 

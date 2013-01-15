@@ -10,9 +10,17 @@
 
 @class Episode;
 
+@protocol TWiTEpisodeCellDelegate <NSObject>
+- (void)tableView:(UITableView*)tableView didSelectAccessoryAtIndexPath:(NSIndexPath*)indexPath;
+@end
+
 @interface TWEpisodeCell : UITableViewCell
 
 @property (nonatomic, strong) Episode *episode;
+
+@property (nonatomic, weak) id<UITableViewDelegate> delegate;
+@property (nonatomic, strong) NSIndexPath *indexPath;
+@property (nonatomic, weak) UITableView *table;
 
 @property (nonatomic, weak) IBOutlet UIView *topLine, *bottomLine;
 
@@ -24,5 +32,7 @@
 
 @property (nonatomic) float progress;
 @property (nonatomic, weak) IBOutlet UIImageView *downloadBackground;
+
+- (IBAction)quickPlayPressed:(UIButton*)sender;
 
 @end

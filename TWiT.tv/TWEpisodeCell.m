@@ -95,4 +95,11 @@
     self.downloadBackground.hidden = (progress == 1) ? YES : NO;
 }
 
+#pragma mark - Actions
+
+- (IBAction)quickPlayPressed:(UIButton*)sender
+{
+    [self.delegate tableView:self.table accessoryButtonTappedForRowWithIndexPath:self.indexPath];
+}
+
 @end

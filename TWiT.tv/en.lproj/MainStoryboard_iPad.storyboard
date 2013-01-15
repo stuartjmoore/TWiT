@@ -288,6 +288,9 @@
                                                     <state key="highlighted">
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
+                                                    <connections>
+                                                        <action selector="quickPlayPressed:" destination="y2z-4c-RoU" eventType="touchUpInside" id="Qb4-nc-R6a"/>
+                                                    </connections>
                                                 </button>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="separator-fade-bottom.png" id="lX7-re-d1d">
                                                     <rect key="frame" x="0.0" y="60" width="320" height="1"/>
@@ -1001,6 +1004,7 @@
         <class className="TWEpisodeCell" superclassName="UITableViewCell">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/TWEpisodeCell.h"/>
             <relationships>
+                <relationship kind="action" name="quickPlayPressed:" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="albumArt" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="bottomLine" candidateClass="UIView"/>
                 <relationship kind="outlet" name="downloadBackground" candidateClass="UIImageView"/>
