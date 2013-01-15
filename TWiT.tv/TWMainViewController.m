@@ -51,9 +51,9 @@
     [super viewDidLoad];
     
     [NSNotificationCenter.defaultCenter addObserver:self
-                                           selector:@selector(reloadSchedule:)
+                                           selector:@selector(redrawSchedule:)
                                                name:@"ScheduleDidUpdate"
-                                             object:nil];
+                                             object:self.channel.schedule];
     
     [self.tableView addObserver:self forKeyPath:@"contentOffset"
                         options:(NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld)
@@ -196,7 +196,7 @@
 
 #pragma mark - Notifications
 
-- (void)reloadSchedule:(NSNotification*)notification
+- (void)redrawSchedule:(NSNotification*)notification
 {
     if(self.channel.schedule != notification.object)
         return;
@@ -206,7 +206,7 @@
     self.liveTitleLabel.text = currentShow.title;
     
     Show *show = currentShow.show ?: self.channel.shows.anyObject;
-    self.livePosterView.image = show.poster.image;
+    self.livePosterView.image = show.poster.image ?: show.albumArt.image;
     self.liveAlbumArtView.image = show.albumArt.image;
     
     if(currentShow.start.isBeforeNow && currentShow.end.isAfterNow)
@@ -541,10 +541,10 @@
             showsCell.columns = 3;
         }
         
-        self.showsTableCache = self.showsTableCache ?: [NSMutableDictionary dictionary];
-        NSDictionary *rowCache = [self.showsTableCache objectForKey:@(indexPath.row)];
+        //self.showsTableCache = self.showsTableCache ?: [NSMutableDictionary dictionary];
+        //NSDictionary *rowCache = [self.showsTableCache objectForKey:@(indexPath.row)];
         
-        if(!rowCache)
+        //if(!rowCache)
         {
             id <NSFetchedResultsSectionInfo>sectionInfo = self.fetchedShowsController.sections[indexPath.section];
             int num = sectionInfo.numberOfObjects;
@@ -563,16 +563,16 @@
             }
             [showsCell setShows:shows];
             
-            rowCache = @{ @"icons" : showsCell.icons, @"visibleColumns" : @(shows.count) };
-            [self.showsTableCache setObject:rowCache forKey:@(indexPath.row)];
-        }
+            //rowCache = @{ @"icons" : showsCell.icons, @"visibleColumns" : @(shows.count) };
+            //[self.showsTableCache setObject:rowCache forKey:@(indexPath.row)];
+        }/*
         else
         {
             showsCell.shows = nil;
             showsCell.icons = [rowCache objectForKey:@"icons"];
             showsCell.visibleColumns = [[rowCache objectForKey:@"visibleColumns"] integerValue];
             [showsCell setNeedsDisplay];
-        }
+        }*/
     }
 }
 
@@ -853,7 +853,7 @@
     self.fetchedEpisodesController = nil;
     
     [self.tableView removeObserver:self forKeyPath:@"contentOffset"];
-    [NSNotificationCenter.defaultCenter removeObserver:self name:@"ScheduleDidUpdate" object:nil];
+    [NSNotificationCenter.defaultCenter removeObserver:self name:@"ScheduleDidUpdate" object:self.channel.schedule];
     
     [super viewDidUnload];
 }

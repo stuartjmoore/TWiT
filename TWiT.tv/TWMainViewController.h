@@ -43,7 +43,7 @@ typedef NS_ENUM(NSInteger, TWSection)
 
 - (void)updateProgress:(NSNotification*)notification;
 
-- (void)reloadSchedule:(NSNotification*)notification;
+- (void)redrawSchedule:(NSNotification*)notification;
 - (IBAction)transitionToSchedule:(UIButton*)sender;
 - (IBAction)transitionToPlayer:(UIButton*)sender;
 
