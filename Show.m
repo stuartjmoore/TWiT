@@ -180,7 +180,7 @@
     [self setPrimitiveValue:@(favorite) forKey:@"favorite"];
     [self didChangeValueForKey:@"favorite"];
     
-    [self.managedObjectContext save:nil];
+    //[self.managedObjectContext save:nil];
 }
 
 - (void)setRemind:(BOOL)remind
@@ -213,7 +213,7 @@
     [self setPrimitiveValue:@(remind) forKey:@"remind"];
     [self didChangeValueForKey:@"remind"];
     
-    [self.managedObjectContext save:nil];
+    //[self.managedObjectContext save:nil];
 }
 
 #pragma mark - Update Episodes
@@ -248,7 +248,7 @@
                  if(lastModified == nil || ![lastModified isEqualToDate:feed.lastUpdated])
                  {
                      feed.lastUpdated = lastModified;
-                     [feed.managedObjectContext save:nil];
+                     //[feed.managedObjectContext save:nil];
                      [self updatePodcastFeed:feed];
                  }
              }
@@ -425,7 +425,7 @@
              [episode addEnclosuresObject:enclosure];
          }
          
-         [self.managedObjectContext save:nil];
+         //[self.managedObjectContext save:nil];
      }];
 }
 
