@@ -542,7 +542,7 @@
         }
         
         self.showsTableCache = self.showsTableCache ?: [NSMutableDictionary dictionary];
-        NSDictionary *rowCache = [self.showsTableCache objectForKey:indexPath];
+        NSDictionary *rowCache = [self.showsTableCache objectForKey:@(indexPath.row)];
         
         if(!rowCache)
         {
@@ -564,10 +564,11 @@
             [showsCell setShows:shows];
             
             rowCache = @{ @"icons" : showsCell.icons, @"visibleColumns" : @(shows.count) };
-            [self.showsTableCache setObject:rowCache forKey:indexPath];
+            [self.showsTableCache setObject:rowCache forKey:@(indexPath.row)];
         }
         else
         {
+            showsCell.shows = nil;
             showsCell.icons = [rowCache objectForKey:@"icons"];
             showsCell.visibleColumns = [[rowCache objectForKey:@"visibleColumns"] integerValue];
             [showsCell setNeedsDisplay];
@@ -710,7 +711,10 @@
     if(controller == self.fetchedEpisodesController && self.sectionVisible == TWSectionEpisodes)
         [self.tableView endUpdates];
     else
+    {
+        self.showsTableCache = nil;
         [self.tableView reloadData];
+    }
 }
 
 #pragma mark - Rotate
@@ -719,7 +723,10 @@
 - (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
 {
     if(self.sectionVisible == TWSectionShows)
+    {
+        self.showsTableCache = nil;
         [self.tableView reloadData];
+    }
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation

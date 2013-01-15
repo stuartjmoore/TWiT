@@ -30,6 +30,9 @@ dispatch_async(queue, ^{
 - (void)layoutSubviews
 {
     [super layoutSubviews];
+ 
+    if(!self.shows)
+        return;
     
     UIGraphicsBeginImageContextWithOptions(self.frame.size, YES, UIScreen.mainScreen.scale);
     
