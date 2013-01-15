@@ -208,6 +208,11 @@
     }
 }
 
+- (IBAction)openQualityPopover:(UIButton*)sender
+{
+    
+}
+
 
 - (IBAction)seekStart:(UISlider*)sender
 {

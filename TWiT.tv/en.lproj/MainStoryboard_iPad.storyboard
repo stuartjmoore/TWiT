@@ -449,6 +449,9 @@
                                                 <state key="highlighted">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="openQualityPopover:" destination="tGz-71-90E" eventType="touchUpInside" id="1KE-m7-ayM"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -474,6 +477,9 @@
                                                 <state key="highlighted">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="openChatView:" destination="tGz-71-90E" eventType="touchUpInside" id="sX2-cD-brZ"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -666,6 +672,9 @@
                                                 <state key="highlighted">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="openQualityPopover:" destination="Dal-NS-I4L" eventType="touchUpInside" id="vkp-Km-bZV"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -1180,6 +1189,8 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/TWLiveViewController.h"/>
             <relationships>
                 <relationship kind="action" name="close:" candidateClass="UIBarButtonItem"/>
+                <relationship kind="action" name="openChatView:" candidateClass="UIButton"/>
+                <relationship kind="action" name="openQualityPopover:" candidateClass="UIButton"/>
                 <relationship kind="action" name="play:" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="airplayButtonView" candidateClass="UIView"/>
                 <relationship kind="outlet" name="chatButton" candidateClass="UIButton"/>
@@ -1212,6 +1223,7 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/TWPlayerViewController.h"/>
             <relationships>
                 <relationship kind="action" name="close:" candidateClass="UIBarButtonItem"/>
+                <relationship kind="action" name="openQualityPopover:" candidateClass="UIButton"/>
                 <relationship kind="action" name="play:" candidateClass="UIButton"/>
                 <relationship kind="action" name="rewind:" candidateClass="UIButton"/>
                 <relationship kind="action" name="seekEnd:" candidateClass="UISlider"/>

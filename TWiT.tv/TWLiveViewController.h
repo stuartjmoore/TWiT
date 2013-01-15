@@ -22,6 +22,9 @@
 @property (nonatomic, weak) IBOutlet UIButton *qualityButton, *chatButton, *playButton;
 
 - (void)playerStateChanged:(NSNotification*)notification;
+
 - (IBAction)play:(UIButton*)sender;
+- (IBAction)openChatView:(UIButton*)sender;
+- (IBAction)openQualityPopover:(UIButton*)sender;
 
 @end

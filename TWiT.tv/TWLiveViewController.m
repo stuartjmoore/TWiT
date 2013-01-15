@@ -133,6 +133,16 @@
     }
 }
 
+- (IBAction)openChatView:(UIButton*)sender
+{
+    
+}
+
+- (IBAction)openQualityPopover:(UIButton*)sender
+{
+    
+}
+
 #pragma mark - Rotate
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
