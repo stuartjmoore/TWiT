@@ -10,6 +10,7 @@
 
 #import "TWPlayerViewController.h"
 #import "TWSplitViewContainer.h"
+#import "TWEpisodeViewController.h"
 
 #import "Show.h"
 #import "Episode.h"
@@ -287,6 +288,7 @@
     } completion:^(BOOL fin){
         [self.view removeFromSuperview];
         [self removeFromParentViewController];
+        [(TWEpisodeViewController*)self.splitViewContainer.modalController.topViewController configureView];
     }];
 }
 

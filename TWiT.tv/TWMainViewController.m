@@ -114,41 +114,38 @@
     {
         if([tableView.indexPathForSelectedRow isEqual:indexPath])
         {
-            TWSplitViewContainer *splitViewContainer = (TWSplitViewContainer*)self.navigationController.parentViewController;
-            
-            CGRect frame = splitViewContainer.modalFlyout.frame;
+            CGRect frame = self.splitViewContainer.modalFlyout.frame;
             frame.origin.x -= frame.size.width;
             
             [UIView animateWithDuration:0.3f animations:^{
-                splitViewContainer.modalFlyout.frame = frame;
-                splitViewContainer.modalBlackground.alpha = 0;
+                self.splitViewContainer.modalFlyout.frame = frame;
+                self.splitViewContainer.modalBlackground.alpha = 0;
             } completion:^(BOOL fin){
-                splitViewContainer.modalContainer.hidden = YES;
-                splitViewContainer.modalBlackground.alpha = 1;
+                self.splitViewContainer.modalContainer.hidden = YES;
+                self.splitViewContainer.modalBlackground.alpha = 1;
             }];
             
             [tableView deselectRowAtIndexPath:indexPath animated:NO];
         }
         else
         {
-            TWSplitViewContainer *splitViewContainer = (TWSplitViewContainer*)self.navigationController.parentViewController;
-            UINavigationController *modalController = (UINavigationController*)splitViewContainer.modalController;
+            UINavigationController *modalController = (UINavigationController*)self.splitViewContainer.modalController;
             TWEpisodeViewController *episodeController = (TWEpisodeViewController*)modalController.topViewController;
             
             Episode *episode = [self.fetchedEpisodesController objectAtIndexPath:indexPath];
             episodeController.episode = episode;
             
-            if(splitViewContainer.modalContainer.hidden)
+            if(self.splitViewContainer.modalContainer.hidden)
             {
-                splitViewContainer.modalBlackground.alpha = 0;
-                splitViewContainer.modalContainer.hidden = NO;
+                self.splitViewContainer.modalBlackground.alpha = 0;
+                self.splitViewContainer.modalContainer.hidden = NO;
                 
-                CGRect frame = splitViewContainer.modalFlyout.frame;
+                CGRect frame = self.splitViewContainer.modalFlyout.frame;
                 frame.origin.x += frame.size.width;
                 
                 [UIView animateWithDuration:0.3f animations:^{
-                    splitViewContainer.modalBlackground.alpha = 1;
-                    splitViewContainer.modalFlyout.frame = frame;
+                    self.splitViewContainer.modalBlackground.alpha = 1;
+                    self.splitViewContainer.modalFlyout.frame = frame;
                 }];
             }
             
@@ -662,7 +659,23 @@
                 break;
                 
             case NSFetchedResultsChangeDelete:
+                
+                if([indexPath isEqual:self.tableView.indexPathForSelectedRow])
+                {
+                    CGRect frame = self.splitViewContainer.modalFlyout.frame;
+                    frame.origin.x -= frame.size.width;
+                    
+                    [UIView animateWithDuration:0.3f animations:^{
+                        self.splitViewContainer.modalFlyout.frame = frame;
+                        self.splitViewContainer.modalBlackground.alpha = 0;
+                    } completion:^(BOOL fin){
+                        self.splitViewContainer.modalContainer.hidden = YES;
+                        self.splitViewContainer.modalBlackground.alpha = 1;
+                    }];
+                }
+                
                 [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+                
                 break;
                 
             case NSFetchedResultsChangeUpdate:

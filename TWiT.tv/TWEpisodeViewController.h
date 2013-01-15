@@ -22,6 +22,8 @@
 @property (weak, nonatomic) IBOutlet UITextView *descLabel;
 @property (weak, nonatomic) IBOutlet TWSegmentedButton *segmentedButton;
 
+- (void)configureView;
+
 - (void)watchPressed:(TWSegmentedButton*)sender;
 - (void)listenPressed:(TWSegmentedButton*)sender;
 - (void)downloadPressed:(TWSegmentedButton*)sender;
