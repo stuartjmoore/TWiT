@@ -11,6 +11,7 @@
 
 #import "TWSplitViewContainer.h"
 #import "TWMainViewController.h"
+#import "TWLiveViewController.h"
 #import "TWPlayerViewController.h"
 
 #import "TWShowViewController.h"
@@ -813,23 +814,19 @@
     [splitViewContainer presentViewController:scheduleController animated:YES completion:^{}];
 }
 
-- (IBAction)transitionToPlayer:(UIButton*)sender
+- (IBAction)transitionToLive:(UIButton*)sender
 {
-    TWPlayerViewController *playerController = [self.storyboard instantiateViewControllerWithIdentifier:@"playerController"];
-    playerController.splitViewContainer = self.splitViewContainer;
+    TWLiveViewController *liveController = [self.storyboard instantiateViewControllerWithIdentifier:@"liveController"];
+    liveController.splitViewContainer = self.splitViewContainer;
     
-    // TODO: Change to Live
-    Show *show = self.channel.shows.anyObject;
-    Episode *episode = show.episodes.anyObject;
-    Enclosure *enclosure = episode.enclosures.anyObject;
-    playerController.enclosure = enclosure;
-    // DEBUG
+    Stream *stream = self.channel.streams.anyObject;
+    liveController.stream = stream;
     
-    playerController.view.frame = self.splitViewContainer.view.bounds;
-    playerController.view.autoresizingMask = 63;
-    [self.splitViewContainer.view addSubview:playerController.view];
-    [self.splitViewContainer.view sendSubviewToBack:playerController.view];
-    [self.splitViewContainer addChildViewController:playerController];
+    liveController.view.frame = self.splitViewContainer.view.bounds;
+    liveController.view.autoresizingMask = 63;
+    [self.splitViewContainer.view addSubview:liveController.view];
+    [self.splitViewContainer.view sendSubviewToBack:liveController.view];
+    [self.splitViewContainer addChildViewController:liveController];
     
     CGRect masterFrameOriginal = self.splitViewContainer.masterContainer.frame;
     CGRect masterFrameAnimate = masterFrameOriginal;
@@ -851,7 +848,7 @@
         if(self.splitViewContainer.modalFlyout.frame.origin.x == 0)
             self.splitViewContainer.modalContainer.frame = modalFrameAnimate;
     } completion:^(BOOL fin){
-        [self.splitViewContainer.view bringSubviewToFront:playerController.view];
+        [self.splitViewContainer.view bringSubviewToFront:liveController.view];
         
         self.splitViewContainer.masterContainer.hidden = YES;
         self.splitViewContainer.detailContainer.hidden = YES;

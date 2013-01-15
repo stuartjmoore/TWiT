@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
+#import "Schedule.h"
+
 @class Show, Stream, Schedule;
 
 @interface Channel : NSManagedObject

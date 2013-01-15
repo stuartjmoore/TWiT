@@ -45,6 +45,6 @@ typedef NS_ENUM(NSInteger, TWSection)
 
 - (void)redrawSchedule:(NSNotification*)notification;
 - (IBAction)transitionToSchedule:(UIButton*)sender;
-- (IBAction)transitionToPlayer:(UIButton*)sender;
+- (IBAction)transitionToLive:(UIButton*)sender;
 
 @end
