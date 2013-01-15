@@ -43,12 +43,19 @@
     
     self.delegate = (TWAppDelegate*)UIApplication.sharedApplication.delegate;
     
+    NSLog(@"%@", self.enclosure);
+    NSLog(@"%@", self.delegate.nowPlaying);
+    
     if(self.delegate.nowPlaying != self.enclosure)
     {
+        NSLog(@"load");
+        
         if(self.delegate.player)
             [self.delegate stop];
         
         NSURL *url = self.enclosure.path ? [NSURL fileURLWithPath:self.enclosure.path] : [NSURL URLWithString:self.enclosure.url];
+        
+        NSLog(@"url %@", url);
         
         self.delegate.player = [[MPMoviePlayerController alloc] init];
         self.delegate.player.contentURL = url;
@@ -57,6 +64,9 @@
         self.delegate.player.shouldAutoplay = YES;
         self.delegate.player.allowsAirPlay = YES;
         self.delegate.player.scalingMode = MPMovieScalingModeAspectFit;
+        
+        NSLog(@"player %@", self.delegate.player);
+        NSLog(@"contentURL %@", self.delegate.player.contentURL);
         
         if([MPNowPlayingInfoCenter class])
         {
@@ -116,6 +126,8 @@
 
 - (void)playerStateChanged:(NSNotification*)notification
 {
+    NSLog(@"playerStateChanged %@", notification);
+    
     if([notification.name isEqualToString:@"MPMoviePlayerLoadStateDidChangeNotification"])
     {
         if(self.delegate.player.loadState != MPMovieLoadStateUnknown)
@@ -254,26 +266,34 @@
 
 - (IBAction)close:(UIBarButtonItem*)sender
 {
-    TWSplitViewContainer *splitViewContainer = (TWSplitViewContainer*)self.presentingViewController;
-    
-    splitViewContainer.view.frame = self.view.bounds;
-    [self.view addSubview:splitViewContainer.view];
-    
-    CGRect masterFrameOriginal = splitViewContainer.masterContainer.frame;
+    CGRect masterFrameOriginal = self.splitViewContainer.masterContainer.frame;
     CGRect masterFrameAnimate = masterFrameOriginal;
     masterFrameAnimate.origin.x -= masterFrameAnimate.size.width;
-    splitViewContainer.masterContainer.frame = masterFrameAnimate;
+    self.splitViewContainer.masterContainer.frame = masterFrameAnimate;
     
-    CGRect detailFrameOriginal = splitViewContainer.detailContainer.frame;
+    CGRect detailFrameOriginal = self.splitViewContainer.detailContainer.frame;
     CGRect detailFrameAnimate = detailFrameOriginal;
     detailFrameAnimate.origin.x += detailFrameAnimate.size.width;
-    splitViewContainer.detailContainer.frame = detailFrameAnimate;
+    self.splitViewContainer.detailContainer.frame = detailFrameAnimate;
+    
+    CGRect modalFrameOriginal = self.splitViewContainer.modalContainer.frame;
+    CGRect modalFrameAnimate = modalFrameOriginal;
+    modalFrameAnimate.origin.x += modalFrameAnimate.size.width;
+    self.splitViewContainer.modalContainer.frame = modalFrameAnimate;
+    
+    [self.splitViewContainer.view sendSubviewToBack:self.view];
+    
+    self.splitViewContainer.masterContainer.hidden = NO;
+    self.splitViewContainer.detailContainer.hidden = NO;
+    self.splitViewContainer.modalContainer.hidden = NO;
     
     [UIView animateWithDuration:0.3f animations:^{
-        splitViewContainer.masterContainer.frame = masterFrameOriginal;
-        splitViewContainer.detailContainer.frame = detailFrameOriginal;
+        self.splitViewContainer.masterContainer.frame = masterFrameOriginal;
+        self.splitViewContainer.detailContainer.frame = detailFrameOriginal;
+        self.splitViewContainer.modalContainer.frame = modalFrameOriginal;
     } completion:^(BOOL fin){
-        [self dismissViewControllerAnimated:NO completion:^{}];
+        [self.view removeFromSuperview];
+        [self removeFromParentViewController];
     }];
 }
 
@@ -285,7 +305,7 @@
         self.enclosure.episode.watched = YES;
     
     if(self.delegate.player.playbackState != MPMoviePlaybackStatePlaying)
-        self.delegate.nowPlaying = nil;
+        [self.delegate stop];
     
     [self.enclosure.managedObjectContext save:nil];
     

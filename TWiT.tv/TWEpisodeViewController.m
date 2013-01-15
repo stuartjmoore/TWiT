@@ -8,6 +8,7 @@
 
 #import <QuartzCore/QuartzCore.h>
 
+#import "TWSplitViewContainer.h"
 #import "TWEpisodeViewController.h"
 #import "TWPlayerViewController.h"
 
@@ -101,11 +102,17 @@
 
 - (void)watchPressed:(TWSegmentedButton*)sender
 {
-    [self performSegueWithIdentifier:@"playerDetail" sender:sender.watchButton];
+    if(UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPhone)
+        [self performSegueWithIdentifier:@"playerDetail" sender:sender.watchButton];
+    else
+        [self transitionToPlayer:sender.watchButton];
 }
 - (void)listenPressed:(TWSegmentedButton*)sender
 {
-    [self performSegueWithIdentifier:@"playerDetail" sender:sender.listenButton];
+    if(UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPhone)
+        [self performSegueWithIdentifier:@"playerDetail" sender:sender.listenButton];
+    else
+        [self transitionToPlayer:sender.watchButton];
 }
 
 - (void)downloadPressed:(TWSegmentedButton*)sender
@@ -205,6 +212,60 @@
         
         [segue.destinationViewController setEnclosure:enclosure];
     }
+}
+
+- (IBAction)transitionToPlayer:(UIButton*)sender
+{
+    TWPlayerViewController *playerController = [self.storyboard instantiateViewControllerWithIdentifier:@"playerController"];
+    playerController.splitViewContainer = self.splitViewContainer;
+    
+    if(sender == self.playButton || sender == self.segmentedButton.watchButton)
+    {
+        NSSet *enclosures = [self.episode downloadedEnclosures];
+        Enclosure *enclosure = enclosures.anyObject ?: [self.episode enclosureForType:TWTypeVideo andQuality:TWQualityHigh];
+        
+        playerController.enclosure = enclosure;
+    }
+    else if(sender == self.segmentedButton.listenButton)
+    {
+        Enclosure *enclosure = [self.episode enclosureForType:TWTypeAudio andQuality:TWQualityAudio];
+        
+        playerController.enclosure = enclosure;
+    }
+    
+    playerController.view.frame = self.splitViewContainer.view.bounds;
+    playerController.view.autoresizingMask = 63;
+    [self.splitViewContainer.view addSubview:playerController.view];
+    [self.splitViewContainer.view sendSubviewToBack:playerController.view];
+    [self.splitViewContainer addChildViewController:playerController];
+    
+    CGRect masterFrameOriginal = self.splitViewContainer.masterContainer.frame;
+    CGRect masterFrameAnimate = masterFrameOriginal;
+    masterFrameAnimate.origin.x -= masterFrameAnimate.size.width;
+    
+    CGRect detailFrameOriginal = self.splitViewContainer.detailContainer.frame;
+    CGRect detailFrameAnimate = detailFrameOriginal;
+    detailFrameAnimate.origin.x += detailFrameAnimate.size.width;
+    
+    CGRect modalFrameOriginal = self.splitViewContainer.detailContainer.frame;
+    CGRect modalFrameAnimate = modalFrameOriginal;
+    modalFrameAnimate.origin.x += modalFrameAnimate.size.width;
+    
+    [UIView animateWithDuration:0.3f animations:^{
+        self.splitViewContainer.masterContainer.frame = masterFrameAnimate;
+        self.splitViewContainer.detailContainer.frame = detailFrameAnimate;
+        self.splitViewContainer.modalContainer.frame = modalFrameAnimate;
+    } completion:^(BOOL fin){
+        [self.splitViewContainer.view bringSubviewToFront:playerController.view];
+        
+        self.splitViewContainer.masterContainer.hidden = YES;
+        self.splitViewContainer.detailContainer.hidden = YES;
+        self.splitViewContainer.modalContainer.hidden = YES;
+        
+        self.splitViewContainer.masterContainer.frame = masterFrameOriginal;
+        self.splitViewContainer.detailContainer.frame = detailFrameOriginal;
+        self.splitViewContainer.modalContainer.frame = modalFrameOriginal;
+    }];
 }
 
 #pragma mark - Settings

@@ -8,10 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-@class Episode, TWPlayButton, TWSegmentedButton;
+@class Episode, TWPlayButton, TWSegmentedButton, TWSplitViewContainer;
 
 @interface TWEpisodeViewController : UIViewController <UIActionSheetDelegate, UIAlertViewDelegate>
 
+@property (weak, nonatomic) TWSplitViewContainer *splitViewContainer;
 @property (strong, nonatomic) Episode *episode;
 
 @property (weak, nonatomic) IBOutlet UIImageView *posterView;
@@ -27,5 +28,7 @@
 - (void)updateProgress:(NSNotification*)notification;
 - (void)cancelPressed:(TWSegmentedButton*)sender;
 - (void)deletePressed:(TWSegmentedButton*)sender;
+
+- (IBAction)transitionToPlayer:(UIButton*)sender;
 
 @end

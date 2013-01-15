@@ -8,10 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-@class TWAppDelegate, Enclosure;
+@class TWSplitViewContainer, TWAppDelegate, Enclosure;
 
 @interface TWPlayerViewController : UIViewController
 
+@property (nonatomic, weak) TWSplitViewContainer *splitViewContainer;
 @property (nonatomic, weak) TWAppDelegate *delegate;
 @property (nonatomic, strong) Enclosure *enclosure;
 

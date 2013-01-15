@@ -20,12 +20,15 @@
             titleLabel.font = [UIFont fontWithName:@"Vollkorn-BoldItalic" size:24];
             titleLabel.text = title;
             
-            CGSize size = [title sizeWithFont:titleLabel.font];
-            
+            CGSize size = [title sizeWithFont:[UIFont fontWithName:@"Vollkorn-BoldItalic" size:13]];
             if(size.width > titleLabel.frame.size.width)
             {
                 titleLabel.font = [UIFont fontWithName:titleLabel.font.fontName size:13];
                 titleLabel.numberOfLines = 2;
+            }
+            else
+            {
+                titleLabel.numberOfLines = 1;
             }
         }
     }

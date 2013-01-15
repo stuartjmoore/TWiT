@@ -9,10 +9,11 @@
 #import <QuartzCore/QuartzCore.h>
 
 #import "TWSplitViewContainer.h"
+#import "TWEpisodeViewController.h"
 
 @implementation TWSplitViewContainer
 
-- (void)setMasterController:(UIViewController*)masterController
+- (void)setMasterController:(UINavigationController*)masterController
 {
     _masterController = masterController;
     
@@ -23,7 +24,7 @@
     [self.masterContainer sendSubviewToBack:masterController.view];
 }
 
-- (void)setDetailController:(UIViewController *)detailController
+- (void)setDetailController:(UINavigationController*)detailController
 {
     _detailController = detailController;
     
@@ -34,11 +35,13 @@
     [self.detailContainer sendSubviewToBack:detailController.view];
 }
 
-- (void)setModalController:(UIViewController*)modalController
+- (void)setModalController:(UINavigationController*)modalController
 {
     _modalController = modalController;
     
     [self addChildViewController:modalController];
+    TWEpisodeViewController *episodeController = (TWEpisodeViewController*)modalController.topViewController;
+    episodeController.splitViewContainer = self;
     
     modalController.view.frame = self.modalFlyout.bounds;
     [self.modalFlyout addSubview:modalController.view];
