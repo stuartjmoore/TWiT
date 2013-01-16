@@ -116,7 +116,7 @@
         if([tableView.indexPathForSelectedRow isEqual:indexPath])
         {
             CGRect frame = self.splitViewContainer.modalFlyout.frame;
-            frame.origin.x -= frame.size.width;
+            frame.origin.x = -frame.size.width;
             
             [UIView animateWithDuration:0.3f animations:^{
                 self.splitViewContainer.modalFlyout.frame = frame;
@@ -142,7 +142,7 @@
                 self.splitViewContainer.modalContainer.hidden = NO;
                 
                 CGRect frame = self.splitViewContainer.modalFlyout.frame;
-                frame.origin.x += frame.size.width;
+                frame.origin.x = 0;
                 
                 [UIView animateWithDuration:0.3f animations:^{
                     self.splitViewContainer.modalBlackground.alpha = 1;

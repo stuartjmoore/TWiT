@@ -27,6 +27,7 @@ dispatch_async(queue, ^{
         
     _shows = shows;
     self.icons = nil;
+    [self setNeedsDisplayInRect:self.bounds];
     
     [self layoutSubviews];
 }

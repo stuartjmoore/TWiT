@@ -251,7 +251,7 @@
             TWSplitViewContainer *splitViewContainer = (TWSplitViewContainer*)self.navigationController.parentViewController;
             
             CGRect frame = splitViewContainer.modalFlyout.frame;
-            frame.origin.x -= frame.size.width;
+            frame.origin.x = -frame.size.width;
             
             [UIView animateWithDuration:0.3f animations:^{
                 splitViewContainer.modalFlyout.frame = frame;
@@ -278,7 +278,7 @@
                 splitViewContainer.modalContainer.hidden = NO;
                 
                 CGRect frame = splitViewContainer.modalFlyout.frame;
-                frame.origin.x += frame.size.width;
+                frame.origin.x = 0;
                 
                 [UIView animateWithDuration:0.3f animations:^{
                     splitViewContainer.modalBlackground.alpha = 1;

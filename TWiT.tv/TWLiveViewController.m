@@ -201,11 +201,6 @@
 
 - (void)viewWillDisappear:(BOOL)animated
 {
-    if(self.delegate.player.playbackState != MPMoviePlaybackStatePlaying)
-        [self.delegate stop];
-    
-    //[self.enclosure.managedObjectContext save:nil];
-    
     self.wantsFullScreenLayout = NO;
     self.navigationController.navigationBar.tintColor = [UIColor colorWithRed:0.18 green:0.44 blue:0.57 alpha:1.0];
     self.navigationController.navigationBar.translucent = NO;
@@ -216,11 +211,25 @@
     [self.navigationController setNavigationBarHidden:NO animated:YES];
     [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationSlide];
     
-    [NSNotificationCenter.defaultCenter removeObserver:self name:MPMoviePlayerPlaybackStateDidChangeNotification object:nil];
-    [NSNotificationCenter.defaultCenter removeObserver:self name:MPMoviePlayerLoadStateDidChangeNotification object:nil];
-    [NSNotificationCenter.defaultCenter removeObserver:self name:MPMoviePlayerPlaybackDidFinishNotification object:nil];
+    [NSNotificationCenter.defaultCenter removeObserver:self
+                                                  name:MPMoviePlayerPlaybackStateDidChangeNotification
+                                                object:self.delegate.player];
+    [NSNotificationCenter.defaultCenter removeObserver:self
+                                                  name:MPMoviePlayerLoadStateDidChangeNotification
+                                                object:self.delegate.player];
+    [NSNotificationCenter.defaultCenter removeObserver:self
+                                                  name:MPMoviePlayerPlaybackDidFinishNotification
+                                                object:self.delegate.player];
     
     [super viewWillDisappear:animated];
+}
+
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:animated];
+    
+    if(self.delegate.player.playbackState != MPMoviePlaybackStatePlaying)
+        [self.delegate stop];
 }
 
 @end
