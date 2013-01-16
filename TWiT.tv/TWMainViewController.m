@@ -180,15 +180,38 @@
             Show *selectedShow = [self.fetchedShowsController objectAtIndexPath:showIndexPath];
             
             if(currentShow == selectedShow)
+            {
+                [self.showSelectedView removeFromSuperview];
+                self.showSelectedView = nil;
+                
                 [masterController popToRootViewControllerAnimated:YES];
+            }
             else
             {
+                CGRect frame = [showCell frameForColumn:column];
+                frame = [showCell convertRect:frame toView:self.tableView];
+                frame = CGRectInset(frame, -5, -5);
+                self.showSelectedView.frame = frame;
+                
                 [selectedShow updateEpisodes];
                 showController.show = selectedShow;
             }
         }
         else
         {
+            if(!self.showSelectedView)
+            {
+                self.showSelectedView = [[UIView alloc] init];
+                self.showSelectedView.backgroundColor = [UIColor blueColor];
+                self.showSelectedView.userInteractionEnabled = NO;
+                [self.tableView addSubview:self.showSelectedView];
+            }
+            
+            CGRect frame = [showCell frameForColumn:column];
+            frame = [showCell convertRect:frame toView:self.tableView];
+            frame = CGRectInset(frame, -5, -5);
+            self.showSelectedView.frame = frame;
+            
             TWMainViewController *episodesController = (TWMainViewController*)masterController.topViewController;
             [episodesController performSegueWithIdentifier:@"showDetail" sender:showIndexPath];
         }

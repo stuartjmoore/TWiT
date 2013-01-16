@@ -13,6 +13,8 @@
 
 #import "Channel.h"
 #import "Stream.h"
+#import "Episode.h"
+#import "Enclosure.h"
 
 @implementation TWLiveViewController
 
@@ -40,6 +42,9 @@
     
     if(self.delegate.nowPlaying != self.stream)
     {
+        if([self.delegate.nowPlaying isKindOfClass:Enclosure.class] && self.delegate.player)
+            [[self.delegate.nowPlaying episode] setLastTimecode:self.delegate.player.currentPlaybackTime];
+        
         if(self.delegate.player)
             [self.delegate stop];
         
@@ -210,6 +215,11 @@
     
     [self.navigationController setNavigationBarHidden:NO animated:YES];
     [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationSlide];
+    
+    // when self.player.loadState == MPMovieLoadStateUnknown, observers are not removed
+    //   nonForcedSubtitleDisplayEnabled
+    //   presentationSize
+    //   AVPlayerItem
     
     [NSNotificationCenter.defaultCenter removeObserver:self
                                                   name:MPMoviePlayerPlaybackStateDidChangeNotification

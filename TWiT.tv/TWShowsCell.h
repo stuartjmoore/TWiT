@@ -26,6 +26,8 @@
 
 @property (nonatomic, strong) NSArray *shows;
 
+- (CGRect)frameForColumn:(int)column;
+
 - (void)didDrawIcons;
 
 @end

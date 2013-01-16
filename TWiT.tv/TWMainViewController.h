@@ -32,6 +32,7 @@ typedef NS_ENUM(NSInteger, TWSection)
 @property (strong, nonatomic) NSFetchedResultsController *fetchedEpisodesController, *fetchedShowsController;
 
 @property (strong, nonatomic) NSMutableDictionary *showsTableCache;
+@property (strong, nonatomic) UIView *showSelectedView;
 
 @property (weak, nonatomic) IBOutlet UIView *headerView;
 @property (weak, nonatomic) IBOutlet UIButton *watchButton, *listenButton;

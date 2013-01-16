@@ -11,15 +11,6 @@
 
 @implementation TWShowsCell
 
-/*
-dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0ul);
-dispatch_async(queue, ^{
-    dispatch_sync(dispatch_get_main_queue(), ^{
-    });
-    
-});
-*/
- 
 - (void)setShows:(NSArray*)shows
 {
     if([_shows isEqualToArray:shows])
@@ -32,15 +23,23 @@ dispatch_async(queue, ^{
     [self layoutSubviews];
 }
 
+- (CGRect)frameForColumn:(int)column
+{
+    float x = self.spacing+column*(self.size+self.spacing);
+    return CGRectMake(x, self.spacing/2, self.size, self.size);
+}
+
+#pragma mark - Draw
+
 - (void)layoutSubviews
 {
     [super layoutSubviews];
  
-    if(!self.shows)
+    if(!self.shows || self.icons.size.width == self.frame.size.width)
+    {
+        [self setNeedsDisplayInRect:self.bounds];
         return;
-    
-    if(self.icons.size.width == self.frame.size.width)
-        return;
+    }
     
     NSMutableArray *albumArtPathes = [NSMutableArray array];
     // weakSelf?
@@ -59,8 +58,7 @@ dispatch_async(queue, ^{
         for(Show *show in self.shows)
         {
             int column = [self.shows indexOfObject:show];
-            float x = self.spacing+column*(self.size+self.spacing);
-            CGRect frame = CGRectMake(x, self.spacing/2, self.size, self.size);
+            CGRect frame = [self frameForColumn:column];
             
             CGContextSetShadow(context, CGSizeMake(0, 2), 4);
             
@@ -77,7 +75,6 @@ dispatch_async(queue, ^{
         });
     });
 }
-
 - (void)didDrawIcons
 {
     [self.delegate showsCell:self didDrawIconsAtIndexPath:self.indexPath];
@@ -98,9 +95,8 @@ dispatch_async(queue, ^{
     
     for(int column = 0; column < self.visibleColumns; column++)
     {
-        float x = self.spacing+column*(self.size+self.spacing);
-        if(CGRectContainsPoint(CGRectMake(x, self.spacing/2, self.size, self.size), location))
-        {
+        if(CGRectContainsPoint([self frameForColumn:column], location))
+        {   
             [self.delegate tableView:self.table didSelectColumn:column AtIndexPath:self.indexPath];
         }
     }

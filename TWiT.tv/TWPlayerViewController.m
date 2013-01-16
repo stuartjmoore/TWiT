@@ -46,6 +46,9 @@
     
     if(self.delegate.nowPlaying != self.enclosure)
     {
+        if([self.delegate.nowPlaying isKindOfClass:Enclosure.class] && self.delegate.player)
+            [[self.delegate.nowPlaying episode] setLastTimecode:self.delegate.player.currentPlaybackTime];
+        
         if(self.delegate.player)
             [self.delegate stop];
         
