@@ -62,6 +62,9 @@
 
 - (Event*)currentShow
 {
+    if(self.days.count == 0)
+        return nil;
+    
     Event *currentShow;
     
     BOOL tryTomorrow = YES;
