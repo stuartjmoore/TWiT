@@ -22,7 +22,11 @@ dispatch_async(queue, ^{
  
 - (void)setShows:(NSArray*)shows
 {
+    if([_shows isEqualToArray:shows])
+        return;
+        
     _shows = shows;
+    self.icons = nil;
     
     [self layoutSubviews];
 }
@@ -34,28 +38,48 @@ dispatch_async(queue, ^{
     if(!self.shows)
         return;
     
-    UIGraphicsBeginImageContextWithOptions(self.frame.size, YES, UIScreen.mainScreen.scale);
+    if(self.icons.size.width == self.frame.size.width)
+        return;
     
-    CGContextRef context = UIGraphicsGetCurrentContext();
-    CGContextSetFillColorWithColor(context, [UIColor colorWithWhite:245/255.0 alpha:1].CGColor);
-    CGContextFillRect(context, self.bounds);
+    NSMutableArray *albumArtPathes = [NSMutableArray array];
+    // weakSelf?
     
     for(Show *show in self.shows)
-    {
-        int column = [self.shows indexOfObject:show];
-        float x = self.spacing+column*(self.size+self.spacing);
-        CGRect frame = CGRectMake(x, self.spacing/2, self.size, self.size);
-        
-        CGContextSetShadow(context, CGSizeMake(0, 2), 4);
-        
-        UIImage *image = show.albumArt.image;
-        [image drawInRect:frame];
-    }
+        [albumArtPathes addObject:show.albumArt.path];
     
-    self.icons = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    
-    self.visibleColumns = self.shows.count;
+    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0ul);
+    dispatch_async(queue, ^{
+        UIGraphicsBeginImageContextWithOptions(self.frame.size, YES, UIScreen.mainScreen.scale);
+        
+        CGContextRef context = UIGraphicsGetCurrentContext();
+        CGContextSetFillColorWithColor(context, [UIColor colorWithWhite:245/255.0 alpha:1].CGColor);
+        CGContextFillRect(context, self.bounds);
+        
+        for(Show *show in self.shows)
+        {
+            int column = [self.shows indexOfObject:show];
+            float x = self.spacing+column*(self.size+self.spacing);
+            CGRect frame = CGRectMake(x, self.spacing/2, self.size, self.size);
+            
+            CGContextSetShadow(context, CGSizeMake(0, 2), 4);
+            
+            UIImage *image =  [UIImage imageWithContentsOfFile:albumArtPathes[column]] ?: [UIImage imageNamed:@"generic.jpg"];
+            [image drawInRect:frame];
+        }
+        
+        self.icons = UIGraphicsGetImageFromCurrentImageContext();
+        UIGraphicsEndImageContext();
+        
+        self.visibleColumns = self.shows.count;
+        dispatch_sync(dispatch_get_main_queue(), ^{
+            [self didDrawIcons];
+        });
+    });
+}
+
+- (void)didDrawIcons
+{
+    [self.delegate showsCell:self didDrawIcons:self.icons AtIndexPath:self.indexPath];
     [self setNeedsDisplayInRect:self.bounds];
 }
 

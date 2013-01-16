@@ -600,10 +600,11 @@
             showsCell.columns = 3;
         }
         
-        //self.showsTableCache = self.showsTableCache ?: [NSMutableDictionary dictionary];
-        //NSDictionary *rowCache = [self.showsTableCache objectForKey:@(indexPath.row)];
+        self.showsTableCache = self.showsTableCache ?: [NSMutableDictionary dictionary];
+        NSString *cacheKey = [NSString stringWithFormat:@"%f-%d", self.tableView.frame.size.width, indexPath.row];
+        NSDictionary *rowCache = self.showsTableCache[cacheKey];
         
-        //if(!rowCache)
+        if(!rowCache)
         {
             id <NSFetchedResultsSectionInfo>sectionInfo = self.fetchedShowsController.sections[indexPath.section];
             int num = sectionInfo.numberOfObjects;
@@ -623,16 +624,25 @@
             [showsCell setShows:shows];
             
             //rowCache = @{ @"icons" : showsCell.icons, @"visibleColumns" : @(shows.count) };
-            //[self.showsTableCache setObject:rowCache forKey:@(indexPath.row)];
-        }/*
+            //[self.showsTableCache setObject:rowCache forKey:cacheKey];
+        }
         else
         {
-            showsCell.shows = nil;
             showsCell.icons = [rowCache objectForKey:@"icons"];
             showsCell.visibleColumns = [[rowCache objectForKey:@"visibleColumns"] integerValue];
             [showsCell setNeedsDisplay];
-        }*/
+        }
     }
+}
+- (void)showsCell:(TWShowsCell*)showsCell didDrawIcons:(UIImage*)icons AtIndexPath:(NSIndexPath*)indexPath;
+{
+    NSString *cacheKey = [NSString stringWithFormat:@"%f-%d", self.tableView.frame.size.width, indexPath.row];
+    NSDictionary *rowCache = self.showsTableCache[cacheKey];
+    
+    rowCache = @{ @"icons" : showsCell.icons, @"visibleColumns" : @(showsCell.visibleColumns) };
+    [self.showsTableCache setObject:rowCache forKey:cacheKey];
+    
+    [showsCell setNeedsDisplay];
 }
 
 #pragma mark - Fetched results controller
@@ -782,10 +792,7 @@
 - (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
 {
     if(self.sectionVisible == TWSectionShows)
-    {
-        self.showsTableCache = nil;
         [self.tableView reloadData];
-    }
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation

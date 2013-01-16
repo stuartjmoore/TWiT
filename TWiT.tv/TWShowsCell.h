@@ -8,10 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-@class Show;
+@class Show, TWShowsCell;
 
 @protocol TWiTShowGridCellDelegate <NSObject>
 - (void)tableView:(UITableView*)tableView didSelectColumn:(int)column AtIndexPath:(NSIndexPath*)indexPath;
+- (void)showsCell:(TWShowsCell*)showsCell didDrawIcons:(UIImage*)icons AtIndexPath:(NSIndexPath*)indexPath;
 @end
 
 @interface TWShowsCell : UITableViewCell
@@ -24,5 +25,7 @@
 @property (nonatomic) NSInteger spacing, size, columns, visibleColumns;
 
 @property (nonatomic, strong) NSArray *shows;
+
+- (void)didDrawIcons;
 
 @end
