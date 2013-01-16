@@ -901,6 +901,16 @@
         
         [segue.destinationViewController setEnclosure:enclosure];
     }
+    else if([segue.identifier isEqualToString:@"liveAudioDetail"])
+    {
+        Stream *stream = self.channel.streams.anyObject;
+        [segue.destinationViewController setStream:stream];
+    }
+    else if([segue.identifier isEqualToString:@"liveVideoDetail"])
+    {
+        Stream *stream = self.channel.streams.anyObject;
+        [segue.destinationViewController setStream:stream];
+    }
 }
 
 - (void)didReceiveMemoryWarning

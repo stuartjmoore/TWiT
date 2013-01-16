@@ -29,8 +29,12 @@
     
     self.titleLabel.font = [UIFont fontWithName:@"Vollkorn-BoldItalic" size:self.titleLabel.font.pointSize];
     self.titleLabel.text = self.stream.channel.title;
-    self.subtitleLabel.text = self.stream.channel.schedule.currentShow.title;
     
+    Event *currentShow = self.stream.channel.schedule.currentShow;
+    if(currentShow)
+        self.subtitleLabel.text = [NSString stringWithFormat:@"%@ - %@", currentShow.until, currentShow.title];
+    else
+        self.subtitleLabel.text = @"with Leo Laporte";
     
     self.delegate = (TWAppDelegate*)UIApplication.sharedApplication.delegate;
     
