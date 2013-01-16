@@ -17,6 +17,7 @@
 		17056203169B192D00E59244 /* twil-poster.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 170561FF169B192C00E59244 /* twil-poster.jpg */; };
 		170B475B16A6A3AF00F7C3B5 /* show-selection.png in Resources */ = {isa = PBXBuildFile; fileRef = 170B475916A6A3AF00F7C3B5 /* show-selection.png */; };
 		170B475C16A6A3AF00F7C3B5 /* show-selection@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 170B475A16A6A3AF00F7C3B5 /* show-selection@2x.png */; };
+		170B476016A6A9C900F7C3B5 /* TWShowInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 170B475F16A6A9C900F7C3B5 /* TWShowInfoViewController.m */; };
 		170BA04C1691CD550022FE4D /* button-blue-left.png in Resources */ = {isa = PBXBuildFile; fileRef = 170B9F6F1691CD540022FE4D /* button-blue-left.png */; };
 		170BA04D1691CD550022FE4D /* button-blue-left@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 170B9F701691CD540022FE4D /* button-blue-left@2x.png */; };
 		170BA04E1691CD550022FE4D /* button-blue-mid.png in Resources */ = {isa = PBXBuildFile; fileRef = 170B9F711691CD540022FE4D /* button-blue-mid.png */; };
@@ -271,6 +272,8 @@
 		170561FF169B192C00E59244 /* twil-poster.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "twil-poster.jpg"; sourceTree = "<group>"; };
 		170B475916A6A3AF00F7C3B5 /* show-selection.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "show-selection.png"; sourceTree = "<group>"; };
 		170B475A16A6A3AF00F7C3B5 /* show-selection@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "show-selection@2x.png"; sourceTree = "<group>"; };
+		170B475E16A6A9C900F7C3B5 /* TWShowInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWShowInfoViewController.h; sourceTree = "<group>"; };
+		170B475F16A6A9C900F7C3B5 /* TWShowInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWShowInfoViewController.m; sourceTree = "<group>"; };
 		170B9F6F1691CD540022FE4D /* button-blue-left.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "button-blue-left.png"; sourceTree = "<group>"; };
 		170B9F701691CD540022FE4D /* button-blue-left@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "button-blue-left@2x.png"; sourceTree = "<group>"; };
 		170B9F711691CD540022FE4D /* button-blue-mid.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "button-blue-mid.png"; sourceTree = "<group>"; };
@@ -946,6 +949,8 @@
 				1787B3BC16A58E7B00870B87 /* TWLiveViewController.m */,
 				17C477F616A192B40058E6C4 /* TWPlayerViewController.h */,
 				17C477F716A192B40058E6C4 /* TWPlayerViewController.m */,
+				170B475E16A6A9C900F7C3B5 /* TWShowInfoViewController.h */,
+				170B475F16A6A9C900F7C3B5 /* TWShowInfoViewController.m */,
 				170E02A4169322130072CFA6 /* Views */,
 				17BB1CFF168F728C00221F7E /* Objects */,
 				17C43B8F1696FBCB0066C79F /* Catergories */,
@@ -1273,6 +1278,7 @@
 				17D1B6B216A1CAC800B05C12 /* TWPlayButton.m in Sources */,
 				17D1B6B516A1D38A00B05C12 /* TWSegmentedButton.m in Sources */,
 				1787B3BD16A58E7B00870B87 /* TWLiveViewController.m in Sources */,
+				170B476016A6A9C900F7C3B5 /* TWShowInfoViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
