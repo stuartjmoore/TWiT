@@ -21,6 +21,22 @@
     self.titleLabel.text = episode.title;
     self.subtitleLabel.text = episode.show.title;
     
+    CGSize size = [self.titleLabel.text sizeWithFont:self.titleLabel.font];
+    
+    if(size.width > self.titleLabel.frame.size.width)
+    {
+        self.titleLabel.numberOfLines = 2;
+        
+        CGRect titleFrame = self.titleLabel.frame;
+        titleFrame.origin.y = 6;
+        titleFrame.size.height = 34;
+        self.titleLabel.frame = titleFrame;
+        
+        CGRect subtitleFrame = self.subtitleLabel.frame;
+        subtitleFrame.origin.y = 40;
+        self.subtitleLabel.frame = subtitleFrame;
+    }
+        
     if(self.selected)
     {
         self.numberLabel.textColor = [UIColor whiteColor];
