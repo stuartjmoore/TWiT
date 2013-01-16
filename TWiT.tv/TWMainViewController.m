@@ -190,7 +190,8 @@
             {
                 CGRect frame = [showCell frameForColumn:column];
                 frame = [showCell convertRect:frame toView:self.tableView];
-                frame = CGRectInset(frame, -5, -5);
+                frame = CGRectInset(frame, -11, -11);
+                frame.origin.y += 1;
                 self.showSelectedView.frame = frame;
                 
                 [selectedShow updateEpisodes];
@@ -201,15 +202,17 @@
         {
             if(!self.showSelectedView)
             {
-                self.showSelectedView = [[UIView alloc] init];
-                self.showSelectedView.backgroundColor = [UIColor blueColor];
+                self.showSelectedView = [[UIImageView alloc] init];
                 self.showSelectedView.userInteractionEnabled = NO;
+                UIImage *selectionImage = [[UIImage imageNamed:@"show-selection.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(10, 11, 12, 11)];
+                self.showSelectedView.image = selectionImage;
                 [self.tableView addSubview:self.showSelectedView];
             }
             
             CGRect frame = [showCell frameForColumn:column];
             frame = [showCell convertRect:frame toView:self.tableView];
-            frame = CGRectInset(frame, -5, -5);
+            frame = CGRectInset(frame, -11, -11);
+            frame.origin.y += 1;
             self.showSelectedView.frame = frame;
             
             TWMainViewController *episodesController = (TWMainViewController*)masterController.topViewController;
