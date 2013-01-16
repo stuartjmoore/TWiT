@@ -463,7 +463,7 @@
     [self.tableView endUpdates];
 }
 
-#pragma mark - Settings
+#pragma mark - Rotate
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
@@ -499,6 +499,10 @@
         Enclosure *enclosure = enclosures.anyObject ?: [episode enclosureForType:TWTypeVideo andQuality:TWQualityHigh];
         
         [segue.destinationViewController setEnclosure:enclosure];
+    }
+    else if([segue.identifier isEqualToString:@"showInfoDetail"])
+    {
+        [segue.destinationViewController setShow:self.show];
     }
 }
 
