@@ -36,6 +36,19 @@
         subtitleFrame.origin.y = 40;
         self.subtitleLabel.frame = subtitleFrame;
     }
+    else
+    {
+        self.titleLabel.numberOfLines = 1;
+        
+        CGRect titleFrame = self.titleLabel.frame;
+        titleFrame.origin.y = 13;
+        titleFrame.size.height = 20;
+        self.titleLabel.frame = titleFrame;
+        
+        CGRect subtitleFrame = self.subtitleLabel.frame;
+        subtitleFrame.origin.y = 32;
+        self.subtitleLabel.frame = subtitleFrame;
+    }
         
     if(self.selected)
     {
