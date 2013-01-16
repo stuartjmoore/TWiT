@@ -622,9 +622,6 @@
                 }
             }
             [showsCell setShows:shows];
-            
-            //rowCache = @{ @"icons" : showsCell.icons, @"visibleColumns" : @(shows.count) };
-            //[self.showsTableCache setObject:rowCache forKey:cacheKey];
         }
         else
         {
@@ -634,7 +631,7 @@
         }
     }
 }
-- (void)showsCell:(TWShowsCell*)showsCell didDrawIcons:(UIImage*)icons AtIndexPath:(NSIndexPath*)indexPath;
+- (void)showsCell:(TWShowsCell*)showsCell didDrawIconsAtIndexPath:(NSIndexPath*)indexPath;
 {
     NSString *cacheKey = [NSString stringWithFormat:@"%f-%d", self.tableView.frame.size.width, indexPath.row];
     NSDictionary *rowCache = self.showsTableCache[cacheKey];

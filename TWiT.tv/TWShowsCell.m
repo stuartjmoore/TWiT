@@ -79,7 +79,7 @@ dispatch_async(queue, ^{
 
 - (void)didDrawIcons
 {
-    [self.delegate showsCell:self didDrawIcons:self.icons AtIndexPath:self.indexPath];
+    [self.delegate showsCell:self didDrawIconsAtIndexPath:self.indexPath];
     [self setNeedsDisplayInRect:self.bounds];
 }
 

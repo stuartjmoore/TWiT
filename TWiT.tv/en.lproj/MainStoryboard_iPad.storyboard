@@ -44,7 +44,7 @@
                                                     <rect key="frame" x="7" y="7" width="48" height="48"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                 </imageView>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="uTC-eL-z9Q">
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="uTC-eL-z9Q" userLabel="Title">
                                                     <rect key="frame" x="64" y="13" width="199" height="20"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
@@ -52,7 +52,7 @@
                                                     <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <size key="shadowOffset" width="0.0" height="1"/>
                                                 </label>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="subtitle" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="gfj-GS-Jom">
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="subtitle" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="gfj-GS-Jom" userLabel="Subtitle">
                                                     <rect key="frame" x="64" y="32" width="199" height="15"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
@@ -60,8 +60,12 @@
                                                     <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <size key="shadowOffset" width="0.0" height="1"/>
                                                 </label>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="0aF-XH-14R">
-                                                    <rect key="frame" x="271" y="8" width="44" height="44"/>
+                                                <imageView hidden="YES" userInteractionEnabled="NO" contentMode="center" image="list-downloaded-icon.png" id="b9R-dR-FGe" userLabel="Downloaded Icon">
+                                                    <rect key="frame" x="268" y="24" width="12" height="13"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                                </imageView>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="0aF-XH-14R" userLabel="Quick Play">
+                                                    <rect key="frame" x="271" y="9" width="44" height="44"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                                     <state key="normal" image="quick-play.png">
@@ -95,6 +99,7 @@
                                     <outlet property="albumArt" destination="qWx-ok-lxk" id="1t2-SE-XYc"/>
                                     <outlet property="bottomLine" destination="qm8-FM-1cZ" id="WbW-Nr-Xep"/>
                                     <outlet property="downloadBackground" destination="HTa-Uk-xgr" id="vdi-Vd-9iC"/>
+                                    <outlet property="downloadedIcon" destination="b9R-dR-FGe" id="Nak-id-oKW"/>
                                     <outlet property="quickPlayButton" destination="0aF-XH-14R" id="Cu5-eU-2Ny"/>
                                     <outlet property="subtitleLabel" destination="gfj-GS-Jom" id="Kdq-dl-TM5"/>
                                     <outlet property="titleLabel" destination="uTC-eL-z9Q" id="2q2-hU-LAw"/>
@@ -116,7 +121,7 @@
                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Episodes" textAlignment="center" lineBreakMode="middleTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="3lS-BR-V5d">
                                     <rect key="frame" x="0.0" y="0.0" width="200" height="33"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                     <nil key="highlightedColor"/>
                                     <color key="shadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -281,8 +286,12 @@
                                                     <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <size key="shadowOffset" width="0.0" height="1"/>
                                                 </label>
+                                                <imageView hidden="YES" userInteractionEnabled="NO" contentMode="center" image="list-downloaded-icon.png" id="B8e-5v-d9W" userLabel="Downloaded Icon">
+                                                    <rect key="frame" x="268" y="24" width="12" height="13"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                                </imageView>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="JAx-Yi-u6C">
-                                                    <rect key="frame" x="271" y="8" width="44" height="44"/>
+                                                    <rect key="frame" x="271" y="9" width="44" height="44"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                                     <state key="normal" image="quick-play.png">
@@ -313,6 +322,7 @@
                                 <connections>
                                     <outlet property="bottomLine" destination="lX7-re-d1d" id="oIZ-iT-s78"/>
                                     <outlet property="downloadBackground" destination="yoN-I4-xvn" id="oKz-sL-FyQ"/>
+                                    <outlet property="downloadedIcon" destination="B8e-5v-d9W" id="Si5-aT-iMj"/>
                                     <outlet property="numberLabel" destination="eqJ-Od-HtW" id="0NN-AA-6DH"/>
                                     <outlet property="quickPlayButton" destination="JAx-Yi-u6C" id="TOJ-zx-Xia"/>
                                     <outlet property="subtitleLabel" destination="Stt-PG-vDt" id="hHM-av-Ktb"/>
@@ -1134,6 +1144,7 @@
         <image name="icon-play.png" width="55" height="55"/>
         <image name="icon-schedule.png" width="55" height="55"/>
         <image name="linen.png" width="320" height="61"/>
+        <image name="list-downloaded-icon.png" width="12" height="13"/>
         <image name="nav-bar-header-icon.png" width="154" height="44"/>
         <image name="navbar-pause.png" width="15" height="21"/>
         <image name="navbar-play.png" width="17" height="21"/>
@@ -1163,6 +1174,7 @@
                 <relationship kind="outlet" name="albumArt" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="bottomLine" candidateClass="UIView"/>
                 <relationship kind="outlet" name="downloadBackground" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="downloadedIcon" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="numberLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="quickPlayButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="subtitleLabel" candidateClass="UILabel"/>

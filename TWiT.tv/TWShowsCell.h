@@ -12,7 +12,7 @@
 
 @protocol TWiTShowGridCellDelegate <NSObject>
 - (void)tableView:(UITableView*)tableView didSelectColumn:(int)column AtIndexPath:(NSIndexPath*)indexPath;
-- (void)showsCell:(TWShowsCell*)showsCell didDrawIcons:(UIImage*)icons AtIndexPath:(NSIndexPath*)indexPath;
+- (void)showsCell:(TWShowsCell*)showsCell didDrawIconsAtIndexPath:(NSIndexPath*)indexPath;
 @end
 
 @interface TWShowsCell : UITableViewCell

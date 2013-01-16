@@ -52,6 +52,15 @@
         self.numberLabel.textColor = [UIColor blackColor];
         self.numberLabel.shadowColor = [UIColor clearColor];
     }
+    
+    if(self.selected)
+    {
+        self.downloadedIcon.hidden = YES;
+    }
+    else
+    {
+        self.downloadedIcon.hidden = (!self.episode.downloadedEnclosures);
+    }
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
@@ -72,6 +81,7 @@
         self.topLine.hidden = YES;
         self.bottomLine.hidden = YES;
         self.quickPlayButton.hidden = YES;
+        self.downloadedIcon.hidden = YES;
     }
     else
     {
@@ -96,6 +106,7 @@
         self.topLine.hidden = NO;
         self.bottomLine.hidden = NO;
         self.quickPlayButton.hidden = NO;
+        self.downloadedIcon.hidden = (!self.episode.downloadedEnclosures);
     }
 }
 
