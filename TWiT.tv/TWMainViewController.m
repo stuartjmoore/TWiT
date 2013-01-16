@@ -193,6 +193,7 @@
                 frame = CGRectInset(frame, -11, -11);
                 frame.origin.y += 1;
                 self.showSelectedView.frame = frame;
+                self.showSelectedView.tag = index;
                 
                 [selectedShow updateEpisodes];
                 showController.show = selectedShow;
@@ -214,6 +215,7 @@
             frame = CGRectInset(frame, -11, -11);
             frame.origin.y += 1;
             self.showSelectedView.frame = frame;
+            self.showSelectedView.tag = index;
             
             TWMainViewController *episodesController = (TWMainViewController*)masterController.topViewController;
             [episodesController performSegueWithIdentifier:@"showDetail" sender:showIndexPath];
@@ -811,11 +813,33 @@
 
 #pragma mark - Rotate
 
-//- (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)orientation duration:(NSTimeInterval)duration
 - (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
 {
     if(self.sectionVisible == TWSectionShows)
         [self.tableView reloadData];
+    
+    if(self.showSelectedView)
+        self.showSelectedView.hidden = YES;
+}
+- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
+{
+    if(self.showSelectedView)
+    {
+        int columns = (UIInterfaceOrientationIsLandscape(fromInterfaceOrientation)) ? 3 : 4;
+        int index = self.showSelectedView.tag;
+        int row = index/columns;
+        int column = index%columns;
+        
+        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:row inSection:0];
+        TWShowsCell *showCell = (TWShowsCell*)[self.tableView cellForRowAtIndexPath:indexPath];
+        
+        CGRect frame = [showCell frameForColumn:column];
+        frame = [showCell convertRect:frame toView:self.tableView];
+        frame = CGRectInset(frame, -11, -11);
+        frame.origin.y += 1;
+        self.showSelectedView.frame = frame;
+        self.showSelectedView.hidden = NO;
+    }
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
