@@ -13,7 +13,8 @@
 
 - (void)viewDidLoad
 {
-    self.title = self.show.title;
+    self.titleLabel.text = self.show.title;
+    self.titleLabel.font = [UIFont fontWithName:@"Vollkorn-BoldItalic" size:24];
     self.albumArt.image = self.show.albumArt.image;
     self.hostsLabel.text = self.show.hosts;
     self.scheduleLabel.text = self.show.scheduleString;

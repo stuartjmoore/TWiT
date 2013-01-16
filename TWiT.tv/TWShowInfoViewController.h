@@ -14,6 +14,7 @@
 
 @property (nonatomic, strong) Show *show;
 
+@property (nonatomic, weak) IBOutlet UILabel *titleLabel;
 @property (nonatomic, weak) IBOutlet UIImageView *albumArt;
 @property (nonatomic, weak) IBOutlet UILabel *scheduleLabel, *hostsLabel;
 @property (nonatomic, weak) IBOutlet UITextView *descLabel;
