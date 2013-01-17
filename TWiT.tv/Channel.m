@@ -201,6 +201,7 @@
             show.phone = [showDictionary objectForKey:@"phone"];
             show.website = [showDictionary objectForKey:@"website"];
             show.sort = [[showDictionary objectForKey:@"id"] intValue];
+            show.updateInterval = [showDictionary[@"update_interval"] intValue];
             show.published = published;
             
             AlbumArt *albumArt = show.albumArt ?: [self.managedObjectContext insertEntity:@"AlbumArt"];
@@ -226,7 +227,7 @@
         }
     }
     
-    //[self.managedObjectContext save:nil];
+    [self.managedObjectContext save:nil];
 }
 
 - (void)reloadSchedule
