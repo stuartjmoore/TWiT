@@ -116,7 +116,6 @@
                  [self willChangeValueForKey:@"url"];
                  [self setPrimitiveValue:nil forKey:@"url"];
                  [self didChangeValueForKey:@"url"];
-                 //[self.managedObjectContext save:nil];
              }
          }];
     }
@@ -151,8 +150,6 @@
             [self setPrimitiveValue:_path forKey:@"path"];
             [self didChangeValueForKey:@"path"];
             [self didChangeValueForKey:@"image"];
-            
-            //[self.managedObjectContext save:nil];
         }
     }
     

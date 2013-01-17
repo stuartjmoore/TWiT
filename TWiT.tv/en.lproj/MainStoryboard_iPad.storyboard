@@ -930,7 +930,7 @@
                                             </connections>
                                         </button>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Please Wait…" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="RDO-zJ-e5N">
-                                            <rect key="frame" x="13" y="125" width="255" height="27"/>
+                                            <rect key="frame" x="69" y="125" width="255" height="27"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -939,7 +939,7 @@
                                             <size key="shadowOffset" width="0.0" height="1"/>
                                         </label>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Loading Schedule" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="aiw-Up-sUo">
-                                            <rect key="frame" x="13" y="151" width="255" height="21"/>
+                                            <rect key="frame" x="69" y="151" width="255" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -962,6 +962,10 @@
                                                 <action selector="transitionToSchedule:" destination="jVi-vH-XBb" eventType="touchUpInside" id="ipO-tl-J77"/>
                                             </connections>
                                         </button>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" id="JEJ-Fw-pN9">
+                                            <rect key="frame" x="8" y="119" width="53" height="53"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        </imageView>
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 </view>
@@ -1011,6 +1015,7 @@
                     </userDefinedRuntimeAttributes>
                     <connections>
                         <outlet property="headerView" destination="bcg-Uz-4q7" id="ulq-dJ-ZuY"/>
+                        <outlet property="liveAlbumArtView" destination="JEJ-Fw-pN9" id="NQ6-zu-N1w"/>
                         <outlet property="livePosterView" destination="gjT-7C-mjb" id="Frl-KJ-P9N"/>
                         <outlet property="liveTimeLabel" destination="RDO-zJ-e5N" id="VMG-ba-zSS"/>
                         <outlet property="liveTitleLabel" destination="aiw-Up-sUo" id="oYL-Gj-tuX"/>
@@ -1362,6 +1367,7 @@
         <class className="TWLiveViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/TWLiveViewController.h"/>
             <relationships>
+                <relationship kind="action" name="close:" candidateClass="UIBarButtonItem"/>
                 <relationship kind="action" name="openChatView:" candidateClass="UIButton"/>
                 <relationship kind="action" name="openQualityPopover:" candidateClass="UIButton"/>
                 <relationship kind="action" name="play:" candidateClass="UIButton"/>
@@ -1396,6 +1402,7 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/TWPlayerViewController.h"/>
             <relationships>
                 <relationship kind="action" name="close:" candidateClass="UIBarButtonItem"/>
+                <relationship kind="action" name="openQualityPopover:" candidateClass="UIButton"/>
                 <relationship kind="action" name="play:" candidateClass="UIButton"/>
                 <relationship kind="action" name="rewind:" candidateClass="UIButton"/>
                 <relationship kind="action" name="seekEnd:" candidateClass="UISlider"/>

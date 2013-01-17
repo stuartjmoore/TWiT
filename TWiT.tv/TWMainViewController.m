@@ -288,7 +288,19 @@
     self.liveTitleLabel.text = currentShow.title;
     
     Show *show = currentShow.show ?: self.channel.shows.anyObject;
-    self.livePosterView.image = show.poster.image ?: show.albumArt.image;
+    
+    UIImage *livePoster = show.poster.image;
+    if(!livePoster)
+    {
+        NSString *resourceName = [NSString stringWithFormat:@"%@-poster.jpg", show.titleAcronym.lowercaseString];
+        NSString *resourcePath = [NSBundle.mainBundle.resourcePath stringByAppendingPathComponent:resourceName];
+        
+        if([NSFileManager.defaultManager fileExistsAtPath:resourcePath])
+            livePoster = [UIImage imageWithContentsOfFile:resourcePath];
+        else
+            livePoster = show.albumArt.image;
+    }
+    self.livePosterView.image = livePoster;
     self.liveAlbumArtView.image = show.albumArt.image;
     
     if(currentShow.start.isBeforeNow && currentShow.end.isAfterNow)

@@ -104,6 +104,16 @@
             [self.channel reloadSchedule];
         }
     }
+    else
+    {
+        if(UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPad)
+        {
+            TWSplitViewContainer *splitViewContainer = (TWSplitViewContainer*)self.window.rootViewController;
+            UINavigationController *masterController = splitViewContainer.masterController;
+            TWMainViewController *episodesController = (TWMainViewController*)masterController.topViewController;
+            [episodesController redrawSchedule:nil];
+        }
+    }
 }
 
 - (void)applicationWillResignActive:(UIApplication*)application
