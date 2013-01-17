@@ -34,7 +34,7 @@ typedef NS_ENUM(NSInteger, TWSection)
 @property (strong, nonatomic) NSMutableDictionary *showsTableCache;
 @property (strong, nonatomic) UIImageView *showSelectedView;
 
-@property (weak, nonatomic) IBOutlet UIView *headerView;
+@property (weak, nonatomic) IBOutlet UIView *headerView, *gradientView;
 @property (weak, nonatomic) IBOutlet UIButton *watchButton, *listenButton;
 @property (weak, nonatomic) IBOutlet TWPlayButton *playButton;
 @property (weak, nonatomic) IBOutlet UILabel *liveTimeLabel, *liveTitleLabel;

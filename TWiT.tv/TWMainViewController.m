@@ -51,6 +51,19 @@
 {
     [super viewDidLoad];
     
+    CAGradientLayer *liveGradient = [CAGradientLayer layer];
+    liveGradient.anchorPoint = CGPointMake(0, 0);
+    liveGradient.position = CGPointMake(0, 0);
+    liveGradient.startPoint = CGPointMake(0, 1);
+    liveGradient.endPoint = CGPointMake(0, 0);
+    liveGradient.bounds = self.gradientView.bounds;
+    liveGradient.colors = [NSArray arrayWithObjects:
+                            (id)[UIColor colorWithWhite:0 alpha:1].CGColor,
+                            (id)[UIColor colorWithWhite:0 alpha:0.6f].CGColor,
+                            (id)[UIColor colorWithWhite:0 alpha:0].CGColor, nil];
+    [self.gradientView.layer addSublayer:liveGradient];
+
+    
     [NSNotificationCenter.defaultCenter addObserver:self
                                            selector:@selector(redrawSchedule:)
                                                name:@"ScheduleDidUpdate"

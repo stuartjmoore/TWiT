@@ -913,6 +913,11 @@
                                                 <action selector="transitionToLive:" destination="jVi-vH-XBb" eventType="touchUpInside" id="Z5z-Sa-Lon"/>
                                             </connections>
                                         </button>
+                                        <view contentMode="scaleToFill" id="aCL-Qq-7W9" userLabel="Gradient">
+                                            <rect key="frame" x="0.0" y="95" width="768" height="85"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Please Wait…" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="RDO-zJ-e5N">
                                             <rect key="frame" x="69" y="125" width="327" height="27"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -1016,6 +1021,7 @@
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
                     <connections>
+                        <outlet property="gradientView" destination="aCL-Qq-7W9" id="HGG-6l-ZSv"/>
                         <outlet property="headerView" destination="bcg-Uz-4q7" id="ulq-dJ-ZuY"/>
                         <outlet property="liveAlbumArtView" destination="JEJ-Fw-pN9" id="NQ6-zu-N1w"/>
                         <outlet property="livePosterView" destination="gjT-7C-mjb" id="Frl-KJ-P9N"/>
@@ -1387,6 +1393,7 @@
             <relationships>
                 <relationship kind="action" name="transitionToLive:" candidateClass="UIButton"/>
                 <relationship kind="action" name="transitionToSchedule:" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="gradientView" candidateClass="UIView"/>
                 <relationship kind="outlet" name="headerView" candidateClass="UIView"/>
                 <relationship kind="outlet" name="listenButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="liveAlbumArtView" candidateClass="UIImageView"/>
