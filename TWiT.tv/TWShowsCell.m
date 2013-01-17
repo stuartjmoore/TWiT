@@ -33,6 +33,12 @@
 
 - (void)layoutSubviews
 {
+    if(self.shows && self.icons && self.icons.size.width != self.frame.size.width)
+    {
+        self.icons = nil;
+        [self layoutSubviews];
+    }
+    
     [super layoutSubviews];
  
     if(!self.shows || self.icons.size.width == self.frame.size.width)
@@ -42,23 +48,23 @@
     }
     
     NSMutableArray *albumArtPathes = [NSMutableArray array];
-    // weakSelf?
+    __block TWShowsCell *weak = self;
     
     for(Show *show in self.shows)
         [albumArtPathes addObject:show.albumArt.path];
     
     dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0ul);
     dispatch_async(queue, ^{
-        UIGraphicsBeginImageContextWithOptions(self.frame.size, YES, UIScreen.mainScreen.scale);
+        UIGraphicsBeginImageContextWithOptions(weak.frame.size, YES, UIScreen.mainScreen.scale);
         
         CGContextRef context = UIGraphicsGetCurrentContext();
         CGContextSetFillColorWithColor(context, [UIColor colorWithWhite:245/255.0 alpha:1].CGColor);
-        CGContextFillRect(context, self.bounds);
+        CGContextFillRect(context, weak.bounds);
         
-        for(Show *show in self.shows)
+        for(Show *show in weak.shows)
         {
-            int column = [self.shows indexOfObject:show];
-            CGRect frame = [self frameForColumn:column];
+            int column = [weak.shows indexOfObject:show];
+            CGRect frame = [weak frameForColumn:column];
             
             CGContextSetShadow(context, CGSizeMake(0, 2), 4);
             
@@ -66,12 +72,12 @@
             [image drawInRect:frame];
         }
         
-        self.icons = UIGraphicsGetImageFromCurrentImageContext();
+        weak.icons = UIGraphicsGetImageFromCurrentImageContext();
         UIGraphicsEndImageContext();
         
-        self.visibleColumns = self.shows.count;
+        weak.visibleColumns = weak.shows.count;
         dispatch_sync(dispatch_get_main_queue(), ^{
-            [self didDrawIcons];
+            [weak didDrawIcons];
         });
     });
 }
