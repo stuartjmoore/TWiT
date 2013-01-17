@@ -20,7 +20,7 @@
 
 @implementation Show
 
-@dynamic desc, email, favorite, hosts, phone, published, remind, schedule, sort, title, titleAcronym, titleInSchedule, website, albumArt, channel, episodes, feeds;
+@dynamic desc, email, favorite, hosts, phone, published, remind, schedule, sort, updateInterval, title, titleAcronym, titleInSchedule, website, albumArt, channel, episodes, feeds;
 
 - (Poster*)poster
 {
@@ -222,8 +222,9 @@
 {
     for(Feed *feed in self.feeds)
     {
-        
-        
+        if(feed.lastUpdated.timeIntervalSinceNow > -self.updateInterval)
+            continue;
+            
         NSMutableURLRequest *headerRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:feed.url]
                                                                      cachePolicy:NSURLRequestReloadIgnoringLocalCacheData
                                                                  timeoutInterval:60.0f];
@@ -234,6 +235,7 @@
              NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse*)response;
              if([httpResponse respondsToSelector:@selector(allHeaderFields)])
              {
+                 NSLog(@"check %@ ", self.title);
                  if(httpResponse.statusCode != 200)
                      return;
                  

@@ -21,6 +21,7 @@
 @property (nonatomic, strong) NSDate *published;
 @property (nonatomic) BOOL favorite, remind;
 @property (nonatomic) int16_t sort;
+@property (nonatomic) int32_t updateInterval;
 @property (nonatomic, strong) AlbumArt *albumArt;
 @property (nonatomic, strong) Channel *channel;
 @property (nonatomic, strong) NSSet *episodes, *feeds;
