@@ -86,9 +86,10 @@
    
         
         self.segmentedButton.buttonState = self.episode.downloadedEnclosures ? TWButtonSegmentDelete : TWButtonSegmentDownload;
-        
-        self.segmentedButton.listenEnabled = YES;
-        self.segmentedButton.watchEnabled = YES;
+
+        self.segmentedButton.listenEnabled = [self.episode enclosuresForType:TWTypeAudio]? YES:NO;
+        self.segmentedButton.watchEnabled = [self.episode enclosuresForType:TWTypeVideo]? YES:NO;
+        self.segmentedButton.hidden = !self.segmentedButton.listenEnabled && !self.segmentedButton.watchEnabled;
         
         [self.segmentedButton addTarget:self action:@selector(watchPressed:) forButton:TWButtonSegmentWatch];
         [self.segmentedButton addTarget:self action:@selector(listenPressed:) forButton:TWButtonSegmentListen];
