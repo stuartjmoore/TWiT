@@ -302,7 +302,7 @@
     self.liveTimeLabel.text = currentShow.until;
     self.liveTitleLabel.text = currentShow.title;
     
-    self.nextTimeLabel.text = nextShow.until;
+    self.nextTimeLabel.text = [self.liveTimeLabel.text isEqualToString:@"Live"] ? nextShow.until : nextShow.time;
     self.nextTitleLabel.text = nextShow.title;
     
     Show *show = currentShow.show ?: self.channel.shows.anyObject;
