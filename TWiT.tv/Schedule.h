@@ -29,4 +29,6 @@
 @property (nonatomic, strong) NSArray *days;
 @property (nonatomic, strong) Event *currentShow;
 
+- (Event*)showAfterShow:(Event*)event;
+
 @end

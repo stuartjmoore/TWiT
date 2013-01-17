@@ -83,8 +83,48 @@
         }
         i++;
     } while(tryTomorrow);
-
+    
     return currentShow;
+}
+
+- (Event*)showAfterShow:(Event*)event
+{
+    Event *nextEvent;
+    
+    for(NSArray *day in self.days)
+    {
+        int index = [day indexOfObject:event];
+        
+        if(index == NSNotFound)
+            continue;
+        
+        index++;
+        
+        if(index < day.count)
+        {
+            nextEvent = day[index];
+            break;
+        }
+        else
+        {
+            int dayIndex = [self.days indexOfObject:day];
+            
+            dayIndex++;
+            
+            if(dayIndex < self.days.count)
+            {
+                NSArray *nextDay = self.days[dayIndex];
+                
+                if(nextDay.count > 0)
+                {
+                    nextEvent = nextDay[0];
+                    break;
+                }
+            }
+        }
+    }
+    
+    return nextEvent;
 }
 
 @end

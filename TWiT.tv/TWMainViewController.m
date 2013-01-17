@@ -284,8 +284,13 @@
 - (void)redrawSchedule:(NSNotification*)notification
 {
     Event *currentShow = self.channel.schedule.currentShow;
+    Event *nextShow = [self.channel.schedule showAfterShow:currentShow];
+    
     self.liveTimeLabel.text = currentShow.until;
     self.liveTitleLabel.text = currentShow.title;
+    
+    self.nextTimeLabel.text = nextShow.until;
+    self.nextTitleLabel.text = nextShow.title;
     
     Show *show = currentShow.show ?: self.channel.shows.anyObject;
     
