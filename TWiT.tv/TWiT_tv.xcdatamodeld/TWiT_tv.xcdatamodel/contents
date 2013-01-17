@@ -66,6 +66,7 @@
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="titleAcronym" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="titleInSchedule" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="updateInterval" optional="YES" attributeType="Integer 32" minValueString="0" defaultValueString="0" syncable="YES"/>
         <attribute name="website" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="albumArt" optional="YES" minCount="1" maxCount="1" deletionRule="Cascade" destinationEntity="AlbumArt" inverseName="show" inverseEntity="AlbumArt" syncable="YES"/>
         <relationship name="channel" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Channel" inverseName="shows" inverseEntity="Channel" syncable="YES"/>
@@ -87,7 +88,7 @@
         <element name="Episode" positionX="171" positionY="90" width="128" height="253"/>
         <element name="Feed" positionX="7" positionY="446" width="119" height="148"/>
         <element name="Poster" positionX="169" positionY="-36" width="128" height="88"/>
-        <element name="Show" positionX="-2" positionY="90" width="128" height="298"/>
+        <element name="Show" positionX="-2" positionY="90" width="128" height="313"/>
         <element name="Stream" positionX="-173" positionY="459" width="119" height="133"/>
     </elements>
 </model>
