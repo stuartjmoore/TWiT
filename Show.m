@@ -222,6 +222,8 @@
 {
     for(Feed *feed in self.feeds)
     {
+        
+        
         NSMutableURLRequest *headerRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:feed.url]
                                                                      cachePolicy:NSURLRequestReloadIgnoringLocalCacheData
                                                                  timeoutInterval:60.0f];
@@ -248,7 +250,6 @@
                  if(lastModified == nil || ![lastModified isEqualToDate:feed.lastUpdated])
                  {
                      feed.lastUpdated = lastModified;
-                     //[feed.managedObjectContext save:nil];
                      [self updatePodcastFeed:feed];
                  }
              }
