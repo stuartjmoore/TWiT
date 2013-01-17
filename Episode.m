@@ -36,6 +36,16 @@
 
 #pragma mark - Episodes
 
+- (NSSet*)enclosuresForType:(enum TWType)type
+{
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"type == %d", type];
+    NSSet *enclosures = [self.enclosures filteredSetUsingPredicate:predicate];
+    
+    if(enclosures.count == 0)
+        return nil;
+    
+    return enclosures;
+}
 - (Enclosure*)enclosureForType:(enum TWType)type andQuality:(enum TWQuality)quality
 {
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"type == %d AND quality == %d", type, quality];

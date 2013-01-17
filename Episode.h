@@ -32,6 +32,7 @@
 - (NSString*)durationString;
 - (NSString*)publishedString;
 
+- (NSSet*)enclosuresForType:(enum TWType)type;
 - (Enclosure*)enclosureForType:(enum TWType)type andQuality:(enum TWQuality)quality;
 
 - (void)downloadEnclosure:(Enclosure*)enclosure;

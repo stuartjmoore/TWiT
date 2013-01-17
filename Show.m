@@ -222,7 +222,7 @@
     {
         if(feed.lastUpdated && feed.lastUpdated.timeIntervalSinceNow > -self.updateInterval)
             continue;
-            
+        
         NSMutableURLRequest *headerRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:feed.url]
                                                                      cachePolicy:NSURLRequestReloadIgnoringLocalCacheData
                                                                  timeoutInterval:60.0f];
@@ -233,8 +233,6 @@
              NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse*)response;
              if([httpResponse respondsToSelector:@selector(allHeaderFields)])
              {
-                 NSLog(@"check %@ - %@", self.title, feed.title);
-              
                  if(httpResponse.statusCode != 200)
                      return;
                  
@@ -271,7 +269,6 @@
          BOOL firstLoad = (self.episodes.count == 0);
          
          NSDictionary *RSS = [XMLReader dictionaryForXMLData:data];
-         
          NSArray *episodes = [[[RSS objectForKey:@"rss"] objectForKey:@"channel"] objectForKey:@"item"];
          
          for(NSDictionary *epiDic in episodes)
