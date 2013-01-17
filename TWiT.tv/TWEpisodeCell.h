@@ -22,6 +22,8 @@
 @property (nonatomic, strong) NSIndexPath *indexPath;
 @property (nonatomic, weak) UITableView *table;
 
+@property (nonatomic, weak) IBOutlet UIView *contentView;
+
 @property (nonatomic, weak) IBOutlet UIView *topLine, *bottomLine;
 
 @property (nonatomic, weak) IBOutlet UIImageView *albumArt;
@@ -36,6 +38,12 @@
 @property (nonatomic) float progress;
 @property (nonatomic, weak) IBOutlet UIImageView *downloadBackground;
 
+@property (nonatomic, weak) IBOutlet UIView *swipeBackgroundView, *swipeConfirmationView;
+@property (nonatomic, weak) IBOutlet UILabel *swipeLabel;
+
 - (IBAction)quickPlayPressed:(UIButton*)sender;
+
+- (IBAction)cancelSwipe:(UIButton*)sender;
+- (IBAction)deleteDownload:(UIButton*)sender;
 
 @end

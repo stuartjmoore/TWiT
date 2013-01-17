@@ -19,7 +19,7 @@ typedef NS_ENUM(NSInteger, TWSection)
 
 @class TWEpisodeViewController, Channel, TWPlayButton;
 
-@interface TWMainViewController : UITableViewController <NSFetchedResultsControllerDelegate, UISplitViewControllerDelegate, TWiTShowGridCellDelegate>
+@interface TWMainViewController : UITableViewController <NSFetchedResultsControllerDelegate, UISplitViewControllerDelegate, UIGestureRecognizerDelegate, TWiTShowGridCellDelegate>
 
 @property (nonatomic, weak) TWSplitViewContainer *splitViewContainer;
 @property (assign, nonatomic) TWSection sectionVisible;
@@ -44,8 +44,10 @@ typedef NS_ENUM(NSInteger, TWSection)
 @property (strong, nonatomic) UIView *sectionHeader;
 
 - (void)updateProgress:(NSNotification*)notification;
-
 - (void)redrawSchedule:(NSNotification*)notification;
+
+- (IBAction)swipeEpisode:(UIPanGestureRecognizer*)recognizer;
+
 - (IBAction)transitionToSchedule:(UIButton*)sender;
 - (IBAction)transitionToLive:(UIButton*)sender;
 

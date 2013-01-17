@@ -82,7 +82,7 @@
     
     if(selected)
     {
-        self.backgroundColor = [UIColor colorWithRed:61/255.0 green:122/255.0 blue:155/255.0 alpha:1];
+        self.contentView.backgroundColor = [UIColor colorWithRed:61/255.0 green:122/255.0 blue:155/255.0 alpha:1];
         self.titleLabel.textColor = [UIColor whiteColor];
         self.subtitleLabel.textColor = [UIColor whiteColor];
         self.numberLabel.textColor = [UIColor whiteColor];
@@ -98,7 +98,7 @@
     }
     else
     {
-        self.backgroundColor = [UIColor clearColor];
+        self.contentView.backgroundColor = [UIColor colorWithWhite:0.96f alpha:1];
         self.titleLabel.textColor = [UIColor blackColor];
         self.subtitleLabel.textColor = [UIColor darkGrayColor];
         
@@ -142,6 +142,23 @@
 - (IBAction)quickPlayPressed:(UIButton*)sender
 {
     [self.delegate tableView:self.table accessoryButtonTappedForRowWithIndexPath:self.indexPath];
+}
+
+- (IBAction)cancelSwipe:(UIButton*)sender
+{
+    [UIView animateWithDuration:0.5f animations:^{
+        self.contentView.frame = self.bounds;
+    } completion:^(BOOL fin){
+        self.swipeBackgroundView.hidden = YES;
+        self.swipeConfirmationView.hidden = YES;
+    }];
+}
+- (IBAction)deleteDownload:(UIButton*)sender
+{
+    if(!self.episode.watched)
+        self.episode.watched = YES;
+    
+    [self.episode deleteDownloads];
 }
 
 @end

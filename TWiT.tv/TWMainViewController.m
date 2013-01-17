@@ -123,6 +123,106 @@
     [self.tableView reloadData];
 }
 
+- (BOOL)gestureRecognizerShouldBegin:(UIPanGestureRecognizer*)recognizer
+{
+    UIView *cell = recognizer.view;
+    CGPoint translation = [recognizer translationInView:cell.superview];
+    
+    if(fabsf(translation.x) > fabsf(translation.y))
+        return YES;
+    
+    return NO;
+}
+- (IBAction)swipeEpisode:(UIPanGestureRecognizer*)recognizer
+{
+    if(self.sectionVisible != TWSectionEpisodes)
+        return;
+    
+    TWEpisodeCell *cell = (TWEpisodeCell*)recognizer.observationInfo;
+    UIView *view = recognizer.view;
+    
+    if(cell.selected)
+        return;
+    
+    if(!cell || ![cell isKindOfClass:TWEpisodeCell.class])
+        return;
+    
+    NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
+    
+    if(!indexPath)
+        return;
+    
+    Episode *episode = cell.episode;
+    CGRect frame = view.frame;
+    
+    if(recognizer.state == UIGestureRecognizerStateBegan)
+    {
+        if(!episode.downloadedEnclosures)
+        {
+            cell.swipeBackgroundView.hidden = NO;
+            cell.swipeConfirmationView.hidden = YES;
+        }
+        else
+        {
+            cell.swipeBackgroundView.hidden = YES;
+            cell.swipeConfirmationView.hidden = NO;
+        }
+    }
+    else if(recognizer.state == UIGestureRecognizerStateChanged)
+    {
+        CGPoint translation = [recognizer translationInView:view];
+        
+        frame.origin.x = translation.x;
+        view.frame = frame;
+        
+        if(view.frame.origin.x > 0)
+            cell.swipeLabel.textAlignment = UITextAlignmentLeft;
+        else
+            cell.swipeLabel.textAlignment = UITextAlignmentRight;
+        
+        if(view.frame.origin.x > self.tableView.frame.size.width/2)
+            cell.swipeLabel.text = @"Release to Hide";
+        else if(view.frame.origin.x < -self.tableView.frame.size.width/2)
+            cell.swipeLabel.text = @"Release to Hide";
+        else
+            cell.swipeLabel.text = @"Swipe to Hide";
+    }
+    else if(recognizer.state == UIGestureRecognizerStateEnded)
+    {
+        float speed = [recognizer velocityInView:view].x;
+        
+        if(view.frame.origin.x > self.tableView.frame.size.width/2
+        || view.frame.origin.x < -self.tableView.frame.size.width/2
+        || fabs(speed) > 1000)
+        {
+            cell.swipeLabel.text = @"Hiding…";
+            
+            float animateSpeed = (self.tableView.frame.size.width-frame.origin.x)/speed;
+            
+            if(view.frame.origin.x > self.tableView.frame.size.width/2)
+                frame.origin.x = self.tableView.frame.size.width;
+            else if(view.frame.origin.x < -self.tableView.frame.size.width/2)
+                frame.origin.x = -self.tableView.frame.size.width;
+            
+            [UIView animateWithDuration:animateSpeed animations:^{
+                view.frame = frame;
+            } completion:^(BOOL fin) {
+                if(!episode.downloadedEnclosures && !episode.watched)
+                    episode.watched = YES;
+            }];
+        }
+        else
+        {
+            cell.swipeLabel.text = @"Nevermind";
+
+            frame.origin.x = 0;
+            [UIView animateWithDuration:0.5f animations:^{
+                view.frame = frame;
+            }];
+        }
+    }
+}
+
 - (NSIndexPath*)tableView:(UITableView*)tableView willSelectRowAtIndexPath:(NSIndexPath*)indexPath
 {
     if(UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPad)
@@ -592,6 +692,14 @@
         NSString *identifier = (self.sectionVisible == TWSectionEpisodes) ? @"episodeCell" : @"showsCell";
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
 
+        if(self.sectionVisible == TWSectionEpisodes)
+        {
+            UIPanGestureRecognizer *swipeRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(swipeEpisode:)];
+            swipeRecognizer.delegate = self;
+            swipeRecognizer.observationInfo = (__bridge void *)(cell);
+            [cell.contentView addGestureRecognizer:swipeRecognizer];
+        }
+        
         [self configureCell:cell atIndexPath:indexPath];
         
         return cell;
