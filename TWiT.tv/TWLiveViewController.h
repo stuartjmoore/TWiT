@@ -10,7 +10,7 @@
 
 @class TWAppDelegate, TWSplitViewContainer, Stream;
 
-@interface TWLiveViewController : UIViewController
+@interface TWLiveViewController : UIViewController <UIAlertViewDelegate>
 
 @property (nonatomic, weak) TWSplitViewContainer *splitViewContainer;
 @property (nonatomic, weak) TWAppDelegate *delegate;

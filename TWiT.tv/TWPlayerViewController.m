@@ -140,11 +140,18 @@
         }
     }
     
-    if([notification.name isEqualToString:@"MPMoviePlayerPlaybackDidFinishNotification"])
+    if([notification.name isEqualToString:@"MPMoviePlayerPlaybackDidFinishNotification"]
+    && [[notification.userInfo objectForKey:@"MPMoviePlayerPlaybackDidFinishReasonUserInfoKey"] intValue] != 0)
     {
-        if([[notification.userInfo objectForKey:@"MPMoviePlayerPlaybackDidFinishReasonUserInfoKey"] intValue] == 0)
-            return;
+        // TODO: Loop all enclosures
+        
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Sorry" message:@"Unable to load the episode." delegate:self cancelButtonTitle:nil otherButtonTitles:@"Okay", nil];
+        [alert show];
     }
+}
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    [self close:nil];
 }
 
 - (void)updateSeekbar

@@ -10,7 +10,7 @@
 
 @class TWSplitViewContainer, TWAppDelegate, Enclosure;
 
-@interface TWPlayerViewController : UIViewController
+@interface TWPlayerViewController : UIViewController <UIAlertViewDelegate>
 
 @property (nonatomic, weak) TWSplitViewContainer *splitViewContainer;
 @property (nonatomic, weak) TWAppDelegate *delegate;

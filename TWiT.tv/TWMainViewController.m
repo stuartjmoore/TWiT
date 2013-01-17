@@ -72,6 +72,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    [self redrawSchedule:nil];
     
     [NSNotificationCenter.defaultCenter addObserver:self
                                            selector:@selector(updateProgress:)
@@ -282,9 +283,6 @@
 
 - (void)redrawSchedule:(NSNotification*)notification
 {
-    if(self.channel.schedule != notification.object)
-        return;
-    
     Event *currentShow = self.channel.schedule.currentShow;
     self.liveTimeLabel.text = currentShow.until;
     self.liveTitleLabel.text = currentShow.title;

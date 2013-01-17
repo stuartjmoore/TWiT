@@ -125,6 +125,8 @@
     [self resignFirstResponder];
     
     [self.player stop];
+    self.player.contentURL = nil;
+    self.player.initialPlaybackTime = -1.0;
     self.player = nil;
     self.nowPlaying = nil;
 }
