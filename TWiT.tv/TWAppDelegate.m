@@ -10,7 +10,10 @@
 #import "TWSplitViewContainer.h"
 #import "TWMainViewController.h"
 
+#import "NSDate+comparisons.h"
+
 #import "Channel.h"
+#import "Show.h"
 #import "Episode.h"
 #import "Enclosure.h"
 
@@ -25,11 +28,11 @@
     [fetchRequest setEntity:[NSEntityDescription entityForName:@"Channel" inManagedObjectContext:context]];
     
     NSArray *fetchedChannels = [context executeFetchRequest:fetchRequest error:nil];
-    Channel *channel = fetchedChannels.lastObject ?: [NSEntityDescription insertNewObjectForEntityForName:@"Channel" inManagedObjectContext:context];
+    self.channel = fetchedChannels.lastObject ?: [NSEntityDescription insertNewObjectForEntityForName:@"Channel" inManagedObjectContext:context];
     
-    [channel update];
+    [self.channel update];
     
-    if([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad)
+    if(UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPad)
     {
         TWSplitViewContainer *splitViewContainer = (TWSplitViewContainer*)self.window.rootViewController;
         splitViewContainer.view = splitViewContainer.view;
@@ -37,14 +40,14 @@
         UINavigationController *masterController = [splitViewContainer.storyboard instantiateViewControllerWithIdentifier:@"masterController"];
         TWMainViewController *episodesController = (TWMainViewController*)masterController.topViewController;
         episodesController.managedObjectContext = self.managedObjectContext;
-        episodesController.channel = channel;
+        episodesController.channel = self.channel;
         episodesController.splitViewContainer = splitViewContainer;
         splitViewContainer.masterController = masterController;
 
         UINavigationController *detailController = [splitViewContainer.storyboard instantiateViewControllerWithIdentifier:@"detailController"];
         TWMainViewController *showsController = (TWMainViewController*)detailController.topViewController;
         showsController.managedObjectContext = self.managedObjectContext;
-        showsController.channel = channel;
+        showsController.channel = self.channel;
         showsController.splitViewContainer = splitViewContainer;
         splitViewContainer.detailController = detailController;
         
@@ -56,7 +59,7 @@
         UINavigationController *navigationController = (UINavigationController*)self.window.rootViewController;
         TWMainViewController *controller = (TWMainViewController*)navigationController.topViewController;
         controller.managedObjectContext = self.managedObjectContext;
-        controller.channel = channel;
+        controller.channel = self.channel;
     }
     
     
@@ -80,8 +83,28 @@
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+    
+    for(Show *show in self.channel.shows)
+        [show updateEpisodes];
+    
+    if(self.channel.schedule.days.count > 0)
+    {
+        NSArray *firstDay = self.channel.schedule.days[0];
+        
+        if(firstDay.count > 0)
+        {
+            Event *firstShow = (Event*)firstDay[0];
+            
+            if(!firstShow.start.isToday)
+                [self.channel reloadSchedule];
+        }
+        else
+        {
+            [self.channel reloadSchedule];
+        }
+    }
 }
-							
+
 - (void)applicationWillResignActive:(UIApplication*)application
 {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
