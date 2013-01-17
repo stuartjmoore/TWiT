@@ -212,8 +212,6 @@
     [self willChangeValueForKey:@"remind"];
     [self setPrimitiveValue:@(remind) forKey:@"remind"];
     [self didChangeValueForKey:@"remind"];
-    
-    //[self.managedObjectContext save:nil];
 }
 
 #pragma mark - Update Episodes
@@ -222,7 +220,7 @@
 {
     for(Feed *feed in self.feeds)
     {
-        if(feed.lastUpdated.timeIntervalSinceNow > -self.updateInterval)
+        if(feed.lastUpdated && feed.lastUpdated.timeIntervalSinceNow > -self.updateInterval)
             continue;
             
         NSMutableURLRequest *headerRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:feed.url]
@@ -235,7 +233,8 @@
              NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse*)response;
              if([httpResponse respondsToSelector:@selector(allHeaderFields)])
              {
-                 NSLog(@"check %@ ", self.title);
+                 NSLog(@"check %@ - %@", self.title, feed.title);
+              
                  if(httpResponse.statusCode != 200)
                      return;
                  
@@ -251,6 +250,7 @@
                  
                  if(lastModified == nil || ![lastModified isEqualToDate:feed.lastUpdated])
                  {
+                     NSLog(@"reload %@ - %@", self.title, feed.title);
                      feed.lastUpdated = lastModified;
                      [self updatePodcastFeed:feed];
                  }
@@ -428,7 +428,7 @@
              [episode addEnclosuresObject:enclosure];
          }
          
-         //[self.managedObjectContext save:nil];
+         [self.managedObjectContext save:nil];
      }];
 }
 
