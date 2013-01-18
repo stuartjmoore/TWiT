@@ -396,6 +396,9 @@
 
 - (void)redrawSchedule:(NSNotification*)notification
 {
+    if(!self.channel.schedule || self.channel.schedule.days.count == 0)
+        return;
+    
     Event *currentShow = self.channel.schedule.currentShow;
     Event *nextShow = [self.channel.schedule showAfterShow:currentShow];
     

@@ -116,7 +116,7 @@
 {
     [self.episode willChangeValueForKey:@"enclosures"];
     self.path = self.downloadPath;
-    //[self.managedObjectContext save:nil];
+    [self.managedObjectContext save:nil];
     [self.episode didChangeValueForKey:@"enclosures"];
     
     [self closeDownload];
