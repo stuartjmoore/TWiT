@@ -400,13 +400,15 @@
         return;
     
     Event *currentShow = self.channel.schedule.currentShow;
-    Event *nextShow = [self.channel.schedule showAfterShow:currentShow];
-    
     self.liveTimeLabel.text = currentShow.until;
     self.liveTitleLabel.text = currentShow.title;
     
-    self.nextTimeLabel.text = [self.liveTimeLabel.text isEqualToString:@"Live"] ? nextShow.until : nextShow.time;
-    self.nextTitleLabel.text = nextShow.title;
+    if(UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPad)
+    {
+        Event *nextShow = [self.channel.schedule showAfterShow:currentShow];
+        self.nextTimeLabel.text = [self.liveTimeLabel.text isEqualToString:@"Live"] ? nextShow.until : nextShow.time;
+        self.nextTitleLabel.text = nextShow.title;
+    }
     
     Show *show = currentShow.show ?: self.channel.shows.anyObject;
     
@@ -432,6 +434,15 @@
     }
     
     [self.scheduleTable reloadData];
+    
+    [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(redrawSchedule:) object:nil];
+    
+    if([self.liveTimeLabel.text hasSuffix:@"m"])
+        [self performSelector:@selector(redrawSchedule:) withObject:nil afterDelay:60];
+    else if([self.liveTimeLabel.text isEqualToString:@"Pre-show"])
+        [self performSelector:@selector(redrawSchedule:) withObject:nil afterDelay:currentShow.start.timeIntervalSinceNow];
+    else if(currentShow.show && [self.liveTimeLabel.text isEqualToString:@"Live"])
+        [self performSelector:@selector(redrawSchedule:) withObject:nil afterDelay:currentShow.end.timeIntervalSinceNow];
 }
 
 - (void)updateProgress:(NSNotification*)notification

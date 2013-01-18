@@ -104,13 +104,21 @@
             [self.channel reloadSchedule];
         }
     }
-    
-    if(UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPad)
+    else
     {
-        TWSplitViewContainer *splitViewContainer = (TWSplitViewContainer*)self.window.rootViewController;
-        UINavigationController *detailController = splitViewContainer.detailController;
-        TWMainViewController *showsController = (TWMainViewController*)detailController.topViewController;
-        [showsController redrawSchedule:nil];
+        if(UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPad)
+        {
+            TWSplitViewContainer *splitViewContainer = (TWSplitViewContainer*)self.window.rootViewController;
+            UINavigationController *detailController = splitViewContainer.detailController;
+            TWMainViewController *showsController = (TWMainViewController*)detailController.topViewController;
+            [showsController redrawSchedule:nil];
+        }
+        else
+        {
+            UINavigationController *navigationController = (UINavigationController*)self.window.rootViewController;
+            TWMainViewController *controller = (TWMainViewController*)navigationController.topViewController;
+            [controller redrawSchedule:nil];
+        }
     }
 }
 
