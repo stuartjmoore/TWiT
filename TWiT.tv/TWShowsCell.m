@@ -51,7 +51,7 @@
     __block TWShowsCell *weak = self;
     
     for(Show *show in self.shows)
-        [albumArtPathes addObject:show.albumArt.path];
+        [albumArtPathes addObject:show.albumArt.path.copy];
     
     dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0ul);
     dispatch_async(queue, ^{

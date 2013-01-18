@@ -1029,10 +1029,10 @@
                                             <size key="shadowOffset" width="0.0" height="1"/>
                                         </label>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="jlD-eM-1UI">
-                                            <rect key="frame" x="693" y="62" width="55" height="55"/>
+                                            <rect key="frame" x="710" y="62" width="55" height="55"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                            <state key="normal" image="icon-schedule.png">
+                                            <state key="normal" image="toolbar-schedule-background.png">
                                                 <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
@@ -1393,7 +1393,6 @@
     <resources>
         <image name="generic.jpg" width="600" height="600"/>
         <image name="icon-play.png" width="55" height="55"/>
-        <image name="icon-schedule.png" width="55" height="55"/>
         <image name="linen.png" width="320" height="61"/>
         <image name="list-downloaded-icon.png" width="12" height="13"/>
         <image name="nav-bar-header-icon.png" width="154" height="44"/>
@@ -1409,6 +1408,7 @@
         <image name="toolbar-dark-fav-on.png" width="27" height="24"/>
         <image name="toolbar-dark-remind-off.png" width="26" height="24"/>
         <image name="toolbar-dark-remind-on.png" width="26" height="24"/>
+        <image name="toolbar-schedule-background.png" width="22" height="25"/>
         <image name="video-30sec.png" width="19" height="22"/>
         <image name="video-chat-down.png" width="21" height="22"/>
         <image name="video-chat-up.png" width="21" height="22"/>
@@ -1457,6 +1457,7 @@
         <class className="TWLiveViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/TWLiveViewController.h"/>
             <relationships>
+                <relationship kind="action" name="close:" candidateClass="UIBarButtonItem"/>
                 <relationship kind="action" name="openChatView:" candidateClass="UIButton"/>
                 <relationship kind="action" name="openQualityPopover:" candidateClass="UIButton"/>
                 <relationship kind="action" name="play:" candidateClass="UIButton"/>
@@ -1495,6 +1496,7 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/TWPlayerViewController.h"/>
             <relationships>
                 <relationship kind="action" name="close:" candidateClass="UIBarButtonItem"/>
+                <relationship kind="action" name="openQualityPopover:" candidateClass="UIButton"/>
                 <relationship kind="action" name="play:" candidateClass="UIButton"/>
                 <relationship kind="action" name="rewind:" candidateClass="UIButton"/>
                 <relationship kind="action" name="seekEnd:" candidateClass="UISlider"/>
