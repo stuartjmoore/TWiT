@@ -55,7 +55,7 @@
                                                     </subviews>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                                 </view>
-                                                <view hidden="YES" contentMode="scaleToFill" id="Tij-kY-O5W">
+                                                <view contentMode="scaleToFill" id="Tij-kY-O5W">
                                                     <rect key="frame" x="0.0" y="0.0" width="320" height="61"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <subviews>
@@ -64,11 +64,11 @@
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                         </imageView>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="LPg-az-TDY">
-                                                            <rect key="frame" x="20" y="9" width="108" height="44"/>
+                                                            <rect key="frame" x="10" y="9" width="44" height="44"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                                             <size key="titleShadowOffset" width="0.0" height="1"/>
-                                                            <state key="normal" title="Delete">
+                                                            <state key="normal" image="linen-button-delete.png" backgroundImage="linen-button.png">
                                                                 <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                 <color key="titleShadowColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                             </state>
@@ -80,11 +80,11 @@
                                                             </connections>
                                                         </button>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="2Je-xR-sdy">
-                                                            <rect key="frame" x="136" y="9" width="164" height="44"/>
-                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            <rect key="frame" x="62" y="9" width="248" height="44"/>
+                                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
                                                             <size key="titleShadowOffset" width="0.0" height="1"/>
-                                                            <state key="normal" title="Cancel">
+                                                            <state key="normal" title="Cancel" backgroundImage="linen-button.png">
                                                                 <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                 <color key="titleShadowColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                             </state>
@@ -174,7 +174,9 @@
                                     <outlet property="quickPlayButton" destination="6Mg-BQ-19L" id="Uda-iv-evb"/>
                                     <outlet property="subtitleLabel" destination="UCK-EK-sBQ" id="Ebh-Pj-x78"/>
                                     <outlet property="swipeBackgroundView" destination="21U-c9-pyi" id="H0n-Yb-H6r"/>
+                                    <outlet property="swipeCancelButton" destination="2Je-xR-sdy" id="CcX-nA-OdD"/>
                                     <outlet property="swipeConfirmationView" destination="Tij-kY-O5W" id="hsE-LR-WRL"/>
+                                    <outlet property="swipeDeleteButton" destination="LPg-az-TDY" id="Oq5-W6-ESA"/>
                                     <outlet property="swipeLabel" destination="Bsj-XY-eu0" id="AQ0-HG-oBj"/>
                                     <outlet property="titleLabel" destination="mbu-G3-BoA" id="cuD-JP-5gQ"/>
                                     <outlet property="topLine" destination="Bgq-Xl-ihz" id="FhQ-Kc-94g"/>
@@ -195,7 +197,7 @@
                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Episodes" textAlignment="center" lineBreakMode="middleTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="3lS-BR-V5d">
                                     <rect key="frame" x="0.0" y="0.0" width="200" height="33"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                     <nil key="highlightedColor"/>
                                     <color key="shadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1393,6 +1395,8 @@
     <resources>
         <image name="generic.jpg" width="600" height="600"/>
         <image name="icon-play.png" width="55" height="55"/>
+        <image name="linen-button-delete.png" width="16" height="22"/>
+        <image name="linen-button.png" width="14" height="15"/>
         <image name="linen.png" width="320" height="61"/>
         <image name="list-downloaded-icon.png" width="12" height="13"/>
         <image name="nav-bar-header-icon.png" width="154" height="44"/>
@@ -1433,7 +1437,9 @@
                 <relationship kind="outlet" name="quickPlayButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="subtitleLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="swipeBackgroundView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="swipeCancelButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="swipeConfirmationView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="swipeDeleteButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="swipeLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="titleLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="topLine" candidateClass="UIView"/>

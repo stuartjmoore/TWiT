@@ -12,6 +12,14 @@
 
 @implementation TWEpisodeCell
 
+- (void)awakeFromNib
+{
+    UIImage *swipeButtonBackground = [self.swipeCancelButton backgroundImageForState:UIControlStateNormal];
+    swipeButtonBackground = [swipeButtonBackground resizableImageWithCapInsets:UIEdgeInsetsMake(6, 6, 7, 6)];
+    [self.swipeCancelButton setBackgroundImage:swipeButtonBackground forState:UIControlStateNormal];
+    [self.swipeDeleteButton setBackgroundImage:swipeButtonBackground forState:UIControlStateNormal];
+}
+
 - (void)setEpisode:(Episode*)episode
 {
     _episode = episode;
