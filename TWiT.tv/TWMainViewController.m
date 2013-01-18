@@ -464,12 +464,12 @@
         if(newPoint.y < 0)
         {
             frame.origin.y = newPoint.y;
-            frame.size.height = ceilf(headerHeight-newPoint.y+sectionHeaderHeight);
+            frame.size.height = headerHeight-newPoint.y + sectionHeaderHeight;
         }
         else
         {
             frame.origin.y = 0;
-            frame.size.height = headerHeight+sectionHeaderHeight;
+            frame.size.height = headerHeight + sectionHeaderHeight;
         }
         
         if(UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPhone)
