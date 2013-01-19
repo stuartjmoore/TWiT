@@ -11,6 +11,7 @@
 #import "TWSplitViewContainer.h"
 #import "TWMainViewController.h"
 #import "TWEpisodeViewController.h"
+#import "TWPlaybarViewController.h"
 
 @implementation TWSplitViewContainer
 
@@ -23,6 +24,7 @@
     masterController.view.frame = self.masterContainer.bounds;
     [self.masterContainer addSubview:masterController.view];
     [self.masterContainer sendSubviewToBack:masterController.view];
+    self.masterContainer.backgroundColor = [UIColor clearColor];
 }
 
 - (void)setDetailController:(UINavigationController*)detailController
@@ -34,6 +36,7 @@
     detailController.view.frame = self.detailContainer.bounds;
     [self.detailContainer addSubview:detailController.view];
     [self.detailContainer sendSubviewToBack:detailController.view];
+    self.detailContainer.backgroundColor = [UIColor clearColor];
 }
 
 - (void)setModalController:(UINavigationController*)modalController
@@ -46,12 +49,19 @@
     
     modalController.view.frame = self.modalFlyout.bounds;
     [self.modalFlyout addSubview:modalController.view];
-    /*
-    self.modalFlyout.layer.shadowRadius = 15;
-    self.modalFlyout.layer.shadowOpacity = 0.5f;
-    self.modalFlyout.layer.shadowOffset = CGSizeMake(5, 0);
-    self.modalFlyout.layer.shadowColor = [[UIColor blackColor] CGColor];
-    */
+    self.modalFlyout.backgroundColor = [UIColor clearColor];
+}
+
+- (void)setPlaybarController:(UIViewController*)playbarController
+{
+    _playbarController = playbarController;
+    
+    [self addChildViewController:playbarController];
+    
+    playbarController.view.frame = self.playbarContainer.bounds;
+    [self.playbarContainer addSubview:playbarController.view];
+    [self.playbarContainer sendSubviewToBack:playbarController.view];
+    self.playbarContainer.backgroundColor = [UIColor clearColor];
 }
 
 #pragma mark - Actions
@@ -90,10 +100,12 @@
         self.playbarContainer.hidden = YES;
         self.playbarContainer.alpha = 1;
         self.modalFlyout.frame = modalFrame;
+        // TODO: move insets setting to here?
     }];
 }
 - (void)showPlaybar
 {
+    [(TWPlaybarViewController*)self.playbarController updateView];
     float height = self.playbarContainer.frame.size.height + 4 + 4;
     
     UITableViewController *episodesTableViewController = (UITableViewController*)self.masterController.topViewController;

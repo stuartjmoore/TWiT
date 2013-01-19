@@ -53,6 +53,9 @@
         
         UINavigationController *modalController = [splitViewContainer.storyboard instantiateViewControllerWithIdentifier:@"modalController"];
         splitViewContainer.modalController = modalController;
+        
+        UIViewController *playbarController = [splitViewContainer.storyboard instantiateViewControllerWithIdentifier:@"playbarController"];
+        splitViewContainer.playbarController = playbarController;
     }
     else
     {

@@ -737,6 +737,81 @@
             </objects>
             <point key="canvasLocation" x="-1521" y="-298"/>
         </scene>
+        <!--Playbar View Controller-->
+        <scene sceneID="HhS-bP-Tb3">
+            <objects>
+                <viewController storyboardIdentifier="playbarController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="mTC-ZA-0gL" customClass="TWPlaybarViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="oGg-MR-L4z">
+                        <rect key="frame" x="0.0" y="0.0" width="972" height="44"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="ZTk-w2-ucR">
+                                <rect key="frame" x="11" y="0.0" width="44" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="openPlayer:" destination="mTC-ZA-0gL" eventType="touchUpInside" id="mJE-QN-RrY"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="hAG-H1-Q5B">
+                                <rect key="frame" x="63" y="0.0" width="44" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" image="navbar-play.png">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="selected" image="navbar-pause.png"/>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="play:" destination="mTC-ZA-0gL" eventType="touchUpInside" id="Ot9-vP-QLK"/>
+                                </connections>
+                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="generic.jpg" id="59O-eb-Ms2">
+                                <rect key="frame" x="115" y="0.0" width="44" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Show Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="64P-Lm-Ym0">
+                                <rect key="frame" x="167" y="1" width="805" height="21"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Episode Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Ro7-er-WRE">
+                                <rect key="frame" x="167" y="21" width="805" height="21"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.75" colorSpace="calibratedWhite"/>
+                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                    </view>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <connections>
+                        <outlet property="albumArt" destination="59O-eb-Ms2" id="qG0-LW-QLn"/>
+                        <outlet property="playButton" destination="hAG-H1-Q5B" id="uPh-GL-5hn"/>
+                        <outlet property="subtitleLabel" destination="Ro7-er-WRE" id="8ud-vA-vMR"/>
+                        <outlet property="titleLabel" destination="64P-Lm-Ym0" id="VqK-Ad-GAb"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hWe-RN-5M3" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-909" y="666"/>
+        </scene>
         <!--Player View Controller-->
         <scene sceneID="4hJ-qx-x9o">
             <objects>
@@ -1584,6 +1659,17 @@
         <class className="TWPlayButton" superclassName="UIButton">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/TWPlayButton.h"/>
         </class>
+        <class className="TWPlaybarViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TWPlaybarViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="openPlayer:"/>
+                <relationship kind="action" name="play:"/>
+                <relationship kind="outlet" name="albumArt" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="playButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="subtitleLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="titleLabel" candidateClass="UILabel"/>
+            </relationships>
+        </class>
         <class className="TWPlayerViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/TWPlayerViewController.h"/>
             <relationships>
@@ -1674,12 +1760,9 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/TWSplitViewContainer.h"/>
             <relationships>
                 <relationship kind="outlet" name="detailContainer" candidateClass="UIView"/>
-                <relationship kind="outlet" name="detailController" candidateClass="UINavigationController"/>
                 <relationship kind="outlet" name="masterContainer" candidateClass="UIView"/>
-                <relationship kind="outlet" name="masterController" candidateClass="UINavigationController"/>
                 <relationship kind="outlet" name="modalBlackground" candidateClass="UIView"/>
                 <relationship kind="outlet" name="modalContainer" candidateClass="UIView"/>
-                <relationship kind="outlet" name="modalController" candidateClass="UINavigationController"/>
                 <relationship kind="outlet" name="modalFlyout" candidateClass="UIView"/>
                 <relationship kind="outlet" name="playbarContainer" candidateClass="UIView"/>
             </relationships>
