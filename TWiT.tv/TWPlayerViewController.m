@@ -98,6 +98,8 @@
 {
     [super viewWillAppear:animated];
     
+    [self.splitViewContainer hidePlaybar];
+    
     self.wantsFullScreenLayout = YES;
     self.navigationController.navigationBar.tintColor = UIColor.blackColor;
     self.navigationController.navigationBar.translucent = YES;
@@ -353,6 +355,9 @@
 
 - (IBAction)close:(UIBarButtonItem*)sender
 {
+    if(self.delegate.player.playbackState == MPMoviePlaybackStatePlaying)
+        [self.splitViewContainer showPlaybar];
+    
     CGRect masterFrameOriginal = self.splitViewContainer.masterContainer.frame;
     CGRect masterFrameAnimate = masterFrameOriginal;
     masterFrameAnimate.origin.x -= masterFrameAnimate.size.width;
@@ -421,7 +426,7 @@
     
     if(self.delegate.player.playbackState != MPMoviePlaybackStatePlaying)
         [self.delegate stop];
-    
+
     
     [super viewDidDisappear:animated];
 }

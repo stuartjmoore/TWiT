@@ -58,7 +58,6 @@
 
 - (void)hidePlaybar
 {
-    self.playbarContainer.hidden = YES;
     float height = 0;
     
     UITableViewController *episodesTableViewController = (UITableViewController*)self.masterController.topViewController;
@@ -85,10 +84,16 @@
     CGRect modalFrame = self.modalFlyout.frame;
     modalFrame.size.height = self.modalContainer.bounds.size.height;
     self.modalFlyout.frame = modalFrame;
+    
+    [UIView animateWithDuration:0.3f animations:^{
+        self.playbarContainer.alpha = 0;
+    } completion:^(BOOL fin){
+        self.playbarContainer.hidden = YES;
+        self.playbarContainer.alpha = 1;
+    }];
 }
 - (void)showPlaybar
 {
-    self.playbarContainer.hidden = NO;
     float height = self.playbarContainer.frame.size.height + 4 + 4;
     
     UITableViewController *episodesTableViewController = (UITableViewController*)self.masterController.topViewController;
@@ -115,6 +120,13 @@
     CGRect modalFrame = self.modalFlyout.frame;
     modalFrame.size.height = self.modalContainer.bounds.size.height-height;
     self.modalFlyout.frame = modalFrame;
+    
+    self.playbarContainer.alpha = 0;
+    self.playbarContainer.hidden = NO;
+    [UIView animateWithDuration:0.3f animations:^{
+        self.playbarContainer.alpha = 1;
+    } completion:^(BOOL fin){
+    }];
 }
 
 #pragma mark - Settings
