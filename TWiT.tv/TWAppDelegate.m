@@ -9,6 +9,7 @@
 #import "TWAppDelegate.h"
 #import "TWSplitViewContainer.h"
 #import "TWMainViewController.h"
+#import "TWPlaybarViewController.h"
 
 #import "NSDate+comparisons.h"
 
@@ -54,8 +55,9 @@
         UINavigationController *modalController = [splitViewContainer.storyboard instantiateViewControllerWithIdentifier:@"modalController"];
         splitViewContainer.modalController = modalController;
         
-        UIViewController *playbarController = [splitViewContainer.storyboard instantiateViewControllerWithIdentifier:@"playbarController"];
+        TWPlaybarViewController *playbarController = (TWPlaybarViewController*)[splitViewContainer.storyboard instantiateViewControllerWithIdentifier:@"playbarController"];
         splitViewContainer.playbarController = playbarController;
+        playbarController.splitViewContainer = splitViewContainer;
     }
     else
     {
@@ -167,9 +169,10 @@
     [UIApplication.sharedApplication endReceivingRemoteControlEvents];
     [self resignFirstResponder];
     
+    if([self.nowPlaying isKindOfClass:Enclosure.class])
+        [[self.nowPlaying episode] setLastTimecode:self.player.currentPlaybackTime];
+    
     [self.player stop];
-    self.player.contentURL = nil;
-    self.player.initialPlaybackTime = -1.0;
     self.player = nil;
     self.nowPlaying = nil;
 }

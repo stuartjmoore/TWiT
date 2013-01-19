@@ -8,7 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
+@class TWSplitViewContainer;
+
 @interface TWPlaybarViewController : UIViewController
+
+@property (nonatomic, weak) TWSplitViewContainer *splitViewContainer;
 
 @property (nonatomic, weak) IBOutlet UILabel *titleLabel, *subtitleLabel;
 @property (nonatomic, weak) IBOutlet UIImageView *albumArt;
@@ -16,7 +20,8 @@
 
 - (void)updateView;
 
-- (IBAction)play:(id)sender;
-- (IBAction)openPlayer:(id)sender;
+- (IBAction)play:(UIButton*)sender;
+- (IBAction)stop:(UIButton*)sender;
+- (IBAction)openPlayer:(UIButton*)sender;
 
 @end
