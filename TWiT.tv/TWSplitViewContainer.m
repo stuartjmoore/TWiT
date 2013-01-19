@@ -54,6 +54,69 @@
     */
 }
 
+#pragma mark - Actions
+
+- (void)hidePlaybar
+{
+    self.playbarContainer.hidden = YES;
+    float height = 0;
+    
+    UITableViewController *episodesTableViewController = (UITableViewController*)self.masterController.topViewController;
+    UITableViewController *showsTableViewController = (UITableViewController*)self.detailController.topViewController;
+    
+    
+    UIEdgeInsets insets = episodesTableViewController.tableView.contentInset;
+    insets.bottom = height;
+    episodesTableViewController.tableView.contentInset = insets;
+    
+    insets = episodesTableViewController.tableView.scrollIndicatorInsets;
+    insets.bottom = height;
+    episodesTableViewController.tableView.scrollIndicatorInsets = insets;
+    
+    
+    insets = showsTableViewController.tableView.contentInset;
+    insets.bottom = height;
+    showsTableViewController.tableView.contentInset = insets;
+    
+    insets = showsTableViewController.tableView.scrollIndicatorInsets;
+    insets.bottom = height;
+    showsTableViewController.tableView.scrollIndicatorInsets = insets;
+    
+    CGRect modalFrame = self.modalFlyout.frame;
+    modalFrame.size.height = self.modalContainer.bounds.size.height;
+    self.modalFlyout.frame = modalFrame;
+}
+- (void)showPlaybar
+{
+    self.playbarContainer.hidden = NO;
+    float height = self.playbarContainer.frame.size.height + 4 + 4;
+    
+    UITableViewController *episodesTableViewController = (UITableViewController*)self.masterController.topViewController;
+    UITableViewController *showsTableViewController = (UITableViewController*)self.detailController.topViewController;
+    
+    
+    UIEdgeInsets insets = episodesTableViewController.tableView.contentInset;
+    insets.bottom = height;
+    episodesTableViewController.tableView.contentInset = insets;
+    
+    insets = episodesTableViewController.tableView.scrollIndicatorInsets;
+    insets.bottom = height;
+    episodesTableViewController.tableView.scrollIndicatorInsets = insets;
+    
+    
+    insets = showsTableViewController.tableView.contentInset;
+    insets.bottom = height;
+    showsTableViewController.tableView.contentInset = insets;
+    
+    insets = showsTableViewController.tableView.scrollIndicatorInsets;
+    insets.bottom = height;
+    showsTableViewController.tableView.scrollIndicatorInsets = insets;
+    
+    CGRect modalFrame = self.modalFlyout.frame;
+    modalFrame.size.height = self.modalContainer.bounds.size.height-height;
+    self.modalFlyout.frame = modalFrame;
+}
+
 #pragma mark - Settings
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation

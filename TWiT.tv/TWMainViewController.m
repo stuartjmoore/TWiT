@@ -493,7 +493,10 @@
         }
         
         self.headerView.frame = frame;
-        self.tableView.scrollIndicatorInsets = UIEdgeInsetsMake(frame.size.height, 0, 0, 1);
+        
+        UIEdgeInsets scrollerInsets = self.tableView.scrollIndicatorInsets;
+        scrollerInsets.top = frame.size.height;
+        self.tableView.scrollIndicatorInsets = scrollerInsets;
     }
 }
 

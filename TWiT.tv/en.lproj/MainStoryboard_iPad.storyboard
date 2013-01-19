@@ -1424,7 +1424,7 @@
                                 </subviews>
                                 <color key="backgroundColor" red="0.1960784495" green="0.65098041299999998" blue="0.8078432083" alpha="1" colorSpace="deviceRGB"/>
                             </view>
-                            <view hidden="YES" contentMode="scaleToFill" id="dDZ-yF-lG4" userLabel="Modal Container">
+                            <view hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" id="dDZ-yF-lG4" userLabel="Modal Container">
                                 <rect key="frame" x="320" y="0.0" width="704" height="748"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
@@ -1453,6 +1453,11 @@
                                 </subviews>
                                 <color key="backgroundColor" red="1" green="0.90844290809999995" blue="0.21687427309999999" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
+                            <view hidden="YES" contentMode="scaleToFill" id="o1S-Pa-gek" userLabel="Playbar Container">
+                                <rect key="frame" x="4" y="700" width="1016" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
@@ -1464,6 +1469,7 @@
                         <outlet property="modalBlackground" destination="GNb-iH-O53" id="yBk-dE-Q70"/>
                         <outlet property="modalContainer" destination="dDZ-yF-lG4" id="fde-2l-lqb"/>
                         <outlet property="modalFlyout" destination="2t7-Si-Jd8" id="LNT-Z4-nRH"/>
+                        <outlet property="playbarContainer" destination="o1S-Pa-gek" id="qrZ-4g-req"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fmV-dE-trJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1675,6 +1681,7 @@
                 <relationship kind="outlet" name="modalContainer" candidateClass="UIView"/>
                 <relationship kind="outlet" name="modalController" candidateClass="UINavigationController"/>
                 <relationship kind="outlet" name="modalFlyout" candidateClass="UIView"/>
+                <relationship kind="outlet" name="playbarContainer" candidateClass="UIView"/>
             </relationships>
         </class>
     </classes>
