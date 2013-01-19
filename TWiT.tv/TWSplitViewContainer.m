@@ -83,13 +83,13 @@
     
     CGRect modalFrame = self.modalFlyout.frame;
     modalFrame.size.height = self.modalContainer.bounds.size.height;
-    self.modalFlyout.frame = modalFrame;
     
     [UIView animateWithDuration:0.3f animations:^{
         self.playbarContainer.alpha = 0;
     } completion:^(BOOL fin){
         self.playbarContainer.hidden = YES;
         self.playbarContainer.alpha = 1;
+        self.modalFlyout.frame = modalFrame;
     }];
 }
 - (void)showPlaybar
