@@ -392,15 +392,6 @@
 
 - (void)viewWillDisappear:(BOOL)animated
 {
-    self.enclosure.episode.lastTimecode = self.delegate.player.currentPlaybackTime;
-    
-    if(self.delegate.player.currentPlaybackTime / self.delegate.player.duration >= 0.85f)
-        self.enclosure.episode.watched = YES;
-    
-    if(self.delegate.player.playbackState != MPMoviePlaybackStatePlaying)
-        [self.delegate stop];
-    
-    
     self.wantsFullScreenLayout = NO;
     self.navigationController.navigationBar.tintColor = [UIColor colorWithRed:0.18 green:0.44 blue:0.57 alpha:1.0];
     self.navigationController.navigationBar.translucent = NO;
@@ -419,6 +410,20 @@
                                                 object:self.delegate.player];
     
     [super viewWillDisappear:animated];
+}
+
+- (void)viewDidDisappear:(BOOL)animated
+{
+    self.enclosure.episode.lastTimecode = self.delegate.player.currentPlaybackTime;
+    
+    if(self.delegate.player.currentPlaybackTime / self.delegate.player.duration >= 0.85f)
+        self.enclosure.episode.watched = YES;
+    
+    if(self.delegate.player.playbackState != MPMoviePlaybackStatePlaying)
+        [self.delegate stop];
+    
+    
+    [super viewDidDisappear:animated];
 }
 
 @end
