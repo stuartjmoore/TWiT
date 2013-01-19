@@ -24,9 +24,6 @@
 
 - (void)viewDidLoad
 {
-    [self.qualityButton setTitle:self.enclosure.title forState:UIControlStateNormal];
-    [self.qualityButton setBackgroundImage:[[self.qualityButton backgroundImageForState:UIControlStateNormal] stretchableImageWithLeftCapWidth:4 topCapHeight:4] forState:UIControlStateNormal];
-    
     MPVolumeView *airplayButton = [[MPVolumeView alloc] init];
     airplayButton.frame = CGRectMake(-7, -2, 37, 37);
     airplayButton.showsVolumeSlider = NO;
@@ -46,9 +43,10 @@
     
     self.delegate = (TWAppDelegate*)UIApplication.sharedApplication.delegate;
     
-    if(self.delegate.nowPlaying != self.enclosure)
+    if(!self.delegate.nowPlaying || ![self.delegate.nowPlaying isKindOfClass:Enclosure.class]
+    || ([self.delegate.nowPlaying isKindOfClass:Enclosure.class] && [self.delegate.nowPlaying episode] != self.enclosure.episode))
     {
-        if([self.delegate.nowPlaying isKindOfClass:Enclosure.class] && self.delegate.player)
+        if(self.delegate.player && [self.delegate.nowPlaying isKindOfClass:Enclosure.class])
             [[self.delegate.nowPlaying episode] setLastTimecode:self.delegate.player.currentPlaybackTime];
         
         if(self.delegate.player)
@@ -78,13 +76,17 @@
         }
         
         [self.delegate play];
+        self.delegate.nowPlaying = self.enclosure;
     }
     else
     {
         [self updateSeekbar];
     }
     
-    self.delegate.nowPlaying = self.enclosure;
+    self.enclosure = self.delegate.nowPlaying;
+    
+    [self.qualityButton setTitle:self.enclosure.title forState:UIControlStateNormal];
+    [self.qualityButton setBackgroundImage:[[self.qualityButton backgroundImageForState:UIControlStateNormal] stretchableImageWithLeftCapWidth:4 topCapHeight:4] forState:UIControlStateNormal];
     
     self.delegate.player.view.frame = self.view.bounds;
     self.delegate.player.view.autoresizingMask = 63;
@@ -222,7 +224,29 @@
 
 - (IBAction)openQualityPopover:(UIButton*)sender
 {
-    
+    if(self.qualityView.hidden)
+    {
+        CGRect frame = self.qualityView.frame;
+        frame.size.height = 44*self.enclosure.episode.enclosures.count + 4;
+        CGRect buttonFrame = [sender convertRect:sender.frame toView:self.qualityView.superview];
+        frame.origin.y = buttonFrame.origin.y - frame.size.height;
+        self.qualityView.frame = frame;
+        
+        self.qualityView.alpha = 0;
+        self.qualityView.hidden = NO;
+        [UIView animateWithDuration:0.3f animations:^{
+            self.qualityView.alpha = 1;
+        }];
+    }
+    else
+    {
+        [UIView animateWithDuration:0.3f animations:^{
+            self.qualityView.alpha = 0;
+        } completion:^(BOOL fin){
+            self.qualityView.hidden = YES;
+            self.qualityView.alpha = 1;
+        }];
+    }
 }
 
 
@@ -266,6 +290,7 @@
         return;
     
     self.enclosure = enclosure;
+    self.delegate.nowPlaying = enclosure;
     
     NSURL *url = self.enclosure.path ? [NSURL fileURLWithPath:self.enclosure.path] : [NSURL URLWithString:self.enclosure.url];
     
@@ -276,6 +301,13 @@
     [self.delegate play];
     
     [self.qualityButton setTitle:enclosure.title forState:UIControlStateNormal];
+    
+    [UIView animateWithDuration:0.3f animations:^{
+        self.qualityView.alpha = 0;
+    } completion:^(BOOL fin) {
+        self.qualityView.hidden = YES;
+        self.qualityView.alpha = 1;
+    }];
 }
 
 #pragma mark - Quality Table
@@ -367,8 +399,6 @@
     
     if(self.delegate.player.playbackState != MPMoviePlaybackStatePlaying)
         [self.delegate stop];
-    
-    //[self.enclosure.managedObjectContext save:nil];
     
     
     self.wantsFullScreenLayout = NO;

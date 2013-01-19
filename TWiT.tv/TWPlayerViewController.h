@@ -23,6 +23,8 @@
 @property (nonatomic, weak) IBOutlet UIView *airplayButtonView;
 @property (nonatomic, weak) IBOutlet UIButton *qualityButton, *speedButton, *rewindButton, *playButton;
 
+@property (nonatomic, weak) IBOutlet UIView *qualityView;
+
 - (void)playerStateChanged:(NSNotification*)notification;
 
 - (IBAction)play:(UIButton*)sender;
