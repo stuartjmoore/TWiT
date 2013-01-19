@@ -283,7 +283,7 @@
                                                                 <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                             </state>
                                                             <connections>
-                                                                <segue destination="cwj-qn-kQX" kind="push" id="ev1-BP-H8c"/>
+                                                                <segue destination="cwj-qn-kQX" kind="push" identifier="playerDetail" id="ev1-BP-H8c"/>
                                                             </connections>
                                                         </button>
                                                         <view contentMode="scaleToFill" id="ZC5-tk-gIT" userLabel="Bottom Separator">
