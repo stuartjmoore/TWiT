@@ -16,6 +16,8 @@
 #import "Episode.h"
 #import "Enclosure.h"
 
+#import "TWQualityCell.h"
+
 #define fastSpeed 1.5
 
 @implementation TWPlayerViewController
@@ -252,6 +254,55 @@
 - (IBAction)seekEnd:(UISlider*)sender
 {
     self.delegate.player.currentPlaybackTime = self.delegate.player.duration * self.seekbar.value;
+}
+
+- (void)tableView:(UITableView*)tableView didSelectRowAtIndexPath:(NSIndexPath*)indexPath
+{
+    NSSortDescriptor *descriptor = [NSSortDescriptor sortDescriptorWithKey:@"quality" ascending:NO];
+    NSArray *sortedEnclosures = [self.enclosure.episode.enclosures sortedArrayUsingDescriptors:@[descriptor]];
+    Enclosure *enclosure = sortedEnclosures[indexPath.row];
+    
+    if(enclosure == self.enclosure)
+        return;
+    
+    self.enclosure = enclosure;
+    
+    NSURL *url = self.enclosure.path ? [NSURL fileURLWithPath:self.enclosure.path] : [NSURL URLWithString:self.enclosure.url];
+    
+    NSTimeInterval startTime = self.delegate.player.currentPlaybackTime;
+    self.delegate.player.contentURL = url;
+    self.delegate.player.initialPlaybackTime = startTime;
+    
+    [self.delegate play];
+    
+    [self.qualityButton setTitle:enclosure.title forState:UIControlStateNormal];
+}
+
+#pragma mark - Quality Table
+
+- (NSInteger)tableView:(UITableView*)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return self.enclosure.episode.enclosures.count;
+}
+
+- (UITableViewCell*)tableView:(UITableView*)tableView cellForRowAtIndexPath:(NSIndexPath*)indexPath
+{
+    NSString *identifier = @"qualityCell";
+    TWQualityCell *cell = (TWQualityCell*)[tableView dequeueReusableCellWithIdentifier:identifier];
+    
+    NSSortDescriptor *descriptor = [NSSortDescriptor sortDescriptorWithKey:@"quality" ascending:NO];
+    NSArray *sortedEnclosures = [self.enclosure.episode.enclosures sortedArrayUsingDescriptors:@[descriptor]];
+    Enclosure *enclosure = sortedEnclosures[indexPath.row];
+    
+    cell.enclosure = enclosure;
+    
+    cell.topLine.hidden = (indexPath.row == 0);
+    cell.bottomLine.hidden = (indexPath.row == sortedEnclosures.count-1);
+    
+    if(enclosure == self.enclosure)
+        [tableView selectRowAtIndexPath:indexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
+    
+    return cell;
 }
 
 #pragma mark - Rotate
