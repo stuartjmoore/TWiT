@@ -40,6 +40,12 @@
     self.titleLabel.text = self.enclosure.episode.show.title;
     self.subtitleLabel.text = self.enclosure.episode.title;
     
+    self.infoAlbumArtView.image = self.enclosure.episode.show.albumArt.image;
+    self.infoShowLabel.font = [UIFont fontWithName:@"Vollkorn-BoldItalic" size:self.infoShowLabel.font.pointSize];
+    self.infoShowLabel.text = self.enclosure.episode.show.title;
+    self.infoEpisodeLabel.text = self.enclosure.episode.title;
+    self.infoDateLabel.text = self.enclosure.episode.publishedString;
+    self.infoDescLabel.text = self.enclosure.episode.desc;
     
     self.delegate = (TWAppDelegate*)UIApplication.sharedApplication.delegate;
     
@@ -85,6 +91,8 @@
     
     self.enclosure = self.delegate.nowPlaying;
     
+    self.infoView.hidden = (self.enclosure.type != TWTypeAudio);
+    
     [self.qualityButton setTitle:self.enclosure.title forState:UIControlStateNormal];
     [self.qualityButton setBackgroundImage:[[self.qualityButton backgroundImageForState:UIControlStateNormal] stretchableImageWithLeftCapWidth:4 topCapHeight:4] forState:UIControlStateNormal];
     
@@ -113,7 +121,6 @@
     if(UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPhone)
         [UIApplication.sharedApplication setStatusBarStyle:UIStatusBarStyleBlackTranslucent animated:YES];
     
-    
     [NSNotificationCenter.defaultCenter addObserver:self
                                            selector:@selector(playerStateChanged:)
                                                name:MPMoviePlayerPlaybackStateDidChangeNotification
@@ -126,6 +133,13 @@
                                            selector:@selector(playerStateChanged:)
                                                name:MPMoviePlayerPlaybackDidFinishNotification
                                              object:self.delegate.player];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+    [self layoutInfoViewForOrientation:UIApplication.sharedApplication.statusBarOrientation];
 }
 
 #pragma mark - Notifications
@@ -221,7 +235,10 @@
         self.toolbarView.hidden = NO;
         
         [UIView animateWithDuration:UINavigationControllerHideShowBarDuration delay:0 options:UIViewAnimationCurveEaseIn animations:^{
-            self.view.window.rootViewController.view.frame = UIScreen.mainScreen.applicationFrame;
+            
+            if(UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPad)
+                self.view.window.rootViewController.view.frame = UIScreen.mainScreen.applicationFrame;
+            
             self.navigationController.navigationBar.alpha = 1;
             self.navigationBar.alpha = 1;
             self.toolbarView.alpha = 1;
@@ -351,6 +368,7 @@
     
     [self.delegate play];
     
+    self.infoView.hidden = (enclosure.type != TWTypeAudio);
     [self.qualityButton setTitle:enclosure.title forState:UIControlStateNormal];
     
     [UIView animateWithDuration:0.3f animations:^{
@@ -390,10 +408,29 @@
 
 #pragma mark - Rotate
 
-- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)orientation
+- (void)layoutInfoViewForOrientation:(UIInterfaceOrientation)orientation
 {
-    //[self.navigationItem setHidesBackButton:UIInterfaceOrientationIsPortrait(orientation) animated:NO];
-    [self hideControls:UIInterfaceOrientationIsPortrait(orientation)];
+    if(UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPad)
+    {
+        if(UIInterfaceOrientationIsPortrait(orientation))
+        {
+            self.infoAlbumArtView.frame = CGRectMake(84, 84, 600, 600);
+            self.infoTitlesView.frame = CGRectMake(84, 84+600+8, 300-4, 161);
+            self.infoDescView.frame = CGRectMake(84+300+4, 84+600+8, 300-4, 161);
+        }
+        else
+        {
+            self.infoAlbumArtView.frame = CGRectMake(58, 8, 600, 600);
+            self.infoTitlesView.frame = CGRectMake(58+600+8, 8, 300, 161);
+            self.infoDescView.frame = CGRectMake(58+600+8, 177, 300, 431);
+        }
+    }
+}
+
+- (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)orientation duration:(NSTimeInterval)duration
+{
+    [self hideControls:!UIInterfaceOrientationIsPortrait(orientation)];
+    [self layoutInfoViewForOrientation:orientation];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
