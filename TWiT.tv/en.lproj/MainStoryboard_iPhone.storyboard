@@ -42,7 +42,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="180"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                         </imageView>
-                                        <view contentMode="scaleToFill" id="rxB-tU-cJ3" userLabel="Blackground">
+                                        <view clipsSubviews="YES" contentMode="scaleToFill" id="rxB-tU-cJ3" userLabel="Blackground">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="180"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.59999999999999998" colorSpace="calibratedWhite"/>
@@ -1096,6 +1096,7 @@
                         <outlet property="timeOfEndLabel" destination="XIg-yO-9vc" id="PHK-ON-eEN"/>
                         <outlet property="timeRemainingLabel" destination="tCj-YC-Tn8" id="3IZ-Oo-CBX"/>
                         <outlet property="titleLabel" destination="3NX-f6-dih" id="D7d-9b-49X"/>
+                        <outlet property="toolbarView" destination="C6H-ll-aCQ" id="HM4-k9-XvX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7qQ-2m-2zC" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1270,163 +1271,14 @@
         <image name="video-speed-normal.png" width="21" height="22"/>
         <image name="video-toolbar-double-back.png" width="1" height="88"/>
     </resources>
-    <classes>
-        <class className="TWEpisodeCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/TWEpisodeCell.h"/>
-            <relationships>
-                <relationship kind="action" name="cancelSwipe:" candidateClass="UIButton"/>
-                <relationship kind="action" name="deleteDownload:" candidateClass="UIButton"/>
-                <relationship kind="action" name="quickPlayPressed:" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="albumArt" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="bottomLine" candidateClass="UIView"/>
-                <relationship kind="outlet" name="contentView" candidateClass="UIView"/>
-                <relationship kind="outlet" name="downloadBackground" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="downloadedIcon" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="numberLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="quickPlayButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="subtitleLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="swipeBackgroundView" candidateClass="UIView"/>
-                <relationship kind="outlet" name="swipeCancelButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="swipeConfirmationView" candidateClass="UIView"/>
-                <relationship kind="outlet" name="swipeDeleteButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="swipeLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="titleLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="topLine" candidateClass="UIView"/>
-            </relationships>
-        </class>
-        <class className="TWEpisodeViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/TWEpisodeViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="transitionToPlayer:" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="dateLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="descLabel" candidateClass="UITextView"/>
-                <relationship kind="outlet" name="gradientView" candidateClass="UIView"/>
-                <relationship kind="outlet" name="guestsLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="numberLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="playButton" candidateClass="TWPlayButton"/>
-                <relationship kind="outlet" name="posterView" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="segmentedButton" candidateClass="TWSegmentedButton"/>
-                <relationship kind="outlet" name="timeLabel" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="TWLiveViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/TWLiveViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="openChatView:" candidateClass="UIButton"/>
-                <relationship kind="action" name="openQualityPopover:" candidateClass="UIButton"/>
-                <relationship kind="action" name="play:" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="airplayButtonView" candidateClass="UIView"/>
-                <relationship kind="outlet" name="chatButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="playButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="qualityButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="subtitleLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="titleLabel" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="TWMainViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/TWMainViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="swipeEpisode:" candidateClass="UIPanGestureRecognizer"/>
-                <relationship kind="action" name="transitionToLive:" candidateClass="UIButton"/>
-                <relationship kind="action" name="transitionToSchedule:" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="gradientView" candidateClass="UIView"/>
-                <relationship kind="outlet" name="headerView" candidateClass="UIView"/>
-                <relationship kind="outlet" name="listenButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="liveAlbumArtView" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="livePosterView" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="liveTimeLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="liveTitleLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="nextTimeLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="nextTitleLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="playButton" candidateClass="TWPlayButton"/>
-                <relationship kind="outlet" name="scheduleTable" candidateClass="UITableView"/>
-                <relationship kind="outlet" name="watchButton" candidateClass="UIButton"/>
-            </relationships>
-        </class>
-        <class className="TWPlayButton" superclassName="UIButton">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/TWPlayButton.h"/>
-        </class>
-        <class className="TWPlayerViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/TWPlayerViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="close:" candidateClass="UIBarButtonItem"/>
-                <relationship kind="action" name="play:" candidateClass="UIButton"/>
-                <relationship kind="action" name="rewind:" candidateClass="UIButton"/>
-                <relationship kind="action" name="seekEnd:" candidateClass="UISlider"/>
-                <relationship kind="action" name="seekStart:" candidateClass="UISlider"/>
-                <relationship kind="action" name="seeking:" candidateClass="UISlider"/>
-                <relationship kind="action" name="toggleSpeed:" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="airplayButtonView" candidateClass="UIView"/>
-                <relationship kind="outlet" name="playButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="qualityButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="qualityView" candidateClass="UIView"/>
-                <relationship kind="outlet" name="rewindButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="seekbar" candidateClass="UISlider"/>
-                <relationship kind="outlet" name="speedButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="subtitleLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="timeElapsedLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="timeOfEndLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="timeRemainingLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="titleLabel" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="TWQualityCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/TWQualityCell.h"/>
-            <relationships>
-                <relationship kind="outlet" name="bottomLine" candidateClass="UIView"/>
-                <relationship kind="outlet" name="checkmarkIcon" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="downloadIcon" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="subtitleLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="titleLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="topLine" candidateClass="UIView"/>
-            </relationships>
-        </class>
-        <class className="TWScheduleCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/TWScheduleCell.h"/>
-            <relationships>
-                <relationship kind="outlet" name="subtitleLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="timeLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="titleLabel" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="TWScheduleViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/TWScheduleViewController.h"/>
-        </class>
-        <class className="TWSegmentedButton" superclassName="UIButton">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/TWSegmentedButton.h"/>
-        </class>
-        <class className="TWShowViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/TWShowViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="email:" candidateClass="UIButton"/>
-                <relationship kind="action" name="openDetailView:" candidateClass="UIButton"/>
-                <relationship kind="action" name="phone:" candidateClass="UIButton"/>
-                <relationship kind="action" name="setFavorite:" candidateClass="UIButton"/>
-                <relationship kind="action" name="setReminder:" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="albumArt" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="descLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="emailButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="favoriteButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="gradientView" candidateClass="UIView"/>
-                <relationship kind="outlet" name="headerView" candidateClass="UIView"/>
-                <relationship kind="outlet" name="phoneButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="posterView" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="remindButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="scheduleLabel" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="TWShowsCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/TWShowsCell.h"/>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="rrL-Yf-xFC"/>
+        <segue reference="YiW-0V-IC2"/>
         <segue reference="ev1-BP-H8c"/>
-        <segue reference="OfB-Q1-3Dp"/>
+        <segue reference="rrL-Yf-xFC"/>
     </inferredMetricsTieBreakers>
 </document>

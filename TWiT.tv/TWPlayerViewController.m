@@ -92,6 +92,12 @@
     self.delegate.player.view.autoresizingMask = 63;
     [self.view addSubview:self.delegate.player.view];
     [self.view sendSubviewToBack:self.delegate.player.view];
+    
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(userDidTapPlayer:)];
+    UIView *tapView = [[UIView alloc] initWithFrame:self.delegate.player.view.bounds];
+    [tapView setAutoresizingMask:63];
+    [tapView addGestureRecognizer:tap];
+    [self.delegate.player.view addSubview:tapView];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -192,6 +198,43 @@
 }
 
 #pragma mark - Actions
+
+- (void)userDidTapPlayer:(UIGestureRecognizer*)sender
+{
+    [self hideControls:!self.navigationController.navigationBar.isHidden];
+}
+
+- (void)hideControls:(BOOL)hide
+{
+    if(hide == self.toolbarView.hidden)
+        return;
+    
+    [UIApplication.sharedApplication setStatusBarHidden:hide withAnimation:UIStatusBarAnimationFade];
+    
+    if(!hide)
+    {
+        self.navigationController.navigationBar.alpha = 0;
+        self.toolbarView.alpha = 0;
+        [self.navigationController setNavigationBarHidden:NO animated:NO];
+        self.toolbarView.hidden = NO;
+        
+        [UIView animateWithDuration:UINavigationControllerHideShowBarDuration delay:0 options:UIViewAnimationCurveEaseIn animations:^{
+            self.navigationController.navigationBar.alpha = 1;
+            self.toolbarView.alpha = 1;
+        } completion:^(BOOL fin){
+        }];
+    }
+    else
+    {
+        [UIView animateWithDuration:UINavigationControllerHideShowBarDuration delay:0 options:UIViewAnimationCurveEaseOut animations:^{
+            self.navigationController.navigationBar.alpha = 0;
+            self.toolbarView.alpha = 0;
+        } completion:^(BOOL fin){
+            [self.navigationController setNavigationBarHidden:YES animated:NO];
+            self.toolbarView.hidden = YES;
+        }];
+    }
+}
 
 - (IBAction)play:(UIButton*)sender
 {
@@ -340,6 +383,12 @@
 }
 
 #pragma mark - Rotate
+
+- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)orientation
+{
+    //[self.navigationItem setHidesBackButton:UIInterfaceOrientationIsPortrait(orientation) animated:NO];
+    [self hideControls:UIInterfaceOrientationIsPortrait(orientation)];
+}
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
