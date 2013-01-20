@@ -126,15 +126,16 @@
     Event *currentShow = self.stream.channel.schedule.currentShow;
     if(currentShow)
     {
-        self.subtitleLabel.text = [NSString stringWithFormat:@"%@ - %@", currentShow.until, currentShow.title];
+        NSString *untilString = currentShow.until;
+        self.subtitleLabel.text = [NSString stringWithFormat:@"%@ - %@", untilString, currentShow.title];
         
         [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(updateTitle) object:nil];
         
-        if([self.subtitleLabel.text hasSuffix:@"m"])
+        if([untilString hasSuffix:@"m"])
             [self performSelector:@selector(updateTitle) withObject:nil afterDelay:60];
-        else if([self.subtitleLabel.text isEqualToString:@"Pre-show"])
+        else if([untilString isEqualToString:@"Pre-show"])
             [self performSelector:@selector(updateTitle) withObject:nil afterDelay:currentShow.start.timeIntervalSinceNow];
-        else if(currentShow.show && [self.subtitleLabel.text isEqualToString:@"Live"])
+        else if([untilString isEqualToString:@"Live"])
             [self performSelector:@selector(updateTitle) withObject:nil afterDelay:currentShow.end.timeIntervalSinceNow];
     }
     else

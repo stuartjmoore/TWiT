@@ -445,7 +445,7 @@
         [self performSelector:@selector(redrawSchedule:) withObject:nil afterDelay:60];
     else if([self.liveTimeLabel.text isEqualToString:@"Pre-show"])
         [self performSelector:@selector(redrawSchedule:) withObject:nil afterDelay:currentShow.start.timeIntervalSinceNow];
-    else if(currentShow.show && [self.liveTimeLabel.text isEqualToString:@"Live"])
+    else if([self.liveTimeLabel.text isEqualToString:@"Live"])
         [self performSelector:@selector(redrawSchedule:) withObject:nil afterDelay:currentShow.end.timeIntervalSinceNow];
 }
 
