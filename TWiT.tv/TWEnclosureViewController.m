@@ -248,6 +248,9 @@
     }
     else
     {
+        if(!self.qualityView.hidden)
+            [self openQualityPopover:nil];
+        
         [UIView animateWithDuration:UINavigationControllerHideShowBarDuration delay:0 options:UIViewAnimationCurveEaseOut animations:^{
             self.navigationController.navigationBar.alpha = 0;
             self.navigationBar.alpha = 0;
