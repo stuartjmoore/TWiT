@@ -204,7 +204,7 @@
         NSDate *endingTime = [[NSDate date] dateByAddingTimeInterval:secondsLeft];
         NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
         [dateFormat setDateFormat:@"h:mm"];
-        [self.timeOfEndLabel setText:[NSString stringWithFormat:@"ends @ %@",[dateFormat stringFromDate:endingTime]]];
+        [self.timeOfEndLabel setText:[NSString stringWithFormat:@"ends @ %@", [dateFormat stringFromDate:endingTime]]];
     }
     
     if(self.delegate.player.playbackState == MPMoviePlaybackStatePlaying)
@@ -215,7 +215,8 @@
 
 - (void)userDidTapPlayer:(UIGestureRecognizer*)sender
 {
-    [self hideControls:!self.toolbarView.hidden];
+    if(self.enclosure.type != TWTypeAudio)
+        [self hideControls:!self.toolbarView.hidden];
 }
 
 - (void)hideControls:(BOOL)hide
@@ -429,7 +430,8 @@
 
 - (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)orientation duration:(NSTimeInterval)duration
 {
-    [self hideControls:!UIInterfaceOrientationIsPortrait(orientation)];
+    if(self.enclosure.type != TWTypeAudio)
+        [self hideControls:!UIInterfaceOrientationIsPortrait(orientation)];
     [self layoutInfoViewForOrientation:orientation];
 }
 
