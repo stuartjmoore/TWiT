@@ -237,7 +237,7 @@
 		17C43BA516971C3F0066C79F /* sn-poster.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 17C43BA416971C3E0066C79F /* sn-poster.jpg */; };
 		17C43BA716971C850066C79F /* specials-poster.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 17C43BA616971C840066C79F /* specials-poster.jpg */; };
 		17C477F416A18CF40058E6C4 /* TWScheduleGridViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 17C477F316A18CF40058E6C4 /* TWScheduleGridViewController.m */; };
-		17C477F816A192B40058E6C4 /* TWPlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 17C477F716A192B40058E6C4 /* TWPlayerViewController.m */; };
+		17C477F816A192B40058E6C4 /* TWEnclosureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 17C477F716A192B40058E6C4 /* TWEnclosureViewController.m */; };
 		17C5A015169EC2870043A781 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 17C5A014169EC2870043A781 /* Icon.png */; };
 		17C5A018169EC2890043A781 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 17C5A017169EC2890043A781 /* Icon@2x.png */; };
 		17C5A01A169EC2900043A781 /* Icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = 17C5A019169EC2900043A781 /* Icon-72.png */; };
@@ -518,8 +518,8 @@
 		17C43BA616971C840066C79F /* specials-poster.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "specials-poster.jpg"; sourceTree = "<group>"; };
 		17C477F216A18CF40058E6C4 /* TWScheduleGridViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWScheduleGridViewController.h; sourceTree = "<group>"; };
 		17C477F316A18CF40058E6C4 /* TWScheduleGridViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWScheduleGridViewController.m; sourceTree = "<group>"; };
-		17C477F616A192B40058E6C4 /* TWPlayerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWPlayerViewController.h; sourceTree = "<group>"; };
-		17C477F716A192B40058E6C4 /* TWPlayerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWPlayerViewController.m; sourceTree = "<group>"; };
+		17C477F616A192B40058E6C4 /* TWEnclosureViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWEnclosureViewController.h; sourceTree = "<group>"; };
+		17C477F716A192B40058E6C4 /* TWEnclosureViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWEnclosureViewController.m; sourceTree = "<group>"; };
 		17C5A014169EC2870043A781 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Icon.png; path = ../Icon.png; sourceTree = "<group>"; };
 		17C5A017169EC2890043A781 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon@2x.png"; path = "../Icon@2x.png"; sourceTree = "<group>"; };
 		17C5A019169EC2900043A781 /* Icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-72.png"; path = "../Icon-72.png"; sourceTree = "<group>"; };
@@ -967,8 +967,8 @@
 				17C477F316A18CF40058E6C4 /* TWScheduleGridViewController.m */,
 				1787B3BB16A58E7B00870B87 /* TWLiveViewController.h */,
 				1787B3BC16A58E7B00870B87 /* TWLiveViewController.m */,
-				17C477F616A192B40058E6C4 /* TWPlayerViewController.h */,
-				17C477F716A192B40058E6C4 /* TWPlayerViewController.m */,
+				17C477F616A192B40058E6C4 /* TWEnclosureViewController.h */,
+				17C477F716A192B40058E6C4 /* TWEnclosureViewController.m */,
 				177F1FAD16AB25A900BFFA63 /* TWPlaybarViewController.h */,
 				177F1FAE16AB25A900BFFA63 /* TWPlaybarViewController.m */,
 				170B475E16A6A9C900F7C3B5 /* TWShowInfoViewController.h */,
@@ -1300,7 +1300,7 @@
 				17C5A020169EC7FF0043A781 /* TWScheduleCell.m in Sources */,
 				17C5A037169F072C0043A781 /* UINavigationItem+custom.m in Sources */,
 				17C477F416A18CF40058E6C4 /* TWScheduleGridViewController.m in Sources */,
-				17C477F816A192B40058E6C4 /* TWPlayerViewController.m in Sources */,
+				17C477F816A192B40058E6C4 /* TWEnclosureViewController.m in Sources */,
 				17D1B6B216A1CAC800B05C12 /* TWPlayButton.m in Sources */,
 				17D1B6B516A1D38A00B05C12 /* TWSegmentedButton.m in Sources */,
 				1787B3BD16A58E7B00870B87 /* TWLiveViewController.m in Sources */,
