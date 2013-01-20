@@ -432,12 +432,16 @@
         NSTimeInterval secondsDuration = [currentShow.start timeIntervalSinceDate:currentShow.end];
         self.playButton.percentage = (secondsDuration != 0) ? secondsElasped/secondsDuration : 0;
     }
+    else
+    {
+        self.playButton.percentage = 0;
+    }
     
     [self.scheduleTable reloadData];
     
     [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(redrawSchedule:) object:nil];
     
-    if([self.liveTimeLabel.text hasSuffix:@"m"])
+    if([self.liveTimeLabel.text hasSuffix:@"m"] || [self.nextTimeLabel.text hasSuffix:@"m"])
         [self performSelector:@selector(redrawSchedule:) withObject:nil afterDelay:60];
     else if([self.liveTimeLabel.text isEqualToString:@"Pre-show"])
         [self performSelector:@selector(redrawSchedule:) withObject:nil afterDelay:currentShow.start.timeIntervalSinceNow];

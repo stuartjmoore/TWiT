@@ -19,10 +19,15 @@
 @property (nonatomic, weak) IBOutlet UINavigationBar *navigationBar;
 @property (nonatomic, weak) IBOutlet UILabel *titleLabel, *subtitleLabel;
 
+@property (nonatomic, weak) IBOutlet UIView *toolbarView;
 @property (nonatomic, weak) IBOutlet UIView *airplayButtonView;
 @property (nonatomic, weak) IBOutlet UIButton *qualityButton, *chatButton, *playButton;
 
 @property (nonatomic, weak) IBOutlet UIView *qualityView;
+
+@property (nonatomic, weak) IBOutlet UIView *infoView, *infoTitlesView, *infoDescView;
+@property (nonatomic, weak) IBOutlet UILabel *infoShowLabel, *infoEpisodeLabel, *infoDateLabel, *infoDescLabel;
+@property (nonatomic, weak) IBOutlet UIImageView *infoAlbumArtView;
 
 - (void)playerStateChanged:(NSNotification*)notification;
 

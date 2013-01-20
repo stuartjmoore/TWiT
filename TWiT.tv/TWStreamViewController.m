@@ -21,9 +21,6 @@
 
 - (void)viewDidLoad
 {
-    [self.qualityButton setTitle:self.stream.title forState:UIControlStateNormal];
-    [self.qualityButton setBackgroundImage:[[self.qualityButton backgroundImageForState:UIControlStateNormal] stretchableImageWithLeftCapWidth:4 topCapHeight:4] forState:UIControlStateNormal];
-    
     MPVolumeView *airplayButton = [[MPVolumeView alloc] init];
     airplayButton.frame = CGRectMake(-7, -2, 37, 37);
     airplayButton.showsVolumeSlider = NO;
@@ -31,17 +28,12 @@
     self.airplayButtonView.backgroundColor = [UIColor clearColor];
     
     self.titleLabel.font = [UIFont fontWithName:@"Vollkorn-BoldItalic" size:self.titleLabel.font.pointSize];
-    self.titleLabel.text = self.stream.channel.title;
-    
-    Event *currentShow = self.stream.channel.schedule.currentShow;
-    if(currentShow)
-        self.subtitleLabel.text = [NSString stringWithFormat:@"%@ - %@", currentShow.until, currentShow.title];
-    else
-        self.subtitleLabel.text = @"with Leo Laporte";
+    [self updateTitle];
     
     self.delegate = (TWAppDelegate*)UIApplication.sharedApplication.delegate;
     
-    if(self.delegate.nowPlaying != self.stream)
+    if(!self.delegate.nowPlaying || ![self.delegate.nowPlaying isKindOfClass:Stream.class]
+    || ([self.delegate.nowPlaying isKindOfClass:Stream.class] && [self.delegate.nowPlaying channel] != self.stream.channel))
     {
         if([self.delegate.nowPlaying isKindOfClass:Enclosure.class] && self.delegate.player)
             [[self.delegate.nowPlaying episode] setLastTimecode:self.delegate.player.currentPlaybackTime];
@@ -70,19 +62,33 @@
         }
         */
         [self.delegate play];
+        self.delegate.nowPlaying = self.stream;
     }
     
-    self.delegate.nowPlaying = self.stream;
+    self.stream = self.delegate.nowPlaying;
+    
+    self.infoView.hidden = (self.stream.type != TWTypeAudio);
+    
+    [self.qualityButton setTitle:self.stream.title forState:UIControlStateNormal];
+    [self.qualityButton setBackgroundImage:[[self.qualityButton backgroundImageForState:UIControlStateNormal] stretchableImageWithLeftCapWidth:4 topCapHeight:4] forState:UIControlStateNormal];
     
     self.delegate.player.view.frame = self.view.bounds;
     self.delegate.player.view.autoresizingMask = 63;
     [self.view addSubview:self.delegate.player.view];
     [self.view sendSubviewToBack:self.delegate.player.view];
+    
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(userDidTapPlayer:)];
+    UIView *tapView = [[UIView alloc] initWithFrame:self.delegate.player.view.bounds];
+    [tapView setAutoresizingMask:63];
+    [tapView addGestureRecognizer:tap];
+    [self.delegate.player.view addSubview:tapView];
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    
+    [self.splitViewContainer hidePlaybar];
     
     self.wantsFullScreenLayout = YES;
     self.navigationController.navigationBar.tintColor = UIColor.blackColor;
@@ -104,6 +110,35 @@
                                            selector:@selector(playerStateChanged:)
                                                name:MPMoviePlayerPlaybackDidFinishNotification
                                              object:self.delegate.player];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+    [self layoutInfoViewForOrientation:UIApplication.sharedApplication.statusBarOrientation];
+}
+
+- (void)updateTitle
+{
+    self.titleLabel.text = self.stream.channel.title;
+    
+    Event *currentShow = self.stream.channel.schedule.currentShow;
+    if(currentShow)
+    {
+        self.subtitleLabel.text = [NSString stringWithFormat:@"%@ - %@", currentShow.until, currentShow.title];
+        
+        [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(updateTitle) object:nil];
+        
+        if([self.subtitleLabel.text hasSuffix:@"m"])
+            [self performSelector:@selector(updateTitle) withObject:nil afterDelay:60];
+        else if([self.subtitleLabel.text isEqualToString:@"Pre-show"])
+            [self performSelector:@selector(updateTitle) withObject:nil afterDelay:currentShow.start.timeIntervalSinceNow];
+        else if(currentShow.show && [self.subtitleLabel.text isEqualToString:@"Live"])
+            [self performSelector:@selector(updateTitle) withObject:nil afterDelay:currentShow.end.timeIntervalSinceNow];
+    }
+    else
+        self.subtitleLabel.text = @"with Leo Laporte";
 }
 
 #pragma mark - Notifications
@@ -137,6 +172,53 @@
 }
 
 #pragma mark - Actions
+
+- (void)userDidTapPlayer:(UIGestureRecognizer*)sender
+{
+    if(self.stream.type != TWTypeAudio)
+        [self hideControls:!self.toolbarView.hidden];
+}
+
+- (void)hideControls:(BOOL)hide
+{
+    if(hide == self.toolbarView.hidden)
+        return;
+    
+    [UIApplication.sharedApplication setStatusBarHidden:hide withAnimation:UIStatusBarAnimationFade];
+    
+    if(!hide)
+    {
+        self.navigationController.navigationBar.alpha = 0;
+        self.navigationBar.alpha = 0;
+        self.toolbarView.alpha = 0;
+        [self.navigationController setNavigationBarHidden:NO animated:NO];
+        self.navigationBar.hidden = NO;
+        self.toolbarView.hidden = NO;
+        
+        [UIView animateWithDuration:UINavigationControllerHideShowBarDuration delay:0 options:UIViewAnimationCurveEaseIn animations:^{
+            
+            if(UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPad)
+                self.view.window.rootViewController.view.frame = UIScreen.mainScreen.applicationFrame;
+            
+            self.navigationController.navigationBar.alpha = 1;
+            self.navigationBar.alpha = 1;
+            self.toolbarView.alpha = 1;
+        } completion:^(BOOL fin){
+        }];
+    }
+    else
+    {
+        [UIView animateWithDuration:UINavigationControllerHideShowBarDuration delay:0 options:UIViewAnimationCurveEaseOut animations:^{
+            self.navigationController.navigationBar.alpha = 0;
+            self.navigationBar.alpha = 0;
+            self.toolbarView.alpha = 0;
+        } completion:^(BOOL fin){
+            [self.navigationController setNavigationBarHidden:YES animated:NO];
+            self.navigationBar.hidden = YES;
+            self.toolbarView.hidden = YES;
+        }];
+    }
+}
 
 - (IBAction)play:(UIButton*)sender
 {
@@ -201,7 +283,7 @@
     
     [self.delegate play];
     
-    //self.infoView.hidden = (enclosure.type != TWTypeAudio);
+    self.infoView.hidden = (stream.type != TWTypeAudio);
     [self.qualityButton setTitle:stream.title forState:UIControlStateNormal];
     
     [UIView animateWithDuration:0.3f animations:^{
@@ -241,6 +323,32 @@
 
 #pragma mark - Rotate
 
+- (void)layoutInfoViewForOrientation:(UIInterfaceOrientation)orientation
+{
+    if(UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPad)
+    {
+        if(UIInterfaceOrientationIsPortrait(orientation))
+        {
+            self.infoAlbumArtView.frame = CGRectMake(84, 84, 600, 600);
+            self.infoTitlesView.frame = CGRectMake(84, 84+600+8, 300-4, 161);
+            self.infoDescView.frame = CGRectMake(84+300+4, 84+600+8, 300-4, 161);
+        }
+        else
+        {
+            self.infoAlbumArtView.frame = CGRectMake(58, 8, 600, 600);
+            self.infoTitlesView.frame = CGRectMake(58+600+8, 8, 300, 161);
+            self.infoDescView.frame = CGRectMake(58+600+8, 177, 300, 431);
+        }
+    }
+}
+
+- (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)orientation duration:(NSTimeInterval)duration
+{
+    if(self.stream.type != TWTypeAudio)
+        [self hideControls:!UIInterfaceOrientationIsPortrait(orientation)];
+    [self layoutInfoViewForOrientation:orientation];
+}
+
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     return YES;
@@ -255,6 +363,9 @@
 
 - (IBAction)close:(UIBarButtonItem*)sender
 {
+    if(self.delegate.player.playbackState == MPMoviePlaybackStatePlaying)
+        [self.splitViewContainer showPlaybar];
+    
     CGRect masterFrameOriginal = self.splitViewContainer.masterContainer.frame;
     CGRect masterFrameAnimate = masterFrameOriginal;
     masterFrameAnimate.origin.x -= masterFrameAnimate.size.width;
@@ -308,14 +419,11 @@
     //   presentationSize
     //   AVPlayerItem
     
-    [NSNotificationCenter.defaultCenter removeObserver:self
-                                                  name:MPMoviePlayerPlaybackStateDidChangeNotification
+    [NSNotificationCenter.defaultCenter removeObserver:self name:MPMoviePlayerPlaybackStateDidChangeNotification
                                                 object:self.delegate.player];
-    [NSNotificationCenter.defaultCenter removeObserver:self
-                                                  name:MPMoviePlayerLoadStateDidChangeNotification
+    [NSNotificationCenter.defaultCenter removeObserver:self name:MPMoviePlayerLoadStateDidChangeNotification
                                                 object:self.delegate.player];
-    [NSNotificationCenter.defaultCenter removeObserver:self
-                                                  name:MPMoviePlayerPlaybackDidFinishNotification
+    [NSNotificationCenter.defaultCenter removeObserver:self name:MPMoviePlayerPlaybackDidFinishNotification
                                                 object:self.delegate.player];
     
     [super viewWillDisappear:animated];
@@ -323,10 +431,10 @@
 
 - (void)viewDidDisappear:(BOOL)animated
 {
-    [super viewDidDisappear:animated];
-    
     if(self.delegate.player.playbackState != MPMoviePlaybackStatePlaying)
         [self.delegate stop];
+    
+    [super viewDidDisappear:animated];
 }
 
 @end

@@ -640,7 +640,7 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
-                            <view contentMode="scaleToFill" id="1Uf-aR-07j">
+                            <view contentMode="scaleToFill" id="1Uf-aR-07j" userLabel="Toolbar">
                                 <rect key="frame" x="0.0" y="704" width="1024" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <subviews>
@@ -811,6 +811,7 @@
                         <outlet property="qualityView" destination="V7n-qT-7aH" id="72P-hl-h6z"/>
                         <outlet property="subtitleLabel" destination="w7Z-Yn-qwr" id="PcU-De-Jjv"/>
                         <outlet property="titleLabel" destination="bkN-J3-8N4" id="Cr3-fi-7fq"/>
+                        <outlet property="toolbarView" destination="1Uf-aR-07j" id="1u0-zt-6zR"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="f8P-Rd-zbG" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1943,12 +1944,21 @@
                 <relationship kind="action" name="play:" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="airplayButtonView" candidateClass="UIView"/>
                 <relationship kind="outlet" name="chatButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="infoAlbumArtView" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="infoDateLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="infoDescLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="infoDescView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="infoEpisodeLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="infoShowLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="infoTitlesView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="infoView" candidateClass="UIView"/>
                 <relationship kind="outlet" name="navigationBar" candidateClass="UINavigationBar"/>
                 <relationship kind="outlet" name="playButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="qualityButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="qualityView" candidateClass="UIView"/>
                 <relationship kind="outlet" name="subtitleLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="titleLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="toolbarView" candidateClass="UIView"/>
             </relationships>
         </class>
     </classes>
