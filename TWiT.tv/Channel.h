@@ -10,6 +10,7 @@
 #import <CoreData/CoreData.h>
 
 #import "Schedule.h"
+#import "Feed.h"
 
 @class Show, Stream, Schedule;
 
@@ -21,6 +22,8 @@
 @property (nonatomic, strong) NSSet *shows, *streams;
 
 @property (strong, nonatomic) Schedule *schedule;
+
+- (Stream*)streamForType:(TWType)type;
 
 - (void)update;
 - (void)updateJSON;

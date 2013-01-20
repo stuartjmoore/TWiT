@@ -1031,8 +1031,7 @@
     TWStreamViewController *liveController = [self.storyboard instantiateViewControllerWithIdentifier:@"liveController"];
     liveController.splitViewContainer = self.splitViewContainer;
     
-    Stream *stream = self.channel.streams.anyObject;
-    liveController.stream = stream;
+    liveController.stream = [self.channel streamForType:TWTypeVideo];
     
     liveController.view.frame = self.splitViewContainer.view.bounds;
     liveController.view.autoresizingMask = 63;
@@ -1111,13 +1110,11 @@
     }
     else if([segue.identifier isEqualToString:@"liveAudioDetail"])
     {
-        Stream *stream = self.channel.streams.anyObject;
-        [segue.destinationViewController setStream:stream];
+        [segue.destinationViewController setStream:[self.channel streamForType:TWTypeAudio]];
     }
     else if([segue.identifier isEqualToString:@"liveVideoDetail"])
     {
-        Stream *stream = self.channel.streams.anyObject;
-        [segue.destinationViewController setStream:stream];
+        [segue.destinationViewController setStream:[self.channel streamForType:TWTypeVideo]];
     }
 }
 

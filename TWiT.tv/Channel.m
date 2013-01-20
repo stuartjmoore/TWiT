@@ -25,6 +25,17 @@
     [self reloadSchedule];
 }
 
+- (Stream*)streamForType:(TWType)type
+{
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"type == %d", type];
+    NSSet *streams = [self.streams filteredSetUsingPredicate:predicate];
+    
+    if(streams.count == 0)
+        return nil;
+    
+    return streams.anyObject;
+}
+
 - (void)updateJSON
 {
     NSString *resourcedPath = [NSBundle.mainBundle.resourcePath stringByAppendingPathComponent:@"TWiT.json"];
