@@ -201,7 +201,7 @@
 
 - (void)userDidTapPlayer:(UIGestureRecognizer*)sender
 {
-    [self hideControls:!self.navigationController.navigationBar.isHidden];
+    [self hideControls:!self.toolbarView.hidden];
 }
 
 - (void)hideControls:(BOOL)hide
@@ -214,12 +214,16 @@
     if(!hide)
     {
         self.navigationController.navigationBar.alpha = 0;
+        self.navigationBar.alpha = 0;
         self.toolbarView.alpha = 0;
         [self.navigationController setNavigationBarHidden:NO animated:NO];
+        self.navigationBar.hidden = NO;
         self.toolbarView.hidden = NO;
         
         [UIView animateWithDuration:UINavigationControllerHideShowBarDuration delay:0 options:UIViewAnimationCurveEaseIn animations:^{
+            self.view.window.rootViewController.view.frame = UIScreen.mainScreen.applicationFrame;
             self.navigationController.navigationBar.alpha = 1;
+            self.navigationBar.alpha = 1;
             self.toolbarView.alpha = 1;
         } completion:^(BOOL fin){
         }];
@@ -228,9 +232,11 @@
     {
         [UIView animateWithDuration:UINavigationControllerHideShowBarDuration delay:0 options:UIViewAnimationCurveEaseOut animations:^{
             self.navigationController.navigationBar.alpha = 0;
+            self.navigationBar.alpha = 0;
             self.toolbarView.alpha = 0;
         } completion:^(BOOL fin){
             [self.navigationController setNavigationBarHidden:YES animated:NO];
+            self.navigationBar.hidden = YES;
             self.toolbarView.hidden = YES;
         }];
     }

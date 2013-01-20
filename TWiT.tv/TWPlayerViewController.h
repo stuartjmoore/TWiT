@@ -16,6 +16,7 @@
 @property (nonatomic, weak) TWAppDelegate *delegate;
 @property (nonatomic, strong) Enclosure *enclosure;
 
+@property (nonatomic, weak) IBOutlet UINavigationBar *navigationBar;
 @property (nonatomic, weak) IBOutlet UILabel *titleLabel, *subtitleLabel;
 
 @property (nonatomic, weak) IBOutlet UIView *toolbarView;
