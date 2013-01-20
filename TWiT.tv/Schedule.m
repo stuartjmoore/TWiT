@@ -32,7 +32,7 @@
     {
         NSInteger interval = self.start.timeIntervalSinceNow;
         
-        if(interval >= 24*60*60) // 24 hours away
+        if(self.start.isTomorrow) // 24 hours away
         {
             string = @"Tomorrow";
         }

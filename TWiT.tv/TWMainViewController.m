@@ -406,7 +406,8 @@
     if(UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPad)
     {
         Event *nextShow = [self.channel.schedule showAfterShow:currentShow];
-        self.nextTimeLabel.text = [self.liveTimeLabel.text isEqualToString:@"Live"] ? nextShow.until : nextShow.time;
+        
+        self.nextTimeLabel.text = [self.liveTimeLabel.text isEqualToString:@"Live"] || nextShow.start.isTomorrow ? nextShow.until : nextShow.time;
         self.nextTitleLabel.text = nextShow.title;
     }
     
