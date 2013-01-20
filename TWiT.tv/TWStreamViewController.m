@@ -10,6 +10,7 @@
 
 #import "TWStreamViewController.h"
 #import "TWSplitViewContainer.h"
+#import "TWQualityCell.h"
 
 #import "Channel.h"
 #import "Stream.h"
@@ -156,7 +157,86 @@
 
 - (IBAction)openQualityPopover:(UIButton*)sender
 {
+    if(self.qualityView.hidden)
+    {
+        CGRect frame = self.qualityView.frame;
+        frame.size.height = 44*self.stream.channel.streams.count + 4;
+        CGRect buttonFrame = [sender convertRect:sender.frame toView:self.qualityView.superview];
+        frame.origin.y = buttonFrame.origin.y - frame.size.height;
+        self.qualityView.frame = frame;
+        
+        self.qualityView.alpha = 0;
+        self.qualityView.hidden = NO;
+        [UIView animateWithDuration:0.3f animations:^{
+            self.qualityView.alpha = 1;
+        }];
+    }
+    else
+    {
+        [UIView animateWithDuration:0.3f animations:^{
+            self.qualityView.alpha = 0;
+        } completion:^(BOOL fin){
+            self.qualityView.hidden = YES;
+            self.qualityView.alpha = 1;
+        }];
+    }
+}
+
+- (void)tableView:(UITableView*)tableView didSelectRowAtIndexPath:(NSIndexPath*)indexPath
+{
+    TWQualityCell *cell = (TWQualityCell*)[tableView cellForRowAtIndexPath:indexPath];
+    Stream *stream = (Stream*)cell.source;
     
+    if(stream == self.stream)
+        return;
+    
+    self.stream = stream;
+    self.delegate.nowPlaying = stream;
+    
+    NSURL *url = [NSURL URLWithString:self.stream.url];
+    
+    NSTimeInterval startTime = self.delegate.player.currentPlaybackTime;
+    self.delegate.player.contentURL = url;
+    self.delegate.player.initialPlaybackTime = startTime;
+    
+    [self.delegate play];
+    
+    //self.infoView.hidden = (enclosure.type != TWTypeAudio);
+    [self.qualityButton setTitle:stream.title forState:UIControlStateNormal];
+    
+    [UIView animateWithDuration:0.3f animations:^{
+        self.qualityView.alpha = 0;
+    } completion:^(BOOL fin) {
+        self.qualityView.hidden = YES;
+        self.qualityView.alpha = 1;
+    }];
+}
+
+#pragma mark - Quality Table
+
+- (NSInteger)tableView:(UITableView*)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return self.stream.channel.streams.count;
+}
+
+- (UITableViewCell*)tableView:(UITableView*)tableView cellForRowAtIndexPath:(NSIndexPath*)indexPath
+{
+    NSString *identifier = @"qualityCell";
+    TWQualityCell *cell = (TWQualityCell*)[tableView dequeueReusableCellWithIdentifier:identifier];
+    
+    NSSortDescriptor *descriptor = [NSSortDescriptor sortDescriptorWithKey:@"quality" ascending:NO];
+    NSArray *sortedStreams = [self.stream.channel.streams sortedArrayUsingDescriptors:@[descriptor]];
+    Stream *stream = sortedStreams[indexPath.row];
+    
+    cell.source = stream;
+    
+    cell.topLine.hidden = (indexPath.row == 0);
+    cell.bottomLine.hidden = (indexPath.row == sortedStreams.count-1);
+    
+    if(stream == self.stream)
+        [tableView selectRowAtIndexPath:indexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
+    
+    return cell;
 }
 
 #pragma mark - Rotate

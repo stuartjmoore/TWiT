@@ -351,9 +351,8 @@
 
 - (void)tableView:(UITableView*)tableView didSelectRowAtIndexPath:(NSIndexPath*)indexPath
 {
-    NSSortDescriptor *descriptor = [NSSortDescriptor sortDescriptorWithKey:@"quality" ascending:NO];
-    NSArray *sortedEnclosures = [self.enclosure.episode.enclosures sortedArrayUsingDescriptors:@[descriptor]];
-    Enclosure *enclosure = sortedEnclosures[indexPath.row];
+    TWQualityCell *cell = (TWQualityCell*)[tableView cellForRowAtIndexPath:indexPath];
+    Enclosure *enclosure = (Enclosure*)cell.source;
     
     if(enclosure == self.enclosure)
         return;
@@ -396,7 +395,7 @@
     NSArray *sortedEnclosures = [self.enclosure.episode.enclosures sortedArrayUsingDescriptors:@[descriptor]];
     Enclosure *enclosure = sortedEnclosures[indexPath.row];
     
-    cell.enclosure = enclosure;
+    cell.source = enclosure;
     
     cell.topLine.hidden = (indexPath.row == 0);
     cell.bottomLine.hidden = (indexPath.row == sortedEnclosures.count-1);

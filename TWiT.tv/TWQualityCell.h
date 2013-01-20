@@ -12,7 +12,7 @@
 
 @interface TWQualityCell : UITableViewCell
 
-@property (nonatomic, strong) Enclosure *enclosure;
+@property (nonatomic, strong) NSObject *source;
 
 @property (nonatomic, weak) IBOutlet UILabel *titleLabel, *subtitleLabel;
 @property (nonatomic, weak) IBOutlet UIImageView *checkmarkIcon, *downloadIcon;

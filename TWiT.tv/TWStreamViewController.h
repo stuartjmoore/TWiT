@@ -14,12 +14,15 @@
 
 @property (nonatomic, weak) TWSplitViewContainer *splitViewContainer;
 @property (nonatomic, weak) TWAppDelegate *delegate;
-
 @property (nonatomic, strong) Stream *stream;
+
+@property (nonatomic, weak) IBOutlet UINavigationBar *navigationBar;
 @property (nonatomic, weak) IBOutlet UILabel *titleLabel, *subtitleLabel;
 
 @property (nonatomic, weak) IBOutlet UIView *airplayButtonView;
 @property (nonatomic, weak) IBOutlet UIButton *qualityButton, *chatButton, *playButton;
+
+@property (nonatomic, weak) IBOutlet UIView *qualityView;
 
 - (void)playerStateChanged:(NSNotification*)notification;
 

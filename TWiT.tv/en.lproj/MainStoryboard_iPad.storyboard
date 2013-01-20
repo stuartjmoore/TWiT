@@ -719,6 +719,84 @@
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
+                            <view hidden="YES" contentMode="scaleToFill" id="V7n-qT-7aH" userLabel="Quality">
+                                <rect key="frame" x="662" y="503" width="360" height="184"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="quality-view-back.png" id="TsX-3W-bRb">
+                                        <rect key="frame" x="0.0" y="0.0" width="360" height="184"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                        <rect key="contentStretch" x="0.47619047619999999" y="0.16326530610000001" width="0.0" height="0.0"/>
+                                    </imageView>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="1E7-8C-DFt">
+                                        <rect key="frame" x="6" y="2" width="348" height="180"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <prototypes>
+                                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="qualityCell" id="lMc-Rt-Db2" customClass="TWQualityCell">
+                                                <rect key="frame" x="0.0" y="22" width="348" height="44"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                                    <rect key="frame" x="0.0" y="0.0" width="348" height="43"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <subviews>
+                                                        <view contentMode="scaleToFill" id="JgY-mF-wiq" userLabel="Top">
+                                                            <rect key="frame" x="0.0" y="0.0" width="348" height="1"/>
+                                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                                            <color key="backgroundColor" white="0.23999999999999999" alpha="1" colorSpace="calibratedWhite"/>
+                                                        </view>
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="quality-view-check-off.png" id="jAr-va-a3u">
+                                                            <rect key="frame" x="10" y="12" width="24" height="19"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                                        </imageView>
+                                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="BitGravity" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="9Mc-0x-85O">
+                                                            <rect key="frame" x="42" y="11" width="90" height="21"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                            <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                            <color key="shadowColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                            <size key="shadowOffset" width="0.0" height="1"/>
+                                                        </label>
+                                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Variable Bitrate" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="wNb-3G-DDg">
+                                                            <rect key="frame" x="140" y="11" width="174" height="21"/>
+                                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                            <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                            <color key="shadowColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                            <size key="shadowOffset" width="0.0" height="1"/>
+                                                        </label>
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="list-downloaded-icon.png" id="Pyk-p1-t13">
+                                                            <rect key="frame" x="322" y="15" width="12" height="13"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                                        </imageView>
+                                                        <view contentMode="scaleToFill" id="OLc-hl-bNV" userLabel="Bottom">
+                                                            <rect key="frame" x="0.0" y="42" width="348" height="1"/>
+                                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                                            <color key="backgroundColor" white="0.040000000000000001" alpha="1" colorSpace="calibratedWhite"/>
+                                                        </view>
+                                                    </subviews>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                </view>
+                                                <connections>
+                                                    <outlet property="bottomLine" destination="OLc-hl-bNV" id="850-9I-B8K"/>
+                                                    <outlet property="checkmarkIcon" destination="jAr-va-a3u" id="nOc-YI-IMa"/>
+                                                    <outlet property="downloadIcon" destination="Pyk-p1-t13" id="uWY-Gz-9a2"/>
+                                                    <outlet property="subtitleLabel" destination="wNb-3G-DDg" id="WFV-WL-vAb"/>
+                                                    <outlet property="titleLabel" destination="9Mc-0x-85O" id="vx9-Q3-FO6"/>
+                                                    <outlet property="topLine" destination="JgY-mF-wiq" id="laz-XE-Mzv"/>
+                                                </connections>
+                                            </tableViewCell>
+                                        </prototypes>
+                                        <connections>
+                                            <outlet property="dataSource" destination="tGz-71-90E" id="6IR-CI-wi0"/>
+                                            <outlet property="delegate" destination="tGz-71-90E" id="JLX-J0-5cQ"/>
+                                        </connections>
+                                    </tableView>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
@@ -727,8 +805,10 @@
                     <connections>
                         <outlet property="airplayButtonView" destination="27M-bl-NYD" id="wQj-aZ-TSf"/>
                         <outlet property="chatButton" destination="hM4-Rg-lUh" id="d9a-cE-yYE"/>
+                        <outlet property="navigationBar" destination="GWQ-lC-oVj" id="yzj-ha-qC9"/>
                         <outlet property="playButton" destination="hu1-mi-1Bn" id="Aup-zb-EGE"/>
                         <outlet property="qualityButton" destination="Vbh-TM-bRV" id="uTe-gb-gZN"/>
+                        <outlet property="qualityView" destination="V7n-qT-7aH" id="72P-hl-h6z"/>
                         <outlet property="subtitleLabel" destination="w7Z-Yn-qwr" id="PcU-De-Jjv"/>
                         <outlet property="titleLabel" destination="bkN-J3-8N4" id="Cr3-fi-7fq"/>
                     </connections>
@@ -1672,6 +1752,206 @@
         <image name="video-toolbar-back.png" width="1" height="44"/>
         <image name="video-toolbar-double-back.png" width="1" height="88"/>
     </resources>
+    <classes>
+        <class className="TWEnclosureViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TWEnclosureViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="close:" candidateClass="UIBarButtonItem"/>
+                <relationship kind="action" name="openQualityPopover:" candidateClass="UIButton"/>
+                <relationship kind="action" name="play:" candidateClass="UIButton"/>
+                <relationship kind="action" name="rewind:" candidateClass="UIButton"/>
+                <relationship kind="action" name="seekEnd:" candidateClass="UISlider"/>
+                <relationship kind="action" name="seekStart:" candidateClass="UISlider"/>
+                <relationship kind="action" name="seeking:" candidateClass="UISlider"/>
+                <relationship kind="action" name="toggleSpeed:" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="airplayButtonView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="infoAlbumArtView" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="infoDateLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="infoDescLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="infoDescView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="infoEpisodeLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="infoShowLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="infoTitlesView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="infoView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="navigationBar" candidateClass="UINavigationBar"/>
+                <relationship kind="outlet" name="playButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="qualityButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="qualityView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="rewindButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="seekbar" candidateClass="UISlider"/>
+                <relationship kind="outlet" name="speedButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="subtitleLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="timeElapsedLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="timeOfEndLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="timeRemainingLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="titleLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="toolbarView" candidateClass="UIView"/>
+            </relationships>
+        </class>
+        <class className="TWEpisodeCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TWEpisodeCell.h"/>
+            <relationships>
+                <relationship kind="action" name="cancelSwipe:" candidateClass="UIButton"/>
+                <relationship kind="action" name="deleteDownload:" candidateClass="UIButton"/>
+                <relationship kind="action" name="quickPlayPressed:" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="albumArt" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="bottomLine" candidateClass="UIView"/>
+                <relationship kind="outlet" name="contentView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="downloadBackground" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="downloadedIcon" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="numberLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="quickPlayButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="subtitleLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="swipeBackgroundView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="swipeCancelButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="swipeConfirmationView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="swipeDeleteButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="swipeLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="titleLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="topLine" candidateClass="UIView"/>
+            </relationships>
+        </class>
+        <class className="TWEpisodeViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TWEpisodeViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="transitionToPlayer:" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="dateLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="descLabel" candidateClass="UITextView"/>
+                <relationship kind="outlet" name="gradientView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="guestsLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="numberLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="playButton" candidateClass="TWPlayButton"/>
+                <relationship kind="outlet" name="posterView" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="segmentedButton" candidateClass="TWSegmentedButton"/>
+                <relationship kind="outlet" name="timeLabel" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="TWMainViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TWMainViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="swipeEpisode:" candidateClass="UIPanGestureRecognizer"/>
+                <relationship kind="action" name="transitionToLive:" candidateClass="UIButton"/>
+                <relationship kind="action" name="transitionToSchedule:" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="gradientView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="headerView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="listenButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="liveAlbumArtView" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="livePosterView" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="liveTimeLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="liveTitleLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="nextTimeLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="nextTitleLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="playButton" candidateClass="TWPlayButton"/>
+                <relationship kind="outlet" name="scheduleTable" candidateClass="UITableView"/>
+                <relationship kind="outlet" name="watchButton" candidateClass="UIButton"/>
+            </relationships>
+        </class>
+        <class className="TWPlayButton" superclassName="UIButton">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TWPlayButton.h"/>
+        </class>
+        <class className="TWPlaybarViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TWPlaybarViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="openPlayer:" candidateClass="UIButton"/>
+                <relationship kind="action" name="play:" candidateClass="UIButton"/>
+                <relationship kind="action" name="stop:" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="albumArt" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="playButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="subtitleLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="titleLabel" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="TWQualityCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TWQualityCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="bottomLine" candidateClass="UIView"/>
+                <relationship kind="outlet" name="checkmarkIcon" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="downloadIcon" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="subtitleLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="titleLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="topLine" candidateClass="UIView"/>
+            </relationships>
+        </class>
+        <class className="TWScheduleGridViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TWScheduleGridViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="close:" candidateClass="UIBarButtonItem"/>
+            </relationships>
+        </class>
+        <class className="TWSegmentedButton" superclassName="UIButton">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TWSegmentedButton.h"/>
+        </class>
+        <class className="TWShowInfoViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TWShowInfoViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="callShow:" candidateClass="UIButton"/>
+                <relationship kind="action" name="close:" candidateClass="UIButton"/>
+                <relationship kind="action" name="emailShow:" candidateClass="UIButton"/>
+                <relationship kind="action" name="openWebsite:" candidateClass="UIButton"/>
+                <relationship kind="action" name="openYouTube:" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="albumArt" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="callButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="descLabel" candidateClass="UITextView"/>
+                <relationship kind="outlet" name="emailButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="hostsLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="scheduleLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="titleLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="websiteButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="youtubeButton" candidateClass="UIButton"/>
+            </relationships>
+        </class>
+        <class className="TWShowViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TWShowViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="email:" candidateClass="UIButton"/>
+                <relationship kind="action" name="openDetailView:" candidateClass="UIButton"/>
+                <relationship kind="action" name="phone:" candidateClass="UIButton"/>
+                <relationship kind="action" name="setFavorite:" candidateClass="UIButton"/>
+                <relationship kind="action" name="setReminder:" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="albumArt" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="descLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="emailButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="favoriteButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="gradientView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="headerView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="phoneButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="posterView" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="remindButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="scheduleLabel" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="TWShowsCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TWShowsCell.h"/>
+        </class>
+        <class className="TWSplitViewContainer" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TWSplitViewContainer.h"/>
+            <relationships>
+                <relationship kind="outlet" name="detailContainer" candidateClass="UIView"/>
+                <relationship kind="outlet" name="masterContainer" candidateClass="UIView"/>
+                <relationship kind="outlet" name="modalBlackground" candidateClass="UIView"/>
+                <relationship kind="outlet" name="modalContainer" candidateClass="UIView"/>
+                <relationship kind="outlet" name="modalFlyout" candidateClass="UIView"/>
+                <relationship kind="outlet" name="playbarContainer" candidateClass="UIView"/>
+            </relationships>
+        </class>
+        <class className="TWStreamViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TWStreamViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="close:" candidateClass="UIBarButtonItem"/>
+                <relationship kind="action" name="openChatView:" candidateClass="UIButton"/>
+                <relationship kind="action" name="openQualityPopover:" candidateClass="UIButton"/>
+                <relationship kind="action" name="play:" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="airplayButtonView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="chatButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="navigationBar" candidateClass="UINavigationBar"/>
+                <relationship kind="outlet" name="playButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="qualityButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="qualityView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="subtitleLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="titleLabel" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar" statusBarStyle="blackTranslucent"/>
         <simulatedOrientationMetrics key="orientation"/>

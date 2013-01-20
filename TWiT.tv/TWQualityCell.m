@@ -10,13 +10,17 @@
 
 @implementation TWQualityCell
 
-- (void)setEnclosure:(Enclosure*)enclosure
+- (void)setSource:(id)source
 {
-    _enclosure = enclosure;
+    _source = source;
     
-    self.titleLabel.text = enclosure.title;
-    self.subtitleLabel.text = enclosure.subtitle;
-    self.downloadIcon.hidden = !(BOOL)enclosure.path;
+    self.titleLabel.text = [source title];
+    self.subtitleLabel.text = [source subtitle];
+    
+    if([source isKindOfClass:Enclosure.class])
+        self.downloadIcon.hidden = !(BOOL)[source path];
+    else
+        self.downloadIcon.hidden = YES;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
