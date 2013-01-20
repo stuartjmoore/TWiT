@@ -1,5 +1,5 @@
 //
-//  TWPlayerViewController.m
+//  TWEnclosureViewController.m
 //  TWiT.tv
 //
 //  Created by Stuart Moore on 1/12/13.
@@ -8,7 +8,7 @@
 
 #import "TWAppDelegate.h"
 
-#import "TWPlayerViewController.h"
+#import "TWEnclosureViewController.h"
 #import "TWSplitViewContainer.h"
 #import "TWEpisodeViewController.h"
 
@@ -20,7 +20,7 @@
 
 #define fastSpeed 1.5
 
-@implementation TWPlayerViewController
+@implementation TWEnclosureViewController
 
 - (void)viewDidLoad
 {

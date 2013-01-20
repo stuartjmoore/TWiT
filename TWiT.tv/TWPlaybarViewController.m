@@ -8,7 +8,7 @@
 
 #import "TWAppDelegate.h"
 #import "TWSplitViewContainer.h"
-#import "TWPlayerViewController.h"
+#import "TWEnclosureViewController.h"
 #import "TWPlaybarViewController.h"
 
 #import "Enclosure.h"
@@ -60,7 +60,7 @@
     if(![delegate.nowPlaying isKindOfClass:Enclosure.class])
         return;
     
-    TWPlayerViewController *playerController = [self.storyboard instantiateViewControllerWithIdentifier:@"playerController"];
+    TWEnclosureViewController *playerController = [self.storyboard instantiateViewControllerWithIdentifier:@"playerController"];
     playerController.splitViewContainer = self.splitViewContainer;
     playerController.enclosure = delegate.nowPlaying;
     

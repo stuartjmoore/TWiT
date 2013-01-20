@@ -1,5 +1,5 @@
 //
-//  TWPlayerViewController.h
+//  TWEnclosureViewController.h
 //  TWiT.tv
 //
 //  Created by Stuart Moore on 1/12/13.
@@ -10,7 +10,7 @@
 
 @class TWSplitViewContainer, TWAppDelegate, Enclosure;
 
-@interface TWPlayerViewController : UIViewController <UIAlertViewDelegate>
+@interface TWEnclosureViewController : UIViewController <UIAlertViewDelegate>
 
 @property (nonatomic, weak) TWSplitViewContainer *splitViewContainer;
 @property (nonatomic, weak) TWAppDelegate *delegate;

@@ -834,10 +834,10 @@
             </objects>
             <point key="canvasLocation" x="944" y="-223"/>
         </scene>
-        <!--Player View Controller-->
+        <!--Enclosure View Controller-->
         <scene sceneID="HDc-KQ-ZSC">
             <objects>
-                <viewController id="cwj-qn-kQX" customClass="TWPlayerViewController" sceneMemberID="viewController">
+                <viewController id="cwj-qn-kQX" customClass="TWEnclosureViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="kx4-iO-KN0">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -1291,7 +1291,7 @@
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="YiW-0V-IC2"/>
-        <segue reference="ev1-BP-H8c"/>
         <segue reference="rrL-Yf-xFC"/>
+        <segue reference="LjR-Ve-vnE"/>
     </inferredMetricsTieBreakers>
 </document>

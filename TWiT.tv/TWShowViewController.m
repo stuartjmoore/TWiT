@@ -12,7 +12,7 @@
 #import "TWMainViewController.h"
 #import "TWShowViewController.h"
 #import "TWEpisodeViewController.h"
-#import "TWPlayerViewController.h"
+#import "TWEnclosureViewController.h"
 
 #import "TWEpisodeCell.h"
 
@@ -191,7 +191,7 @@
 {
     if(UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPad)
     {
-        TWPlayerViewController *playerController = [self.storyboard instantiateViewControllerWithIdentifier:@"playerController"];
+        TWEnclosureViewController *playerController = [self.storyboard instantiateViewControllerWithIdentifier:@"playerController"];
         playerController.splitViewContainer = self.splitViewContainer;
         
         Episode *episode = [self.fetchedEpisodesController objectAtIndexPath:indexPath];

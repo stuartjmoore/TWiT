@@ -10,7 +10,7 @@
 
 #import "TWSplitViewContainer.h"
 #import "TWEpisodeViewController.h"
-#import "TWPlayerViewController.h"
+#import "TWEnclosureViewController.h"
 
 #import "TWSegmentedButton.h"
 #import "TWPlayButton.h"
@@ -198,7 +198,7 @@
 
 #pragma mark - Leave
 
-- (void)prepareForTransitionToPlayer:(TWPlayerViewController*)playerController sender:(id)sender
+- (void)prepareForTransitionToPlayer:(TWEnclosureViewController*)playerController sender:(id)sender
 {
     if(sender == self.playButton || sender == self.segmentedButton.watchButton)
     {
@@ -222,7 +222,7 @@
 
 - (IBAction)transitionToPlayer:(UIButton*)sender
 {
-    TWPlayerViewController *playerController = [self.storyboard instantiateViewControllerWithIdentifier:@"playerController"];
+    TWEnclosureViewController *playerController = [self.storyboard instantiateViewControllerWithIdentifier:@"playerController"];
     playerController.splitViewContainer = self.splitViewContainer;
     [self prepareForTransitionToPlayer:playerController sender:sender];
     
