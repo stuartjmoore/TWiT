@@ -11,7 +11,7 @@
 
 #import "TWSplitViewContainer.h"
 #import "TWMainViewController.h"
-#import "TWLiveViewController.h"
+#import "TWStreamViewController.h"
 #import "TWEnclosureViewController.h"
 
 #import "TWShowViewController.h"
@@ -1023,7 +1023,7 @@
 
 - (IBAction)transitionToLive:(UIButton*)sender
 {
-    TWLiveViewController *liveController = [self.storyboard instantiateViewControllerWithIdentifier:@"liveController"];
+    TWStreamViewController *liveController = [self.storyboard instantiateViewControllerWithIdentifier:@"liveController"];
     liveController.splitViewContainer = self.splitViewContainer;
     
     Stream *stream = self.channel.streams.anyObject;

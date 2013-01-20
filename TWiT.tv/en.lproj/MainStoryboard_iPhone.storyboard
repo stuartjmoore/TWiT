@@ -1116,10 +1116,10 @@
             </objects>
             <point key="canvasLocation" x="1448" y="64"/>
         </scene>
-        <!--Live View Controller-->
+        <!--Stream View Controller-->
         <scene sceneID="Atc-yY-hFC">
             <objects>
-                <viewController id="zgt-3C-NJF" customClass="TWLiveViewController" sceneMemberID="viewController">
+                <viewController id="zgt-3C-NJF" customClass="TWStreamViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="dfG-09-urO">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
