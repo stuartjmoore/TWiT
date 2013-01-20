@@ -24,6 +24,7 @@
 @property (strong, nonatomic) Schedule *schedule;
 
 - (Stream*)streamForType:(TWType)type;
+- (Stream*)streamForQuality:(TWQuality)quality;
 
 - (void)update;
 - (void)updateJSON;

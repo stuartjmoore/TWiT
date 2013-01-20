@@ -27,7 +27,19 @@
 
 - (Stream*)streamForType:(TWType)type
 {
+    //if video and user defaults
+    
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"type == %d", type];
+    NSSet *streams = [self.streams filteredSetUsingPredicate:predicate];
+    
+    if(streams.count == 0)
+        return nil;
+    
+    return streams.anyObject;
+}
+- (Stream*)streamForQuality:(TWQuality)quality
+{
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"quality == %d", quality];
     NSSet *streams = [self.streams filteredSetUsingPredicate:predicate];
     
     if(streams.count == 0)

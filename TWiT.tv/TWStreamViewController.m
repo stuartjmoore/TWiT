@@ -161,7 +161,25 @@
     if([notification.name isEqualToString:@"MPMoviePlayerPlaybackDidFinishNotification"]
     && [[notification.userInfo objectForKey:@"MPMoviePlayerPlaybackDidFinishReasonUserInfoKey"] intValue] != 0)
     {
-        // TODO: Loop all streams
+        TWQuality quality = (TWQuality)(((int)self.stream.quality) - 1);
+
+        if(quality >= 0)
+        {
+            Stream *stream = [self.stream.channel streamForQuality:quality];
+            
+            if(stream)
+            {
+                self.stream = stream;
+                self.delegate.nowPlaying = stream;
+                
+                self.delegate.player.contentURL = [NSURL URLWithString:self.stream.url];
+                [self.delegate play];
+                
+                self.infoView.hidden = (stream.type != TWTypeAudio);
+                [self.qualityButton setTitle:stream.title forState:UIControlStateNormal];
+                return;
+            }
+        }
         
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Sorry" message:@"Unable to load the live stream." delegate:self cancelButtonTitle:nil otherButtonTitles:@"Okay", nil];
         [alert show];
@@ -169,7 +187,10 @@
 }
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    [self close:nil];
+    if(UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPad)
+        [self close:nil];
+    else
+        [self.navigationController popViewControllerAnimated:YES];
 }
 
 #pragma mark - Actions
@@ -276,12 +297,7 @@
     self.stream = stream;
     self.delegate.nowPlaying = stream;
     
-    NSURL *url = [NSURL URLWithString:self.stream.url];
-    
-    NSTimeInterval startTime = self.delegate.player.currentPlaybackTime;
-    self.delegate.player.contentURL = url;
-    self.delegate.player.initialPlaybackTime = startTime;
-    
+    self.delegate.player.contentURL = [NSURL URLWithString:self.stream.url];
     [self.delegate play];
     
     self.infoView.hidden = (stream.type != TWTypeAudio);
