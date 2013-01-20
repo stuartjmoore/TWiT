@@ -178,7 +178,7 @@
 		17842B2E16A988BB00F03223 /* linen-button-delete@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 17842B2A16A988BB00F03223 /* linen-button-delete@2x.png */; };
 		17842B2F16A988BB00F03223 /* linen-button.png in Resources */ = {isa = PBXBuildFile; fileRef = 17842B2B16A988BB00F03223 /* linen-button.png */; };
 		17842B3016A988BB00F03223 /* linen-button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 17842B2C16A988BB00F03223 /* linen-button@2x.png */; };
-		1787B3BD16A58E7B00870B87 /* TWLiveViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1787B3BC16A58E7B00870B87 /* TWLiveViewController.m */; };
+		1787B3BD16A58E7B00870B87 /* TWStreamViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1787B3BC16A58E7B00870B87 /* TWStreamViewController.m */; };
 		179D814A169D4A1500B54E1B /* Schedule.m in Sources */ = {isa = PBXBuildFile; fileRef = 179D8149169D4A1500B54E1B /* Schedule.m */; };
 		17AFF029169462EA0053A33C /* TWShowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 17AFF028169462EA0053A33C /* TWShowViewController.m */; };
 		17BD431816A08B2500AE8260 /* toolbar-dark-fav-off.png in Resources */ = {isa = PBXBuildFile; fileRef = 17BD431016A08B2500AE8260 /* toolbar-dark-fav-off.png */; };
@@ -454,8 +454,8 @@
 		17842B2A16A988BB00F03223 /* linen-button-delete@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "linen-button-delete@2x.png"; sourceTree = "<group>"; };
 		17842B2B16A988BB00F03223 /* linen-button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "linen-button.png"; sourceTree = "<group>"; };
 		17842B2C16A988BB00F03223 /* linen-button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "linen-button@2x.png"; sourceTree = "<group>"; };
-		1787B3BB16A58E7B00870B87 /* TWLiveViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWLiveViewController.h; sourceTree = "<group>"; };
-		1787B3BC16A58E7B00870B87 /* TWLiveViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWLiveViewController.m; sourceTree = "<group>"; };
+		1787B3BB16A58E7B00870B87 /* TWStreamViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWStreamViewController.h; sourceTree = "<group>"; };
+		1787B3BC16A58E7B00870B87 /* TWStreamViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWStreamViewController.m; sourceTree = "<group>"; };
 		179D8148169D4A1500B54E1B /* Schedule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Schedule.h; sourceTree = "<group>"; };
 		179D8149169D4A1500B54E1B /* Schedule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Schedule.m; sourceTree = "<group>"; };
 		17AFF027169462EA0053A33C /* TWShowViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWShowViewController.h; sourceTree = "<group>"; };
@@ -965,8 +965,8 @@
 				17F668D0169B34FC00525F65 /* TWScheduleViewController.m */,
 				17C477F216A18CF40058E6C4 /* TWScheduleGridViewController.h */,
 				17C477F316A18CF40058E6C4 /* TWScheduleGridViewController.m */,
-				1787B3BB16A58E7B00870B87 /* TWLiveViewController.h */,
-				1787B3BC16A58E7B00870B87 /* TWLiveViewController.m */,
+				1787B3BB16A58E7B00870B87 /* TWStreamViewController.h */,
+				1787B3BC16A58E7B00870B87 /* TWStreamViewController.m */,
 				17C477F616A192B40058E6C4 /* TWEnclosureViewController.h */,
 				17C477F716A192B40058E6C4 /* TWEnclosureViewController.m */,
 				177F1FAD16AB25A900BFFA63 /* TWPlaybarViewController.h */,
@@ -1303,7 +1303,7 @@
 				17C477F816A192B40058E6C4 /* TWEnclosureViewController.m in Sources */,
 				17D1B6B216A1CAC800B05C12 /* TWPlayButton.m in Sources */,
 				17D1B6B516A1D38A00B05C12 /* TWSegmentedButton.m in Sources */,
-				1787B3BD16A58E7B00870B87 /* TWLiveViewController.m in Sources */,
+				1787B3BD16A58E7B00870B87 /* TWStreamViewController.m in Sources */,
 				170B476016A6A9C900F7C3B5 /* TWShowInfoViewController.m in Sources */,
 				177F1FAB16AAE9E800BFFA63 /* TWQualityCell.m in Sources */,
 				177F1FAF16AB25A900BFFA63 /* TWPlaybarViewController.m in Sources */,
