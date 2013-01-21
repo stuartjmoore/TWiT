@@ -87,9 +87,24 @@
         
         self.segmentedButton.buttonState = self.episode.downloadedEnclosures ? TWButtonSegmentDelete : TWButtonSegmentDownload;
 
-        self.segmentedButton.listenEnabled = [self.episode enclosuresForType:TWTypeAudio]? YES:NO;
-        self.segmentedButton.watchEnabled = [self.episode enclosuresForType:TWTypeVideo]? YES:NO;
-        self.segmentedButton.hidden = !self.segmentedButton.listenEnabled && !self.segmentedButton.watchEnabled;
+        if(self.segmentedButton.buttonState == TWButtonSegmentDelete)
+        {
+            self.segmentedButton.listenEnabled = NO;
+            self.segmentedButton.watchEnabled = YES;
+            
+            NSSet *enclosures = [self.episode downloadedEnclosures];
+            Enclosure *enclosure = enclosures.anyObject;
+            NSString *watchButtonTitle = [NSString stringWithFormat:@"%@ - %@", enclosure.title, enclosure.subtitle];
+            [self.segmentedButton.watchButton setTitle:watchButtonTitle forState:UIControlStateNormal];
+        }
+        else
+        {
+            self.segmentedButton.listenEnabled = [self.episode enclosuresForType:TWTypeAudio]? YES:NO;
+            self.segmentedButton.watchEnabled = [self.episode enclosuresForType:TWTypeVideo]? YES:NO;
+            
+            [self.segmentedButton.watchButton setTitle:@"Watch" forState:UIControlStateNormal];
+            self.segmentedButton.hidden = !self.segmentedButton.listenEnabled && !self.segmentedButton.watchEnabled;
+        }
         
         [self.segmentedButton addTarget:self action:@selector(watchPressed:) forButton:TWButtonSegmentWatch];
         [self.segmentedButton addTarget:self action:@selector(listenPressed:) forButton:TWButtonSegmentListen];
@@ -165,11 +180,11 @@
     }
     else if([notification.name isEqualToString:@"enclosureDownloadDidFinish"])
     {
-        self.segmentedButton.buttonState = TWButtonSegmentDelete;
+        [self configureView];
     }
     else if([notification.name isEqualToString:@"enclosureDownloadDidFail"])
     {
-        self.segmentedButton.buttonState = TWButtonSegmentDownload;
+        [self configureView];
     }
 }
 
@@ -192,7 +207,7 @@
     if(buttonIndex == 1 && [alertView.title isEqualToString:@"Delete"])
     {
         [self.episode deleteDownloads];
-        self.segmentedButton.buttonState = TWButtonSegmentDownload;
+        [self configureView];
     }
 }
 
