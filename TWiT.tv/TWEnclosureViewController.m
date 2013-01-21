@@ -162,7 +162,26 @@
     if([notification.name isEqualToString:@"MPMoviePlayerPlaybackDidFinishNotification"]
     && [[notification.userInfo objectForKey:@"MPMoviePlayerPlaybackDidFinishReasonUserInfoKey"] intValue] != 0)
     {
-        // TODO: Loop all enclosures
+        TWQuality quality = (TWQuality)(((int)self.enclosure.quality) - 1);
+        
+        if(quality >= 0)
+        {
+            Enclosure *enclosure = [self.enclosure.episode enclosureForQuality:quality];
+            
+            if(enclosure)
+            {
+                self.enclosure = enclosure;
+                self.delegate.nowPlaying = enclosure;
+                
+                NSURL *url = self.enclosure.path ? [NSURL fileURLWithPath:self.enclosure.path] : [NSURL URLWithString:self.enclosure.url];
+                self.delegate.player.contentURL = url;
+                [self.delegate play];
+                
+                self.infoView.hidden = (enclosure.type != TWTypeAudio);
+                [self.qualityButton setTitle:enclosure.title forState:UIControlStateNormal];
+                return;
+            }
+        }
         
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Sorry" message:@"Unable to load the episode." delegate:self cancelButtonTitle:nil otherButtonTitles:@"Okay", nil];
         [alert show];
