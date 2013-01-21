@@ -46,6 +46,16 @@
     
     return enclosures;
 }
+- (Enclosure*)enclosureForQuality:(TWQuality)quality
+{
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"quality == %d", quality];
+    NSSet *enclosures = [self.enclosures filteredSetUsingPredicate:predicate];
+    
+    if(enclosures.count == 0)
+        return nil;
+    
+    return enclosures.anyObject;
+}
 - (Enclosure*)enclosureForType:(enum TWType)type andQuality:(enum TWQuality)quality
 {
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"type == %d AND quality == %d", type, quality];
