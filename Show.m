@@ -199,8 +199,10 @@
             notification.repeatInterval = NSWeekCalendarUnit;
             notification.fireDate = fireDate;
             
+            notification.soundName = UILocalNotificationDefaultSoundName;
             notification.alertBody = [NSString stringWithFormat:@"%@ is Starting", self.title];
             notification.alertAction = @"Watch";
+            //notification.alertLaunchImage = Live default image name
             
             notification.userInfo = @{ @"title" : self.titleAcronym };
             
