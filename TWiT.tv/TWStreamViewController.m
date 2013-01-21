@@ -23,8 +23,8 @@
 - (void)viewDidLoad
 {
     MPVolumeView *airplayButton = [[MPVolumeView alloc] init];
-    airplayButton.frame = CGRectMake(-7, -2, 37, 37);
     airplayButton.showsVolumeSlider = NO;
+    airplayButton.frame = (CGRect){{0, (37-22)/2}, {38, 22}};
     [self.airplayButtonView addSubview:airplayButton];
     self.airplayButtonView.backgroundColor = [UIColor clearColor];
     
@@ -95,6 +95,7 @@
     self.navigationController.navigationBar.tintColor = UIColor.blackColor;
     self.navigationController.navigationBar.translucent = YES;
     [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"video-navbar-back.png"] forBarMetrics:UIBarMetricsDefault];
+    [self.navigationBar setBackgroundImage:[UIImage imageNamed:@"video-navbar-back.png"] forBarMetrics:UIBarMetricsDefault];
     
     if(UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPhone)
         [UIApplication.sharedApplication setStatusBarStyle:UIStatusBarStyleBlackTranslucent animated:YES];
@@ -416,6 +417,7 @@
     self.navigationController.navigationBar.tintColor = [UIColor colorWithRed:0.18 green:0.44 blue:0.57 alpha:1.0];
     self.navigationController.navigationBar.translucent = NO;
     [self.navigationController.navigationBar setBackgroundImage:nil forBarMetrics:UIBarMetricsDefault];
+    [self.navigationBar setBackgroundImage:nil forBarMetrics:UIBarMetricsDefault];
     
     if(UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPhone)
         [UIApplication.sharedApplication setStatusBarStyle:UIStatusBarStyleDefault animated:YES];

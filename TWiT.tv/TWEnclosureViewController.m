@@ -25,8 +25,8 @@
 - (void)viewDidLoad
 {
     MPVolumeView *airplayButton = [[MPVolumeView alloc] init];
-    airplayButton.frame = CGRectMake(-7, -2, 37, 37);
     airplayButton.showsVolumeSlider = NO;
+    airplayButton.frame = (CGRect){{0, (37-22)/2}, {38, 22}};
     [self.airplayButtonView addSubview:airplayButton];
     self.airplayButtonView.backgroundColor = [UIColor clearColor];
     
