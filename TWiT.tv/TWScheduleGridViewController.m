@@ -8,6 +8,9 @@
 
 #import "TWScheduleGridViewController.h"
 
+#import "Schedule.h"
+#import "Show.h"
+
 @implementation TWScheduleGridViewController
 
 #pragma mark - Rotate

@@ -8,7 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
+@class Schedule;
+
 @interface TWScheduleGridViewController : UIViewController
+
+@property (nonatomic, strong) Schedule *schedule;
 
 - (IBAction)close:(UIBarButtonItem*)sender;
 

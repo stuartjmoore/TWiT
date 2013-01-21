@@ -39,10 +39,7 @@
 - (void)awakeFromNib
 {
     if(UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPhone)
-    {
-        // TODO: Save state?
         self.sectionVisible = TWSectionEpisodes;
-    }
     
     [super awakeFromNib];
 }
@@ -54,8 +51,18 @@
     CAGradientLayer *liveGradient = [CAGradientLayer layer];
     liveGradient.anchorPoint = CGPointMake(0, 0);
     liveGradient.position = CGPointMake(0, 0);
-    liveGradient.startPoint = CGPointMake(0, 1);
-    liveGradient.endPoint = CGPointMake(0, 0);
+    
+    if(UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPad)
+    {
+        liveGradient.startPoint = CGPointMake(0, 0);
+        liveGradient.endPoint = CGPointMake(1, 0);
+    }
+    else
+    {
+        liveGradient.startPoint = CGPointMake(0, 1);
+        liveGradient.endPoint = CGPointMake(0, 0);
+    }
+    
     liveGradient.bounds = self.gradientView.bounds;
     liveGradient.colors = [NSArray arrayWithObjects:
                             (id)[UIColor colorWithWhite:0 alpha:1].CGColor,
