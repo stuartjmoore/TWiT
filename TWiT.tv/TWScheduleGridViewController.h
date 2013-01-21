@@ -13,6 +13,7 @@
 @interface TWScheduleGridViewController : UIViewController
 
 @property (nonatomic, strong) Schedule *schedule;
+@property (nonatomic, weak) IBOutlet UIScrollView *scrollView;
 
 - (IBAction)close:(UIBarButtonItem*)sender;
 

@@ -16,6 +16,8 @@
 - (BOOL)isBeforeNow;
 - (BOOL)isAfterNow;
 
+- (float)floatTime;
+
 + (int)dayFromName:(NSString*)name;
 + (NSString*)longNameFromDay:(int)day;
 + (NSString*)shortNameFromDay:(int)day;

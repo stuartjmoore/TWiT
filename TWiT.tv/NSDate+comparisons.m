@@ -47,6 +47,19 @@
     return [self timeIntervalSinceNow] /*- 86400*/ > 0;
 }
 
+- (float)floatTime
+{
+    NSDateFormatter *hourFormatter = [[NSDateFormatter alloc] init];
+    [hourFormatter setDateFormat:@"H"];
+    float hour = [[hourFormatter stringFromDate:self] floatValue];
+    
+    NSDateFormatter *minuteFormatter = [[NSDateFormatter alloc] init];
+    [minuteFormatter setDateFormat:@"m"];
+    float minute = [[minuteFormatter stringFromDate:self] floatValue] / 60.0f;
+    
+    return hour + minute;
+}
+
 + (int)dayFromName:(NSString*)name
 {
     if([name isEqualToString:@"SU"])

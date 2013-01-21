@@ -455,6 +455,7 @@
         [self performSelector:@selector(redrawSchedule:) withObject:nil afterDelay:currentShow.start.timeIntervalSinceNow];
     else if([self.liveTimeLabel.text isEqualToString:@"Live"])
         [self performSelector:@selector(redrawSchedule:) withObject:nil afterDelay:currentShow.end.timeIntervalSinceNow];
+        // Redraw for iPad progress view?
 }
 
 - (void)updateProgress:(NSNotification*)notification
@@ -1029,6 +1030,7 @@
 {
     TWSplitViewContainer *splitViewContainer = (TWSplitViewContainer*)self.navigationController.parentViewController;
     TWScheduleGridViewController *scheduleController = [self.storyboard instantiateViewControllerWithIdentifier:@"scheduleController"];
+    scheduleController.schedule = self.channel.schedule;
     
     [splitViewContainer presentViewController:scheduleController animated:YES completion:^{}];
 }

@@ -143,7 +143,7 @@
 
 - (void)viewWillDisappear:(BOOL)animated
 {
-    [NSNotificationCenter.defaultCenter removeObserver:self name:@"ScheduleDidUpdate" object:nil];
+    [NSNotificationCenter.defaultCenter removeObserver:self.tableView name:@"ScheduleDidUpdate" object:nil];
     
     [super viewWillDisappear:animated];
 }
