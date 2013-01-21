@@ -1434,11 +1434,25 @@
                                 <items>
                                     <navigationItem id="WgZ-Fg-Gfu">
                                         <nil key="title"/>
-                                        <barButtonItem key="leftBarButtonItem" title="Close" id="idH-uw-7MU">
-                                            <color key="tintColor" red="0.96862751250000001" green="0.96862751250000001" blue="0.96862751250000001" alpha="1" colorSpace="deviceRGB"/>
-                                            <connections>
-                                                <action selector="close:" destination="fZx-vv-CDk" id="lkc-cQ-6yT"/>
-                                            </connections>
+                                        <barButtonItem key="leftBarButtonItem" id="E7d-Bn-wYG">
+                                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="x2D-Yy-0oE">
+                                                <rect key="frame" x="7" y="5" width="44" height="33"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="28"/>
+                                                <inset key="titleEdgeInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="3"/>
+                                                <size key="titleShadowOffset" width="0.0" height="1"/>
+                                                <state key="normal" title="×">
+                                                    <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <color key="titleShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <state key="highlighted">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="close:" destination="cSi-6Y-xw2" eventType="touchUpInside" id="1Lc-0G-Jst"/>
+                                                    <action selector="close:" destination="fZx-vv-CDk" eventType="touchUpInside" id="Ost-yk-CQI"/>
+                                                </connections>
+                                            </button>
                                         </barButtonItem>
                                         <view key="titleView" contentMode="scaleToFill" id="jA8-3b-pf6">
                                             <rect key="frame" x="112" y="6" width="800" height="33"/>
@@ -1728,6 +1742,7 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/TWEnclosureViewController.h"/>
             <relationships>
                 <relationship kind="action" name="close:" candidateClass="UIBarButtonItem"/>
+                <relationship kind="action" name="openQualityPopover:" candidateClass="UIButton"/>
                 <relationship kind="action" name="play:" candidateClass="UIButton"/>
                 <relationship kind="action" name="rewind:" candidateClass="UIButton"/>
                 <relationship kind="action" name="seekEnd:" candidateClass="UISlider"/>
