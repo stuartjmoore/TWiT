@@ -414,7 +414,13 @@
     {
         Event *nextShow = [self.channel.schedule showAfterShow:currentShow];
         
-        self.nextTimeLabel.text = [self.liveTimeLabel.text isEqualToString:@"Live"] || nextShow.start.isTomorrow ? nextShow.until : nextShow.time;
+        if([self.liveTimeLabel.text isEqualToString:@"Live"] || nextShow.start.isTomorrow)
+            self.nextTimeLabel.text = nextShow.until;
+        else if([self.liveTimeLabel.text isEqualToString:@"Tomorrow"])
+            self.nextTimeLabel.text = @"After That";
+        else
+            self.nextTimeLabel.text = nextShow.time;
+        
         self.nextTitleLabel.text = nextShow.title;
     }
     
