@@ -167,7 +167,10 @@
         return;
     
     if([NSFileManager.defaultManager fileExistsAtPath:self.path])
+    {
+        NSLog(@"removeItemAtPath, %@", self.path);
         [NSFileManager.defaultManager removeItemAtPath:self.path error:nil];
+    }
     
     [self willChangeValueForKey:@"image"];
     [self willChangeValueForKey:@"path"];
@@ -178,6 +181,7 @@
 
 - (void)prepareForDeletion
 {
+    NSLog(@"prepareForDeletion, %@ - %@", self.episode.title, self.episode.show.title);
     self.path = nil;
 }
 
