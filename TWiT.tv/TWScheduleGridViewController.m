@@ -10,11 +10,6 @@
 
 @implementation TWScheduleGridViewController
 
-- (IBAction)close:(UIBarButtonItem*)sender
-{
-    [self dismissViewControllerAnimated:YES completion:^{}];
-}
-
 #pragma mark - Rotate
 
 - (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)orientation duration:(NSTimeInterval)duration
@@ -35,6 +30,13 @@
         return UIInterfaceOrientationMaskAll;
     else
         return UIInterfaceOrientationMaskPortrait;
+}
+
+#pragma mark - Leave
+
+- (IBAction)close:(UIBarButtonItem*)sender
+{
+    [self dismissViewControllerAnimated:YES completion:^{}];
 }
 
 @end

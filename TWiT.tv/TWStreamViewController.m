@@ -94,6 +94,7 @@
     self.wantsFullScreenLayout = YES;
     self.navigationController.navigationBar.tintColor = UIColor.blackColor;
     self.navigationController.navigationBar.translucent = YES;
+    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"video-navbar-back.png"] forBarMetrics:UIBarMetricsDefault];
     
     if(UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPhone)
         [UIApplication.sharedApplication setStatusBarStyle:UIStatusBarStyleBlackTranslucent animated:YES];
@@ -414,6 +415,7 @@
     self.wantsFullScreenLayout = NO;
     self.navigationController.navigationBar.tintColor = [UIColor colorWithRed:0.18 green:0.44 blue:0.57 alpha:1.0];
     self.navigationController.navigationBar.translucent = NO;
+    [self.navigationController.navigationBar setBackgroundImage:nil forBarMetrics:UIBarMetricsDefault];
     
     if(UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPhone)
         [UIApplication.sharedApplication setStatusBarStyle:UIStatusBarStyleDefault animated:YES];
