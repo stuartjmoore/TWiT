@@ -25,8 +25,7 @@
 
 @property (nonatomic, weak) IBOutlet UIView *qualityView;
 
-@property (nonatomic, weak) IBOutlet UIView *infoView, *infoTitlesView, *infoDescView;
-@property (nonatomic, weak) IBOutlet UILabel *infoShowLabel, *infoEpisodeLabel, *infoDateLabel, *infoDescLabel;
+@property (nonatomic, weak) IBOutlet UIView *infoView;
 @property (nonatomic, weak) IBOutlet UIImageView *infoAlbumArtView;
 
 - (void)playerStateChanged:(NSNotification*)notification;

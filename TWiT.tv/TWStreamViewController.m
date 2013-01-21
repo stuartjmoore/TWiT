@@ -14,6 +14,7 @@
 
 #import "Channel.h"
 #import "Stream.h"
+#import "Show.h"
 #import "Episode.h"
 #import "Enclosure.h"
 
@@ -115,8 +116,6 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    
-    [self layoutInfoViewForOrientation:UIApplication.sharedApplication.statusBarOrientation];
 }
 
 - (void)updateTitle
@@ -129,6 +128,11 @@
         NSString *untilString = currentShow.until;
         self.subtitleLabel.text = [NSString stringWithFormat:@"%@ - %@", untilString, currentShow.title];
         
+        if(currentShow.show)
+            self.infoAlbumArtView.image = currentShow.show.albumArt.image;
+        else
+            self.infoAlbumArtView.image = [UIImage imageNamed:@"generic.png"];
+        
         [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(updateTitle) object:nil];
         
         if([untilString hasSuffix:@"m"])
@@ -139,7 +143,10 @@
             [self performSelector:@selector(updateTitle) withObject:nil afterDelay:currentShow.end.timeIntervalSinceNow];
     }
     else
+    {
         self.subtitleLabel.text = @"with Leo Laporte";
+        self.infoAlbumArtView.image = [UIImage imageNamed:@"generic.png"];
+    }
 }
 
 #pragma mark - Notifications
@@ -343,30 +350,10 @@
 
 #pragma mark - Rotate
 
-- (void)layoutInfoViewForOrientation:(UIInterfaceOrientation)orientation
-{
-    if(UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPad)
-    {
-        if(UIInterfaceOrientationIsPortrait(orientation))
-        {
-            self.infoAlbumArtView.frame = CGRectMake(84, 84, 600, 600);
-            self.infoTitlesView.frame = CGRectMake(84, 84+600+8, 300-4, 161);
-            self.infoDescView.frame = CGRectMake(84+300+4, 84+600+8, 300-4, 161);
-        }
-        else
-        {
-            self.infoAlbumArtView.frame = CGRectMake(58, 8, 600, 600);
-            self.infoTitlesView.frame = CGRectMake(58+600+8, 8, 300, 161);
-            self.infoDescView.frame = CGRectMake(58+600+8, 177, 300, 431);
-        }
-    }
-}
-
 - (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)orientation duration:(NSTimeInterval)duration
 {
     if(self.stream.type != TWTypeAudio)
         [self hideControls:!UIInterfaceOrientationIsPortrait(orientation)];
-    [self layoutInfoViewForOrientation:orientation];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation

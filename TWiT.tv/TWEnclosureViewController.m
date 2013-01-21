@@ -41,11 +41,6 @@
     self.subtitleLabel.text = self.enclosure.episode.title;
     
     self.infoAlbumArtView.image = self.enclosure.episode.show.albumArt.image;
-    self.infoShowLabel.font = [UIFont fontWithName:@"Vollkorn-BoldItalic" size:self.infoShowLabel.font.pointSize];
-    self.infoShowLabel.text = self.enclosure.episode.show.title;
-    self.infoEpisodeLabel.text = self.enclosure.episode.title;
-    self.infoDateLabel.text = self.enclosure.episode.publishedString;
-    self.infoDescLabel.text = self.enclosure.episode.desc;
     
     self.delegate = (TWAppDelegate*)UIApplication.sharedApplication.delegate;
     
@@ -138,8 +133,6 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    
-    [self layoutInfoViewForOrientation:UIApplication.sharedApplication.statusBarOrientation];
 }
 
 #pragma mark - Notifications
@@ -411,30 +404,10 @@
 
 #pragma mark - Rotate
 
-- (void)layoutInfoViewForOrientation:(UIInterfaceOrientation)orientation
-{
-    if(UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPad)
-    {
-        if(UIInterfaceOrientationIsPortrait(orientation))
-        {
-            self.infoAlbumArtView.frame = CGRectMake(84, 84, 600, 600);
-            self.infoTitlesView.frame = CGRectMake(84, 84+600+8, 300-4, 161);
-            self.infoDescView.frame = CGRectMake(84+300+4, 84+600+8, 300-4, 161);
-        }
-        else
-        {
-            self.infoAlbumArtView.frame = CGRectMake(58, 8, 600, 600);
-            self.infoTitlesView.frame = CGRectMake(58+600+8, 8, 300, 161);
-            self.infoDescView.frame = CGRectMake(58+600+8, 177, 300, 431);
-        }
-    }
-}
-
 - (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)orientation duration:(NSTimeInterval)duration
 {
     if(self.enclosure.type != TWTypeAudio)
         [self hideControls:!UIInterfaceOrientationIsPortrait(orientation)];
-    [self layoutInfoViewForOrientation:orientation];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation

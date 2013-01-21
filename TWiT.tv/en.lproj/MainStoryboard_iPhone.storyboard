@@ -843,11 +843,11 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <view userInteractionEnabled="NO" contentMode="scaleToFill" id="pKp-YU-GKo" userLabel="Info">
-                                <rect key="frame" x="0.0" y="64" width="320" height="416"/>
+                                <rect key="frame" x="0.0" y="52" width="320" height="428"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" id="xop-pu-rMR">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="416"/>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" image="generic.jpg" id="xop-pu-rMR">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="428"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     </imageView>
                                 </subviews>
@@ -1124,6 +1124,18 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
+                            <view userInteractionEnabled="NO" contentMode="scaleToFill" id="GUQ-sI-WNG" userLabel="Info">
+                                <rect key="frame" x="0.0" y="52" width="320" height="472"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" image="generic.jpg" id="ecd-bD-VzR">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="472"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            </view>
                             <view contentMode="scaleToFill" id="M8l-KG-2B8" userLabel="Toolbar">
                                 <rect key="frame" x="0.0" y="524" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
@@ -1317,6 +1329,8 @@
                     <connections>
                         <outlet property="airplayButtonView" destination="zUB-MM-lFt" id="m4H-M6-STF"/>
                         <outlet property="chatButton" destination="HVH-uc-nCY" id="X6h-o4-WXa"/>
+                        <outlet property="infoAlbumArtView" destination="ecd-bD-VzR" id="5rX-B7-dF6"/>
+                        <outlet property="infoView" destination="GUQ-sI-WNG" id="lVC-j2-YmJ"/>
                         <outlet property="playButton" destination="aEE-TI-3XS" id="17s-B5-3yh"/>
                         <outlet property="qualityButton" destination="1ob-E5-9tA" id="fYa-79-7pH"/>
                         <outlet property="qualityView" destination="UCw-9J-u9P" id="3AN-l0-gM1"/>
