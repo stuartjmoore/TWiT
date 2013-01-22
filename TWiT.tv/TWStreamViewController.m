@@ -134,7 +134,7 @@
         if(currentShow.show)
             self.infoAlbumArtView.image = currentShow.show.albumArt.image;
         else
-            self.infoAlbumArtView.image = [UIImage imageNamed:@"generic.png"];
+            self.infoAlbumArtView.image = [UIImage imageNamed:@"generic.jpg"];
         
         
         [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(updateTitle) object:nil];
@@ -149,11 +149,8 @@
     else
     {
         self.subtitleLabel.text = @"with Leo Laporte";
-        self.infoAlbumArtView.image = [UIImage imageNamed:@"generic.png"];
+        self.infoAlbumArtView.image = [UIImage imageNamed:@"generic.jpg"];
     }
-    
-    
-    
     
     MPNowPlayingInfoCenter.defaultCenter.nowPlayingInfo = @{
         MPMediaItemPropertyAlbumTitle : self.titleLabel.text,

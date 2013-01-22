@@ -775,10 +775,26 @@
                                 <items>
                                     <navigationItem id="fkg-XZ-Ybx">
                                         <nil key="title"/>
-                                        <barButtonItem key="leftBarButtonItem" title="Close" id="2oy-SK-EKJ">
-                                            <connections>
-                                                <action selector="close:" destination="tGz-71-90E" id="4nD-t1-Yei"/>
-                                            </connections>
+                                        <barButtonItem key="leftBarButtonItem" id="maP-ax-XLp">
+                                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="tOP-lx-9wT">
+                                                <rect key="frame" x="7" y="5" width="44" height="33"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="28"/>
+                                                <inset key="titleEdgeInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="3"/>
+                                                <size key="titleShadowOffset" width="0.0" height="1"/>
+                                                <state key="normal" title="×">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <color key="titleShadowColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <state key="highlighted">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="close:" destination="tGz-71-90E" eventType="touchUpInside" id="1nw-0Y-6XN"/>
+                                                    <action selector="close:" destination="fZx-vv-CDk" eventType="touchUpInside" id="QoJ-sx-zgV"/>
+                                                    <action selector="close:" destination="cSi-6Y-xw2" eventType="touchUpInside" id="i2X-zi-iN9"/>
+                                                </connections>
+                                            </button>
                                         </barButtonItem>
                                         <view key="titleView" contentMode="scaleToFill" id="mpi-p2-FAX">
                                             <rect key="frame" x="112" y="4" width="800" height="36"/>
@@ -1154,10 +1170,26 @@
                                 <items>
                                     <navigationItem id="5so-uP-y1e">
                                         <nil key="title"/>
-                                        <barButtonItem key="leftBarButtonItem" title="Close" id="9Ng-3r-ozw">
-                                            <connections>
-                                                <action selector="close:" destination="Dal-NS-I4L" id="j6B-Yd-SXz"/>
-                                            </connections>
+                                        <barButtonItem key="leftBarButtonItem" id="F38-GX-J4N">
+                                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="pmO-8y-qlK">
+                                                <rect key="frame" x="7" y="5" width="44" height="33"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="28"/>
+                                                <inset key="titleEdgeInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="3"/>
+                                                <size key="titleShadowOffset" width="0.0" height="1"/>
+                                                <state key="normal" title="×">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <color key="titleShadowColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <state key="highlighted">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="close:" destination="cSi-6Y-xw2" eventType="touchUpInside" id="BR9-Hd-z1A"/>
+                                                    <action selector="close:" destination="fZx-vv-CDk" eventType="touchUpInside" id="kmo-ze-hsY"/>
+                                                    <action selector="close:" destination="Dal-NS-I4L" eventType="touchUpInside" id="piK-0L-bEi"/>
+                                                </connections>
+                                            </button>
                                         </barButtonItem>
                                         <view key="titleView" contentMode="scaleToFill" id="bFM-Ty-o5H">
                                             <rect key="frame" x="112" y="4" width="800" height="36"/>
@@ -1742,7 +1774,6 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/TWEnclosureViewController.h"/>
             <relationships>
                 <relationship kind="action" name="close:" candidateClass="UIBarButtonItem"/>
-                <relationship kind="action" name="openQualityPopover:" candidateClass="UIButton"/>
                 <relationship kind="action" name="play:" candidateClass="UIButton"/>
                 <relationship kind="action" name="rewind:" candidateClass="UIButton"/>
                 <relationship kind="action" name="seekEnd:" candidateClass="UISlider"/>

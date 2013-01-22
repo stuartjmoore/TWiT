@@ -438,7 +438,8 @@
             livePoster = show.albumArt.image;
     }
     self.livePosterView.image = livePoster;
-    self.liveAlbumArtView.image = show.albumArt.image;
+    
+    self.liveAlbumArtView.image = (currentShow.show) ? show.albumArt.image : [UIImage imageNamed:@"generic.jpg"];
     
     if(currentShow.start.isBeforeNow && currentShow.end.isAfterNow)
     {
