@@ -15,11 +15,11 @@
 {
     if([_shows isEqualToArray:shows])
         return;
-        
-    _shows = shows;
+    
     self.icons = nil;
     [self setNeedsDisplayInRect:self.bounds];
     
+    _shows = shows;
     [self layoutSubviews];
 }
 
@@ -36,11 +36,12 @@
     if(self.shows && self.icons && self.icons.size.width != self.frame.size.width)
     {
         self.icons = nil;
+        [self setNeedsDisplayInRect:self.bounds];
         [self layoutSubviews];
     }
     
     [super layoutSubviews];
- 
+
     if(!self.shows || self.icons.size.width == self.frame.size.width)
     {
         [self setNeedsDisplayInRect:self.bounds];

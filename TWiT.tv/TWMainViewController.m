@@ -776,8 +776,6 @@
         showsCell.table = self.tableView;
         showsCell.indexPath = indexPath;
         
-        // TODO: CACHE THIS MUCHERFUCKER
-        
         if(UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPad)
         {
             if(self.tableView.frame.size.width <= 448)
@@ -804,7 +802,8 @@
         NSString *cacheKey = [NSString stringWithFormat:@"%f-%d", self.tableView.frame.size.width, indexPath.row];
         NSDictionary *rowCache = self.showsTableCache[cacheKey];
         
-        if(!rowCache)
+        // TODO: Fix Caching.
+        if(YES || !rowCache)
         {
             id <NSFetchedResultsSectionInfo>sectionInfo = self.fetchedShowsController.sections[indexPath.section];
             int num = sectionInfo.numberOfObjects;

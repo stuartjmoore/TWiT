@@ -212,8 +212,9 @@
         float secondsLeft = (self.delegate.player.duration-self.delegate.player.currentPlaybackTime)/rate;
         NSDate *endingTime = [[NSDate date] dateByAddingTimeInterval:secondsLeft];
         NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
-        [dateFormat setDateFormat:@"h:mm"];
-        [self.timeOfEndLabel setText:[NSString stringWithFormat:@"ends @ %@", [dateFormat stringFromDate:endingTime]]];
+        [dateFormat setDateFormat:@"h:mma"];
+        NSString *timeString = [[dateFormat stringFromDate:endingTime] lowercaseString];
+        self.timeOfEndLabel.text = [NSString stringWithFormat:@"ends @ %@", timeString];
     }
     
     if(self.delegate.player.playbackState == MPMoviePlaybackStatePlaying)
@@ -354,8 +355,9 @@
     float secondsLeft = (self.delegate.player.duration-newPlaybackTime)/rate;
     NSDate *endingTime = [[NSDate date] dateByAddingTimeInterval:secondsLeft];
     NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
-    [dateFormat setDateFormat:@"h:mm"];
-    self.timeOfEndLabel.text = [NSString stringWithFormat:@"ends @ %@", [dateFormat stringFromDate:endingTime]];
+    [dateFormat setDateFormat:@"h:mma"];
+    NSString *timeString = [[dateFormat stringFromDate:endingTime] lowercaseString];
+    self.timeOfEndLabel.text = [NSString stringWithFormat:@"ends @ %@", timeString];
 }
 - (IBAction)seekEnd:(UISlider*)sender
 {
