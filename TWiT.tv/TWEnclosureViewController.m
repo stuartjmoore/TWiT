@@ -63,18 +63,13 @@
         self.delegate.player.allowsAirPlay = YES;
         self.delegate.player.scalingMode = MPMovieScalingModeAspectFit;
         
-        if([MPNowPlayingInfoCenter class])
-        {
-            MPMediaItemArtwork *artwork = [[MPMediaItemArtwork alloc] initWithImage:self.enclosure.episode.show.albumArt.image];
-            NSDictionary *trackInfo = @{
-                MPMediaItemPropertyAlbumTitle : self.enclosure.episode.show.title,
-                MPMediaItemPropertyArtist : self.enclosure.episode.show.hosts,
-                MPMediaItemPropertyArtwork : artwork,
-                MPMediaItemPropertyGenre : @"Podcast",
-                MPMediaItemPropertyTitle : self.enclosure.title
-            };
-            MPNowPlayingInfoCenter.defaultCenter.nowPlayingInfo = trackInfo;
-        }
+        MPNowPlayingInfoCenter.defaultCenter.nowPlayingInfo = @{
+            MPMediaItemPropertyAlbumTitle : self.enclosure.episode.show.title,
+            MPMediaItemPropertyArtist : self.enclosure.episode.show.hosts,
+            MPMediaItemPropertyArtwork : [[MPMediaItemArtwork alloc] initWithImage:self.enclosure.episode.show.albumArt.image],
+            MPMediaItemPropertyGenre : @"Podcast",
+            MPMediaItemPropertyTitle : self.enclosure.episode.title
+        };
         
         [self.delegate play];
         self.delegate.nowPlaying = self.enclosure;

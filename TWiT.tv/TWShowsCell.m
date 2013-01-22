@@ -68,8 +68,11 @@
             
             CGContextSetShadow(context, CGSizeMake(0, 2), 4);
             
-            UIImage *image =  [UIImage imageWithContentsOfFile:albumArtPathes[column]] ?: [UIImage imageNamed:@"generic.jpg"];
-            [image drawInRect:frame];
+            if(column < albumArtPathes.count)
+            {
+                UIImage *image =  [UIImage imageWithContentsOfFile:albumArtPathes[column]] ?: [UIImage imageNamed:@"generic.jpg"];
+                [image drawInRect:frame];
+            }
         }
         
         weak.icons = UIGraphicsGetImageFromCurrentImageContext();

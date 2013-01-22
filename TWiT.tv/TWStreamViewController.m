@@ -62,6 +62,7 @@
             MPNowPlayingInfoCenter.defaultCenter.nowPlayingInfo = trackInfo;
         }
         */
+        
         [self.delegate play];
         self.delegate.nowPlaying = self.stream;
     }
@@ -135,6 +136,7 @@
         else
             self.infoAlbumArtView.image = [UIImage imageNamed:@"generic.png"];
         
+        
         [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(updateTitle) object:nil];
         
         if([untilString hasSuffix:@"m"])
@@ -149,6 +151,17 @@
         self.subtitleLabel.text = @"with Leo Laporte";
         self.infoAlbumArtView.image = [UIImage imageNamed:@"generic.png"];
     }
+    
+    
+    
+    
+    MPNowPlayingInfoCenter.defaultCenter.nowPlayingInfo = @{
+        MPMediaItemPropertyAlbumTitle : self.titleLabel.text,
+        MPMediaItemPropertyArtist : @"",
+        MPMediaItemPropertyArtwork : [[MPMediaItemArtwork alloc] initWithImage:self.infoAlbumArtView.image],
+        MPMediaItemPropertyGenre : @"Live",
+        MPMediaItemPropertyTitle : self.subtitleLabel.text
+    };
 }
 
 #pragma mark - Notifications

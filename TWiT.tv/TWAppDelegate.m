@@ -24,6 +24,10 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary*)launchOptions
 {
+    [AVAudioSession.sharedInstance setCategory:AVAudioSessionCategoryPlayback error:nil];
+    [AVAudioSession.sharedInstance setActive:YES error:nil];
+    
+    
     NSManagedObjectContext *context = self.managedObjectContext;
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     [fetchRequest setEntity:[NSEntityDescription entityForName:@"Channel" inManagedObjectContext:context]];
@@ -32,6 +36,7 @@
     self.channel = fetchedChannels.lastObject ?: [NSEntityDescription insertNewObjectForEntityForName:@"Channel" inManagedObjectContext:context];
     
     [self.channel update];
+    
     
     if(UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPad)
     {
@@ -109,21 +114,19 @@
             [self.channel reloadSchedule];
         }
     }
+    
+    if(UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPad)
+    {
+        TWSplitViewContainer *splitViewContainer = (TWSplitViewContainer*)self.window.rootViewController;
+        UINavigationController *detailController = splitViewContainer.detailController;
+        TWMainViewController *showsController = (TWMainViewController*)detailController.topViewController;
+        [showsController redrawSchedule:nil];
+    }
     else
     {
-        if(UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPad)
-        {
-            TWSplitViewContainer *splitViewContainer = (TWSplitViewContainer*)self.window.rootViewController;
-            UINavigationController *detailController = splitViewContainer.detailController;
-            TWMainViewController *showsController = (TWMainViewController*)detailController.topViewController;
-            [showsController redrawSchedule:nil];
-        }
-        else
-        {
-            UINavigationController *navigationController = (UINavigationController*)self.window.rootViewController;
-            TWMainViewController *controller = (TWMainViewController*)navigationController.topViewController;
-            [controller redrawSchedule:nil];
-        }
+        UINavigationController *navigationController = (UINavigationController*)self.window.rootViewController;
+        TWMainViewController *controller = (TWMainViewController*)navigationController.topViewController;
+        [controller redrawSchedule:nil];
     }
 }
 
