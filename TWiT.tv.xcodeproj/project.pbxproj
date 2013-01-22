@@ -151,7 +151,6 @@
 		170BA0D31691CD550022FE4D /* video-toolbar-double-back.png in Resources */ = {isa = PBXBuildFile; fileRef = 170B9FF61691CD550022FE4D /* video-toolbar-double-back.png */; };
 		170BA0D41691CD550022FE4D /* video-toolbar-double-back@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 170B9FF71691CD550022FE4D /* video-toolbar-double-back@2x.png */; };
 		170BA0D51691CD550022FE4D /* Vollkorn-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 170B9FF81691CD550022FE4D /* Vollkorn-BoldItalic.ttf */; };
-		170BA0D61691CD550022FE4D /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 170B9FF91691CD550022FE4D /* Settings.bundle */; };
 		170BA15B1691D0FC0022FE4D /* TWMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 170BA15A1691D0FC0022FE4D /* TWMainViewController.m */; };
 		170BA15D1691D5E70022FE4D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 170BA15C1691D5E70022FE4D /* QuartzCore.framework */; };
 		170E02A8169324480072CFA6 /* TWEpisodeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 170E02A7169324480072CFA6 /* TWEpisodeCell.m */; };
@@ -413,7 +412,6 @@
 		170B9FF61691CD550022FE4D /* video-toolbar-double-back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "video-toolbar-double-back.png"; sourceTree = "<group>"; };
 		170B9FF71691CD550022FE4D /* video-toolbar-double-back@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "video-toolbar-double-back@2x.png"; sourceTree = "<group>"; };
 		170B9FF81691CD550022FE4D /* Vollkorn-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Vollkorn-BoldItalic.ttf"; path = "../Resources/Images/Vollkorn-BoldItalic.ttf"; sourceTree = "<group>"; };
-		170B9FF91691CD550022FE4D /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = Settings.bundle; path = Resources/Settings.bundle; sourceTree = SOURCE_ROOT; };
 		170BA15A1691D0FC0022FE4D /* TWMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWMainViewController.m; sourceTree = "<group>"; };
 		170BA15C1691D5E70022FE4D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		170E02A6169324480072CFA6 /* TWEpisodeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWEpisodeCell.h; sourceTree = "<group>"; };
@@ -748,7 +746,6 @@
 				17A31E1316ADDB6400B71343 /* Settings.bundle */,
 				17E5116E168F496E00DCE89C /* TWiT_tv.xcdatamodeld */,
 				170B9FF81691CD550022FE4D /* Vollkorn-BoldItalic.ttf */,
-				170B9FF91691CD550022FE4D /* Settings.bundle */,
 				17C5A01D169EC2B30043A781 /* Icons */,
 				17C43AE61696DFD60066C79F /* Server Cache */,
 				170B9F6E1691CD540022FE4D /* Images */,
@@ -1190,7 +1187,6 @@
 				170BA0D31691CD550022FE4D /* video-toolbar-double-back.png in Resources */,
 				170BA0D41691CD550022FE4D /* video-toolbar-double-back@2x.png in Resources */,
 				170BA0D51691CD550022FE4D /* Vollkorn-BoldItalic.ttf in Resources */,
-				170BA0D61691CD550022FE4D /* Settings.bundle in Resources */,
 				176A62471694B2BA00B121F4 /* toolbar-schedule-arrow.png in Resources */,
 				176A62481694B2BA00B121F4 /* toolbar-schedule-arrow@2x.png in Resources */,
 				176A62491694B2BA00B121F4 /* toolbar-schedule-background.png in Resources */,

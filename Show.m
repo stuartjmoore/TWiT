@@ -173,14 +173,14 @@
     }
     else
     {
-        [self.episodes makeObjectsPerformSelector:@selector(setWatched:) withObject:@YES];
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"watched = %d", NO];
+        NSSet *episodes = [self.episodes filteredSetUsingPredicate:predicate];
+        [episodes makeObjectsPerformSelector:@selector(setWatched:) withObject:@YES];
     }
     
     [self willChangeValueForKey:@"favorite"];
     [self setPrimitiveValue:@(favorite) forKey:@"favorite"];
     [self didChangeValueForKey:@"favorite"];
-    
-    //[self.managedObjectContext save:nil];
 }
 
 - (void)setRemind:(BOOL)remind
@@ -209,7 +209,6 @@
             [UIApplication.sharedApplication scheduleLocalNotification:notification];
         }
     }
-    
     
     [self willChangeValueForKey:@"remind"];
     [self setPrimitiveValue:@(remind) forKey:@"remind"];
