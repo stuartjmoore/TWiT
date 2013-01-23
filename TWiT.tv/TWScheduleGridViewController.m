@@ -13,6 +13,7 @@
 #import "Schedule.h"
 #import "Show.h"
 
+#define timeHeight 20.0f
 #define hourWidth 250.0f
 
 @implementation TWScheduleGridViewController
@@ -39,6 +40,30 @@
 {
     [self.scrollView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
     
+    
+    
+    for(int hour = 0; hour < 24; hour++)
+    {
+        CGRect frame = CGRectMake(hour*hourWidth, 0, hourWidth, timeHeight);
+        
+        NSString *timeTitle = (hour <= 12) ? [NSString stringWithFormat:@"%d:00am", hour] : [NSString stringWithFormat:@"%d:00pm", hour-12];
+        
+        UIView *view = [[UIView alloc] initWithFrame:frame];
+        view.backgroundColor = [UIColor colorWithWhite:0.96f alpha:1];
+        
+        CGRect titleFrame = CGRectMake(10, 0, view.frame.size.width-20, view.frame.size.height);
+        UILabel *title = [[UILabel alloc] initWithFrame:titleFrame];
+        title.backgroundColor = [UIColor clearColor];
+        title.font = [UIFont systemFontOfSize:14];
+        title.text = timeTitle;
+        [view addSubview:title];
+        
+        [self.scrollView addSubview:view];
+        
+    }
+    
+    
+    
     float minX = self.scrollView.contentSize.width, maxX = 0;
     
     for(NSArray *day in self.schedule.days)
@@ -46,8 +71,8 @@
         int i = [self.schedule.days indexOfObject:day];
         for(Event *event in day)
         {
-            float height = self.scrollView.bounds.size.height/7.0f;
-            CGRect frame = CGRectMake(event.start.floatTime*hourWidth, i*height, event.duration/60.0f*hourWidth, height);
+            float height = (self.scrollView.bounds.size.height-timeHeight)/7.0f;
+            CGRect frame = CGRectMake(event.start.floatTime*hourWidth, timeHeight+i*height, event.duration/60.0f*hourWidth, height);
             
             if(frame.origin.x < minX)
                 minX = frame.origin.x;
@@ -111,7 +136,7 @@
     
     CGRect nowFrame = self.nowLine.frame;
     nowFrame.size.width = self.scrollView.bounds.size.width;
-    nowFrame.origin.x -= self.scrollView.bounds.size.width/2.0f;
+    nowFrame.origin.x -= self.scrollView.bounds.size.width/3.5f;
     [self.scrollView scrollRectToVisible:nowFrame animated:NO];
 }
 - (void)drawNowLine
@@ -120,14 +145,15 @@
 
     [self.nowLine removeFromSuperview];
     self.nowLine = [[UIView alloc] init];
-    self.nowLine.backgroundColor = [UIColor colorWithRed:1 green:0 blue:0 alpha:0.75f];
-    self.nowLine.frame = CGRectMake(now.floatTime*hourWidth, 0, 1, self.scrollView.bounds.size.height);
+    self.nowLine.backgroundColor = [UIColor colorWithRed:61/255.0 green:122/255.0 blue:155/255.0 alpha:0.75f];
+    float height = (self.scrollView.bounds.size.height-timeHeight)/7.0f;
+    self.nowLine.frame = CGRectMake(now.floatTime*hourWidth, 0, 1, height+timeHeight);
     [self.scrollView addSubview:self.nowLine];
     
     
     CGRect nowFrame = self.nowLine.frame;
     nowFrame.size.width = self.scrollView.bounds.size.width;
-    nowFrame.origin.x -= self.scrollView.bounds.size.width/2.0f;
+    nowFrame.origin.x -= self.scrollView.bounds.size.width/3.5f;
     
     float minX = -self.scrollView.contentInset.left;
     float maxX = self.scrollView.contentInset.right+self.scrollView.contentSize.width;
