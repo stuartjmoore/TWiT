@@ -1134,8 +1134,8 @@
                                                             <color key="shadowColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                             <size key="shadowOffset" width="0.0" height="1"/>
                                                         </label>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="list-downloaded-icon.png" id="RIg-Wb-t0C">
-                                                            <rect key="frame" x="322" y="15" width="12" height="13"/>
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="quality-view-download.png" id="RIg-Wb-t0C">
+                                                            <rect key="frame" x="322" y="15" width="12" height="14"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                         </imageView>
                                                         <view contentMode="scaleToFill" id="tXC-ch-Ebt" userLabel="Bottom">
@@ -1463,6 +1463,67 @@
                                     <outlet property="delegate" destination="fZx-vv-CDk" id="36q-TE-IoG"/>
                                 </connections>
                             </scrollView>
+                            <view contentMode="scaleToFill" id="DqF-4e-HWb">
+                                <rect key="frame" x="0.0" y="44" width="168" height="704"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            </view>
+                            <view userInteractionEnabled="NO" contentMode="scaleToFill" id="Zin-Br-h81">
+                                <rect key="frame" x="0.0" y="64" width="1024" height="684"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <subviews>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Today" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="qQ0-h4-ek3">
+                                        <rect key="frame" x="10" y="6.5" width="138" height="35.5"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Tomorrow" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="bw5-Ht-Skp">
+                                        <rect key="frame" x="10" y="104.5" width="138" height="36"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Friday" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="99b-ji-v4v">
+                                        <rect key="frame" x="10" y="203" width="138" height="35.5"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Saturday" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="F5R-dH-H8Z">
+                                        <rect key="frame" x="10" y="299" width="138" height="36"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Sunday" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="jHR-Jr-c6g">
+                                        <rect key="frame" x="10" y="398" width="138" height="36"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Monday" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="1lv-1e-pCa">
+                                        <rect key="frame" x="10" y="495.5" width="138" height="36"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Tuesday" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="zY0-ZR-BGm">
+                                        <rect key="frame" x="10" y="592.5" width="138" height="36"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            </view>
                             <navigationBar contentMode="scaleToFill" id="ieh-B2-G6p">
                                 <rect key="frame" x="0.0" y="0.0" width="1024" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
@@ -1523,6 +1584,13 @@
                     </view>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <connections>
+                        <outlet property="day3label" destination="99b-ji-v4v" id="4MS-Ot-8b6"/>
+                        <outlet property="day4Label" destination="F5R-dH-H8Z" id="8xJ-sG-FCz"/>
+                        <outlet property="day5Label" destination="jHR-Jr-c6g" id="qzW-FS-R7r"/>
+                        <outlet property="day6Label" destination="1lv-1e-pCa" id="wmO-jP-3J9"/>
+                        <outlet property="day7Label" destination="zY0-ZR-BGm" id="8CY-O3-SQ2"/>
+                        <outlet property="daysView" destination="Zin-Br-h81" id="h6h-0v-OdK"/>
+                        <outlet property="gradientView" destination="DqF-4e-HWb" id="Y5r-pj-3lJ"/>
                         <outlet property="scrollView" destination="daU-Xl-y3N" id="2Mj-Yy-6Ve"/>
                     </connections>
                 </viewController>
@@ -1764,6 +1832,7 @@
         <image name="quality-view-button.png" width="9" height="10"/>
         <image name="quality-view-check-off.png" width="24" height="19"/>
         <image name="quality-view-disclosure.png" width="5" height="5"/>
+        <image name="quality-view-download.png" width="12" height="14"/>
         <image name="quick-play.png" width="20" height="21"/>
         <image name="separator-fade-bottom.png" width="320" height="1"/>
         <image name="separator-fade-top.png" width="320" height="1"/>
@@ -1899,6 +1968,13 @@
             <relationships>
                 <relationship kind="action" name="close:" candidateClass="UIBarButtonItem"/>
                 <relationship kind="action" name="scrollToNow:" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="day3label" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="day4Label" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="day5Label" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="day6Label" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="day7Label" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="daysView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="gradientView" candidateClass="UIView"/>
                 <relationship kind="outlet" name="scrollView" candidateClass="UIScrollView"/>
             </relationships>
         </class>
@@ -1961,6 +2037,7 @@
         <class className="TWStreamViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/TWStreamViewController.h"/>
             <relationships>
+                <relationship kind="action" name="close:" candidateClass="UIBarButtonItem"/>
                 <relationship kind="action" name="openChatView:" candidateClass="UIButton"/>
                 <relationship kind="action" name="openQualityPopover:" candidateClass="UIButton"/>
                 <relationship kind="action" name="play:" candidateClass="UIButton"/>

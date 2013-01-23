@@ -1031,8 +1031,8 @@
                                                             <color key="shadowColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                             <size key="shadowOffset" width="0.0" height="1"/>
                                                         </label>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="list-downloaded-icon.png" id="SUW-gf-c59">
-                                                            <rect key="frame" x="282" y="15" width="12" height="13"/>
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="quality-view-download.png" id="SUW-gf-c59">
+                                                            <rect key="frame" x="282" y="15" width="12" height="14"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                         </imageView>
                                                         <view contentMode="scaleToFill" id="ghs-f9-mBP" userLabel="Bottom">
@@ -1360,6 +1360,7 @@
         <image name="quality-view-button.png" width="9" height="10"/>
         <image name="quality-view-check-off.png" width="24" height="19"/>
         <image name="quality-view-disclosure.png" width="5" height="5"/>
+        <image name="quality-view-download.png" width="12" height="14"/>
         <image name="quick-play.png" width="20" height="21"/>
         <image name="separator-fade-bottom.png" width="320" height="1"/>
         <image name="separator-fade-top.png" width="320" height="1"/>
@@ -1383,7 +1384,6 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/TWEnclosureViewController.h"/>
             <relationships>
                 <relationship kind="action" name="close:" candidateClass="UIBarButtonItem"/>
-                <relationship kind="action" name="openQualityPopover:" candidateClass="UIButton"/>
                 <relationship kind="action" name="play:" candidateClass="UIButton"/>
                 <relationship kind="action" name="rewind:" candidateClass="UIButton"/>
                 <relationship kind="action" name="seekEnd:" candidateClass="UISlider"/>
@@ -1392,12 +1392,6 @@
                 <relationship kind="action" name="toggleSpeed:" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="airplayButtonView" candidateClass="UIView"/>
                 <relationship kind="outlet" name="infoAlbumArtView" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="infoDateLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="infoDescLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="infoDescView" candidateClass="UIView"/>
-                <relationship kind="outlet" name="infoEpisodeLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="infoShowLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="infoTitlesView" candidateClass="UIView"/>
                 <relationship kind="outlet" name="infoView" candidateClass="UIView"/>
                 <relationship kind="outlet" name="navigationBar" candidateClass="UINavigationBar"/>
                 <relationship kind="outlet" name="playButton" candidateClass="UIButton"/>
@@ -1526,19 +1520,12 @@
         <class className="TWStreamViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/TWStreamViewController.h"/>
             <relationships>
-                <relationship kind="action" name="close:" candidateClass="UIBarButtonItem"/>
                 <relationship kind="action" name="openChatView:" candidateClass="UIButton"/>
                 <relationship kind="action" name="openQualityPopover:" candidateClass="UIButton"/>
                 <relationship kind="action" name="play:" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="airplayButtonView" candidateClass="UIView"/>
                 <relationship kind="outlet" name="chatButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="infoAlbumArtView" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="infoDateLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="infoDescLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="infoDescView" candidateClass="UIView"/>
-                <relationship kind="outlet" name="infoEpisodeLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="infoShowLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="infoTitlesView" candidateClass="UIView"/>
                 <relationship kind="outlet" name="infoView" candidateClass="UIView"/>
                 <relationship kind="outlet" name="navigationBar" candidateClass="UINavigationBar"/>
                 <relationship kind="outlet" name="playButton" candidateClass="UIButton"/>

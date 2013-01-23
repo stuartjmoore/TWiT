@@ -6,6 +6,7 @@
 //  Copyright (c) 2013 Stuart Moore. All rights reserved.
 //
 
+#import <QuartzCore/QuartzCore.h>
 #import "NSDate+comparisons.h"
 
 #import "TWScheduleGridViewController.h"
@@ -21,6 +22,18 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    CAGradientLayer *liveGradient = [CAGradientLayer layer];
+    liveGradient.anchorPoint = CGPointMake(0, 0);
+    liveGradient.position = CGPointMake(0, 0);
+    liveGradient.startPoint = CGPointMake(0, 0);
+    liveGradient.endPoint = CGPointMake(1, 0);
+    liveGradient.bounds = self.gradientView.bounds;
+    liveGradient.colors = [NSArray arrayWithObjects:
+                           (id)[UIColor colorWithWhite:0.96f alpha:1].CGColor,
+                           (id)[UIColor colorWithWhite:0.96f alpha:0.6f].CGColor,
+                           (id)[UIColor colorWithWhite:0.96f alpha:0].CGColor, nil];
+    [self.gradientView.layer addSublayer:liveGradient];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -52,6 +65,7 @@
         CGRect titleFrame = CGRectMake(10, 0, view.frame.size.width-20, view.frame.size.height);
         UILabel *title = [[UILabel alloc] initWithFrame:titleFrame];
         title.backgroundColor = [UIColor clearColor];
+        title.textColor = [UIColor darkGrayColor];
         title.font = [UIFont systemFontOfSize:14];
         title.text = timeTitle;
         [view addSubview:title];
@@ -59,6 +73,8 @@
         [self.scrollView addSubview:view];
         
     }
+    
+    // TODO: name days
     
     float minX = self.scrollView.contentSize.width, maxX = 0;
     
@@ -123,17 +139,14 @@
         }
     }
     
-    minX -= hourWidth/4.0f;
-    maxX += hourWidth/4.0f;
+    minX -= hourWidth/2.0f;
+    maxX += hourWidth/2.0f;
     
     self.scrollView.contentInset = UIEdgeInsetsMake(0, -minX, 0, maxX-self.scrollView.contentSize.width);
     
     [self drawNowLine];
     
-    CGRect nowFrame = self.nowLine.frame;
-    nowFrame.size.width = self.scrollView.bounds.size.width;
-    nowFrame.origin.x -= self.scrollView.bounds.size.width/3.5f;
-    [self.scrollView scrollRectToVisible:nowFrame animated:NO];
+    [self scrollToNow:nil];
 }
 - (void)drawNowLine
 {
@@ -149,7 +162,7 @@
     
     CGRect nowFrame = self.nowLine.frame;
     nowFrame.size.width = self.scrollView.bounds.size.width;
-    nowFrame.origin.x -= self.scrollView.bounds.size.width/3.5f;
+    nowFrame.origin.x -= self.scrollView.bounds.size.width/2.0f;
     
     float minX = -self.scrollView.contentInset.left;
     float maxX = self.scrollView.contentInset.right+self.scrollView.contentSize.width;
@@ -173,8 +186,8 @@
 {
     CGRect nowFrame = self.nowLine.frame;
     nowFrame.size.width = self.scrollView.bounds.size.width;
-    nowFrame.origin.x -= self.scrollView.bounds.size.width/3.5f;
-    [self.scrollView scrollRectToVisible:nowFrame animated:YES];
+    nowFrame.origin.x -= self.scrollView.bounds.size.width/2.0f;
+    [self.scrollView scrollRectToVisible:nowFrame animated:(bool)sender];
 }
 
 #pragma mark - Rotate
