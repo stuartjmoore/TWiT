@@ -117,7 +117,7 @@
 - (void)drawNowLine
 {
     NSDate *now = [NSDate date];
-    
+
     [self.nowLine removeFromSuperview];
     self.nowLine = [[UIView alloc] init];
     self.nowLine.backgroundColor = [UIColor colorWithRed:1 green:0 blue:0 alpha:0.75f];
