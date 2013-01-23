@@ -10,11 +10,13 @@
 
 @class Schedule;
 
-@interface TWScheduleGridViewController : UIViewController
+@interface TWScheduleGridViewController : UIViewController <UIScrollViewDelegate>
 
 @property (nonatomic, strong) Schedule *schedule;
 @property (nonatomic, weak) IBOutlet UIScrollView *scrollView;
 @property (nonatomic, strong) UIView *nowLine;
+
+- (IBAction)scrollToNow:(UIButton*)sender;
 
 - (IBAction)close:(UIBarButtonItem*)sender;
 

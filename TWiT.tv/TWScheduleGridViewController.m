@@ -40,8 +40,6 @@
 {
     [self.scrollView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
     
-    
-    
     for(int hour = 0; hour < 24; hour++)
     {
         CGRect frame = CGRectMake(hour*hourWidth, 0, hourWidth, timeHeight);
@@ -61,8 +59,6 @@
         [self.scrollView addSubview:view];
         
     }
-    
-    
     
     float minX = self.scrollView.contentSize.width, maxX = 0;
     
@@ -147,7 +143,7 @@
     self.nowLine = [[UIView alloc] init];
     self.nowLine.backgroundColor = [UIColor colorWithRed:61/255.0 green:122/255.0 blue:155/255.0 alpha:0.75f];
     float height = (self.scrollView.bounds.size.height-timeHeight)/7.0f;
-    self.nowLine.frame = CGRectMake(now.floatTime*hourWidth, 0, 1, height+timeHeight);
+    self.nowLine.frame = CGRectMake(now.floatTime*hourWidth, timeHeight/2.0f, 1, height+timeHeight);
     [self.scrollView addSubview:self.nowLine];
     
     
@@ -169,6 +165,16 @@
     
     [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(drawNowLine) object:nil];
     [self performSelector:@selector(drawNowLine) withObject:nil afterDelay:60];
+}
+
+#pragma mark - Actions
+
+- (IBAction)scrollToNow:(UIButton*)sender
+{
+    CGRect nowFrame = self.nowLine.frame;
+    nowFrame.size.width = self.scrollView.bounds.size.width;
+    nowFrame.origin.x -= self.scrollView.bounds.size.width/3.5f;
+    [self.scrollView scrollRectToVisible:nowFrame animated:YES];
 }
 
 #pragma mark - Rotate
