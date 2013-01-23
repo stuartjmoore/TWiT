@@ -39,6 +39,8 @@
 {
     [self.scrollView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
     
+    float minX = self.scrollView.contentSize.width, maxX = 0;
+    
     for(NSArray *day in self.schedule.days)
     {
         int i = [self.schedule.days indexOfObject:day];
@@ -47,22 +49,47 @@
             float height = self.scrollView.bounds.size.height/7.0f;
             CGRect frame = CGRectMake(event.start.floatTime*hourWidth, i*height, event.duration/60.0f*hourWidth, height);
             
+            if(frame.origin.x < minX)
+                minX = frame.origin.x;
+            
+            if(frame.origin.x+frame.size.width > maxX)
+                maxX = frame.origin.x+frame.size.width;
             
             UIView *view = [[UIView alloc] initWithFrame:frame];
             view.backgroundColor = [UIColor colorWithWhite:0.96f alpha:1];
             
-            UIView *botLine = [[UIView alloc] initWithFrame:CGRectMake(0, height-1, event.duration/60.0f*hourWidth, 1)];
-            botLine.backgroundColor = [UIColor colorWithWhite:0.87f alpha:1];
-            [view addSubview:botLine];
-            UIView *rightLine = [[UIView alloc] initWithFrame:CGRectMake(event.duration/60.0f*hourWidth-1, 0, 1, height)];
-            rightLine.backgroundColor = [UIColor colorWithWhite:0.87f alpha:1];
-            [view addSubview:rightLine];
-            UIView *topLine = [[UIView alloc] initWithFrame:CGRectMake(0, 0, event.duration/60.0f*hourWidth, 1)];
-            topLine.backgroundColor = [UIColor whiteColor];
-            [view addSubview:topLine];
-            UIView *leftLine = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 1, height)];
+            
+            UIView *topLineOut = [[UIView alloc] initWithFrame:CGRectMake(-1, -1, frame.size.width+2, 1)];
+            topLineOut.backgroundColor = [UIColor colorWithWhite:0.87f alpha:1];
+            [view addSubview:topLineOut];
+            
+            UIView *rightLineOut = [[UIView alloc] initWithFrame:CGRectMake(frame.size.width, -1, 1, frame.size.height+2)];
+            rightLineOut.backgroundColor = [UIColor whiteColor];
+            [view addSubview:rightLineOut];
+            
+            UIView *leftLineOut = [[UIView alloc] initWithFrame:CGRectMake(-1, -1, 1, frame.size.height+2)];
+            leftLineOut.backgroundColor = [UIColor colorWithWhite:0.87f alpha:1];
+            [view addSubview:leftLineOut];
+            
+            UIView *leftLine = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 1, frame.size.height)];
             leftLine.backgroundColor = [UIColor whiteColor];
             [view addSubview:leftLine];
+            
+            UIView *botLine = [[UIView alloc] initWithFrame:CGRectMake(0, frame.size.height-1, frame.size.width, 1)];
+            botLine.backgroundColor = [UIColor colorWithWhite:0.87f alpha:1];
+            [view addSubview:botLine];
+            UIView *botLineOut = [[UIView alloc] initWithFrame:CGRectMake(-1, frame.size.height, frame.size.width+2, 1)];
+            botLineOut.backgroundColor = [UIColor whiteColor];
+            [view addSubview:botLineOut];
+            
+            UIView *topLine = [[UIView alloc] initWithFrame:CGRectMake(0, 0, frame.size.width, 1)];
+            topLine.backgroundColor = [UIColor whiteColor];
+            [view addSubview:topLine];
+            
+            UIView *rightLine = [[UIView alloc] initWithFrame:CGRectMake(frame.size.width-1, 0, 1, frame.size.height)];
+            rightLine.backgroundColor = [UIColor colorWithWhite:0.87f alpha:1];
+            [view addSubview:rightLine];
+            
             
             CGRect titleFrame = CGRectMake(10, 10, view.frame.size.width-20, view.frame.size.height-20);
             UILabel *title = [[UILabel alloc] initWithFrame:titleFrame];
@@ -75,19 +102,47 @@
         }
     }
     
-    NSDate *now = [NSDate date];
-    CGRect nowFrame = CGRectMake(now.floatTime*hourWidth, 0, 1, self.scrollView.bounds.size.height);
+    minX -= hourWidth/4.0f;
+    maxX += hourWidth/4.0f;
     
-    UIView *nowLine = [[UIView alloc] initWithFrame:nowFrame];
-    nowLine.backgroundColor = [UIColor redColor];
-    [self.scrollView addSubview:nowLine];
+    self.scrollView.contentInset = UIEdgeInsetsMake(0, -minX, 0, maxX-self.scrollView.contentSize.width);
     
+    [self drawNowLine];
+    
+    CGRect nowFrame = self.nowLine.frame;
     nowFrame.size.width = self.scrollView.bounds.size.width;
     nowFrame.origin.x -= self.scrollView.bounds.size.width/2.0f;
     [self.scrollView scrollRectToVisible:nowFrame animated:NO];
+}
+- (void)drawNowLine
+{
+    NSDate *now = [NSDate date];
+    
+    [self.nowLine removeFromSuperview];
+    self.nowLine = [[UIView alloc] init];
+    self.nowLine.backgroundColor = [UIColor colorWithRed:1 green:0 blue:0 alpha:0.75f];
+    self.nowLine.frame = CGRectMake(now.floatTime*hourWidth, 0, 1, self.scrollView.bounds.size.height);
+    [self.scrollView addSubview:self.nowLine];
     
     
-    // timer to move now line
+    CGRect nowFrame = self.nowLine.frame;
+    nowFrame.size.width = self.scrollView.bounds.size.width;
+    nowFrame.origin.x -= self.scrollView.bounds.size.width/2.0f;
+    
+    float minX = -self.scrollView.contentInset.left;
+    float maxX = self.scrollView.contentInset.right+self.scrollView.contentSize.width;
+    
+    if(nowFrame.origin.x < minX)
+        minX = nowFrame.origin.x;
+    
+    if(nowFrame.origin.x+nowFrame.size.width > maxX)
+        maxX = nowFrame.origin.x+nowFrame.size.width;
+    
+    self.scrollView.contentInset = UIEdgeInsetsMake(0, -minX, 0, maxX-self.scrollView.contentSize.width);
+    
+    
+    [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(drawNowLine) object:nil];
+    [self performSelector:@selector(drawNowLine) withObject:nil afterDelay:60];
 }
 
 #pragma mark - Rotate
