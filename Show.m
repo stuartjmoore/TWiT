@@ -390,7 +390,7 @@
                      }
                      else
                      {
-                         [self removeEpisodesObject:oldestEpisode];
+                         [self.managedObjectContext deleteObject:oldestEpisode];
                      }
                  }
                  
