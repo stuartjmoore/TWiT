@@ -803,9 +803,9 @@
         NSString *cacheKey = [NSString stringWithFormat:@"%f-%d", self.tableView.frame.size.width, indexPath.row];
         NSDictionary *rowCache = self.showsTableCache[cacheKey];
         
-        // TODO: Fix Caching.
-        if(YES || !rowCache)
+        if(!rowCache)
         {
+            showsCell.icons = nil;
             id <NSFetchedResultsSectionInfo>sectionInfo = self.fetchedShowsController.sections[indexPath.section];
             int num = sectionInfo.numberOfObjects;
             int columns = showsCell.columns;
@@ -821,22 +821,25 @@
                     [shows addObject:show];
                 }
             }
-            [showsCell setShows:shows];
+            showsCell.shows = shows;
         }
         else
         {
             showsCell.icons = [rowCache objectForKey:@"icons"];
-            showsCell.visibleColumns = [[rowCache objectForKey:@"visibleColumns"] integerValue];
+            showsCell.shows = [rowCache objectForKey:@"shows"];
             [showsCell setNeedsDisplay];
         }
     }
 }
 - (void)showsCell:(TWShowsCell*)showsCell didDrawIconsAtIndexPath:(NSIndexPath*)indexPath;
 {
-    NSString *cacheKey = [NSString stringWithFormat:@"%f-%d", self.tableView.frame.size.width, indexPath.row];
+    if(!showsCell || !showsCell.icons || !showsCell.shows)
+        return;
+        
+    NSString *cacheKey = [NSString stringWithFormat:@"%f-%d", self.tableView.frame.size.width, showsCell.indexPath.row];
     NSDictionary *rowCache = self.showsTableCache[cacheKey];
     
-    rowCache = @{ @"icons" : showsCell.icons, @"visibleColumns" : @(showsCell.visibleColumns) };
+    rowCache = @{ @"icons" : showsCell.icons, @"shows" : showsCell.shows };
     [self.showsTableCache setObject:rowCache forKey:cacheKey];
     
     [showsCell setNeedsDisplay];
@@ -975,10 +978,12 @@
 - (void)controllerDidChangeContent:(NSFetchedResultsController*)controller
 {
     if(controller == self.fetchedEpisodesController && self.sectionVisible == TWSectionEpisodes)
-        [self.tableView endUpdates];
-    else
     {
-        self.showsTableCache = nil;
+        [self.tableView endUpdates];
+    }
+    else if(controller == self.fetchedShowsController && self.sectionVisible == TWSectionShows)
+    {
+        //self.showsTableCache = nil;
         [self.tableView reloadData];
     }
 }
@@ -993,8 +998,15 @@
     if(self.showSelectedView)
         self.showSelectedView.hidden = YES;
 }
+- (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
+{
+    
+}
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
 {
+    if(self.sectionVisible == TWSectionShows)
+        [self.tableView layoutSubviews];
+    
     if(self.showSelectedView)
     {
         int columns = (UIInterfaceOrientationIsLandscape(fromInterfaceOrientation)) ? 3 : 4;

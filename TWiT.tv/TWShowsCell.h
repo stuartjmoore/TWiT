@@ -22,7 +22,7 @@
 @property (nonatomic, weak) UITableView *table;
 
 @property (nonatomic, strong) UIImage *icons;
-@property (nonatomic) NSInteger spacing, size, columns, visibleColumns;
+@property (nonatomic) NSInteger spacing, size, columns;
 
 @property (nonatomic, strong) NSArray *shows;
 
