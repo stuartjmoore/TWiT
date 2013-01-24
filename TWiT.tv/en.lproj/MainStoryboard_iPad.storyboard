@@ -1463,7 +1463,7 @@
                                     <outlet property="delegate" destination="fZx-vv-CDk" id="36q-TE-IoG"/>
                                 </connections>
                             </scrollView>
-                            <view contentMode="scaleToFill" id="DqF-4e-HWb">
+                            <view userInteractionEnabled="NO" contentMode="scaleToFill" id="DqF-4e-HWb">
                                 <rect key="frame" x="0.0" y="44" width="168" height="704"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -1855,6 +1855,7 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/TWEnclosureViewController.h"/>
             <relationships>
                 <relationship kind="action" name="close:" candidateClass="UIBarButtonItem"/>
+                <relationship kind="action" name="openQualityPopover:" candidateClass="UIButton"/>
                 <relationship kind="action" name="play:" candidateClass="UIButton"/>
                 <relationship kind="action" name="rewind:" candidateClass="UIButton"/>
                 <relationship kind="action" name="seekEnd:" candidateClass="UISlider"/>
