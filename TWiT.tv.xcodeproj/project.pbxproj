@@ -243,6 +243,7 @@
 		17C5A01C169EC2920043A781 /* Icon-72@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 17C5A01B169EC2920043A781 /* Icon-72@2x.png */; };
 		17C5A020169EC7FF0043A781 /* TWScheduleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 17C5A01F169EC7FF0043A781 /* TWScheduleCell.m */; };
 		17C5A037169F072C0043A781 /* UINavigationItem+custom.m in Sources */ = {isa = PBXBuildFile; fileRef = 17C5A036169F072C0043A781 /* UINavigationItem+custom.m */; };
+		17CBC39B16B2F76D00F1F9EC /* TWNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 17CBC39A16B2F76D00F1F9EC /* TWNavigationController.m */; };
 		17D1991516B08C0B004E2566 /* quality-view-download.png in Resources */ = {isa = PBXBuildFile; fileRef = 17D1991316B08C0B004E2566 /* quality-view-download.png */; };
 		17D1991616B08C0B004E2566 /* quality-view-download@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 17D1991416B08C0B004E2566 /* quality-view-download@2x.png */; };
 		17D1B6B216A1CAC800B05C12 /* TWPlayButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 17D1B6B116A1CAC800B05C12 /* TWPlayButton.m */; };
@@ -529,6 +530,8 @@
 		17C5A01F169EC7FF0043A781 /* TWScheduleCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWScheduleCell.m; sourceTree = "<group>"; };
 		17C5A035169F072C0043A781 /* UINavigationItem+custom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationItem+custom.h"; sourceTree = "<group>"; };
 		17C5A036169F072C0043A781 /* UINavigationItem+custom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationItem+custom.m"; sourceTree = "<group>"; };
+		17CBC39916B2F76C00F1F9EC /* TWNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWNavigationController.h; sourceTree = "<group>"; };
+		17CBC39A16B2F76D00F1F9EC /* TWNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWNavigationController.m; sourceTree = "<group>"; };
 		17D1991316B08C0B004E2566 /* quality-view-download.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "quality-view-download.png"; sourceTree = "<group>"; };
 		17D1991416B08C0B004E2566 /* quality-view-download@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "quality-view-download@2x.png"; sourceTree = "<group>"; };
 		17D1B6B016A1CAC800B05C12 /* TWPlayButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWPlayButton.h; sourceTree = "<group>"; };
@@ -958,6 +961,8 @@
 				17E51160168F496E00DCE89C /* TWAppDelegate.m */,
 				175ECB09169DF54F0013DB90 /* TWSplitViewContainer.h */,
 				175ECB0A169DF54F0013DB90 /* TWSplitViewContainer.m */,
+				17CBC39916B2F76C00F1F9EC /* TWNavigationController.h */,
+				17CBC39A16B2F76D00F1F9EC /* TWNavigationController.m */,
 				17E51168168F496E00DCE89C /* MainStoryboard_iPhone.storyboard */,
 				17E5116B168F496E00DCE89C /* MainStoryboard_iPad.storyboard */,
 				17E51171168F496E00DCE89C /* TWMainViewController.h */,
@@ -1313,6 +1318,7 @@
 				170B476016A6A9C900F7C3B5 /* TWShowInfoViewController.m in Sources */,
 				177F1FAB16AAE9E800BFFA63 /* TWQualityCell.m in Sources */,
 				177F1FAF16AB25A900BFFA63 /* TWPlaybarViewController.m in Sources */,
+				17CBC39B16B2F76D00F1F9EC /* TWNavigationController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
