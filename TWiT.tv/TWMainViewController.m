@@ -718,8 +718,7 @@
         return header;
     }
     
-    UIView *header = [[UIView alloc] init];
-    return header;
+    return nil;
 }
 
 - (UITableViewCell*)tableView:(UITableView*)tableView cellForRowAtIndexPath:(NSIndexPath*)indexPath

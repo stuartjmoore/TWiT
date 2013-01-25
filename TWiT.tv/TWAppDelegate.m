@@ -178,8 +178,6 @@
     if(self.player && [_nowPlaying isKindOfClass:Enclosure.class])
         [[_nowPlaying episode] setLastTimecode:self.player.currentPlaybackTime];
     
-    _nowPlaying = nowPlaying;
-    
     if([nowPlaying isKindOfClass:Enclosure.class])
     {
         Enclosure *enclosure = (Enclosure*)nowPlaying;
@@ -195,6 +193,8 @@
         self.player.contentURL = [NSURL URLWithString:stream.url];
         [self play];
     }
+    
+    _nowPlaying = nowPlaying;
 }
 
 - (void)play
@@ -215,12 +215,10 @@
     [UIApplication.sharedApplication endReceivingRemoteControlEvents];
     [self resignFirstResponder];
     
-    if([self.nowPlaying isKindOfClass:Enclosure.class])
-        [[self.nowPlaying episode] setLastTimecode:self.player.currentPlaybackTime];
+    self.nowPlaying = nil;
     
     [self.player stop];
     self.player = nil;
-    self.nowPlaying = nil;
 }
 
 - (void)remoteControlReceivedWithEvent:(UIEvent*)event
