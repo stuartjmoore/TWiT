@@ -1063,7 +1063,7 @@
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="HR3-2E-48f" customClass="TWNavigationItem">
+                    <navigationItem key="navigationItem" id="HR3-2E-48f">
                         <nil key="title"/>
                         <view key="titleView" contentMode="scaleToFill" id="O7E-xs-R5t">
                             <rect key="frame" x="60" y="4" width="200" height="36"/>
@@ -1295,7 +1295,7 @@
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="1jj-Ju-3YP" customClass="TWNavigationItem">
+                    <navigationItem key="navigationItem" id="1jj-Ju-3YP">
                         <nil key="title"/>
                         <view key="titleView" contentMode="scaleToFill" id="Wyp-rN-VNp">
                             <rect key="frame" x="60" y="4" width="200" height="36"/>
