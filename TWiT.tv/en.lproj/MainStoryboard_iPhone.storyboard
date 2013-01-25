@@ -339,7 +339,7 @@
                             <outlet property="delegate" destination="12" id="15"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="36">
+                    <navigationItem key="navigationItem" title="TWiT" id="36" customClass="TWNavigationItem">
                         <view key="titleView" contentMode="scaleToFill" id="4vc-3D-1C4">
                             <rect key="frame" x="60" y="1" width="200" height="43"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -463,7 +463,7 @@
                         </subviews>
                         <color key="backgroundColor" white="0.95999999999999996" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="26">
+                    <navigationItem key="navigationItem" id="26" customClass="TWNavigationItem">
                         <view key="titleView" contentMode="scaleToFill" id="MNc-dw-puF">
                             <rect key="frame" x="60" y="6" width="200" height="33"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -559,8 +559,7 @@
                             <outlet property="delegate" destination="t6z-Tc-dkI" id="cLv-kQ-50c"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="RRV-PK-C4J">
-                        <nil key="title"/>
+                    <navigationItem key="navigationItem" title="Schedule" id="RRV-PK-C4J" customClass="TWNavigationItem">
                         <view key="titleView" contentMode="scaleToFill" id="1yU-yK-7oI">
                             <rect key="frame" x="60" y="6" width="200" height="33"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -798,7 +797,7 @@
                             <outlet property="delegate" destination="Gce-uE-xEB" id="Mkk-Io-rZ3"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="Asz-4h-TSi">
+                    <navigationItem key="navigationItem" id="Asz-4h-TSi" customClass="TWNavigationItem">
                         <nil key="title"/>
                         <view key="titleView" contentMode="scaleToFill" id="xBb-OW-Zro">
                             <rect key="frame" x="60" y="6" width="200" height="33"/>
@@ -1064,7 +1063,7 @@
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="HR3-2E-48f">
+                    <navigationItem key="navigationItem" id="HR3-2E-48f" customClass="TWNavigationItem">
                         <nil key="title"/>
                         <view key="titleView" contentMode="scaleToFill" id="O7E-xs-R5t">
                             <rect key="frame" x="60" y="4" width="200" height="36"/>
@@ -1296,7 +1295,7 @@
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="1jj-Ju-3YP">
+                    <navigationItem key="navigationItem" id="1jj-Ju-3YP" customClass="TWNavigationItem">
                         <nil key="title"/>
                         <view key="titleView" contentMode="scaleToFill" id="Wyp-rN-VNp">
                             <rect key="frame" x="60" y="4" width="200" height="36"/>
@@ -1384,7 +1383,6 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/TWEnclosureViewController.h"/>
             <relationships>
                 <relationship kind="action" name="close:" candidateClass="UIBarButtonItem"/>
-                <relationship kind="action" name="openQualityPopover:" candidateClass="UIButton"/>
                 <relationship kind="action" name="play:" candidateClass="UIButton"/>
                 <relationship kind="action" name="rewind:" candidateClass="UIButton"/>
                 <relationship kind="action" name="seekEnd:" candidateClass="UISlider"/>
@@ -1470,6 +1468,9 @@
         <class className="TWNavigationController" superclassName="UINavigationController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/TWNavigationController.h"/>
         </class>
+        <class className="TWNavigationItem" superclassName="UINavigationItem">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TWNavigationItem.h"/>
+        </class>
         <class className="TWPlayButton" superclassName="UIButton">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/TWPlayButton.h"/>
         </class>
@@ -1524,7 +1525,6 @@
         <class className="TWStreamViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/TWStreamViewController.h"/>
             <relationships>
-                <relationship kind="action" name="close:" candidateClass="UIBarButtonItem"/>
                 <relationship kind="action" name="openChatView:" candidateClass="UIButton"/>
                 <relationship kind="action" name="openQualityPopover:" candidateClass="UIButton"/>
                 <relationship kind="action" name="play:" candidateClass="UIButton"/>
@@ -1548,8 +1548,8 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
+        <segue reference="rrL-Yf-xFC"/>
         <segue reference="YiW-0V-IC2"/>
         <segue reference="ev1-BP-H8c"/>
-        <segue reference="rrL-Yf-xFC"/>
     </inferredMetricsTieBreakers>
 </document>

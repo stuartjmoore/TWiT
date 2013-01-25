@@ -18,7 +18,6 @@
 
 - (void)viewDidLoad
 {
-    self.title = @"Schedule";
     [super viewDidLoad];
 }
 

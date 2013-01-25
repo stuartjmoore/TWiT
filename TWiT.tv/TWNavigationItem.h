@@ -1,13 +1,13 @@
 //
-//  UINavigationItem+custom.h
+//  TWNavigationItem.h
 //  TWiT.tv
 //
-//  Created by Stuart Moore on 1/10/13.
+//  Created by Stuart Moore on 1/25/13.
 //  Copyright (c) 2013 Stuart Moore. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 
-@interface UINavigationItem (custom)
+@interface TWNavigationItem : UINavigationItem
 
 @end

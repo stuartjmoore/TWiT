@@ -399,7 +399,7 @@
                             <outlet property="delegate" destination="YrF-GZ-hqQ" id="gon-5s-INv"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="raM-sV-ulU">
+                    <navigationItem key="navigationItem" id="raM-sV-ulU" customClass="TWNavigationItem">
                         <nil key="title"/>
                         <view key="titleView" contentMode="scaleToFill" id="9ej-aC-bDY">
                             <rect key="frame" x="60" y="6" width="200" height="33"/>
@@ -447,7 +447,7 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <color key="tintColor" red="0.96862751250000001" green="0.96862751250000001" blue="0.96862751250000001" alpha="1" colorSpace="deviceRGB"/>
                                 <items>
-                                    <navigationItem id="MVf-64-M3a">
+                                    <navigationItem id="MVf-64-M3a" customClass="TWNavigationItem">
                                         <nil key="title"/>
                                         <barButtonItem key="leftBarButtonItem" id="zwx-1i-Fvf">
                                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="AlL-4t-uRx">
@@ -1709,7 +1709,7 @@
                         </subviews>
                         <color key="backgroundColor" white="0.95999999999999996" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="XcT-tU-ZJo">
+                    <navigationItem key="navigationItem" id="XcT-tU-ZJo" customClass="TWNavigationItem">
                         <nil key="title"/>
                         <view key="titleView" contentMode="scaleToFill" id="qQ2-aI-mzq">
                             <rect key="frame" x="34" y="6" width="700" height="33"/>
@@ -1855,7 +1855,6 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/TWEnclosureViewController.h"/>
             <relationships>
                 <relationship kind="action" name="close:" candidateClass="UIBarButtonItem"/>
-                <relationship kind="action" name="openQualityPopover:" candidateClass="UIButton"/>
                 <relationship kind="action" name="play:" candidateClass="UIButton"/>
                 <relationship kind="action" name="rewind:" candidateClass="UIButton"/>
                 <relationship kind="action" name="seekEnd:" candidateClass="UISlider"/>
@@ -1937,6 +1936,9 @@
                 <relationship kind="outlet" name="scheduleTable" candidateClass="UITableView"/>
                 <relationship kind="outlet" name="watchButton" candidateClass="UIButton"/>
             </relationships>
+        </class>
+        <class className="TWNavigationItem" superclassName="UINavigationItem">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TWNavigationItem.h"/>
         </class>
         <class className="TWPlayButton" superclassName="UIButton">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/TWPlayButton.h"/>
@@ -2038,7 +2040,6 @@
         <class className="TWStreamViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/TWStreamViewController.h"/>
             <relationships>
-                <relationship kind="action" name="close:" candidateClass="UIBarButtonItem"/>
                 <relationship kind="action" name="openChatView:" candidateClass="UIButton"/>
                 <relationship kind="action" name="openQualityPopover:" candidateClass="UIButton"/>
                 <relationship kind="action" name="play:" candidateClass="UIButton"/>
