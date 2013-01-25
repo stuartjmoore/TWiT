@@ -121,7 +121,9 @@
         TWSplitViewContainer *splitViewContainer = (TWSplitViewContainer*)self.window.rootViewController;
         UINavigationController *detailController = splitViewContainer.detailController;
         TWMainViewController *showsController = (TWMainViewController*)detailController.topViewController;
-        [showsController redrawSchedule:nil];
+        
+        if([showsController respondsToSelector:@selector(redrawSchedule:)])
+            [showsController redrawSchedule:nil];
     }
     else
     {
