@@ -1584,11 +1584,11 @@
                     </view>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <connections>
-                        <outlet property="day3label" destination="99b-ji-v4v" id="4MS-Ot-8b6"/>
-                        <outlet property="day4Label" destination="F5R-dH-H8Z" id="8xJ-sG-FCz"/>
-                        <outlet property="day5Label" destination="jHR-Jr-c6g" id="qzW-FS-R7r"/>
-                        <outlet property="day6Label" destination="1lv-1e-pCa" id="wmO-jP-3J9"/>
-                        <outlet property="day7Label" destination="zY0-ZR-BGm" id="8CY-O3-SQ2"/>
+                        <outlet property="day2Label" destination="99b-ji-v4v" id="gja-LY-jpz"/>
+                        <outlet property="day3label" destination="F5R-dH-H8Z" id="X3q-Aa-2bK"/>
+                        <outlet property="day4Label" destination="jHR-Jr-c6g" id="oqa-ff-iLS"/>
+                        <outlet property="day5Label" destination="1lv-1e-pCa" id="PQv-IA-WjD"/>
+                        <outlet property="day6Label" destination="zY0-ZR-BGm" id="SNb-2t-Qnv"/>
                         <outlet property="daysView" destination="Zin-Br-h81" id="h6h-0v-OdK"/>
                         <outlet property="gradientView" destination="DqF-4e-HWb" id="Y5r-pj-3lJ"/>
                         <outlet property="scrollView" destination="daU-Xl-y3N" id="2Mj-Yy-6Ve"/>
@@ -1920,7 +1920,6 @@
         <class className="TWMainViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/TWMainViewController.h"/>
             <relationships>
-                <relationship kind="action" name="swipeEpisode:" candidateClass="UIPanGestureRecognizer"/>
                 <relationship kind="action" name="transitionToLive:" candidateClass="UIButton"/>
                 <relationship kind="action" name="transitionToSchedule:" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="gradientView" candidateClass="UIView"/>
@@ -1971,11 +1970,11 @@
             <relationships>
                 <relationship kind="action" name="close:" candidateClass="UIBarButtonItem"/>
                 <relationship kind="action" name="scrollToNow:" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="day2Label" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="day3label" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="day4Label" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="day5Label" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="day6Label" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="day7Label" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="daysView" candidateClass="UIView"/>
                 <relationship kind="outlet" name="gradientView" candidateClass="UIView"/>
                 <relationship kind="outlet" name="scrollView" candidateClass="UIScrollView"/>

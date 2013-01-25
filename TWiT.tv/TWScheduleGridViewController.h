@@ -15,7 +15,7 @@
 @property (nonatomic, strong) Schedule *schedule;
 @property (nonatomic, weak) IBOutlet UIScrollView *scrollView;
 @property (nonatomic, weak) IBOutlet UIView *daysView, *gradientView;
-@property (nonatomic, weak) IBOutlet UILabel *day3label, *day4Label, *day5Label, *day6Label, *day7Label;
+@property (nonatomic, weak) IBOutlet UILabel *day2Label, *day3label, *day4Label, *day5Label, *day6Label;
 
 @property (nonatomic, strong) UIView *nowLine;
 

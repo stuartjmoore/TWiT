@@ -76,6 +76,7 @@
     
     // TODO: name days
     
+    
     float minX = self.scrollView.contentSize.width, maxX = 0;
     
     for(NSArray *day in self.schedule.days)
@@ -83,6 +84,20 @@
         int i = [self.schedule.days indexOfObject:day];
         for(Event *event in day)
         {
+            NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+            [dateFormatter setDateFormat:@"EEEE"];
+            
+            if(i == 2)
+                self.day2Label.text = [dateFormatter stringFromDate:event.start];
+            else if(i == 3)
+                self.day3label.text = [dateFormatter stringFromDate:event.start];
+            else if(i == 4)
+                self.day4Label.text = [dateFormatter stringFromDate:event.start];
+            else if(i == 5)
+                self.day5Label.text = [dateFormatter stringFromDate:event.start];
+            else if(i == 6)
+                self.day6Label.text = [dateFormatter stringFromDate:event.start];
+            
             float height = (self.scrollView.bounds.size.height-timeHeight)/7.0f;
             CGRect frame = CGRectMake(event.start.floatTime*hourWidth, timeHeight+i*height, event.duration/60.0f*hourWidth, height);
             
