@@ -103,6 +103,7 @@
         // TODO: move insets setting to here?
     }];
 }
+
 - (void)showPlaybar
 {
     [(TWPlaybarViewController*)self.playbarController updateView];
