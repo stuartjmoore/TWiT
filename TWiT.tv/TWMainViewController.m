@@ -140,7 +140,7 @@
     
     return NO;
 }
-- (IBAction)swipeEpisode:(UIPanGestureRecognizer*)recognizer
+- (void)swipeEpisode:(UIPanGestureRecognizer*)recognizer
 {
     if(self.sectionVisible != TWSectionEpisodes)
         return;
@@ -494,29 +494,30 @@
     {
         CGRect frame = self.headerView.frame;
         float sectionHeaderHeight = (UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPhone) ? 28 : 0;
-        
+
         if(newPoint.y < 0)
         {
             frame.origin.y = newPoint.y;
-            frame.size.height = headerHeight-newPoint.y + sectionHeaderHeight;
+            frame.size.height = headerHeight-newPoint.y;
         }
         else
         {
             frame.origin.y = 0;
-            frame.size.height = headerHeight + sectionHeaderHeight;
+            frame.size.height = headerHeight;
         }
+        
+        self.headerView.frame = frame;
+        //[self.sectionHeader.superview bringSubviewToFront:self.sectionHeader];
+        
+        UIEdgeInsets scrollerInsets = self.tableView.scrollIndicatorInsets;
+        scrollerInsets.top = frame.size.height + sectionHeaderHeight;
+        self.tableView.scrollIndicatorInsets = scrollerInsets;
         
         if(UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPhone)
         {
             float offest = self.tableView.contentOffset.y-headerHeight;
             self.sectionHeader.layer.shadowOpacity = offest < 0 ? 0 : offest/20;
         }
-        
-        self.headerView.frame = frame;
-        
-        UIEdgeInsets scrollerInsets = self.tableView.scrollIndicatorInsets;
-        scrollerInsets.top = frame.size.height;
-        self.tableView.scrollIndicatorInsets = scrollerInsets;
     }
 }
 
@@ -718,7 +719,8 @@
         return header;
     }
     
-    return nil;
+    UIView *header = [[UIView alloc] init];
+    return header;
 }
 
 - (UITableViewCell*)tableView:(UITableView*)tableView cellForRowAtIndexPath:(NSIndexPath*)indexPath

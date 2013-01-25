@@ -46,7 +46,7 @@ typedef NS_ENUM(NSInteger, TWSection)
 - (void)updateProgress:(NSNotification*)notification;
 - (void)redrawSchedule:(NSNotification*)notification;
 
-- (IBAction)swipeEpisode:(UIPanGestureRecognizer*)recognizer;
+- (void)swipeEpisode:(UIPanGestureRecognizer*)recognizer;
 
 - (IBAction)transitionToSchedule:(UIButton*)sender;
 - (IBAction)transitionToLive:(UIButton*)sender;
