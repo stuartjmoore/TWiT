@@ -47,9 +47,6 @@
     if(!self.delegate.nowPlaying || ![self.delegate.nowPlaying isKindOfClass:Enclosure.class]
     || ([self.delegate.nowPlaying isKindOfClass:Enclosure.class] && [self.delegate.nowPlaying episode] != self.enclosure.episode))
     {
-        if(self.delegate.player && [self.delegate.nowPlaying isKindOfClass:Enclosure.class])
-            [[self.delegate.nowPlaying episode] setLastTimecode:self.delegate.player.currentPlaybackTime];
-        
         self.delegate.nowPlaying = self.enclosure;
         
         MPNowPlayingInfoCenter.defaultCenter.nowPlayingInfo = @{

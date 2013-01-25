@@ -175,6 +175,9 @@
 
 - (void)setNowPlaying:(id)nowPlaying
 {
+    if(self.player && [_nowPlaying isKindOfClass:Enclosure.class])
+        [[_nowPlaying episode] setLastTimecode:self.player.currentPlaybackTime];
+    
     _nowPlaying = nowPlaying;
     
     if([nowPlaying isKindOfClass:Enclosure.class])

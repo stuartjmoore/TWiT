@@ -36,9 +36,6 @@
     if(!self.delegate.nowPlaying || ![self.delegate.nowPlaying isKindOfClass:Stream.class]
     || ([self.delegate.nowPlaying isKindOfClass:Stream.class] && [self.delegate.nowPlaying channel] != self.stream.channel))
     {
-        if([self.delegate.nowPlaying isKindOfClass:Enclosure.class] && self.delegate.player)
-            [[self.delegate.nowPlaying episode] setLastTimecode:self.delegate.player.currentPlaybackTime];
-        
         self.delegate.nowPlaying = self.stream;
     }
     
