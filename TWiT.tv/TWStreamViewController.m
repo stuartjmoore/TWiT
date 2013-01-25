@@ -39,31 +39,6 @@
         if([self.delegate.nowPlaying isKindOfClass:Enclosure.class] && self.delegate.player)
             [[self.delegate.nowPlaying episode] setLastTimecode:self.delegate.player.currentPlaybackTime];
         
-        if(self.delegate.player)
-            [self.delegate stop];
-        
-        self.delegate.player = [[MPMoviePlayerController alloc] init];
-        self.delegate.player.contentURL = [NSURL URLWithString:self.stream.url];
-        self.delegate.player.controlStyle = MPMovieControlStyleNone;
-        self.delegate.player.shouldAutoplay = YES;
-        self.delegate.player.allowsAirPlay = YES;
-        self.delegate.player.scalingMode = MPMovieScalingModeAspectFit;
-        /*
-        if([MPNowPlayingInfoCenter class])
-        {
-            MPMediaItemArtwork *artwork = [[MPMediaItemArtwork alloc] initWithImage:[UIImage imageNamed:@"generic.png"]];
-            NSDictionary *trackInfo = @{
-            MPMediaItemPropertyAlbumTitle : self.stream.channel.title,
-            //MPMediaItemPropertyArtist : self.stream.channel.hosts,
-            MPMediaItemPropertyArtwork : artwork,
-            MPMediaItemPropertyGenre : @"Podcast",
-            MPMediaItemPropertyTitle : self.stream.channel.schedule.currentShow.title
-            };
-            MPNowPlayingInfoCenter.defaultCenter.nowPlayingInfo = trackInfo;
-        }
-        */
-        
-        [self.delegate play];
         self.delegate.nowPlaying = self.stream;
     }
     
@@ -72,7 +47,9 @@
     self.infoView.hidden = (self.stream.type != TWTypeAudio);
     
     [self.qualityButton setTitle:self.stream.title forState:UIControlStateNormal];
-    [self.qualityButton setBackgroundImage:[[self.qualityButton backgroundImageForState:UIControlStateNormal] stretchableImageWithLeftCapWidth:4 topCapHeight:4] forState:UIControlStateNormal];
+    UIImage *qualityImage = [self.qualityButton backgroundImageForState:UIControlStateNormal];
+    qualityImage = [qualityImage resizableImageWithCapInsets:UIEdgeInsetsMake(4, 4, 5, 4)];
+    [self.qualityButton setBackgroundImage:qualityImage forState:UIControlStateNormal];
     
     self.delegate.player.view.frame = self.view.bounds;
     self.delegate.player.view.autoresizingMask = 63;
@@ -191,9 +168,6 @@
                 self.stream = stream;
                 self.delegate.nowPlaying = stream;
                 
-                self.delegate.player.contentURL = [NSURL URLWithString:self.stream.url];
-                [self.delegate play];
-                
                 self.infoView.hidden = (stream.type != TWTypeAudio);
                 [self.qualityButton setTitle:stream.title forState:UIControlStateNormal];
                 return;
@@ -310,6 +284,13 @@
 
 - (void)tableView:(UITableView*)tableView didSelectRowAtIndexPath:(NSIndexPath*)indexPath
 {
+    [UIView animateWithDuration:0.3f animations:^{
+        self.qualityView.alpha = 0;
+    } completion:^(BOOL fin) {
+        self.qualityView.hidden = YES;
+        self.qualityView.alpha = 1;
+    }];
+    
     TWQualityCell *cell = (TWQualityCell*)[tableView cellForRowAtIndexPath:indexPath];
     Stream *stream = (Stream*)cell.source;
     
@@ -319,18 +300,8 @@
     self.stream = stream;
     self.delegate.nowPlaying = stream;
     
-    self.delegate.player.contentURL = [NSURL URLWithString:self.stream.url];
-    [self.delegate play];
-    
     self.infoView.hidden = (stream.type != TWTypeAudio);
     [self.qualityButton setTitle:stream.title forState:UIControlStateNormal];
-    
-    [UIView animateWithDuration:0.3f animations:^{
-        self.qualityView.alpha = 0;
-    } completion:^(BOOL fin) {
-        self.qualityView.hidden = YES;
-        self.qualityView.alpha = 1;
-    }];
 }
 
 #pragma mark - Quality Table

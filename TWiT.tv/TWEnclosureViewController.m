@@ -50,18 +50,7 @@
         if(self.delegate.player && [self.delegate.nowPlaying isKindOfClass:Enclosure.class])
             [[self.delegate.nowPlaying episode] setLastTimecode:self.delegate.player.currentPlaybackTime];
         
-        if(self.delegate.player)
-            [self.delegate stop];
-        
-        NSURL *url = self.enclosure.path ? [NSURL fileURLWithPath:self.enclosure.path] : [NSURL URLWithString:self.enclosure.url];
-        
-        self.delegate.player = [[MPMoviePlayerController alloc] init];
-        self.delegate.player.contentURL = url;
-        self.delegate.player.initialPlaybackTime = self.enclosure.episode.lastTimecode;
-        self.delegate.player.controlStyle = MPMovieControlStyleNone;
-        self.delegate.player.shouldAutoplay = YES;
-        self.delegate.player.allowsAirPlay = YES;
-        self.delegate.player.scalingMode = MPMovieScalingModeAspectFit;
+        self.delegate.nowPlaying = self.enclosure;
         
         MPNowPlayingInfoCenter.defaultCenter.nowPlayingInfo = @{
             MPMediaItemPropertyAlbumTitle : self.enclosure.episode.show.title,
@@ -70,9 +59,6 @@
             MPMediaItemPropertyGenre : @"Podcast",
             MPMediaItemPropertyTitle : self.enclosure.episode.title
         };
-        
-        [self.delegate play];
-        self.delegate.nowPlaying = self.enclosure;
     }
     else
     {
@@ -86,7 +72,8 @@
     self.infoView.hidden = (self.enclosure.type != TWTypeAudio);
     
     [self.qualityButton setTitle:self.enclosure.title forState:UIControlStateNormal];
-    UIImage *qualityImage = [[self.qualityButton backgroundImageForState:UIControlStateNormal] resizableImageWithCapInsets:UIEdgeInsetsMake(4, 4, 5, 4)];
+    UIImage *qualityImage = [self.qualityButton backgroundImageForState:UIControlStateNormal];
+    qualityImage = [qualityImage resizableImageWithCapInsets:UIEdgeInsetsMake(4, 4, 5, 4)];
     [self.qualityButton setBackgroundImage:qualityImage forState:UIControlStateNormal];
     
     self.delegate.player.view.frame = self.view.bounds;
@@ -172,10 +159,6 @@
             {
                 self.enclosure = enclosure;
                 self.delegate.nowPlaying = enclosure;
-                
-                NSURL *url = self.enclosure.path ? [NSURL fileURLWithPath:self.enclosure.path] : [NSURL URLWithString:self.enclosure.url];
-                self.delegate.player.contentURL = url;
-                [self.delegate play];
                 
                 self.infoView.hidden = (enclosure.type != TWTypeAudio);
                 [self.qualityButton setTitle:enclosure.title forState:UIControlStateNormal];
@@ -354,32 +337,28 @@
 
 - (void)tableView:(UITableView*)tableView didSelectRowAtIndexPath:(NSIndexPath*)indexPath
 {
-    TWQualityCell *cell = (TWQualityCell*)[tableView cellForRowAtIndexPath:indexPath];
-    Enclosure *enclosure = (Enclosure*)cell.source;
-    
-    if(enclosure == self.enclosure)
-        return;
-    
-    self.enclosure = enclosure;
-    self.delegate.nowPlaying = enclosure;
-    
-    NSURL *url = self.enclosure.path ? [NSURL fileURLWithPath:self.enclosure.path] : [NSURL URLWithString:self.enclosure.url];
-    
-    NSTimeInterval startTime = self.delegate.player.currentPlaybackTime;
-    self.delegate.player.contentURL = url;
-    self.delegate.player.initialPlaybackTime = startTime;
-    
-    [self.delegate play];
-    
-    self.infoView.hidden = (enclosure.type != TWTypeAudio);
-    [self.qualityButton setTitle:enclosure.title forState:UIControlStateNormal];
-    
     [UIView animateWithDuration:0.3f animations:^{
         self.qualityView.alpha = 0;
     } completion:^(BOOL fin) {
         self.qualityView.hidden = YES;
         self.qualityView.alpha = 1;
     }];
+    
+    TWQualityCell *cell = (TWQualityCell*)[tableView cellForRowAtIndexPath:indexPath];
+    Enclosure *enclosure = (Enclosure*)cell.source;
+    
+    if(enclosure == self.enclosure)
+        return;
+    
+    NSTimeInterval startTime = self.delegate.player.currentPlaybackTime;
+    
+    self.enclosure = enclosure;
+    self.delegate.nowPlaying = enclosure;
+    
+    self.delegate.player.initialPlaybackTime = startTime;
+    
+    self.infoView.hidden = (enclosure.type != TWTypeAudio);
+    [self.qualityButton setTitle:enclosure.title forState:UIControlStateNormal];
 }
 
 #pragma mark - Quality Table

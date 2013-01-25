@@ -17,6 +17,7 @@
 #import "Show.h"
 #import "Episode.h"
 #import "Enclosure.h"
+#import "Stream.h"
 
 @implementation TWAppDelegate
 
@@ -126,7 +127,9 @@
     {
         UINavigationController *navigationController = (UINavigationController*)self.window.rootViewController;
         TWMainViewController *controller = (TWMainViewController*)navigationController.topViewController;
-        [controller redrawSchedule:nil];
+        
+        if([controller respondsToSelector:@selector(redrawSchedule:)])
+            [controller redrawSchedule:nil];
     }
 }
 
@@ -153,6 +156,41 @@
 }
 
 #pragma mark - Controls
+
+- (MPMoviePlayerController*)player
+{
+    if(_player == nil)
+    {
+        _player = [[MPMoviePlayerController alloc] init];
+        _player.controlStyle = MPMovieControlStyleNone;
+        _player.shouldAutoplay = YES;
+        _player.allowsAirPlay = YES;
+        _player.scalingMode = MPMovieScalingModeAspectFit;
+    }
+    
+    return _player;
+}
+
+- (void)setNowPlaying:(id)nowPlaying
+{
+    _nowPlaying = nowPlaying;
+    
+    if([nowPlaying isKindOfClass:Enclosure.class])
+    {
+        Enclosure *enclosure = (Enclosure*)nowPlaying;
+        
+        NSURL *url = enclosure.path ? [NSURL fileURLWithPath:enclosure.path] : [NSURL URLWithString:enclosure.url];
+        self.player.contentURL = url;
+        self.player.initialPlaybackTime = enclosure.episode.lastTimecode;
+        [self play];
+    }
+    else if([nowPlaying isKindOfClass:Stream.class])
+    {
+        Stream *stream = (Stream*)nowPlaying;
+        self.player.contentURL = [NSURL URLWithString:stream.url];
+        [self play];
+    }
+}
 
 - (void)play
 {
