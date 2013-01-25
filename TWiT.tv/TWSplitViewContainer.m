@@ -8,6 +8,7 @@
 
 #import <QuartzCore/QuartzCore.h>
 
+#import "TWAppDelegate.h"
 #import "TWSplitViewContainer.h"
 #import "TWMainViewController.h"
 #import "TWEpisodeViewController.h"
@@ -66,43 +67,6 @@
 
 #pragma mark - Actions
 
-- (void)hidePlaybar
-{
-    float height = 0;
-    
-    UITableViewController *episodesTableViewController = (UITableViewController*)self.masterController.topViewController;
-    UITableViewController *showsTableViewController = (UITableViewController*)self.detailController.topViewController;
-    
-    
-    UIEdgeInsets insets = episodesTableViewController.tableView.contentInset;
-    insets.bottom = height;
-    episodesTableViewController.tableView.contentInset = insets;
-    
-    insets = episodesTableViewController.tableView.scrollIndicatorInsets;
-    insets.bottom = height;
-    episodesTableViewController.tableView.scrollIndicatorInsets = insets;
-    
-    
-    insets = showsTableViewController.tableView.contentInset;
-    insets.bottom = height;
-    showsTableViewController.tableView.contentInset = insets;
-    
-    insets = showsTableViewController.tableView.scrollIndicatorInsets;
-    insets.bottom = height;
-    showsTableViewController.tableView.scrollIndicatorInsets = insets;
-    
-    CGRect modalFrame = self.modalFlyout.frame;
-    modalFrame.size.height = self.modalContainer.bounds.size.height;
-    
-    [UIView animateWithDuration:0.3f animations:^{
-        self.playbarContainer.alpha = 0;
-    } completion:^(BOOL fin){
-        self.playbarContainer.hidden = YES;
-        self.playbarContainer.alpha = 1;
-        self.modalFlyout.frame = modalFrame;
-        // TODO: move insets setting to here?
-    }];
-}
 
 - (void)showPlaybar
 {
@@ -140,6 +104,54 @@
         self.playbarContainer.alpha = 1;
     } completion:^(BOOL fin){
     }];
+    
+    TWAppDelegate *delegate = (TWAppDelegate*)UIApplication.sharedApplication.delegate;
+    [NSNotificationCenter.defaultCenter addObserver:self.playbarController
+                                           selector:@selector(playerStateChanged:)
+                                               name:MPMoviePlayerPlaybackStateDidChangeNotification
+                                             object:delegate.player];
+}
+- (void)hidePlaybar
+{
+    float height = 0;
+    
+    UITableViewController *episodesTableViewController = (UITableViewController*)self.masterController.topViewController;
+    UITableViewController *showsTableViewController = (UITableViewController*)self.detailController.topViewController;
+    
+    
+    UIEdgeInsets insets = episodesTableViewController.tableView.contentInset;
+    insets.bottom = height;
+    episodesTableViewController.tableView.contentInset = insets;
+    
+    insets = episodesTableViewController.tableView.scrollIndicatorInsets;
+    insets.bottom = height;
+    episodesTableViewController.tableView.scrollIndicatorInsets = insets;
+    
+    
+    insets = showsTableViewController.tableView.contentInset;
+    insets.bottom = height;
+    showsTableViewController.tableView.contentInset = insets;
+    
+    insets = showsTableViewController.tableView.scrollIndicatorInsets;
+    insets.bottom = height;
+    showsTableViewController.tableView.scrollIndicatorInsets = insets;
+    
+    CGRect modalFrame = self.modalFlyout.frame;
+    modalFrame.size.height = self.modalContainer.bounds.size.height;
+    
+    [UIView animateWithDuration:0.3f animations:^{
+        self.playbarContainer.alpha = 0;
+    } completion:^(BOOL fin){
+        self.playbarContainer.hidden = YES;
+        self.playbarContainer.alpha = 1;
+        self.modalFlyout.frame = modalFrame;
+        // TODO: move insets setting to here?
+    }];
+    
+    TWAppDelegate *delegate = (TWAppDelegate*)UIApplication.sharedApplication.delegate;
+    [NSNotificationCenter.defaultCenter removeObserver:self.playbarController
+                                                  name:MPMoviePlayerPlaybackStateDidChangeNotification
+                                                object:delegate.player];
 }
 
 #pragma mark - Settings

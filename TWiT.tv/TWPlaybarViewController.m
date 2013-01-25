@@ -21,6 +21,22 @@
 
 @implementation TWPlaybarViewController
 
+- (void)viewDidLoad
+{
+    self.view.layer.cornerRadius = 6;
+}
+
+#pragma mark - Notifications
+
+- (void)playerStateChanged:(NSNotification*)notification
+{
+    if([notification.name isEqualToString:@"MPMoviePlayerPlaybackStateDidChangeNotification"])
+    {
+        TWAppDelegate *delegate = (TWAppDelegate*)UIApplication.sharedApplication.delegate;
+        self.playButton.selected = (delegate.player.playbackState == MPMoviePlaybackStatePlaying);
+    }
+}
+
 - (void)updateView
 {
     TWAppDelegate *delegate = (TWAppDelegate*)UIApplication.sharedApplication.delegate;
@@ -32,8 +48,6 @@
         self.albumArt.image = enclosure.episode.show.albumArt.image;
         self.titleLabel.text = enclosure.episode.show.title;
         self.subtitleLabel.text = enclosure.episode.title;
-        
-        self.view.layer.cornerRadius = 6;
     }
     else if([delegate.nowPlaying isKindOfClass:Stream.class])
     {
@@ -62,8 +76,6 @@
             self.subtitleLabel.text = @"with Leo Laporte";
             self.albumArt.image = [UIImage imageNamed:@"generic.png"];
         }
-        
-        self.view.layer.cornerRadius = 6;
     }
 }
 
@@ -73,19 +85,20 @@
 {
     TWAppDelegate *delegate = (TWAppDelegate*)UIApplication.sharedApplication.delegate;
     
-    if(sender.selected)
+    if(delegate.player.playbackState == MPMoviePlaybackStatePlaying)
         [delegate pause];
     else
         [delegate play];
-    
-    sender.selected = !sender.selected;
 }
+
 - (IBAction)stop:(UIButton*)sender
 {
     TWAppDelegate *delegate = (TWAppDelegate*)UIApplication.sharedApplication.delegate;
     [delegate stop];
     [self.splitViewContainer hidePlaybar];
 }
+
+#pragma mark - Leave
 
 - (IBAction)openPlayer:(id)sender
 {

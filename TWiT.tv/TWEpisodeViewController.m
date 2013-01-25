@@ -8,6 +8,8 @@
 
 #import <QuartzCore/QuartzCore.h>
 
+#import "TWAppDelegate.h"
+
 #import "TWSplitViewContainer.h"
 #import "TWEpisodeViewController.h"
 #import "TWEnclosureViewController.h"
@@ -128,7 +130,14 @@
     if(UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPhone)
         [self performSegueWithIdentifier:@"playerDetail" sender:sender.listenButton];
     else
-        [self transitionToPlayer:sender.listenButton];
+    {
+        //[self transitionToPlayer:sender.listenButton];
+        
+        Enclosure *enclosure = [self.episode enclosureForType:TWTypeAudio andQuality:TWQualityAudio];
+        TWAppDelegate *delegate = (TWAppDelegate*)UIApplication.sharedApplication.delegate;
+        delegate.nowPlaying = enclosure;
+        [self.splitViewContainer showPlaybar];
+    }
 }
 
 - (void)downloadPressed:(TWSegmentedButton*)sender
