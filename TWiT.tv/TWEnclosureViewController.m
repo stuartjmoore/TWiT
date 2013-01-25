@@ -81,6 +81,8 @@
     
     self.enclosure = self.delegate.nowPlaying;
     
+    [self drawLabelsWithTime:self.enclosure.episode.lastTimecode andDuration:self.enclosure.episode.duration];
+    
     self.infoView.hidden = (self.enclosure.type != TWTypeAudio);
     
     [self.qualityButton setTitle:self.enclosure.title forState:UIControlStateNormal];
@@ -195,30 +197,33 @@
     && self.delegate.player.duration != NAN && self.delegate.player.duration > 0)
     {
         self.seekbar.value = self.delegate.player.currentPlaybackTime / self.delegate.player.duration;
-        
-        NSInteger playbackTime = self.delegate.player.currentPlaybackTime;
-        NSInteger seconds = playbackTime % 60;
-        NSInteger minutes = (playbackTime / 60) % 60;
-        NSInteger hours = (playbackTime / 3600);
-        self.timeElapsedLabel.text = [NSString stringWithFormat:@"%01i:%02i:%02i", hours, minutes, seconds];
-        
-        NSInteger remaining = self.delegate.player.duration-playbackTime;
-        seconds = remaining % 60;
-        minutes = (remaining / 60) % 60;
-        hours = (remaining / 3600);
-        self.timeRemainingLabel.text = [NSString stringWithFormat:@"%01i:%02i:%02i", hours, minutes, seconds];
-        
-        float rate = self.speedButton.selected ? fastSpeed : 1;
-        float secondsLeft = (self.delegate.player.duration-self.delegate.player.currentPlaybackTime)/rate;
-        NSDate *endingTime = [[NSDate date] dateByAddingTimeInterval:secondsLeft];
-        NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
-        [dateFormat setDateFormat:@"h:mma"];
-        NSString *timeString = [[dateFormat stringFromDate:endingTime] lowercaseString];
-        self.timeOfEndLabel.text = [NSString stringWithFormat:@"ends @ %@", timeString];
+        [self drawLabelsWithTime:self.delegate.player.currentPlaybackTime andDuration:self.delegate.player.duration];
     }
     
     if(self.delegate.player.playbackState == MPMoviePlaybackStatePlaying)
         [self performSelector:@selector(updateSeekbar) withObject:nil afterDelay:1];
+}
+
+- (void)drawLabelsWithTime:(NSInteger)time andDuration:(NSInteger)duration
+{
+    NSInteger seconds = time % 60;
+    NSInteger minutes = (time / 60) % 60;
+    NSInteger hours = (time / 3600);
+    self.timeElapsedLabel.text = [NSString stringWithFormat:@"%01i:%02i:%02i", hours, minutes, seconds];
+    
+    NSInteger remaining = duration-time;
+    seconds = remaining % 60;
+    minutes = (remaining / 60) % 60;
+    hours = (remaining / 3600);
+    self.timeRemainingLabel.text = [NSString stringWithFormat:@"%01i:%02i:%02i", hours, minutes, seconds];
+    
+    float rate = self.speedButton.selected ? fastSpeed : 1;
+    float secondsLeft = remaining/rate;
+    NSDate *endingTime = [[NSDate date] dateByAddingTimeInterval:secondsLeft];
+    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+    dateFormat.dateFormat = @"h:mma";
+    NSString *timeString = [[dateFormat stringFromDate:endingTime] lowercaseString];
+    self.timeOfEndLabel.text = [NSString stringWithFormat:@"ends @ %@", timeString];
 }
 
 #pragma mark - Actions
@@ -339,25 +344,7 @@
 - (IBAction)seeking:(UISlider*)sender
 {
     NSInteger newPlaybackTime = self.seekbar.value * self.delegate.player.duration;
-    
-    NSInteger seconds = newPlaybackTime % 60;
-    NSInteger minutes = (newPlaybackTime / 60) % 60;
-    NSInteger hours = (newPlaybackTime / 3600);
-    self.timeElapsedLabel.text = [NSString stringWithFormat:@"%01i:%02i:%02i", hours, minutes, seconds];
-    
-    NSInteger remaining = self.delegate.player.duration-newPlaybackTime;
-    seconds = remaining % 60;
-    minutes = (remaining / 60) % 60;
-    hours = (remaining / 3600);
-    self.timeRemainingLabel.text = [NSString stringWithFormat:@"%01i:%02i:%02i", hours, minutes, seconds];
-    
-    float rate = self.speedButton.selected ? fastSpeed : 1;
-    float secondsLeft = (self.delegate.player.duration-newPlaybackTime)/rate;
-    NSDate *endingTime = [[NSDate date] dateByAddingTimeInterval:secondsLeft];
-    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
-    [dateFormat setDateFormat:@"h:mma"];
-    NSString *timeString = [[dateFormat stringFromDate:endingTime] lowercaseString];
-    self.timeOfEndLabel.text = [NSString stringWithFormat:@"ends @ %@", timeString];
+    [self drawLabelsWithTime:newPlaybackTime andDuration:self.delegate.player.duration];
 }
 - (IBAction)seekEnd:(UISlider*)sender
 {
