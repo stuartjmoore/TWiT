@@ -216,7 +216,7 @@
 
 - (NSUInteger)application:(UIApplication*)application supportedInterfaceOrientationsForWindow:(UIWindow*)window
 {
-    NSUInteger res = (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)? UIInterfaceOrientationMaskAllButUpsideDown : UIInterfaceOrientationMaskAll;
+    NSUInteger res = (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)? UIInterfaceOrientationMaskPortrait : UIInterfaceOrientationMaskAll;
     
     if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
     {
@@ -226,7 +226,7 @@
     else if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
     {
         UINavigationController *navigationController = (UINavigationController*)window.rootViewController;
-        UIViewController *presented = navigationController.viewControllers.lastObject;
+        UIViewController *presented = navigationController.topViewController;
         res = presented.supportedInterfaceOrientations;
     }
     

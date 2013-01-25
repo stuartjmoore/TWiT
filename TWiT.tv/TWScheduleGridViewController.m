@@ -203,7 +203,7 @@
     if(UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPad)
         return YES;
     else
-        return (interfaceOrientation == UIInterfaceOrientationMaskPortrait);
+        return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
 - (NSUInteger)supportedInterfaceOrientations
