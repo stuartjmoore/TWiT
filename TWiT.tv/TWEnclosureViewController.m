@@ -86,7 +86,8 @@
     self.infoView.hidden = (self.enclosure.type != TWTypeAudio);
     
     [self.qualityButton setTitle:self.enclosure.title forState:UIControlStateNormal];
-    [self.qualityButton setBackgroundImage:[[self.qualityButton backgroundImageForState:UIControlStateNormal] stretchableImageWithLeftCapWidth:4 topCapHeight:4] forState:UIControlStateNormal];
+    UIImage *qualityImage = [[self.qualityButton backgroundImageForState:UIControlStateNormal] resizableImageWithCapInsets:UIEdgeInsetsMake(4, 4, 5, 4)];
+    [self.qualityButton setBackgroundImage:qualityImage forState:UIControlStateNormal];
     
     self.delegate.player.view.frame = self.view.bounds;
     self.delegate.player.view.autoresizingMask = 63;
