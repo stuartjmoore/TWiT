@@ -60,30 +60,6 @@
                                            selector:@selector(updateProgress:)
                                                name:@"enclosureDownloadDidFail"
                                              object:nil];
-    
-    if([self.navigationController isKindOfClass:TWNavigationController.class])
-    {
-        if([(TWNavigationController*)self.navigationController containsPlaybar])
-        {
-            CGRect descFrame = self.descLabel.frame;
-            descFrame.size.height = self.view.frame.size.height - self.descLabel.frame.origin.y - 8 - self.segmentedButton.frame.size.height - 8 - (40+4+4);
-            self.descLabel.frame = descFrame;
-            
-            CGRect segmentedFrame = self.segmentedButton.frame;
-            segmentedFrame.origin.y = self.view.frame.size.height - self.segmentedButton.frame.size.height - 8 - (40+4+4);
-            self.segmentedButton.frame = segmentedFrame;
-        }
-        else
-        {
-            CGRect descFrame = self.descLabel.frame;
-            descFrame.size.height = self.view.frame.size.height - self.descLabel.frame.origin.y - 8 - self.segmentedButton.frame.size.height - 8;
-            self.descLabel.frame = descFrame;
-            
-            CGRect segmentedFrame = self.segmentedButton.frame;
-            segmentedFrame.origin.y = self.view.frame.size.height - self.segmentedButton.frame.size.height - 8;
-            self.segmentedButton.frame = segmentedFrame;
-        }
-    }
 }
 
 #pragma mark - Episode

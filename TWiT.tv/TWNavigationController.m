@@ -12,6 +12,13 @@
 
 #pragma mark - Playbar
 
+- (void)setPlaybarController:(UIViewController*)playbarController
+{
+    _playbarController = playbarController;
+    
+    //[self addChildViewController:playbarController];
+}
+
 - (BOOL)containsPlaybar
 {
     return [self.view.subviews containsObject:self.playbarContainer];

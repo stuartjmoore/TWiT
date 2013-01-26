@@ -8,11 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
-@class TWSplitViewContainer;
+@class TWSplitViewContainer, TWNavigationContainer;
 
 @interface TWPlaybarViewController : UIViewController
 
 @property (nonatomic, weak) TWSplitViewContainer *splitViewContainer;
+@property (nonatomic, weak) TWNavigationContainer *navigationContainer;
 
 @property (nonatomic, weak) IBOutlet UILabel *titleLabel, *subtitleLabel;
 @property (nonatomic, weak) IBOutlet UIImageView *albumArt;

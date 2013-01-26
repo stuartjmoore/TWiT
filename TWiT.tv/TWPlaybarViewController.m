@@ -8,6 +8,7 @@
 
 #import "TWAppDelegate.h"
 #import "TWSplitViewContainer.h"
+#import "TWNavigationContainer.h"
 #import "TWEnclosureViewController.h"
 #import "TWStreamViewController.h"
 #import "TWPlaybarViewController.h"
@@ -23,7 +24,7 @@
 
 - (void)viewDidLoad
 {
-    self.view.layer.cornerRadius = 6;
+    self.view.layer.cornerRadius = 4;
 }
 
 #pragma mark - Notifications
@@ -95,7 +96,9 @@
 {
     TWAppDelegate *delegate = (TWAppDelegate*)UIApplication.sharedApplication.delegate;
     [delegate stop];
+    
     [self.splitViewContainer hidePlaybar];
+    [self.navigationContainer hidePlaybar];
 }
 
 #pragma mark - Leave

@@ -8,6 +8,7 @@
 
 #import "TWAppDelegate.h"
 #import "TWSplitViewContainer.h"
+#import "TWNavigationContainer.h"
 #import "TWNavigationController.h"
 #import "TWMainViewController.h"
 #import "TWPlaybarViewController.h"
@@ -68,10 +69,19 @@
     }
     else
     {
-        TWNavigationController *navigationController = (TWNavigationController*)self.window.rootViewController;
+        TWNavigationContainer *navigationContainer = (TWNavigationContainer*)self.window.rootViewController;
+        navigationContainer.view = navigationContainer.view;
+        
+        TWNavigationController *navigationController = [navigationContainer.storyboard instantiateViewControllerWithIdentifier:@"navigationController"];
+        navigationContainer.masterController = navigationController;
+        navigationController.navigationContainer = navigationContainer;
         TWMainViewController *controller = (TWMainViewController*)navigationController.topViewController;
         controller.managedObjectContext = self.managedObjectContext;
         controller.channel = self.channel;
+        
+        TWPlaybarViewController *playbarController = (TWPlaybarViewController*)[controller.storyboard instantiateViewControllerWithIdentifier:@"playbarController"];
+        navigationContainer.playbarController = playbarController;
+        playbarController.navigationContainer = navigationContainer;
     }
     
     return YES;
@@ -88,7 +98,8 @@
     }
     else
     {
-        TWNavigationController *navigationController = (TWNavigationController*)self.window.rootViewController;
+        TWNavigationContainer *navigationContainer = (TWNavigationContainer*)self.window.rootViewController;
+        TWNavigationController *navigationController = (TWNavigationController*)navigationContainer.masterController;
         [navigationController popToRootViewControllerAnimated:NO];
         
         TWMainViewController *controller = (TWMainViewController*)navigationController.topViewController;
@@ -107,7 +118,8 @@
     }
     else
     {
-        TWNavigationController *navigationController = (TWNavigationController*)self.window.rootViewController;
+        TWNavigationContainer *navigationContainer = (TWNavigationContainer*)self.window.rootViewController;
+        TWNavigationController *navigationController = (TWNavigationController*)navigationContainer.masterController;
         [navigationController popToRootViewControllerAnimated:NO];
         
         TWMainViewController *controller = (TWMainViewController*)navigationController.topViewController;
@@ -157,7 +169,8 @@
     }
     else
     {
-        UINavigationController *navigationController = (UINavigationController*)self.window.rootViewController;
+        TWNavigationContainer *navigationContainer = (TWNavigationContainer*)self.window.rootViewController;
+        TWNavigationController *navigationController = (TWNavigationController*)navigationContainer.masterController;
         TWMainViewController *controller = (TWMainViewController*)navigationController.topViewController;
         
         if([controller respondsToSelector:@selector(redrawSchedule:)])
@@ -296,7 +309,8 @@
     }
     else if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
     {
-        UINavigationController *navigationController = (UINavigationController*)window.rootViewController;
+        TWNavigationContainer *navigationContainer = (TWNavigationContainer*)window.rootViewController;
+        TWNavigationController *navigationController = (TWNavigationController*)navigationContainer.masterController;
         UIViewController *presented = navigationController.topViewController;
         res = presented.supportedInterfaceOrientations;
     }

@@ -70,6 +70,9 @@
 
 - (void)showPlaybar
 {
+    if(!self.playbarContainer.hidden)
+        return;
+    
     [(TWPlaybarViewController*)self.playbarController updateView];
     float height = self.playbarContainer.frame.size.height + 4 + 4;
     
@@ -113,6 +116,9 @@
 }
 - (void)hidePlaybar
 {
+    if(self.playbarContainer.hidden)
+        return;
+    
     float height = 0;
     
     UITableViewController *episodesTableViewController = (UITableViewController*)self.masterController.topViewController;

@@ -10,6 +10,7 @@
 
 #import "TWEnclosureViewController.h"
 #import "TWSplitViewContainer.h"
+#import "TWNavigationContainer.h"
 #import "TWNavigationController.h"
 #import "TWEpisodeViewController.h"
 
@@ -91,7 +92,8 @@
     [super viewWillAppear:animated];
     
     [self.splitViewContainer hidePlaybar];
-    [(TWNavigationController*)self.navigationController hidePlaybar];
+    TWNavigationController *navigationController = (TWNavigationController*)self.navigationController;
+    [navigationController.navigationContainer hidePlaybar];
     
     self.wantsFullScreenLayout = YES;
     self.navigationController.navigationBar.tintColor = UIColor.blackColor;
@@ -455,7 +457,7 @@
     [self.navigationBar setBackgroundImage:nil forBarMetrics:UIBarMetricsDefault];
     
     if(UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPhone)
-        [UIApplication.sharedApplication setStatusBarStyle:UIStatusBarStyleDefault animated:YES];
+        [UIApplication.sharedApplication setStatusBarStyle:UIStatusBarStyleBlackOpaque animated:YES];
     
     [self.navigationController setNavigationBarHidden:NO animated:YES];
     [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationSlide];
@@ -470,7 +472,9 @@
     if(self.delegate.player.playbackState == MPMoviePlaybackStatePlaying)
     {
         [self.splitViewContainer showPlaybar];
-        [(TWNavigationController*)self.navigationController showPlaybar];
+        
+        TWNavigationController *navigationController = (TWNavigationController*)self.navigationController;
+        [navigationController.navigationContainer showPlaybar];
     }
     
     [super viewWillDisappear:animated];
