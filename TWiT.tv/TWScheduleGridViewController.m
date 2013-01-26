@@ -74,9 +74,6 @@
         
     }
     
-    // TODO: name days
-    
-    
     float minX = self.scrollView.contentSize.width, maxX = 0;
     
     for(NSArray *day in self.schedule.days)
@@ -149,6 +146,14 @@
             title.font = [UIFont boldSystemFontOfSize:14];
             title.text = event.title;
             [view addSubview:title];
+            
+            CGRect subtitleFrame = CGRectMake(10, view.frame.size.height/2.0f, view.frame.size.width-20, view.frame.size.height/2.0f);
+            UILabel *subtitle = [[UILabel alloc] initWithFrame:subtitleFrame];
+            subtitle.backgroundColor = [UIColor clearColor];
+            subtitle.font = [UIFont systemFontOfSize:14];
+            subtitle.textColor = [UIColor darkGrayColor];
+            subtitle.text = event.subtitle;
+            [view addSubview:subtitle];
             
             [self.scrollView addSubview:view];
         }
