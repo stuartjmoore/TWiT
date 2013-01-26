@@ -155,6 +155,7 @@
 		170BA15D1691D5E70022FE4D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 170BA15C1691D5E70022FE4D /* QuartzCore.framework */; };
 		170E02A8169324480072CFA6 /* TWEpisodeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 170E02A7169324480072CFA6 /* TWEpisodeCell.m */; };
 		170E02AB169328910072CFA6 /* TWShowsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 170E02AA169328910072CFA6 /* TWShowsCell.m */; };
+		1749FCE816B440A10087CC3A /* TWNavigationContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 1749FCE716B440A10087CC3A /* TWNavigationContainer.m */; };
 		175ECB0B169DF54F0013DB90 /* TWSplitViewContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 175ECB0A169DF54F0013DB90 /* TWSplitViewContainer.m */; };
 		176380A716960E280060D076 /* Stream.m in Sources */ = {isa = PBXBuildFile; fileRef = 176380A616960E280060D076 /* Stream.m */; };
 		176380AA16960FDD0060D076 /* AlbumArt.m in Sources */ = {isa = PBXBuildFile; fileRef = 176380A916960FDD0060D076 /* AlbumArt.m */; };
@@ -421,6 +422,8 @@
 		170E02A7169324480072CFA6 /* TWEpisodeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWEpisodeCell.m; sourceTree = "<group>"; };
 		170E02A9169328910072CFA6 /* TWShowsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWShowsCell.h; sourceTree = "<group>"; };
 		170E02AA169328910072CFA6 /* TWShowsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWShowsCell.m; sourceTree = "<group>"; };
+		1749FCE616B440A10087CC3A /* TWNavigationContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWNavigationContainer.h; sourceTree = "<group>"; };
+		1749FCE716B440A10087CC3A /* TWNavigationContainer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWNavigationContainer.m; sourceTree = "<group>"; };
 		175ECB09169DF54F0013DB90 /* TWSplitViewContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWSplitViewContainer.h; sourceTree = "<group>"; };
 		175ECB0A169DF54F0013DB90 /* TWSplitViewContainer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWSplitViewContainer.m; sourceTree = "<group>"; };
 		176380A516960E280060D076 /* Stream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Stream.h; sourceTree = "<group>"; };
@@ -961,6 +964,8 @@
 				17E51160168F496E00DCE89C /* TWAppDelegate.m */,
 				175ECB09169DF54F0013DB90 /* TWSplitViewContainer.h */,
 				175ECB0A169DF54F0013DB90 /* TWSplitViewContainer.m */,
+				1749FCE616B440A10087CC3A /* TWNavigationContainer.h */,
+				1749FCE716B440A10087CC3A /* TWNavigationContainer.m */,
 				17CBC39916B2F76C00F1F9EC /* TWNavigationController.h */,
 				17CBC39A16B2F76D00F1F9EC /* TWNavigationController.m */,
 				17E51168168F496E00DCE89C /* MainStoryboard_iPhone.storyboard */,
@@ -1319,6 +1324,7 @@
 				177F1FAF16AB25A900BFFA63 /* TWPlaybarViewController.m in Sources */,
 				17CBC39B16B2F76D00F1F9EC /* TWNavigationController.m in Sources */,
 				17CBC39E16B2FCCC00F1F9EC /* TWNavigationItem.m in Sources */,
+				1749FCE816B440A10087CC3A /* TWNavigationContainer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
