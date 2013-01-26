@@ -88,6 +88,14 @@
 
 #pragma mark - Rotate
 
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+{
+    if ([self.masterController respondsToSelector:@selector(shouldAutorotateToInterfaceOrientation:)])
+        return [self.masterController shouldAutorotateToInterfaceOrientation:interfaceOrientation];
+    else
+        return [super shouldAutorotateToInterfaceOrientation:interfaceOrientation];
+}
+
 - (BOOL)shouldAutorotate;
 {
     return YES;
