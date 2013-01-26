@@ -9,6 +9,8 @@
 #import "TWAppDelegate.h"
 
 #import "TWStreamViewController.h"
+#import "TWNavigationContainer.h"
+#import "TWNavigationController.h"
 #import "TWSplitViewContainer.h"
 #import "TWQualityCell.h"
 
@@ -65,6 +67,8 @@
     [super viewWillAppear:animated];
     
     [self.splitViewContainer hidePlaybar];
+    TWNavigationController *navigationController = (TWNavigationController*)self.navigationController;
+    [navigationController.navigationContainer hidePlaybar];
     
     self.wantsFullScreenLayout = YES;
     self.navigationController.navigationBar.tintColor = UIColor.blackColor;
@@ -350,9 +354,6 @@
 
 - (IBAction)close:(UIBarButtonItem*)sender
 {
-    if(self.delegate.player.playbackState == MPMoviePlaybackStatePlaying)
-        [self.splitViewContainer showPlaybar];
-    
     CGRect masterFrameOriginal = self.splitViewContainer.masterContainer.frame;
     CGRect masterFrameAnimate = masterFrameOriginal;
     masterFrameAnimate.origin.x -= masterFrameAnimate.size.width;
@@ -398,7 +399,7 @@
     [self.navigationBar setBackgroundImage:nil forBarMetrics:UIBarMetricsDefault];
     
     if(UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPhone)
-        [UIApplication.sharedApplication setStatusBarStyle:UIStatusBarStyleDefault animated:YES];
+        [UIApplication.sharedApplication setStatusBarStyle:UIStatusBarStyleBlackOpaque animated:YES];
     
     [self.navigationController setNavigationBarHidden:NO animated:YES];
     [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationSlide];
@@ -414,6 +415,14 @@
                                                 object:self.delegate.player];
     [NSNotificationCenter.defaultCenter removeObserver:self name:MPMoviePlayerPlaybackDidFinishNotification
                                                 object:self.delegate.player];
+    
+    if(self.delegate.player.playbackState == MPMoviePlaybackStatePlaying)
+    {
+        [self.splitViewContainer showPlaybar];
+        
+        TWNavigationController *navigationController = (TWNavigationController*)self.navigationController;
+        [navigationController.navigationContainer showPlaybar];
+    }
     
     [super viewWillDisappear:animated];
 }

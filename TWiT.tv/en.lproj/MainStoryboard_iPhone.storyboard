@@ -866,7 +866,7 @@
         <!--Enclosure View Controller-->
         <scene sceneID="HDc-KQ-ZSC">
             <objects>
-                <viewController id="cwj-qn-kQX" customClass="TWEnclosureViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="playerController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="cwj-qn-kQX" customClass="TWEnclosureViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="kx4-iO-KN0">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -1148,17 +1148,17 @@
         <!--Stream View Controller-->
         <scene sceneID="Atc-yY-hFC">
             <objects>
-                <viewController id="zgt-3C-NJF" customClass="TWStreamViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="liveController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="zgt-3C-NJF" customClass="TWStreamViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="dfG-09-urO">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <view userInteractionEnabled="NO" contentMode="scaleToFill" id="GUQ-sI-WNG" userLabel="Info">
-                                <rect key="frame" x="0.0" y="52" width="320" height="384"/>
+                                <rect key="frame" x="0.0" y="52" width="320" height="436"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" image="generic.jpg" id="ecd-bD-VzR">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="384"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="436"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     </imageView>
@@ -1328,11 +1328,11 @@
                     <navigationItem key="navigationItem" id="1jj-Ju-3YP">
                         <nil key="title"/>
                         <view key="titleView" contentMode="scaleToFill" id="Wyp-rN-VNp">
-                            <rect key="frame" x="60" y="4" width="200" height="36"/>
+                            <rect key="frame" x="56" y="4" width="208" height="36"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="TWiT Live" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="vtb-c9-jZa">
-                                    <rect key="frame" x="0.0" y="0.0" width="200" height="24"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="208" height="24"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1341,7 +1341,7 @@
                                     <size key="shadowOffset" width="0.0" height="1"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Scheduled Show Title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="u3L-jY-1xT">
-                                    <rect key="frame" x="0.0" y="18" width="200" height="18"/>
+                                    <rect key="frame" x="0.0" y="18" width="208" height="18"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1377,11 +1377,11 @@
             <objects>
                 <viewController storyboardIdentifier="playbarController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="IhO-Sk-gI7" customClass="TWPlaybarViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="OSG-qg-zZw">
-                        <rect key="frame" x="0.0" y="0.0" width="312" height="44"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="fkk-O8-UgG" userLabel="Open Button">
-                                <rect key="frame" x="44" y="0.0" width="216" height="44"/>
+                                <rect key="frame" x="44" y="0.0" width="224" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal">
@@ -1416,21 +1416,21 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Show Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="86m-uc-D63">
-                                <rect key="frame" x="96" y="1" width="164" height="21"/>
+                                <rect key="frame" x="96" y="1" width="172" height="21"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Episode Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="nkQ-G6-Jwe">
-                                <rect key="frame" x="96" y="21" width="164" height="21"/>
+                                <rect key="frame" x="96" y="21" width="172" height="21"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="dir-Mz-PIC" userLabel="Stop Button">
-                                <rect key="frame" x="268" y="0.0" width="44" height="44"/>
+                                <rect key="frame" x="276" y="0.0" width="44" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" image="navbar-stop.png">
@@ -1460,7 +1460,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vF3-un-kU7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-446" y="681"/>
+            <point key="canvasLocation" x="-450" y="738"/>
         </scene>
     </scenes>
     <resources>
@@ -1504,6 +1504,7 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/TWEnclosureViewController.h"/>
             <relationships>
                 <relationship kind="action" name="close:" candidateClass="UIBarButtonItem"/>
+                <relationship kind="action" name="openQualityPopover:" candidateClass="UIButton"/>
                 <relationship kind="action" name="play:" candidateClass="UIButton"/>
                 <relationship kind="action" name="rewind:" candidateClass="UIButton"/>
                 <relationship kind="action" name="seekEnd:" candidateClass="UISlider"/>
@@ -1687,8 +1688,8 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
+        <segue reference="YiW-0V-IC2"/>
         <segue reference="ev1-BP-H8c"/>
         <segue reference="rrL-Yf-xFC"/>
-        <segue reference="YiW-0V-IC2"/>
     </inferredMetricsTieBreakers>
 </document>
