@@ -8,6 +8,7 @@
 
 #import "TWAppDelegate.h"
 #import "TWSplitViewContainer.h"
+#import "TWNavigationController.h"
 #import "TWMainViewController.h"
 #import "TWPlaybarViewController.h"
 
@@ -23,7 +24,7 @@
 
 @synthesize managedObjectContext = _managedObjectContext, managedObjectModel = _managedObjectModel, persistentStoreCoordinator = _persistentStoreCoordinator;
 
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary*)launchOptions
+- (BOOL)application:(UIApplication*)application didFinishLaunchingWithOptions:(NSDictionary*)launchOptions
 {
     [AVAudioSession.sharedInstance setCategory:AVAudioSessionCategoryPlayback error:nil];
     [AVAudioSession.sharedInstance setActive:YES error:nil];
@@ -67,24 +68,53 @@
     }
     else
     {
-        UINavigationController *navigationController = (UINavigationController*)self.window.rootViewController;
+        TWNavigationController *navigationController = (TWNavigationController*)self.window.rootViewController;
         TWMainViewController *controller = (TWMainViewController*)navigationController.topViewController;
         controller.managedObjectContext = self.managedObjectContext;
         controller.channel = self.channel;
     }
-    
-    
-    UILocalNotification *notification = [launchOptions objectForKey:UIApplicationLaunchOptionsLocalNotificationKey];
-    if(notification)
-    {
-    }
-    
     
     return YES;
 }
 
 - (void)application:(UIApplication*)application didReceiveLocalNotification:(UILocalNotification*)notification
 {
+    if(UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPad)
+    {
+        TWSplitViewContainer *splitViewContainer = (TWSplitViewContainer*)self.window.rootViewController;
+        TWMainViewController *showsController = (TWMainViewController*)splitViewContainer.detailController.topViewController;
+
+        [showsController transitionToLive:nil];
+    }
+    else
+    {
+        TWNavigationController *navigationController = (TWNavigationController*)self.window.rootViewController;
+        [navigationController popToRootViewControllerAnimated:NO];
+        
+        TWMainViewController *controller = (TWMainViewController*)navigationController.topViewController;
+        [controller performSegueWithIdentifier:@"liveVideoDetail" sender:nil];
+    }
+}
+
+- (BOOL)application:(UIApplication*)application openURL:(NSURL*)url sourceApplication:(NSString*)sourceApplication annotation:(id)annotation
+{
+    if(UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPad)
+    {
+        TWSplitViewContainer *splitViewContainer = (TWSplitViewContainer*)self.window.rootViewController;
+        TWMainViewController *showsController = (TWMainViewController*)splitViewContainer.detailController.topViewController;
+        
+        [showsController transitionToLive:nil];
+    }
+    else
+    {
+        TWNavigationController *navigationController = (TWNavigationController*)self.window.rootViewController;
+        [navigationController popToRootViewControllerAnimated:NO];
+        
+        TWMainViewController *controller = (TWMainViewController*)navigationController.topViewController;
+        [controller performSegueWithIdentifier:@"liveVideoDetail" sender:nil];
+    }
+    
+    return YES;
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application
