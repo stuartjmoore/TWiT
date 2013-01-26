@@ -10,6 +10,7 @@
 
 #import "TWEnclosureViewController.h"
 #import "TWSplitViewContainer.h"
+#import "TWNavigationController.h"
 #import "TWEpisodeViewController.h"
 
 #import "Show.h"
@@ -90,6 +91,7 @@
     [super viewWillAppear:animated];
     
     [self.splitViewContainer hidePlaybar];
+    [(TWNavigationController*)self.navigationController hidePlaybar];
     
     self.wantsFullScreenLayout = YES;
     self.navigationController.navigationBar.tintColor = UIColor.blackColor;
@@ -407,9 +409,6 @@
 
 - (IBAction)close:(UIBarButtonItem*)sender
 {
-    if(self.delegate.player.playbackState == MPMoviePlaybackStatePlaying)
-        [self.splitViewContainer showPlaybar];
-    
     CGRect masterFrameOriginal = self.splitViewContainer.masterContainer.frame;
     CGRect masterFrameAnimate = masterFrameOriginal;
     masterFrameAnimate.origin.x -= masterFrameAnimate.size.width;
@@ -467,6 +466,12 @@
                                                 object:self.delegate.player];
     [NSNotificationCenter.defaultCenter removeObserver:self name:MPMoviePlayerPlaybackDidFinishNotification
                                                 object:self.delegate.player];
+    
+    if(self.delegate.player.playbackState == MPMoviePlaybackStatePlaying)
+    {
+        [self.splitViewContainer showPlaybar];
+        [(TWNavigationController*)self.navigationController showPlaybar];
+    }
     
     [super viewWillDisappear:animated];
 }

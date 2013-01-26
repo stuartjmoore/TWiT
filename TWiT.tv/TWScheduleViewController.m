@@ -7,6 +7,7 @@
 //
 
 #import "TWScheduleViewController.h"
+#import "TWNavigationController.h"
 #import "NSDate+comparisons.h"
 
 #import "TWScheduleCell.h"
@@ -29,6 +30,14 @@
                                            selector:@selector(reloadData)
                                                name:@"ScheduleDidUpdate"
                                              object:nil];
+    
+    if([self.navigationController isKindOfClass:TWNavigationController.class])
+    {
+        if([(TWNavigationController*)self.navigationController containsPlaybar])
+            self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 40+4+4, 0);
+        else
+            self.tableView.contentInset = UIEdgeInsetsMake(0, 0, -2, 0);
+    }
 }
 
 #pragma mark - Table view

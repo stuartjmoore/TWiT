@@ -25,17 +25,17 @@
             <objects>
                 <tableViewController storyboardIdentifier="mainView" title="Master" useStoryboardIdentifierAsRestorationIdentifier="YES" id="12" customClass="TWMainViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="62" sectionHeaderHeight="28" sectionFooterHeight="22" id="13">
-                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="0.95999999999999996" alpha="1" colorSpace="calibratedWhite"/>
                         <inset key="contentInset" minX="0.0" minY="0.0" maxX="0.0" maxY="-2"/>
                         <inset key="scrollIndicatorInsets" minX="0.0" minY="208" maxX="0.0" maxY="0.0"/>
                         <view key="tableHeaderView" contentMode="scaleToFill" id="oo9-mA-4kT" userLabel="Header">
-                            <rect key="frame" x="0.0" y="0.0" width="320" height="180"/>
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="148.5"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <view clipsSubviews="YES" contentMode="scaleToFill" id="7ZG-JS-fuA">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="180"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="148.5"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" image="generic.jpg" id="nYS-gc-BrI">
@@ -43,7 +43,7 @@
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                         </imageView>
                                         <view clipsSubviews="YES" contentMode="scaleToFill" id="rxB-tU-cJ3" userLabel="Blackground">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="180"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="148.5"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.59999999999999998" colorSpace="calibratedWhite"/>
                                         </view>
@@ -113,7 +113,7 @@
                                             </connections>
                                         </button>
                                         <tableView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" alwaysBounceHorizontal="YES" scrollEnabled="NO" showsVerticalScrollIndicator="NO" indicatorStyle="white" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="20" sectionHeaderHeight="22" sectionFooterHeight="22" id="al8-rz-t9s">
-                                            <rect key="frame" x="0.0" y="75" width="320" height="105"/>
+                                            <rect key="frame" x="0.0" y="75" width="320" height="73.5"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                             <prototypes>
@@ -159,13 +159,13 @@
                             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         </view>
                         <view key="tableFooterView" contentMode="scaleToFill" id="5yq-GE-vlN">
-                            <rect key="frame" x="0.0" y="372" width="320" height="1"/>
+                            <rect key="frame" x="0.0" y="340.5" width="320" height="1"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         </view>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="episodeCell" rowHeight="62" id="lJ0-d7-vTF" customClass="TWEpisodeCell">
-                                <rect key="frame" x="0.0" y="208" width="320" height="62"/>
+                                <rect key="frame" x="0.0" y="176.5" width="320" height="62"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="61"/>
@@ -324,7 +324,7 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="showsCell" rowHeight="102" id="WO5-el-vBZ" customClass="TWShowsCell">
-                                <rect key="frame" x="0.0" y="270" width="320" height="102"/>
+                                <rect key="frame" x="0.0" y="238.5" width="320" height="102"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="101"/>
@@ -372,7 +372,7 @@
             <objects>
                 <viewController storyboardIdentifier="episodeDetail" title="Detail" useStoryboardIdentifierAsRestorationIdentifier="YES" id="21" customClass="TWEpisodeViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="22">
-                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" id="xCM-ne-MV6">
@@ -447,7 +447,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <textView clipsSubviews="YES" contentMode="scaleToFill" editable="NO" id="kHn-pA-l64">
-                                <rect key="frame" x="13" y="231" width="295" height="208"/>
+                                <rect key="frame" x="13" y="231" width="295" height="132"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="0.95999999999999996" alpha="1" colorSpace="calibratedWhite"/>
                                 <inset key="contentInset" minX="0.0" minY="-8" maxX="0.0" maxY="-8"/>
@@ -456,7 +456,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textView>
                             <view contentMode="scaleToFill" id="HTO-bF-qbl" customClass="TWSegmentedButton">
-                                <rect key="frame" x="7" y="459" width="307" height="38"/>
+                                <rect key="frame" x="7" y="371" width="307" height="38"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
@@ -502,7 +502,7 @@
             <objects>
                 <tableViewController title="Schedule" id="t6z-Tc-dkI" customClass="TWScheduleViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="50" sectionHeaderHeight="22" sectionFooterHeight="22" id="Tib-l2-hjG">
-                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.96862751250000001" green="0.96862751250000001" blue="0.96862751250000001" alpha="1" colorSpace="deviceRGB"/>
                         <view key="tableHeaderView" contentMode="scaleToFill" id="ke5-Kr-yHx">
@@ -587,7 +587,7 @@
             <objects>
                 <tableViewController storyboardIdentifier="showDetail" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Gce-uE-xEB" customClass="TWShowViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="62" sectionHeaderHeight="22" sectionFooterHeight="22" id="lcT-MQ-Chp">
-                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="0.95999999999999996" alpha="1" colorSpace="calibratedWhite"/>
                         <inset key="contentInset" minX="0.0" minY="0.0" maxX="0.0" maxY="-2"/>
@@ -838,22 +838,22 @@
             <objects>
                 <viewController id="cwj-qn-kQX" customClass="TWEnclosureViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="kx4-iO-KN0">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <view userInteractionEnabled="NO" contentMode="scaleToFill" id="pKp-YU-GKo" userLabel="Info">
-                                <rect key="frame" x="0.0" y="52" width="320" height="428"/>
+                                <rect key="frame" x="0.0" y="52" width="320" height="340"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" image="generic.jpg" id="xop-pu-rMR">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="428"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="340"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     </imageView>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
                             <view contentMode="scaleToFill" id="C6H-ll-aCQ" userLabel="Toolbar">
-                                <rect key="frame" x="0.0" y="480" width="320" height="88"/>
+                                <rect key="frame" x="0.0" y="392" width="320" height="88"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="video-toolbar-double-back.png" id="GLH-95-JtF">
@@ -983,7 +983,7 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
                             <view hidden="YES" contentMode="scaleToFill" id="fx5-yC-zcf" userLabel="Quality">
-                                <rect key="frame" x="0.0" y="224" width="320" height="200"/>
+                                <rect key="frame" x="0.0" y="136" width="320" height="200"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="quality-view-back.png" id="aBb-I3-QYb">
@@ -1120,15 +1120,15 @@
             <objects>
                 <viewController id="zgt-3C-NJF" customClass="TWStreamViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="dfG-09-urO">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <view userInteractionEnabled="NO" contentMode="scaleToFill" id="GUQ-sI-WNG" userLabel="Info">
-                                <rect key="frame" x="0.0" y="52" width="320" height="472"/>
+                                <rect key="frame" x="0.0" y="52" width="320" height="384"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" image="generic.jpg" id="ecd-bD-VzR">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="472"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="384"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     </imageView>
@@ -1136,7 +1136,7 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
                             <view contentMode="scaleToFill" id="M8l-KG-2B8" userLabel="Toolbar">
-                                <rect key="frame" x="0.0" y="524" width="320" height="44"/>
+                                <rect key="frame" x="0.0" y="436" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="video-toolbar-double-back.png" id="wDf-Vr-Izj">
@@ -1215,7 +1215,7 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
                             <view hidden="YES" contentMode="scaleToFill" id="UCw-9J-u9P" userLabel="Quality">
-                                <rect key="frame" x="0.0" y="320" width="320" height="200"/>
+                                <rect key="frame" x="0.0" y="232" width="320" height="200"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="quality-view-back.png" id="d1y-Y9-9Xk">
@@ -1378,14 +1378,178 @@
         <image name="video-speed-normal.png" width="21" height="22"/>
         <image name="video-toolbar-double-back.png" width="1" height="88"/>
     </resources>
+    <classes>
+        <class className="TWEnclosureViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TWEnclosureViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="close:" candidateClass="UIBarButtonItem"/>
+                <relationship kind="action" name="openQualityPopover:" candidateClass="UIButton"/>
+                <relationship kind="action" name="play:" candidateClass="UIButton"/>
+                <relationship kind="action" name="rewind:" candidateClass="UIButton"/>
+                <relationship kind="action" name="seekEnd:" candidateClass="UISlider"/>
+                <relationship kind="action" name="seekStart:" candidateClass="UISlider"/>
+                <relationship kind="action" name="seeking:" candidateClass="UISlider"/>
+                <relationship kind="action" name="toggleSpeed:" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="airplayButtonView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="infoAlbumArtView" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="infoView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="navigationBar" candidateClass="UINavigationBar"/>
+                <relationship kind="outlet" name="playButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="qualityButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="qualityView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="rewindButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="seekbar" candidateClass="UISlider"/>
+                <relationship kind="outlet" name="speedButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="subtitleLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="timeElapsedLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="timeOfEndLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="timeRemainingLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="titleLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="toolbarView" candidateClass="UIView"/>
+            </relationships>
+        </class>
+        <class className="TWEpisodeCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TWEpisodeCell.h"/>
+            <relationships>
+                <relationship kind="action" name="cancelSwipe:" candidateClass="UIButton"/>
+                <relationship kind="action" name="deleteDownload:" candidateClass="UIButton"/>
+                <relationship kind="action" name="quickPlayPressed:" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="albumArt" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="bottomLine" candidateClass="UIView"/>
+                <relationship kind="outlet" name="contentView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="downloadBackground" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="downloadedIcon" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="numberLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="quickPlayButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="subtitleLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="swipeBackgroundView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="swipeCancelButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="swipeConfirmationView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="swipeDeleteButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="swipeLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="titleLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="topLine" candidateClass="UIView"/>
+            </relationships>
+        </class>
+        <class className="TWEpisodeViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TWEpisodeViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="transitionToPlayer:" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="dateLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="descLabel" candidateClass="UITextView"/>
+                <relationship kind="outlet" name="gradientView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="guestsLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="numberLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="playButton" candidateClass="TWPlayButton"/>
+                <relationship kind="outlet" name="posterView" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="segmentedButton" candidateClass="TWSegmentedButton"/>
+                <relationship kind="outlet" name="timeLabel" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="TWMainViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TWMainViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="transitionToLive:" candidateClass="UIButton"/>
+                <relationship kind="action" name="transitionToSchedule:" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="gradientView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="headerView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="listenButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="liveAlbumArtView" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="livePosterView" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="liveTimeLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="liveTitleLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="nextTimeLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="nextTitleLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="playButton" candidateClass="TWPlayButton"/>
+                <relationship kind="outlet" name="scheduleTable" candidateClass="UITableView"/>
+                <relationship kind="outlet" name="watchButton" candidateClass="UIButton"/>
+            </relationships>
+        </class>
+        <class className="TWNavigationController" superclassName="UINavigationController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TWNavigationController.h"/>
+        </class>
+        <class className="TWNavigationItem" superclassName="UINavigationItem">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TWNavigationItem.h"/>
+        </class>
+        <class className="TWPlayButton" superclassName="UIButton">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TWPlayButton.h"/>
+        </class>
+        <class className="TWQualityCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TWQualityCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="bottomLine" candidateClass="UIView"/>
+                <relationship kind="outlet" name="checkmarkIcon" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="downloadIcon" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="subtitleLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="titleLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="topLine" candidateClass="UIView"/>
+            </relationships>
+        </class>
+        <class className="TWScheduleCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TWScheduleCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="subtitleLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="timeLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="titleLabel" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="TWScheduleViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TWScheduleViewController.h"/>
+        </class>
+        <class className="TWSegmentedButton" superclassName="UIButton">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TWSegmentedButton.h"/>
+        </class>
+        <class className="TWShowViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TWShowViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="email:" candidateClass="UIButton"/>
+                <relationship kind="action" name="openDetailView:" candidateClass="UIButton"/>
+                <relationship kind="action" name="phone:" candidateClass="UIButton"/>
+                <relationship kind="action" name="setFavorite:" candidateClass="UIButton"/>
+                <relationship kind="action" name="setReminder:" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="albumArt" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="descLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="emailButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="favoriteButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="gradientView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="headerView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="phoneButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="posterView" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="remindButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="scheduleLabel" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="TWShowsCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TWShowsCell.h"/>
+        </class>
+        <class className="TWStreamViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TWStreamViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="openChatView:" candidateClass="UIButton"/>
+                <relationship kind="action" name="openQualityPopover:" candidateClass="UIButton"/>
+                <relationship kind="action" name="play:" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="airplayButtonView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="chatButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="infoAlbumArtView" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="infoView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="navigationBar" candidateClass="UINavigationBar"/>
+                <relationship kind="outlet" name="playButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="qualityButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="qualityView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="subtitleLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="titleLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="toolbarView" candidateClass="UIView"/>
+            </relationships>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
-        <simulatedScreenMetrics key="destination" type="retina4"/>
+        <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="rrL-Yf-xFC"/>
         <segue reference="YiW-0V-IC2"/>
-        <segue reference="ev1-BP-H8c"/>
+        <segue reference="LjR-Ve-vnE"/>
     </inferredMetricsTieBreakers>
 </document>
