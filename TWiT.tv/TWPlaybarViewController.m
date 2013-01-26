@@ -41,6 +41,7 @@
 - (void)updateView
 {
     TWAppDelegate *delegate = (TWAppDelegate*)UIApplication.sharedApplication.delegate;
+    self.playButton.selected = (delegate.player.playbackState == MPMoviePlaybackStatePlaying);
     
     if([delegate.nowPlaying isKindOfClass:Enclosure.class])
     {

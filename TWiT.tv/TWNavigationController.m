@@ -10,47 +10,6 @@
 
 @implementation TWNavigationController
 
-#pragma mark - Playbar
-
-- (void)setPlaybarController:(UIViewController*)playbarController
-{
-    _playbarController = playbarController;
-    
-    //[self addChildViewController:playbarController];
-}
-
-- (BOOL)containsPlaybar
-{
-    return [self.view.subviews containsObject:self.playbarContainer];
-}
-
-- (void)showPlaybar
-{
-    if(self.containsPlaybar)
-        return;
-    
-    self.playbarContainer = self.playbarContainer ?: [[UIView alloc] init];
-    self.playbarContainer.backgroundColor = [UIColor redColor];
-    
-    CGRect testframe = self.view.bounds;
-    testframe.origin.x = 4;
-    testframe.origin.y = self.view.bounds.size.height-40-4;
-    testframe.size.width = 320-4-4;
-    testframe.size.height = 40;
-    self.playbarContainer.frame = testframe;
-    
-    
-    [self.view addSubview:self.playbarContainer];
-}
-
-- (void)hidePlaybar
-{
-    if(!self.containsPlaybar)
-        return;
-    
-    [self.playbarContainer removeFromSuperview];
-}
-
 #pragma mark - Rotate
 
 - (BOOL)shouldAutorotate;

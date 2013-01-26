@@ -26,7 +26,7 @@
     self.masterContainer.layer.cornerRadius = 4;
 }
 
-- (void)setPlaybarController:(UIViewController*)playbarController
+- (void)setPlaybarController:(TWPlaybarViewController*)playbarController
 {
     _playbarController = playbarController;
     
@@ -43,7 +43,7 @@
     if(!self.playbarContainer.hidden)
         return;
     
-    [(TWPlaybarViewController*)self.playbarController updateView];
+    [self.playbarController updateView];
     float height = self.playbarContainer.frame.size.height;
     
     CGRect masterFrame = self.masterContainer.frame;

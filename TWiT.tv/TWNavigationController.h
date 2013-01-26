@@ -13,11 +13,5 @@
 @interface TWNavigationController : UINavigationController
 
 @property (nonatomic, strong) TWNavigationContainer *navigationContainer;
-@property (nonatomic, strong) UIViewController *playbarController;
-@property (nonatomic, strong) UIView *playbarContainer;
-
-- (BOOL)containsPlaybar;
-- (void)showPlaybar;
-- (void)hidePlaybar;
 
 @end
