@@ -342,7 +342,7 @@
                     <navigationItem key="navigationItem" title="TWiT" id="36" customClass="TWNavigationItem">
                         <view key="titleView" contentMode="scaleToFill" id="4vc-3D-1C4">
                             <rect key="frame" x="60" y="1" width="200" height="43"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            <autoresizingMask key="autoresizingMask"/>
                             <subviews>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="navbar-logo.png" id="b7G-98-dWQ">
                                     <rect key="frame" x="0.0" y="0.0" width="200" height="43"/>
@@ -466,7 +466,7 @@
                     <navigationItem key="navigationItem" id="26" customClass="TWNavigationItem">
                         <view key="titleView" contentMode="scaleToFill" id="MNc-dw-puF">
                             <rect key="frame" x="60" y="6" width="200" height="33"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            <autoresizingMask key="autoresizingMask"/>
                             <subviews>
                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Episode" textAlignment="center" lineBreakMode="middleTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" id="AbQ-RJ-3bv">
                                     <rect key="frame" x="0.0" y="0.0" width="200" height="33"/>
@@ -562,7 +562,7 @@
                     <navigationItem key="navigationItem" title="Schedule" id="RRV-PK-C4J" customClass="TWNavigationItem">
                         <view key="titleView" contentMode="scaleToFill" id="1yU-yK-7oI">
                             <rect key="frame" x="60" y="6" width="200" height="33"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            <autoresizingMask key="autoresizingMask"/>
                             <subviews>
                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Schedule" textAlignment="center" lineBreakMode="middleTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="4IP-dz-Eju">
                                     <rect key="frame" x="0.0" y="0.0" width="200" height="33"/>
@@ -801,7 +801,7 @@
                         <nil key="title"/>
                         <view key="titleView" contentMode="scaleToFill" id="xBb-OW-Zro">
                             <rect key="frame" x="60" y="6" width="200" height="33"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            <autoresizingMask key="autoresizingMask"/>
                             <subviews>
                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Show" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" id="hyy-vn-c1L">
                                     <rect key="frame" x="0.0" y="0.0" width="200" height="33"/>
@@ -1383,7 +1383,6 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/TWEnclosureViewController.h"/>
             <relationships>
                 <relationship kind="action" name="close:" candidateClass="UIBarButtonItem"/>
-                <relationship kind="action" name="openQualityPopover:" candidateClass="UIButton"/>
                 <relationship kind="action" name="play:" candidateClass="UIButton"/>
                 <relationship kind="action" name="rewind:" candidateClass="UIButton"/>
                 <relationship kind="action" name="seekEnd:" candidateClass="UISlider"/>
@@ -1549,7 +1548,7 @@
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="rrL-Yf-xFC"/>
-        <segue reference="YiW-0V-IC2"/>
+        <segue reference="OfB-Q1-3Dp"/>
         <segue reference="LjR-Ve-vnE"/>
     </inferredMetricsTieBreakers>
 </document>
