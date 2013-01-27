@@ -69,6 +69,12 @@
     }
     else
     {
+        UIImage *navigationBarImage = [UIImage imageNamed:@"navbar-background.png"];
+        [UINavigationBar.appearance setBackgroundImage:navigationBarImage forBarMetrics:UIBarMetricsDefault];
+        
+        UIImage *backButtonImage = [[UIImage imageNamed:@"navbar-back.png"] stretchableImageWithLeftCapWidth:14 topCapHeight:15];
+        [[UIBarButtonItem appearance] setBackButtonBackgroundImage:backButtonImage forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
+        
         TWNavigationContainer *navigationContainer = (TWNavigationContainer*)self.window.rootViewController;
         navigationContainer.view = navigationContainer.view;
         

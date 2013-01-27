@@ -16,26 +16,7 @@
     
     if(self)
     {
-        for(UIView *view in self.titleView.subviews)
-        {
-            if([view isKindOfClass:UILabel.class])
-            {
-                UILabel *titleLabel = (UILabel*)view;
-                titleLabel.font = [UIFont fontWithName:@"Vollkorn-BoldItalic" size:24];
-                titleLabel.text = self.title;
-                
-                CGSize size = [self.title sizeWithFont:[UIFont fontWithName:@"Vollkorn-BoldItalic" size:13]];
-                if(size.width > titleLabel.frame.size.width)
-                {
-                    titleLabel.font = [UIFont fontWithName:titleLabel.font.fontName size:13];
-                    titleLabel.numberOfLines = 2;
-                }
-                else
-                {
-                    titleLabel.numberOfLines = 1;
-                }
-            }
-        }
+        [self setTitle:self.title];
     }
     return self;
 }
