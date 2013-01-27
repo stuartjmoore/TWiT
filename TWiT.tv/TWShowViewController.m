@@ -53,7 +53,6 @@
     
     [self.gradientView.layer addSublayer:liveGradient];
     
-    
     if(UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPad)
         self.navigationItem.hidesBackButton = YES;
 }
