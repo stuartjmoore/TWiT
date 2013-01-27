@@ -7,6 +7,7 @@
 //
 
 #import "TWAppDelegate.h"
+#import "UIAlertView+block.h"
 
 #import "TWStreamViewController.h"
 #import "TWNavigationContainer.h"
@@ -43,7 +44,8 @@
     
     self.stream = self.delegate.nowPlaying;
     
-    self.infoView.hidden = (self.stream.type != TWTypeAudio);
+    self.infoView.hidden = self.delegate.player.airPlayVideoActive ? NO : (self.stream.type == TWTypeVideo);
+    self.delegate.player.view.hidden = self.delegate.player.airPlayVideoActive;
     
     [self.qualityButton setTitle:self.stream.title forState:UIControlStateNormal];
     UIImage *qualityImage = [self.qualityButton backgroundImageForState:UIControlStateNormal];
@@ -95,6 +97,19 @@
                                            selector:@selector(playerStateChanged:)
                                                name:MPMoviePlayerPlaybackDidFinishNotification
                                              object:self.delegate.player];
+    [NSNotificationCenter.defaultCenter addObserver:self
+                                           selector:@selector(playerStateChanged:)
+                                               name:MPMoviePlayerIsAirPlayVideoActiveDidChangeNotification
+                                             object:self.delegate.player];
+    
+    [NSNotificationCenter.defaultCenter addObserver:self
+                                           selector:@selector(keyboardWillShow:)
+                                               name:UIKeyboardWillShowNotification
+                                             object:nil];
+    [NSNotificationCenter.defaultCenter addObserver:self
+                                           selector:@selector(keyboardWillHide:)
+                                               name:UIKeyboardWillHideNotification
+                                             object:nil];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -152,13 +167,16 @@
         {
         }
     }
-    
-    if([notification.name isEqualToString:@"MPMoviePlayerPlaybackStateDidChangeNotification"])
+    else if([notification.name isEqualToString:@"MPMoviePlayerPlaybackStateDidChangeNotification"])
     {
         self.playButton.selected = (self.delegate.player.playbackState == MPMoviePlaybackStatePlaying);
     }
-    
-    if([notification.name isEqualToString:@"MPMoviePlayerPlaybackDidFinishNotification"]
+    else if([notification.name isEqualToString:@"MPMoviePlayerIsAirPlayVideoActiveDidChangeNotification"])
+    {
+        self.infoView.hidden = self.delegate.player.airPlayVideoActive ? NO : (self.stream.type == TWTypeVideo);
+        self.delegate.player.view.hidden = self.delegate.player.airPlayVideoActive;
+    }
+    else if([notification.name isEqualToString:@"MPMoviePlayerPlaybackDidFinishNotification"]
     && [[notification.userInfo objectForKey:@"MPMoviePlayerPlaybackDidFinishReasonUserInfoKey"] intValue] != 0)
     {
         TWQuality quality = (TWQuality)(((int)self.stream.quality) - 1);
@@ -172,35 +190,34 @@
                 self.stream = stream;
                 self.delegate.nowPlaying = stream;
                 
-                self.infoView.hidden = (stream.type != TWTypeAudio);
+                self.infoView.hidden = self.delegate.player.airPlayVideoActive ? NO : (self.stream.type == TWTypeVideo);
                 [self.qualityButton setTitle:stream.title forState:UIControlStateNormal];
                 return;
             }
         }
         
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Sorry" message:@"Unable to load the live stream." delegate:self cancelButtonTitle:nil otherButtonTitles:@"Okay", nil];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Sorry" message:@"Unable to load the live stream." delegate:nil cancelButtonTitle:nil otherButtonTitles:@"Okay", nil];
         [alert show];
     }
-}
+}/*
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     if(UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPad)
         [self close:nil];
     else
         [self.navigationController popViewControllerAnimated:YES];
-}
+}*/
 
 #pragma mark - Actions
 
 - (void)userDidTapPlayer:(UIGestureRecognizer*)sender
 {
-    if(self.stream.type != TWTypeAudio)
-        [self hideControls:!self.toolbarView.hidden];
+    [self hideControls:!self.toolbarView.hidden];
 }
 
 - (void)hideControls:(BOOL)hide
 {
-    if(hide == self.toolbarView.hidden)
+    if(hide == self.toolbarView.hidden || !self.chatView.hidden)
         return;
     
     [UIApplication.sharedApplication setStatusBarHidden:hide withAnimation:UIStatusBarAnimationFade];
@@ -256,7 +273,7 @@
 
 - (IBAction)openChatView:(UIButton*)sender
 {
-    
+    [self loadChatRoom];
 }
 
 - (IBAction)openQualityPopover:(UIButton*)sender
@@ -304,7 +321,7 @@
     self.stream = stream;
     self.delegate.nowPlaying = stream;
     
-    self.infoView.hidden = (stream.type != TWTypeAudio);
+    self.infoView.hidden = self.delegate.player.airPlayVideoActive ? NO : (self.stream.type == TWTypeVideo);
     [self.qualityButton setTitle:stream.title forState:UIControlStateNormal];
 }
 
@@ -335,11 +352,167 @@
     return cell;
 }
 
+#pragma mark - Chat Room
+
+- (void)loadChatRoom
+{
+    if(self.chatView.hidden && !self.chatWebView.request)
+    {
+        [self hideControls:YES];
+        
+        UIImage *chatSendButtonBackground = [[self.chatSendButton backgroundImageForState:UIControlStateNormal] stretchableImageWithLeftCapWidth:11 topCapHeight:11];
+        [self.chatSendButton setBackgroundImage:chatSendButtonBackground forState:UIControlStateNormal];
+        
+        UIAlertView *prompt = [[UIAlertView alloc] initWithTitle:@"TWiT Chat Room"
+                                                         message:@""
+                                                        delegate:self
+                                               cancelButtonTitle:@"Cancel"
+                                               otherButtonTitles:@"Connect", nil];
+        
+        prompt.alertViewStyle = UIAlertViewStylePlainTextInput;
+        
+        UITextField *nicknameField = [prompt textFieldAtIndex:0];
+        nicknameField.placeholder = @"Nickname";
+        nicknameField.keyboardType = UIKeyboardTypeEmailAddress;
+        nicknameField.keyboardAppearance = UIKeyboardAppearanceAlert;
+        nicknameField.autocorrectionType = UITextAutocorrectionTypeNo;
+        nicknameField.returnKeyType = UIReturnKeyNext;
+        [nicknameField becomeFirstResponder];
+
+        [prompt show];
+    }
+    else if(self.chatView.hidden)
+    {
+        [self hideControls:YES];
+        self.chatView.hidden = NO;
+    }
+    else
+    {
+        [self.chatField resignFirstResponder];
+        self.chatView.hidden = YES;
+        [self hideControls:NO];
+    }
+}
+- (void)alertView:(UIAlertView*)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if(buttonIndex == 0)
+    {
+        [self hideControls:NO];
+        return;
+    }
+    
+    self.chatNick = [[[alertView textFieldAtIndex:0] text] isEqualToString:@""] ? [NSString stringWithFormat:@"iOS%d", arc4random()%9999] : [[alertView textFieldAtIndex:0] text];
+    
+    NSString *urlString = [NSString stringWithFormat:@"http://webchat.twit.tv/?nick=%@&channels=twitlive&uio=MT1mYWxzZSY3PWZhbHNlJjM9ZmFsc2UmMTA9dHJ1ZSYxMz1mYWxzZSYxND1mYWxzZQ23", self.chatNick];
+    [self.chatWebView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:urlString]]];
+    self.chatWebView.hidden = YES;
+    if([self.chatWebView respondsToSelector:@selector(scrollView)])
+        self.chatWebView.scrollView.scrollEnabled = NO;
+    else
+        [self.chatWebView.subviews.lastObject setScrollEnabled:NO];
+    
+    self.chatView.hidden = NO;
+}
+
+- (void)webViewDidFinishLoad:(UIWebView*)webView
+{
+    NSString *loginJS = @"javascript:(function evilGenius(){\
+                        document.getElementsByTagName('input')[0].click();\
+                        })();";
+    
+    [webView stringByEvaluatingJavaScriptFromString:loginJS];
+    
+    
+    NSString *path = [NSBundle.mainBundle.resourcePath stringByAppendingPathComponent:@"chatRoom.css"];
+    NSString *css = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
+    css = [css stringByReplacingOccurrencesOfString:@"\"" withString:@"\\\""];
+    css = [css stringByReplacingOccurrencesOfString:@"\n" withString:@" "];
+    css = [css stringByReplacingOccurrencesOfString:@"\r" withString:@" "];
+    
+    NSString *styleJS = [NSString stringWithFormat:@"javascript:(function evilGenius(){\
+                         var s=document.createElement(\"style\");\
+                         s.setAttribute(\"type\",\"text/css\");\
+                         s.innerHTML=\"%@\";\
+                         document.getElementsByTagName(\"head\")[0].appendChild(s);\
+                         })();", css];
+    
+    [webView stringByEvaluatingJavaScriptFromString:styleJS];
+    
+    
+    webView.hidden = NO;
+}
+
+- (IBAction)sendChatMessage:(UIButton*)sender
+{
+    NSString *messageJS = [NSString stringWithFormat:@"javascript:(function evilGenius(){\
+                    document.forms[0].elements[0].value = '%@';\
+                    document.getElementsByTagName('input')[1].click();\
+                    })();", self.chatField.text];
+    
+    [self.chatWebView stringByEvaluatingJavaScriptFromString:messageJS];
+    self.chatField.text = @"";
+}
+
+- (void)keyboardWillShow:(NSNotification*)notification
+{
+    float duration = [notification.userInfo[UIKeyboardAnimationDurationUserInfoKey] floatValue];
+    float curve = [notification.userInfo[UIKeyboardAnimationCurveUserInfoKey] floatValue];
+    CGRect frame = [notification.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
+    
+    //self.delegate.player.airPlayVideoActive
+    
+    CGRect chatFrame = self.view.frame;
+    chatFrame.size.height -= UIInterfaceOrientationIsPortrait(self.interfaceOrientation) ? frame.size.height : frame.size.width;
+    
+    [UIView animateWithDuration:duration delay:0 options:curve animations:^{
+        self.chatView.frame = chatFrame;
+    } completion:^(BOOL fin){}];
+}
+
+- (void)keyboardWillHide:(NSNotification*)notification
+{
+    float duration = [notification.userInfo[UIKeyboardAnimationDurationUserInfoKey] floatValue];
+    float curve = [notification.userInfo[UIKeyboardAnimationCurveUserInfoKey] floatValue];
+    
+    CGRect chatFrame = self.view.frame;
+    
+    [UIView animateWithDuration:duration delay:0 options:curve animations:^{
+        self.chatView.frame = chatFrame;
+    } completion:^(BOOL fin){}];
+}
+
+- (BOOL)webView:(UIWebView*)webView shouldStartLoadWithRequest:(NSURLRequest*)request navigationType:(UIWebViewNavigationType)navigationType
+{
+    if([request.URL.absoluteString hasPrefix:@"http://webchat.twit.tv/"])
+    {
+        return YES;
+    }
+    else
+    {
+        [UIAlertView alertViewWithTitle:[NSString stringWithFormat:@"%@", request.URL.host]
+                                message:@"Open in Browser?"
+                      cancelButtonTitle:@"Cancel"
+                      otherButtonTitles:@[@"Open"]
+                              onDismiss:^(int buttonIndex) {
+                                  [UIApplication.sharedApplication openURL:request.URL];
+                              }
+                               onCancel:^(){}];
+        
+        return NO;
+    }
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField*)textField
+{
+    [textField resignFirstResponder];
+    return YES;
+}
+
 #pragma mark - Rotate
 
 - (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)orientation duration:(NSTimeInterval)duration
 {
-    if(self.stream.type != TWTypeAudio)
+    if(self.infoView.hidden)
         [self hideControls:!UIInterfaceOrientationIsPortrait(orientation)];
 }
 
@@ -421,6 +594,11 @@
                                                 object:self.delegate.player];
     [NSNotificationCenter.defaultCenter removeObserver:self name:MPMoviePlayerPlaybackDidFinishNotification
                                                 object:self.delegate.player];
+    [NSNotificationCenter.defaultCenter removeObserver:self name:MPMoviePlayerIsAirPlayVideoActiveDidChangeNotification
+                                                object:self.delegate.player];
+    
+    [NSNotificationCenter.defaultCenter removeObserver:self name:UIKeyboardWillShowNotification object:nil];
+    [NSNotificationCenter.defaultCenter removeObserver:self name:UIKeyboardWillHideNotification object:nil];
     
     if(self.delegate.player.playbackState == MPMoviePlaybackStatePlaying)
     {

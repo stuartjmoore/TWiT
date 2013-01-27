@@ -10,7 +10,7 @@
 
 @class TWAppDelegate, TWSplitViewContainer, Stream;
 
-@interface TWStreamViewController : UIViewController <UIAlertViewDelegate>
+@interface TWStreamViewController : UIViewController <UIWebViewDelegate, UITextFieldDelegate, UIAlertViewDelegate>
 
 @property (nonatomic, weak) TWSplitViewContainer *splitViewContainer;
 @property (nonatomic, weak) TWAppDelegate *delegate;
@@ -28,10 +28,18 @@
 @property (nonatomic, weak) IBOutlet UIView *infoView;
 @property (nonatomic, weak) IBOutlet UIImageView *infoAlbumArtView;
 
+@property (nonatomic, weak) IBOutlet UIView *chatView;
+@property (nonatomic, weak) IBOutlet UIWebView *chatWebView;
+@property (nonatomic, weak) IBOutlet UIButton *chatSendButton;
+@property (nonatomic, weak) IBOutlet  UITextField *chatField;
+@property (nonatomic, strong) NSString *chatNick, *chatPass;
+
 - (void)playerStateChanged:(NSNotification*)notification;
 
 - (IBAction)play:(UIButton*)sender;
 - (IBAction)openChatView:(UIButton*)sender;
 - (IBAction)openQualityPopover:(UIButton*)sender;
+
+- (IBAction)sendChatMessage:(UIButton*)sender;
 
 @end
