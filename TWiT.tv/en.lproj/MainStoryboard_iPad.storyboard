@@ -775,7 +775,7 @@
                                     <webView opaque="NO" contentMode="scaleToFill" id="U6T-G6-1ee">
                                         <rect key="frame" x="0.0" y="0.0" width="1024" height="704"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                        <color key="backgroundColor" white="0.0" alpha="0.25" colorSpace="calibratedWhite"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.35000000000000003" colorSpace="calibratedWhite"/>
                                         <dataDetectorType key="dataDetectorTypes"/>
                                         <connections>
                                             <outlet property="delegate" destination="tGz-71-90E" id="fv6-Or-nuv"/>

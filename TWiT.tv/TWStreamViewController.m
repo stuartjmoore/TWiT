@@ -379,6 +379,9 @@
         nicknameField.returnKeyType = UIReturnKeyNext;
         [nicknameField becomeFirstResponder];
 
+        NSString *chatNickString = [NSUserDefaults.standardUserDefaults stringForKey:@"chat-nick"];
+        nicknameField.text = chatNickString;
+        
         [prompt show];
     }
     else if(self.chatView.hidden)
@@ -401,7 +404,16 @@
         return;
     }
     
-    self.chatNick = [[[alertView textFieldAtIndex:0] text] isEqualToString:@""] ? [NSString stringWithFormat:@"iOS%d", arc4random()%9999] : [[alertView textFieldAtIndex:0] text];
+    if(![[[alertView textFieldAtIndex:0] text] isEqualToString:@""])
+    {
+        self.chatNick = [[alertView textFieldAtIndex:0] text];
+        [NSUserDefaults.standardUserDefaults setObject:self.chatNick forKey:@"chat-nick"];
+        [NSUserDefaults.standardUserDefaults synchronize];
+    }
+    else
+    {
+        self.chatNick = [NSString stringWithFormat:@"iOS%d", arc4random()%9999];
+    }
     
     NSString *urlString = [NSString stringWithFormat:@"http://webchat.twit.tv/?nick=%@&channels=twitlive&uio=MT1mYWxzZSY3PWZhbHNlJjM9ZmFsc2UmMTA9dHJ1ZSYxMz1mYWxzZSYxND1mYWxzZQ23", self.chatNick];
     [self.chatWebView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:urlString]]];
@@ -458,8 +470,6 @@
     float duration = [notification.userInfo[UIKeyboardAnimationDurationUserInfoKey] floatValue];
     float curve = [notification.userInfo[UIKeyboardAnimationCurveUserInfoKey] floatValue];
     CGRect frame = [notification.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
-    
-    //self.delegate.player.airPlayVideoActive
     
     CGRect chatFrame = self.view.frame;
     chatFrame.size.height -= UIInterfaceOrientationIsPortrait(self.interfaceOrientation) ? frame.size.height : frame.size.width;
