@@ -181,6 +181,8 @@
 		1787B3BD16A58E7B00870B87 /* TWStreamViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1787B3BC16A58E7B00870B87 /* TWStreamViewController.m */; };
 		179D814A169D4A1500B54E1B /* Schedule.m in Sources */ = {isa = PBXBuildFile; fileRef = 179D8149169D4A1500B54E1B /* Schedule.m */; };
 		17AFF029169462EA0053A33C /* TWShowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 17AFF028169462EA0053A33C /* TWShowViewController.m */; };
+		17B07F1016B59B2600B42CBF /* chatRoom.css in Resources */ = {isa = PBXBuildFile; fileRef = 17B07F0F16B59B2600B42CBF /* chatRoom.css */; };
+		17B07F1416B5BFAE00B42CBF /* UIAlertView+block.m in Sources */ = {isa = PBXBuildFile; fileRef = 17B07F1316B5BFAE00B42CBF /* UIAlertView+block.m */; };
 		17BD431816A08B2500AE8260 /* toolbar-dark-fav-off.png in Resources */ = {isa = PBXBuildFile; fileRef = 17BD431016A08B2500AE8260 /* toolbar-dark-fav-off.png */; };
 		17BD431916A08B2500AE8260 /* toolbar-dark-fav-off@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 17BD431116A08B2500AE8260 /* toolbar-dark-fav-off@2x.png */; };
 		17BD431A16A08B2500AE8260 /* toolbar-dark-fav-on.png in Resources */ = {isa = PBXBuildFile; fileRef = 17BD431216A08B2500AE8260 /* toolbar-dark-fav-on.png */; };
@@ -465,6 +467,9 @@
 		17A31E1316ADDB6400B71343 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		17AFF027169462EA0053A33C /* TWShowViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWShowViewController.h; sourceTree = "<group>"; };
 		17AFF028169462EA0053A33C /* TWShowViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWShowViewController.m; sourceTree = "<group>"; };
+		17B07F0F16B59B2600B42CBF /* chatRoom.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; name = chatRoom.css; path = Resources/chatRoom.css; sourceTree = SOURCE_ROOT; };
+		17B07F1216B5BFAE00B42CBF /* UIAlertView+block.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIAlertView+block.h"; sourceTree = "<group>"; };
+		17B07F1316B5BFAE00B42CBF /* UIAlertView+block.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIAlertView+block.m"; sourceTree = "<group>"; };
 		17BD431016A08B2500AE8260 /* toolbar-dark-fav-off.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "toolbar-dark-fav-off.png"; sourceTree = "<group>"; };
 		17BD431116A08B2500AE8260 /* toolbar-dark-fav-off@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "toolbar-dark-fav-off@2x.png"; sourceTree = "<group>"; };
 		17BD431216A08B2500AE8260 /* toolbar-dark-fav-on.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "toolbar-dark-fav-on.png"; sourceTree = "<group>"; };
@@ -758,6 +763,7 @@
 				17A31E1316ADDB6400B71343 /* Settings.bundle */,
 				17E5116E168F496E00DCE89C /* TWiT_tv.xcdatamodeld */,
 				170B9FF81691CD550022FE4D /* Vollkorn-BoldItalic.ttf */,
+				17B07F0F16B59B2600B42CBF /* chatRoom.css */,
 				17C5A01D169EC2B30043A781 /* Icons */,
 				17C43AE61696DFD60066C79F /* Server Cache */,
 				170B9F6E1691CD540022FE4D /* Images */,
@@ -894,6 +900,8 @@
 				17C43B921696FC220066C79F /* NSManagedObjectContext+ConvenienceMethods.m */,
 				170561E0169AD61800E59244 /* NSDate+comparisons.h */,
 				170561E1169AD61800E59244 /* NSDate+comparisons.m */,
+				17B07F1216B5BFAE00B42CBF /* UIAlertView+block.h */,
+				17B07F1316B5BFAE00B42CBF /* UIAlertView+block.m */,
 			);
 			name = Catergories;
 			sourceTree = "<group>";
@@ -1281,6 +1289,7 @@
 				17842B3016A988BB00F03223 /* linen-button@2x.png in Resources */,
 				17D1991516B08C0B004E2566 /* quality-view-download.png in Resources */,
 				17D1991616B08C0B004E2566 /* quality-view-download@2x.png in Resources */,
+				17B07F1016B59B2600B42CBF /* chatRoom.css in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1325,6 +1334,7 @@
 				17CBC39B16B2F76D00F1F9EC /* TWNavigationController.m in Sources */,
 				17CBC39E16B2FCCC00F1F9EC /* TWNavigationItem.m in Sources */,
 				1749FCE816B440A10087CC3A /* TWNavigationContainer.m in Sources */,
+				17B07F1416B5BFAE00B42CBF /* UIAlertView+block.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
