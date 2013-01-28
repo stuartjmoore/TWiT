@@ -533,7 +533,7 @@
             chatFrame.origin.y = playerFrame.size.height;
         else
             chatFrame.origin.y = UIInterfaceOrientationIsPortrait(self.interfaceOrientation) ? playerFrame.size.height : 0;
-        
+    
         chatFrame.size.height = self.view.bounds.size.height - chatFrame.origin.y - keyboardSize.height;
         self.chatView.frame = chatFrame;
     }
