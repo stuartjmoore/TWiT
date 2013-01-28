@@ -515,15 +515,31 @@
     {
         self.delegate.player.view.frame = self.view.bounds;
     }
+    else if(!self.infoView.hidden)
+    {
+        CGRect chatFrame = self.view.bounds;
+        chatFrame.size.height -= keyboardSize.height;
+        self.chatView.frame = chatFrame;
+    }
     else if(UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPad)
     {
-        if(!self.infoView.hidden)
-        {
-            CGRect chatFrame = self.view.bounds;
-            chatFrame.size.height -= keyboardSize.height;
-            self.chatView.frame = chatFrame;
-        }
+        CGRect playerFrame = self.view.bounds;
+        playerFrame.size.height = playerFrame.size.width * (9.0f/16.0f);
+        self.delegate.player.view.frame = playerFrame;
+        
+        CGRect chatFrame = self.view.bounds;
+        
+        if(keyboardSize.height == 0)
+            chatFrame.origin.y = playerFrame.size.height;
         else
+            chatFrame.origin.y = UIInterfaceOrientationIsPortrait(self.interfaceOrientation) ? playerFrame.size.height : 0;
+        
+        chatFrame.size.height = self.view.bounds.size.height - chatFrame.origin.y - keyboardSize.height;
+        self.chatView.frame = chatFrame;
+    }
+    else
+    {
+        if(UIInterfaceOrientationIsPortrait(self.interfaceOrientation))
         {
             CGRect playerFrame = self.view.bounds;
             playerFrame.size.height = playerFrame.size.width * (9.0f/16.0f);
@@ -532,70 +548,35 @@
             CGRect chatFrame = self.view.bounds;
             
             if(keyboardSize.height == 0)
+            {
                 chatFrame.origin.y = playerFrame.size.height;
+                chatFrame.size.height -= playerFrame.size.height;
+            }
             else
-                chatFrame.origin.y = UIInterfaceOrientationIsPortrait(self.interfaceOrientation) ? playerFrame.size.height : 0;
+            {
+                chatFrame.size.height -= keyboardSize.height;
+            }
             
-            chatFrame.size.height = self.view.bounds.size.height - chatFrame.origin.y - keyboardSize.height;
-            self.chatView.frame = chatFrame;
-        }
-    }
-    else
-    {
-        if(!self.infoView.hidden)
-        {
-            CGRect chatFrame = self.view.bounds;
-            chatFrame.size.height -= keyboardSize.height;
             self.chatView.frame = chatFrame;
         }
         else
         {
-            if(UIInterfaceOrientationIsPortrait(self.interfaceOrientation))
+            CGRect chatFrame = self.view.bounds;
+            
+            if(keyboardSize.height == 0)
             {
-                if(keyboardSize.height == 0)
-                {
-                    CGRect playerFrame = self.view.bounds;
-                    playerFrame.size.height = playerFrame.size.width * (9.0f/16.0f);
-                    self.delegate.player.view.frame = playerFrame;
-                    
-                    CGRect chatFrame = self.view.bounds;
-                    chatFrame.origin.y = playerFrame.size.height;
-                    chatFrame.size.height -= playerFrame.size.height;
-                    self.chatView.frame = chatFrame;
-                }
-                else
-                {
-                    CGRect playerFrame = self.view.bounds;
-                    playerFrame.size.height = self.view.bounds.size.height - keyboardSize.height;
-                    self.delegate.player.view.frame = playerFrame;
-                    
-                    CGRect chatFrame = self.view.bounds;
-                    chatFrame.size.height -= keyboardSize.height;
-                    self.chatView.frame = chatFrame;
-                }
+                self.delegate.player.view.frame = self.view.bounds;
             }
             else
             {
-                if(keyboardSize.height == 0)
-                {
-                    CGRect playerFrame = self.view.bounds;
-                    self.delegate.player.view.frame = playerFrame;
-                    
-                    CGRect chatFrame = self.view.bounds;
-                    self.chatView.frame = chatFrame;
-                }
-                else
-                {
-                    CGRect playerFrame = self.view.bounds;
-                    playerFrame.origin.y -= keyboardSize.height / 2.0f;
-                    playerFrame.size.height = playerFrame.size.width * (9.0f/16.0f);
-                    self.delegate.player.view.frame = playerFrame;
-                    
-                    CGRect chatFrame = self.view.bounds;
-                    chatFrame.size.height -= keyboardSize.height;
-                    self.chatView.frame = chatFrame;
-                }
+                CGRect playerFrame = self.view.bounds;
+                playerFrame.origin.y -= keyboardSize.height / 2.0f;
+                playerFrame.size.height = playerFrame.size.width * (9.0f/16.0f);
+                self.delegate.player.view.frame = playerFrame;
             }
+            
+            chatFrame.size.height -= keyboardSize.height;
+            self.chatView.frame = chatFrame;
         }
     }
 }
