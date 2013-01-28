@@ -387,12 +387,22 @@
     else if(self.chatView.hidden)
     {
         [self hideControls:YES];
+        
         self.chatView.hidden = NO;
+        [UIView animateWithDuration:0.3 delay:0 options:0 animations:^{
+            [self layoutChatViewWithKeyboardSize:CGSizeZero];
+        } completion:^(BOOL fin){}];
     }
     else
     {
         [self.chatField resignFirstResponder];
+        
         self.chatView.hidden = YES;
+        [UIView animateWithDuration:0.3 delay:0 options:0 animations:^{
+            [self layoutChatViewWithKeyboardSize:CGSizeZero];
+        } completion:^(BOOL fin){
+        }];
+        
         [self hideControls:NO];
     }
 }
@@ -412,7 +422,7 @@
     }
     else
     {
-        self.chatNick = [NSString stringWithFormat:@"iOS%d", arc4random()%9999];
+        self.chatNick = [NSString stringWithFormat:@"iOS_%d", arc4random()%9999];
     }
     
     NSString *urlString = [NSString stringWithFormat:@"http://webchat.twit.tv/?nick=%@&channels=twitlive&uio=MT1mYWxzZSY3PWZhbHNlJjM9ZmFsc2UmMTA9dHJ1ZSYxMz1mYWxzZSYxND1mYWxzZQ23", self.chatNick];
@@ -422,6 +432,10 @@
         self.chatWebView.scrollView.scrollEnabled = NO;
     else
         [self.chatWebView.subviews.lastObject setScrollEnabled:NO];
+    
+    [UIView animateWithDuration:0.3 delay:0 options:0 animations:^{
+        [self layoutChatViewWithKeyboardSize:CGSizeZero];
+    } completion:^(BOOL fin){}];
     
     self.chatView.hidden = NO;
 }
@@ -467,28 +481,123 @@
 
 - (void)keyboardWillShow:(NSNotification*)notification
 {
+    if(self.chatView.hidden)
+        return;
+    
     float duration = [notification.userInfo[UIKeyboardAnimationDurationUserInfoKey] floatValue];
     float curve = [notification.userInfo[UIKeyboardAnimationCurveUserInfoKey] floatValue];
     CGRect frame = [notification.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
     
-    CGRect chatFrame = self.view.frame;
-    chatFrame.size.height -= UIInterfaceOrientationIsPortrait(self.interfaceOrientation) ? frame.size.height : frame.size.width;
+    CGSize keyboardSize = CGSizeZero;
+    keyboardSize.height = UIInterfaceOrientationIsPortrait(self.interfaceOrientation) ? frame.size.height : frame.size.width;
     
     [UIView animateWithDuration:duration delay:0 options:curve animations:^{
-        self.chatView.frame = chatFrame;
+        [self layoutChatViewWithKeyboardSize:keyboardSize];
     } completion:^(BOOL fin){}];
 }
 
 - (void)keyboardWillHide:(NSNotification*)notification
 {
+    if(self.chatView.hidden)
+        return;
+    
     float duration = [notification.userInfo[UIKeyboardAnimationDurationUserInfoKey] floatValue];
     float curve = [notification.userInfo[UIKeyboardAnimationCurveUserInfoKey] floatValue];
     
-    CGRect chatFrame = self.view.frame;
-    
     [UIView animateWithDuration:duration delay:0 options:curve animations:^{
-        self.chatView.frame = chatFrame;
+        [self layoutChatViewWithKeyboardSize:CGSizeZero];
     } completion:^(BOOL fin){}];
+}
+
+- (void)layoutChatViewWithKeyboardSize:(CGSize)keyboardSize
+{
+    if(self.chatView.hidden)
+    {
+        self.delegate.player.view.frame = self.view.bounds;
+    }
+    else if(UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPad)
+    {
+        if(!self.infoView.hidden)
+        {
+            CGRect chatFrame = self.view.bounds;
+            chatFrame.size.height -= keyboardSize.height;
+            self.chatView.frame = chatFrame;
+        }
+        else
+        {
+            CGRect playerFrame = self.view.bounds;
+            playerFrame.size.height = playerFrame.size.width * (9.0f/16.0f);
+            self.delegate.player.view.frame = playerFrame;
+            
+            CGRect chatFrame = self.view.bounds;
+            
+            if(keyboardSize.height == 0)
+                chatFrame.origin.y = playerFrame.size.height;
+            else
+                chatFrame.origin.y = UIInterfaceOrientationIsPortrait(self.interfaceOrientation) ? playerFrame.size.height : 0;
+            
+            chatFrame.size.height = self.view.bounds.size.height - chatFrame.origin.y - keyboardSize.height;
+            self.chatView.frame = chatFrame;
+        }
+    }
+    else
+    {
+        if(!self.infoView.hidden)
+        {
+            CGRect chatFrame = self.view.bounds;
+            chatFrame.size.height -= keyboardSize.height;
+            self.chatView.frame = chatFrame;
+        }
+        else
+        {
+            if(UIInterfaceOrientationIsPortrait(self.interfaceOrientation))
+            {
+                if(keyboardSize.height == 0)
+                {
+                    CGRect playerFrame = self.view.bounds;
+                    playerFrame.size.height = playerFrame.size.width * (9.0f/16.0f);
+                    self.delegate.player.view.frame = playerFrame;
+                    
+                    CGRect chatFrame = self.view.bounds;
+                    chatFrame.origin.y = playerFrame.size.height;
+                    chatFrame.size.height -= playerFrame.size.height;
+                    self.chatView.frame = chatFrame;
+                }
+                else
+                {
+                    CGRect playerFrame = self.view.bounds;
+                    playerFrame.size.height = self.view.bounds.size.height - keyboardSize.height;
+                    self.delegate.player.view.frame = playerFrame;
+                    
+                    CGRect chatFrame = self.view.bounds;
+                    chatFrame.size.height -= keyboardSize.height;
+                    self.chatView.frame = chatFrame;
+                }
+            }
+            else
+            {
+                if(keyboardSize.height == 0)
+                {
+                    CGRect playerFrame = self.view.bounds;
+                    self.delegate.player.view.frame = playerFrame;
+                    
+                    CGRect chatFrame = self.view.bounds;
+                    self.chatView.frame = chatFrame;
+                }
+                else
+                {
+                    CGRect playerFrame = self.view.bounds;
+                    playerFrame.origin.y -= keyboardSize.height / 2.0f;
+                    playerFrame.size.height = playerFrame.size.width * (9.0f/16.0f);
+                    self.delegate.player.view.frame = playerFrame;
+                    
+                    CGRect chatFrame = self.view.bounds;
+                    chatFrame.size.height -= keyboardSize.height;
+                    self.chatView.frame = chatFrame;
+                }
+            }
+        }
+    }
 }
 
 - (BOOL)webView:(UIWebView*)webView shouldStartLoadWithRequest:(NSURLRequest*)request navigationType:(UIWebViewNavigationType)navigationType
@@ -499,8 +608,8 @@
     }
     else
     {
-        [UIAlertView alertViewWithTitle:[NSString stringWithFormat:@"%@", request.URL.host]
-                                message:@"Open in Browser?"
+        [UIAlertView alertViewWithTitle:@"Open in Browser?"
+                                message:[NSString stringWithFormat:@"%@", request.URL.host]
                       cancelButtonTitle:@"Cancel"
                       otherButtonTitles:@[@"Open"]
                               onDismiss:^(int buttonIndex) {
@@ -522,6 +631,8 @@
 
 - (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)orientation duration:(NSTimeInterval)duration
 {
+    [self layoutChatViewWithKeyboardSize:CGSizeZero];
+    
     if(self.infoView.hidden)
         [self hideControls:!UIInterfaceOrientationIsPortrait(orientation)];
 }
