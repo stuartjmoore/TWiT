@@ -66,6 +66,7 @@
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="LPg-az-TDY">
                                                             <rect key="frame" x="10" y="9" width="44" height="44"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            <accessibility key="accessibilityConfiguration" hint="Deletes the download." label="Delete"/>
                                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                                             <size key="titleShadowOffset" width="0.0" height="1"/>
                                                             <state key="normal" image="linen-button-delete.png" backgroundImage="linen-button.png">
@@ -82,6 +83,7 @@
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="2Je-xR-sdy">
                                                             <rect key="frame" x="62" y="9" width="248" height="44"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                                            <accessibility key="accessibilityConfiguration" hint="Cancels the deletion." label="Cancel"/>
                                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
                                                             <size key="titleShadowOffset" width="0.0" height="1"/>
                                                             <state key="normal" title="Cancel" backgroundImage="linen-button.png">
@@ -110,6 +112,9 @@
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" id="YX4-1P-DXD">
                                                             <rect key="frame" x="7" y="7" width="48" height="48"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                                            <accessibility key="accessibilityConfiguration" label="Album art">
+                                                                <bool key="isElement" value="YES"/>
+                                                            </accessibility>
                                                         </imageView>
                                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="mbu-G3-BoA" userLabel="Title">
                                                             <rect key="frame" x="64" y="13" width="199" height="20"/>
@@ -134,6 +139,7 @@
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="6Mg-BQ-19L" userLabel="Quick Play">
                                                             <rect key="frame" x="271" y="9" width="44" height="44"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                                            <accessibility key="accessibilityConfiguration" hint="Plays the episode." label="Play"/>
                                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                                             <state key="normal" image="quick-play.png">
                                                                 <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -154,6 +160,7 @@
                                                         <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" image="linen.png" id="4yL-Yr-Pvn" userLabel="Download cover">
                                                             <rect key="frame" x="0.0" y="0.0" width="320" height="61"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                            <accessibility key="accessibilityConfiguration" label="Downloading"/>
                                                         </imageView>
                                                     </subviews>
                                                     <color key="backgroundColor" red="0.96862751250000001" green="0.96862751250000001" blue="0.96862751250000001" alpha="1" colorSpace="deviceRGB"/>
@@ -197,6 +204,7 @@
                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Episodes" textAlignment="center" lineBreakMode="middleTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="3lS-BR-V5d">
                                     <rect key="frame" x="0.0" y="0.0" width="200" height="33"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <accessibility key="accessibilityConfiguration" hint="Displays unwatched and downloaded episodes." label="Episodes"/>
                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                     <nil key="highlightedColor"/>
@@ -239,6 +247,9 @@
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" id="BLf-HX-ICM">
                                             <rect key="frame" x="7" y="7" width="114" height="114"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <accessibility key="accessibilityConfiguration" label="Album art">
+                                                <bool key="isElement" value="YES"/>
+                                            </accessibility>
                                         </imageView>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ugG-qY-5XK">
                                             <rect key="frame" x="129" y="3" width="180" height="21"/>
@@ -266,6 +277,7 @@
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="ZOP-eD-9Fh">
                                             <rect key="frame" x="136" y="84" width="44" height="44"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
+                                            <accessibility key="accessibilityConfiguration" hint="Favorites ths show." label="Favorite"/>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                             <state key="normal" title="Button" image="toolbar-dark-fav-off.png">
                                                 <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -282,6 +294,7 @@
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="uXW-n0-daP">
                                             <rect key="frame" x="197" y="84" width="44" height="44"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
+                                            <accessibility key="accessibilityConfiguration" hint="Reminds you when the show airs." label="Remind"/>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                             <state key="normal" title="Button" image="toolbar-dark-remind-off.png">
                                                 <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -298,6 +311,7 @@
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="bEW-zW-3Oi">
                                             <rect key="frame" x="261" y="84" width="44" height="44"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
+                                            <accessibility key="accessibilityConfiguration" hint="Open the more info view." label="More info"/>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                             <state key="normal" title="Button" image="toolbar-dark-ellipsis.png">
                                                 <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -450,6 +464,7 @@
                                 <rect key="frame" x="10" y="10" width="44" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="0.90000000000000002" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                <accessibility key="accessibilityConfiguration" hint="Closes the info view." label="Close"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="28"/>
                                 <inset key="titleEdgeInsets" minX="0.0" minY="-4" maxX="0.0" maxY="0.0"/>
                                 <size key="titleShadowOffset" width="0.0" height="1"/>
@@ -493,6 +508,7 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="4qU-ri-5pd">
                                         <rect key="frame" x="11" y="187" width="245" height="38"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <accessibility key="accessibilityConfiguration" hint="Emails the show." label="Email"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                         <size key="titleShadowOffset" width="0.0" height="1"/>
                                         <state key="normal" title="Email" backgroundImage="button-blue.png">
@@ -509,6 +525,7 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="PKC-VV-9kZ">
                                         <rect key="frame" x="264" y="187" width="245" height="38"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMinY="YES"/>
+                                        <accessibility key="accessibilityConfiguration" hint="Loads the show's website." label="Website"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                         <size key="titleShadowOffset" width="0.0" height="1"/>
                                         <state key="normal" title="Website" backgroundImage="button-blue.png">
@@ -557,6 +574,9 @@
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" image="generic.jpg" id="Pn9-Xd-TdY">
                                         <rect key="frame" x="0.0" y="0.0" width="1024" height="661"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                        <accessibility key="accessibilityConfiguration" label="Album Art">
+                                            <bool key="isElement" value="YES"/>
+                                        </accessibility>
                                     </imageView>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -581,6 +601,7 @@
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="hM4-Rg-lUh">
                                                 <rect key="frame" x="275" y="4" width="37" height="37"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                                <accessibility key="accessibilityConfiguration" hint="Loads the chat room." label="Chat room"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" size="button"/>
                                                 <state key="normal" image="video-chat-up.png">
                                                     <color key="titleColor" red="0.19607843137254902" green="0.30980392156862746" blue="0.52156862745098043" alpha="1" colorSpace="calibratedRGB"/>
@@ -599,6 +620,7 @@
                                     <button opaque="NO" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="hu1-mi-1Bn">
                                         <rect key="frame" x="494" y="3" width="37" height="37"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                        <accessibility key="accessibilityConfiguration" hint="Pauses the episode" label="Pause"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                         <state key="normal" image="navbar-play.png">
                                             <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -619,6 +641,7 @@
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Vbh-TM-bRV">
                                                 <rect key="frame" x="153" y="1" width="108" height="37"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
+                                                <accessibility key="accessibilityConfiguration" hint="Opens the quality selector." label="Quality"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
                                                 <inset key="imageEdgeInsets" minX="-5" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                 <size key="titleShadowOffset" width="0.0" height="1"/>
@@ -716,6 +739,7 @@
                                     </tableView>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <accessibility key="accessibilityConfiguration" label="Quality selector"/>
                             </view>
                             <view hidden="YES" contentMode="scaleToFill" id="946-gR-GAZ" userLabel="Chat">
                                 <rect key="frame" x="0.0" y="0.0" width="1024" height="748"/>
@@ -733,6 +757,7 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Wf6-Su-3yA">
                                         <rect key="frame" x="0.0" y="0.0" width="41" height="32"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <accessibility key="accessibilityConfiguration" hint="closes the chat room." label="Close chat"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="28"/>
                                         <inset key="titleEdgeInsets" minX="0.0" minY="-4" maxX="0.0" maxY="0.0"/>
                                         <size key="titleShadowOffset" width="0.0" height="1"/>
@@ -764,6 +789,7 @@
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="10" id="6MR-kX-6YA">
                                                 <rect key="frame" x="15" y="9" width="921" height="26"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                                <accessibility key="accessibilityConfiguration" hint="Opens the keyboard." label="Message"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" keyboardAppearance="alert" returnKeyType="done"/>
                                                 <connections>
@@ -773,6 +799,7 @@
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="RNf-Lr-eIp">
                                                 <rect key="frame" x="953" y="10" width="63" height="24"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
+                                                <accessibility key="accessibilityConfiguration" hint="Sends your message to the chat room." label="Send"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
                                                 <size key="titleShadowOffset" width="0.0" height="1"/>
                                                 <state key="normal" title="Send" backgroundImage="video-chat-button.png">
@@ -802,6 +829,7 @@
                                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="tOP-lx-9wT">
                                                 <rect key="frame" x="7" y="5" width="44" height="33"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <accessibility key="accessibilityConfiguration" hint="Closes the live stream." label="Close"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="28"/>
                                                 <inset key="titleEdgeInsets" minX="0.0" minY="-4" maxX="0.0" maxY="0.0"/>
                                                 <size key="titleShadowOffset" width="0.0" height="1"/>
@@ -885,6 +913,7 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="ZTk-w2-ucR" userLabel="Open Button">
                                 <rect key="frame" x="44" y="0.0" width="876" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                <accessibility key="accessibilityConfiguration" hint="Opens the episode" label="Open"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal">
                                     <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -900,6 +929,7 @@
                             <button opaque="NO" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="hAG-H1-Q5B" userLabel="Play Button">
                                 <rect key="frame" x="0.0" y="0.0" width="44" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                <accessibility key="accessibilityConfiguration" hint="Pauses the episode." label="Pause"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" image="navbar-play.png">
                                     <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -934,6 +964,7 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="sOm-Fv-jjS" userLabel="Stop Button">
                                 <rect key="frame" x="928" y="0.0" width="44" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                <accessibility key="accessibilityConfiguration" hint="Stops the episode" label="Stop"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" image="navbar-stop.png">
                                     <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -948,6 +979,9 @@
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.75" colorSpace="calibratedWhite"/>
+                        <accessibility key="accessibilityConfiguration">
+                            <bool key="isElement" value="YES"/>
+                        </accessibility>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
                     <nil key="simulatedStatusBarMetrics"/>
@@ -979,6 +1013,9 @@
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" image="generic.jpg" id="DpP-KH-NLs">
                                         <rect key="frame" x="0.0" y="0.0" width="1024" height="616"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                        <accessibility key="accessibilityConfiguration" label="Album art">
+                                            <bool key="isElement" value="YES"/>
+                                        </accessibility>
                                     </imageView>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -994,6 +1031,7 @@
                                     <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" id="TRX-l4-8w3">
                                         <rect key="frame" x="9" y="3" width="1006" height="23"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                        <accessibility key="accessibilityConfiguration" hint="Seeks the episode back and forth." label="Seek bar"/>
                                         <connections>
                                             <action selector="seekEnd:" destination="Dal-NS-I4L" eventType="touchUpInside" id="QQj-Z9-XMh"/>
                                             <action selector="seekStart:" destination="Dal-NS-I4L" eventType="touchDown" id="q3V-n8-U7H"/>
@@ -1039,6 +1077,7 @@
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="3Wz-b6-RKS">
                                                 <rect key="frame" x="186" y="0.0" width="37" height="37"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                                <accessibility key="accessibilityConfiguration" hint="Speeds up the playback." label="Speed"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                                 <state key="normal" title="Button" image="video-speed-normal.png">
                                                     <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -1055,6 +1094,7 @@
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="kqu-Hw-f5I">
                                                 <rect key="frame" x="342" y="0.0" width="37" height="37"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                                <accessibility key="accessibilityConfiguration" hint="Rewinds the episode 30 seconds." label="Rewind"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                                 <state key="normal" title="Button" image="video-30sec.png">
                                                     <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -1073,6 +1113,7 @@
                                     <button opaque="NO" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Eg3-k1-Zgx">
                                         <rect key="frame" x="493" y="46" width="37" height="37"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <accessibility key="accessibilityConfiguration" hint="Pauses the episode." label="Pause"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                         <state key="normal" image="navbar-play.png">
                                             <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -1093,6 +1134,7 @@
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="fld-3M-bpm">
                                                 <rect key="frame" x="153" y="0.0" width="108" height="37"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                <accessibility key="accessibilityConfiguration" hint="Opens the quality selector." label="Quality"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
                                                 <inset key="imageEdgeInsets" minX="-5" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                 <size key="titleShadowOffset" width="0.0" height="1"/>
@@ -1190,6 +1232,9 @@
                                     </tableView>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <accessibility key="accessibilityConfiguration" label="Quality selector">
+                                    <bool key="isElement" value="YES"/>
+                                </accessibility>
                             </view>
                             <navigationBar contentMode="scaleToFill" barStyle="blackTranslucent" id="mr0-Di-f7I">
                                 <rect key="frame" x="0.0" y="0.0" width="1024" height="44"/>
@@ -1201,6 +1246,7 @@
                                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="pmO-8y-qlK">
                                                 <rect key="frame" x="7" y="5" width="44" height="33"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <accessibility key="accessibilityConfiguration" hint="Closes the episode." label="Close"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="28"/>
                                                 <inset key="titleEdgeInsets" minX="0.0" minY="-4" maxX="0.0" maxY="0.0"/>
                                                 <size key="titleShadowOffset" width="0.0" height="1"/>
@@ -1345,6 +1391,7 @@
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="jlD-eM-1UI" userLabel="Schedule">
                                                     <rect key="frame" x="20" y="101" width="655" height="55"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                                    <accessibility key="accessibilityConfiguration" hint="Opens the schedule." label="Schedule"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                                     <inset key="imageEdgeInsets" minX="20" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                     <state key="normal" image="toolbar-schedule-background.png">
@@ -1379,6 +1426,7 @@
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="MX3-QS-gxX" customClass="TWPlayButton">
                                                     <rect key="frame" x="693" y="59" width="55" height="55"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
+                                                    <accessibility key="accessibilityConfiguration" hint="Loads TWiT live video." label="Watch live"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                                     <state key="normal" image="icon-play.png">
                                                         <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -1562,6 +1610,7 @@
                                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="x2D-Yy-0oE">
                                                 <rect key="frame" x="7" y="5" width="44" height="33"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <accessibility key="accessibilityConfiguration" hint="Closes the schedule." label="Close"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="28"/>
                                                 <inset key="titleEdgeInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="3"/>
                                                 <size key="titleShadowOffset" width="0.0" height="1"/>
@@ -1662,6 +1711,9 @@
                                         <rect key="frame" x="0.0" y="0.0" width="768" height="250"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.14999999999999999" colorSpace="calibratedWhite"/>
+                                        <accessibility key="accessibilityConfiguration" label="Screenshot">
+                                            <bool key="isElement" value="YES"/>
+                                        </accessibility>
                                     </view>
                                     <view contentMode="scaleToFill" id="G0c-Td-bfB" userLabel="Gradient">
                                         <rect key="frame" x="0.0" y="196" width="768" height="54"/>
@@ -1671,6 +1723,7 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="ggf-5M-3nY" customClass="TWPlayButton">
                                         <rect key="frame" x="355" y="98" width="55" height="55"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                        <accessibility key="accessibilityConfiguration" hint="Plays the episode." label="Play"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                         <state key="normal" image="icon-play.png">
                                             <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -1884,7 +1937,6 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/TWEnclosureViewController.h"/>
             <relationships>
                 <relationship kind="action" name="close:" candidateClass="UIBarButtonItem"/>
-                <relationship kind="action" name="openQualityPopover:" candidateClass="UIButton"/>
                 <relationship kind="action" name="play:" candidateClass="UIButton"/>
                 <relationship kind="action" name="rewind:" candidateClass="UIButton"/>
                 <relationship kind="action" name="seekEnd:" candidateClass="UISlider"/>
