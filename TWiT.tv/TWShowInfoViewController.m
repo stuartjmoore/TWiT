@@ -19,26 +19,41 @@
     self.hostsLabel.text = self.show.hosts;
     self.scheduleLabel.text = self.show.scheduleString;
     self.descLabel.text = self.show.desc;
+    
+    UIImage *buttonImage = [self.emailButton backgroundImageForState:UIControlStateNormal];
+    buttonImage = [buttonImage resizableImageWithCapInsets:UIEdgeInsetsMake(18, 5, 18, 5)];
+    [self.emailButton setBackgroundImage:buttonImage forState:UIControlStateNormal];
+    [self.websiteButton setBackgroundImage:buttonImage forState:UIControlStateNormal];
+    
+    self.emailButton.hidden = !self.show.email;
+    self.websiteButton.hidden = !self.show.website;
 }
 
-- (IBAction)emailShow:(UIButton*)sender
+- (void)viewWillAppear:(BOOL)animated
 {
+    [super viewWillAppear:animated];
     
+    CGRect frame = self.view.superview.bounds;
+    frame.size.height = frame.size.width;
+    self.view.superview.bounds = frame;
 }
 
-- (IBAction)callShow:(UIButton*)sender
+- (IBAction)email:(UIButton*)sender
 {
-    
+    MFMailComposeViewController *controller = [[MFMailComposeViewController alloc] init];
+    controller.mailComposeDelegate = self;
+    [controller setToRecipients:@[self.show.email]];
+    [self presentModalViewController:controller animated:YES];
+}
+- (void)mailComposeController:(MFMailComposeViewController*)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError*)error
+{
+    [self dismissModalViewControllerAnimated:YES];
 }
 
 - (IBAction)openWebsite:(UIButton*)sender
 {
-    
-}
-
-- (IBAction)openYouTube:(UIButton*)sender
-{
-    
+    [UIApplication.sharedApplication openURL:[NSURL URLWithString:self.show.website]];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma mark - Rotate

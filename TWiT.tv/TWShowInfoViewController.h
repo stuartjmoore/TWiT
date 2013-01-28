@@ -7,10 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <MessageUI/MFMailComposeViewController.h>
 
 @class Show;
 
-@interface TWShowInfoViewController : UIViewController
+@interface TWShowInfoViewController : UIViewController <MFMailComposeViewControllerDelegate>
 
 @property (nonatomic, strong) Show *show;
 
@@ -19,12 +20,10 @@
 @property (nonatomic, weak) IBOutlet UILabel *scheduleLabel, *hostsLabel;
 @property (nonatomic, weak) IBOutlet UITextView *descLabel;
 
-@property (nonatomic, weak) IBOutlet UIButton *emailButton, *callButton, *websiteButton, *youtubeButton;
+@property (nonatomic, weak) IBOutlet UIButton *emailButton, *websiteButton;
 
-- (IBAction)emailShow:(UIButton*)sender;
-- (IBAction)callShow:(UIButton*)sender;
+- (IBAction)email:(UIButton*)sender;
 - (IBAction)openWebsite:(UIButton*)sender;
-- (IBAction)openYouTube:(UIButton*)sender;
 
 - (IBAction)close:(UIButton*)sender;
 
