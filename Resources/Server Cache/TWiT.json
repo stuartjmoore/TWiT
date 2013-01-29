@@ -931,6 +931,7 @@
               {
               "id": 21,
               "title": "TWiT Live Specials",
+              "schedule_title": "TWiT Live Specials",
               "short_title": "Specials",
               "desc": "Leo Laporte and the TWiTs go off the beaten path to bring you non-standard shows from the network, including live-on-location events, special interviews, shows in beta, and geek conference expeditions.",
               "pubdate":"2012-11-18T00:00:00.000Z",
