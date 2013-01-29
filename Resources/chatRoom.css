@@ -1,0 +1,114 @@
+
+body
+{
+	background-color: transparent;
+	font-family: "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif !important;
+	font-size: 18px !important;
+}
+
+.qwebirc-qui .dropdownhint 
+{
+	display: none;
+}
+
+.qwebirc-qui .outertabbar .dropdown-tab 
+{
+	width: 0;
+	display: none;
+}
+
+.qwebirc-qui .outertabbar 
+{
+	border-bottom: 1px solid #333;
+}
+
+.qwebirc-qui .tabbar 
+{
+	padding: 4px 4px 4px 3px !important;
+	height: 24px;
+}
+.qwebirc-qui a.tab
+{
+	font-size: 14px;
+	font-weight: bold;
+	padding: 5px;
+	color: white;
+	text-shadow: 0 1px black;
+	border: 1px solid #333;
+}
+.qwebirc-qui a.tab-selected
+{
+	background-color: transparent !important;
+	border: 1px solid white;
+}
+
+.qwebirc-qui .lines
+{
+	background-color: transparent;
+	color: white !important;
+	font-family: "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif !important;
+	word-wrap: break-word;
+}
+
+.qwebirc-qui .lines a
+{
+	color: #78aeff;
+    text-decoration: none;
+}
+
+.qwebirc-qui .lines .timestamp 
+{
+	display: none !important;
+}
+
+.qwebirc-qui .hyperlink-whois
+{
+	font-weight: bold;
+}
+
+.qwebirc-loginbox .tr2 td
+{
+	vertical-align: top;
+	text-align: right;
+}
+
+.qwebirc-qui .outertabbar 
+{
+	background-color: transparent;
+}
+
+.qwebirc-qui .topic 
+{
+	display: none !important;
+}
+
+.qwebirc-qui .nicklist 
+{
+	display: none !important;
+}
+
+.qwebirc-qui .tabclose
+{
+	display: none !important;
+}
+
+.qwebirc-qui .ircwindow 
+{
+	text-shadow: 0 1px black;
+	background-color: transparent;
+}
+.qwebirc-qui .ircwindow div
+{
+	font-family: "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif !important;
+}
+
+.qwebirc-qui div.input 
+{
+	display: none !important;
+}
+
+/*
+add scroll to tabbar
+handle links
+emulate up, down, & tab. Join and other commands
+*/
