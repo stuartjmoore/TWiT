@@ -95,6 +95,9 @@
 {
     [super viewWillAppear:animated];
     [self redrawSchedule:nil];
+
+    if(self.sectionVisible == TWSectionShows && self.modalViewController)
+        [self.tableView reloadData];
     
     [NSNotificationCenter.defaultCenter addObserver:self
                                            selector:@selector(updateProgress:)
@@ -509,7 +512,6 @@
         }
         
         self.headerView.frame = frame;
-        //[self.sectionHeader.superview bringSubviewToFront:self.sectionHeader];
         
         UIEdgeInsets scrollerInsets = self.tableView.scrollIndicatorInsets;
         scrollerInsets.top = frame.size.height + sectionHeaderHeight;
@@ -546,9 +548,30 @@
     {
         id <NSFetchedResultsSectionInfo>sectionInfo;
         
+        [[self.tableView viewWithTag:98] removeFromSuperview];
+        
         if(self.sectionVisible == TWSectionEpisodes)
         {
             sectionInfo = self.fetchedEpisodesController.sections[section];
+            
+            if(sectionInfo.numberOfObjects == 0)
+            {
+                float headerHeight = self.tableView.tableHeaderView.frame.size.height;
+                
+                UIImageView *emptyView = [[UIImageView alloc] init];
+                emptyView.image = [UIImage imageNamed:@"episodes-table-empty.png"];
+                emptyView.contentMode = UIViewContentModeScaleAspectFit;
+                emptyView.frame = CGRectMake(0, 0, 320, 88);
+                emptyView.center = self.tableView.center;
+                
+                CGPoint center = emptyView.center;
+                center.y += headerHeight/2.0f;
+                emptyView.center = center;
+                
+                emptyView.autoresizingMask = (UIViewAutoresizingFlexibleBottomMargin|UIViewAutoresizingFlexibleTopMargin);
+                emptyView.tag = 98;
+                [self.tableView addSubview:emptyView];
+            }
             
             return sectionInfo.numberOfObjects;
         }
