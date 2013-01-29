@@ -16,7 +16,7 @@
 #import "Episode.h"
 #import "Enclosure.h"
 
-#define MAX_EPISODES 5
+#define MAX_EPISODES 15
 
 @implementation Show
 
@@ -202,8 +202,6 @@
             notification.soundName = UILocalNotificationDefaultSoundName;
             notification.alertBody = [NSString stringWithFormat:@"%@ is Starting", self.title];
             notification.alertAction = @"Watch";
-            
-            //notification.alertLaunchImage = Live default image name
             
             notification.userInfo = @{ @"title" : self.titleAcronym };
             
