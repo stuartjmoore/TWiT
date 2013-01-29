@@ -93,6 +93,19 @@
         self.guestsLabel.text = self.episode.guests;
         self.descLabel.text = self.episode.desc;
         
+        self.numberLabel.accessibilityLabel = [NSString stringWithFormat:@"Episode number %d", self.episode.number];
+        self.guestsLabel.accessibilityLabel = [NSString stringWithFormat:@"With %@", self.episode.guests];
+        
+        NSInteger hours = self.episode.duration/3600;
+        NSInteger minutes = (self.episode.duration/60)%60;
+        
+        if(hours == 0)
+            self.timeLabel.accessibilityLabel = [NSString stringWithFormat:@"Length: %d minutes", minutes];
+        else if(hours == 1)
+            self.timeLabel.accessibilityLabel = [NSString stringWithFormat:@"Length: one hour and %d minutes", minutes];
+        else
+            self.timeLabel.accessibilityLabel = [NSString stringWithFormat:@"Length: %d hours and %d minutes", hours, minutes];
+        
         self.playButton.percentage = (self.episode.duration != 0) ? (float)self.episode.lastTimecode/(float)self.episode.duration : 0;
    
         

@@ -18,6 +18,7 @@
     if(self)
     {
         self.backgroundColor = UIColor.clearColor;
+        self.isAccessibilityElement = NO;
         
         self.watchButton = [UIButton buttonWithType:UIButtonTypeCustom];
         self.watchButton.frame = CGRectMake(0, 0, (self.frame.size.width-self.frame.size.height)/2, self.frame.size.height);
@@ -28,6 +29,7 @@
         self.watchButton.titleLabel.shadowColor = UIColor.blackColor;
         self.watchButton.titleLabel.shadowOffset = CGSizeMake(0, 1);
         self.watchButton.titleEdgeInsets = UIEdgeInsetsMake(5, 0, 0, 0);
+        self.watchButton.accessibilityHint = @"Loads the episode video.";
         [self.watchButton addTarget:self action:@selector(watchButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:self.watchButton];
         
@@ -40,6 +42,7 @@
         self.listenButton.titleLabel.shadowColor = UIColor.blackColor;
         self.listenButton.titleLabel.shadowOffset = CGSizeMake(0, 1);
         self.listenButton.titleEdgeInsets = UIEdgeInsetsMake(5, 0, 0, 0);
+        self.listenButton.accessibilityHint = @"Loads the episode audio.";
         [self.listenButton addTarget:self action:@selector(listenButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:self.listenButton];
         
@@ -62,6 +65,8 @@
         self.downloadButton.autoresizingMask = (UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleLeftMargin);
         [self.downloadButton setBackgroundImage:[[UIImage imageNamed:@"button-blue-right.png"] stretchableImageWithLeftCapWidth:1 topCapHeight:0] forState:UIControlStateNormal];
         [self.downloadButton setImage:[UIImage imageNamed:@"download-icon.png"] forState:UIControlStateNormal];
+        self.downloadButton.accessibilityLabel = @"Dowload";
+        self.downloadButton.accessibilityHint = @"Dowloads the episode.";
         [self.downloadButton addTarget:self action:@selector(downloadButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:self.downloadButton];
         
@@ -120,6 +125,9 @@
     if(buttonState == TWButtonSegmentDownload)
     {
         [self.downloadButton setImage:[UIImage imageNamed:@"download-icon.png"] forState:UIControlStateNormal];
+        self.downloadButton.accessibilityLabel = @"Dowload";
+        self.downloadButton.accessibilityHint = @"Dowloads the episode.";
+        
         self.watchButton.hidden = NO;
         self.listenButton.hidden = NO;
         progressBackgroundView.hidden = YES;
@@ -129,6 +137,9 @@
     else if(buttonState == TWButtonSegmentCancel)
     {
         [self.downloadButton setImage:[UIImage imageNamed:@"download-cancel-icon.png"] forState:UIControlStateNormal];
+        self.downloadButton.accessibilityLabel = @"Cancel";
+        self.downloadButton.accessibilityHint = @"Cancels the download.";
+        
         self.watchButton.hidden = YES;
         self.listenButton.hidden = YES;
         progressBackgroundView.hidden = NO;
@@ -138,6 +149,9 @@
     else if(buttonState == TWButtonSegmentDelete)
     {
         [self.downloadButton setImage:[UIImage imageNamed:@"download-delete-icon.png"] forState:UIControlStateNormal];
+        self.downloadButton.accessibilityLabel = @"Delete";
+        self.downloadButton.accessibilityHint = @"Deletes the download.";
+        
         self.watchButton.hidden = NO;
         self.listenButton.hidden = NO;
         progressBackgroundView.hidden = YES;

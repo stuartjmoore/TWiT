@@ -29,6 +29,9 @@
     self.titleLabel.text = episode.title;
     self.subtitleLabel.text = episode.show.title;
     
+    self.accessibilityLabel = [NSString stringWithFormat:@"Episode %d, %@, with %@", episode.number, episode.title, episode.guests];
+    self.accessibilityHint = @"Opens the episode view.";
+    
     CGSize size = [self.titleLabel.text sizeWithFont:self.titleLabel.font];
     
     if(size.width > self.titleLabel.frame.size.width)

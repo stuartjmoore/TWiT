@@ -26,6 +26,8 @@
 
 @property (nonatomic, strong) NSArray *shows;
 
+@property (nonatomic, strong) NSMutableArray *accessibleElements;
+
 - (CGRect)frameForColumn:(int)column;
 
 - (void)didDrawIcons;

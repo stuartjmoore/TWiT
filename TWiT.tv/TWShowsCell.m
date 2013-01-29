@@ -23,7 +23,6 @@
         return;
     
     _shows = shows;
-    //[self layoutSubviews];
 }
 
 - (void)setIcons:(UIImage*)icons
@@ -46,10 +45,14 @@
     }
     
     __block NSMutableArray *albumArtPathes = [NSMutableArray array];
+    __block NSMutableArray *showTitles = [NSMutableArray array];
     __block TWShowsCell *weak = self;
     
     for(Show *show in self.shows)
+    {
         [albumArtPathes addObject:show.albumArt.path.copy];
+        [showTitles addObject:show.title.copy];
+    }
     
     dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0ul);
     dispatch_async(queue, ^{
@@ -59,6 +62,8 @@
         CGContextSetFillColorWithColor(context, [UIColor colorWithWhite:245/255.0 alpha:1].CGColor);
         CGContextFillRect(context, weak.bounds);
         weak.icons = UIGraphicsGetImageFromCurrentImageContext();
+        
+        self.accessibleElements = [NSMutableArray array];
         
         for(int column = 0; column < weak.shows.count; column++)
         {
@@ -70,6 +75,13 @@
             {
                 UIImage *image =  [UIImage imageWithContentsOfFile:albumArtPathes[column]] ?: [UIImage imageNamed:@"generic.jpg"];
                 [image drawInRect:frame];
+                
+                UIAccessibilityElement *element = [[UIAccessibilityElement alloc] initWithAccessibilityContainer:self];
+                element.isAccessibilityElement = YES;
+                element.accessibilityFrame = frame;
+                element.accessibilityLabel = showTitles[column];
+                element.accessibilityHint = @"Opens the show view.";
+                [self.accessibleElements addObject:element];
             }
         }
         
@@ -106,6 +118,37 @@
             [self.delegate tableView:self.table didSelectColumn:column AtIndexPath:self.indexPath];
         }
     }
+}
+
+#pragma mark - Accessibility
+
+- (BOOL)isAccessibilityElement
+{
+    return NO;
+}
+
+- (NSInteger)accessibilityElementCount
+{
+    return self.accessibleElements.count;
+}
+
+- (id)accessibilityElementAtIndex:(NSInteger)index
+{
+    UIAccessibilityElement *element = [self.accessibleElements objectAtIndex:index];
+    CGRect rect = element.accessibilityFrame;
+    rect.origin.y = 7;
+    element.accessibilityFrame = [self.window convertRect:rect fromView:self];
+    return element;
+}
+
+- (NSInteger)indexOfAccessibilityElement:(id)element
+{
+    return [self.accessibleElements indexOfObject:element];
+}
+
+- (NSArray*)accessibleElements
+{
+    return _accessibleElements;
 }
 
 @end
