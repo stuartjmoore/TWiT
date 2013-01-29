@@ -31,6 +31,20 @@
     [AVAudioSession.sharedInstance setActive:YES error:nil];
     
     
+    float currentVersion = [NSBundle.mainBundle.infoDictionary[@"CFBundleShortVersionString"] floatValue];
+    if([NSUserDefaults.standardUserDefaults integerForKey:@"last-version"] < currentVersion)
+    {
+        for(NSString *file in [NSFileManager.defaultManager contentsOfDirectoryAtPath:self.applicationDocumentsDirectory.path error:nil])
+        {
+            NSString *filePath = [self.applicationDocumentsDirectory.path stringByAppendingPathComponent:file];
+            [NSFileManager.defaultManager removeItemAtPath:filePath error:nil];
+        }
+        
+        [NSUserDefaults.standardUserDefaults setFloat:currentVersion forKey:@"last-version"];
+        [NSUserDefaults.standardUserDefaults synchronize];
+    }
+    
+    
     NSManagedObjectContext *context = self.managedObjectContext;
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     [fetchRequest setEntity:[NSEntityDescription entityForName:@"Channel" inManagedObjectContext:context]];

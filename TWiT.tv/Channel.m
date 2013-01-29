@@ -309,7 +309,7 @@
                 NSPredicate *p = [NSPredicate predicateWithFormat:@"%@ BEGINSWITH title OR %@ BEGINSWITH titleInSchedule", showTitle, showTitle];
                 Show *show = [[self.shows filteredSetUsingPredicate:p] anyObject];
                 
-                if(show)
+                if(show && show.titleInSchedule)
                 {
                     showSubtitle = [showTitle stringByReplacingOccurrencesOfString:show.titleInSchedule withString:@""];
                     NSMutableCharacterSet *characters = [[NSMutableCharacterSet alloc] init];
