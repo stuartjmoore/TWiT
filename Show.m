@@ -248,7 +248,7 @@
                  
                  if(lastModified == nil || ![lastModified isEqualToDate:feed.lastUpdated])
                  {
-                     NSLog(@"reload %@ - %@", self.title, feed.title);
+                     //NSLog(@"reload %@ - %@", self.title, feed.title);
                      feed.lastUpdated = lastModified;
                      [self updatePodcastFeed:feed];
                  }
