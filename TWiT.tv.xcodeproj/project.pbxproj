@@ -411,6 +411,7 @@
 		170E02AA169328910072CFA6 /* TWShowsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWShowsCell.m; sourceTree = "<group>"; };
 		17144BD216B74DFB0050C696 /* episodes-table-empty.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "episodes-table-empty.png"; sourceTree = "<group>"; };
 		17144BD316B74DFB0050C696 /* episodes-table-empty@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "episodes-table-empty@2x.png"; sourceTree = "<group>"; };
+		17355D7916B86FDE007F9FA2 /* TWiT.tv.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = TWiT.tv.entitlements; sourceTree = "<group>"; };
 		1749FCE616B440A10087CC3A /* TWNavigationContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWNavigationContainer.h; sourceTree = "<group>"; };
 		1749FCE716B440A10087CC3A /* TWNavigationContainer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWNavigationContainer.m; sourceTree = "<group>"; };
 		175ECB09169DF54F0013DB90 /* TWSplitViewContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWSplitViewContainer.h; sourceTree = "<group>"; };
@@ -1003,6 +1004,7 @@
 			isa = PBXGroup;
 			children = (
 				176AF1821695DDB100A35BFC /* XML-to-NSDictionary */,
+				17355D7916B86FDE007F9FA2 /* TWiT.tv.entitlements */,
 				17E51158168F496E00DCE89C /* TWiT.tv-Info.plist */,
 				17E51159168F496E00DCE89C /* InfoPlist.strings */,
 				17E5115C168F496E00DCE89C /* main.m */,
@@ -1381,6 +1383,7 @@
 		179E678E16A9BEE80042D724 /* Ad Hoc */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = TWiT.tv/TWiT.tv.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: stuart Moore (R5J4HRBT3L)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TWiT.tv/TWiT.tv-Prefix.pch";
@@ -1447,6 +1450,7 @@
 		17E5117A168F496E00DCE89C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = TWiT.tv/TWiT.tv.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TWiT.tv/TWiT.tv-Prefix.pch";
@@ -1461,6 +1465,7 @@
 		17E5117B168F496E00DCE89C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = TWiT.tv/TWiT.tv.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: stuart Moore";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TWiT.tv/TWiT.tv-Prefix.pch";
