@@ -45,13 +45,13 @@
         return;
     }
     
-    NSMutableArray *albumArtPathes = [NSMutableArray array];
+    __block NSMutableArray *albumArtPathes = [NSMutableArray array];
     __block TWShowsCell *weak = self;
     
     for(Show *show in self.shows)
         [albumArtPathes addObject:show.albumArt.path.copy];
     
-    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0ul);
+    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0ul);
     dispatch_async(queue, ^{
         UIGraphicsBeginImageContextWithOptions(weak.frame.size, YES, UIScreen.mainScreen.scale);
         
@@ -60,9 +60,8 @@
         CGContextFillRect(context, weak.bounds);
         weak.icons = UIGraphicsGetImageFromCurrentImageContext();
         
-        for(Show *show in weak.shows)
+        for(int column = 0; column < weak.shows.count; column++)
         {
-            int column = [weak.shows indexOfObject:show];
             CGRect frame = [weak frameForColumn:column];
             
             CGContextSetShadow(context, CGSizeMake(0, 2), 4);
