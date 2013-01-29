@@ -46,7 +46,7 @@
 			<key>Key</key>
 			<string>version</string>
 			<key>DefaultValue</key>
-			<string>4.0</string>
+			<string>4.1</string>
 		</dict>
 	</array>
 	<key>StringsTable</key>
