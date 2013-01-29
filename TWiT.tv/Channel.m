@@ -90,10 +90,11 @@
             df.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US"];
             df.timeZone = [NSTimeZone timeZoneWithAbbreviation:@"GMT"];
             lastModifiedServer = [df dateFromString:lastModifiedString];
+            
+            //NSLog(@"lastModifiedServer: %f", lastModifiedServer.timeIntervalSince1970); // TODO: SERVER’S DATE!
         }
         @catch(NSException *e)
         {
-            NSLog(@"Error parsing last modified date: %@ - %@", lastModifiedString, e.description);
             return;
         }
         
@@ -109,7 +110,7 @@
             if(error)
                 return;
             
-            lastModifiedLocal = [NSDate dateWithTimeIntervalSince1970:1356983942]; // TODO: REPLACE WITH SERVER’S DATE!
+            lastModifiedLocal = [NSDate dateWithTimeIntervalSince1970:1359491169]; // TODO: REPLACE WITH SERVER’S DATE!
             
             NSDictionary *fileAttributes = [NSDictionary dictionaryWithObject:lastModifiedLocal forKey:NSFileModificationDate];
             
