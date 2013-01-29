@@ -99,8 +99,9 @@
     {
         TWSplitViewContainer *splitViewContainer = (TWSplitViewContainer*)self.window.rootViewController;
         TWMainViewController *showsController = (TWMainViewController*)splitViewContainer.detailController.topViewController;
-
-        [showsController transitionToLive:nil];
+        
+        if([showsController respondsToSelector:@selector(transitionToLive:)])
+            [showsController transitionToLive:nil];
     }
     else
     {
@@ -120,7 +121,8 @@
         TWSplitViewContainer *splitViewContainer = (TWSplitViewContainer*)self.window.rootViewController;
         TWMainViewController *showsController = (TWMainViewController*)splitViewContainer.detailController.topViewController;
         
-        [showsController transitionToLive:nil];
+        if([showsController respondsToSelector:@selector(transitionToLive:)])
+            [showsController transitionToLive:nil];
     }
     else
     {
