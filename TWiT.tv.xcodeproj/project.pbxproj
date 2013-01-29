@@ -781,9 +781,10 @@
 				17E5116E168F496E00DCE89C /* TWiT_tv.xcdatamodeld */,
 				170B9FF81691CD550022FE4D /* Vollkorn-BoldItalic.ttf */,
 				17B07F0F16B59B2600B42CBF /* chatRoom.css */,
-				17C5A01D169EC2B30043A781 /* Icons */,
 				17C43AE61696DFD60066C79F /* Server Cache */,
 				170B9F6E1691CD540022FE4D /* Images */,
+				17C5A01D169EC2B30043A781 /* Icons */,
+				178D2D6716B818E40097D605 /* Default.pngs */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -809,6 +810,21 @@
 				176AF1841695DDB100A35BFC /* XMLReader.m */,
 			);
 			path = "XML-to-NSDictionary";
+			sourceTree = "<group>";
+		};
+		178D2D6716B818E40097D605 /* Default.pngs */ = {
+			isa = PBXGroup;
+			children = (
+				178D2D6516B818090097D605 /* Default-Landscape~ipad.png */,
+				178D2D6316B818070097D605 /* Default-Landscape@2x~ipad.png */,
+				178D2D6116B818050097D605 /* Default-Portrait~ipad.png */,
+				178D2D5F16B818010097D605 /* Default-Portrait@2x~ipad.png */,
+				178D2D5D16B817F40097D605 /* Default-568h@2x.png */,
+				178D2D5B16B817F00097D605 /* Default@2x.png */,
+				178D2D5816B817EC0097D605 /* Default.png */,
+			);
+			name = Default.pngs;
+			path = ..;
 			sourceTree = "<group>";
 		};
 		17BB1CFF168F728C00221F7E /* Objects */ = {
@@ -952,13 +968,6 @@
 		17E5113F168F496E00DCE89C = {
 			isa = PBXGroup;
 			children = (
-				178D2D6516B818090097D605 /* Default-Landscape~ipad.png */,
-				178D2D6316B818070097D605 /* Default-Landscape@2x~ipad.png */,
-				178D2D6116B818050097D605 /* Default-Portrait~ipad.png */,
-				178D2D5F16B818010097D605 /* Default-Portrait@2x~ipad.png */,
-				178D2D5D16B817F40097D605 /* Default-568h@2x.png */,
-				178D2D5B16B817F00097D605 /* Default@2x.png */,
-				178D2D5816B817EC0097D605 /* Default.png */,
 				17E51156168F496E00DCE89C /* TWiT.tv */,
 				17E5114D168F496E00DCE89C /* Frameworks */,
 				17E5114B168F496E00DCE89C /* Products */,
