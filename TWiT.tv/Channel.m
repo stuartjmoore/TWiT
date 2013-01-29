@@ -27,9 +27,16 @@
 
 - (Stream*)streamForType:(TWType)type
 {
-    //if video and user defaults
-    
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"type == %d", type];
+    
+    if(type == TWTypeVideo)
+    {
+        TWQuality defaultQuality = [NSUserDefaults.standardUserDefaults integerForKey:@"stream-quality"];
+        
+        if(defaultQuality != TWQualityAudio)
+            predicate = [NSPredicate predicateWithFormat:@"type == %d AND quality == %d", type, defaultQuality];
+    }
+    
     NSSet *streams = [self.streams filteredSetUsingPredicate:predicate];
     
     if(streams.count == 0)

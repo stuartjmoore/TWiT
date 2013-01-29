@@ -323,6 +323,12 @@
     
     self.infoView.hidden = self.delegate.player.airPlayVideoActive ? NO : (self.stream.type == TWTypeVideo);
     [self.qualityButton setTitle:stream.title forState:UIControlStateNormal];
+    
+    if(self.stream.type == TWTypeVideo)
+    {
+        [NSUserDefaults.standardUserDefaults setInteger:self.stream.quality forKey:@"stream-quality"];
+        [NSUserDefaults.standardUserDefaults synchronize];
+    }
 }
 
 #pragma mark - Quality Table
