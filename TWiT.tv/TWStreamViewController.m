@@ -41,6 +41,10 @@
     {
         self.delegate.nowPlaying = self.stream;
     }
+    else
+    {
+        [self.spinner stopAnimating];
+    }
     
     self.stream = self.delegate.nowPlaying;
     
@@ -165,6 +169,7 @@
     {
         if(self.delegate.player.loadState != MPMovieLoadStateUnknown)
         {
+            [self.spinner stopAnimating];
         }
     }
     else if([notification.name isEqualToString:@"MPMoviePlayerPlaybackStateDidChangeNotification"])
@@ -305,6 +310,8 @@
 
 - (void)tableView:(UITableView*)tableView didSelectRowAtIndexPath:(NSIndexPath*)indexPath
 {
+    [self.spinner startAnimating];
+    
     [UIView animateWithDuration:0.3f animations:^{
         self.qualityView.alpha = 0;
     } completion:^(BOOL fin) {

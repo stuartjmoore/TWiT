@@ -62,6 +62,7 @@
     else
     {
         [self updateSeekbar];
+        [self.spinner stopAnimating];
     }
     
     self.enclosure = self.delegate.nowPlaying;
@@ -130,6 +131,7 @@
     {
         if(self.delegate.player.loadState != MPMovieLoadStateUnknown)
         {
+            [self.spinner stopAnimating];
         }
     }
     
@@ -337,6 +339,8 @@
 
 - (void)tableView:(UITableView*)tableView didSelectRowAtIndexPath:(NSIndexPath*)indexPath
 {
+    [self.spinner startAnimating];
+    
     [UIView animateWithDuration:0.3f animations:^{
         self.qualityView.alpha = 0;
     } completion:^(BOOL fin) {

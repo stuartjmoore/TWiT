@@ -819,6 +819,10 @@
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" hidesWhenStopped="YES" animating="YES" style="whiteLarge" id="XVI-5I-Bl1">
+                                <rect key="frame" x="493" y="356" width="37" height="37"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                            </activityIndicatorView>
                             <navigationBar contentMode="scaleToFill" barStyle="blackTranslucent" id="GWQ-lC-oVj">
                                 <rect key="frame" x="0.0" y="0.0" width="1024" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
@@ -893,6 +897,7 @@
                         <outlet property="playButton" destination="hu1-mi-1Bn" id="Aup-zb-EGE"/>
                         <outlet property="qualityButton" destination="Vbh-TM-bRV" id="uTe-gb-gZN"/>
                         <outlet property="qualityView" destination="V7n-qT-7aH" id="72P-hl-h6z"/>
+                        <outlet property="spinner" destination="XVI-5I-Bl1" id="NJf-fO-eHp"/>
                         <outlet property="subtitleLabel" destination="w7Z-Yn-qwr" id="PcU-De-Jjv"/>
                         <outlet property="titleLabel" destination="bkN-J3-8N4" id="Cr3-fi-7fq"/>
                         <outlet property="toolbarView" destination="1Uf-aR-07j" id="1u0-zt-6zR"/>
@@ -1236,6 +1241,10 @@
                                     <bool key="isElement" value="YES"/>
                                 </accessibility>
                             </view>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" hidesWhenStopped="YES" animating="YES" style="whiteLarge" id="9Kd-15-Re2">
+                                <rect key="frame" x="493" y="356" width="37" height="37"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                            </activityIndicatorView>
                             <navigationBar contentMode="scaleToFill" barStyle="blackTranslucent" id="mr0-Di-f7I">
                                 <rect key="frame" x="0.0" y="0.0" width="1024" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
@@ -1308,6 +1317,7 @@
                         <outlet property="rewindButton" destination="kqu-Hw-f5I" id="8Qg-ZC-wN1"/>
                         <outlet property="seekbar" destination="TRX-l4-8w3" id="dVz-gT-FgN"/>
                         <outlet property="speedButton" destination="3Wz-b6-RKS" id="wH2-g4-gsL"/>
+                        <outlet property="spinner" destination="9Kd-15-Re2" id="LIS-3e-Wmo"/>
                         <outlet property="subtitleLabel" destination="hzq-Iy-hgU" id="GaV-CS-jAY"/>
                         <outlet property="timeElapsedLabel" destination="dTm-NM-z2A" id="ieI-t4-obp"/>
                         <outlet property="timeOfEndLabel" destination="A8f-AW-Vep" id="r9I-lX-4B3"/>
@@ -1937,6 +1947,7 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/TWEnclosureViewController.h"/>
             <relationships>
                 <relationship kind="action" name="close:" candidateClass="UIBarButtonItem"/>
+                <relationship kind="action" name="openQualityPopover:" candidateClass="UIButton"/>
                 <relationship kind="action" name="play:" candidateClass="UIButton"/>
                 <relationship kind="action" name="rewind:" candidateClass="UIButton"/>
                 <relationship kind="action" name="seekEnd:" candidateClass="UISlider"/>
@@ -1953,6 +1964,7 @@
                 <relationship kind="outlet" name="rewindButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="seekbar" candidateClass="UISlider"/>
                 <relationship kind="outlet" name="speedButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="spinner" candidateClass="UIActivityIndicatorView"/>
                 <relationship kind="outlet" name="subtitleLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="timeElapsedLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="timeOfEndLabel" candidateClass="UILabel"/>
@@ -2133,6 +2145,7 @@
                 <relationship kind="outlet" name="playButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="qualityButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="qualityView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="spinner" candidateClass="UIActivityIndicatorView"/>
                 <relationship kind="outlet" name="subtitleLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="titleLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="toolbarView" candidateClass="UIView"/>
