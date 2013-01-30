@@ -206,7 +206,15 @@
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
     
     if([self.nowPlaying isKindOfClass:Enclosure.class])
+    {
+        [NSNotificationCenter.defaultCenter addObserver:[self.nowPlaying episode]
+                                               selector:@selector(updatePoster:)
+                                                   name:MPMoviePlayerThumbnailImageRequestDidFinishNotification
+                                                 object:nil];
+        [self.player requestThumbnailImagesAtTimes:@[@(self.player.currentPlaybackTime)] timeOption:MPMovieTimeOptionNearestKeyFrame];
+        
         [[self.nowPlaying episode] setLastTimecode:self.player.currentPlaybackTime];
+    }
     
     [self saveContext];
 }
@@ -236,7 +244,15 @@
 - (void)setNowPlaying:(id)nowPlaying
 {
     if(self.player && [_nowPlaying isKindOfClass:Enclosure.class])
+    {
+        [NSNotificationCenter.defaultCenter addObserver:[self.nowPlaying episode]
+                                               selector:@selector(updatePoster:)
+                                                   name:MPMoviePlayerThumbnailImageRequestDidFinishNotification
+                                                 object:nil];
+        [self.player requestThumbnailImagesAtTimes:@[@(self.player.currentPlaybackTime)] timeOption:MPMovieTimeOptionNearestKeyFrame];
+        
         [[_nowPlaying episode] setLastTimecode:self.player.currentPlaybackTime];
+    }
     
     if([nowPlaying isKindOfClass:Enclosure.class])
     {
