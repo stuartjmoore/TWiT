@@ -98,4 +98,16 @@
     [self.downloadedEnclosures makeObjectsPerformSelector:@selector(deleteDownload)];
 }
 
+#pragma mark - Notifications
+
+- (void)updatePoster:(NSNotification*)notification
+{
+    [NSNotificationCenter.defaultCenter removeObserver:self name:@"MPMoviePlayerThumbnailImageRequestDidFinishNotification" object:nil];
+
+    UIImage *poster = notification.userInfo[@"MPMoviePlayerThumbnailImageKey"];
+    
+    if(poster)
+        [self.poster setImage:poster];
+}
+
 @end

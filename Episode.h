@@ -40,6 +40,8 @@
 - (void)cancelDownloads;
 - (void)deleteDownloads;
 
+- (void)updatePoster:(NSNotification*)notification;
+
 @end
 
 @interface Episode (CoreDataGeneratedAccessors)
