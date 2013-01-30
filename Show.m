@@ -30,8 +30,11 @@
     
     if(!episode)
         episode = self.episodes.anyObject;
+
+    if(episode)
+        return episode.poster;
     
-    return episode.poster;
+    return nil;
 }
 
 - (NSArray*)scheduleDates
