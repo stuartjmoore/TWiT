@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		170453B616B9B2E20041230D /* TWStreamViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 170453B516B9B2E20041230D /* TWStreamViewController.m */; };
 		170561E2169AD61800E59244 /* NSDate+comparisons.m in Sources */ = {isa = PBXBuildFile; fileRef = 170561E1169AD61800E59244 /* NSDate+comparisons.m */; };
 		170561F0169AFD2F00E59244 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 170561EF169AFD2F00E59244 /* MessageUI.framework */; };
 		170561F7169B18BD00E59244 /* dgw-poster.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 170561F6169B18BB00E59244 /* dgw-poster.jpg */; };
@@ -265,6 +266,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		170453B516B9B2E20041230D /* TWStreamViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWStreamViewController.m; sourceTree = "<group>"; };
 		170561E0169AD61800E59244 /* NSDate+comparisons.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+comparisons.h"; sourceTree = "<group>"; };
 		170561E1169AD61800E59244 /* NSDate+comparisons.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+comparisons.m"; sourceTree = "<group>"; };
 		170561EF169AFD2F00E59244 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
@@ -983,6 +985,7 @@
 				17E51174168F496E00DCE89C /* TWEpisodeViewController.h */,
 				17E51175168F496E00DCE89C /* TWEpisodeViewController.m */,
 				1787B3BB16A58E7B00870B87 /* TWStreamViewController.h */,
+				170453B516B9B2E20041230D /* TWStreamViewController.m */,
 				17C477F616A192B40058E6C4 /* TWEnclosureViewController.h */,
 				17C477F716A192B40058E6C4 /* TWEnclosureViewController.m */,
 				177F1FAD16AB25A900BFFA63 /* TWPlaybarViewController.h */,
@@ -1324,6 +1327,7 @@
 				17CBC39E16B2FCCC00F1F9EC /* TWNavigationItem.m in Sources */,
 				1749FCE816B440A10087CC3A /* TWNavigationContainer.m in Sources */,
 				17B07F1416B5BFAE00B42CBF /* UIAlertView+block.m in Sources */,
+				170453B616B9B2E20041230D /* TWStreamViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
