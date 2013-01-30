@@ -164,7 +164,7 @@
         }
     }
     
-    if(_path && ![NSFileManager.defaultManager fileExistsAtPath:_path])
+    if(_path && self.url && ![NSFileManager.defaultManager fileExistsAtPath:_path])
     {   
         // TODO: Download (iCloud sync)
     }

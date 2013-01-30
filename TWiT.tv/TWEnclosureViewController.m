@@ -69,7 +69,10 @@
     
     [self drawLabelsWithTime:self.enclosure.episode.lastTimecode andDuration:self.enclosure.episode.duration];
     
-    self.infoView.hidden = (self.enclosure.type != TWTypeAudio);
+    self.infoView.hidden = self.delegate.player.airPlayVideoActive ? NO : (self.enclosure.type == TWTypeVideo);
+    
+    //if(self.enclosure.type == TWTypeVideo)
+    //    self.infoAlbumArtView.image = self.enclosure.episode.poster.image;
     
     [self.qualityButton setTitle:self.enclosure.title forState:UIControlStateNormal];
     UIImage *qualityImage = [self.qualityButton backgroundImageForState:UIControlStateNormal];
@@ -121,6 +124,10 @@
                                            selector:@selector(playerStateChanged:)
                                                name:MPMoviePlayerPlaybackDidFinishNotification
                                              object:self.delegate.player];
+    [NSNotificationCenter.defaultCenter addObserver:self
+                                           selector:@selector(playerStateChanged:)
+                                               name:MPMoviePlayerIsAirPlayVideoActiveDidChangeNotification
+                                             object:self.delegate.player];
 }
 
 #pragma mark - Notifications
@@ -132,10 +139,10 @@
         if(self.delegate.player.loadState != MPMovieLoadStateUnknown)
         {
             [self.spinner stopAnimating];
+            //self.infoView.hidden = self.delegate.player.airPlayVideoActive ? NO : (self.enclosure.type == TWTypeVideo);
         }
     }
-    
-    if([notification.name isEqualToString:@"MPMoviePlayerPlaybackStateDidChangeNotification"])
+    else if([notification.name isEqualToString:@"MPMoviePlayerPlaybackStateDidChangeNotification"])
     {
         if(self.delegate.player.playbackState == MPMoviePlaybackStatePlaying)
         {
@@ -147,8 +154,12 @@
             self.playButton.selected = NO;
         }
     }
-    
-    if([notification.name isEqualToString:@"MPMoviePlayerPlaybackDidFinishNotification"]
+    else if([notification.name isEqualToString:@"MPMoviePlayerIsAirPlayVideoActiveDidChangeNotification"])
+    {
+        self.infoView.hidden = self.delegate.player.airPlayVideoActive ? NO : (self.enclosure.type == TWTypeVideo);
+        self.delegate.player.view.hidden = self.delegate.player.airPlayVideoActive;
+    }
+    else if([notification.name isEqualToString:@"MPMoviePlayerPlaybackDidFinishNotification"]
     && [[notification.userInfo objectForKey:@"MPMoviePlayerPlaybackDidFinishReasonUserInfoKey"] intValue] != 0)
     {
         TWQuality quality = (TWQuality)(((int)self.enclosure.quality) - 1);
@@ -162,7 +173,7 @@
                 self.enclosure = enclosure;
                 self.delegate.nowPlaying = enclosure;
                 
-                self.infoView.hidden = (enclosure.type != TWTypeAudio);
+                self.infoView.hidden = self.delegate.player.airPlayVideoActive ? NO : (self.enclosure.type == TWTypeVideo);
                 [self.qualityButton setTitle:enclosure.title forState:UIControlStateNormal];
                 return;
             }
@@ -361,7 +372,7 @@
     
     self.delegate.player.initialPlaybackTime = startTime;
     
-    self.infoView.hidden = (enclosure.type != TWTypeAudio);
+    self.infoView.hidden = self.delegate.player.airPlayVideoActive ? NO : (self.enclosure.type == TWTypeVideo);
     [self.qualityButton setTitle:enclosure.title forState:UIControlStateNormal];
 }
 
@@ -473,6 +484,8 @@
     [NSNotificationCenter.defaultCenter removeObserver:self name:MPMoviePlayerLoadStateDidChangeNotification
                                                 object:self.delegate.player];
     [NSNotificationCenter.defaultCenter removeObserver:self name:MPMoviePlayerPlaybackDidFinishNotification
+                                                object:self.delegate.player];
+    [NSNotificationCenter.defaultCenter removeObserver:self name:MPMoviePlayerIsAirPlayVideoActiveDidChangeNotification
                                                 object:self.delegate.player];
     
     if(self.delegate.player.playbackState == MPMoviePlaybackStatePlaying)
