@@ -8,6 +8,8 @@
 
 #import "TWNavigationItem.h"
 
+#define MIN_FONT_SIZE 11
+
 @implementation TWNavigationItem
 
 - (id)initWithCoder:(NSCoder*)aDecoder
@@ -33,10 +35,10 @@
             titleLabel.font = [UIFont fontWithName:@"Vollkorn-BoldItalic" size:24];
             titleLabel.text = title;
             
-            CGSize size = [title sizeWithFont:[UIFont fontWithName:@"Vollkorn-BoldItalic" size:13]];
-            if(size.width > titleLabel.frame.size.width)
+            CGSize size = [title sizeWithFont:[UIFont fontWithName:@"Vollkorn-BoldItalic" size:MIN_FONT_SIZE]];
+            if(size.width >= titleLabel.frame.size.width)
             {
-                titleLabel.font = [UIFont fontWithName:titleLabel.font.fontName size:13];
+                titleLabel.font = [UIFont fontWithName:titleLabel.font.fontName size:MIN_FONT_SIZE];
                 titleLabel.numberOfLines = 2;
             }
             else

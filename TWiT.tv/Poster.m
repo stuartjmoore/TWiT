@@ -87,17 +87,18 @@
     if(downloadFromServer)
     {
         //NSLog(@"Downloading %@ named %@", folder, url.lastPathComponent);
+        __block Poster *weak = self;
         
         NSURLRequest *urlRequest = [NSURLRequest requestWithURL:url];
         [NSURLConnection sendAsynchronousRequest:urlRequest queue:NSOperationQueue.mainQueue
-                               completionHandler:^(NSURLResponse *response, NSData *data, NSError *error)
-         {
+        completionHandler:^(NSURLResponse *response, NSData *data, NSError *error)
+        {
              NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse*)response;
              if([httpResponse respondsToSelector:@selector(statusCode)] && httpResponse.statusCode == 200)
              {
                  //NSLog(@"Downloaded %@ named %@", folder, url.lastPathComponent);
                  
-                 self.path = cachedPath;
+                 weak.path = cachedPath;
                  [data writeToFile:cachedPath atomically:NO];
                  
                  if(url.fragment)
@@ -107,15 +108,13 @@
                      [NSFileManager.defaultManager setAttributes:fileAttributes ofItemAtPath:cachedPath error:nil];
                  }
                  
-                 //[self.managedObjectContext save:nil];
-                 
                  // TODO: post notification
              }
              else
              {
-                 [self willChangeValueForKey:@"url"];
-                 [self setPrimitiveValue:nil forKey:@"url"];
-                 [self didChangeValueForKey:@"url"];
+                 [weak willChangeValueForKey:@"url"];
+                 [weak setPrimitiveValue:nil forKey:@"url"];
+                 [weak didChangeValueForKey:@"url"];
              }
          }];
     }
@@ -181,7 +180,7 @@
 
 - (void)prepareForDeletion
 {
-    NSLog(@"prepareForDeletion, %@ - %@", self.episode.title, self.episode.show.title);
+    NSLog(@"prepareForDeletion, %@", self);
     self.path = nil;
 }
 

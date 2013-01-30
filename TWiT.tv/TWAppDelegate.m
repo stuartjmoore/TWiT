@@ -32,7 +32,7 @@
     
     
     float currentVersion = [NSBundle.mainBundle.infoDictionary[@"CFBundleShortVersionString"] floatValue];
-    if([NSUserDefaults.standardUserDefaults integerForKey:@"last-version"] < currentVersion)
+    if([NSUserDefaults.standardUserDefaults floatForKey:@"last-version"] < currentVersion)
     {
         for(NSString *file in [NSFileManager.defaultManager contentsOfDirectoryAtPath:self.applicationDocumentsDirectory.path error:nil])
         {

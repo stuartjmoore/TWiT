@@ -84,6 +84,7 @@
     if(downloadFromServer)
     {
         //NSLog(@"Downloading %@ named %@", folder, url.lastPathComponent);
+        __block AlbumArt *weak = self;
         
         NSURLRequest *urlRequest = [NSURLRequest requestWithURL:url];
         [NSURLConnection sendAsynchronousRequest:urlRequest queue:NSOperationQueue.mainQueue
@@ -95,7 +96,7 @@
                 //NSLog(@"Downloaded %@ named %@", folder, url.lastPathComponent);
                 
                 // TODO: Shrink file to largest needed size on iPhone and iPad
-                self.path = cachedPath;
+                weak.path = cachedPath;
                 [data writeToFile:cachedPath atomically:NO];
                 
                 if(url.fragment)
@@ -104,8 +105,6 @@
                     NSDictionary *fileAttributes = [NSDictionary dictionaryWithObject:lastModified forKey:NSFileModificationDate];
                     [NSFileManager.defaultManager setAttributes:fileAttributes ofItemAtPath:cachedPath error:nil];
                 }
-                
-                //[self.managedObjectContext save:nil];
                 
                 // TODO: post notification
             }
