@@ -30,6 +30,13 @@
                                            selector:@selector(reloadData)
                                                name:@"ScheduleDidUpdate"
                                              object:nil];
+    
+    if(self.schedule.days.count > 0)
+    {
+        int row = [self.schedule.days[0] indexOfObject:self.schedule.currentShow];
+        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:row inSection:0];
+        [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:NO];
+    }
 }
 
 #pragma mark - Table view
