@@ -60,6 +60,11 @@
                                            selector:@selector(updateProgress:)
                                                name:@"enclosureDownloadDidFail"
                                              object:nil];
+    
+    self.navigationItem.backBarButtonItem = [UIBarButtonItem.alloc initWithTitle:@"Back"
+                                                                           style:UIBarButtonItemStyleBordered
+                                                                          target:nil
+                                                                          action:nil];
 }
 
 #pragma mark - Episode
