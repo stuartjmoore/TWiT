@@ -38,15 +38,7 @@
                            (id)[UIColor colorWithWhite:0 alpha:0.6f].CGColor,
                            (id)[UIColor colorWithWhite:0 alpha:0].CGColor, nil];
     [self.gradientView.layer addSublayer:liveGradient];
-    /*
-    NSString *lastTitle = [[self.navigationController.viewControllers objectAtIndex:self.navigationController.viewControllers.count-2] title];
-    UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithTitle:lastTitle style:UIBarButtonItemStyleBordered
-                                                           target:self.navigationController action:@selector(popViewControllerAnimated:)];
-    [backButton setTitlePositionAdjustment:UIOffsetMake(3, 0) forBarMetrics:UIBarMetricsDefault];
-    UIImage *backButtonImage = [[UIImage imageNamed:@"navbar-back.png"] stretchableImageWithLeftCapWidth:14 topCapHeight:15];
-    [backButton setBackgroundImage:backButtonImage forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
-    [self.navigationItem setLeftBarButtonItem:backButton];
-    */
+    
     [self configureView];
 }
 

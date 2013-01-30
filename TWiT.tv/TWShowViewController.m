@@ -55,6 +55,11 @@
     
     if(UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPad)
         self.navigationItem.hidesBackButton = YES;
+    
+    self.navigationItem.backBarButtonItem = [UIBarButtonItem.alloc initWithTitle:self.show.titleAcronym
+                                                                           style:UIBarButtonItemStyleBordered
+                                                                          target:nil
+                                                                          action:nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated

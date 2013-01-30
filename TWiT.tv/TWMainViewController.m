@@ -89,6 +89,11 @@
     UIImage *rightOrangeBackground = [self.listenButton backgroundImageForState:UIControlStateNormal];
     rightOrangeBackground = [rightOrangeBackground stretchableImageWithLeftCapWidth:1 topCapHeight:0];
     [self.listenButton setBackgroundImage:rightOrangeBackground forState:UIControlStateNormal];
+    
+    self.navigationItem.backBarButtonItem = [UIBarButtonItem.alloc initWithImage:[UIImage imageNamed:@"navbar-back-twit-icon.png"]
+                                                                           style:UIBarButtonItemStyleBordered
+                                                                          target:nil
+                                                                          action:nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated
