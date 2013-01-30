@@ -310,6 +310,8 @@
                 NSPredicate *p = [NSPredicate predicateWithFormat:@"%@ BEGINSWITH title OR %@ BEGINSWITH titleInSchedule", showTitle, showTitle];
                 Show *show = [[self.shows filteredSetUsingPredicate:p] anyObject];
                 
+                // TODO: if set has more than one object, try harder?
+                
                 if(show && show.titleInSchedule)
                 {
                     showSubtitle = [showTitle stringByReplacingOccurrencesOfString:show.titleInSchedule withString:@""];
