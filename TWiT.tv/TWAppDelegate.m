@@ -163,21 +163,16 @@
         if(show.favorite)
             [show updateEpisodes];
     
-    if(self.channel.schedule.days.count > 0)
+    if(self.channel.schedule.days.count > 0 && [self.channel.schedule.days[0] count] > 0)
     {
-        NSArray *firstDay = self.channel.schedule.days[0];
+        Event *firstShow = (Event*)self.channel.schedule.days[0][0];
         
-        if(firstDay.count > 0)
-        {
-            Event *firstShow = (Event*)firstDay[0];
-            
-            if(!firstShow.start.isToday)
-                [self.channel reloadSchedule];
-        }
-        else
-        {
+        if(!firstShow.start.isToday)
             [self.channel reloadSchedule];
-        }
+    }
+    else
+    {
+        [self.channel reloadSchedule];
     }
     
     if(UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPad)

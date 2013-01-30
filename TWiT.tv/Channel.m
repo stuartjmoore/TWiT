@@ -22,7 +22,7 @@
 - (void)update
 {
     [self updateJSON];
-    [self reloadSchedule];
+    //[self reloadSchedule];
 }
 
 - (Stream*)streamForType:(TWType)type
@@ -263,6 +263,8 @@
 
 - (void)reloadSchedule
 {
+    NSLog(@"reloadSchedule");
+    
     self.schedule = [[Schedule alloc] init];
     NSMutableArray *schedule = [NSMutableArray array];
     
@@ -327,14 +329,10 @@
                 }
                 
                 if(startTimeString.length > 20)
-                    startTimeString = [startTimeString stringByReplacingOccurrencesOfString:@":"
-                                                                                 withString:@""
-                                                                                    options:0
+                    startTimeString = [startTimeString stringByReplacingOccurrencesOfString:@":" withString:@"" options:0
                                                                                       range:NSMakeRange(20, startTimeString.length-20)];
                 if(endTimeString.length > 20)
-                    endTimeString = [endTimeString stringByReplacingOccurrencesOfString:@":"
-                                                                             withString:@""
-                                                                                options:0
+                    endTimeString = [endTimeString stringByReplacingOccurrencesOfString:@":" withString:@"" options:0
                                                                                   range:NSMakeRange(20, endTimeString.length-20)];
                 
                 NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
