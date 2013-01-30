@@ -100,6 +100,13 @@
         self.title = self.show.title;
         self.albumArt.image = self.show.albumArt.image;
         self.posterView.image = self.show.poster.image;
+        
+        if(!self.posterView.image)
+        {
+            NSString *resourceName = [NSString stringWithFormat:@"%@-poster.jpg", self.show.titleAcronym.lowercaseString];
+            self.posterView.image = [UIImage imageNamed:resourceName];
+        }
+        
         self.scheduleLabel.text = self.show.scheduleString;
         self.descLabel.text = self.show.desc;
         
