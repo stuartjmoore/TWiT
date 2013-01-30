@@ -17,5 +17,6 @@
 @property (nonatomic, retain) Episode *episode;
 
 - (UIImage*)image;
+- (void)setImage:(UIImage*)image;
 
 @end

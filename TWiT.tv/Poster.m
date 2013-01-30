@@ -23,6 +23,18 @@
     return [UIImage imageWithContentsOfFile:_path];
 }
 
+- (void)setImage:(UIImage*)image
+{
+    NSString *posterName = [NSString stringWithFormat:@"%@%.4d.jpg", self.episode.show.titleAcronym.lowercaseString, self.episode.number];
+    NSString *cachedDir = [[self.applicationDocumentsDirectory URLByAppendingPathComponent:folder] path];
+    NSString *cachedPath = [cachedDir stringByAppendingPathComponent:posterName];
+    
+    self.path = cachedPath;
+    
+    NSData *posterData = UIImageJPEGRepresentation(image, 0.25f);
+    [posterData writeToFile:cachedPath atomically:YES];
+}
+
 - (void)setUrl:(NSString*)URLString
 {
     [self willChangeValueForKey:@"image"];
@@ -167,8 +179,11 @@
     
     if([NSFileManager.defaultManager fileExistsAtPath:self.path])
     {
-        NSLog(@"removeItemAtPath, %@", self.path);
-        [NSFileManager.defaultManager removeItemAtPath:self.path error:nil];
+        NSString *resourceName = [NSString stringWithFormat:@"%@-poster.jpg", self.episode.show.titleAcronym.lowercaseString];
+        NSString *resourcePath = [NSBundle.mainBundle.resourcePath stringByAppendingPathComponent:resourceName];
+        
+        if(![self.path isEqualToString:resourcePath])
+            [NSFileManager.defaultManager removeItemAtPath:self.path error:nil];
     }
     
     [self willChangeValueForKey:@"image"];

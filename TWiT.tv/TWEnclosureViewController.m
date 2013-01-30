@@ -488,6 +488,12 @@
 
 - (void)viewDidDisappear:(BOOL)animated
 {
+    [NSNotificationCenter.defaultCenter addObserver:self.enclosure.episode
+                                           selector:@selector(updatePoster:)
+                                               name:MPMoviePlayerThumbnailImageRequestDidFinishNotification
+                                             object:nil];
+    [self.delegate.player requestThumbnailImagesAtTimes:@[@(self.delegate.player.currentPlaybackTime)] timeOption:MPMovieTimeOptionNearestKeyFrame];
+    
     self.enclosure.episode.lastTimecode = self.delegate.player.currentPlaybackTime;
     
     if(self.delegate.player.currentPlaybackTime / self.delegate.player.duration >= 0.85f)
