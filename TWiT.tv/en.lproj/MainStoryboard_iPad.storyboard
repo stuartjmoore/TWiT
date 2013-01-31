@@ -1862,6 +1862,9 @@
                                         <rect key="frame" x="0.0" y="0.0" width="704" height="748"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.5" colorSpace="calibratedWhite"/>
+                                        <connections>
+                                            <outletCollection property="gestureRecognizers" destination="cWT-CR-CXT" appends="YES" id="fNa-pn-vrZ"/>
+                                        </connections>
                                     </view>
                                     <view contentMode="scaleToFill" id="2t7-Si-Jd8" userLabel="Flyout">
                                         <rect key="frame" x="-448" y="0.0" width="448" height="748"/>
@@ -1903,6 +1906,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fmV-dE-trJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="cWT-CR-CXT">
+                    <connections>
+                        <action selector="didTapModalBackground:" destination="SRf-Qj-T0f" id="a1O-cX-BPS"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="-358" y="905"/>
         </scene>
@@ -1947,7 +1955,6 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/TWEnclosureViewController.h"/>
             <relationships>
                 <relationship kind="action" name="close:" candidateClass="UIBarButtonItem"/>
-                <relationship kind="action" name="openQualityPopover:" candidateClass="UIButton"/>
                 <relationship kind="action" name="play:" candidateClass="UIButton"/>
                 <relationship kind="action" name="rewind:" candidateClass="UIButton"/>
                 <relationship kind="action" name="seekEnd:" candidateClass="UISlider"/>
@@ -2118,6 +2125,7 @@
         <class className="TWSplitViewContainer" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/TWSplitViewContainer.h"/>
             <relationships>
+                <relationship kind="action" name="didTapModalBackground:" candidateClass="UITapGestureRecognizer"/>
                 <relationship kind="outlet" name="detailContainer" candidateClass="UIView"/>
                 <relationship kind="outlet" name="masterContainer" candidateClass="UIView"/>
                 <relationship kind="outlet" name="modalBlackground" candidateClass="UIView"/>
@@ -2129,6 +2137,7 @@
         <class className="TWStreamViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/TWStreamViewController.h"/>
             <relationships>
+                <relationship kind="action" name="close:" candidateClass="UIBarButtonItem"/>
                 <relationship kind="action" name="openChatView:" candidateClass="UIButton"/>
                 <relationship kind="action" name="openQualityPopover:" candidateClass="UIButton"/>
                 <relationship kind="action" name="play:" candidateClass="UIButton"/>

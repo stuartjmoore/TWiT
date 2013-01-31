@@ -67,6 +67,23 @@
 
 #pragma mark - Actions
 
+- (void)didTapModalBackground:(UITapGestureRecognizer*)recognizer
+{
+    CGRect frame = self.modalFlyout.frame;
+    frame.origin.x = -frame.size.width;
+    
+    [UIView animateWithDuration:0.3f animations:^{
+        self.modalFlyout.frame = frame;
+        self.modalBlackground.alpha = 0;
+    } completion:^(BOOL fin){
+        self.modalContainer.hidden = YES;
+        self.modalBlackground.alpha = 1;
+    }];
+    
+    
+    UITableViewController *tableController = (UITableViewController*)self.masterController.topViewController;
+    [tableController.tableView deselectRowAtIndexPath:tableController.tableView.indexPathForSelectedRow animated:NO];
+}
 
 - (void)showPlaybar
 {

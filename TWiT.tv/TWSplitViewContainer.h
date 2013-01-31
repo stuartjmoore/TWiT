@@ -17,6 +17,8 @@
 @property (nonatomic, weak) IBOutlet UIView *modalContainer, *modalBlackground, *modalFlyout;
 @property (nonatomic, weak) IBOutlet UIView *playbarContainer;
 
+- (IBAction)didTapModalBackground:(UITapGestureRecognizer*)recognizer;
+
 - (void)hidePlaybar;
 - (void)showPlaybar;
 
