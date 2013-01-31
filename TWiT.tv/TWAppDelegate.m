@@ -245,11 +245,14 @@
 {
     if(self.player && [_nowPlaying isKindOfClass:Enclosure.class])
     {
-        [NSNotificationCenter.defaultCenter addObserver:[self.nowPlaying episode]
-                                               selector:@selector(updatePoster:)
-                                                   name:MPMoviePlayerThumbnailImageRequestDidFinishNotification
-                                                 object:nil];
-        [self.player requestThumbnailImagesAtTimes:@[@(self.player.currentPlaybackTime)] timeOption:MPMovieTimeOptionNearestKeyFrame];
+        if(nowPlaying)
+        {
+            [NSNotificationCenter.defaultCenter addObserver:[self.nowPlaying episode]
+                                                   selector:@selector(updatePoster:)
+                                                       name:MPMoviePlayerThumbnailImageRequestDidFinishNotification
+                                                     object:nil];
+            [self.player requestThumbnailImagesAtTimes:@[@(self.player.currentPlaybackTime)] timeOption:MPMovieTimeOptionNearestKeyFrame];
+        }
         
         [[_nowPlaying episode] setLastTimecode:self.player.currentPlaybackTime];
     }
@@ -288,9 +291,6 @@
 
 - (void)stop
 {
-    if(self.player && [_nowPlaying isKindOfClass:Enclosure.class])
-        [NSNotificationCenter.defaultCenter removeObserver:[self.nowPlaying episode] name:MPMoviePlayerThumbnailImageRequestDidFinishNotification object:nil];
-    
     [UIApplication.sharedApplication endReceivingRemoteControlEvents];
     [self resignFirstResponder];
     
