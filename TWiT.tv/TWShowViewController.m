@@ -121,6 +121,16 @@
         frame.size.height = size.height;
         self.descLabel.frame = frame;
         
+        for (int i = 0; i < [self.tableView numberOfSections]; i++)
+        {
+            for (int j = 0; j < [self.tableView numberOfRowsInSection:i]; j++)
+            {
+                NSIndexPath *indexPath = [NSIndexPath indexPathForRow:j inSection:i];
+                TWEpisodeCell *cell = (TWEpisodeCell*)[self.tableView cellForRowAtIndexPath:indexPath];
+                cell.progress = 1;
+            }
+        }
+        
         self.fetchedEpisodesController = nil;
         [self.tableView reloadData];
     }
@@ -382,8 +392,7 @@
     
     if([notification.name isEqualToString:@"enclosureDownloadDidReceiveData"])
         cell.progress = (enclosure.expectedLength != 0)? enclosure.downloadedLength/(float)enclosure.expectedLength : 0;
-    else if([notification.name isEqualToString:@"enclosureDownloadDidFinish"]
-            || [notification.name isEqualToString:@"enclosureDownloadDidFail"])
+    else if([notification.name isEqualToString:@"enclosureDownloadDidFinish"] || [notification.name isEqualToString:@"enclosureDownloadDidFail"])
         cell.progress = 1;
 }
 
