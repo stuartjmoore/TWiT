@@ -232,7 +232,7 @@
         [headerRequest setHTTPMethod:@"HEAD"];
         [NSURLConnection sendAsynchronousRequest:headerRequest queue:NSOperationQueue.mainQueue
                                completionHandler:^(NSURLResponse *response, NSData *data, NSError *error)
-         {
+        {
              NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse*)response;
              if([httpResponse respondsToSelector:@selector(allHeaderFields)])
              {
@@ -262,10 +262,13 @@
 
 - (void)updatePodcastFeed:(Feed*)feed
 {
-    NSURLRequest *urlRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:feed.url]];
+    NSURLRequest *urlRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:feed.url]
+                                                cachePolicy:NSURLRequestReloadIgnoringLocalCacheData
+                                            timeoutInterval:60];
+    
     [NSURLConnection sendAsynchronousRequest:urlRequest queue:[NSOperationQueue mainQueue]
                            completionHandler:^(NSURLResponse *response, NSData *data, NSError *error)
-     {
+    {
          if(error)
              return;
          
