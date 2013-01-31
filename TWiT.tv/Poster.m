@@ -16,6 +16,8 @@
 
 @dynamic path, url, episode;
 
+@synthesize image = _image;
+
 - (UIImage*)image
 {
     NSString *_path = self.path ?: self.episode.show.poster.path;
@@ -33,15 +35,15 @@
     
     NSData *posterData = UIImageJPEGRepresentation(image, 0.25f);
     [posterData writeToFile:cachedPath atomically:YES];
+    
+    [NSNotificationCenter.defaultCenter postNotificationName:@"posterDidChange" object:self.episode];
 }
 
 - (void)setUrl:(NSString*)URLString
 {
-    [self willChangeValueForKey:@"image"];
     [self willChangeValueForKey:@"url"];
     [self setPrimitiveValue:URLString forKey:@"url"];
     [self didChangeValueForKey:@"url"];
-    [self didChangeValueForKey:@"image"];
     
     NSURL *url = [NSURL URLWithString:URLString];
     NSString *cachedDir = [[self.applicationDocumentsDirectory URLByAppendingPathComponent:folder] path];
@@ -52,88 +54,36 @@
     
     // ---
     
-    if(url.fragment)
+    //NSLog(@"Downloading %@ named %@", folder, url.lastPathComponent);
+    __block Poster *weak = self;
+    
+    NSURLRequest *urlRequest = [NSURLRequest requestWithURL:url];
+    [NSURLConnection sendAsynchronousRequest:urlRequest queue:NSOperationQueue.mainQueue
+                           completionHandler:^(NSURLResponse *response, NSData *data, NSError *error)
     {
-        NSString *fileName = [url.lastPathComponent stringByReplacingOccurrencesOfString:url.pathExtension withString:@""];
-        NSString *resourceName = [NSString stringWithFormat:@"%@%@.%@", fileName, url.fragment, url.pathExtension];
-        NSString *resourcePath = [NSBundle.mainBundle.resourcePath stringByAppendingPathComponent:resourceName];
-        
-        if([NSFileManager.defaultManager fileExistsAtPath:resourcePath]
-        && ![NSFileManager.defaultManager fileExistsAtPath:cachedPath])
+        NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse*)response;
+        if([httpResponse respondsToSelector:@selector(statusCode)] && httpResponse.statusCode == 200)
         {
-            //NSLog(@"Copying %@ named %@", folder, url.lastPathComponent);
+            //NSLog(@"Downloaded %@ named %@", folder, url.lastPathComponent);
             
-            self.path = cachedPath;
-            [NSFileManager.defaultManager copyItemAtPath:resourcePath toPath:cachedPath error:nil];
+            weak.path = cachedPath;
+            [data writeToFile:cachedPath atomically:NO];
             
-            return;
+            [NSNotificationCenter.defaultCenter postNotificationName:@"posterDidChange" object:self.episode];
         }
-        
-        if(!self.path && [NSFileManager.defaultManager fileExistsAtPath:cachedPath])
+        else
         {
-            self.path = cachedPath;
+            [weak willChangeValueForKey:@"url"];
+            [weak setPrimitiveValue:nil forKey:@"url"];
+            [weak didChangeValueForKey:@"url"];
         }
-    }
-    
-    // ---
-    
-    BOOL downloadFromServer = YES;
-    
-    if(url.fragment && [NSFileManager.defaultManager fileExistsAtPath:cachedPath])
-    {
-        NSError *error = nil;
-        
-        NSDictionary *fileAttributes = [NSFileManager.defaultManager attributesOfItemAtPath:cachedPath error:&error];
-        
-        if(error)
-            return;
-        
-        NSDate *lastModifiedLocal = [fileAttributes fileModificationDate];
-        NSDate *lastModifiedServer = [NSDate dateWithTimeIntervalSince1970:url.fragment.floatValue];
-        
-        downloadFromServer = (!lastModifiedLocal) || ([lastModifiedLocal laterDate:lastModifiedServer] == lastModifiedServer);
-    }
-    
-    // ---
-    
-    if(downloadFromServer)
-    {
-        //NSLog(@"Downloading %@ named %@", folder, url.lastPathComponent);
-        __block Poster *weak = self;
-        
-        NSURLRequest *urlRequest = [NSURLRequest requestWithURL:url];
-        [NSURLConnection sendAsynchronousRequest:urlRequest queue:NSOperationQueue.mainQueue
-        completionHandler:^(NSURLResponse *response, NSData *data, NSError *error)
-        {
-             NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse*)response;
-             if([httpResponse respondsToSelector:@selector(statusCode)] && httpResponse.statusCode == 200)
-             {
-                 //NSLog(@"Downloaded %@ named %@", folder, url.lastPathComponent);
-                 
-                 weak.path = cachedPath;
-                 [data writeToFile:cachedPath atomically:NO];
-                 
-                 if(url.fragment)
-                 {
-                     NSDate *lastModified = [NSDate dateWithTimeIntervalSince1970:url.fragment.floatValue];
-                     NSDictionary *fileAttributes = [NSDictionary dictionaryWithObject:lastModified forKey:NSFileModificationDate];
-                     [NSFileManager.defaultManager setAttributes:fileAttributes ofItemAtPath:cachedPath error:nil];
-                 }
-                 
-                 // TODO: post notification
-             }
-             else
-             {
-                 [weak willChangeValueForKey:@"url"];
-                 [weak setPrimitiveValue:nil forKey:@"url"];
-                 [weak didChangeValueForKey:@"url"];
-             }
-         }];
-    }
+    }];
 }
 
 - (NSString*)path
 {
+    [self willAccessValueForKey:@"path"];
+ 
     NSString *_path = [self primitiveValueForKey:@"path"];
     
     if((!_path || [_path isEqualToString:@""]) && !self.url)
@@ -156,18 +106,18 @@
         if([NSFileManager.defaultManager fileExistsAtPath:cachedPath])
         {
             _path = cachedPath;
-            [self willChangeValueForKey:@"image"];
             [self willChangeValueForKey:@"path"];
             [self setPrimitiveValue:_path forKey:@"path"];
             [self didChangeValueForKey:@"path"];
-            [self didChangeValueForKey:@"image"];
         }
     }
     
     if(_path && self.url && ![NSFileManager.defaultManager fileExistsAtPath:_path])
     {   
-        // TODO: Download (iCloud sync)
+        // TODO: Download (iCloud sync) (reset URL?)
     }
+    
+    [self didAccessValueForKey:@"path"];
     
     return _path;
 }
@@ -186,11 +136,9 @@
             [NSFileManager.defaultManager removeItemAtPath:self.path error:nil];
     }
     
-    [self willChangeValueForKey:@"image"];
     [self willChangeValueForKey:@"path"];
     [self setPrimitiveValue:_path forKey:@"path"];
     [self didChangeValueForKey:@"path"];
-    [self didChangeValueForKey:@"image"];
 }
 
 - (void)prepareForDeletion

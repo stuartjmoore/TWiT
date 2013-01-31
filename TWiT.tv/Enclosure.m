@@ -36,8 +36,6 @@
         [self willChangeValueForKey:@"path"];
         [self setPrimitiveValue:nil forKey:@"path"];
         [self didChangeValueForKey:@"path"];
-        
-        //[self.managedObjectContext save:nil];
     }
     
     return _path;

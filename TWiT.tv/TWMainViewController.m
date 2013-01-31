@@ -888,6 +888,8 @@
     NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"published" ascending:NO];
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"watched = NO OR ANY enclosures.path != nil"];
     
+    //?  OR ANY enclosures.downloadConnection != nil
+    
     [fetchRequest setFetchBatchSize:10];
     [fetchRequest setEntity:entity];
     [fetchRequest setSortDescriptors:@[sortDescriptor]];
@@ -895,7 +897,7 @@
     
     NSFetchedResultsController *controller = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest
                                                                                  managedObjectContext:self.managedObjectContext
-                                                                                   sectionNameKeyPath:nil cacheName:@"UnwatchedEpisode"];
+                                                                                   sectionNameKeyPath:nil cacheName:@"UnwatchedEpisodes"];
     controller.delegate = self;
     self.fetchedEpisodesController = controller;
     

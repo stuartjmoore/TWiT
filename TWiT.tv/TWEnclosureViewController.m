@@ -464,6 +464,18 @@
 
 - (void)viewWillDisappear:(BOOL)animated
 {
+    [NSNotificationCenter.defaultCenter addObserver:self.enclosure.episode
+                                           selector:@selector(updatePoster:)
+                                               name:MPMoviePlayerThumbnailImageRequestDidFinishNotification
+                                             object:nil];
+    [self.delegate.player requestThumbnailImagesAtTimes:@[@(self.delegate.player.currentPlaybackTime)] timeOption:MPMovieTimeOptionNearestKeyFrame];
+    
+    self.enclosure.episode.lastTimecode = self.delegate.player.currentPlaybackTime;
+    
+    if(self.delegate.player.currentPlaybackTime / self.delegate.player.duration >= 0.85f)
+        self.enclosure.episode.watched = YES;
+    
+    
     self.wantsFullScreenLayout = NO;
     self.navigationController.navigationBar.translucent = NO;
     
@@ -501,17 +513,6 @@
 
 - (void)viewDidDisappear:(BOOL)animated
 {
-    [NSNotificationCenter.defaultCenter addObserver:self.enclosure.episode
-                                           selector:@selector(updatePoster:)
-                                               name:MPMoviePlayerThumbnailImageRequestDidFinishNotification
-                                             object:nil];
-    [self.delegate.player requestThumbnailImagesAtTimes:@[@(self.delegate.player.currentPlaybackTime)] timeOption:MPMovieTimeOptionNearestKeyFrame];
-    
-    self.enclosure.episode.lastTimecode = self.delegate.player.currentPlaybackTime;
-    
-    if(self.delegate.player.currentPlaybackTime / self.delegate.player.duration >= 0.85f)
-        self.enclosure.episode.watched = YES;
-    
     if(self.delegate.player.playbackState != MPMoviePlaybackStatePlaying)
         [self.delegate stop];
 

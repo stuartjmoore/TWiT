@@ -288,6 +288,9 @@
 
 - (void)stop
 {
+    if(self.player && [_nowPlaying isKindOfClass:Enclosure.class])
+        [NSNotificationCenter.defaultCenter removeObserver:[self.nowPlaying episode] name:MPMoviePlayerThumbnailImageRequestDidFinishNotification object:nil];
+    
     [UIApplication.sharedApplication endReceivingRemoteControlEvents];
     [self resignFirstResponder];
     

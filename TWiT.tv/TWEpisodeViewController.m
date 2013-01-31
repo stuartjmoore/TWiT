@@ -61,6 +61,11 @@
                                                name:@"enclosureDownloadDidFail"
                                              object:nil];
     
+    [NSNotificationCenter.defaultCenter addObserver:self
+                                           selector:@selector(posterDidChange:)
+                                               name:@"posterDidChange"
+                                             object:self.episode];
+    
     self.navigationItem.backBarButtonItem = [UIBarButtonItem.alloc initWithTitle:@"Back"
                                                                            style:UIBarButtonItemStyleBordered
                                                                           target:nil
@@ -133,6 +138,12 @@
         [self.segmentedButton addTarget:self action:@selector(cancelPressed:) forButton:TWButtonSegmentCancel];
         [self.segmentedButton addTarget:self action:@selector(deletePressed:) forButton:TWButtonSegmentDelete];
     }
+}
+
+- (void)posterDidChange:(NSNotification*)notification
+{
+    if(notification.object == self.episode)
+        self.posterView.image = self.episode.poster.image;
 }
 
 #pragma mark - Actions
@@ -341,6 +352,8 @@
     [NSNotificationCenter.defaultCenter removeObserver:self name:@"enclosureDownloadDidReceiveData" object:nil];
     [NSNotificationCenter.defaultCenter removeObserver:self name:@"enclosureDownloadDidFinish" object:nil];
     [NSNotificationCenter.defaultCenter removeObserver:self name:@"enclosureDownloadDidFail" object:nil];
+    
+    [NSNotificationCenter.defaultCenter removeObserver:self name:@"posterDidChange" object:self.episode];
     
     [super viewWillDisappear:animated];
 }
