@@ -262,6 +262,7 @@
 		17FB33D416A3450200575AE2 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17FB33D116A3450200575AE2 /* AudioToolbox.framework */; };
 		17FB33D516A3450200575AE2 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17FB33D216A3450200575AE2 /* AVFoundation.framework */; };
 		17FB33D616A3450200575AE2 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17FB33D316A3450200575AE2 /* MediaPlayer.framework */; };
+		17FFE58016C2ADEB00B893D3 /* TWStreamViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 17FFE57F16C2ADEB00B893D3 /* TWStreamViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -561,6 +562,7 @@
 		17FB33D116A3450200575AE2 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		17FB33D216A3450200575AE2 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		17FB33D316A3450200575AE2 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
+		17FFE57F16C2ADEB00B893D3 /* TWStreamViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWStreamViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -983,6 +985,7 @@
 				17E51174168F496E00DCE89C /* TWEpisodeViewController.h */,
 				17E51175168F496E00DCE89C /* TWEpisodeViewController.m */,
 				1787B3BB16A58E7B00870B87 /* TWStreamViewController.h */,
+				17FFE57F16C2ADEB00B893D3 /* TWStreamViewController.m */,
 				17C477F616A192B40058E6C4 /* TWEnclosureViewController.h */,
 				17C477F716A192B40058E6C4 /* TWEnclosureViewController.m */,
 				177F1FAD16AB25A900BFFA63 /* TWPlaybarViewController.h */,
@@ -1324,6 +1327,7 @@
 				17CBC39E16B2FCCC00F1F9EC /* TWNavigationItem.m in Sources */,
 				1749FCE816B440A10087CC3A /* TWNavigationContainer.m in Sources */,
 				17B07F1416B5BFAE00B42CBF /* UIAlertView+block.m in Sources */,
+				17FFE58016C2ADEB00B893D3 /* TWStreamViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
