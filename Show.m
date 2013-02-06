@@ -112,12 +112,17 @@
             nextDay = YES;
         }
         
+        BOOL is24Hour = [NSDate is24Hour];
+        NSString *suffix = is24Hour ? @"" : (time/100 < 12 ? @"a" : @"p");
+        int maxHour = is24Hour ? 24 : 12;
+        int midnightHour = is24Hour ? 0 : 12;
+        
         if(time/100 == 0)
-            timeString = [NSString stringWithFormat:@"12:%.2da", time%100];
-        else if(time/100 <= 12)
-            timeString = [NSString stringWithFormat:@"%d:%.2da", time/100, time%100];
+            timeString = [NSString stringWithFormat:@"%.2d:%.2d%@", midnightHour, time%100, suffix];
+        else if(time/100 <= maxHour)
+            timeString = [NSString stringWithFormat:@"%d:%.2d%@", time/100, time%100, suffix];
         else
-            timeString = [NSString stringWithFormat:@"%d:%.2dp", time/100-12, time%100];
+            timeString = [NSString stringWithFormat:@"%d:%.2d%@", time/100-maxHour, time%100, suffix];
         
         NSArray *days = [[daysAndTime objectAtIndex:0] componentsSeparatedByString:@","];
         for(NSString *dayString in days)

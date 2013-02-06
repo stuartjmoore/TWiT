@@ -222,6 +222,8 @@
         
         if(!show.published || [show.published laterDate:published] == published)
         {
+            // TODO: Delete and reload local notifications
+   
             show.title = [showDictionary objectForKey:@"title"];
             show.titleAcronym = [showDictionary objectForKey:@"short_title"];
             show.titleInSchedule = [showDictionary objectForKey:@"schedule_title"];

@@ -885,6 +885,7 @@
               "schedule": "MO@1300",
               "update_interval": 518400,
               "website": "http://twit.tv/htg",
+              "email": "scott@twit.tv",
               "colors":{
               "top":{
               "red":237,

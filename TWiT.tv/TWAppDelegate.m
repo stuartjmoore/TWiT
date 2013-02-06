@@ -31,18 +31,18 @@
     [AVAudioSession.sharedInstance setActive:YES error:nil];
     
     
-    float currentVersion = [NSBundle.mainBundle.infoDictionary[@"CFBundleShortVersionString"] floatValue];
-    if([NSUserDefaults.standardUserDefaults floatForKey:@"last-version"] < currentVersion)
+    if([NSUserDefaults.standardUserDefaults floatForKey:@"last-version"] < 4.0)
     {
         for(NSString *file in [NSFileManager.defaultManager contentsOfDirectoryAtPath:self.applicationDocumentsDirectory.path error:nil])
         {
             NSString *filePath = [self.applicationDocumentsDirectory.path stringByAppendingPathComponent:file];
             [NSFileManager.defaultManager removeItemAtPath:filePath error:nil];
         }
-        
-        [NSUserDefaults.standardUserDefaults setFloat:currentVersion forKey:@"last-version"];
-        [NSUserDefaults.standardUserDefaults synchronize];
     }
+    
+    float currentVersion = [NSBundle.mainBundle.infoDictionary[@"CFBundleShortVersionString"] floatValue];
+    [NSUserDefaults.standardUserDefaults setFloat:currentVersion forKey:@"last-version"];
+    [NSUserDefaults.standardUserDefaults synchronize];
     
     
     NSManagedObjectContext *context = self.managedObjectContext;

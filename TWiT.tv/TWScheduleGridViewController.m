@@ -57,7 +57,15 @@
     {
         CGRect frame = CGRectMake(hour*hourWidth, 0, hourWidth, timeHeight);
         
-        NSString *timeTitle = (hour <= 12) ? [NSString stringWithFormat:@"%d:00am", hour] : [NSString stringWithFormat:@"%d:00pm", hour-12];
+        BOOL is24Hour = [NSDate is24Hour];
+        NSString *suffix = is24Hour ? @"" : (hour < 12 ? @"a" : @"p");
+        int maxHour = is24Hour ? 24 : 12;
+        
+        NSString *timeTitle = (hour < maxHour) ? [NSString stringWithFormat:@"%d:00%@", hour, suffix]
+                                               : [NSString stringWithFormat:@"%d:00%@", hour-maxHour, suffix];
+        
+        if([timeTitle isEqualToString:@"0:00p"])
+            timeTitle = @"Noon";
         
         UIView *view = [[UIView alloc] initWithFrame:frame];
         view.backgroundColor = [UIColor colorWithWhite:0.96f alpha:1];
