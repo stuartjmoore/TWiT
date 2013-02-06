@@ -160,25 +160,25 @@
     controller.mailComposeDelegate = self;
     [controller setToRecipients:[NSArray arrayWithObject:self.show.email]];
     [self presentModalViewController:controller animated:YES];
-    
+    /*
     CGAffineTransform transform = CGAffineTransformMakeScale(0.8f, 0.8f);
     
     [UIView animateWithDuration:0.3f animations:^
     {
         self.navigationController.view.transform = transform;
-    }];
+    }];*/
 }
 - (void)mailComposeController:(MFMailComposeViewController*)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError*)error
 {
     [self dismissModalViewControllerAnimated:YES];
-    
-    CGAffineTransform transform = CGAffineTransformMakeScale(0.8f, 0.8f);
+    /*
+    CGAffineTransform transform = CGAffineTransformScale(CGAffineTransformIdentity, 0.8f, 0.8f);
     self.navigationController.view.transform = transform;
     
     [UIView animateWithDuration:0.3f animations:^
     {
         self.navigationController.view.transform = CGAffineTransformIdentity;
-    }];
+    }];*/
 }
 
 - (IBAction)phone:(UIButton*)sender
