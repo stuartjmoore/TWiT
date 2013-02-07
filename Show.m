@@ -269,10 +269,9 @@
 {
     NSURLRequest *urlRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:feed.url]
                                                 cachePolicy:NSURLRequestReloadIgnoringLocalCacheData
-                                            timeoutInterval:60];
-    
+                                            timeoutInterval:60.0f];
     [NSURLConnection sendAsynchronousRequest:urlRequest queue:[NSOperationQueue mainQueue]
-                           completionHandler:^(NSURLResponse *response, NSData *data, NSError *error)
+    completionHandler:^(NSURLResponse *response, NSData *data, NSError *error)
     {
          if(error)
              return;

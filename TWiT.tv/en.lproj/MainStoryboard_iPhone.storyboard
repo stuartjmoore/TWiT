@@ -1441,6 +1441,9 @@
                                                 <state key="highlighted">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="sendChatMessage:" destination="zgt-3C-NJF" eventType="touchUpInside" id="TOU-ut-JXK"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -1610,7 +1613,7 @@
     <resources>
         <image name="button-orange-left.png" width="7" height="38"/>
         <image name="button-orange-right.png" width="7" height="38"/>
-        <image name="generic.jpg" width="600" height="600"/>
+        <image name="generic.jpg" width="228" height="228"/>
         <image name="icon-play.png" width="55" height="55"/>
         <image name="linen-button-delete.png" width="16" height="22"/>
         <image name="linen-button.png" width="14" height="15"/>

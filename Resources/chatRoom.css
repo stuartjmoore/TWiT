@@ -64,6 +64,8 @@ body
 .qwebirc-qui .hyperlink-whois
 {
 	font-weight: bold;
+    pointer-events: none;
+    cursor: auto;
 }
 
 .qwebirc-loginbox .tr2 td
