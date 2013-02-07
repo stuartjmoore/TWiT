@@ -71,9 +71,9 @@
             
             CGContextSetShadow(context, CGSizeMake(0, 2), 4);
             
-            if(column < albumArtPathes.count)
+            if(column < albumArtPathes.count && column < showTitles.count)
             {
-                UIImage *image =  [UIImage imageWithContentsOfFile:albumArtPathes[column]] ?: [UIImage imageNamed:@"generic.jpg"];
+                UIImage *image = [UIImage imageWithContentsOfFile:albumArtPathes[column]] ?: [UIImage imageNamed:@"generic.jpg"];
                 [image drawInRect:frame];
                 
                 UIAccessibilityElement *element = [[UIAccessibilityElement alloc] initWithAccessibilityContainer:self];

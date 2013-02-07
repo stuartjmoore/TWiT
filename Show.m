@@ -22,6 +22,8 @@
 
 @dynamic desc, email, favorite, hosts, phone, published, remind, schedule, sort, updateInterval, title, titleAcronym, titleInSchedule, website, albumArt, channel, episodes, feeds;
 
+@synthesize threadCount = _threadCount;
+
 - (Poster*)poster
 {
     NSPredicate *pred = [NSPredicate predicateWithFormat:@"poster.path != nil"];
@@ -231,37 +233,47 @@
         if(feed.lastUpdated && feed.lastUpdated.timeIntervalSinceNow > -self.updateInterval)
             continue;
         
+        NSLog(@"updateEpisodes - threadCount - %d", self.threadCount);
+        
+        if(self.threadCount == 0)
+            UIApplication.sharedApplication.networkActivityIndicatorVisible = YES;
+        
+        self.threadCount++;
+        
         NSMutableURLRequest *headerRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:feed.url]
                                                                      cachePolicy:NSURLRequestReloadIgnoringLocalCacheData
                                                                  timeoutInterval:60.0f];
         [headerRequest setHTTPMethod:@"HEAD"];
         [NSURLConnection sendAsynchronousRequest:headerRequest queue:NSOperationQueue.mainQueue
-                               completionHandler:^(NSURLResponse *response, NSData *data, NSError *error)
+        completionHandler:^(NSURLResponse *response, NSData *data, NSError *error)
         {
-             NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse*)response;
-             if([httpResponse respondsToSelector:@selector(allHeaderFields)])
-             {
-                 if(httpResponse.statusCode != 200)
-                     return;
-                 
-                 NSDictionary *metaData = [httpResponse allHeaderFields];
-                 NSString *lastModifiedString = [metaData objectForKey:@"Last-Modified"];
-                 
-                 NSDateFormatter *df = [[NSDateFormatter alloc] init];
-                 df.timeZone = [NSTimeZone timeZoneWithAbbreviation:@"GMT"];
-                 df.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US"];
-                 df.dateFormat = @"EEE',' dd MMM yyyy HH':'mm':'ss 'GMT'";
-                 
-                 NSDate *lastModified = [df dateFromString:lastModifiedString];
-                 
-                 if(lastModified == nil || ![lastModified isEqualToDate:feed.lastUpdated])
-                 {
-                     NSLog(@"reload %@ - %@", self.title, feed.title);
-                     feed.lastUpdated = lastModified;
-                     [self updatePodcastFeed:feed];
-                 }
-             }
-         }];
+            NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse*)response;
+            if([httpResponse respondsToSelector:@selector(allHeaderFields)])
+            {
+                if(httpResponse.statusCode == 200)
+                {
+                    NSDictionary *metaData = [httpResponse allHeaderFields];
+                    NSString *lastModifiedString = [metaData objectForKey:@"Last-Modified"];
+                    
+                    NSDateFormatter *df = [[NSDateFormatter alloc] init];
+                    df.timeZone = [NSTimeZone timeZoneWithAbbreviation:@"GMT"];
+                    df.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US"];
+                    df.dateFormat = @"EEE',' dd MMM yyyy HH':'mm':'ss 'GMT'";
+                    
+                    NSDate *lastModified = [df dateFromString:lastModifiedString];
+                    
+                    if(lastModified == nil || ![lastModified isEqualToDate:feed.lastUpdated])
+                    {
+                        NSLog(@"reload %@ - %@", self.title, feed.title);
+                        feed.lastUpdated = lastModified;
+                        [self updatePodcastFeed:feed];
+                        return;
+                    }
+                }
+            }
+            
+            [self finishUpdate];
+        }];
     }
 }
 
@@ -273,6 +285,8 @@
     [NSURLConnection sendAsynchronousRequest:urlRequest queue:[NSOperationQueue mainQueue]
     completionHandler:^(NSURLResponse *response, NSData *data, NSError *error)
     {
+        [self finishUpdate];
+         
          if(error)
              return;
          
@@ -437,6 +451,16 @@
          
          [self.managedObjectContext save:nil];
      }];
+}
+
+- (void)finishUpdate
+{
+    self.threadCount--;
+    
+    if(self.threadCount == 0)
+        UIApplication.sharedApplication.networkActivityIndicatorVisible = NO;
+    
+    NSLog(@"finishUpdate - threadCount - %d", self.threadCount);
 }
 
 @end

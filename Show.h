@@ -26,12 +26,15 @@
 @property (nonatomic, strong) Channel *channel;
 @property (nonatomic, strong) NSSet *episodes, *feeds;
 
+@property (nonatomic) int threadCount;
+
 - (Poster*)poster;
 - (NSArray*)scheduleDates;
 - (NSString*)scheduleString;
 
 - (void)updateEpisodes;
 - (void)updatePodcastFeed:(Feed*)feed;
+- (void)finishUpdate;
 
 @end
 
