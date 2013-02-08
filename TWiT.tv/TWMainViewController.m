@@ -327,6 +327,8 @@
                 
                 [selectedShow updateEpisodes];
                 showController.show = selectedShow;
+                
+                [showController.tableView scrollRectToVisible:CGRectMake(0, 0, 1, 1) animated:YES];
             }
         }
         else
