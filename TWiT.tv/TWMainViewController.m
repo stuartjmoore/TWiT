@@ -312,7 +312,6 @@
             
             if(currentShow == selectedShow)
             {
-                [self.showSelectedView removeFromSuperview];
                 self.showSelectedView = nil;
                 
                 [masterController popToRootViewControllerAnimated:YES];
@@ -333,13 +332,7 @@
         else
         {
             if(!self.showSelectedView)
-            {
                 self.showSelectedView = [[UIImageView alloc] init];
-                self.showSelectedView.userInteractionEnabled = NO;
-                UIImage *selectionImage = [[UIImage imageNamed:@"show-selection.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(10, 11, 12, 11)];
-                self.showSelectedView.image = selectionImage;
-                [self.tableView addSubview:self.showSelectedView];
-            }
             
             CGRect frame = [showCell frameForColumn:column];
             frame = [showCell convertRect:frame toView:self.tableView];
@@ -351,6 +344,22 @@
             TWMainViewController *episodesController = (TWMainViewController*)masterController.topViewController;
             [episodesController performSegueWithIdentifier:@"showDetail" sender:showIndexPath];
         }
+    }
+}
+
+- (void)setShowSelectedView:(UIImageView*)showSelectedView
+{
+    if(showSelectedView == nil)
+    {
+        [_showSelectedView removeFromSuperview];
+        _showSelectedView = showSelectedView;
+    }
+    else
+    {
+        _showSelectedView = showSelectedView;
+        _showSelectedView.userInteractionEnabled = NO;
+        _showSelectedView.image = [[UIImage imageNamed:@"show-selection.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(10, 11, 12, 11)];
+        [self.tableView addSubview:_showSelectedView];
     }
 }
 
