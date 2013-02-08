@@ -632,7 +632,7 @@
         else if(self.sectionVisible == TWSectionShows)
         {
             if(UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPad)
-                return 150;
+                return 153;
             else
                 return 102;
         }

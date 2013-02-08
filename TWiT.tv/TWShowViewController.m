@@ -527,6 +527,31 @@
     }
 }
 
+- (IBAction)close:(UIButton*)sender
+{
+    if(self.tableView.indexPathForSelectedRow)
+    {
+        TWSplitViewContainer *splitViewContainer = (TWSplitViewContainer*)self.navigationController.parentViewController;
+        
+        CGRect frame = splitViewContainer.modalFlyout.frame;
+        frame.origin.x = -frame.size.width;
+        
+        [UIView animateWithDuration:0.3f animations:^{
+            splitViewContainer.modalFlyout.frame = frame;
+            splitViewContainer.modalBlackground.alpha = 0;
+        } completion:^(BOOL fin){
+            splitViewContainer.modalContainer.hidden = YES;
+            splitViewContainer.modalBlackground.alpha = 1;
+        }];
+        
+        [self.tableView deselectRowAtIndexPath:self.tableView.indexPathForSelectedRow animated:NO];
+    }
+    
+    // TODO: delegate to main view to remove selection border
+    
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 - (void)viewWillDisappear:(BOOL)animated
 {
     [self.tableView removeObserver:self forKeyPath:@"contentOffset"];
