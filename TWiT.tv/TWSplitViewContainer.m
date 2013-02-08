@@ -80,9 +80,58 @@
         self.modalBlackground.alpha = 1;
     }];
     
-    
     UITableViewController *tableController = (UITableViewController*)self.masterController.topViewController;
     [tableController.tableView deselectRowAtIndexPath:tableController.tableView.indexPathForSelectedRow animated:NO];
+}
+
+- (IBAction)didPanModalFlyout:(UIPanGestureRecognizer*)recognizer
+{
+    if(recognizer.state == UIGestureRecognizerStateBegan)
+    {
+    }
+    else if(recognizer.state == UIGestureRecognizerStateChanged)
+    {
+        CGRect frame = self.modalFlyout.frame;
+        float x = [recognizer translationInView:self.modalFlyout].x;
+        
+        if(x <= 0)
+            frame.origin.x = [recognizer translationInView:self.modalFlyout].x;
+        else
+            frame.origin.x = 0;
+        
+        self.modalFlyout.frame = frame;
+    }
+    else if(recognizer.state == UIGestureRecognizerStateEnded)
+    {
+        float speed = [recognizer velocityInView:self.modalFlyout].x;
+        
+        if(self.modalFlyout.frame.origin.x > self.modalFlyout.frame.size.width/2
+        || self.modalFlyout.frame.origin.x < -self.modalFlyout.frame.size.width/2
+        || fabs(speed) > 1000)
+        {
+            CGRect frame = self.modalFlyout.frame;
+            frame.origin.x = -frame.size.width;
+            
+            [UIView animateWithDuration:0.3f animations:^{
+                self.modalFlyout.frame = frame;
+                self.modalBlackground.alpha = 0;
+            } completion:^(BOOL fin){
+                self.modalContainer.hidden = YES;
+                self.modalBlackground.alpha = 1;
+            }];
+            
+            UITableViewController *tableController = (UITableViewController*)self.masterController.topViewController;
+            [tableController.tableView deselectRowAtIndexPath:tableController.tableView.indexPathForSelectedRow animated:YES];
+        }
+        else
+        {
+            CGRect frame = self.modalFlyout.frame;
+            frame.origin.x = 0;
+            [UIView animateWithDuration:0.5f animations:^{
+                self.modalFlyout.frame = frame;
+            }];
+        }
+    }
 }
 
 - (void)showPlaybar
