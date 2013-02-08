@@ -10,20 +10,6 @@
 
 @implementation NSDate (comparisons)
 
-+ (BOOL)is24Hour
-{
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    [formatter setLocale:[NSLocale currentLocale]];
-    [formatter setDateStyle:NSDateFormatterNoStyle];
-    [formatter setTimeStyle:NSDateFormatterShortStyle];
-    
-    NSString *dateString = [formatter stringFromDate:[NSDate date]];
-    NSRange amRange = [dateString rangeOfString:formatter.AMSymbol];
-    NSRange pmRange = [dateString rangeOfString:formatter.PMSymbol];
-    
-    return (amRange.location == NSNotFound && pmRange.location == NSNotFound);
-}
-
 - (BOOL)isToday
 {
     NSCalendar *cal = [NSCalendar currentCalendar];

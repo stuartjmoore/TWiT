@@ -57,6 +57,18 @@
     {
         CGRect frame = CGRectMake(hour*hourWidth, 0, hourWidth, timeHeight);
         
+        NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+        unsigned unitFlags = NSYearCalendarUnit | NSMonthCalendarUnit |  NSDayCalendarUnit;
+        NSDateComponents *comps = [gregorian components:unitFlags fromDate:[NSDate date]];
+        [comps setHour:hour];
+        NSDate *hourDate = [gregorian dateFromComponents:comps];
+        
+        NSDateFormatter *dateFormatterLocal = [[NSDateFormatter alloc] init];
+        [dateFormatterLocal setTimeZone:[NSTimeZone localTimeZone]];
+        [dateFormatterLocal setDateFormat:@"h:mma"];
+        NSString *timeTitle = [[dateFormatterLocal stringFromDate:hourDate] lowercaseString];
+        
+        /*
         BOOL is24Hour = [NSDate is24Hour];
         NSString *suffix = is24Hour ? @"" : (hour < 12 ? @"a" : @"p");
         int maxHour = is24Hour ? 24 : 12;
@@ -66,6 +78,8 @@
         
         if([timeTitle isEqualToString:@"0:00p"])
             timeTitle = @"Noon";
+        */
+        
         
         UIView *view = [[UIView alloc] initWithFrame:frame];
         view.backgroundColor = [UIColor colorWithWhite:0.96f alpha:1];

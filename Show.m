@@ -105,6 +105,8 @@
         int TZDiff = ([[NSTimeZone timeZoneWithName:@"America/Los_Angeles"] secondsFromGMT]
                       - NSTimeZone.localTimeZone.secondsFromGMT)/60/60*100;
         
+        //[[NSTimeZone timeZoneWithName:@"Europe/London"] secondsFromGMT]
+        
         int time = [daysAndTime[1] intValue];
         time -= TZDiff;
         BOOL nextDay = NO;
@@ -114,6 +116,21 @@
             nextDay = YES;
         }
         
+        
+        NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+        unsigned unitFlags = NSYearCalendarUnit | NSMonthCalendarUnit |  NSDayCalendarUnit;
+        NSDateComponents *comps = [gregorian components:unitFlags fromDate:[NSDate date]];
+        [comps setHour:time/100];
+        [comps setMinute:time%100];
+        NSDate *hourDate = [gregorian dateFromComponents:comps];
+        
+        NSDateFormatter *dateFormatterLocal = [[NSDateFormatter alloc] init];
+        [dateFormatterLocal setTimeZone:[NSTimeZone localTimeZone]];
+        [dateFormatterLocal setDateFormat:@"h:mma"];
+        timeString = [[dateFormatterLocal stringFromDate:hourDate] lowercaseString];
+        
+        
+        /*
         BOOL is24Hour = [NSDate is24Hour];
         NSString *suffix = is24Hour ? @"" : (time/100 < 12 ? @"a" : @"p");
         int maxHour = is24Hour ? 24 : 12;
@@ -125,6 +142,8 @@
             timeString = [NSString stringWithFormat:@"%d:%.2d%@", time/100, time%100, suffix];
         else
             timeString = [NSString stringWithFormat:@"%d:%.2d%@", time/100-maxHour, time%100, suffix];
+        */
+        
         
         NSArray *days = [[daysAndTime objectAtIndex:0] componentsSeparatedByString:@","];
         for(NSString *dayString in days)

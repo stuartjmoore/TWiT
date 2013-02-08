@@ -10,8 +10,6 @@
 
 @interface NSDate (comparisons)
 
-+ (BOOL)is24Hour;
-
 - (BOOL)isToday;
 - (BOOL)isTomorrow;
 
