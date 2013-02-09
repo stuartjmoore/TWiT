@@ -25,6 +25,24 @@
 
 - (void)viewDidLoad
 {
+    if(UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPhone)
+    {
+        int count = self.navigationController.viewControllers.count;
+        
+        if(count < 2)
+            return;
+        
+        UIViewController *lastViewController = self.navigationController.viewControllers[count-2];
+        
+        if([lastViewController isKindOfClass:NSClassFromString(@"TWMainViewController")])
+        {
+            UIImage *buttonIcon = [UIImage imageNamed:@"navbar-back-twit-icon-trans.png"];
+            lastViewController.navigationItem.backBarButtonItem = [UIBarButtonItem.alloc initWithImage:buttonIcon
+                                                                                                 style:UIBarButtonItemStyleBordered
+                                                                                                target:nil action:nil];
+        }
+    }
+    
     MPVolumeView *airplayButton = [[MPVolumeView alloc] init];
     airplayButton.showsVolumeSlider = NO;
     airplayButton.frame = (CGRect){{0, (37-22)/2}, {38, 22}};
