@@ -45,6 +45,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    self.unlockRotation = NO;
     
     self.playButton.percentage = (self.episode.duration != 0) ? (float)self.episode.lastTimecode/self.episode.duration : 0;
     
@@ -70,6 +71,12 @@
                                                                            style:UIBarButtonItemStyleBordered
                                                                           target:nil
                                                                           action:nil];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    //self.unlockRotation = YES;
 }
 
 #pragma mark - Episode
@@ -324,6 +331,14 @@
 
 #pragma mark - Settings
 
+- (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)orientation duration:(NSTimeInterval)duration
+{
+    if(UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPhone && UIInterfaceOrientationIsLandscape(orientation))
+    {
+        [self performSegueWithIdentifier:@"playerDetail" sender:self.playButton];
+    }
+}
+
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     if(UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPad)
@@ -337,7 +352,12 @@
     if(UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPad)
         return UIInterfaceOrientationMaskAll;
     else
-        return UIInterfaceOrientationMaskPortrait;
+    {
+        if(self.unlockRotation)
+            return UIInterfaceOrientationMaskAllButUpsideDown;
+        else
+            return UIInterfaceOrientationMaskPortrait;
+    }
 }
 
 #pragma mark - Kill
@@ -356,6 +376,7 @@
     [NSNotificationCenter.defaultCenter removeObserver:self name:@"posterDidChange" object:self.episode];
     
     [super viewWillDisappear:animated];
+    self.unlockRotation = NO;
 }
 
 @end

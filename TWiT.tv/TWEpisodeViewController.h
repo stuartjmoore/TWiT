@@ -22,6 +22,8 @@
 @property (weak, nonatomic) IBOutlet UITextView *descLabel;
 @property (weak, nonatomic) IBOutlet TWSegmentedButton *segmentedButton;
 
+@property (nonatomic) BOOL unlockRotation;
+
 - (void)configureView;
 
 - (void)watchPressed:(TWSegmentedButton*)sender;
