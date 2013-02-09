@@ -18,7 +18,7 @@
 			<key>Title</key>
 			<string>Delete Downloads</string>
 			<key>Key</key>
-			<string>delete_downloads</string>
+			<string>delete-downloads</string>
 			<key>DefaultValue</key>
 			<false/>
 		</dict>
@@ -28,7 +28,7 @@
 			<key>Title</key>
 			<string>Delete Screenshots</string>
 			<key>Key</key>
-			<string>delete_posters</string>
+			<string>delete-posters</string>
 			<key>DefaultValue</key>
 			<false/>
 		</dict>
@@ -38,7 +38,7 @@
 			<key>Title</key>
 			<string>Delete Entire Database</string>
 			<key>Key</key>
-			<string>delete_all</string>
+			<string>delete-all</string>
 			<key>DefaultValue</key>
 			<false/>
 		</dict>
@@ -54,7 +54,7 @@
 			<key>Title</key>
 			<string>Twitter</string>
 			<key>Key</key>
-			<string>twitter_name</string>
+			<string>twitter-name</string>
 			<key>DefaultValue</key>
 			<string>@at_underscore</string>
 		</dict>
@@ -82,7 +82,7 @@
 			<key>Title</key>
 			<string>Version</string>
 			<key>Key</key>
-			<string>version</string>
+			<string>settings-version</string>
 			<key>DefaultValue</key>
 			<string>4.1</string>
 		</dict>

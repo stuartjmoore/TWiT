@@ -39,9 +39,14 @@
             [NSFileManager.defaultManager removeItemAtPath:filePath error:nil];
         }
     }
+    else
+    {
+        [self deleteUserDataIfSet];
+    }
     
-    float currentVersion = [NSBundle.mainBundle.infoDictionary[@"CFBundleShortVersionString"] floatValue];
-    [NSUserDefaults.standardUserDefaults setFloat:currentVersion forKey:@"last-version"];
+    NSString *versionString = NSBundle.mainBundle.infoDictionary[@"CFBundleShortVersionString"];
+    [NSUserDefaults.standardUserDefaults setFloat:versionString.floatValue forKey:@"last-version"];
+    [NSUserDefaults.standardUserDefaults setObject:versionString forKey:@"settings-version"];
     [NSUserDefaults.standardUserDefaults synchronize];
     
     
@@ -162,42 +167,7 @@
 {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
     
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    BOOL deleteAll = [defaults boolForKey:@"delete_all"];
-    BOOL deleteDownloads = [defaults boolForKey:@"delete_downloads"];
-    BOOL deletePosters = [defaults boolForKey:@"delete_posters"];
-    
-    NSLog(@"%d %d %d", deleteAll, deleteDownloads, deletePosters);
-    
-    if(deleteAll)
-    {
-        for(NSString *file in [NSFileManager.defaultManager contentsOfDirectoryAtPath:self.applicationDocumentsDirectory.path error:nil])
-        {
-            NSString *filePath = [self.applicationDocumentsDirectory.path stringByAppendingPathComponent:file];
-            [NSFileManager.defaultManager removeItemAtPath:filePath error:nil];
-        }
-    }
-    else
-    {
-        if(deleteDownloads)
-        {
-            NSString *filePath = [self.applicationDocumentsDirectory.path stringByAppendingPathComponent:@"Downloads"];
-            [NSFileManager.defaultManager removeItemAtPath:filePath error:nil];
-        }
-        
-        if(deletePosters)
-        {
-            NSString *filePath = [self.applicationDocumentsDirectory.path stringByAppendingPathComponent:@"Posters"];
-            [NSFileManager.defaultManager removeItemAtPath:filePath error:nil];
-        }
-    }
-    
-    [defaults setBool:NO forKey:@"delete_all"];
-    [defaults setBool:NO forKey:@"delete_downloads"];
-    [defaults setBool:NO forKey:@"delete_posters"];
-    [defaults synchronize];
-    
-    
+    [self deleteUserDataIfSet];
     
     
     for(Show *show in self.channel.shows)
@@ -264,6 +234,46 @@
 {
     // Saves changes in the application's managed object context before the application terminates.
     [self saveContext];
+}
+
+#pragma mark - Helpers
+
+- (void)deleteUserDataIfSet
+{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    BOOL deleteAll = [defaults boolForKey:@"delete-all"];
+    BOOL deleteDownloads = [defaults boolForKey:@"delete-downloads"];
+    BOOL deletePosters = [defaults boolForKey:@"delete-posters"];
+    
+    NSLog(@"Delete: %d %d %d", deleteAll, deleteDownloads, deletePosters);
+    
+    if(deleteAll)
+    {
+        for(NSString *file in [NSFileManager.defaultManager contentsOfDirectoryAtPath:self.applicationDocumentsDirectory.path error:nil])
+        {
+            NSString *filePath = [self.applicationDocumentsDirectory.path stringByAppendingPathComponent:file];
+            [NSFileManager.defaultManager removeItemAtPath:filePath error:nil];
+        }
+    }
+    else
+    {
+        if(deleteDownloads)
+        {
+            NSString *filePath = [self.applicationDocumentsDirectory.path stringByAppendingPathComponent:@"Downloads"];
+            [NSFileManager.defaultManager removeItemAtPath:filePath error:nil];
+        }
+        
+        if(deletePosters)
+        {
+            NSString *filePath = [self.applicationDocumentsDirectory.path stringByAppendingPathComponent:@"Posters"];
+            [NSFileManager.defaultManager removeItemAtPath:filePath error:nil];
+        }
+    }
+    
+    [defaults setBool:NO forKey:@"delete-all"];
+    [defaults setBool:NO forKey:@"delete-downloads"];
+    [defaults setBool:NO forKey:@"delete-posters"];
+    [defaults synchronize];
 }
 
 #pragma mark - Controls
@@ -373,7 +383,7 @@
     return YES;
 }
 
-#pragma mark - Settings
+#pragma mark - Rotation
 
 - (NSUInteger)application:(UIApplication*)application supportedInterfaceOrientationsForWindow:(UIWindow*)window
 {
