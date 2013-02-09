@@ -162,6 +162,44 @@
 {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
     
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    BOOL deleteAll = [defaults boolForKey:@"delete_all"];
+    BOOL deleteDownloads = [defaults boolForKey:@"delete_downloads"];
+    BOOL deletePosters = [defaults boolForKey:@"delete_posters"];
+    
+    NSLog(@"%d %d %d", deleteAll, deleteDownloads, deletePosters);
+    
+    if(deleteAll)
+    {
+        for(NSString *file in [NSFileManager.defaultManager contentsOfDirectoryAtPath:self.applicationDocumentsDirectory.path error:nil])
+        {
+            NSString *filePath = [self.applicationDocumentsDirectory.path stringByAppendingPathComponent:file];
+            [NSFileManager.defaultManager removeItemAtPath:filePath error:nil];
+        }
+    }
+    else
+    {
+        if(deleteDownloads)
+        {
+            NSString *filePath = [self.applicationDocumentsDirectory.path stringByAppendingPathComponent:@"Downloads"];
+            [NSFileManager.defaultManager removeItemAtPath:filePath error:nil];
+        }
+        
+        if(deletePosters)
+        {
+            NSString *filePath = [self.applicationDocumentsDirectory.path stringByAppendingPathComponent:@"Posters"];
+            [NSFileManager.defaultManager removeItemAtPath:filePath error:nil];
+        }
+    }
+    
+    [defaults setBool:NO forKey:@"delete_all"];
+    [defaults setBool:NO forKey:@"delete_downloads"];
+    [defaults setBool:NO forKey:@"delete_posters"];
+    [defaults synchronize];
+    
+    
+    
+    
     for(Show *show in self.channel.shows)
         if(show.favorite)
             [show updateEpisodes];

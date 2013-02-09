@@ -5,6 +5,44 @@
 	<key>PreferenceSpecifiers</key>
 	<array>
 		<dict>
+			<key>Type</key>
+			<string>PSGroupSpecifier</string>
+			<key>Title</key>
+			<string>Delete Data</string>
+			<key>FooterText</key>
+			<string>Selected data will be deleted on next app launch</string>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSToggleSwitchSpecifier</string>
+			<key>Title</key>
+			<string>Delete Downloads</string>
+			<key>Key</key>
+			<string>delete_downloads</string>
+			<key>DefaultValue</key>
+			<false/>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSToggleSwitchSpecifier</string>
+			<key>Title</key>
+			<string>Delete Screenshots</string>
+			<key>Key</key>
+			<string>delete_posters</string>
+			<key>DefaultValue</key>
+			<false/>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSToggleSwitchSpecifier</string>
+			<key>Title</key>
+			<string>Delete Entire Database</string>
+			<key>Key</key>
+			<string>delete_all</string>
+			<key>DefaultValue</key>
+			<false/>
+		</dict>
+		<dict>
 			<key>Title</key>
 			<string>Contact</string>
 			<key>Type</key>
@@ -36,7 +74,7 @@
 			<key>Type</key>
 			<string>PSGroupSpecifier</string>
 			<key>FooterText</key>
-			<string>TWiT® and the TWiT Logo are registered trademarks of Leo Laporte.</string>
+			<string>TWiT® and the TWiT Logo are registered trademarks of Leo Laporte</string>
 		</dict>
 		<dict>
 			<key>Type</key>

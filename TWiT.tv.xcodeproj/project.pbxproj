@@ -148,6 +148,7 @@
 		170BA15D1691D5E70022FE4D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 170BA15C1691D5E70022FE4D /* QuartzCore.framework */; };
 		170E02A8169324480072CFA6 /* TWEpisodeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 170E02A7169324480072CFA6 /* TWEpisodeCell.m */; };
 		170E02AB169328910072CFA6 /* TWShowsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 170E02AA169328910072CFA6 /* TWShowsCell.m */; };
+		1711F7B616C6A5C200B5CA32 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 17A31E1316ADDB6400B71343 /* Settings.bundle */; };
 		17144BD416B74DFB0050C696 /* episodes-table-empty.png in Resources */ = {isa = PBXBuildFile; fileRef = 17144BD216B74DFB0050C696 /* episodes-table-empty.png */; };
 		17144BD516B74DFB0050C696 /* episodes-table-empty@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 17144BD316B74DFB0050C696 /* episodes-table-empty@2x.png */; };
 		1749FCE816B440A10087CC3A /* TWNavigationContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 1749FCE716B440A10087CC3A /* TWNavigationContainer.m */; };
@@ -1089,6 +1090,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1711F7B616C6A5C200B5CA32 /* Settings.bundle in Resources */,
 				17E5115B168F496E00DCE89C /* InfoPlist.strings in Resources */,
 				17E5116A168F496E00DCE89C /* MainStoryboard_iPhone.storyboard in Resources */,
 				17E5116D168F496E00DCE89C /* MainStoryboard_iPad.storyboard in Resources */,
