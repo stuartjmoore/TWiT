@@ -623,6 +623,12 @@
     }
     else if(tableView == self.scheduleTable)
     {
+        if(self.channel.schedule.days.count <= section)
+            return 0;
+        
+        if([self.channel.schedule.days[section] count] == 0)
+            return 0;
+        
         Event *firstShow = self.channel.schedule.days[section][0];
         
         if(firstShow.start.isToday)
@@ -737,6 +743,12 @@
     }
     else if(tableView == self.scheduleTable)
     {
+        if(self.channel.schedule.days.count <= section)
+            return nil;
+        
+        if([self.channel.schedule.days[section] count] == 0)
+            return nil;
+        
         Event *showEvent = self.channel.schedule.days[section][0];
         
         if(showEvent.start.isToday)

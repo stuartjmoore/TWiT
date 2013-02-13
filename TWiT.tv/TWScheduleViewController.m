@@ -61,13 +61,17 @@
 
 - (float)tableView:(UITableView*)tableView heightForHeaderInSection:(NSInteger)section
 {
+    if(self.schedule.days.count <= section)
+        return 0;
+    else if([self.schedule.days[section] count] == 0)
+        return 0;
+    
     return 21;
 }
 
 - (UIView*)tableView:(UITableView*)tableView viewForHeaderInSection:(NSInteger)section
 {
     float width = tableView.frame.size.width;
-    Event *show = self.schedule.days[section][0];
     
     UIView *header = [[UIView alloc] initWithFrame:CGRectMake(0, 0, width, 21)];
     header.backgroundColor = [UIColor colorWithWhite:237/255.0 alpha:1];
@@ -83,12 +87,22 @@
     
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"EEEE"];
-    title.text = [dateFormatter stringFromDate:show.start];
     
-    if(show.start.isToday)
-        title.text = @"Today";
-    else if(show.start.isTomorrow)
-        title.text = @"Tomorrow";
+    if(self.schedule.days.count <= section)
+        title.text = @"";
+    else if([self.schedule.days[section] count] == 0)
+        title.text = @"";
+    else
+    {
+        Event *show = self.schedule.days[section][0];
+        
+        title.text = [dateFormatter stringFromDate:show.start];
+        
+        if(show.start.isToday)
+            title.text = @"Today";
+        else if(show.start.isTomorrow)
+            title.text = @"Tomorrow";
+    }
     
     [header addSubview:title];
     
