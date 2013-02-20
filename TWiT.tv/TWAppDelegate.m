@@ -31,7 +31,7 @@
     [AVAudioSession.sharedInstance setActive:YES error:nil];
     
 
-    if([NSUserDefaults.standardUserDefaults floatForKey:@"last-version"] < 4.0)
+    if([NSUserDefaults.standardUserDefaults floatForKey:@"last-version"] < 4.1)
     {
         for(NSString *file in [NSFileManager.defaultManager contentsOfDirectoryAtPath:self.applicationDocumentsDirectory.path error:nil])
         {
