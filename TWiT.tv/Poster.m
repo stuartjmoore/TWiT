@@ -15,8 +15,9 @@
 @implementation Poster
 
 @dynamic path, url, episode;
-
 @synthesize image = _image;
+
+#pragma mark - Accessors
 
 - (UIImage*)image
 {
@@ -28,7 +29,7 @@
 - (void)setImage:(UIImage*)image
 {
     NSString *posterName = [NSString stringWithFormat:@"%@%.4d.jpg", self.episode.show.titleAcronym.lowercaseString, self.episode.number];
-    NSString *cachedDir = [[self.applicationDocumentsDirectory URLByAppendingPathComponent:folder] path];
+    NSString *cachedDir = [[self.applicationCachesDirectory URLByAppendingPathComponent:folder] path];
     NSString *cachedPath = [cachedDir stringByAppendingPathComponent:posterName];
     
     self.path = cachedPath;
@@ -46,38 +47,7 @@
     [self didChangeValueForKey:@"url"];
     
     NSURL *url = [NSURL URLWithString:URLString];
-    NSString *cachedDir = [[self.applicationDocumentsDirectory URLByAppendingPathComponent:folder] path];
-    NSString *cachedPath = [cachedDir stringByAppendingPathComponent:url.lastPathComponent];
-    
-    if(![NSFileManager.defaultManager fileExistsAtPath:cachedDir])
-        [NSFileManager.defaultManager createDirectoryAtPath:cachedDir withIntermediateDirectories:NO attributes:nil error:nil];
-    
-    // ---
-    
-    //NSLog(@"Downloading %@ named %@", folder, url.lastPathComponent);
-    __block Poster *weak = self;
-    
-    NSURLRequest *urlRequest = [NSURLRequest requestWithURL:url];
-    [NSURLConnection sendAsynchronousRequest:urlRequest queue:NSOperationQueue.mainQueue
-                           completionHandler:^(NSURLResponse *response, NSData *data, NSError *error)
-    {
-        NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse*)response;
-        if([httpResponse respondsToSelector:@selector(statusCode)] && httpResponse.statusCode == 200)
-        {
-            //NSLog(@"Downloaded %@ named %@", folder, url.lastPathComponent);
-            
-            weak.path = cachedPath;
-            [data writeToFile:cachedPath atomically:NO];
-            
-            [NSNotificationCenter.defaultCenter postNotificationName:@"posterDidChange" object:self.episode];
-        }
-        else
-        {
-            [weak willChangeValueForKey:@"url"];
-            [weak setPrimitiveValue:nil forKey:@"url"];
-            [weak didChangeValueForKey:@"url"];
-        }
-    }];
+    [self downloadPosterFromURL:url];
 }
 
 - (NSString*)path
@@ -100,7 +70,7 @@
     if((!_path || [_path isEqualToString:@""]) && self.url)
     {
         NSURL *url = [NSURL URLWithString:self.url];
-        NSString *cachedDir = [[self.applicationDocumentsDirectory URLByAppendingPathComponent:folder] path];
+        NSString *cachedDir = [[self.applicationCachesDirectory URLByAppendingPathComponent:folder] path];
         NSString *cachedPath = [cachedDir stringByAppendingPathComponent:url.lastPathComponent];
         
         if([NSFileManager.defaultManager fileExistsAtPath:cachedPath])
@@ -112,11 +82,28 @@
         }
     }
     
-    if(_path && self.url && ![NSFileManager.defaultManager fileExistsAtPath:_path])
-    {   
-        // TODO: Download (iCloud sync) (reset URL?)
+    if(_path && ![NSFileManager.defaultManager fileExistsAtPath:_path] && self.url)
+    {
+        [self willChangeValueForKey:@"path"];
+        [self setPrimitiveValue:nil forKey:@"path"];
+        [self didChangeValueForKey:@"path"];
+        
+        NSURL *url = [NSURL URLWithString:self.url];
+        [self downloadPosterFromURL:url];
     }
     
+    if(_path && ![NSFileManager.defaultManager fileExistsAtPath:_path] && !self.url)
+    {
+        NSString *resourceName = [NSString stringWithFormat:@"%@-poster.jpg", self.episode.show.titleAcronym.lowercaseString];
+        NSString *resourcePath = [NSBundle.mainBundle.resourcePath stringByAppendingPathComponent:resourceName];
+        
+        if([NSFileManager.defaultManager fileExistsAtPath:resourcePath])
+            _path = resourcePath;
+        else
+            _path = self.episode.show.albumArt.path;
+    }
+    
+        
     [self didAccessValueForKey:@"path"];
     
     return _path;
@@ -141,15 +128,56 @@
     [self didChangeValueForKey:@"path"];
 }
 
+#pragma mark - Kill
+
 - (void)prepareForDeletion
 {
     NSLog(@"prepareForDeletion, %@", self);
     self.path = nil;
 }
 
-- (NSURL*)applicationDocumentsDirectory
+#pragma mark - Helpers
+
+- (void)downloadPosterFromURL:(NSURL*)url
 {
-    return [[NSFileManager.defaultManager URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
+    NSString *cachedDir = [[self.applicationCachesDirectory URLByAppendingPathComponent:folder] path];
+    NSString *cachedPath = [cachedDir stringByAppendingPathComponent:url.lastPathComponent];
+    
+    if(![NSFileManager.defaultManager fileExistsAtPath:cachedDir])
+        [NSFileManager.defaultManager createDirectoryAtPath:cachedDir withIntermediateDirectories:NO attributes:nil error:nil];
+    
+    NSLog(@"Downloading %@ named %@", folder, url.lastPathComponent);
+    
+    __block Poster *weak = self;
+    
+    NSURLRequest *urlRequest = [NSURLRequest requestWithURL:url];
+    [NSURLConnection sendAsynchronousRequest:urlRequest queue:NSOperationQueue.mainQueue
+    completionHandler:^(NSURLResponse *response, NSData *data, NSError *error)
+    {
+        NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse*)response;
+        if([httpResponse respondsToSelector:@selector(statusCode)] && httpResponse.statusCode == 200)
+        {
+            NSLog(@"Downloaded %@ named %@", folder, url.lastPathComponent);
+            
+            weak.path = cachedPath;
+            [data writeToFile:cachedPath atomically:NO];
+            
+            [NSNotificationCenter.defaultCenter postNotificationName:@"posterDidChange" object:self.episode];
+        }
+        else
+        {
+            NSLog(@"Unable to download %@ named %@", folder, url.lastPathComponent);
+            
+            [weak willChangeValueForKey:@"url"];
+            [weak setPrimitiveValue:nil forKey:@"url"];
+            [weak didChangeValueForKey:@"url"];
+        }
+    }];
+}
+
+- (NSURL*)applicationCachesDirectory
+{
+    return [[NSFileManager.defaultManager URLsForDirectory:NSCachesDirectory inDomains:NSUserDomainMask] lastObject];
 }
 
 @end

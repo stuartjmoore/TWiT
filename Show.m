@@ -477,7 +477,10 @@
     self.threadCount--;
     
     if(self.threadCount == 0)
+    {
         UIApplication.sharedApplication.networkActivityIndicatorVisible = NO;
+        [self.managedObjectContext save:nil];
+    }
     
     NSLog(@"finishUpdate - threadCount - %d", self.threadCount);
 }

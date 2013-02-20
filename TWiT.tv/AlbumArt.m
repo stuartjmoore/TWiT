@@ -6,10 +6,12 @@
 //  Copyright (c) 2013 Stuart Moore. All rights reserved.
 //
 
+#include <sys/xattr.h>
+
 #import "AlbumArt.h"
 #import "Show.h"
 
-#define folder @"AlbumArt"
+#define folder @"AlbumArt.nosync"
 
 @implementation AlbumArt
 
@@ -29,11 +31,82 @@
     [self didChangeValueForKey:@"image"];
     
     NSURL *url = [NSURL URLWithString:URLString];
+    [self downloadAlbumArtFromURL:url];
+}
+
+- (NSString*)path
+{
+    NSString *_path = [self primitiveValueForKey:@"path"];
+    
+    if((!_path || [_path isEqualToString:@""]) && self.url)
+    {
+        NSURL *url = [NSURL URLWithString:self.url];
+        NSString *cachedDir = [[self.applicationDocumentsDirectory URLByAppendingPathComponent:folder] path];
+        NSString *cachedPath = [cachedDir stringByAppendingPathComponent:url.lastPathComponent];
+        
+        if([NSFileManager.defaultManager fileExistsAtPath:cachedPath])
+        {
+            _path = cachedPath;
+            [self willChangeValueForKey:@"image"];
+            [self willChangeValueForKey:@"path"];
+            [self setPrimitiveValue:_path forKey:@"path"];
+            [self didChangeValueForKey:@"path"];
+            [self didChangeValueForKey:@"image"];
+        }
+    }
+    
+    if(_path && ![NSFileManager.defaultManager fileExistsAtPath:_path] && self.url)
+    {
+        NSLog(@"%@", self.url);
+        
+        [self willChangeValueForKey:@"path"];
+        [self setPrimitiveValue:nil forKey:@"path"];
+        [self didChangeValueForKey:@"path"];
+        
+        NSURL *url = [NSURL URLWithString:self.url];
+        [self downloadAlbumArtFromURL:url];
+    }
+    
+    return _path;
+}
+
+- (void)setPath:(NSString*)_path
+{
+    if([_path isEqualToString:self.path])
+        return;
+    
+    if([NSFileManager.defaultManager fileExistsAtPath:self.path])
+        [NSFileManager.defaultManager removeItemAtPath:self.path error:nil];
+        
+    [self willChangeValueForKey:@"image"];
+    [self willChangeValueForKey:@"path"];
+    [self setPrimitiveValue:_path forKey:@"path"];
+    [self didChangeValueForKey:@"path"];
+    [self didChangeValueForKey:@"image"];
+}
+
+#pragma mark - Kill
+
+- (void)prepareForDeletion
+{
+    self.path = nil;
+}
+
+#pragma mark - Helpers
+
+- (void)downloadAlbumArtFromURL:(NSURL*)url
+{
     NSString *cachedDir = [[self.applicationDocumentsDirectory URLByAppendingPathComponent:folder] path];
     NSString *cachedPath = [cachedDir stringByAppendingPathComponent:url.lastPathComponent];
     
     if(![NSFileManager.defaultManager fileExistsAtPath:cachedDir])
+    {
         [NSFileManager.defaultManager createDirectoryAtPath:cachedDir withIntermediateDirectories:NO attributes:nil error:nil];
+        
+        const char* filePath = cachedDir.fileSystemRepresentation;
+        u_int8_t attrValue = 1;
+        setxattr(filePath, "com.apple.MobileBackup", &attrValue, sizeof(attrValue), 0, 0);
+    }
     
     // ---
     
@@ -46,7 +119,7 @@
         if([NSFileManager.defaultManager fileExistsAtPath:resourcePath]
         && ![NSFileManager.defaultManager fileExistsAtPath:cachedPath])
         {
-            //NSLog(@"Copying %@ named %@", folder, url.lastPathComponent);
+            NSLog(@"Copying %@ named %@", folder, url.lastPathComponent);
             
             self.path = cachedPath;
             [NSFileManager.defaultManager copyItemAtPath:resourcePath toPath:cachedPath error:nil];
@@ -83,7 +156,7 @@
     
     if(downloadFromServer)
     {
-        //NSLog(@"Downloading %@ named %@", folder, url.lastPathComponent);
+        NSLog(@"Downloading %@ named %@", folder, url.lastPathComponent);
         __block AlbumArt *weak = self;
         
         NSURLRequest *urlRequest = [NSURLRequest requestWithURL:url];
@@ -93,7 +166,7 @@
             NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse*)response;
             if([httpResponse respondsToSelector:@selector(statusCode)] && httpResponse.statusCode == 200)
             {
-                //NSLog(@"Downloaded %@ named %@", folder, url.lastPathComponent);
+                NSLog(@"Downloaded %@ named %@", folder, url.lastPathComponent);
                 
                 // TODO: Shrink file to largest needed size on iPhone and iPad
                 weak.path = cachedPath;
@@ -106,56 +179,10 @@
                     [NSFileManager.defaultManager setAttributes:fileAttributes ofItemAtPath:cachedPath error:nil];
                 }
                 
-                // TODO: post notification
+                [NSNotificationCenter.defaultCenter postNotificationName:@"albumArtDidChange" object:self.show];
             }
         }];
     }
-}
-
-- (NSString*)path
-{
-    NSString *_path = [self primitiveValueForKey:@"path"];
-    
-    if((!_path || [_path isEqualToString:@""]) && self.url)
-    {
-        NSURL *url = [NSURL URLWithString:self.url];
-        NSString *cachedDir = [[self.applicationDocumentsDirectory URLByAppendingPathComponent:folder] path];
-        NSString *cachedPath = [cachedDir stringByAppendingPathComponent:url.lastPathComponent];
-        
-        if([NSFileManager.defaultManager fileExistsAtPath:cachedPath])
-        {
-            _path = cachedPath;
-            [self willChangeValueForKey:@"image"];
-            [self willChangeValueForKey:@"path"];
-            [self setPrimitiveValue:_path forKey:@"path"];
-            [self didChangeValueForKey:@"path"];
-            [self didChangeValueForKey:@"image"];
-            
-            //[self.managedObjectContext save:nil];
-        }
-    }
-    
-    return _path;
-}
-
-- (void)setPath:(NSString*)_path
-{
-    if([_path isEqualToString:self.path])
-        return;
-    
-    if([NSFileManager.defaultManager fileExistsAtPath:self.path])
-        [NSFileManager.defaultManager removeItemAtPath:self.path error:nil];
-        
-    [self willChangeValueForKey:@"image"];
-    [self willChangeValueForKey:@"path"];
-    [self setPrimitiveValue:_path forKey:@"path"];
-    [self didChangeValueForKey:@"path"];
-    [self didChangeValueForKey:@"image"];
-}
-
-- (void)prepareForDeletion
-{
-    self.path = nil;
 }
 
 - (NSURL*)applicationDocumentsDirectory

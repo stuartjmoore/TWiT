@@ -74,6 +74,11 @@
 
     
     [NSNotificationCenter.defaultCenter addObserver:self
+                                           selector:@selector(albumArtDidChange:)
+                                               name:@"albumArtDidChange"
+                                             object:nil];
+    
+    [NSNotificationCenter.defaultCenter addObserver:self
                                            selector:@selector(redrawSchedule:)
                                                name:@"ScheduleDidUpdate"
                                              object:self.channel.schedule];
@@ -501,6 +506,12 @@
     else if([notification.name isEqualToString:@"enclosureDownloadDidFinish"]
     || [notification.name isEqualToString:@"enclosureDownloadDidFail"])
         cell.progress = 1;
+}
+
+- (void)albumArtDidChange:(NSNotification*)notification
+{
+    self.showsTableCache = nil;
+    [self.tableView reloadData];
 }
 
 #pragma mark - Table View
@@ -1223,6 +1234,7 @@
     
     [self.tableView removeObserver:self forKeyPath:@"contentOffset"];
     [NSNotificationCenter.defaultCenter removeObserver:self name:@"ScheduleDidUpdate" object:self.channel.schedule];
+    [NSNotificationCenter.defaultCenter removeObserver:self name:@"albumArtDidChange" object:nil];
     
     [super viewDidUnload];
 }
