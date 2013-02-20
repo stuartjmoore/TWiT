@@ -6,8 +6,6 @@
 //  Copyright (c) 2013 Stuart Moore. All rights reserved.
 //
 
-#include <sys/xattr.h>
-
 #import "Enclosure.h"
 #import "Episode.h"
 
@@ -75,9 +73,8 @@
     {
         [NSFileManager.defaultManager createDirectoryAtPath:downloadDir withIntermediateDirectories:NO attributes:nil error:nil];
         
-        const char* filePath = downloadDir.fileSystemRepresentation;
-        u_int8_t attrValue = 1;
-        setxattr(filePath, "com.apple.MobileBackup", &attrValue, sizeof(attrValue), 0, 0);
+        NSURL *downloadURL = [NSURL URLWithString:downloadDir];
+        [downloadURL setResourceValue:@YES forKey:NSURLIsExcludedFromBackupKey error:nil];
     }
     
     if (![NSFileManager.defaultManager fileExistsAtPath:downloadPath])

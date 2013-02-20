@@ -256,13 +256,13 @@
     {
         if(deleteDownloads)
         {
-            NSString *filePath = [self.applicationDocumentsDirectory.path stringByAppendingPathComponent:@"Downloads"];
+            NSString *filePath = [self.applicationDocumentsDirectory.path stringByAppendingPathComponent:@"Downloads.nosync"];
             [NSFileManager.defaultManager removeItemAtPath:filePath error:nil];
         }
         
         if(deletePosters)
         {
-            NSString *filePath = [self.applicationDocumentsDirectory.path stringByAppendingPathComponent:@"Posters"];
+            NSString *filePath = [self.applicationCachesDirectory.path stringByAppendingPathComponent:@"Posters"];
             [NSFileManager.defaultManager removeItemAtPath:filePath error:nil];
         }
     }
@@ -490,6 +490,12 @@
 }
 
 #pragma mark - Application's Documents directory
+
+- (NSURL*)applicationCachesDirectory
+{
+    return [[NSFileManager.defaultManager URLsForDirectory:NSCachesDirectory inDomains:NSUserDomainMask] lastObject];
+}
+
 
 - (NSURL*)applicationDocumentsDirectory
 {

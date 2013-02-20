@@ -6,8 +6,6 @@
 //  Copyright (c) 2013 Stuart Moore. All rights reserved.
 //
 
-#include <sys/xattr.h>
-
 #import "AlbumArt.h"
 #import "Show.h"
 
@@ -101,9 +99,8 @@
     {
         [NSFileManager.defaultManager createDirectoryAtPath:cachedDir withIntermediateDirectories:NO attributes:nil error:nil];
         
-        const char* filePath = cachedDir.fileSystemRepresentation;
-        u_int8_t attrValue = 1;
-        setxattr(filePath, "com.apple.MobileBackup", &attrValue, sizeof(attrValue), 0, 0);
+        NSURL *cachedURL = [NSURL URLWithString:cachedDir];
+        [cachedURL setResourceValue:@YES forKey:NSURLIsExcludedFromBackupKey error:nil];
     }
     
     // ---
