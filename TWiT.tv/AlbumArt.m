@@ -57,8 +57,6 @@
     
     if(_path && ![NSFileManager.defaultManager fileExistsAtPath:_path] && self.url)
     {
-        NSLog(@"%@", self.url);
-        
         [self willChangeValueForKey:@"path"];
         [self setPrimitiveValue:nil forKey:@"path"];
         [self didChangeValueForKey:@"path"];
@@ -119,8 +117,6 @@
         if([NSFileManager.defaultManager fileExistsAtPath:resourcePath]
         && ![NSFileManager.defaultManager fileExistsAtPath:cachedPath])
         {
-            NSLog(@"Copying %@ named %@", folder, url.lastPathComponent);
-            
             self.path = cachedPath;
             [NSFileManager.defaultManager copyItemAtPath:resourcePath toPath:cachedPath error:nil];
             
@@ -156,7 +152,6 @@
     
     if(downloadFromServer)
     {
-        NSLog(@"Downloading %@ named %@", folder, url.lastPathComponent);
         __block AlbumArt *weak = self;
         
         NSURLRequest *urlRequest = [NSURLRequest requestWithURL:url];
@@ -166,8 +161,6 @@
             NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse*)response;
             if([httpResponse respondsToSelector:@selector(statusCode)] && httpResponse.statusCode == 200)
             {
-                NSLog(@"Downloaded %@ named %@", folder, url.lastPathComponent);
-                
                 // TODO: Shrink file to largest needed size on iPhone and iPad
                 weak.path = cachedPath;
                 [data writeToFile:cachedPath atomically:NO];

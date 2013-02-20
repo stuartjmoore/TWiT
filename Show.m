@@ -252,8 +252,6 @@
         if(feed.lastUpdated && feed.lastUpdated.timeIntervalSinceNow > -self.updateInterval)
             continue;
         
-        NSLog(@"updateEpisodes - threadCount - %d", self.threadCount);
-        
         if(self.threadCount == 0)
             UIApplication.sharedApplication.networkActivityIndicatorVisible = YES;
         
@@ -283,7 +281,6 @@
                     
                     if(lastModified == nil || ![lastModified isEqualToDate:feed.lastUpdated])
                     {
-                        NSLog(@"reload %@ - %@", self.title, feed.title);
                         feed.lastUpdated = lastModified;
                         [self updatePodcastFeed:feed];
                         return;
@@ -481,8 +478,6 @@
         UIApplication.sharedApplication.networkActivityIndicatorVisible = NO;
         [self.managedObjectContext save:nil];
     }
-    
-    NSLog(@"finishUpdate - threadCount - %d", self.threadCount);
 }
 
 @end

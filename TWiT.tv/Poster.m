@@ -132,7 +132,6 @@
 
 - (void)prepareForDeletion
 {
-    NSLog(@"prepareForDeletion, %@", self);
     self.path = nil;
 }
 
@@ -146,8 +145,6 @@
     if(![NSFileManager.defaultManager fileExistsAtPath:cachedDir])
         [NSFileManager.defaultManager createDirectoryAtPath:cachedDir withIntermediateDirectories:NO attributes:nil error:nil];
     
-    NSLog(@"Downloading %@ named %@", folder, url.lastPathComponent);
-    
     __block Poster *weak = self;
     
     NSURLRequest *urlRequest = [NSURLRequest requestWithURL:url];
@@ -157,8 +154,6 @@
         NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse*)response;
         if([httpResponse respondsToSelector:@selector(statusCode)] && httpResponse.statusCode == 200)
         {
-            NSLog(@"Downloaded %@ named %@", folder, url.lastPathComponent);
-            
             weak.path = cachedPath;
             [data writeToFile:cachedPath atomically:NO];
             
@@ -166,8 +161,6 @@
         }
         else
         {
-            NSLog(@"Unable to download %@ named %@", folder, url.lastPathComponent);
-            
             [weak willChangeValueForKey:@"url"];
             [weak setPrimitiveValue:nil forKey:@"url"];
             [weak didChangeValueForKey:@"url"];

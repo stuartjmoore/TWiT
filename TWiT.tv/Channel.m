@@ -265,8 +265,6 @@
 
 - (void)reloadSchedule
 {
-    NSLog(@"reloadSchedule");
-    
     self.schedule = [[Schedule alloc] init];
     NSMutableArray *schedule = [NSMutableArray array];
     

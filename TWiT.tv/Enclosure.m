@@ -6,10 +6,12 @@
 //  Copyright (c) 2013 Stuart Moore. All rights reserved.
 //
 
+#include <sys/xattr.h>
+
 #import "Enclosure.h"
 #import "Episode.h"
 
-#define folder @"Downloads"
+#define folder @"Downloads.nosync"
 
 @implementation Enclosure
 
@@ -70,7 +72,13 @@
     NSString *downloadPath = [downloadDir stringByAppendingPathComponent:url.lastPathComponent];
     
     if(![NSFileManager.defaultManager fileExistsAtPath:downloadDir])
+    {
         [NSFileManager.defaultManager createDirectoryAtPath:downloadDir withIntermediateDirectories:NO attributes:nil error:nil];
+        
+        const char* filePath = downloadDir.fileSystemRepresentation;
+        u_int8_t attrValue = 1;
+        setxattr(filePath, "com.apple.MobileBackup", &attrValue, sizeof(attrValue), 0, 0);
+    }
     
     if (![NSFileManager.defaultManager fileExistsAtPath:downloadPath])
         [NSFileManager.defaultManager createFileAtPath:downloadPath contents:nil attributes:nil];

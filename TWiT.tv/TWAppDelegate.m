@@ -39,10 +39,9 @@
             [NSFileManager.defaultManager removeItemAtPath:filePath error:nil];
         }
     }
-    else
-    {
-        [self deleteUserDataIfSet];
-    }
+
+    [self deleteUserDataIfSet];
+
     
     NSString *versionString = NSBundle.mainBundle.infoDictionary[@"CFBundleShortVersionString"];
     [NSUserDefaults.standardUserDefaults setFloat:versionString.floatValue forKey:@"last-version"];
@@ -244,8 +243,6 @@
     BOOL deleteAll = [defaults boolForKey:@"delete-all"];
     BOOL deleteDownloads = [defaults boolForKey:@"delete-downloads"];
     BOOL deletePosters = [defaults boolForKey:@"delete-posters"];
-    
-    NSLog(@"Delete: %d %d %d", deleteAll, deleteDownloads, deletePosters);
     
     if(deleteAll)
     {
