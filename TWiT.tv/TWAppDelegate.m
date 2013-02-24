@@ -30,8 +30,8 @@
     [AVAudioSession.sharedInstance setCategory:AVAudioSessionCategoryPlayback error:nil];
     [AVAudioSession.sharedInstance setActive:YES error:nil];
     
-
-    if([NSUserDefaults.standardUserDefaults floatForKey:@"last-version"] < 4.1)
+    
+    if([NSUserDefaults.standardUserDefaults floatForKey:@"last-version"] < 4.1f)
     {
         for(NSString *file in [NSFileManager.defaultManager contentsOfDirectoryAtPath:self.applicationDocumentsDirectory.path error:nil])
         {
@@ -209,6 +209,8 @@
 {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
     // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
+    
+    [self saveContext];
 }
 - (void)applicationDidEnterBackground:(UIApplication*)application
 {
