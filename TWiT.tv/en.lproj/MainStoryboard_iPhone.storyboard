@@ -1047,10 +1047,17 @@
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" hidesWhenStopped="YES" animating="YES" style="whiteLarge" id="MzV-jN-w5f">
-                                <rect key="frame" x="141" y="222" width="37" height="37"/>
+                            <view contentMode="scaleToFill" id="N1A-nM-fY5" userLabel="Toaster">
+                                <rect key="frame" x="121" y="202" width="77" height="77"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                            </activityIndicatorView>
+                                <subviews>
+                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" hidesWhenStopped="YES" animating="YES" style="whiteLarge" id="MzV-jN-w5f">
+                                        <rect key="frame" x="20" y="20" width="37" height="37"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                    </activityIndicatorView>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.75" colorSpace="calibratedWhite"/>
+                            </view>
                             <view hidden="YES" contentMode="scaleToFill" id="fx5-yC-zcf" userLabel="Quality">
                                 <rect key="frame" x="0.0" y="136" width="320" height="200"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
@@ -1181,6 +1188,7 @@
                         <outlet property="timeOfEndLabel" destination="XIg-yO-9vc" id="PHK-ON-eEN"/>
                         <outlet property="timeRemainingLabel" destination="tCj-YC-Tn8" id="3IZ-Oo-CBX"/>
                         <outlet property="titleLabel" destination="3NX-f6-dih" id="D7d-9b-49X"/>
+                        <outlet property="toasterView" destination="N1A-nM-fY5" id="2b4-48-yBa"/>
                         <outlet property="toolbarView" destination="C6H-ll-aCQ" id="HM4-k9-XvX"/>
                     </connections>
                 </viewController>
@@ -1373,10 +1381,17 @@
                                     <bool key="isElement" value="YES"/>
                                 </accessibility>
                             </view>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" hidesWhenStopped="YES" animating="YES" style="whiteLarge" id="LJJ-xm-kov">
-                                <rect key="frame" x="142" y="221" width="37" height="37"/>
+                            <view contentMode="scaleToFill" id="sHE-1Y-Nhf" userLabel="Toaster">
+                                <rect key="frame" x="122" y="201" width="77" height="77"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                            </activityIndicatorView>
+                                <subviews>
+                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" hidesWhenStopped="YES" animating="YES" style="whiteLarge" id="LJJ-xm-kov">
+                                        <rect key="frame" x="20" y="20" width="37" height="37"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                    </activityIndicatorView>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.75" colorSpace="calibratedWhite"/>
+                            </view>
                             <view hidden="YES" contentMode="scaleToFill" id="UCw-9J-u9P" userLabel="Quality">
                                 <rect key="frame" x="0.0" y="232" width="320" height="200"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
@@ -1506,6 +1521,7 @@
                         <outlet property="spinner" destination="LJJ-xm-kov" id="964-3j-7Uq"/>
                         <outlet property="subtitleLabel" destination="u3L-jY-1xT" id="oHh-6Y-TQL"/>
                         <outlet property="titleLabel" destination="vtb-c9-jZa" id="yb3-ST-4PW"/>
+                        <outlet property="toasterView" destination="sHE-1Y-Nhf" id="t6o-DI-LcM"/>
                         <outlet property="toolbarView" destination="M8l-KG-2B8" id="3RL-ix-9bu"/>
                     </connections>
                 </viewController>
@@ -1676,6 +1692,7 @@
                 <relationship kind="outlet" name="timeOfEndLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="timeRemainingLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="titleLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="toasterView" candidateClass="UIView"/>
                 <relationship kind="outlet" name="toolbarView" candidateClass="UIView"/>
             </relationships>
         </class>
@@ -1836,6 +1853,7 @@
                 <relationship kind="outlet" name="spinner" candidateClass="UIActivityIndicatorView"/>
                 <relationship kind="outlet" name="subtitleLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="titleLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="toasterView" candidateClass="UIView"/>
                 <relationship kind="outlet" name="toolbarView" candidateClass="UIView"/>
             </relationships>
         </class>

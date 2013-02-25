@@ -19,6 +19,7 @@
 @property (nonatomic, weak) IBOutlet UINavigationBar *navigationBar;
 @property (nonatomic, weak) IBOutlet UILabel *titleLabel, *subtitleLabel;
 
+@property (nonatomic, weak) IBOutlet UIView *toasterView;
 @property (nonatomic, weak) IBOutlet UIActivityIndicatorView *spinner;
 
 @property (nonatomic, weak) IBOutlet UIView *toolbarView;

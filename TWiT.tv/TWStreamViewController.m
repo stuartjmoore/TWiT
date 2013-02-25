@@ -52,6 +52,8 @@
     self.titleLabel.font = [UIFont fontWithName:@"Vollkorn-BoldItalic" size:self.titleLabel.font.pointSize];
     [self updateTitle];
     
+    self.toasterView.layer.cornerRadius = 6;
+    
     self.delegate = (TWAppDelegate*)UIApplication.sharedApplication.delegate;
     
     if(!self.delegate.nowPlaying || ![self.delegate.nowPlaying isKindOfClass:Stream.class]
@@ -61,6 +63,7 @@
     }
     else
     {
+        self.toasterView.hidden = YES;
         [self.spinner stopAnimating];
     }
     
@@ -187,6 +190,7 @@
     {
         if(self.delegate.player.loadState != MPMovieLoadStateUnknown)
         {
+            self.toasterView.hidden = YES;
             [self.spinner stopAnimating];
         }
     }
@@ -327,6 +331,7 @@
 
 - (void)tableView:(UITableView*)tableView didSelectRowAtIndexPath:(NSIndexPath*)indexPath
 {
+    self.toasterView.hidden = NO;
     [self.spinner startAnimating];
     
     [UIView animateWithDuration:0.3f animations:^{

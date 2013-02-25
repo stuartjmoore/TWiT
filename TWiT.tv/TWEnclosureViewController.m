@@ -6,6 +6,8 @@
 //  Copyright (c) 2013 Stuart Moore. All rights reserved.
 //
 
+#import <QuartzCore/QuartzCore.h>
+
 #import "TWAppDelegate.h"
 
 #import "TWEnclosureViewController.h"
@@ -60,6 +62,8 @@
     self.titleLabel.text = self.enclosure.episode.show.title;
     self.subtitleLabel.text = self.enclosure.episode.title;
     
+    self.toasterView.layer.cornerRadius = 6;
+    
     self.delegate = (TWAppDelegate*)UIApplication.sharedApplication.delegate;
     
     if(!self.delegate.nowPlaying || ![self.delegate.nowPlaying isKindOfClass:Enclosure.class]
@@ -78,7 +82,9 @@
     else
     {
         [self updateSeekbar];
+        self.toasterView.hidden = YES;
         [self.spinner stopAnimating];
+        self.infoView.hidden = self.delegate.player.airPlayVideoActive ? NO : (self.enclosure.type == TWTypeVideo);
     }
     
     self.enclosure = self.delegate.nowPlaying;
@@ -107,9 +113,6 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    
-    if(self.delegate.player.playbackState == MPMoviePlaybackStatePlaying)
-        self.infoView.hidden = self.delegate.player.airPlayVideoActive ? NO : (self.enclosure.type == TWTypeVideo);
     
     [self.splitViewContainer hidePlaybar];
     TWNavigationController *navigationController = (TWNavigationController*)self.navigationController;
@@ -154,6 +157,7 @@
     {
         if(self.delegate.player.loadState != MPMovieLoadStateUnknown)
         {
+            self.toasterView.hidden = YES;
             [self.spinner stopAnimating];
             self.infoView.hidden = self.delegate.player.airPlayVideoActive ? NO : (self.enclosure.type == TWTypeVideo);
         }
@@ -369,6 +373,7 @@
 
 - (void)tableView:(UITableView*)tableView didSelectRowAtIndexPath:(NSIndexPath*)indexPath
 {
+    self.toasterView.hidden = NO;
     [self.spinner startAnimating];
     
     [UIView animateWithDuration:0.3f animations:^{
