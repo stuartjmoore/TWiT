@@ -237,6 +237,8 @@
 {
     if(self.infoView.hidden)
         [self hideControls:!self.toolbarView.hidden];
+    else
+        [self play:nil];
 }
 
 - (void)hideControls:(BOOL)hide
@@ -286,13 +288,9 @@
 - (IBAction)play:(UIButton*)sender
 {
     if(self.delegate.player.playbackState == MPMoviePlaybackStatePlaying)
-    {
         [self.delegate pause];
-    }
     else
-    {
         [self.delegate play];
-    }
 }
 
 - (IBAction)openChatView:(UIButton*)sender

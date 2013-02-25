@@ -247,6 +247,8 @@
 {
     if(self.infoView.hidden)
         [self hideControls:!self.toolbarView.hidden];
+    else
+        [self play:nil];
 }
 
 - (void)hideControls:(BOOL)hide
