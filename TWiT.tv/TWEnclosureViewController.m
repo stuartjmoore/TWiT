@@ -245,7 +245,7 @@
 
 - (void)userDidTapPlayer:(UIGestureRecognizer*)sender
 {
-    if(self.enclosure.type != TWTypeAudio)
+    if(self.infoView.hidden)
         [self hideControls:!self.toolbarView.hidden];
 }
 

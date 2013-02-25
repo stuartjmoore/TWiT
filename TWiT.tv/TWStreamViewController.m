@@ -235,7 +235,8 @@
 
 - (void)userDidTapPlayer:(UIGestureRecognizer*)sender
 {
-    [self hideControls:!self.toolbarView.hidden];
+    if(self.infoView.hidden)
+        [self hideControls:!self.toolbarView.hidden];
 }
 
 - (void)hideControls:(BOOL)hide
