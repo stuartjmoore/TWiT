@@ -60,8 +60,6 @@
     self.titleLabel.text = self.enclosure.episode.show.title;
     self.subtitleLabel.text = self.enclosure.episode.title;
     
-    self.infoAlbumArtView.image = self.enclosure.episode.show.albumArt.image;
-    
     self.delegate = (TWAppDelegate*)UIApplication.sharedApplication.delegate;
     
     if(!self.delegate.nowPlaying || ![self.delegate.nowPlaying isKindOfClass:Enclosure.class]
@@ -87,10 +85,7 @@
     
     [self drawLabelsWithTime:self.enclosure.episode.lastTimecode andDuration:self.enclosure.episode.duration];
     
-    self.infoView.hidden = self.delegate.player.airPlayVideoActive ? NO : (self.enclosure.type == TWTypeVideo);
-    
-    //if(self.enclosure.type == TWTypeVideo)
-    //    self.infoAlbumArtView.image = self.enclosure.episode.poster.image;
+    self.infoAlbumArtView.image = (self.enclosure.type == TWTypeAudio) ? self.enclosure.episode.show.albumArt.image : self.enclosure.episode.poster.image;
     
     [self.qualityButton setTitle:self.enclosure.title forState:UIControlStateNormal];
     UIImage *qualityImage = [self.qualityButton backgroundImageForState:UIControlStateNormal];
@@ -112,6 +107,9 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    
+    if(self.delegate.player.playbackState == MPMoviePlaybackStatePlaying)
+        self.infoView.hidden = self.delegate.player.airPlayVideoActive ? NO : (self.enclosure.type == TWTypeVideo);
     
     [self.splitViewContainer hidePlaybar];
     TWNavigationController *navigationController = (TWNavigationController*)self.navigationController;
@@ -157,7 +155,7 @@
         if(self.delegate.player.loadState != MPMovieLoadStateUnknown)
         {
             [self.spinner stopAnimating];
-            //self.infoView.hidden = self.delegate.player.airPlayVideoActive ? NO : (self.enclosure.type == TWTypeVideo);
+            self.infoView.hidden = self.delegate.player.airPlayVideoActive ? NO : (self.enclosure.type == TWTypeVideo);
         }
     }
     else if([notification.name isEqualToString:@"MPMoviePlayerPlaybackStateDidChangeNotification"])
@@ -191,7 +189,8 @@
                 self.enclosure = enclosure;
                 self.delegate.nowPlaying = enclosure;
                 
-                self.infoView.hidden = self.delegate.player.airPlayVideoActive ? NO : (self.enclosure.type == TWTypeVideo);
+                self.infoView.hidden = NO;
+                self.infoAlbumArtView.image = (self.enclosure.type == TWTypeAudio) ? self.enclosure.episode.show.albumArt.image : self.enclosure.episode.poster.image;
                 [self.qualityButton setTitle:enclosure.title forState:UIControlStateNormal];
                 return;
             }
@@ -392,7 +391,8 @@
     
     self.delegate.player.initialPlaybackTime = startTime;
     
-    self.infoView.hidden = self.delegate.player.airPlayVideoActive ? NO : (self.enclosure.type == TWTypeVideo);
+    self.infoView.hidden = NO;
+    self.infoAlbumArtView.image = (self.enclosure.type == TWTypeAudio) ? self.enclosure.episode.show.albumArt.image : self.enclosure.episode.poster.image;
     [self.qualityButton setTitle:enclosure.title forState:UIControlStateNormal];
 }
 
