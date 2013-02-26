@@ -1414,15 +1414,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = TWiT.tv/TWiT.tv.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer: stuart Moore (R5J4HRBT3L)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: stuart Moore";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: stuart Moore (R5J4HRBT3L)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TWiT.tv/TWiT.tv-Prefix.pch";
 				INFOPLIST_FILE = "TWiT.tv/TWiT.tv-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "5B96F3AD-B2BD-475B-A8F5-6FB545762D5D";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "5B96F3AD-B2BD-475B-A8F5-6FB545762D5D";
+				PROVISIONING_PROFILE = "9A1EB3C5-2BFF-4661-B929-29FC505D9852";
 				WRAPPER_EXTENSION = app;
 			};
 			name = "Ad Hoc";
@@ -1483,15 +1482,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = TWiT.tv/TWiT.tv.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer: stuart Moore (R5J4HRBT3L)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: stuart Moore";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: stuart Moore (R5J4HRBT3L)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TWiT.tv/TWiT.tv-Prefix.pch";
 				INFOPLIST_FILE = "TWiT.tv/TWiT.tv-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "5B96F3AD-B2BD-475B-A8F5-6FB545762D5D";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "5B96F3AD-B2BD-475B-A8F5-6FB545762D5D";
+				PROVISIONING_PROFILE = "9A1EB3C5-2BFF-4661-B929-29FC505D9852";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1500,15 +1498,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = TWiT.tv/TWiT.tv.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer: stuart Moore (R5J4HRBT3L)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: stuart Moore";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: stuart Moore (R5J4HRBT3L)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TWiT.tv/TWiT.tv-Prefix.pch";
 				INFOPLIST_FILE = "TWiT.tv/TWiT.tv-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "5B96F3AD-B2BD-475B-A8F5-6FB545762D5D";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "5B96F3AD-B2BD-475B-A8F5-6FB545762D5D";
+				PROVISIONING_PROFILE = "9A1EB3C5-2BFF-4661-B929-29FC505D9852";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
