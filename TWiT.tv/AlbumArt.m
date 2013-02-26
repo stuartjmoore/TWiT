@@ -99,7 +99,7 @@
     {
         [NSFileManager.defaultManager createDirectoryAtPath:cachedDir withIntermediateDirectories:NO attributes:nil error:nil];
         
-        NSURL *cachedURL = [NSURL URLWithString:cachedDir];
+        NSURL *cachedURL = [NSURL fileURLWithPath:cachedDir];
         [cachedURL setResourceValue:@YES forKey:NSURLIsExcludedFromBackupKey error:nil];
     }
     
