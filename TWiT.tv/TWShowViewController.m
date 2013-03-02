@@ -205,7 +205,7 @@
 
 - (IBAction)phone:(UIButton*)sender
 {
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"tel://%@", self.show.phone]];
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"telprompt://%@", self.show.phone]];
     [UIApplication.sharedApplication openURL:url];
 }
 
