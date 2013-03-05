@@ -306,7 +306,7 @@
         [[_nowPlaying episode] setLastTimecode:self.player.currentPlaybackTime];
     }
     
-    if([nowPlaying isKindOfClass:Enclosure.class])
+    if(nowPlaying && [nowPlaying isKindOfClass:Enclosure.class])
     {
         Enclosure *enclosure = (Enclosure*)nowPlaying;
         
@@ -315,7 +315,7 @@
         self.player.initialPlaybackTime = enclosure.episode.lastTimecode;
         [self play];
     }
-    else if([nowPlaying isKindOfClass:Stream.class])
+    else if(nowPlaying && [nowPlaying isKindOfClass:Stream.class])
     {
         Stream *stream = (Stream*)nowPlaying;
         self.player.contentURL = [NSURL URLWithString:stream.url];
@@ -336,15 +336,7 @@
 - (void)pause
 {
     if([self.nowPlaying isKindOfClass:Enclosure.class])
-    {
-        [NSNotificationCenter.defaultCenter addObserver:[self.nowPlaying episode]
-                                               selector:@selector(updatePoster:)
-                                                   name:MPMoviePlayerThumbnailImageRequestDidFinishNotification
-                                                 object:nil];
-        [self.player requestThumbnailImagesAtTimes:@[@(self.player.currentPlaybackTime)] timeOption:MPMovieTimeOptionNearestKeyFrame];
-        
         [[self.nowPlaying episode] setLastTimecode:self.player.currentPlaybackTime];
-    }
     
     [self.player pause];
 }
