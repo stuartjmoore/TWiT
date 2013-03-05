@@ -977,7 +977,7 @@
                        "quality": 2
                        },
                        {
-                       "location": "http://feeds.twit.tv/twig_video_hd",
+                       "location": "http://feeds.twit.tv/specials_video_hd",
                        "type": "video",
                        "title": "HD",
                        "subtitle": "H.264",
