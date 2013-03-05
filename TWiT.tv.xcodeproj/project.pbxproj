@@ -1414,7 +1414,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = TWiT.tv/TWiT.tv.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer: stuart Moore (R5J4HRBT3L)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: stuart Moore";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: stuart Moore (R5J4HRBT3L)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TWiT.tv/TWiT.tv-Prefix.pch";
@@ -1482,7 +1482,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = TWiT.tv/TWiT.tv.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer: stuart Moore (R5J4HRBT3L)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: stuart Moore";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: stuart Moore (R5J4HRBT3L)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TWiT.tv/TWiT.tv-Prefix.pch";
@@ -1498,7 +1498,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = TWiT.tv/TWiT.tv.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer: stuart Moore (R5J4HRBT3L)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: stuart Moore";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: stuart Moore (R5J4HRBT3L)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TWiT.tv/TWiT.tv-Prefix.pch";

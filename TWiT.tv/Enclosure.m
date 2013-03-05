@@ -73,7 +73,7 @@
     {
         [NSFileManager.defaultManager createDirectoryAtPath:downloadDir withIntermediateDirectories:NO attributes:nil error:nil];
         
-        NSURL *downloadURL = [NSURL URLWithString:downloadDir];
+        NSURL *downloadURL = [NSURL fileURLWithPath:downloadDir];
         [downloadURL setResourceValue:@YES forKey:NSURLIsExcludedFromBackupKey error:nil];
     }
     
