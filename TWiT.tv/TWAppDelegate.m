@@ -335,6 +335,17 @@
 
 - (void)pause
 {
+    if([self.nowPlaying isKindOfClass:Enclosure.class])
+    {
+        [NSNotificationCenter.defaultCenter addObserver:[self.nowPlaying episode]
+                                               selector:@selector(updatePoster:)
+                                                   name:MPMoviePlayerThumbnailImageRequestDidFinishNotification
+                                                 object:nil];
+        [self.player requestThumbnailImagesAtTimes:@[@(self.player.currentPlaybackTime)] timeOption:MPMovieTimeOptionNearestKeyFrame];
+        
+        [[self.nowPlaying episode] setLastTimecode:self.player.currentPlaybackTime];
+    }
+    
     [self.player pause];
 }
 
@@ -342,8 +353,9 @@
 {
     [UIApplication.sharedApplication endReceivingRemoteControlEvents];
     [self resignFirstResponder];
-    
+ 
     self.nowPlaying = nil;
+    MPNowPlayingInfoCenter.defaultCenter.nowPlayingInfo = nil;
     
     [self.player stop];
     self.player = nil;
