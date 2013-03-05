@@ -44,6 +44,25 @@
         return;
     }
     
+    
+    UIGraphicsBeginImageContextWithOptions(self.frame.size, YES, UIScreen.mainScreen.scale);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGContextSetFillColorWithColor(context, [UIColor colorWithWhite:245/255.0f alpha:1].CGColor);
+    CGContextFillRect(context, self.bounds);
+    for(int column = 0; column < self.shows.count; column++)
+    {
+        CGContextSetRGBFillColor(context, 1.0f, 0.0f, 0.0f, 1.0f);
+        CGRect frame = [self frameForColumn:column];
+        CGContextFillRect(context, frame);
+        
+        CGContextSetRGBFillColor(context, 245/255.0f, 245/255.0f, 245/255.0f, 1.0f);
+        [[self.shows[column] title] drawInRect:frame withFont:[UIFont boldSystemFontOfSize:14] lineBreakMode:NSLineBreakByWordWrapping alignment:NSTextAlignmentCenter];
+    }
+    self.icons = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    [self setNeedsDisplayInRect:self.bounds];
+    
+    
     __block NSMutableArray *albumArtPathes = [NSMutableArray array];
     __block NSMutableArray *showTitles = [NSMutableArray array];
     __block TWShowsCell *weak = self;
@@ -59,7 +78,7 @@
         UIGraphicsBeginImageContextWithOptions(weak.frame.size, YES, UIScreen.mainScreen.scale);
         
         CGContextRef context = UIGraphicsGetCurrentContext();
-        CGContextSetFillColorWithColor(context, [UIColor colorWithWhite:245/255.0 alpha:1].CGColor);
+        CGContextSetFillColorWithColor(context, [UIColor colorWithWhite:245/255.0f alpha:1].CGColor);
         CGContextFillRect(context, weak.bounds);
         weak.icons = UIGraphicsGetImageFromCurrentImageContext();
         
