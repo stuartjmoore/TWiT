@@ -127,6 +127,9 @@
         NSDateFormatter *dateFormatterLocal = [[NSDateFormatter alloc] init];
         [dateFormatterLocal setTimeZone:[NSTimeZone localTimeZone]];
         [dateFormatterLocal setDateFormat:@"h:mma"];
+        //[dateFormatterLocal setPMSymbol:@"p"];
+        //[dateFormatterLocal setPMSymbol:@"a"];
+        // TODO: remove lowercase for the above.
         timeString = [[dateFormatterLocal stringFromDate:hourDate] lowercaseString];
         
         
