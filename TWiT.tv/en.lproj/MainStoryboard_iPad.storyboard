@@ -1731,6 +1731,11 @@
                         <rect key="frame" x="0.0" y="64" width="768" height="960"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
+                            <view contentMode="scaleToFill" restorationIdentifier="" id="3jF-p9-KZd" userLabel="White Line">
+                                <rect key="frame" x="0.0" y="0.0" width="1" height="960"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
                             <view contentMode="scaleToFill" id="4Gu-bz-hvO">
                                 <rect key="frame" x="0.0" y="0.0" width="768" height="250"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
@@ -2009,6 +2014,7 @@
                 <relationship kind="outlet" name="timeOfEndLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="timeRemainingLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="titleLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="toasterView" candidateClass="UIView"/>
                 <relationship kind="outlet" name="toolbarView" candidateClass="UIView"/>
             </relationships>
         </class>
@@ -2190,6 +2196,7 @@
                 <relationship kind="outlet" name="spinner" candidateClass="UIActivityIndicatorView"/>
                 <relationship kind="outlet" name="subtitleLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="titleLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="toasterView" candidateClass="UIView"/>
                 <relationship kind="outlet" name="toolbarView" candidateClass="UIView"/>
             </relationships>
         </class>
