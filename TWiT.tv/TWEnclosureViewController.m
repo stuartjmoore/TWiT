@@ -240,7 +240,9 @@
     NSDate *endingTime = [[NSDate date] dateByAddingTimeInterval:secondsLeft];
     NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
     dateFormat.dateFormat = @"h:mma";
-    NSString *timeString = [[dateFormat stringFromDate:endingTime] lowercaseString];
+    dateFormat.PMSymbol = @"p";
+    dateFormat.AMSymbol = @"a";
+    NSString *timeString = [dateFormat stringFromDate:endingTime];
     self.timeOfEndLabel.text = [NSString stringWithFormat:@"ends @ %@", timeString];
 }
 

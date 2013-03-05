@@ -66,7 +66,9 @@
         NSDateFormatter *dateFormatterLocal = [[NSDateFormatter alloc] init];
         [dateFormatterLocal setTimeZone:[NSTimeZone localTimeZone]];
         [dateFormatterLocal setDateFormat:@"h:mma"];
-        NSString *timeTitle = [[dateFormatterLocal stringFromDate:hourDate] lowercaseString];
+        [dateFormatterLocal setPMSymbol:@"p"];
+        [dateFormatterLocal setAMSymbol:@"a"];
+        NSString *timeTitle = [dateFormatterLocal stringFromDate:hourDate];
         
         /*
         BOOL is24Hour = [NSDate is24Hour];

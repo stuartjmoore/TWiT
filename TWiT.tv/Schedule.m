@@ -17,7 +17,9 @@
     NSDateFormatter *dateFormatterLocal = [[NSDateFormatter alloc] init];
     [dateFormatterLocal setTimeZone:[NSTimeZone localTimeZone]];
     [dateFormatterLocal setDateFormat:@"h:mma"];
-    return [[dateFormatterLocal stringFromDate:self.start] lowercaseString];
+    [dateFormatterLocal setPMSymbol:@"p"];
+    [dateFormatterLocal setAMSymbol:@"a"];
+    return [dateFormatterLocal stringFromDate:self.start];
 }
 
 - (NSString*)until
