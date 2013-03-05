@@ -21,7 +21,7 @@
         self.isAccessibilityElement = NO;
         
         self.watchButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        self.watchButton.frame = CGRectMake(0, 0, (self.frame.size.width-self.frame.size.height)/2.0f, self.frame.size.height);
+        //self.watchButton.frame = CGRectMake(0, 0, (self.frame.size.width-self.frame.size.height)/2.0f, self.frame.size.height);
         self.watchButton.autoresizingMask = (UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth);
         [self.watchButton setTitle:@"Watch" forState:UIControlStateNormal];
         [self.watchButton setBackgroundImage:[[UIImage imageNamed:@"button-blue-left.png"] stretchableImageWithLeftCapWidth:5 topCapHeight:0] forState:UIControlStateNormal];
@@ -34,7 +34,7 @@
         [self addSubview:self.watchButton];
         
         self.listenButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        self.listenButton.frame = CGRectMake(self.watchButton.frame.size.width, 0, (self.frame.size.width-self.frame.size.height)/2.0f, self.frame.size.height);
+        //self.listenButton.frame = CGRectMake(self.watchButton.frame.size.width, 0, (self.frame.size.width-self.frame.size.height)/2.0f, self.frame.size.height);
         self.listenButton.autoresizingMask = (UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth);
         [self.listenButton setTitle:@"Listen" forState:UIControlStateNormal];
         [self.listenButton setBackgroundImage:[[UIImage imageNamed:@"button-blue-mid.png"] stretchableImageWithLeftCapWidth:1 topCapHeight:0] forState:UIControlStateNormal];
@@ -97,7 +97,7 @@
     }
     else
     {
-        self.watchButton.frame = CGRectMake(0, 0, (self.frame.size.width-self.frame.size.height)/2.0f, self.frame.size.height);
+        self.watchButton.frame = CGRectMake(0, 0, floorf((self.frame.size.width-self.frame.size.height)/2.0f), self.frame.size.height);
     }
 }
 
