@@ -375,6 +375,7 @@
         episodeCell.indexPath = indexPath;
         episodeCell.episode = episode;
         episodeCell.subtitleLabel.text = episode.guests;
+        self.accessibilityLabel = [NSString stringWithFormat:@"Episode %d, %@, with %@.", episode.number, episode.title, episode.guests];
     }
 }
 

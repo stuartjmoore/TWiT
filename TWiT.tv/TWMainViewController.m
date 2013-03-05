@@ -834,6 +834,7 @@
         episodeCell.table = self.tableView;
         episodeCell.indexPath = indexPath;
         episodeCell.episode = episode;
+        self.accessibilityLabel = [NSString stringWithFormat:@"%@ episode %d, %@, with %@.", episode.show.title, episode.number, episode.title, episode.guests];
     }
     else if([cell.reuseIdentifier isEqualToString:@"showsCell"])
     {
