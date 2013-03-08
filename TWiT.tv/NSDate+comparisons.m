@@ -32,10 +32,10 @@
     NSDate *simpleSelf = [cal dateFromComponents:startTimeComponents];
     
     NSDate *tomorrow = [NSDate dateWithTimeIntervalSinceNow:86400];
-    NSDateComponents *todayComponents = [cal components:components fromDate:tomorrow];
-    NSDate *simpleToday = [cal dateFromComponents:todayComponents];
+    NSDateComponents *tomorrowComponents = [cal components:components fromDate:tomorrow];
+    NSDate *simpleTomorrow = [cal dateFromComponents:tomorrowComponents];
     
-    return [simpleSelf isEqualToDate:simpleToday];
+    return [simpleSelf isEqualToDate:simpleTomorrow];
 }
 
 - (BOOL)isBeforeNow
