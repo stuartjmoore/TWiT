@@ -16,10 +16,10 @@
     NSInteger components = (NSEraCalendarUnit|NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit);
     
     NSDateComponents *startTimeComponents = [cal components:components fromDate:self];
-    NSDate *simpleSelf = [NSCalendar.currentCalendar dateFromComponents:startTimeComponents];
+    NSDate *simpleSelf = [cal dateFromComponents:startTimeComponents];
     
     NSDateComponents *todayComponents = [cal components:components fromDate:[NSDate date]];
-    NSDate *simpleToday = [NSCalendar.currentCalendar dateFromComponents:todayComponents];
+    NSDate *simpleToday = [cal dateFromComponents:todayComponents];
     
     return [simpleSelf isEqualToDate:simpleToday];
 }
@@ -29,11 +29,11 @@
     NSInteger components = (NSEraCalendarUnit|NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit);
     
     NSDateComponents *startTimeComponents = [cal components:components fromDate:self];
-    NSDate *simpleSelf = [NSCalendar.currentCalendar dateFromComponents:startTimeComponents];
+    NSDate *simpleSelf = [cal dateFromComponents:startTimeComponents];
     
     NSDate *tomorrow = [NSDate dateWithTimeIntervalSinceNow:86400];
     NSDateComponents *todayComponents = [cal components:components fromDate:tomorrow];
-    NSDate *simpleToday = [NSCalendar.currentCalendar dateFromComponents:todayComponents];
+    NSDate *simpleToday = [cal dateFromComponents:todayComponents];
     
     return [simpleSelf isEqualToDate:simpleToday];
 }
