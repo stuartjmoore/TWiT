@@ -339,6 +339,17 @@
                          title  = @"";
                      }
                  }
+                 else if([feed.show.title isEqualToString:@"OMGcraft"])
+                 {
+                     NSString *commentsString = [[epiDic objectForKey:@"comments"] objectForKey:@"text"];
+                     
+                     NSError *error;
+                     NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"http://twit.tv/omgcraft/(\\d+)" options:NSRegularExpressionCaseInsensitive error:&error];
+                     NSTextCheckingResult *results = [regex firstMatchInString:commentsString options:0 range:NSMakeRange(0, commentsString.length)];
+                     
+                     number = [[commentsString substringWithRange:[results rangeAtIndex:1]] intValue];
+                     title = text;
+                 }
                  else
                  {
                      NSError *error;
