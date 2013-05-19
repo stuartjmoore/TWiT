@@ -49,7 +49,8 @@
     CGContextRef context = UIGraphicsGetCurrentContext();
     CGContextSetFillColorWithColor(context, [UIColor colorWithWhite:245/255.0f alpha:1].CGColor);
     CGContextFillRect(context, self.bounds);
-    for(int column = 0; column < self.shows.count; column++)
+    
+    for(int column = 0, showsCount = self.shows.count; column < showsCount; column++)
     {
         CGContextSetRGBFillColor(context, 1.0f, 0.0f, 0.0f, 1.0f);
         CGRect frame = [self frameForColumn:column];
@@ -84,7 +85,7 @@
         
         self.accessibleElements = [NSMutableArray array];
         
-        for(int column = 0; column < weak.shows.count; column++)
+        for(int column = 0, showsCount = weak.shows.count; column < showsCount; column++)
         {
             CGRect frame = [weak frameForColumn:column];
             
@@ -130,7 +131,7 @@
     UITouch *touch = touches.anyObject;
     CGPoint location = [touch locationInView:self];
     
-    for(int column = 0; column < self.shows.count; column++)
+    for(int column = 0, showsCount = self.shows.count; column < showsCount; column++)
     {
         if(CGRectContainsPoint([self frameForColumn:column], location))
         {   
