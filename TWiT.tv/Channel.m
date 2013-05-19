@@ -91,7 +91,7 @@
             df.timeZone = [NSTimeZone timeZoneWithAbbreviation:@"GMT"];
             lastModifiedServer = [df dateFromString:lastModifiedString];
             
-            //NSLog(@"lastModifiedServer: %f", lastModifiedServer.timeIntervalSince1970); // TODO: SERVER’S DATE!
+            NSLog(@"lastModifiedServer: %f", lastModifiedServer.timeIntervalSince1970); // SERVER’S DATE FOR BELOW!
         }
         @catch(NSException *e)
         {
@@ -110,7 +110,7 @@
             if(error)
                 return;
             
-            lastModifiedLocal = [NSDate dateWithTimeIntervalSince1970:1359491169]; // TODO: REPLACE WITH SERVER’S DATE!
+            lastModifiedLocal = [NSDate dateWithTimeIntervalSince1970:1359491169]; // REPLACE WITH SERVER’S DATE ABOVE!
             
             NSDictionary *fileAttributes = [NSDictionary dictionaryWithObject:lastModifiedLocal forKey:NSFileModificationDate];
             
