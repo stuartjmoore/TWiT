@@ -79,7 +79,7 @@
             else
                 return;
         }
-        
+      
         //---
         
         NSDate *lastModifiedServer = nil;
@@ -102,7 +102,7 @@
         
         BOOL updateDatabase = NO;
         NSDate *lastModifiedLocal = nil;
-        
+
         if(![NSFileManager.defaultManager fileExistsAtPath:cachedPath])
         {
             [NSFileManager.defaultManager copyItemAtPath:resourcedPath toPath:cachedPath error:&error];
@@ -131,11 +131,12 @@
             
             lastModifiedLocal = [fileAttributes fileModificationDate];
         }
-        
+      
+      
         // ---
         
         BOOL downloadFromServer = (!lastModifiedLocal) || ([lastModifiedLocal laterDate:lastModifiedServer] == lastModifiedServer);
-        
+      
         if(downloadFromServer)
         {
             NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
@@ -173,7 +174,7 @@
 
 - (void)updateDatabase
 {
-    NSString *JSONPath = [NSBundle.mainBundle.resourcePath stringByAppendingPathComponent:@"TWiT.json"];
+    NSString *JSONPath = [[self.applicationDocumentsDirectory URLByAppendingPathComponent:@"TWiT.json"] path];
     NSData *JSONData = [NSData dataWithContentsOfFile:JSONPath];
     NSDictionary *JSON = [NSJSONSerialization JSONObjectWithData:JSONData options:0 error:nil];
     
@@ -261,6 +262,7 @@
     }
     
     [self.managedObjectContext save:nil];
+    //[NSFetchedResultsController deleteCacheWithName:@"Shows"];
 }
 
 - (void)reloadSchedule
