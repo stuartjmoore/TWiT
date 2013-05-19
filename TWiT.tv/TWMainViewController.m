@@ -607,11 +607,11 @@
             sectionInfo = self.fetchedShowsController.sections[section];
             int num = sectionInfo.numberOfObjects;
             int columns = 3;
-
+            
             if(UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPad)
                 columns = (self.tableView.frame.size.width <= 448) ? 3 : 4;
             
-            return ceil(num/columns);
+            return ceil((double)num/columns);
         }
     }
     else if(tableView == self.scheduleTable)
