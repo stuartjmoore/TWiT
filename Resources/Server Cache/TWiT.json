@@ -885,7 +885,6 @@
               "schedule": "MO@1300",
               "update_interval": 518400,
               "website": "http://twit.tv/htg",
-              "email": "scott@twit.tv",
               "colors":{
               "top":{
               "red":237,
@@ -1294,6 +1293,120 @@
                        },
                        {
                        "location": "http://feeds.twit.tv/ifive_video_hd",
+                       "type": "video",
+                       "title": "HD",
+                       "subtitle": "H.264",
+                       "quality": 3
+                       }
+                       ]
+              },
+              {
+              "id": 34,
+              "title": "OMGcraft",
+              "schedule_title": "OMGcraft",
+              "short_title": "OMG",
+              "desc": "OMGcraft is your one-stop-shop for everything Minecraft. Discover the big new tips, tricks, and stuff you should know about Minecraft. Hosted by Chad Johnson, this show will make you a Minecraft expert in no time.",
+              "pubdate":"2013-05-19T00:00:00.000Z",
+              "hosts": "Chad Johnson",
+              "album_art": "http://feeds.twit.tv/podcasts/coverart/omgcraft600.jpg#1353196800",
+              "poster": "http://twit.tv/files/imagecache/slideshow-slide/spiros_omgcraft_0050jpeg.jpeg#1353196800",
+              "schedule": "TH@1900",
+              "update_interval": 518400,
+              "email": "mail@omgcraft.com",
+              "website": "http://twit.tv/omgcraft",
+              "colors":{
+              "top":{
+              "red":255,
+              "green":129,
+              "blue":0
+              },
+              "bottom":{
+              "red":254,
+              "green":82,
+              "blue":0
+              }
+              },
+              "urls": [
+                       {
+                       "location": "http://feeds.twit.tv/omgcraft",
+                       "type": "audio",
+                       "title": "Audio",
+                       "subtitle": "MP3",
+                       "quality": 0
+                       },
+                       {
+                       "location": "http://feeds.twit.tv/omgcraft_video_small",
+                       "type": "video",
+                       "title": "Mobile",
+                       "subtitle": "H.264",
+                       "quality": 1
+                       },
+                       {
+                       "location": "http://feeds.twit.tv/omgcraft_video_large",
+                       "type": "video",
+                       "title": "SD",
+                       "subtitle": "H.264",
+                       "quality": 2
+                       },
+                       {
+                       "location": "http://feeds.twit.tv/omgcraft_video_hd",
+                       "type": "video",
+                       "title": "HD",
+                       "subtitle": "H.264",
+                       "quality": 3
+                       }
+                       ]
+              },
+              {
+              "id": 35,
+              "title": "This Week in YouTube",
+              "schedule_title": "This Week in YouTube with Lamarr Wilson",
+              "short_title": "YouTube",
+              "desc": "This Week in YouTube explores the world of online viral video, including news, trends, and even production tips. Hosted by Lamarr Wilson, your favorite YouTube Comedic Vlogger, Chad Johnson, the host of Minecraft gaming show OMGcraft, and Leo Laporte, the Chief TWiT.",
+              "pubdate":"2013-05-19T00:00:00.000Z",
+              "hosts": "Lamarr Wilson, Chad Johnson, & Leo Laporte",
+              "album_art": "http://feeds.twit.tv/podcasts/coverart/yt600.jpg#1353196800",
+              "poster": "http://twit.tv/files/imagecache/slideshow-slide/spiros_yt_0003jpg.jpg#1353196800",
+              "schedule": "SU@1400",
+              "update_interval": 518400,
+              "email": "yt@twit.tv",
+              "website": "http://twit.tv/yt",
+              "colors":{
+              "top":{
+              "red":255,
+              "green":129,
+              "blue":0
+              },
+              "bottom":{
+              "red":254,
+              "green":82,
+              "blue":0
+              }
+              },
+              "urls": [
+                       {
+                       "location": "http://feeds.twit.tv/yt",
+                       "type": "audio",
+                       "title": "Audio",
+                       "subtitle": "MP3",
+                       "quality": 0
+                       },
+                       {
+                       "location": "http://feeds.twit.tv/yt_video_small",
+                       "type": "video",
+                       "title": "Mobile",
+                       "subtitle": "H.264",
+                       "quality": 1
+                       },
+                       {
+                       "location": "http://feeds.twit.tv/yt_video_large",
+                       "type": "video",
+                       "title": "SD",
+                       "subtitle": "H.264",
+                       "quality": 2
+                       },
+                       {
+                       "location": "http://feeds.twit.tv/yt_video_hd",
                        "type": "video",
                        "title": "HD",
                        "subtitle": "H.264",
