@@ -105,34 +105,21 @@
 {
     NSUbiquitousKeyValueStore *store = [NSUbiquitousKeyValueStore defaultStore];
     
-    NSMutableArray *timecodes = [[store arrayForKey:@"timecodes"] mutableCopy] ?: [NSMutableArray array];
-    NSPredicate *pred = [NSPredicate predicateWithFormat:@"showTitle == %@ AND episodeTitle == %@ AND episodeNumber == %@ AND pubDate == %@",
-                         self.show.title, self.title, @(self.number), self.published];
-    NSArray *episodes = [timecodes filteredArrayUsingPredicate:pred];
+    NSString *key = [NSString stringWithFormat:@"%@:%@:%@", self.show.title, self.title, @(self.number)];
+    NSMutableDictionary *episode = [[store dictionaryForKey:key] mutableCopy];
     
-    if(episodes.count > 0)
+    if(!episode)
     {
-        NSMutableDictionary *episode = [episodes.lastObject mutableCopy];
-        [episode setValue: @(watched) forKey:@"watched"];
-        
-        int index = [timecodes indexOfObject:episodes.lastObject];
-        [timecodes replaceObjectAtIndex:index withObject:episode];
-        [store setArray:timecodes forKey:@"timecodes"];
+        episode = [NSMutableDictionary dictionary];
+        [episode setValue:self.published forKey:@"pubDate"];
+        [episode setValue:@(self.lastTimecode) forKey:@"timecode"];
     }
-    else
-    {
-        NSDictionary *episode = @{
-                                  @"showTitle" : self.show.title,
-                                  @"episodeTitle" : self.title,
-                                  @"episodeNumber" : @(self.number),
-                                  @"pubDate" : self.published,
-                                  @"watched" : @(watched),
-                                  @"timecode" : @(self.lastTimecode)
-                                 };
-        
-        [timecodes addObject:episode];
-        [store setArray:timecodes forKey:@"timecodes"];
-    }
+    
+    [episode setValue:@(watched) forKey:@"watched"];
+    [store setDictionary:episode forKey:key];
+    
+    NSLog(@"episode %@", episode);
+    NSLog(@"%@", store.dictionaryRepresentation);
     
     [self willChangeValueForKey:@"watched"];
     [self setPrimitiveValue:@(watched) forKey:@"watched"];
