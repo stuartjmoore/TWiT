@@ -103,6 +103,9 @@
 
 - (void)setWatched:(BOOL)watched
 {
+    if(watched == self.watched)
+        return;
+    
     NSUbiquitousKeyValueStore *store = [NSUbiquitousKeyValueStore defaultStore];
     
     NSString *key = [NSString stringWithFormat:@"%@:%@", self.show.titleAcronym, @(self.number)];
@@ -123,7 +126,6 @@
     [store setDictionary:episode forKey:key];
     
     NSLog(@"episode %@", episode);
-    NSLog(@"%@", store.dictionaryRepresentation);
     
     [self willChangeValueForKey:@"watched"];
     [self setPrimitiveValue:@(watched) forKey:@"watched"];
