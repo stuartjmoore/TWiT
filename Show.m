@@ -452,7 +452,20 @@
                  [self addEpisodesObject:episode];
                  episode.title = title;
                  episode.number = number;
-                 episode.watched = firstLoad ?: !self.favorite;
+                 
+                 bool watched = firstLoad ?: !self.favorite;
+                 
+                 if(watched)
+                 {
+                     [episode willChangeValueForKey:@"watched"];
+                     [episode setPrimitiveValue:@(watched) forKey:@"watched"];
+                     [episode didChangeValueForKey:@"watched"];
+                 }
+                 else
+                 {
+                     // store in iCloud
+                     episode.watched = watched;
+                 }
              }
              
              if(!episode.published)

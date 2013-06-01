@@ -117,6 +117,7 @@
         [episode setValue:self.published forKey:@"pubDate"];
         [episode setValue:@(self.lastTimecode) forKey:@"timecode"];
         
+        [episode setValue:self.show.titleAcronym forKey:@"show.titleAcronym"];
         [episode setValue:self.show.title forKey:@"show.title"];
         [episode setValue:self.title forKey:@"title"];
         [episode setValue:@(self.number) forKey:@"number"];
@@ -146,6 +147,7 @@
         [episode setValue:self.published forKey:@"pubDate"];
         [episode setValue:@(self.watched) forKey:@"watched"];
         
+        [episode setValue:self.show.titleAcronym forKey:@"show.titleAcronym"];
         [episode setValue:self.show.title forKey:@"show.title"];
         [episode setValue:self.title forKey:@"title"];
         [episode setValue:@(self.number) forKey:@"number"];

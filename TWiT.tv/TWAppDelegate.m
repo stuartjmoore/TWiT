@@ -85,6 +85,8 @@
         
         for(NSString *key in keys)
             [store removeObjectForKey:key];
+         
+        NSLog(@"Deleted all of iCloud");
         */
         [store setBool:YES forKey:@"paid"]; // TODO: Delete when you enable in-app.
         [store synchronize];
@@ -522,6 +524,35 @@
             }
         }
         [context save:nil];
+    }
+    else if(reasonForChange && reasonForChange.integerValue == NSUbiquitousKeyValueStoreQuotaViolationChange)
+    {
+        NSLog(@"Empty out iCloud");
+        
+        NSUbiquitousKeyValueStore *store = [NSUbiquitousKeyValueStore defaultStore];
+        NSDictionary *storeDict = store.dictionaryRepresentation;
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"self isKindOfClass: %@", NSDictionary.class];
+        NSArray *episodesArray = [storeDict.allValues filteredArrayUsingPredicate:predicate];
+        NSArray *sortedArray = [episodesArray sortedArrayUsingComparator:^NSComparisonResult(NSDictionary *episode1, NSDictionary *episode2)
+        {
+            NSDate *date1 = episode1[@"pubDate"];
+            NSDate *date2 = episode2[@"pubDate"];
+            
+            if(!date1 && date2)
+                return NSOrderedAscending;
+            else if(!date2 && date1)
+                return NSOrderedDescending;
+            
+            return [date1 compare:date2];
+        }];
+        
+        for(int i = 0; i < sortedArray.count/3; i++)
+        {
+            NSDictionary *episode = sortedArray[i];
+            NSString *key = [NSString stringWithFormat:@"%@:%@", episode[@"show.titleAcronym"], episode[@"number"]];
+            
+            [store removeObjectForKey:key];
+        }
     }
 }
 
