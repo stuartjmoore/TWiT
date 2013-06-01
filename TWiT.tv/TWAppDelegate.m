@@ -77,7 +77,7 @@
     if(ubiq)
     {
         NSUbiquitousKeyValueStore *store = [NSUbiquitousKeyValueStore defaultStore];
-        [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(updateTimecodes:)
+        [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(updateiCloud:)
                                                    name:NSUbiquitousKeyValueStoreDidChangeExternallyNotification
                                                  object:store];
         /*
@@ -458,7 +458,7 @@
 
 #pragma mark - iCloud
 
-- (void)updateTimecodes:(NSNotification*)notification;
+- (void)updateiCloud:(NSNotification*)notification;
 {
     NSDictionary *userInfo = [notification userInfo];
     NSNumber *reasonForChange = [userInfo objectForKey:NSUbiquitousKeyValueStoreChangeReasonKey];
