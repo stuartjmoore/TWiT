@@ -13,6 +13,7 @@
 #import "TWMainViewController.h"
 #import "TWPlaybarViewController.h"
 
+#import "NSManagedObjectContext+ConvenienceMethods.h"
 #import "NSDate+comparisons.h"
 
 #import "Channel.h"
@@ -81,6 +82,13 @@
         [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(updateTimecodes:)
                                                    name:NSUbiquitousKeyValueStoreDidChangeExternallyNotification
                                                  object:store];
+        /*
+        NSArray *keys = store.dictionaryRepresentation.allKeys;
+        
+        for(NSString *key in keys)
+            [store removeObjectForKey:key];
+        */
+        [store setBool:YES forKey:@"paid"]; // TODO: Delete when you enable in-app.
         [store synchronize];
     }
     else
@@ -453,6 +461,78 @@
 - (void)updateTimecodes:(NSNotification*)notification;
 {
     NSLog(@"%@", notification);
+    
+    NSDictionary *userInfo = [notification userInfo];
+    NSNumber *reasonForChange = [userInfo objectForKey:NSUbiquitousKeyValueStoreChangeReasonKey];
+    
+    if(reasonForChange
+    &&(reasonForChange.integerValue == NSUbiquitousKeyValueStoreServerChange
+    || reasonForChange.integerValue == NSUbiquitousKeyValueStoreInitialSyncChange))
+    {
+        NSManagedObjectContext *context = self.managedObjectContext;
+        NSUbiquitousKeyValueStore *store = [NSUbiquitousKeyValueStore defaultStore];
+        NSArray *changedKeys = [userInfo objectForKey:NSUbiquitousKeyValueStoreChangedKeysKey];
+        
+        for(NSString *key in changedKeys)
+        {
+            NSDictionary *episodeDict = [store dictionaryForKey:key];
+            
+            NSString *showTitle = [episodeDict valueForKey:@"show.title"];
+            NSString *title = [episodeDict valueForKey:@"title"];
+            NSNumber *number = [episodeDict valueForKey:@"number"];
+            
+            bool watched = [[episodeDict valueForKey:@"watched"] boolValue];
+            int lastTimecode = [[episodeDict valueForKey:@"lastTimecode"] intValue];
+            
+            NSLog(@"episode %@", episodeDict);
+            
+            NSSet *fetchedEpisodes = [context fetchEntities:@"Episode"
+                                              withPredicate:@"show.title == %@ && title == %@ && number == %@",
+                                                              showTitle, title, number];
+            Episode *episode = fetchedEpisodes.anyObject;
+            
+            if(episode)
+            {
+                if(lastTimecode >= episode.lastTimecode)
+                {
+                    [episode willChangeValueForKey:@"watched"];
+                    [episode setPrimitiveValue:@(watched) forKey:@"watched"];
+                    [episode didChangeValueForKey:@"watched"];
+                    
+                    [episode willChangeValueForKey:@"lastTimecode"];
+                    [episode setPrimitiveValue:@(lastTimecode) forKey:@"lastTimecode"];
+                    [episode didChangeValueForKey:@"lastTimecode"];
+                }
+                
+                NSLog(@"%@", episode);
+            }
+            else // Hasn't been inserted into the db.
+            {
+                NSLog(@"Hasn't been inserted into the db");
+                
+                NSSet *fetchedShows = [context fetchEntities:@"Show" withPredicate:@"title == %@", showTitle];
+                Show *show = fetchedShows.anyObject;
+                
+                if(show)
+                {
+                    episode = [context insertEntity:@"Episode"];
+                    
+                    episode.title = title;
+                    episode.number = number.intValue;
+                    [show addEpisodesObject:episode];
+                    
+                    [episode willChangeValueForKey:@"watched"];
+                    [episode setPrimitiveValue:@(watched) forKey:@"watched"];
+                    [episode didChangeValueForKey:@"watched"];
+                    
+                    [episode willChangeValueForKey:@"lastTimecode"];
+                    [episode setPrimitiveValue:@(lastTimecode) forKey:@"lastTimecode"];
+                    [episode didChangeValueForKey:@"lastTimecode"];
+                }
+            }
+        }
+        [context save:nil];
+    }
 }
 
 #pragma mark - Core Data stack
