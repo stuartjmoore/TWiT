@@ -29,24 +29,46 @@
 {
     [AVAudioSession.sharedInstance setCategory:AVAudioSessionCategoryPlayback error:nil];
     [AVAudioSession.sharedInstance setActive:YES error:nil];
+  
+  
+    NSString *lastVersionString = [NSUserDefaults.standardUserDefaults objectForKey:@"settings-version"];
+    NSString *currVersionString = NSBundle.mainBundle.infoDictionary[@"CFBundleShortVersionString"];
     
-    if([NSUserDefaults.standardUserDefaults floatForKey:@"last-version"] < 4.1f)
+    if(![lastVersionString isEqualToString:currVersionString])
     {
-        for(NSString *file in [NSFileManager.defaultManager contentsOfDirectoryAtPath:self.applicationDocumentsDirectory.path error:nil])
+        NSArray *lastVersionNumbers = [lastVersionString componentsSeparatedByString:@"."];
+        NSArray *checkVersionNumbers = [@"4.1" componentsSeparatedByString:@"."];
+        
+        BOOL isUpdated = NO;
+        
+        for(int i = 0; i < lastVersionNumbers.count || i < checkVersionNumbers.count; i++)
         {
-            NSString *filePath = [self.applicationDocumentsDirectory.path stringByAppendingPathComponent:file];
-            [NSFileManager.defaultManager removeItemAtPath:filePath error:nil];
+            int lastNumber = (i < lastVersionNumbers.count)?[lastVersionNumbers[i] intValue]:0;
+            int checkNumber = (i < checkVersionNumbers.count)?[checkVersionNumbers[i] intValue]:0;
+            
+            if(lastNumber < checkNumber)
+            {
+                isUpdated = YES;
+                break;
+            }
+        }
+        
+        if(isUpdated)
+        {
+            NSLog(@"Delete error data.");
+            for(NSString *file in [NSFileManager.defaultManager contentsOfDirectoryAtPath:self.applicationDocumentsDirectory.path error:nil])
+            {
+                NSString *filePath = [self.applicationDocumentsDirectory.path stringByAppendingPathComponent:file];
+                [NSFileManager.defaultManager removeItemAtPath:filePath error:nil];
+            }
         }
     }
 
     [self deleteUserDataIfSet];
-
     
-    NSString *versionString = NSBundle.mainBundle.infoDictionary[@"CFBundleShortVersionString"];
-    [NSUserDefaults.standardUserDefaults setFloat:versionString.floatValue forKey:@"last-version"];
-    [NSUserDefaults.standardUserDefaults setObject:versionString forKey:@"settings-version"];
+    [NSUserDefaults.standardUserDefaults setObject:currVersionString forKey:@"settings-version"];
     [NSUserDefaults.standardUserDefaults synchronize];
-    
+  
     
     NSManagedObjectContext *context = self.managedObjectContext;
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
