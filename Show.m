@@ -428,6 +428,19 @@
              if(sameEpisode.count > 0)
              {
                  episode = sameEpisode.anyObject;
+                 
+                 if(!episode.published)
+                 {
+                     episode.desc = desc;
+                     episode.duration = duration;
+                     episode.guests = guests;
+                     episode.website = website;
+                     episode.published = published;
+                     
+                     Poster *poster = [context insertEntity:@"Poster"];
+                     poster.url = posterURL;
+                     episode.poster = poster;
+                 }
              }
              else
              {
@@ -452,6 +465,7 @@
                  [self addEpisodesObject:episode];
                  episode.title = title;
                  episode.number = number;
+                 episode.published = published;
                  
                  bool watched = firstLoad ?: !self.favorite;
                  
@@ -466,19 +480,6 @@
                      // store in iCloud
                      episode.watched = watched;
                  }
-             }
-             
-             if(!episode.published)
-             {
-                 episode.desc = desc;
-                 episode.duration = duration;
-                 episode.guests = guests;
-                 episode.website = website;
-                 episode.published = published;
-                 
-                 Poster *poster = [context insertEntity:@"Poster"];
-                 poster.url = posterURL;
-                 episode.poster = poster;
              }
              
              NSPredicate *pred = [NSPredicate predicateWithFormat:@"quality == %d", feed.quality];

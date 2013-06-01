@@ -90,6 +90,21 @@
         */
         [store setBool:YES forKey:@"paid"]; // TODO: Delete when you enable in-app.
         [store synchronize];
+        
+        
+        
+        NSDictionary *storeDict = store.dictionaryRepresentation;
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"self isKindOfClass: %@ AND pubDate != nil", NSDictionary.class];
+        NSArray *episodesArray = [storeDict.allValues filteredArrayUsingPredicate:predicate];
+        NSArray *sortedArray = [episodesArray sortedArrayUsingComparator:^NSComparisonResult(NSDictionary *episode1, NSDictionary *episode2)
+                                {
+                                    NSDate *date1 = episode1[@"pubDate"];
+                                    NSDate *date2 = episode2[@"pubDate"];
+                                    
+                                    return [date1 compare:date2];
+                                }];
+        
+        NSLog(@"%@", sortedArray);
     }
     else
     {
@@ -475,7 +490,7 @@
         {
             NSDictionary *episodeDict = [store dictionaryForKey:key];
             
-            NSString *showTitle = [episodeDict valueForKey:@"show.title"];
+            NSString *showTitleAcronym = [episodeDict valueForKey:@"show.titleAcronym"];
             NSString *title = [episodeDict valueForKey:@"title"];
             NSNumber *number = [episodeDict valueForKey:@"number"];
             
@@ -483,8 +498,8 @@
             int lastTimecode = [[episodeDict valueForKey:@"lastTimecode"] intValue];
             
             NSSet *fetchedEpisodes = [context fetchEntities:@"Episode"
-                                              withPredicate:@"show.title == %@ && title == %@ && number == %@",
-                                                              showTitle, title, number];
+                                              withPredicate:@"show.titleAcronym == %@ && title == %@ && number == %@",
+                                                              showTitleAcronym, title, number];
             Episode *episode = fetchedEpisodes.anyObject;
             
             if(episode)
@@ -502,7 +517,7 @@
             }
             else
             {
-                NSSet *fetchedShows = [context fetchEntities:@"Show" withPredicate:@"title == %@", showTitle];
+                NSSet *fetchedShows = [context fetchEntities:@"Show" withPredicate:@"titleAcronym == %@", showTitleAcronym];
                 Show *show = fetchedShows.anyObject;
                 
                 if(show)
@@ -531,17 +546,12 @@
         
         NSUbiquitousKeyValueStore *store = [NSUbiquitousKeyValueStore defaultStore];
         NSDictionary *storeDict = store.dictionaryRepresentation;
-        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"self isKindOfClass: %@", NSDictionary.class];
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"self isKindOfClass: %@ AND pubDate != nil", NSDictionary.class];
         NSArray *episodesArray = [storeDict.allValues filteredArrayUsingPredicate:predicate];
         NSArray *sortedArray = [episodesArray sortedArrayUsingComparator:^NSComparisonResult(NSDictionary *episode1, NSDictionary *episode2)
         {
             NSDate *date1 = episode1[@"pubDate"];
             NSDate *date2 = episode2[@"pubDate"];
-            
-            if(!date1 && date2)
-                return NSOrderedAscending;
-            else if(!date2 && date1)
-                return NSOrderedDescending;
             
             return [date1 compare:date2];
         }];
