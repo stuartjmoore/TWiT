@@ -71,6 +71,24 @@
     [NSUserDefaults.standardUserDefaults synchronize];
   
     
+    NSURL *ubiq = [NSFileManager.defaultManager URLForUbiquityContainerIdentifier:nil];
+    
+    if(ubiq)
+    {
+        NSLog(@"iCloud at %@", ubiq);
+        
+        NSUbiquitousKeyValueStore *store = [NSUbiquitousKeyValueStore defaultStore];
+        [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(updateTimecodes:)
+                                                   name:NSUbiquitousKeyValueStoreDidChangeExternallyNotification
+                                                 object:store];
+        [store synchronize];
+    }
+    else
+    {
+        NSLog(@"No iCloud access");
+    }
+    
+    
     NSManagedObjectContext *context = self.managedObjectContext;
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     [fetchRequest setEntity:[NSEntityDescription entityForName:@"Channel" inManagedObjectContext:context]];
@@ -428,6 +446,13 @@
     }
     
     return res;
+}
+
+#pragma mark - iCloud
+
+- (void)updateTimecodes:(NSNotification*)notification;
+{
+    NSLog(@"%@", notification);
 }
 
 #pragma mark - Core Data stack

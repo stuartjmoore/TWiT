@@ -8,6 +8,7 @@
 
 #import "Episode.h"
 #import "Enclosure.h"
+#import "Show.h"
 
 @implementation Episode
 
@@ -96,6 +97,46 @@
 - (void)deleteDownloads
 {
     [self.downloadedEnclosures makeObjectsPerformSelector:@selector(deleteDownload)];
+}
+
+#pragma mark - iCloud
+
+- (void)setWatched:(BOOL)watched
+{
+    NSUbiquitousKeyValueStore *store = [NSUbiquitousKeyValueStore defaultStore];
+    
+    NSMutableArray *timecodes = [[store arrayForKey:@"timecodes"] mutableCopy] ?: [NSMutableArray array];
+    NSPredicate *pred = [NSPredicate predicateWithFormat:@"showTitle == %@ AND episodeTitle == %@ AND episodeNumber == %@ AND pubDate == %@",
+                         self.show.title, self.title, @(self.number), self.published];
+    NSArray *episodes = [timecodes filteredArrayUsingPredicate:pred];
+    
+    if(episodes.count > 0)
+    {
+        NSMutableDictionary *episode = [episodes.lastObject mutableCopy];
+        [episode setValue: @(watched) forKey:@"watched"];
+        
+        int index = [timecodes indexOfObject:episodes.lastObject];
+        [timecodes replaceObjectAtIndex:index withObject:episode];
+        [store setArray:timecodes forKey:@"timecodes"];
+    }
+    else
+    {
+        NSDictionary *episode = @{
+                                  @"showTitle" : self.show.title,
+                                  @"episodeTitle" : self.title,
+                                  @"episodeNumber" : @(self.number),
+                                  @"pubDate" : self.published,
+                                  @"watched" : @(watched),
+                                  @"timecode" : @(self.lastTimecode)
+                                 };
+        
+        [timecodes addObject:episode];
+        [store setArray:timecodes forKey:@"timecodes"];
+    }
+    
+    [self willChangeValueForKey:@"watched"];
+    [self setPrimitiveValue:@(watched) forKey:@"watched"];
+    [self didChangeValueForKey:@"watched"];
 }
 
 #pragma mark - Notifications

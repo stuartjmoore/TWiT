@@ -448,6 +448,8 @@
                  
                  NSManagedObjectContext *context = self.managedObjectContext;
                  episode = [context insertEntity:@"Episode"];
+                 
+                 [self addEpisodesObject:episode];
                  episode.title = title;
                  episode.desc = desc;
                  episode.duration = duration;
@@ -460,8 +462,6 @@
                  Poster *poster = [context insertEntity:@"Poster"];
                  poster.url = posterURL;
                  episode.poster = poster;
-                 
-                 [self addEpisodesObject:episode];
              }
              
              
