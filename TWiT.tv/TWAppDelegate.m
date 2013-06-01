@@ -90,21 +90,6 @@
         */
         [store setBool:YES forKey:@"paid"]; // TODO: Delete when you enable in-app.
         [store synchronize];
-        
-        
-        
-        NSDictionary *storeDict = store.dictionaryRepresentation;
-        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"self isKindOfClass: %@ AND pubDate != nil", NSDictionary.class];
-        NSArray *episodesArray = [storeDict.allValues filteredArrayUsingPredicate:predicate];
-        NSArray *sortedArray = [episodesArray sortedArrayUsingComparator:^NSComparisonResult(NSDictionary *episode1, NSDictionary *episode2)
-                                {
-                                    NSDate *date1 = episode1[@"pubDate"];
-                                    NSDate *date2 = episode2[@"pubDate"];
-                                    
-                                    return [date1 compare:date2];
-                                }];
-        
-        NSLog(@"%@", sortedArray);
     }
     else
     {
