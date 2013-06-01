@@ -1170,6 +1170,31 @@
     }];
 }
 
+- (BOOL)shouldPerformSegueWithIdentifier:(NSString*)identifier sender:(id)sender
+{
+    if([identifier isEqualToString:@"episodeDetail"])
+    {
+        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+        Episode *episode = [self.fetchedEpisodesController objectAtIndexPath:indexPath];
+        
+        if(!episode.published)
+        {
+            [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+            
+            NSString *message = [NSString stringWithFormat:@"%@ needs to be updated. Open the show to get the lastest episodes.", episode.show.title];
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Not Available"
+                                                            message:message
+                                                           delegate:nil
+                                                  cancelButtonTitle:@"Cancel"
+                                                  otherButtonTitles:nil];
+            [alert show];
+            return NO;
+        }
+    }
+    
+    return YES;
+}
+
 - (void)prepareForSegue:(UIStoryboardSegue*)segue sender:(id)sender
 {
     if([segue.identifier isEqualToString:@"episodeDetail"])

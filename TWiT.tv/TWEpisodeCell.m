@@ -36,7 +36,7 @@
     self.titleLabel.text = episode.title;
     self.subtitleLabel.text = episode.show.title;
     
-    self.accessibilityHint = isPublished ? @"Opens the episode view." : @"Opens an empty episode view.";
+    self.accessibilityHint = isPublished ? @"Opens the episode view." : @"Opens an error dialog.";
     
     CGSize size = [self.titleLabel.text sizeWithFont:self.titleLabel.font];
     
