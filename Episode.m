@@ -132,6 +132,37 @@
     [self didChangeValueForKey:@"watched"];
 }
 
+- (void)setLastTimecode:(int16_t)lastTimecode
+{
+    if(lastTimecode == self.lastTimecode)
+        return;
+    
+    NSUbiquitousKeyValueStore *store = [NSUbiquitousKeyValueStore defaultStore];
+    
+    NSString *key = [NSString stringWithFormat:@"%@:%@", self.show.titleAcronym, @(self.number)];
+    NSMutableDictionary *episode = [[store dictionaryForKey:key] mutableCopy];
+    
+    if(!episode)
+    {
+        episode = [NSMutableDictionary dictionary];
+        [episode setValue:self.published forKey:@"pubDate"];
+        [episode setValue:@(self.watched) forKey:@"watched"];
+        
+        [episode setValue:self.show.title forKey:@"show.title"];
+        [episode setValue:self.title forKey:@"title"];
+        [episode setValue:@(self.number) forKey:@"number"];
+    }
+    
+    [episode setValue:@(lastTimecode) forKey:@"lastTimecode"];
+    [store setDictionary:episode forKey:key];
+    
+    NSLog(@"episode %@", episode);
+    
+    [self willChangeValueForKey:@"lastTimecode"];
+    [self setPrimitiveValue:@(lastTimecode) forKey:@"lastTimecode"];
+    [self didChangeValueForKey:@"lastTimecode"];
+}
+
 #pragma mark - Notifications
 
 - (void)updatePoster:(NSNotification*)notification
