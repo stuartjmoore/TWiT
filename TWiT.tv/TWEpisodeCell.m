@@ -23,13 +23,20 @@
 - (void)setEpisode:(Episode*)episode
 {
     _episode = episode;
+
+    BOOL isPublished = (episode.published != nil);
+    self.titleLabel.enabled = isPublished;
+    self.subtitleLabel.enabled = isPublished;
+    self.numberLabel.enabled = isPublished;
+    self.quickPlayButton.enabled = isPublished;
+    self.albumArt.alpha = isPublished ? 1 : 0.5f;
     
     self.numberLabel.text = @(episode.number).stringValue;
     self.albumArt.image = episode.show.albumArt.image;
     self.titleLabel.text = episode.title;
     self.subtitleLabel.text = episode.show.title;
     
-    self.accessibilityHint = @"Opens the episode view.";
+    self.accessibilityHint = isPublished ? @"Opens the episode view." : @"Opens an empty episode view.";
     
     CGSize size = [self.titleLabel.text sizeWithFont:self.titleLabel.font];
     
