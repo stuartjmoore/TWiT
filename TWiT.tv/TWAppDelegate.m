@@ -35,7 +35,7 @@
     NSString *lastVersionString = [NSUserDefaults.standardUserDefaults objectForKey:@"settings-version"];
     NSString *currVersionString = NSBundle.mainBundle.infoDictionary[@"CFBundleShortVersionString"];
     
-    if(![lastVersionString isEqualToString:currVersionString])
+    if(lastVersionString && ![lastVersionString isEqualToString:currVersionString])
     {
         NSArray *lastVersionNumbers = [lastVersionString componentsSeparatedByString:@"."];
         NSArray *checkVersionNumbers = [@"4.1" componentsSeparatedByString:@"."];
