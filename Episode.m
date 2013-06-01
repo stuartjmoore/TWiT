@@ -105,7 +105,7 @@
 {
     NSUbiquitousKeyValueStore *store = [NSUbiquitousKeyValueStore defaultStore];
     
-    NSString *key = [NSString stringWithFormat:@"%@:%@:%@", self.show.title, self.title, @(self.number)];
+    NSString *key = [NSString stringWithFormat:@"%@:%@", self.show.titleAcronym, @(self.number)];
     NSMutableDictionary *episode = [[store dictionaryForKey:key] mutableCopy];
     
     if(!episode)
@@ -113,6 +113,10 @@
         episode = [NSMutableDictionary dictionary];
         [episode setValue:self.published forKey:@"pubDate"];
         [episode setValue:@(self.lastTimecode) forKey:@"timecode"];
+        
+        [episode setValue:self.show.title forKey:@"show.title"];
+        [episode setValue:self.title forKey:@"title"];
+        [episode setValue:@(self.number) forKey:@"number"];
     }
     
     [episode setValue:@(watched) forKey:@"watched"];
