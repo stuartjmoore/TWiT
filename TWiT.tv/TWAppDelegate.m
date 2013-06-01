@@ -76,8 +76,6 @@
     
     if(ubiq)
     {
-        NSLog(@"iCloud at %@", ubiq);
-        
         NSUbiquitousKeyValueStore *store = [NSUbiquitousKeyValueStore defaultStore];
         [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(updateTimecodes:)
                                                    name:NSUbiquitousKeyValueStoreDidChangeExternallyNotification
@@ -460,8 +458,6 @@
 
 - (void)updateTimecodes:(NSNotification*)notification;
 {
-    NSLog(@"%@", notification);
-    
     NSDictionary *userInfo = [notification userInfo];
     NSNumber *reasonForChange = [userInfo objectForKey:NSUbiquitousKeyValueStoreChangeReasonKey];
     
@@ -484,8 +480,6 @@
             bool watched = [[episodeDict valueForKey:@"watched"] boolValue];
             int lastTimecode = [[episodeDict valueForKey:@"lastTimecode"] intValue];
             
-            NSLog(@"episode %@", episodeDict);
-            
             NSSet *fetchedEpisodes = [context fetchEntities:@"Episode"
                                               withPredicate:@"show.title == %@ && title == %@ && number == %@",
                                                               showTitle, title, number];
@@ -503,13 +497,9 @@
                     [episode setPrimitiveValue:@(lastTimecode) forKey:@"lastTimecode"];
                     [episode didChangeValueForKey:@"lastTimecode"];
                 }
-                
-                NSLog(@"%@", episode);
             }
-            else // Hasn't been inserted into the db.
+            else
             {
-                NSLog(@"Hasn't been inserted into the db");
-                
                 NSSet *fetchedShows = [context fetchEntities:@"Show" withPredicate:@"title == %@", showTitle];
                 Show *show = fetchedShows.anyObject;
                 

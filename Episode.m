@@ -125,8 +125,6 @@
     [episode setValue:@(watched) forKey:@"watched"];
     [store setDictionary:episode forKey:key];
     
-    NSLog(@"episode %@", episode);
-    
     [self willChangeValueForKey:@"watched"];
     [self setPrimitiveValue:@(watched) forKey:@"watched"];
     [self didChangeValueForKey:@"watched"];
@@ -155,8 +153,6 @@
     
     [episode setValue:@(lastTimecode) forKey:@"lastTimecode"];
     [store setDictionary:episode forKey:key];
-    
-    NSLog(@"episode %@", episode);
     
     [self willChangeValueForKey:@"lastTimecode"];
     [self setPrimitiveValue:@(lastTimecode) forKey:@"lastTimecode"];
