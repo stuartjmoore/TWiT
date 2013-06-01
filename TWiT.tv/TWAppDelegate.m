@@ -66,6 +66,7 @@
 
     [self deleteUserDataIfSet];
     
+    [NSUserDefaults.standardUserDefaults setBool:YES forKey:@"paid"]; // TODO: Delete when you enable in-app.
     [NSUserDefaults.standardUserDefaults setObject:currVersionString forKey:@"settings-version"];
     [NSUserDefaults.standardUserDefaults synchronize];
   
