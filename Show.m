@@ -306,10 +306,11 @@
         [self finishUpdate];
          
          if(error)
-             return;
+            return;
          
          BOOL firstLoad = (self.episodes.count == 0);
-         
+        
+         NSManagedObjectContext *context = self.managedObjectContext;
          NSDictionary *RSS = [XMLReader dictionaryForXMLData:data];
          NSArray *episodes = [[[RSS objectForKey:@"rss"] objectForKey:@"channel"] objectForKey:@"item"];
          
@@ -446,29 +447,30 @@
                      }
                  }
                  
-                 NSManagedObjectContext *context = self.managedObjectContext;
                  episode = [context insertEntity:@"Episode"];
                  
                  [self addEpisodesObject:episode];
                  episode.title = title;
+                 episode.number = number;
+                 episode.watched = firstLoad ?: !self.favorite;
+             }
+             
+             if(!episode.published)
+             {
                  episode.desc = desc;
                  episode.duration = duration;
                  episode.guests = guests;
                  episode.website = website;
                  episode.published = published;
-                 episode.number = number;
-                 episode.watched = firstLoad ?: !self.favorite;
                  
                  Poster *poster = [context insertEntity:@"Poster"];
                  poster.url = posterURL;
                  episode.poster = poster;
              }
              
-             
              NSPredicate *pred = [NSPredicate predicateWithFormat:@"quality == %d", feed.quality];
              NSSet *enclosures = [episode.enclosures filteredSetUsingPredicate:pred];
              
-             NSManagedObjectContext *context = self.managedObjectContext;
              Enclosure *enclosure = (enclosures.count == 0) ? [context insertEntity:@"Enclosure"] : enclosures.anyObject;
              enclosure.url = enclosureURL;
              enclosure.title = feed.title;
@@ -478,7 +480,7 @@
              [episode addEnclosuresObject:enclosure];
          }
          
-         [self.managedObjectContext save:nil];
+         [context save:nil];
      }];
 }
 
