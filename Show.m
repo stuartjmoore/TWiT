@@ -431,11 +431,11 @@
                  
                  if(!episode.published)
                  {
+                     episode.published = published;
                      episode.desc = desc;
                      episode.duration = duration;
                      episode.guests = guests;
                      episode.website = website;
-                     episode.published = published;
                      
                      Poster *poster = [context insertEntity:@"Poster"];
                      poster.url = posterURL;
@@ -466,6 +466,14 @@
                  episode.title = title;
                  episode.number = number;
                  episode.published = published;
+                 episode.desc = desc;
+                 episode.duration = duration;
+                 episode.guests = guests;
+                 episode.website = website;
+                 
+                 Poster *poster = [context insertEntity:@"Poster"];
+                 poster.url = posterURL;
+                 episode.poster = poster;
                  
                  bool watched = firstLoad ?: !self.favorite;
                  
