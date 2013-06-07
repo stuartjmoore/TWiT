@@ -106,25 +106,30 @@
     if(watched == self.watched)
         return;
     
-    NSUbiquitousKeyValueStore *store = [NSUbiquitousKeyValueStore defaultStore];
+    NSURL *ubiq = [NSFileManager.defaultManager URLForUbiquityContainerIdentifier:nil];
     
-    NSString *key = [NSString stringWithFormat:@"%@:%@", self.show.titleAcronym, @(self.number)];
-    NSMutableDictionary *episode = [[store dictionaryForKey:key] mutableCopy];
-    
-    if(!episode)
+    if(ubiq)
     {
-        episode = [NSMutableDictionary dictionary];
-        [episode setValue:self.published forKey:@"pubDate"];
-        [episode setValue:@(self.lastTimecode) forKey:@"timecode"];
+        NSUbiquitousKeyValueStore *store = [NSUbiquitousKeyValueStore defaultStore];
         
-        [episode setValue:self.show.titleAcronym forKey:@"show.titleAcronym"];
-        [episode setValue:self.title forKey:@"title"];
-        [episode setValue:@(self.number) forKey:@"number"];
+        NSString *key = [NSString stringWithFormat:@"%@:%@", self.show.titleAcronym, @(self.number)];
+        NSMutableDictionary *episode = [[store dictionaryForKey:key] mutableCopy];
+        
+        if(!episode)
+        {
+            episode = [NSMutableDictionary dictionary];
+            [episode setValue:self.published forKey:@"pubDate"];
+            [episode setValue:@(self.lastTimecode) forKey:@"timecode"];
+            
+            [episode setValue:self.show.titleAcronym forKey:@"show.titleAcronym"];
+            [episode setValue:self.title forKey:@"title"];
+            [episode setValue:@(self.number) forKey:@"number"];
+        }
+        
+        [episode setValue:@(watched) forKey:@"watched"];
+        [store setDictionary:episode forKey:key];
     }
-    
-    [episode setValue:@(watched) forKey:@"watched"];
-    [store setDictionary:episode forKey:key];
-    
+        
     [self willChangeValueForKey:@"watched"];
     [self setPrimitiveValue:@(watched) forKey:@"watched"];
     [self didChangeValueForKey:@"watched"];
@@ -135,24 +140,29 @@
     if(lastTimecode == self.lastTimecode)
         return;
     
-    NSUbiquitousKeyValueStore *store = [NSUbiquitousKeyValueStore defaultStore];
+    NSURL *ubiq = [NSFileManager.defaultManager URLForUbiquityContainerIdentifier:nil];
     
-    NSString *key = [NSString stringWithFormat:@"%@:%@", self.show.titleAcronym, @(self.number)];
-    NSMutableDictionary *episode = [[store dictionaryForKey:key] mutableCopy];
-    
-    if(!episode)
+    if(ubiq)
     {
-        episode = [NSMutableDictionary dictionary];
-        [episode setValue:self.published forKey:@"pubDate"];
-        [episode setValue:@(self.watched) forKey:@"watched"];
+        NSUbiquitousKeyValueStore *store = [NSUbiquitousKeyValueStore defaultStore];
         
-        [episode setValue:self.show.titleAcronym forKey:@"show.titleAcronym"];
-        [episode setValue:self.title forKey:@"title"];
-        [episode setValue:@(self.number) forKey:@"number"];
+        NSString *key = [NSString stringWithFormat:@"%@:%@", self.show.titleAcronym, @(self.number)];
+        NSMutableDictionary *episode = [[store dictionaryForKey:key] mutableCopy];
+        
+        if(!episode)
+        {
+            episode = [NSMutableDictionary dictionary];
+            [episode setValue:self.published forKey:@"pubDate"];
+            [episode setValue:@(self.watched) forKey:@"watched"];
+            
+            [episode setValue:self.show.titleAcronym forKey:@"show.titleAcronym"];
+            [episode setValue:self.title forKey:@"title"];
+            [episode setValue:@(self.number) forKey:@"number"];
+        }
+        
+        [episode setValue:@(lastTimecode) forKey:@"lastTimecode"];
+        [store setDictionary:episode forKey:key];
     }
-    
-    [episode setValue:@(lastTimecode) forKey:@"lastTimecode"];
-    [store setDictionary:episode forKey:key];
     
     [self willChangeValueForKey:@"lastTimecode"];
     [self setPrimitiveValue:@(lastTimecode) forKey:@"lastTimecode"];

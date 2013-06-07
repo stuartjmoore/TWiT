@@ -73,7 +73,7 @@
   
     
     NSURL *ubiq = [NSFileManager.defaultManager URLForUbiquityContainerIdentifier:nil];
-    
+  
     if(ubiq)
     {
         NSUbiquitousKeyValueStore *store = [NSUbiquitousKeyValueStore defaultStore];
