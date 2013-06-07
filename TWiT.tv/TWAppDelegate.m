@@ -73,8 +73,9 @@
   
     
     NSURL *ubiq = [NSFileManager.defaultManager URLForUbiquityContainerIdentifier:nil];
+    BOOL iCloudEnabled = [NSUserDefaults.standardUserDefaults boolForKey:@"icloud-enabled"];
   
-    if(ubiq)
+    if(ubiq && iCloudEnabled)
     {
         NSUbiquitousKeyValueStore *store = [NSUbiquitousKeyValueStore defaultStore];
         [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(updateiCloud:)
@@ -90,6 +91,16 @@
         */
         [store setBool:YES forKey:@"paid"]; // TODO: Delete when you enable in-app.
         [store synchronize];
+    }
+    else if(ubiq && !iCloudEnabled)
+    {
+        NSUbiquitousKeyValueStore *store = [NSUbiquitousKeyValueStore defaultStore];
+        NSArray *keys = store.dictionaryRepresentation.allKeys;
+        
+        for(NSString *key in keys)
+            [store removeObjectForKey:key];
+        
+        NSLog(@"Deleted all of iCloud");
     }
     else
     {

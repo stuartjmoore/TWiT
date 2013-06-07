@@ -107,8 +107,9 @@
         return;
     
     NSURL *ubiq = [NSFileManager.defaultManager URLForUbiquityContainerIdentifier:nil];
+    BOOL iCloudEnabled = [NSUserDefaults.standardUserDefaults boolForKey:@"icloud-enabled"];
     
-    if(ubiq)
+    if(ubiq && iCloudEnabled)
     {
         NSUbiquitousKeyValueStore *store = [NSUbiquitousKeyValueStore defaultStore];
         
@@ -141,8 +142,9 @@
         return;
     
     NSURL *ubiq = [NSFileManager.defaultManager URLForUbiquityContainerIdentifier:nil];
+    BOOL iCloudEnabled = [NSUserDefaults.standardUserDefaults boolForKey:@"icloud-enabled"];
     
-    if(ubiq)
+    if(ubiq && iCloudEnabled)
     {
         NSUbiquitousKeyValueStore *store = [NSUbiquitousKeyValueStore defaultStore];
         
