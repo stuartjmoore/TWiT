@@ -462,7 +462,34 @@
 {
     NSDictionary *userInfo = [notification userInfo];
     NSNumber *reasonForChange = [userInfo objectForKey:NSUbiquitousKeyValueStoreChangeReasonKey];
-    
+  
+    if(reasonForChange && reasonForChange.integerValue == NSUbiquitousKeyValueStoreInitialSyncChange)
+    {
+        NSUbiquitousKeyValueStore *store = [NSUbiquitousKeyValueStore defaultStore];
+        NSManagedObjectContext *context = self.managedObjectContext;
+        NSSet *fetchedEpisodes = [context fetchEntities:@"Episode" withPredicate:@"watched == NO"];
+        
+        for(Episode *episode in fetchedEpisodes)
+        {
+            NSString *key = [NSString stringWithFormat:@"%@:%@", episode.show.titleAcronym, @(episode.number)];
+            NSMutableDictionary *episodeDict = [[store dictionaryForKey:key] mutableCopy];
+            
+            if(!episode)
+            {
+                episodeDict = [NSMutableDictionary dictionary];
+                [episodeDict setValue:episode.published forKey:@"pubDate"];
+                
+                [episodeDict setValue:episode.show.titleAcronym forKey:@"show.titleAcronym"];
+                [episodeDict setValue:episode.title forKey:@"title"];
+                [episodeDict setValue:@(episode.number) forKey:@"number"];
+            }
+            
+            [episodeDict setValue:@(episode.watched) forKey:@"watched"];
+            [episodeDict setValue:@(episode.lastTimecode) forKey:@"timecode"];
+            [store setDictionary:episodeDict forKey:key];
+        }
+    }
+  
     if(reasonForChange
     &&(reasonForChange.integerValue == NSUbiquitousKeyValueStoreServerChange
     || reasonForChange.integerValue == NSUbiquitousKeyValueStoreInitialSyncChange))
