@@ -276,9 +276,10 @@
                 NSString *message = [NSString stringWithFormat:@"%@ needs to be updated; iCloud doesn't sync full episodes. Open the show to get the lastest episodes.", episode.show.title];
                 UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title
                                                                 message:message
-                                                               delegate:nil
+                                                               delegate:self
                                                       cancelButtonTitle:@"Cancel"
                                                       otherButtonTitles:nil];
+                alert.tag = indexPath.row;
                 [alert show];
                 return nil;
             }
@@ -1124,7 +1125,22 @@
 }
 
 #pragma mark - Leave
+/*
+- (void)alertView:(UIAlertView*)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if(buttonIndex == 1 && UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPad)
+    {
+        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:alertView.tag inSection:0];
+        Episode *episode = [self.fetchedEpisodesController objectAtIndexPath:indexPath];
+    }
+    else if(buttonIndex == 1 && UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPhone)
+    {
+        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:alertView.tag inSection:0];
+        Episode *episode = [self.fetchedEpisodesController objectAtIndexPath:indexPath];
+    }
 
+}
+*/
 - (IBAction)transitionToSchedule:(UIButton*)sender
 {
     TWSplitViewContainer *splitViewContainer = (TWSplitViewContainer*)self.navigationController.parentViewController;

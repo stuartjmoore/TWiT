@@ -19,7 +19,11 @@ typedef NS_ENUM(NSInteger, TWSection)
 
 @class TWEpisodeViewController, Channel, TWPlayButton;
 
-@interface TWMainViewController : UITableViewController <NSFetchedResultsControllerDelegate, UISplitViewControllerDelegate, UIGestureRecognizerDelegate, TWiTShowGridCellDelegate>
+@interface TWMainViewController : UITableViewController <NSFetchedResultsControllerDelegate,
+                                                         UISplitViewControllerDelegate,
+                                                         UIGestureRecognizerDelegate,
+                                                         UIAlertViewDelegate,
+                                                         TWiTShowGridCellDelegate>
 
 @property (nonatomic, weak) TWSplitViewContainer *splitViewContainer;
 @property (assign, nonatomic) TWSection sectionVisible;
