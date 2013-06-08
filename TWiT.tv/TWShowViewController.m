@@ -287,8 +287,21 @@
         {
             UINavigationController *modalController = self.splitViewContainer.modalController;
             TWEpisodeViewController *episodeController = (TWEpisodeViewController*)modalController.topViewController;
-            
             Episode *episode = [self.fetchedEpisodesController objectAtIndexPath:indexPath];
+            
+            if(!episode.published)
+            {
+                NSString *message = [NSString stringWithFormat:@"%@ needs to be updated. Connect to the Internet to get the lastest episodes.", episode.show.title];
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Not Available"
+                                                                message:message
+                                                               delegate:nil
+                                                      cancelButtonTitle:@"Cancel"
+                                                      otherButtonTitles:nil];
+                
+                [alert show];
+                return nil;
+            }
+            
             episodeController.episode = episode;
             
             if(self.splitViewContainer.modalContainer.hidden)
@@ -513,7 +526,7 @@
         {
             [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
             
-            NSString *message = [NSString stringWithFormat:@"%@ needs to be updated. Wait or connect to the Internet to get the lastest episodes.", episode.show.title];
+            NSString *message = [NSString stringWithFormat:@"%@ needs to be updated. Connect to the Internet to get the lastest episodes.", episode.show.title];
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Not Available"
                                                             message:message
                                                            delegate:nil
