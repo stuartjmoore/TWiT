@@ -517,7 +517,6 @@
             NSString *showTitleAcronym = episodeDict[@"show.titleAcronym"];
             NSString *title = episodeDict[@"title"];
             NSNumber *number = episodeDict[@"number"];
-            NSDate *published = episodeDict[@"pubDate"];
             
             bool watched = [[episodeDict valueForKey:@"watched"] boolValue];
             int lastTimecode = [[episodeDict valueForKey:@"lastTimecode"] intValue];
@@ -551,7 +550,6 @@
                     
                     episode.title = title;
                     episode.number = number.intValue;
-                    episode.published = published;
                     [show addEpisodesObject:episode];
                     
                     [episode willChangeValueForKey:@"watched"];
