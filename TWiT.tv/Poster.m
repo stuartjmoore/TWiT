@@ -161,6 +161,9 @@
         }
         else
         {
+            if(weak.faultingState)
+                return;
+                
             [weak willChangeValueForKey:@"url"];
             [weak setPrimitiveValue:nil forKey:@"url"];
             [weak didChangeValueForKey:@"url"];
