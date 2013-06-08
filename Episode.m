@@ -107,10 +107,12 @@
         return;
     
     NSURL *ubiq = [NSFileManager.defaultManager URLForUbiquityContainerIdentifier:nil];
-    BOOL iCloudEnabled = [NSUserDefaults.standardUserDefaults boolForKey:@"icloud-enabled"];
+    BOOL iCloudDisabled = [NSUserDefaults.standardUserDefaults boolForKey:@"icloud-disabled"];
     
-    if(ubiq && iCloudEnabled)
+    if(ubiq && !iCloudDisabled)
     {
+        NSLog(@"Store watched");
+        
         NSUbiquitousKeyValueStore *store = [NSUbiquitousKeyValueStore defaultStore];
         
         NSString *key = [NSString stringWithFormat:@"%@:%@", self.show.titleAcronym, @(self.number)];
@@ -142,10 +144,12 @@
         return;
     
     NSURL *ubiq = [NSFileManager.defaultManager URLForUbiquityContainerIdentifier:nil];
-    BOOL iCloudEnabled = [NSUserDefaults.standardUserDefaults boolForKey:@"icloud-enabled"];
+    BOOL iCloudDisabled = [NSUserDefaults.standardUserDefaults boolForKey:@"icloud-disabled"];
     
-    if(ubiq && iCloudEnabled)
+    if(ubiq && !iCloudDisabled)
     {
+        NSLog(@"Store timecode");
+        
         NSUbiquitousKeyValueStore *store = [NSUbiquitousKeyValueStore defaultStore];
         
         NSString *key = [NSString stringWithFormat:@"%@:%@", self.show.titleAcronym, @(self.number)];

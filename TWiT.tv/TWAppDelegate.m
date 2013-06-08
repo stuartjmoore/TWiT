@@ -73,26 +73,23 @@
   
     
     NSURL *ubiq = [NSFileManager.defaultManager URLForUbiquityContainerIdentifier:nil];
-    BOOL iCloudEnabled = [NSUserDefaults.standardUserDefaults boolForKey:@"icloud-enabled"];
+    BOOL iCloudDisabled = [NSUserDefaults.standardUserDefaults boolForKey:@"icloud-disabled"];
   
-    if(ubiq && iCloudEnabled)
+    NSLog(@"iCloudDisabled %d", iCloudDisabled);
+    
+    if(ubiq && !iCloudDisabled)
     {
+        NSLog(@"Set-up iCloud");
+        
         NSUbiquitousKeyValueStore *store = [NSUbiquitousKeyValueStore defaultStore];
         [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(updateiCloud:)
                                                    name:NSUbiquitousKeyValueStoreDidChangeExternallyNotification
                                                  object:store];
-        /*
-        NSArray *keys = store.dictionaryRepresentation.allKeys;
-        
-        for(NSString *key in keys)
-            [store removeObjectForKey:key];
-         
-        NSLog(@"Deleted all of iCloud");
-        */
+
         [store setBool:YES forKey:@"paid"]; // TODO: Delete when you enable in-app.
         [store synchronize];
     }
-    else if(ubiq && !iCloudEnabled)
+    else if(ubiq && iCloudDisabled)
     {
         NSUbiquitousKeyValueStore *store = [NSUbiquitousKeyValueStore defaultStore];
         NSArray *keys = store.dictionaryRepresentation.allKeys;
@@ -473,6 +470,8 @@
 
 - (void)updateiCloud:(NSNotification*)notification;
 {
+    NSLog(@"update iCloud: %@", notification);
+    
     NSDictionary *userInfo = [notification userInfo];
     NSNumber *reasonForChange = [userInfo objectForKey:NSUbiquitousKeyValueStoreChangeReasonKey];
   

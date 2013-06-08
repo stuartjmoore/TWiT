@@ -14,11 +14,11 @@
 			<key>Type</key>
 			<string>PSToggleSwitchSpecifier</string>
 			<key>Title</key>
-			<string>iCloud</string>
+			<string>Disable iCloud</string>
 			<key>Key</key>
-			<string>icloud-enabled</string>
+			<string>icloud-disabled</string>
 			<key>DefaultValue</key>
-			<true/>
+			<false/>
 		</dict>
 		<dict>
 			<key>Type</key>
