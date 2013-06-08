@@ -268,8 +268,21 @@
         {
             UINavigationController *modalController = (UINavigationController*)self.splitViewContainer.modalController;
             TWEpisodeViewController *episodeController = (TWEpisodeViewController*)modalController.topViewController;
-            
             Episode *episode = [self.fetchedEpisodesController objectAtIndexPath:indexPath];
+            
+            if(!episode.published)
+            {
+                NSString *title = [NSString stringWithFormat:@"%@ Needs Update", episode.show.titleAcronym];
+                NSString *message = [NSString stringWithFormat:@"%@ needs to be updated; iCloud doesn't sync full episodes. Open the show to get the lastest episodes.", episode.show.title];
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title
+                                                                message:message
+                                                               delegate:nil
+                                                      cancelButtonTitle:@"Cancel"
+                                                      otherButtonTitles:nil];
+                [alert show];
+                return nil;
+            }
+            
             episodeController.episode = episode;
             
             if(self.splitViewContainer.modalContainer.hidden)
