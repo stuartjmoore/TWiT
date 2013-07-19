@@ -1275,16 +1275,4 @@
     [super viewWillDisappear:animated];
 }
 
-- (void)viewDidUnload
-{
-    self.fetchedShowsController = nil;
-    self.fetchedEpisodesController = nil;
-    
-    [self.tableView removeObserver:self forKeyPath:@"contentOffset"];
-    [NSNotificationCenter.defaultCenter removeObserver:self name:@"ScheduleDidUpdate" object:self.channel.schedule];
-    [NSNotificationCenter.defaultCenter removeObserver:self name:@"albumArtDidChange" object:nil];
-    
-    [super viewDidUnload];
-}
-
 @end

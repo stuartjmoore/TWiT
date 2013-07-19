@@ -590,11 +590,6 @@
     [super viewWillDisappear:animated];
 }
 
-- (void)viewDidUnload
-{
-    self.fetchedEpisodesController = nil;
-}
-
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
