@@ -106,7 +106,7 @@
                                                                           target:nil
                                                                           action:nil];
     
-    if(self.sectionVisible == TWSectionShows && self.modalViewController)
+    if(self.sectionVisible == TWSectionShows && self.presentedViewController)
         [self.tableView reloadData];
     
     [NSNotificationCenter.defaultCenter addObserver:self
@@ -198,9 +198,9 @@
         view.frame = frame;
         
         if(view.frame.origin.x > 0)
-            cell.swipeLabel.textAlignment = UITextAlignmentLeft;
+            cell.swipeLabel.textAlignment = NSTextAlignmentLeft;
         else
-            cell.swipeLabel.textAlignment = UITextAlignmentRight;
+            cell.swipeLabel.textAlignment = NSTextAlignmentRight;
         
         if(view.frame.origin.x > self.tableView.frame.size.width/2)
             cell.swipeLabel.text = @"Release to Hide";

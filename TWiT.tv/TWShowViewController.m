@@ -181,7 +181,7 @@
     MFMailComposeViewController *controller = [[MFMailComposeViewController alloc] init];
     controller.mailComposeDelegate = self;
     [controller setToRecipients:[NSArray arrayWithObject:self.show.email]];
-    [self presentModalViewController:controller animated:YES];
+    [self presentViewController:controller animated:YES completion:nil];
     /*
     CGAffineTransform transform = CGAffineTransformMakeScale(0.8f, 0.8f);
     
@@ -192,7 +192,7 @@
 }
 - (void)mailComposeController:(MFMailComposeViewController*)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError*)error
 {
-    [self dismissModalViewControllerAnimated:YES];
+    [self dismissViewControllerAnimated:YES completion:nil];
     /*
     CGAffineTransform transform = CGAffineTransformScale(CGAffineTransformIdentity, 0.8f, 0.8f);
     self.navigationController.view.transform = transform;

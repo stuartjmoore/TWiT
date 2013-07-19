@@ -80,7 +80,7 @@
     
     title.backgroundColor = [UIColor clearColor];
     title.font = [UIFont boldSystemFontOfSize:12];
-    title.textAlignment = UITextAlignmentCenter;
+    title.textAlignment = NSTextAlignmentCenter;
     title.shadowColor = [UIColor colorWithWhite:1 alpha:1];
     title.shadowOffset = CGSizeMake(0, 1);
     title.textColor = [UIColor colorWithWhite:132/255.0 alpha:1];

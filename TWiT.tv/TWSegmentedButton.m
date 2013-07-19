@@ -80,7 +80,7 @@
         downloadingLabel.shadowOffset = CGSizeMake(0, 1);
         downloadingLabel.backgroundColor = [UIColor clearColor];
         downloadingLabel.textColor = [UIColor whiteColor];
-        downloadingLabel.textAlignment = UITextAlignmentCenter;
+        downloadingLabel.textAlignment = NSTextAlignmentCenter;
         [self addSubview:downloadingLabel];
     }
     return self;
