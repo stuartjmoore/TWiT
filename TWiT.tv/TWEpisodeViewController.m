@@ -67,7 +67,7 @@
                                                name:@"posterDidChange"
                                              object:self.episode];
     
-    self.navigationItem.backBarButtonItem = [UIBarButtonItem.alloc initWithTitle:@"Back"
+    self.navigationItem.backBarButtonItem = [UIBarButtonItem.alloc initWithTitle:@""
                                                                            style:UIBarButtonItemStyleBordered
                                                                           target:nil
                                                                           action:nil];
