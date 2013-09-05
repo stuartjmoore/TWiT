@@ -259,6 +259,7 @@
 		17D1991616B08C0B004E2566 /* quality-view-download@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 17D1991416B08C0B004E2566 /* quality-view-download@2x.png */; };
 		17D1B6B216A1CAC800B05C12 /* TWPlayButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 17D1B6B116A1CAC800B05C12 /* TWPlayButton.m */; };
 		17D1B6B516A1D38A00B05C12 /* TWSegmentedButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 17D1B6B416A1D38A00B05C12 /* TWSegmentedButton.m */; };
+		17DE054217D8E7A8007E0F5A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 17DE054117D8E7A8007E0F5A /* Images.xcassets */; };
 		17E5114F168F496E00DCE89C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17E5114E168F496E00DCE89C /* UIKit.framework */; };
 		17E51151168F496E00DCE89C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17E51150168F496E00DCE89C /* Foundation.framework */; };
 		17E51153168F496E00DCE89C /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17E51152168F496E00DCE89C /* CoreGraphics.framework */; };
@@ -559,6 +560,7 @@
 		17D1B6B116A1CAC800B05C12 /* TWPlayButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWPlayButton.m; sourceTree = "<group>"; };
 		17D1B6B316A1D38A00B05C12 /* TWSegmentedButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWSegmentedButton.h; sourceTree = "<group>"; };
 		17D1B6B416A1D38A00B05C12 /* TWSegmentedButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWSegmentedButton.m; sourceTree = "<group>"; };
+		17DE054117D8E7A8007E0F5A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		17E5114A168F496E00DCE89C /* TWiT.tv.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TWiT.tv.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		17E5114E168F496E00DCE89C /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		17E51150168F496E00DCE89C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -1029,6 +1031,7 @@
 				17BB1CFF168F728C00221F7E /* Objects */,
 				17C43B8F1696FBCB0066C79F /* Catergories */,
 				170BA1271691CD5B0022FE4D /* Resources */,
+				17DE054117D8E7A8007E0F5A /* Images.xcassets */,
 				17E51157168F496E00DCE89C /* Supporting Files */,
 			);
 			path = TWiT.tv;
@@ -1177,6 +1180,7 @@
 				170BA08F1691CD550022FE4D /* popup-fav-off.png in Resources */,
 				170BA0901691CD550022FE4D /* popup-fav-off@2x.png in Resources */,
 				170BA0911691CD550022FE4D /* popup-fav-on.png in Resources */,
+				17DE054217D8E7A8007E0F5A /* Images.xcassets in Resources */,
 				170BA0921691CD550022FE4D /* popup-fav-on@2x.png in Resources */,
 				170BA0931691CD550022FE4D /* popup-reminder-off.png in Resources */,
 				170BA0941691CD550022FE4D /* popup-reminder-off@2x.png in Resources */,
@@ -1442,6 +1446,8 @@
 		179E678E16A9BEE80042D724 /* Ad Hoc */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = TWiT.tv/TWiT.tv.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -1517,6 +1523,8 @@
 		17E5117A168F496E00DCE89C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = TWiT.tv/TWiT.tv.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -1534,6 +1542,8 @@
 		17E5117B168F496E00DCE89C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = TWiT.tv/TWiT.tv.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
