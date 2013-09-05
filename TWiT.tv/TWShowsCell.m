@@ -90,7 +90,7 @@
         {
             CGRect frame = [weak frameForColumn:column];
             
-            CGContextSetShadow(context, CGSizeMake(0, 2), 4);
+            //CGContextSetShadow(context, CGSizeMake(0, 2), 4);
             
             if(column < albumArtPathes.count && column < showTitles.count)
             {

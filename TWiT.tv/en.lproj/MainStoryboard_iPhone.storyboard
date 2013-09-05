@@ -670,7 +670,7 @@
                                             <size key="shadowOffset" width="0.0" height="1"/>
                                         </label>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Long, long desc for the show. Join whoever and friends while they talk about tech an’ shit." lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="5Ri-gY-EC7">
-                                            <rect key="frame" x="112" y="25" width="188" height="73"/>
+                                            <rect key="frame" x="112" y="25" width="188" height="71"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
@@ -858,7 +858,6 @@
                     </tableView>
                     <extendedEdge key="edgesForExtendedLayout"/>
                     <navigationItem key="navigationItem" id="Asz-4h-TSi" customClass="TWNavigationItem">
-                        <nil key="title"/>
                         <view key="titleView" contentMode="scaleToFill" id="xBb-OW-Zro">
                             <rect key="frame" x="60" y="6" width="200" height="33"/>
                             <autoresizingMask key="autoresizingMask"/>
