@@ -95,10 +95,18 @@
 
 - (NSUInteger)supportedInterfaceOrientations
 {
-    if ([self.masterController respondsToSelector:@selector(supportedInterfaceOrientations)])
+    if([self.masterController respondsToSelector:@selector(supportedInterfaceOrientations)])
         return self.masterController.supportedInterfaceOrientations;
     else
         return super.supportedInterfaceOrientations;
+}
+
+- (UIStatusBarStyle)preferredStatusBarStyle
+{
+    if([self.masterController respondsToSelector:@selector(preferredStatusBarStyle)])
+        return self.masterController.preferredStatusBarStyle;
+    else
+        return super.preferredStatusBarStyle;
 }
 
 @end

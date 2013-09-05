@@ -19,7 +19,7 @@
 
 - (NSUInteger)supportedInterfaceOrientations
 {
-    if ([self.topViewController respondsToSelector:@selector(supportedInterfaceOrientations)])
+    if([self.topViewController respondsToSelector:@selector(supportedInterfaceOrientations)])
         return self.topViewController.supportedInterfaceOrientations;
     else
         return super.supportedInterfaceOrientations;
@@ -27,7 +27,7 @@
 
 - (UIStatusBarStyle)preferredStatusBarStyle
 {
-    if ([self.topViewController respondsToSelector:@selector(preferredStatusBarStyle)])
+    if([self.topViewController respondsToSelector:@selector(preferredStatusBarStyle)])
         return self.topViewController.preferredStatusBarStyle;
     else
         return super.preferredStatusBarStyle;

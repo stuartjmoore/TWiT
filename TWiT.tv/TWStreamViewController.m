@@ -99,7 +99,6 @@
     
     if(UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPhone)
     {
-        [UIApplication.sharedApplication setStatusBarStyle:UIStatusBarStyleLightContent animated:YES];
         [self.navigationController.navigationBar setBarStyle:UIBarStyleBlack];
     }
     
@@ -133,6 +132,11 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
+}
+
+- (UIStatusBarStyle)preferredStatusBarStyle
+{
+    return UIStatusBarStyleLightContent;
 }
 
 - (void)updateTitle
@@ -695,7 +699,6 @@
 {
     if(UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPhone)
     {
-        [UIApplication.sharedApplication setStatusBarStyle:UIStatusBarStyleDefault animated:YES];
         [self.navigationController.navigationBar setBarStyle:UIBarStyleDefault];
     }
     

@@ -120,7 +120,6 @@
 
     if(UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPhone)
     {
-        [UIApplication.sharedApplication setStatusBarStyle:UIStatusBarStyleLightContent animated:YES];
         [self.navigationController.navigationBar setBarStyle:UIBarStyleBlack];
     }
     
@@ -142,9 +141,6 @@
                                              object:self.delegate.player];
 }
 
-/*
-    Not working. Set "View controller-based status bar appearance" to YES in info.plist when it does
- */
 - (UIStatusBarStyle)preferredStatusBarStyle
 {
     return UIStatusBarStyleLightContent;
@@ -500,7 +496,6 @@
 
     if(UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPhone)
     {
-        [UIApplication.sharedApplication setStatusBarStyle:UIStatusBarStyleDefault animated:YES];
         [self.navigationController.navigationBar setBarStyle:UIBarStyleDefault];
     }
     
