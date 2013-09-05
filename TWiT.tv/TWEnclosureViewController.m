@@ -25,6 +25,9 @@
 #define fastSpeed 1.5
 
 @implementation TWEnclosureViewController
+{
+    BOOL hideUI;
+}
 
 - (void)viewDidLoad
 {
@@ -45,6 +48,8 @@
                                                                                                 target:nil action:nil];
         }
     }
+    
+    hideUI = NO;
     
     MPVolumeView *airplayButton = [[MPVolumeView alloc] init];
     airplayButton.showsVolumeSlider = NO;
@@ -144,6 +149,11 @@
 - (UIStatusBarStyle)preferredStatusBarStyle
 {
     return UIStatusBarStyleLightContent;
+}
+
+- (BOOL)prefersStatusBarHidden
+{
+    return hideUI;
 }
 
 #pragma mark - Notifications
@@ -255,10 +265,12 @@
 
 - (void)hideControls:(BOOL)hide
 {
-    if(hide == self.toolbarView.hidden)
+    if(hide == hideUI)
         return;
     
-    [UIApplication.sharedApplication setStatusBarHidden:hide withAnimation:UIStatusBarAnimationFade];
+    hideUI = hide;
+    
+    [self setNeedsStatusBarAppearanceUpdate];
     
     if(!hide)
     {
@@ -269,8 +281,7 @@
         self.navigationBar.hidden = NO;
         self.toolbarView.hidden = NO;
         
-        [UIView animateWithDuration:UINavigationControllerHideShowBarDuration delay:0 options:UIViewAnimationCurveEaseIn animations:^{
-            
+        [UIView animateWithDuration:0.3f delay:0 options:UIViewAnimationCurveEaseIn animations:^{
             if(UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPad)
                 self.view.window.rootViewController.view.frame = UIScreen.mainScreen.applicationFrame;
             
@@ -285,7 +296,7 @@
         if(!self.qualityView.hidden)
             [self openQualityPopover:nil];
         
-        [UIView animateWithDuration:UINavigationControllerHideShowBarDuration delay:0 options:UIViewAnimationCurveEaseOut animations:^{
+        [UIView animateWithDuration:0.3f delay:0 options:UIViewAnimationCurveEaseOut animations:^{
             self.navigationController.navigationBar.alpha = 0;
             self.navigationBar.alpha = 0;
             self.toolbarView.alpha = 0;
@@ -498,9 +509,6 @@
     {
         [self.navigationController.navigationBar setBarStyle:UIBarStyleDefault];
     }
-    
-    [self.navigationController setNavigationBarHidden:NO animated:YES];
-    [UIApplication.sharedApplication setStatusBarHidden:NO withAnimation:UIStatusBarAnimationSlide];
     
     [NSNotificationCenter.defaultCenter removeObserver:self name:MPMoviePlayerPlaybackStateDidChangeNotification
                                                 object:self.delegate.player];

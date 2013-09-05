@@ -22,6 +22,9 @@
 #import "Enclosure.h"
 
 @implementation TWStreamViewController
+{
+    BOOL hideUI;
+}
 
 - (void)viewDidLoad
 {
@@ -139,6 +142,11 @@
     return UIStatusBarStyleLightContent;
 }
 
+- (BOOL)prefersStatusBarHidden
+{
+    return hideUI;
+}
+
 - (void)updateTitle
 {
     self.titleLabel.text = self.stream.channel.title;
@@ -244,10 +252,12 @@
 
 - (void)hideControls:(BOOL)hide
 {
-    if(hide == self.toolbarView.hidden || !self.chatView.hidden)
+    if(hide == hideUI || !self.chatView.hidden)
         return;
     
-    [UIApplication.sharedApplication setStatusBarHidden:hide withAnimation:UIStatusBarAnimationFade];
+    hideUI = hide;
+    
+    [self setNeedsStatusBarAppearanceUpdate];
     
     if(!hide)
     {

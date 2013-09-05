@@ -109,4 +109,12 @@
         return super.preferredStatusBarStyle;
 }
 
+- (BOOL)prefersStatusBarHidden
+{
+    if([self.masterController respondsToSelector:@selector(prefersStatusBarHidden)])
+        return self.masterController.prefersStatusBarHidden;
+    else
+        return super.prefersStatusBarHidden;
+}
+
 @end

@@ -33,4 +33,12 @@
         return super.preferredStatusBarStyle;
 }
 
+- (BOOL)prefersStatusBarHidden
+{
+    if([self.topViewController respondsToSelector:@selector(prefersStatusBarHidden)])
+        return self.topViewController.prefersStatusBarHidden;
+    else
+        return super.prefersStatusBarHidden;
+}
+
 @end
