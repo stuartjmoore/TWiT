@@ -10,7 +10,7 @@
 
 @class TWSplitViewContainer, TWAppDelegate, Enclosure;
 
-@interface TWEnclosureViewController : UIViewController <UIAlertViewDelegate>
+@interface TWEnclosureViewController : UIViewController <UIActionSheetDelegate, UIAlertViewDelegate>
 
 @property (nonatomic, weak) TWSplitViewContainer *splitViewContainer;
 @property (nonatomic, weak) TWAppDelegate *delegate;
@@ -27,8 +27,6 @@
 @property (nonatomic, weak) IBOutlet UILabel *timeElapsedLabel, *timeRemainingLabel, *timeOfEndLabel;
 @property (nonatomic, weak) IBOutlet UIView *airplayButtonView;
 @property (nonatomic, weak) IBOutlet UIButton *qualityButton, *speedButton, *rewindButton, *playButton;
-
-@property (nonatomic, weak) IBOutlet UIView *qualityView;
 
 @property (nonatomic, weak) IBOutlet UIView *infoView;
 @property (nonatomic, weak) IBOutlet UIImageView *infoAlbumArtView;

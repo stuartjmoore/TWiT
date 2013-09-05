@@ -10,7 +10,7 @@
 
 @class TWAppDelegate, TWSplitViewContainer, Stream;
 
-@interface TWStreamViewController : UIViewController <UIWebViewDelegate, UITextFieldDelegate, UIAlertViewDelegate>
+@interface TWStreamViewController : UIViewController <UIWebViewDelegate, UITextFieldDelegate, UIActionSheetDelegate, UIAlertViewDelegate>
 
 @property (nonatomic, weak) TWSplitViewContainer *splitViewContainer;
 @property (nonatomic, weak) TWAppDelegate *delegate;
@@ -25,8 +25,6 @@
 @property (nonatomic, weak) IBOutlet UIView *toolbarView;
 @property (nonatomic, weak) IBOutlet UIView *airplayButtonView;
 @property (nonatomic, weak) IBOutlet UIButton *qualityButton, *chatButton, *playButton;
-
-@property (nonatomic, weak) IBOutlet UIView *qualityView;
 
 @property (nonatomic, weak) IBOutlet UIView *infoView;
 @property (nonatomic, weak) IBOutlet UIImageView *infoAlbumArtView;

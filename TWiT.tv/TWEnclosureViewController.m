@@ -293,9 +293,6 @@
     }
     else
     {
-        if(!self.qualityView.hidden)
-            [self openQualityPopover:nil];
-        
         [UIView animateWithDuration:0.3f delay:0 options:UIViewAnimationCurveEaseOut animations:^{
             self.navigationController.navigationBar.alpha = 0;
             self.navigationBar.alpha = 0;
@@ -342,62 +339,37 @@
 
 - (IBAction)openQualityPopover:(UIButton*)sender
 {
-    if(self.qualityView.hidden)
-    {
-        CGRect frame = self.qualityView.frame;
-        frame.size.height = 44*self.enclosure.episode.enclosures.count + 4;
-        CGRect buttonFrame = [sender convertRect:sender.frame toView:self.qualityView.superview];
-        frame.origin.y = buttonFrame.origin.y - frame.size.height;
-        self.qualityView.frame = frame;
-        
-        self.qualityView.alpha = 0;
-        self.qualityView.hidden = NO;
-        [UIView animateWithDuration:0.3f animations:^{
-            self.qualityView.alpha = 1;
-        }];
-    }
-    else
-    {
-        [UIView animateWithDuration:0.3f animations:^{
-            self.qualityView.alpha = 0;
-        } completion:^(BOOL fin){
-            self.qualityView.hidden = YES;
-            self.qualityView.alpha = 1;
-        }];
-    }
-}
+    UIActionSheet *sheet = [[UIActionSheet alloc] initWithTitle:@"Choose Video Quality"
+                                                       delegate:self
+                                              cancelButtonTitle:nil
+                                         destructiveButtonTitle:nil
+                                              otherButtonTitles:nil];
 
+    NSSortDescriptor *descriptor = [NSSortDescriptor sortDescriptorWithKey:@"quality" ascending:NO];
+    NSArray *sortedEnclosures = [self.enclosure.episode.enclosures sortedArrayUsingDescriptors:@[descriptor]];
 
-- (IBAction)seekStart:(UISlider*)sender
-{
-}
-- (IBAction)seeking:(UISlider*)sender
-{
-    NSInteger newPlaybackTime = self.seekbar.value * self.delegate.player.duration;
-    [self drawLabelsWithTime:newPlaybackTime andDuration:self.delegate.player.duration];
-}
-- (IBAction)seekEnd:(UISlider*)sender
-{
-    self.delegate.player.currentPlaybackTime = self.delegate.player.duration * self.seekbar.value;
-}
-
-- (void)tableView:(UITableView*)tableView didSelectRowAtIndexPath:(NSIndexPath*)indexPath
-{
-    self.toasterView.hidden = NO;
-    [self.spinner startAnimating];
+    for(Enclosure *enclosure in sortedEnclosures)
+        [sheet addButtonWithTitle:[NSString stringWithFormat:@"%@ - %@", enclosure.title, enclosure.subtitle]];
     
-    [UIView animateWithDuration:0.3f animations:^{
-        self.qualityView.alpha = 0;
-    } completion:^(BOOL fin) {
-        self.qualityView.hidden = YES;
-        self.qualityView.alpha = 1;
-    }];
+    [sheet addButtonWithTitle:@"Cancel"];
+    sheet.cancelButtonIndex = sheet.numberOfButtons - 1;
     
-    TWQualityCell *cell = (TWQualityCell*)[tableView cellForRowAtIndexPath:indexPath];
-    Enclosure *enclosure = (Enclosure*)cell.source;
+    [sheet showFromRect:self.qualityButton.frame inView:self.qualityButton animated:YES];
+}
+- (void)actionSheet:(UIActionSheet*)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if(buttonIndex == -1 || buttonIndex >= actionSheet.numberOfButtons-1)
+        return;
+    
+    NSSortDescriptor *descriptor = [[NSSortDescriptor alloc] initWithKey:@"quality" ascending:NO];
+    NSArray *enclosures = [self.enclosure.episode.enclosures sortedArrayUsingDescriptors:@[descriptor]];
+    Enclosure *enclosure = enclosures[buttonIndex];
     
     if(enclosure == self.enclosure)
         return;
+    
+    self.toasterView.hidden = NO;
+    [self.spinner startAnimating];
     
     NSTimeInterval startTime = self.delegate.player.currentPlaybackTime;
     
@@ -411,31 +383,17 @@
     [self.qualityButton setTitle:enclosure.title forState:UIControlStateNormal];
 }
 
-#pragma mark - Quality Table
-
-- (NSInteger)tableView:(UITableView*)tableView numberOfRowsInSection:(NSInteger)section
+- (IBAction)seekStart:(UISlider*)sender
 {
-    return self.enclosure.episode.enclosures.count;
 }
-
-- (UITableViewCell*)tableView:(UITableView*)tableView cellForRowAtIndexPath:(NSIndexPath*)indexPath
+- (IBAction)seeking:(UISlider*)sender
 {
-    NSString *identifier = @"qualityCell";
-    TWQualityCell *cell = (TWQualityCell*)[tableView dequeueReusableCellWithIdentifier:identifier];
-    
-    NSSortDescriptor *descriptor = [NSSortDescriptor sortDescriptorWithKey:@"quality" ascending:NO];
-    NSArray *sortedEnclosures = [self.enclosure.episode.enclosures sortedArrayUsingDescriptors:@[descriptor]];
-    Enclosure *enclosure = sortedEnclosures[indexPath.row];
-    
-    cell.source = enclosure;
-    
-    cell.topLine.hidden = (indexPath.row == 0);
-    cell.bottomLine.hidden = (indexPath.row == sortedEnclosures.count-1);
-    
-    if(enclosure == self.enclosure)
-        [tableView selectRowAtIndexPath:indexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
-    
-    return cell;
+    NSInteger newPlaybackTime = self.seekbar.value * self.delegate.player.duration;
+    [self drawLabelsWithTime:newPlaybackTime andDuration:self.delegate.player.duration];
+}
+- (IBAction)seekEnd:(UISlider*)sender
+{
+    self.delegate.player.currentPlaybackTime = self.delegate.player.duration * self.seekbar.value;
 }
 
 #pragma mark - Rotate

@@ -1058,86 +1058,6 @@
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.75" colorSpace="calibratedWhite"/>
                             </view>
-                            <view hidden="YES" contentMode="scaleToFill" id="fx5-yC-zcf" userLabel="Quality">
-                                <rect key="frame" x="0.0" y="136" width="320" height="200"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
-                                <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="quality-view-back.png" id="aBb-I3-QYb">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="200"/>
-                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                        <rect key="contentStretch" x="0.47619047619999999" y="0.16326530610000001" width="0.0" height="0.0"/>
-                                    </imageView>
-                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="he9-VU-Rbw">
-                                        <rect key="frame" x="6" y="2" width="308" height="196"/>
-                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                        <prototypes>
-                                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="qualityCell" id="80y-cB-Rny" customClass="TWQualityCell">
-                                                <rect key="frame" x="0.0" y="22" width="308" height="44"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="80y-cB-Rny" id="OPS-4T-Amg">
-                                                    <rect key="frame" x="0.0" y="0.0" width="308" height="44"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                    <subviews>
-                                                        <view contentMode="scaleToFill" id="qGA-Sy-hH4" userLabel="Top">
-                                                            <rect key="frame" x="0.0" y="0.0" width="308" height="1"/>
-                                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                                            <color key="backgroundColor" white="0.23999999999999999" alpha="1" colorSpace="calibratedWhite"/>
-                                                        </view>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="quality-view-check-off.png" id="FK1-8b-RxY">
-                                                            <rect key="frame" x="10" y="12.5" width="24" height="19"/>
-                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                                        </imageView>
-                                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="BitGravity" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="WLt-cL-bae">
-                                                            <rect key="frame" x="42" y="11.5" width="90" height="21"/>
-                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
-                                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                            <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                            <color key="shadowColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                                            <size key="shadowOffset" width="0.0" height="1"/>
-                                                        </label>
-                                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Variable Bitrate" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="PzL-2i-3qW">
-                                                            <rect key="frame" x="140" y="11.5" width="160" height="21"/>
-                                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                            <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                            <color key="shadowColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                                            <size key="shadowOffset" width="0.0" height="1"/>
-                                                        </label>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="quality-view-download.png" id="SUW-gf-c59">
-                                                            <rect key="frame" x="282" y="15.5" width="12" height="14"/>
-                                                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                                        </imageView>
-                                                        <view contentMode="scaleToFill" id="ghs-f9-mBP" userLabel="Bottom">
-                                                            <rect key="frame" x="0.0" y="43" width="308" height="1"/>
-                                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                                            <color key="backgroundColor" white="0.040000000000000001" alpha="1" colorSpace="calibratedWhite"/>
-                                                        </view>
-                                                    </subviews>
-                                                </tableViewCellContentView>
-                                                <connections>
-                                                    <outlet property="bottomLine" destination="ghs-f9-mBP" id="3la-hX-yrg"/>
-                                                    <outlet property="checkmarkIcon" destination="FK1-8b-RxY" id="TEI-vd-8zU"/>
-                                                    <outlet property="downloadIcon" destination="SUW-gf-c59" id="bbM-zh-7aP"/>
-                                                    <outlet property="subtitleLabel" destination="PzL-2i-3qW" id="5aa-Z3-vbf"/>
-                                                    <outlet property="titleLabel" destination="WLt-cL-bae" id="9VJ-s8-aeq"/>
-                                                    <outlet property="topLine" destination="qGA-Sy-hH4" id="gqe-Om-XUh"/>
-                                                </connections>
-                                            </tableViewCell>
-                                        </prototypes>
-                                        <connections>
-                                            <outlet property="dataSource" destination="cwj-qn-kQX" id="Vy0-0x-VBi"/>
-                                            <outlet property="delegate" destination="cwj-qn-kQX" id="DlE-Lx-vcW"/>
-                                        </connections>
-                                    </tableView>
-                                </subviews>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <accessibility key="accessibilityConfiguration" label="Quality selector">
-                                    <bool key="isElement" value="YES"/>
-                                </accessibility>
-                            </view>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -1177,7 +1097,6 @@
                         <outlet property="infoView" destination="pKp-YU-GKo" id="ZFo-Vd-VsI"/>
                         <outlet property="playButton" destination="2tA-WO-fRc" id="SQe-pX-4a4"/>
                         <outlet property="qualityButton" destination="HeG-jk-7oC" id="sNP-D6-dN8"/>
-                        <outlet property="qualityView" destination="fx5-yC-zcf" id="aQT-nV-wDc"/>
                         <outlet property="rewindButton" destination="9Sz-QQ-muz" id="ipc-gU-DXd"/>
                         <outlet property="seekbar" destination="2Ox-hJ-Dfa" id="yAT-5e-YBK"/>
                         <outlet property="speedButton" destination="NyF-GD-hKP" id="ZlJ-ef-wvx"/>
@@ -1391,86 +1310,6 @@
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.75" colorSpace="calibratedWhite"/>
                             </view>
-                            <view hidden="YES" contentMode="scaleToFill" id="UCw-9J-u9P" userLabel="Quality">
-                                <rect key="frame" x="0.0" y="232" width="320" height="200"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
-                                <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="quality-view-back.png" id="d1y-Y9-9Xk">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="200"/>
-                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                        <rect key="contentStretch" x="0.47619047619999999" y="0.16326530610000001" width="0.0" height="0.0"/>
-                                    </imageView>
-                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="cll-Yh-b61">
-                                        <rect key="frame" x="6" y="2" width="308" height="196"/>
-                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                        <prototypes>
-                                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="qualityCell" id="LLp-bE-TT9" customClass="TWQualityCell">
-                                                <rect key="frame" x="0.0" y="22" width="308" height="44"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="LLp-bE-TT9" id="3cU-CH-1kz">
-                                                    <rect key="frame" x="0.0" y="0.0" width="308" height="44"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                    <subviews>
-                                                        <view contentMode="scaleToFill" id="Erd-Pf-G30" userLabel="Top">
-                                                            <rect key="frame" x="0.0" y="0.0" width="308" height="1"/>
-                                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                                            <color key="backgroundColor" white="0.23999999999999999" alpha="1" colorSpace="calibratedWhite"/>
-                                                        </view>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="quality-view-check-off.png" id="3BZ-78-vNQ">
-                                                            <rect key="frame" x="10" y="12.5" width="24" height="19"/>
-                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                                        </imageView>
-                                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="BitGravity" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Dal-Pf-Vo4">
-                                                            <rect key="frame" x="42" y="11.5" width="90" height="21"/>
-                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
-                                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                            <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                            <color key="shadowColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                                            <size key="shadowOffset" width="0.0" height="1"/>
-                                                        </label>
-                                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Variable Bitrate" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="xYZ-uT-Gmr">
-                                                            <rect key="frame" x="140" y="11.5" width="160" height="21"/>
-                                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                            <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                            <color key="shadowColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                                            <size key="shadowOffset" width="0.0" height="1"/>
-                                                        </label>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="list-downloaded-icon.png" id="psa-BD-wE7">
-                                                            <rect key="frame" x="282" y="15.5" width="12" height="13"/>
-                                                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                                        </imageView>
-                                                        <view contentMode="scaleToFill" id="h6L-04-UuG" userLabel="Bottom">
-                                                            <rect key="frame" x="0.0" y="43" width="308" height="1"/>
-                                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                                            <color key="backgroundColor" white="0.040000000000000001" alpha="1" colorSpace="calibratedWhite"/>
-                                                        </view>
-                                                    </subviews>
-                                                </tableViewCellContentView>
-                                                <connections>
-                                                    <outlet property="bottomLine" destination="h6L-04-UuG" id="UIk-Au-b9b"/>
-                                                    <outlet property="checkmarkIcon" destination="3BZ-78-vNQ" id="8Hp-Wf-dCx"/>
-                                                    <outlet property="downloadIcon" destination="psa-BD-wE7" id="r2R-wZ-l2J"/>
-                                                    <outlet property="subtitleLabel" destination="xYZ-uT-Gmr" id="gDn-04-Gjb"/>
-                                                    <outlet property="titleLabel" destination="Dal-Pf-Vo4" id="NMF-Cj-7Up"/>
-                                                    <outlet property="topLine" destination="Erd-Pf-G30" id="xpn-BT-Oa7"/>
-                                                </connections>
-                                            </tableViewCell>
-                                        </prototypes>
-                                        <connections>
-                                            <outlet property="dataSource" destination="zgt-3C-NJF" id="dCI-GZ-mqa"/>
-                                            <outlet property="delegate" destination="zgt-3C-NJF" id="uz5-QB-5sF"/>
-                                        </connections>
-                                    </tableView>
-                                </subviews>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <accessibility key="accessibilityConfiguration" label="Quality selector">
-                                    <bool key="isElement" value="YES"/>
-                                </accessibility>
-                            </view>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -1515,7 +1354,6 @@
                         <outlet property="infoView" destination="GUQ-sI-WNG" id="lVC-j2-YmJ"/>
                         <outlet property="playButton" destination="aEE-TI-3XS" id="17s-B5-3yh"/>
                         <outlet property="qualityButton" destination="1ob-E5-9tA" id="fYa-79-7pH"/>
-                        <outlet property="qualityView" destination="UCw-9J-u9P" id="3AN-l0-gM1"/>
                         <outlet property="spinner" destination="LJJ-xm-kov" id="964-3j-7Uq"/>
                         <outlet property="subtitleLabel" destination="u3L-jY-1xT" id="oHh-6Y-TQL"/>
                         <outlet property="titleLabel" destination="vtb-c9-jZa" id="yb3-ST-4PW"/>
@@ -1637,11 +1475,8 @@
         <image name="navbar-pause.png" width="15" height="21"/>
         <image name="navbar-play.png" width="17" height="21"/>
         <image name="navbar-stop.png" width="20" height="21"/>
-        <image name="quality-view-back.png" width="21" height="49"/>
         <image name="quality-view-button.png" width="9" height="10"/>
-        <image name="quality-view-check-off.png" width="24" height="19"/>
         <image name="quality-view-disclosure.png" width="5" height="5"/>
-        <image name="quality-view-download.png" width="12" height="14"/>
         <image name="quick-play.png" width="20" height="21"/>
         <image name="separator-fade-bottom.png" width="320" height="1"/>
         <image name="separator-fade-top.png" width="320" height="1"/>
