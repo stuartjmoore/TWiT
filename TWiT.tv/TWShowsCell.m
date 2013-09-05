@@ -47,7 +47,7 @@
     
     UIGraphicsBeginImageContextWithOptions(self.frame.size, YES, UIScreen.mainScreen.scale);
     CGContextRef context = UIGraphicsGetCurrentContext();
-    CGContextSetFillColorWithColor(context, [UIColor colorWithWhite:245/255.0f alpha:1].CGColor);
+    CGContextSetFillColorWithColor(context, [UIColor whiteColor].CGColor);
     CGContextFillRect(context, self.bounds);
     
     for(int column = 0, showsCount = self.shows.count; column < showsCount; column++)
@@ -56,7 +56,7 @@
         CGRect frame = [self frameForColumn:column];
         CGContextFillRect(context, frame);
         
-        CGContextSetRGBFillColor(context, 245/255.0f, 245/255.0f, 245/255.0f, 1.0f);
+        CGContextSetRGBFillColor(context, 255/255.0f, 255/255.0f, 255/255.0f, 1.0f);
         //[[self.shows[column] title] drawInRect:frame withAttributes:@{}];
         //[[self.shows[column] title] drawInRect:frame withFont:[UIFont boldSystemFontOfSize:14] lineBreakMode:NSLineBreakByWordWrapping alignment:NSTextAlignmentCenter];
     }
@@ -80,7 +80,7 @@
         UIGraphicsBeginImageContextWithOptions(weak.frame.size, YES, UIScreen.mainScreen.scale);
         
         CGContextRef context = UIGraphicsGetCurrentContext();
-        CGContextSetFillColorWithColor(context, [UIColor colorWithWhite:245/255.0f alpha:1].CGColor);
+        CGContextSetFillColorWithColor(context, [UIColor whiteColor].CGColor);
         CGContextFillRect(context, weak.bounds);
         weak.icons = UIGraphicsGetImageFromCurrentImageContext();
         

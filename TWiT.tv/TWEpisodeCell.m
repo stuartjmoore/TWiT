@@ -115,7 +115,7 @@
     }
     else
     {
-        self.contentView.backgroundColor = [UIColor colorWithWhite:0.96f alpha:1];
+        self.contentView.backgroundColor = [UIColor whiteColor];
         self.titleLabel.textColor = [UIColor blackColor];
         self.subtitleLabel.textColor = [UIColor darkGrayColor];
         
