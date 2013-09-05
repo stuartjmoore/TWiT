@@ -634,10 +634,10 @@
             </objects>
             <point key="canvasLocation" x="944" y="-954"/>
         </scene>
-        <!--Show View Controller-->
+        <!--Show View Controller - Show-->
         <scene sceneID="6n7-Q8-Kqg">
             <objects>
-                <tableViewController storyboardIdentifier="showDetail" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Gce-uE-xEB" customClass="TWShowViewController" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="showDetail" title="Show" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Gce-uE-xEB" customClass="TWShowViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="62" sectionHeaderHeight="22" sectionFooterHeight="22" id="lcT-MQ-Chp">
                         <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1509,7 +1509,7 @@
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="ev1-BP-H8c"/>
+        <segue reference="YiW-0V-IC2"/>
         <segue reference="rrL-Yf-xFC"/>
-        <segue reference="OfB-Q1-3Dp"/>
     </inferredMetricsTieBreakers>
 </document>
