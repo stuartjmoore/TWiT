@@ -32,7 +32,7 @@
         if([view isKindOfClass:UILabel.class])
         {
             UILabel *titleLabel = (UILabel*)view;
-            titleLabel.font = [UIFont fontWithName:@"Vollkorn-BoldItalic" size:24];
+            titleLabel.font = [UIFont fontWithName:@"Vollkorn-BoldItalic" size:18];
             titleLabel.text = title;
             
             CGSize size = [title sizeWithFont:[UIFont fontWithName:@"Vollkorn-BoldItalic" size:MIN_FONT_SIZE]];
