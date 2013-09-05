@@ -38,7 +38,7 @@
     
     self.accessibilityHint = isPublished ? @"Opens the episode view." : @"Opens an error dialog.";
     
-    CGSize size = [self.titleLabel.text sizeWithFont:self.titleLabel.font];
+    CGSize size = [self.titleLabel.text sizeWithAttributes:@{NSFontAttributeName: self.titleLabel.font}];
     
     if(size.width > self.titleLabel.frame.size.width)
     {

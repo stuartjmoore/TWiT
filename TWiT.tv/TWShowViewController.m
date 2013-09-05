@@ -115,12 +115,22 @@
         self.emailButton.hidden = !self.show.email;
         self.phoneButton.hidden = !self.show.phone;
         
-        CGSize maxSize = CGSizeMake(self.descLabel.frame.size.width, CGFLOAT_MAX);
-        CGSize size = [self.descLabel.text sizeWithFont:self.descLabel.font constrainedToSize:maxSize];
-        CGRect frame = self.descLabel.frame;
-        frame.size.height = size.height;
-        self.descLabel.frame = frame;
-        
+        if(self.descLabel)
+        {
+            NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
+            [paragraphStyle setLineBreakMode:NSLineBreakByWordWrapping];
+            
+            CGSize size = [self.descLabel.text boundingRectWithSize:CGSizeMake(self.descLabel.frame.size.width, CGFLOAT_MAX)
+                                                            options:NSStringDrawingUsesLineFragmentOrigin
+                                                         attributes:@{NSFontAttributeName : self.descLabel.font,
+                                                                      NSParagraphStyleAttributeName : paragraphStyle}
+                                                            context:nil].size;
+            
+            CGRect frame = self.descLabel.frame;
+            frame.size.height = size.height;
+            self.descLabel.frame = frame;
+        }
+            
         for (int i = 0; i < [self.tableView numberOfSections]; i++)
         {
             for (int j = 0; j < [self.tableView numberOfRowsInSection:i]; j++)

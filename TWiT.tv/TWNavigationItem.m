@@ -35,7 +35,8 @@
             titleLabel.font = [UIFont fontWithName:@"Vollkorn-BoldItalic" size:18];
             titleLabel.text = title;
             
-            CGSize size = [title sizeWithFont:[UIFont fontWithName:@"Vollkorn-BoldItalic" size:MIN_FONT_SIZE]];
+            CGSize size = [title sizeWithAttributes:@{NSFontAttributeName: [UIFont fontWithName:@"Vollkorn-BoldItalic" size:MIN_FONT_SIZE]}];
+
             if(size.width >= titleLabel.frame.size.width)
             {
                 titleLabel.font = [UIFont fontWithName:titleLabel.font.fontName size:MIN_FONT_SIZE];

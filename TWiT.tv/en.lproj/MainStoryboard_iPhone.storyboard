@@ -1670,8 +1670,8 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="YiW-0V-IC2"/>
-        <segue reference="rrL-Yf-xFC"/>
         <segue reference="ev1-BP-H8c"/>
+        <segue reference="rrL-Yf-xFC"/>
+        <segue reference="OfB-Q1-3Dp"/>
     </inferredMetricsTieBreakers>
 </document>
