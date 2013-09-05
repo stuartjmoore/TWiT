@@ -37,7 +37,7 @@
 - (void)layoutSubviews
 {
     [super layoutSubviews];
-    
+  
     if(self.icons && self.icons.size.width == self.frame.size.width)
     {
         [self setNeedsDisplayInRect:self.bounds];
@@ -57,7 +57,8 @@
         CGContextFillRect(context, frame);
         
         CGContextSetRGBFillColor(context, 245/255.0f, 245/255.0f, 245/255.0f, 1.0f);
-        [[self.shows[column] title] drawInRect:frame withFont:[UIFont boldSystemFontOfSize:14] lineBreakMode:NSLineBreakByWordWrapping alignment:NSTextAlignmentCenter];
+        //[[self.shows[column] title] drawInRect:frame withAttributes:@{}];
+        //[[self.shows[column] title] drawInRect:frame withFont:[UIFont boldSystemFontOfSize:14] lineBreakMode:NSLineBreakByWordWrapping alignment:NSTextAlignmentCenter];
     }
     self.icons = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
@@ -115,6 +116,8 @@
 }
 - (void)didDrawIcons
 {
+    NSLog(@"didDrawIcons %@", self.icons);
+    
     [self.delegate showsCell:self didDrawIconsAtIndexPath:self.indexPath];
     [self setNeedsDisplayInRect:self.bounds];
 }

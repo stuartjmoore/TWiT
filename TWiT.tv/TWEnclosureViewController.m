@@ -117,18 +117,9 @@
     [self.splitViewContainer hidePlaybar];
     TWNavigationController *navigationController = (TWNavigationController*)self.navigationController;
     [navigationController.navigationContainer hidePlaybar];
-    
-    self.wantsFullScreenLayout = YES;
-    self.navigationController.navigationBar.translucent = YES;
-    
-    UIImage *navigationBarImage = [UIImage imageNamed:@"video-navbar-back.png"];
-    [self.navigationBar setBackgroundImage:navigationBarImage forBarMetrics:UIBarMetricsDefault];
-    [self.navigationController.navigationBar setBackgroundImage:navigationBarImage forBarMetrics:UIBarMetricsDefault];
-    UIImage *backButtonImage = [[UIImage imageNamed:@"video-navbar-backbutton.png"] stretchableImageWithLeftCapWidth:14 topCapHeight:15];
-    [UIBarButtonItem.appearance setBackButtonBackgroundImage:backButtonImage forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
-    
+
     if(UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPhone)
-        [UIApplication.sharedApplication setStatusBarStyle:UIStatusBarStyleBlackTranslucent animated:YES];
+        [UIApplication.sharedApplication setStatusBarStyle:UIStatusBarStyleLightContent animated:YES];
     
     
     [NSNotificationCenter.defaultCenter addObserver:self
@@ -496,19 +487,9 @@
     
     if(self.delegate.player.currentPlaybackTime / self.delegate.player.duration >= 0.85f)
         self.enclosure.episode.watched = YES;
-    
-    
-    self.wantsFullScreenLayout = NO;
-    self.navigationController.navigationBar.translucent = NO;
-    
-    UIImage *navigationBarImage = [UIImage imageNamed:@"navbar-background.png"];
-    [self.navigationBar setBackgroundImage:nil forBarMetrics:UIBarMetricsDefault];
-    [self.navigationController.navigationBar setBackgroundImage:navigationBarImage forBarMetrics:UIBarMetricsDefault];
-    UIImage *backButtonImage = [[UIImage imageNamed:@"navbar-back.png"] stretchableImageWithLeftCapWidth:14 topCapHeight:15];
-    [UIBarButtonItem.appearance setBackButtonBackgroundImage:backButtonImage forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
-    
+
     if(UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPhone)
-        [UIApplication.sharedApplication setStatusBarStyle:UIStatusBarStyleBlackOpaque animated:YES];
+        [UIApplication.sharedApplication setStatusBarStyle:UIStatusBarStyleLightContent animated:YES];
     
     [self.navigationController setNavigationBarHidden:NO animated:YES];
     [UIApplication.sharedApplication setStatusBarHidden:NO withAnimation:UIStatusBarAnimationSlide];

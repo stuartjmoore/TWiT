@@ -829,7 +829,7 @@
         
         cell.textLabel.text = showEvent.time;
         cell.detailTextLabel.text = showEvent.title;
-        
+      
         return cell;
     }
     
