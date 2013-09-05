@@ -126,6 +126,7 @@
     if(UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPhone)
     {
         [self.navigationController.navigationBar setBarStyle:UIBarStyleBlack];
+        self.navigationController.navigationBar.tintColor = UIColor.whiteColor;
     }
     
     [NSNotificationCenter.defaultCenter addObserver:self
@@ -466,6 +467,7 @@
     if(UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPhone)
     {
         [self.navigationController.navigationBar setBarStyle:UIBarStyleDefault];
+        self.navigationController.navigationBar.tintColor = self.view.window.tintColor;
     }
     
     [NSNotificationCenter.defaultCenter removeObserver:self name:MPMoviePlayerPlaybackStateDidChangeNotification
