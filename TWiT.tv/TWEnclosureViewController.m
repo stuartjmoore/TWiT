@@ -119,8 +119,10 @@
     [navigationController.navigationContainer hidePlaybar];
 
     if(UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPhone)
+    {
         [UIApplication.sharedApplication setStatusBarStyle:UIStatusBarStyleLightContent animated:YES];
-    
+        [self.navigationController.navigationBar setBarStyle:UIBarStyleBlack];
+    }
     
     [NSNotificationCenter.defaultCenter addObserver:self
                                            selector:@selector(playerStateChanged:)
@@ -138,6 +140,14 @@
                                            selector:@selector(playerStateChanged:)
                                                name:MPMoviePlayerIsAirPlayVideoActiveDidChangeNotification
                                              object:self.delegate.player];
+}
+
+/*
+    Not working. Set "View controller-based status bar appearance" to YES in info.plist when it does
+ */
+- (UIStatusBarStyle)preferredStatusBarStyle
+{
+    return UIStatusBarStyleLightContent;
 }
 
 #pragma mark - Notifications
@@ -489,7 +499,10 @@
         self.enclosure.episode.watched = YES;
 
     if(UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPhone)
-        [UIApplication.sharedApplication setStatusBarStyle:UIStatusBarStyleLightContent animated:YES];
+    {
+        [UIApplication.sharedApplication setStatusBarStyle:UIStatusBarStyleDefault animated:YES];
+        [self.navigationController.navigationBar setBarStyle:UIBarStyleDefault];
+    }
     
     [self.navigationController setNavigationBarHidden:NO animated:YES];
     [UIApplication.sharedApplication setStatusBarHidden:NO withAnimation:UIStatusBarAnimationSlide];

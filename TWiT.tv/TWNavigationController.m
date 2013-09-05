@@ -25,4 +25,12 @@
         return super.supportedInterfaceOrientations;
 }
 
+- (UIStatusBarStyle)preferredStatusBarStyle
+{
+    if ([self.topViewController respondsToSelector:@selector(preferredStatusBarStyle)])
+        return self.topViewController.preferredStatusBarStyle;
+    else
+        return super.preferredStatusBarStyle;
+}
+
 @end

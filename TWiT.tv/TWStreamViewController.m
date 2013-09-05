@@ -96,10 +96,12 @@
     [self.splitViewContainer hidePlaybar];
     TWNavigationController *navigationController = (TWNavigationController*)self.navigationController;
     [navigationController.navigationContainer hidePlaybar];
-
-    if(UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPhone)
-        [UIApplication.sharedApplication setStatusBarStyle:UIStatusBarStyleLightContent animated:YES];
     
+    if(UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPhone)
+    {
+        [UIApplication.sharedApplication setStatusBarStyle:UIStatusBarStyleLightContent animated:YES];
+        [self.navigationController.navigationBar setBarStyle:UIBarStyleBlack];
+    }
     
     [NSNotificationCenter.defaultCenter addObserver:self
                                            selector:@selector(playerStateChanged:)
@@ -692,7 +694,10 @@
 - (void)viewWillDisappear:(BOOL)animated
 {
     if(UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPhone)
-        [UIApplication.sharedApplication setStatusBarStyle:UIStatusBarStyleLightContent animated:YES];
+    {
+        [UIApplication.sharedApplication setStatusBarStyle:UIStatusBarStyleDefault animated:YES];
+        [self.navigationController.navigationBar setBarStyle:UIBarStyleDefault];
+    }
     
     [self.navigationController setNavigationBarHidden:NO animated:YES];
     [UIApplication.sharedApplication setStatusBarHidden:NO withAnimation:UIStatusBarAnimationSlide];
