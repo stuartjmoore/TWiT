@@ -328,7 +328,7 @@
     [sheet addButtonWithTitle:@"Cancel"];
     sheet.cancelButtonIndex = sheet.numberOfButtons - 1;
     
-    [sheet showFromRect:self.qualityButton.frame inView:self.qualityButton animated:YES];
+    [sheet showFromRect:CGRectMake(self.qualityButton.frame.size.width/2.0, 0, 1, 1) inView:self.qualityButton animated:YES];
 }
 - (void)actionSheet:(UIActionSheet*)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
