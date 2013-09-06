@@ -84,7 +84,6 @@
         
         
         UIView *view = [[UIView alloc] initWithFrame:frame];
-        view.backgroundColor = [UIColor colorWithWhite:0.96f alpha:1];
         
         CGRect titleFrame = CGRectMake(10, 0, view.frame.size.width-20, view.frame.size.height);
         UILabel *title = [[UILabel alloc] initWithFrame:titleFrame];
@@ -129,49 +128,31 @@
                 maxX = frame.origin.x+frame.size.width;
             
             UIView *view = [[UIView alloc] initWithFrame:frame];
-            view.backgroundColor = [UIColor colorWithWhite:0.96f alpha:1];
-            
             
             UIView *topLineOut = [[UIView alloc] initWithFrame:CGRectMake(-1, -1, frame.size.width+2, 1)];
             topLineOut.backgroundColor = [UIColor colorWithWhite:0.87f alpha:1];
             [view addSubview:topLineOut];
             
-            UIView *rightLineOut = [[UIView alloc] initWithFrame:CGRectMake(frame.size.width, -1, 1, frame.size.height+2)];
-            rightLineOut.backgroundColor = [UIColor whiteColor];
-            [view addSubview:rightLineOut];
-            
             UIView *leftLineOut = [[UIView alloc] initWithFrame:CGRectMake(-1, -1, 1, frame.size.height+2)];
             leftLineOut.backgroundColor = [UIColor colorWithWhite:0.87f alpha:1];
             [view addSubview:leftLineOut];
             
-            UIView *leftLine = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 1, frame.size.height)];
-            leftLine.backgroundColor = [UIColor whiteColor];
-            [view addSubview:leftLine];
-            
             UIView *botLine = [[UIView alloc] initWithFrame:CGRectMake(0, frame.size.height-1, frame.size.width, 1)];
             botLine.backgroundColor = [UIColor colorWithWhite:0.87f alpha:1];
             [view addSubview:botLine];
-            UIView *botLineOut = [[UIView alloc] initWithFrame:CGRectMake(-1, frame.size.height, frame.size.width+2, 1)];
-            botLineOut.backgroundColor = [UIColor whiteColor];
-            [view addSubview:botLineOut];
-            
-            UIView *topLine = [[UIView alloc] initWithFrame:CGRectMake(0, 0, frame.size.width, 1)];
-            topLine.backgroundColor = [UIColor whiteColor];
-            [view addSubview:topLine];
             
             UIView *rightLine = [[UIView alloc] initWithFrame:CGRectMake(frame.size.width-1, 0, 1, frame.size.height)];
             rightLine.backgroundColor = [UIColor colorWithWhite:0.87f alpha:1];
             [view addSubview:rightLine];
             
-            
-            CGRect titleFrame = CGRectMake(10, 10, view.frame.size.width-20, view.frame.size.height-20);
+            CGRect titleFrame = CGRectMake(20, 10, view.frame.size.width-20, view.frame.size.height-20);
             UILabel *title = [[UILabel alloc] initWithFrame:titleFrame];
             title.backgroundColor = [UIColor clearColor];
-            title.font = [UIFont boldSystemFontOfSize:14];
+            title.font = [UIFont systemFontOfSize:18];
             title.text = event.title;
             [view addSubview:title];
             
-            CGRect subtitleFrame = CGRectMake(10, view.frame.size.height/2.0f, view.frame.size.width-20, view.frame.size.height/2.0f);
+            CGRect subtitleFrame = CGRectMake(20, view.frame.size.height/2.0f, view.frame.size.width-20, view.frame.size.height/2.0f);
             UILabel *subtitle = [[UILabel alloc] initWithFrame:subtitleFrame];
             subtitle.backgroundColor = [UIColor clearColor];
             subtitle.font = [UIFont systemFontOfSize:14];
@@ -198,7 +179,7 @@
 
     [self.nowLine removeFromSuperview];
     self.nowLine = [[UIView alloc] init];
-    self.nowLine.backgroundColor = [UIColor colorWithRed:61/255.0 green:122/255.0 blue:155/255.0 alpha:0.75f];
+    self.nowLine.backgroundColor = [UIColor colorWithRed:52.0/255 green:170.0/255 blue:210.0/255 alpha:1];
     float height = (self.scrollView.bounds.size.height-timeHeight)/7.0f;
     self.nowLine.frame = CGRectMake(now.floatTime*hourWidth, timeHeight/2.0f, 1, height+timeHeight);
     [self.scrollView addSubview:self.nowLine];
