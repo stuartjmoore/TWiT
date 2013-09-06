@@ -52,7 +52,7 @@
     
     for(int column = 0, showsCount = self.shows.count; column < showsCount; column++)
     {
-        CGContextSetRGBFillColor(context, 1.0f, 0.0f, 0.0f, 1.0f);
+        CGContextSetFillColorWithColor(context, self.window.tintColor.CGColor);
         CGRect frame = [self frameForColumn:column];
         CGContextFillRect(context, frame);
         
@@ -127,7 +127,7 @@
 
 #pragma mark - Touches
 
-- (void)touchesBegan:(NSSet*)touches withEvent:(UIEvent*)event
+- (void)touchesEnded:(NSSet*)touches withEvent:(UIEvent*)event
 {
     UITouch *touch = touches.anyObject;
     CGPoint location = [touch locationInView:self];
@@ -137,6 +137,7 @@
         if(CGRectContainsPoint([self frameForColumn:column], location))
         {   
             [self.delegate tableView:self.table didSelectColumn:column AtIndexPath:self.indexPath];
+            break;
         }
     }
 }

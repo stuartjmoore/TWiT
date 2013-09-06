@@ -331,9 +331,9 @@
             
             if(currentShow == selectedShow)
             {
-                self.showSelectedView = nil;
-                
-                [masterController popToRootViewControllerAnimated:YES];
+                // TODO: Crashes
+                //self.showSelectedView = nil;
+                //[masterController popToRootViewControllerAnimated:YES];
             }
             else
             {

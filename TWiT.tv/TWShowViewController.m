@@ -127,7 +127,7 @@
             frame.size.height = size.height;
             self.descLabel.frame = frame;
         }
-            
+        
         for (int i = 0; i < [self.tableView numberOfSections]; i++)
         {
             for (int j = 0; j < [self.tableView numberOfRowsInSection:i]; j++)
