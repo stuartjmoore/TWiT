@@ -253,7 +253,7 @@
     NSPredicate *pred = [NSPredicate predicateWithFormat:@"self == %@", nil];
     
     NSArray *epsiodes = [self.episodes sortedArrayUsingDescriptors:@[sortDescriptor]];
-    NSArray *publishedDates = [[epsiodes subarrayWithRange:NSMakeRange(0, 9)] valueForKey:@"published"];
+    NSArray *publishedDates = [[epsiodes subarrayWithRange:NSMakeRange(0, epsiodes.count >= 9 ? 9 : epsiodes.count)] valueForKey:@"published"];
     NSArray *notPublished = [publishedDates filteredArrayUsingPredicate:pred];
     
     BOOL forceUpdate = notPublished.count;

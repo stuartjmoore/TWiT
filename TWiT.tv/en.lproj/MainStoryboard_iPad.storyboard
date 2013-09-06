@@ -4,10 +4,10 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3734.1"/>
     </dependencies>
     <scenes>
-        <!--Main View Controller-->
+        <!--Main View Controller - Watch List-->
         <scene sceneID="Unt-nf-vDf">
             <objects>
-                <tableViewController id="gxO-j5-wb0" customClass="TWMainViewController" sceneMemberID="viewController">
+                <tableViewController title="Watch List" id="gxO-j5-wb0" customClass="TWMainViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="62" sectionHeaderHeight="22" sectionFooterHeight="22" id="RgZ-za-TvO">
                         <rect key="frame" x="0.0" y="64" width="320" height="788"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -106,7 +106,7 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="320" height="62"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <subviews>
-                                                        <view contentMode="scaleToFill" id="Bgq-Xl-ihz" userLabel="Top Separator">
+                                                        <view hidden="YES" contentMode="scaleToFill" id="Bgq-Xl-ihz" userLabel="Top Separator">
                                                             <rect key="frame" x="0.0" y="0.0" width="320" height="1"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -198,26 +198,7 @@
                         </connections>
                     </tableView>
                     <extendedEdge key="edgesForExtendedLayout"/>
-                    <navigationItem key="navigationItem" id="yPF-xx-YFE">
-                        <nil key="title"/>
-                        <view key="titleView" contentMode="scaleToFill" id="A90-6L-Xj6">
-                            <rect key="frame" x="60" y="6" width="200" height="33"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                            <subviews>
-                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Episodes" textAlignment="center" lineBreakMode="middleTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="3lS-BR-V5d">
-                                    <rect key="frame" x="0.0" y="0.0" width="200" height="33"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                    <accessibility key="accessibilityConfiguration" hint="Displays unwatched and downloaded episodes." label="Episodes"/>
-                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
-                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                    <nil key="highlightedColor"/>
-                                    <color key="shadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    <size key="shadowOffset" width="0.0" height="1"/>
-                                </label>
-                            </subviews>
-                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                        </view>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Watch List" id="yPF-xx-YFE"/>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="number" keyPath="sectionVisible">
                             <integer key="value" value="0"/>
@@ -390,9 +371,10 @@
                                                     <rect key="frame" x="0.0" y="61" width="320" height="1"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                                 </imageView>
-                                                <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" image="linen.png" id="yoN-I4-xvn">
+                                                <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" id="yoN-I4-xvn">
                                                     <rect key="frame" x="0.0" y="0.0" width="320" height="62"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                    <color key="backgroundColor" red="0.80181961440000005" green="0.79792465729999995" blue="0.84116556190000003" alpha="1" colorSpace="calibratedRGB"/>
                                                 </imageView>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -1454,7 +1436,7 @@
                                 <items>
                                     <navigationItem id="WgZ-Fg-Gfu">
                                         <nil key="title"/>
-                                        <barButtonItem key="leftBarButtonItem" id="E7d-Bn-wYG">
+                                        <barButtonItem key="leftBarButtonItem" title="Done" id="E7d-Bn-wYG">
                                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="x2D-Yy-0oE">
                                                 <rect key="frame" x="16" y="5" width="44" height="33"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -1474,6 +1456,9 @@
                                                     <action selector="close:" destination="fZx-vv-CDk" eventType="touchUpInside" id="Ost-yk-CQI"/>
                                                 </connections>
                                             </button>
+                                            <connections>
+                                                <action selector="close:" destination="fZx-vv-CDk" id="Gi6-7B-pgk"/>
+                                            </connections>
                                         </barButtonItem>
                                         <view key="titleView" contentMode="scaleToFill" id="jA8-3b-pf6">
                                             <rect key="frame" x="112" y="6" width="800" height="33"/>
@@ -1774,7 +1759,6 @@
         <image name="icon-play.png" width="55" height="55"/>
         <image name="linen-button-delete.png" width="16" height="22"/>
         <image name="linen-button.png" width="14" height="15"/>
-        <image name="linen.png" width="320" height="61"/>
         <image name="list-downloaded-icon.png" width="12" height="13"/>
         <image name="nav-bar-header-icon.png" width="154" height="44"/>
         <image name="navbar-pause.png" width="15" height="21"/>
