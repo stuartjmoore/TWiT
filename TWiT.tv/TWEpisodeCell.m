@@ -70,17 +70,14 @@
     if(self.selected)
     {
         self.numberLabel.textColor = [UIColor whiteColor];
-        self.numberLabel.shadowColor = [UIColor blackColor];
     }
     else if(!episode.watched)
     {
         self.numberLabel.textColor = [UIColor colorWithRed:239/255.0 green:79/255.0 blue:61/255.0 alpha:1];
-        self.numberLabel.shadowColor = [UIColor blackColor];
     }
     else
     {
         self.numberLabel.textColor = [UIColor blackColor];
-        self.numberLabel.shadowColor = [UIColor clearColor];
     }
     
     if(self.selected)
@@ -99,14 +96,10 @@
     
     if(selected)
     {
-        self.contentView.backgroundColor = [UIColor colorWithRed:61/255.0 green:122/255.0 blue:155/255.0 alpha:1];
+        self.contentView.backgroundColor = self.window.tintColor;
         self.titleLabel.textColor = [UIColor whiteColor];
         self.subtitleLabel.textColor = [UIColor whiteColor];
         self.numberLabel.textColor = [UIColor whiteColor];
-        
-        self.titleLabel.shadowColor = [UIColor blackColor];
-        self.subtitleLabel.shadowColor = [UIColor blackColor];
-        self.numberLabel.shadowColor = [UIColor blackColor];
         
         self.topLine.hidden = YES;
         self.bottomLine.hidden = YES;
@@ -122,16 +115,11 @@
         if(!self.episode.watched)
         {
             self.numberLabel.textColor = [UIColor colorWithRed:239/255.0 green:79/255.0 blue:61/255.0 alpha:1];
-            self.numberLabel.shadowColor = [UIColor blackColor];
         }
         else
         {
             self.numberLabel.textColor = [UIColor blackColor];
-            self.numberLabel.shadowColor = [UIColor clearColor];
         }
-        
-        self.titleLabel.shadowColor = [UIColor clearColor];
-        self.subtitleLabel.shadowColor = [UIColor clearColor];
         
         self.topLine.hidden = NO;
         self.bottomLine.hidden = NO;
