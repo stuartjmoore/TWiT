@@ -236,6 +236,7 @@
     NSInteger minutes = (time / 60) % 60;
     NSInteger hours = (time / 3600);
     self.timeElapsedLabel.text = [NSString stringWithFormat:@"%01i:%02i:%02i", hours, minutes, seconds];
+    self.timePopupLabel.text = self.timeElapsedLabel.text;
     
     NSInteger remaining = duration-time;
     seconds = remaining % 60;
@@ -385,6 +386,12 @@
 
 - (IBAction)seekStart:(UISlider*)sender
 {
+    self.timePopupView.alpha = 0;
+    self.timePopupView.hidden = NO;
+    
+    [UIView animateWithDuration:0.3f animations:^{
+        self.timePopupView.alpha = 1;
+    }];
 }
 - (IBAction)seeking:(UISlider*)sender
 {
@@ -393,6 +400,12 @@
 }
 - (IBAction)seekEnd:(UISlider*)sender
 {
+    [UIView animateWithDuration:0.3f animations:^{
+        self.timePopupView.alpha = 0;
+    } completion:^(BOOL fin){
+        self.timePopupView.hidden = YES;
+    }];
+    
     self.delegate.player.currentPlaybackTime = self.delegate.player.duration * self.seekbar.value;
 }
 

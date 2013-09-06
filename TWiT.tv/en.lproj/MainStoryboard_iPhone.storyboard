@@ -1054,6 +1054,20 @@
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.75" colorSpace="calibratedWhite"/>
                             </view>
+                            <view hidden="YES" contentMode="scaleToFill" id="hyq-ZM-UU4" userLabel="Timecode">
+                                <rect key="frame" x="59" y="202" width="204" height="77"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-:--:--" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="D0u-o3-o0i">
+                                        <rect key="frame" x="0.0" y="0.0" width="204" height="77"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.75" colorSpace="calibratedWhite"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1102,6 +1116,8 @@
                         <outlet property="subtitleLabel" destination="w5v-UL-5Ag" id="GrY-bU-BVA"/>
                         <outlet property="timeElapsedLabel" destination="KZk-Py-pqO" id="slI-js-NSL"/>
                         <outlet property="timeOfEndLabel" destination="XIg-yO-9vc" id="PHK-ON-eEN"/>
+                        <outlet property="timePopupLabel" destination="D0u-o3-o0i" id="8Ig-84-uuD"/>
+                        <outlet property="timePopupView" destination="hyq-ZM-UU4" id="uh9-Lp-8NG"/>
                         <outlet property="timeRemainingLabel" destination="tCj-YC-Tn8" id="3IZ-Oo-CBX"/>
                         <outlet property="titleLabel" destination="3NX-f6-dih" id="D7d-9b-49X"/>
                         <outlet property="toasterView" destination="N1A-nM-fY5" id="2b4-48-yBa"/>

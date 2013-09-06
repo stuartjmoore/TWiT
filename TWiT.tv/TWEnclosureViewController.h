@@ -22,6 +22,9 @@
 @property (nonatomic, weak) IBOutlet UIView *toasterView;
 @property (nonatomic, weak) IBOutlet UIActivityIndicatorView *spinner;
 
+@property (nonatomic, weak) IBOutlet UIView *timePopupView;
+@property (nonatomic, weak) IBOutlet UILabel *timePopupLabel;
+
 @property (nonatomic, weak) IBOutlet UIView *toolbarView;
 @property (nonatomic, weak) IBOutlet UISlider *seekbar;
 @property (nonatomic, weak) IBOutlet UILabel *timeElapsedLabel, *timeRemainingLabel, *timeOfEndLabel;
