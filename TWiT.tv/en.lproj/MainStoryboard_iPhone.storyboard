@@ -388,8 +388,8 @@
                             <rect key="frame" x="60" y="1" width="200" height="43"/>
                             <autoresizingMask key="autoresizingMask"/>
                             <subviews>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="navbar-logo.png" id="b7G-98-dWQ">
-                                    <rect key="frame" x="0.0" y="0.0" width="200" height="43"/>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="nav-bar-header-icon.png" id="b7G-98-dWQ">
+                                    <rect key="frame" x="23" y="0.0" width="154" height="44"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <accessibility key="accessibilityConfiguration" label="TWiT"/>
                                 </imageView>
@@ -1197,7 +1197,7 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMinY="YES"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="1ob-E5-9tA">
-                                                <rect key="frame" x="10" y="4" width="108" height="37"/>
+                                                <rect key="frame" x="9.9999999999999964" y="4" width="108" height="37"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                 <accessibility key="accessibilityConfiguration" hint="Opens the quality selector." label="Quality"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
@@ -1475,7 +1475,7 @@
         <image name="linen-button.png" width="14" height="15"/>
         <image name="linen.png" width="320" height="61"/>
         <image name="list-downloaded-icon.png" width="12" height="13"/>
-        <image name="navbar-logo.png" width="200" height="43"/>
+        <image name="nav-bar-header-icon.png" width="154" height="44"/>
         <image name="navbar-pause.png" width="15" height="21"/>
         <image name="navbar-play.png" width="17" height="21"/>
         <image name="navbar-stop.png" width="20" height="21"/>
