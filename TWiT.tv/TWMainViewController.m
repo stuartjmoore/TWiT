@@ -674,7 +674,7 @@
         else if(self.sectionVisible == TWSectionShows)
         {
             if(UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPad)
-                return 146;
+                return (self.tableView.frame.size.width <= 448) ? 146 : 167;
             else
                 return 105;
         }
