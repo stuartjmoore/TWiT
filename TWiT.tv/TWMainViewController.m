@@ -560,8 +560,8 @@
         
         if(UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPhone)
         {
-            float offest = self.tableView.contentOffset.y-headerHeight;
-            self.sectionHeader.layer.shadowOpacity = offest < 0 ? 0 : offest/20;
+            //float offest = self.tableView.contentOffset.y-headerHeight;
+            //self.sectionHeader.layer.shadowOpacity = offest < 0 ? 0 : offest/20;
         }
     }
 }
@@ -674,9 +674,9 @@
         else if(self.sectionVisible == TWSectionShows)
         {
             if(UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPad)
-                return 153;
+                return 146;
             else
-                return 102;
+                return 105;
         }
     }
     else if(tableView == self.scheduleTable)
@@ -749,21 +749,17 @@
         [showsButton.titleLabel setFont:[UIFont boldSystemFontOfSize:14]];
         [self.sectionHeader addSubview:showsButton];
         
-        UILabel *topLine = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 320, 1)];
-        topLine.backgroundColor = [UIColor colorWithWhite:1 alpha:1];
-        [self.sectionHeader addSubview:topLine];
-        
         UILabel *botLine = [[UILabel alloc] initWithFrame:CGRectMake(0, 27, 320, 1)];
         botLine.backgroundColor = [UIColor colorWithWhite:222/255.0 alpha:1];
         [self.sectionHeader addSubview:botLine];
-        
+        /*
         float headerHeight = self.tableView.tableHeaderView.frame.size.height;
         float offest = self.tableView.contentOffset.y-headerHeight;
         self.sectionHeader.layer.shadowOpacity = offest < 0 ? 0 : offest/20;
         self.sectionHeader.layer.shadowColor = [[UIColor colorWithWhite:0 alpha:0.5f] CGColor];
         self.sectionHeader.layer.shadowOffset = CGSizeMake(0, 3);
         self.sectionHeader.layer.shadowRadius = 3;
-        
+        */
         return self.sectionHeader;
     }
     else if(tableView == self.scheduleTable)
@@ -861,21 +857,21 @@
         {
             if(self.tableView.frame.size.width <= 448)
             {
-                showsCell.spacing = 26;
-                showsCell.size = 114;
+                showsCell.spacing = 8;
+                showsCell.size = 138;
                 showsCell.columns = 3;
             }
             else
             {
-                showsCell.spacing = 48;
-                showsCell.size = 114;
+                showsCell.spacing = 29;
+                showsCell.size = 138;
                 showsCell.columns = 4;
             }
         }
         else
         {
-            showsCell.spacing = 14;
-            showsCell.size = 88;
+            showsCell.spacing = 5;
+            showsCell.size = 100;
             showsCell.columns = 3;
         }
         
