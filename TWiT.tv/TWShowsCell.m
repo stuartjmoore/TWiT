@@ -116,8 +116,6 @@
 }
 - (void)didDrawIcons
 {
-    NSLog(@"didDrawIcons %@", self.icons);
-    
     [self.delegate showsCell:self didDrawIconsAtIndexPath:self.indexPath];
     [self setNeedsDisplayInRect:self.bounds];
 }

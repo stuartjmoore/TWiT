@@ -741,6 +741,7 @@
                             <navigationBar contentMode="scaleToFill" barStyle="blackTranslucent" id="GWQ-lC-oVj">
                                 <rect key="frame" x="0.0" y="0.0" width="1024" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <items>
                                     <navigationItem id="fkg-XZ-Ybx">
                                         <nil key="title"/>
@@ -1081,6 +1082,7 @@
                             <navigationBar contentMode="scaleToFill" barStyle="blackTranslucent" id="mr0-Di-f7I">
                                 <rect key="frame" x="0.0" y="0.0" width="1024" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <items>
                                     <navigationItem id="5so-uP-y1e">
                                         <nil key="title"/>
@@ -1170,7 +1172,6 @@
                     <splitViewMasterSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <navigationBar key="navigationBar" clipsSubviews="YES" contentMode="scaleToFill" id="kyl-gQ-6fA">
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="tintColor" white="0.95999999999999996" alpha="1" colorSpace="calibratedWhite"/>
                     </navigationBar>
                     <connections>
                         <segue destination="gxO-j5-wb0" kind="relationship" relationship="rootViewController" id="v4d-NM-REK"/>
@@ -1358,7 +1359,6 @@
                     <splitViewDetailSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="ujh-22-j7r">
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="tintColor" white="0.95999999999999996" alpha="1" colorSpace="calibratedWhite"/>
                     </navigationBar>
                     <connections>
                         <segue destination="jVi-vH-XBb" kind="relationship" relationship="rootViewController" id="tsg-iq-2kc"/>
@@ -1448,7 +1448,6 @@
                             <navigationBar contentMode="scaleToFill" id="ieh-B2-G6p">
                                 <rect key="frame" x="0.0" y="0.0" width="1024" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                <color key="tintColor" white="0.95999999999999996" alpha="1" colorSpace="calibratedWhite"/>
                                 <items>
                                     <navigationItem id="WgZ-Fg-Gfu">
                                         <nil key="title"/>
@@ -1528,7 +1527,6 @@
                     <extendedEdge key="edgesForExtendedLayout"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="kd5-6G-fKM">
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="tintColor" white="0.95999999999999996" alpha="1" colorSpace="calibratedWhite"/>
                     </navigationBar>
                     <connections>
                         <segue destination="I5Z-A0-HMk" kind="relationship" relationship="rootViewController" id="fLv-aO-SEh"/>
@@ -1799,6 +1797,7 @@
         <image name="video-toolbar-back.png" width="1" height="44"/>
         <image name="video-toolbar-double-back.png" width="1" height="88"/>
     </resources>
+    <color key="tintColor" red="0.1764705926" green="0.66666668650000005" blue="0.81960791349999995" alpha="1" colorSpace="deviceRGB"/>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
