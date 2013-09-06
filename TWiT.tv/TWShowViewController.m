@@ -265,7 +265,7 @@
             CGRect frame = self.splitViewContainer.modalFlyout.frame;
             frame.origin.x = -frame.size.width;
             
-            [UIView animateWithDuration:0.3f animations:^{
+            [UIView animateWithDuration:0.3f delay:0 options:UIViewAnimationCurveEaseOut animations:^{
                 self.splitViewContainer.modalFlyout.frame = frame;
                 self.splitViewContainer.modalBlackground.alpha = 0;
             } completion:^(BOOL fin){
@@ -308,10 +308,10 @@
                 CGRect frame = self.splitViewContainer.modalFlyout.frame;
                 frame.origin.x = 0;
                 
-                [UIView animateWithDuration:0.3f animations:^{
+                [UIView animateWithDuration:0.3f delay:0 options:UIViewAnimationCurveEaseIn animations:^{
                     self.splitViewContainer.modalBlackground.alpha = 1;
                     self.splitViewContainer.modalFlyout.frame = frame;
-                }];
+                } completion:nil];
             }
             
             [tableView selectRowAtIndexPath:indexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
