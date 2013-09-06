@@ -1203,7 +1203,7 @@
             [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
             
             NSString *title = [NSString stringWithFormat:@"%@ Needs Update", episode.show.titleAcronym];
-            NSString *message = [NSString stringWithFormat:@"%@ needs to be updated; iCloud doesn't sync full episodes. Open the show to get the lastest episodes.", episode.show.title];
+            NSString *message = [NSString stringWithFormat:@"%@ needs to be updated; iCloud doesn't sync full episodes. Open the show to get the latest episodes.", episode.show.title];
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title
                                                             message:message
                                                            delegate:nil

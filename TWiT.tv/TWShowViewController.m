@@ -283,7 +283,11 @@
             
             if(!episode.published)
             {
-                NSString *message = [NSString stringWithFormat:@"%@ needs to be updated. Connect to the Internet to get the lastest episodes.", episode.show.title];
+                NSString *message = (indexPath.row >= 10)
+                                  ? @"Episodes older than 10 weeks aren’t available on TWiT’s servers anymore."
+                                  : @"Uh-oh. We should be re-syncing as soon as possible.";
+                
+                
                 UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Not Available"
                                                                 message:message
                                                                delegate:nil
@@ -510,7 +514,10 @@
         {
             [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
             
-            NSString *message = [NSString stringWithFormat:@"%@ needs to be updated. Connect to the Internet to get the lastest episodes.", episode.show.title];
+            NSString *message = (indexPath.row >= 10)
+                             ? @"Episodes older than 10 weeks aren’t available on TWiT’s servers anymore."
+                             : @"Uh-oh. We should be re-syncing as soon as possible.";
+            
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Not Available"
                                                             message:message
                                                            delegate:nil

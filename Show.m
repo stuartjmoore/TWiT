@@ -249,9 +249,13 @@
 
 - (void)updateEpisodes
 {
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"number" ascending:NO];
+    Episode *episode = [[self.episodes sortedArrayUsingDescriptors:@[sortDescriptor]] firstObject];
+    BOOL forceUpdate = !episode.published;
+    
     for(Feed *feed in self.feeds)
     {
-        if(feed.lastUpdated && feed.lastUpdated.timeIntervalSinceNow > -self.updateInterval)
+        if(!forceUpdate && feed.lastUpdated && feed.lastUpdated.timeIntervalSinceNow > -self.updateInterval)
             continue;
         
         if(self.threadCount == 0)
@@ -281,7 +285,7 @@
                     
                     NSDate *lastModified = [df dateFromString:lastModifiedString];
                     
-                    if(lastModified == nil || ![lastModified isEqualToDate:feed.lastUpdated])
+                    if(forceUpdate || (lastModified == nil || ![lastModified isEqualToDate:feed.lastUpdated]))
                     {
                         feed.lastUpdated = lastModified;
                         [self updatePodcastFeed:feed];
