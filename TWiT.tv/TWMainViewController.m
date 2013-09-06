@@ -63,6 +63,11 @@
     {
         liveGradient.startPoint = CGPointMake(0, 1);
         liveGradient.endPoint = CGPointMake(0, 0);
+        
+        self.navigationItem.backBarButtonItem = [UIBarButtonItem.alloc initWithImage:[UIImage imageNamed:@"navbar-back-twit-icon.png"]
+                                                                               style:UIBarButtonItemStyleBordered
+                                                                              target:nil
+                                                                              action:nil];
     }
     
     liveGradient.bounds = self.gradientView.bounds;
@@ -100,11 +105,6 @@
 {
     [super viewWillAppear:animated];
     [self redrawSchedule:nil];
-    
-    self.navigationItem.backBarButtonItem = [UIBarButtonItem.alloc initWithImage:[UIImage imageNamed:@"navbar-back-twit-icon.png"]
-                                                                           style:UIBarButtonItemStyleBordered
-                                                                          target:nil
-                                                                          action:nil];
     
     if(self.sectionVisible == TWSectionShows && self.presentedViewController)
         [self.tableView reloadData];

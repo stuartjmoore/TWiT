@@ -53,9 +53,6 @@
     
     [self.gradientView.layer addSublayer:liveGradient];
     
-    if(UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPad)
-        self.navigationItem.hidesBackButton = YES;
-    
     self.navigationItem.backBarButtonItem = [UIBarButtonItem.alloc initWithTitle:self.show.titleAcronym
                                                                            style:UIBarButtonItemStyleBordered
                                                                           target:nil
@@ -550,32 +547,30 @@
     }
 }
 
-- (IBAction)close:(UIButton*)sender
-{
-    if(self.tableView.indexPathForSelectedRow)
-    {
-        CGRect frame = self.splitViewContainer.modalFlyout.frame;
-        frame.origin.x = -frame.size.width;
-        
-        [UIView animateWithDuration:0.3f animations:^{
-            self.splitViewContainer.modalFlyout.frame = frame;
-            self.splitViewContainer.modalBlackground.alpha = 0;
-        } completion:^(BOOL fin){
-            self.splitViewContainer.modalContainer.hidden = YES;
-            self.splitViewContainer.modalBlackground.alpha = 1;
-        }];
-        
-        [self.tableView deselectRowAtIndexPath:self.tableView.indexPathForSelectedRow animated:NO];
-    }
-    
-    TWMainViewController *showsViewController = (TWMainViewController*)self.splitViewContainer.detailController.topViewController;
-    showsViewController.showSelectedView = nil;
-    
-    [self.navigationController popViewControllerAnimated:YES];
-}
-
 - (void)viewWillDisappear:(BOOL)animated
 {
+    if(UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPad)
+    {
+        if(self.tableView.indexPathForSelectedRow)
+        {
+            CGRect frame = self.splitViewContainer.modalFlyout.frame;
+            frame.origin.x = -frame.size.width;
+            
+            [UIView animateWithDuration:0.3f animations:^{
+                self.splitViewContainer.modalFlyout.frame = frame;
+                self.splitViewContainer.modalBlackground.alpha = 0;
+            } completion:^(BOOL fin){
+                self.splitViewContainer.modalContainer.hidden = YES;
+                self.splitViewContainer.modalBlackground.alpha = 1;
+            }];
+            
+            [self.tableView deselectRowAtIndexPath:self.tableView.indexPathForSelectedRow animated:NO];
+        }
+        
+        TWMainViewController *showsViewController = (TWMainViewController*)self.splitViewContainer.detailController.topViewController;
+        showsViewController.showSelectedView = nil;
+    }
+    
     [self.tableView removeObserver:self forKeyPath:@"contentOffset"];
     
     [NSNotificationCenter.defaultCenter removeObserver:self name:@"enclosureDownloadDidReceiveData" object:nil];

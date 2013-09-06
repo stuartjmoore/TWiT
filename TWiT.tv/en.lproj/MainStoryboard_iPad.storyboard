@@ -415,31 +415,8 @@
                     <extendedEdge key="edgesForExtendedLayout"/>
                     <navigationItem key="navigationItem" id="raM-sV-ulU" customClass="TWNavigationItem">
                         <nil key="title"/>
-                        <barButtonItem key="leftBarButtonItem" id="95b-8X-ETN">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Adk-Pz-AOh">
-                                <rect key="frame" x="16" y="5" width="44" height="33"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <accessibility key="accessibilityConfiguration" hint="Closes the episode." label="Close"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="28"/>
-                                <inset key="imageEdgeInsets" minX="-10" minY="2" maxX="0.0" maxY="0.0"/>
-                                <size key="titleShadowOffset" width="0.0" height="1"/>
-                                <state key="normal" image="navbar-arrow-back.png">
-                                    <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                    <color key="titleShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <state key="highlighted">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="close:" destination="Dal-NS-I4L" eventType="touchUpInside" id="Zm9-SR-f8i"/>
-                                    <action selector="close:" destination="YrF-GZ-hqQ" eventType="touchUpInside" id="bWF-iU-gpu"/>
-                                    <action selector="close:" destination="cSi-6Y-xw2" eventType="touchUpInside" id="r2E-6m-HXd"/>
-                                    <action selector="close:" destination="fZx-vv-CDk" eventType="touchUpInside" id="zrd-kQ-9B1"/>
-                                </connections>
-                            </button>
-                        </barButtonItem>
                         <view key="titleView" contentMode="scaleToFill" id="9ej-aC-bDY">
-                            <rect key="frame" x="66" y="6" width="200" height="33"/>
+                            <rect key="frame" x="60" y="6" width="200" height="33"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Show" textAlignment="center" lineBreakMode="middleTruncation" minimumScaleFactor="0.5" adjustsLetterSpacingToFitWidth="YES" id="lWq-yN-oJ8">
@@ -652,11 +629,11 @@
                                         </connections>
                                     </button>
                                     <view contentMode="scaleToFill" id="Krh-EP-HSY">
-                                        <rect key="frame" x="720" y="3" width="414.00000000000006" height="37"/>
+                                        <rect key="frame" x="720" y="3" width="414" height="37"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMinY="YES"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Vbh-TM-bRV">
-                                                <rect key="frame" x="153.00000000000006" y="1" width="108" height="37"/>
+                                                <rect key="frame" x="153" y="1" width="108" height="37"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                                                 <accessibility key="accessibilityConfiguration" hint="Opens the quality selector." label="Quality"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
@@ -678,84 +655,6 @@
                                     </view>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                            </view>
-                            <view hidden="YES" contentMode="scaleToFill" id="V7n-qT-7aH" userLabel="Quality">
-                                <rect key="frame" x="662" y="523" width="360" height="184"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
-                                <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="quality-view-back.png" id="TsX-3W-bRb">
-                                        <rect key="frame" x="0.0" y="0.0" width="360" height="184"/>
-                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                        <rect key="contentStretch" x="0.47619047619999999" y="0.16326530610000001" width="0.0" height="0.0"/>
-                                    </imageView>
-                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="1E7-8C-DFt">
-                                        <rect key="frame" x="6" y="2" width="348" height="180"/>
-                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                        <prototypes>
-                                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="qualityCell" id="lMc-Rt-Db2" customClass="TWQualityCell">
-                                                <rect key="frame" x="0.0" y="22" width="348" height="44"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="lMc-Rt-Db2" id="ysh-7O-guZ">
-                                                    <rect key="frame" x="0.0" y="0.0" width="348" height="44"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                    <subviews>
-                                                        <view contentMode="scaleToFill" id="JgY-mF-wiq" userLabel="Top">
-                                                            <rect key="frame" x="0.0" y="0.0" width="348" height="1"/>
-                                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                                            <color key="backgroundColor" white="0.23999999999999999" alpha="1" colorSpace="calibratedWhite"/>
-                                                        </view>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="quality-view-check-off.png" id="jAr-va-a3u">
-                                                            <rect key="frame" x="10" y="12.5" width="24" height="19"/>
-                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                                        </imageView>
-                                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="BitGravity" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="9Mc-0x-85O">
-                                                            <rect key="frame" x="42" y="11.5" width="90" height="21"/>
-                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
-                                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                            <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                            <color key="shadowColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                                            <size key="shadowOffset" width="0.0" height="1"/>
-                                                        </label>
-                                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Variable Bitrate" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="wNb-3G-DDg">
-                                                            <rect key="frame" x="140" y="11.5" width="174" height="21"/>
-                                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                            <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                            <color key="shadowColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                                            <size key="shadowOffset" width="0.0" height="1"/>
-                                                        </label>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="list-downloaded-icon.png" id="Pyk-p1-t13">
-                                                            <rect key="frame" x="322" y="15.5" width="12" height="13"/>
-                                                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                                        </imageView>
-                                                        <view contentMode="scaleToFill" id="OLc-hl-bNV" userLabel="Bottom">
-                                                            <rect key="frame" x="0.0" y="43" width="348" height="1"/>
-                                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                                            <color key="backgroundColor" white="0.040000000000000001" alpha="1" colorSpace="calibratedWhite"/>
-                                                        </view>
-                                                    </subviews>
-                                                </tableViewCellContentView>
-                                                <connections>
-                                                    <outlet property="bottomLine" destination="OLc-hl-bNV" id="850-9I-B8K"/>
-                                                    <outlet property="checkmarkIcon" destination="jAr-va-a3u" id="nOc-YI-IMa"/>
-                                                    <outlet property="downloadIcon" destination="Pyk-p1-t13" id="uWY-Gz-9a2"/>
-                                                    <outlet property="subtitleLabel" destination="wNb-3G-DDg" id="WFV-WL-vAb"/>
-                                                    <outlet property="titleLabel" destination="9Mc-0x-85O" id="vx9-Q3-FO6"/>
-                                                    <outlet property="topLine" destination="JgY-mF-wiq" id="laz-XE-Mzv"/>
-                                                </connections>
-                                            </tableViewCell>
-                                        </prototypes>
-                                        <connections>
-                                            <outlet property="dataSource" destination="tGz-71-90E" id="6IR-CI-wi0"/>
-                                            <outlet property="delegate" destination="tGz-71-90E" id="JLX-J0-5cQ"/>
-                                        </connections>
-                                    </tableView>
-                                </subviews>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <accessibility key="accessibilityConfiguration" label="Quality selector"/>
                             </view>
                             <view hidden="YES" contentMode="scaleToFill" id="946-gR-GAZ" userLabel="Chat">
                                 <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
@@ -912,7 +811,6 @@
                         <outlet property="navigationBar" destination="GWQ-lC-oVj" id="yzj-ha-qC9"/>
                         <outlet property="playButton" destination="hu1-mi-1Bn" id="Aup-zb-EGE"/>
                         <outlet property="qualityButton" destination="Vbh-TM-bRV" id="uTe-gb-gZN"/>
-                        <outlet property="qualityView" destination="V7n-qT-7aH" id="72P-hl-h6z"/>
                         <outlet property="spinner" destination="XVI-5I-Bl1" id="NJf-fO-eHp"/>
                         <outlet property="subtitleLabel" destination="w7Z-Yn-qwr" id="PcU-De-Jjv"/>
                         <outlet property="titleLabel" destination="bkN-J3-8N4" id="Cr3-fi-7fq"/>
@@ -1176,86 +1074,6 @@
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
-                            <view hidden="YES" contentMode="scaleToFill" id="gLH-kZ-Snb" userLabel="Quality">
-                                <rect key="frame" x="662" y="479" width="360" height="184"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
-                                <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="quality-view-back.png" id="rcK-8H-BxR">
-                                        <rect key="frame" x="0.0" y="0.0" width="360" height="184"/>
-                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                        <rect key="contentStretch" x="0.47619047619999999" y="0.16326530610000001" width="0.0" height="0.0"/>
-                                    </imageView>
-                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="hpv-XR-xAd">
-                                        <rect key="frame" x="6" y="2" width="348" height="180"/>
-                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                        <prototypes>
-                                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="qualityCell" id="LWv-Ll-Ljj" customClass="TWQualityCell">
-                                                <rect key="frame" x="0.0" y="22" width="348" height="44"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="LWv-Ll-Ljj" id="vCZ-oD-ge6">
-                                                    <rect key="frame" x="0.0" y="0.0" width="348" height="44"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                    <subviews>
-                                                        <view contentMode="scaleToFill" id="JVu-jy-YHD" userLabel="Top">
-                                                            <rect key="frame" x="0.0" y="0.0" width="348" height="1"/>
-                                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                                            <color key="backgroundColor" white="0.23999999999999999" alpha="1" colorSpace="calibratedWhite"/>
-                                                        </view>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="quality-view-check-off.png" id="IwQ-bf-AqS">
-                                                            <rect key="frame" x="10" y="12.5" width="24" height="19"/>
-                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                                        </imageView>
-                                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="BitGravity" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="HvR-Lh-KZF">
-                                                            <rect key="frame" x="42" y="11.5" width="90" height="21"/>
-                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
-                                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                            <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                            <color key="shadowColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                                            <size key="shadowOffset" width="0.0" height="1"/>
-                                                        </label>
-                                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Variable Bitrate" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="hgx-Ir-iD6">
-                                                            <rect key="frame" x="140" y="11.5" width="174" height="21"/>
-                                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                            <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                            <color key="shadowColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                                            <size key="shadowOffset" width="0.0" height="1"/>
-                                                        </label>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="quality-view-download.png" id="RIg-Wb-t0C">
-                                                            <rect key="frame" x="322" y="15.5" width="12" height="14"/>
-                                                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                                        </imageView>
-                                                        <view contentMode="scaleToFill" id="tXC-ch-Ebt" userLabel="Bottom">
-                                                            <rect key="frame" x="0.0" y="43" width="348" height="1"/>
-                                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                                            <color key="backgroundColor" white="0.040000000000000001" alpha="1" colorSpace="calibratedWhite"/>
-                                                        </view>
-                                                    </subviews>
-                                                </tableViewCellContentView>
-                                                <connections>
-                                                    <outlet property="bottomLine" destination="tXC-ch-Ebt" id="AyW-IV-C0I"/>
-                                                    <outlet property="checkmarkIcon" destination="IwQ-bf-AqS" id="NbU-RS-8wt"/>
-                                                    <outlet property="downloadIcon" destination="RIg-Wb-t0C" id="XLp-Z6-vG9"/>
-                                                    <outlet property="subtitleLabel" destination="hgx-Ir-iD6" id="KvL-0Z-c2r"/>
-                                                    <outlet property="titleLabel" destination="HvR-Lh-KZF" id="t2F-9a-sDM"/>
-                                                    <outlet property="topLine" destination="JVu-jy-YHD" id="O0z-tI-Mhx"/>
-                                                </connections>
-                                            </tableViewCell>
-                                        </prototypes>
-                                        <connections>
-                                            <outlet property="dataSource" destination="Dal-NS-I4L" id="EGB-JV-PUg"/>
-                                            <outlet property="delegate" destination="Dal-NS-I4L" id="ttn-FC-OMa"/>
-                                        </connections>
-                                    </tableView>
-                                </subviews>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <accessibility key="accessibilityConfiguration" label="Quality selector">
-                                    <bool key="isElement" value="YES"/>
-                                </accessibility>
-                            </view>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" hidesWhenStopped="YES" animating="YES" style="whiteLarge" id="9Kd-15-Re2">
                                 <rect key="frame" x="493" y="366" width="37" height="37"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
@@ -1328,7 +1146,6 @@
                         <outlet property="navigationBar" destination="mr0-Di-f7I" id="S0J-bb-SDX"/>
                         <outlet property="playButton" destination="Eg3-k1-Zgx" id="lSb-4I-17D"/>
                         <outlet property="qualityButton" destination="fld-3M-bpm" id="iIh-DZ-NGM"/>
-                        <outlet property="qualityView" destination="gLH-kZ-Snb" id="mJ2-R1-dXS"/>
                         <outlet property="rewindButton" destination="kqu-Hw-f5I" id="8Qg-ZC-wN1"/>
                         <outlet property="seekbar" destination="TRX-l4-8w3" id="dVz-gT-FgN"/>
                         <outlet property="speedButton" destination="3Wz-b6-RKS" id="wH2-g4-gsL"/>
@@ -1959,15 +1776,11 @@
         <image name="linen.png" width="320" height="61"/>
         <image name="list-downloaded-icon.png" width="12" height="13"/>
         <image name="nav-bar-header-icon.png" width="154" height="44"/>
-        <image name="navbar-arrow-back.png" width="23" height="18"/>
         <image name="navbar-pause.png" width="15" height="21"/>
         <image name="navbar-play.png" width="17" height="21"/>
         <image name="navbar-stop.png" width="20" height="21"/>
-        <image name="quality-view-back.png" width="21" height="49"/>
         <image name="quality-view-button.png" width="9" height="10"/>
-        <image name="quality-view-check-off.png" width="24" height="19"/>
         <image name="quality-view-disclosure.png" width="5" height="5"/>
-        <image name="quality-view-download.png" width="12" height="14"/>
         <image name="quick-play.png" width="20" height="21"/>
         <image name="separator-fade-bottom.png" width="320" height="1"/>
         <image name="separator-fade-top.png" width="320" height="1"/>

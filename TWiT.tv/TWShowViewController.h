@@ -34,6 +34,4 @@
 
 - (void)updateProgress:(NSNotification*)notification;
 
-- (IBAction)close:(UIButton*)sender;
-
 @end
