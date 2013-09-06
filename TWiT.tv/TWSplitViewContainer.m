@@ -14,6 +14,9 @@
 #import "TWEpisodeViewController.h"
 #import "TWPlaybarViewController.h"
 
+#import "TWEnclosureViewController.h"
+#import "TWStreamViewController.h"
+
 @implementation TWSplitViewContainer
 
 - (void)setMasterController:(UINavigationController*)masterController
@@ -231,6 +234,34 @@
 - (NSUInteger)supportedInterfaceOrientations
 {
     return UIInterfaceOrientationMaskAll;
+}
+
+- (UIStatusBarStyle)preferredStatusBarStyle
+{
+    UIViewController *controller = self.childViewControllers.lastObject;
+    
+    if(![controller isKindOfClass:TWEnclosureViewController.class]
+    && ![controller isKindOfClass:TWStreamViewController.class])
+        return super.preferredStatusBarStyle;
+    
+    if([controller respondsToSelector:@selector(preferredStatusBarStyle)])
+        return controller.preferredStatusBarStyle;
+    else
+        return super.preferredStatusBarStyle;
+}
+
+- (BOOL)prefersStatusBarHidden
+{
+    UIViewController *controller = self.childViewControllers.lastObject;
+    
+    if(![controller isKindOfClass:TWEnclosureViewController.class]
+    && ![controller isKindOfClass:TWStreamViewController.class])
+        return super.preferredStatusBarStyle;
+    
+    if([controller respondsToSelector:@selector(prefersStatusBarHidden)])
+        return controller.prefersStatusBarHidden;
+    else
+        return super.prefersStatusBarHidden;
 }
 
 @end

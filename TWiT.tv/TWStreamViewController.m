@@ -662,6 +662,7 @@
     } completion:^(BOOL fin){
         [self.view removeFromSuperview];
         [self removeFromParentViewController];
+        [self.splitViewContainer setNeedsStatusBarAppearanceUpdate];
     }];
 }
 

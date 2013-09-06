@@ -270,7 +270,6 @@
         return;
     
     hideUI = hide;
-    
     [self setNeedsStatusBarAppearanceUpdate];
     
     if(!hide)
@@ -448,6 +447,7 @@
         [self.view removeFromSuperview];
         [self removeFromParentViewController];
         [(TWEpisodeViewController*)self.splitViewContainer.modalController.topViewController configureView];
+        [self.splitViewContainer setNeedsStatusBarAppearanceUpdate];
     }];
 }
 

@@ -218,6 +218,7 @@
         [self.splitViewContainer.view addSubview:playerController.view];
         [self.splitViewContainer.view sendSubviewToBack:playerController.view];
         [self.splitViewContainer addChildViewController:playerController];
+        [self setNeedsStatusBarAppearanceUpdate];
         
         CGRect masterFrameOriginal = self.splitViewContainer.masterContainer.frame;
         CGRect masterFrameAnimate = masterFrameOriginal;
