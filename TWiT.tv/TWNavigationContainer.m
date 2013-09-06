@@ -23,7 +23,6 @@
     [self.masterContainer addSubview:masterController.view];
     [self.masterContainer sendSubviewToBack:masterController.view];
     self.masterContainer.backgroundColor = [UIColor clearColor];
-    self.masterContainer.layer.cornerRadius = 4;
 }
 
 - (void)setPlaybarController:(TWPlaybarViewController*)playbarController
