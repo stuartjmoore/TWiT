@@ -462,8 +462,6 @@
 
 - (void)updateiCloud:(NSNotification*)notification;
 {
-    NSLog(@"update iCloud: %@", notification);
-    
     NSDictionary *userInfo = [notification userInfo];
     NSNumber *reasonForChange = [userInfo objectForKey:NSUbiquitousKeyValueStoreChangeReasonKey];
   
@@ -558,8 +556,6 @@
     }
     else if(reasonForChange && reasonForChange.integerValue == NSUbiquitousKeyValueStoreQuotaViolationChange)
     {
-        NSLog(@"Empty out iCloud");
-        
         NSUbiquitousKeyValueStore *store = [NSUbiquitousKeyValueStore defaultStore];
         NSDictionary *storeDict = store.dictionaryRepresentation;
         NSPredicate *predicate = [NSPredicate predicateWithFormat:@"self isKindOfClass: %@ AND pubDate != nil", NSDictionary.class];

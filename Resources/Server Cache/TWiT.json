@@ -4,7 +4,7 @@
         "desc": "The TWiT.tv Netcast Network with Leo Laporte features the #1 ranked technology podcast This Week in Tech, along with over 20 other top-ranked online shows.",
         "schedule": "http://www.google.com/calendar/feeds/mg877fp19824mj30g497frm74o@group.calendar.google.com/public/embed?ctz=America%%2FLos_Angeles&start-min=%@T00%%3A00%%3A00-08%%3A00&start-max=%@T00%%3A00%%3A00-08%%3A00&singleevents=true&max-results=720&alt=json",
         "website": "http://twit.tv",
-        "pubdate":"2012-11-18T00:00:00.000Z",
+        "pubdate":"2013-09-06T00:00:00.000Z",
         "urls": [
                  {
                  "location": "http://twit.am/listen.m3u",
@@ -21,7 +21,7 @@
                  "quality": 1
                  },
                  {
-                 "location": "http://hls.twit.tv:1935/flosoft/smil:twitStream.smil/playlist.m3u8",
+                 "location": "http://46.105.115.117/flosoft/smil:twitStreamAll.smil/Manifest",
                  "type": "video",
                  "title": "Flosoft.biz",
                  "subtitle": "1128 kbps",
@@ -1306,12 +1306,12 @@
               "schedule_title": "OMGcraft",
               "short_title": "OMG",
               "desc": "OMGcraft is your one-stop-shop for everything Minecraft. Discover the big new tips, tricks, and stuff you should know about Minecraft. Hosted by Chad Johnson, this show will make you a Minecraft expert in no time.",
-              "pubdate":"2013-05-19T00:00:00.000Z",
+              "pubdate":"2013-09-06T00:00:00.000Z",
               "hosts": "Chad Johnson",
               "album_art": "http://feeds.twit.tv/podcasts/coverart/omgcraft600.jpg#1353196800",
               "poster": "http://twit.tv/files/imagecache/slideshow-slide/spiros_omgcraft_0050jpeg.jpeg#1353196800",
-              "schedule": "TH@1900",
-              "update_interval": 518400,
+              "schedule": "TH@1700",
+              "update_interval": 259200,
               "email": "mail@omgcraft.com",
               "website": "http://twit.tv/omgcraft",
               "colors":{
@@ -1363,11 +1363,11 @@
               "schedule_title": "This Week in YouTube with Lamarr Wilson",
               "short_title": "YouTube",
               "desc": "This Week in YouTube explores the world of online viral video, including news, trends, and even production tips. Hosted by Lamarr Wilson, your favorite YouTube Comedic Vlogger, Chad Johnson, the host of Minecraft gaming show OMGcraft, and Leo Laporte, the Chief TWiT.",
-              "pubdate":"2013-05-19T00:00:00.000Z",
+              "pubdate":"2013-09-06T00:00:00.000Z",
               "hosts": "Lamarr Wilson, Chad Johnson, & Leo Laporte",
               "album_art": "http://feeds.twit.tv/podcasts/coverart/yt600.jpg#1353196800",
               "poster": "http://twit.tv/files/imagecache/slideshow-slide/spiros_yt_0003jpg.jpg#1353196800",
-              "schedule": "SU@1400",
+              "schedule": "MO@1700",
               "update_interval": 518400,
               "email": "yt@twit.tv",
               "website": "http://twit.tv/yt",
