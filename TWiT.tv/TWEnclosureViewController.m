@@ -157,6 +157,11 @@
     return hideUI;
 }
 
+- (UIBarPosition)positionForBar:(id<UIBarPositioning>)bar
+{
+    return UIBarPositionTopAttached;
+}
+
 #pragma mark - Notifications
 
 - (void)playerStateChanged:(NSNotification*)notification
@@ -283,8 +288,8 @@
         self.toolbarView.hidden = NO;
         
         [UIView animateWithDuration:0.3f delay:0 options:UIViewAnimationCurveEaseIn animations:^{
-            if(UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPad)
-                self.view.window.rootViewController.view.frame = UIScreen.mainScreen.applicationFrame;
+//            if(UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPad)
+//                self.view.window.rootViewController.view.frame = UIScreen.mainScreen.applicationFrame;
             
             self.navigationController.navigationBar.alpha = 1;
             self.navigationBar.alpha = 1;

@@ -148,6 +148,11 @@
     return hideUI;
 }
 
+- (UIBarPosition)positionForBar:(id<UIBarPositioning>)bar
+{
+    return UIBarPositionTopAttached;
+}
+
 - (void)updateTitle
 {
     self.titleLabel.text = self.stream.channel.title;
@@ -270,9 +275,8 @@
         self.toolbarView.hidden = NO;
         
         [UIView animateWithDuration:UINavigationControllerHideShowBarDuration delay:0 options:UIViewAnimationCurveEaseIn animations:^{
-            
-            if(UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPad)
-                self.view.window.rootViewController.view.frame = UIScreen.mainScreen.applicationFrame;
+            //if(UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPad)
+              //  self.view.window.rootViewController.view.frame = UIScreen.mainScreen.applicationFrame;
             
             self.navigationController.navigationBar.alpha = 1;
             self.navigationBar.alpha = 1;

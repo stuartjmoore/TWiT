@@ -336,6 +336,7 @@
         _player.shouldAutoplay = YES;
         _player.allowsAirPlay = YES;
         _player.scalingMode = MPMovieScalingModeAspectFit;
+        _player.backgroundView.backgroundColor = UIColor.whiteColor;
     }
     
     return _player;
