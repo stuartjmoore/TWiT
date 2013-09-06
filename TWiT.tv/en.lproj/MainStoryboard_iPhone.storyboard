@@ -211,33 +211,35 @@
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="63"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
-                                                <view hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" id="9YC-ub-EQT">
+                                                <view hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" id="9YC-ub-EQT" userLabel="Swipe to Hide">
                                                     <rect key="frame" x="0.0" y="0.0" width="320" height="63"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <subviews>
-                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" image="linen.png" id="yNO-fv-wlu" userLabel="Swipe Background">
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" id="yNO-fv-wlu" userLabel="Swipe Background">
                                                             <rect key="frame" x="0.0" y="0.0" width="320" height="63"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                            <color key="backgroundColor" red="0.85490202903747559" green="0.13725490868091583" blue="0.17647059261798859" alpha="1" colorSpace="deviceRGB"/>
                                                         </imageView>
                                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Swipe to Hide" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="F4q-Se-dD6">
                                                             <rect key="frame" x="20" y="21" width="280" height="21"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                             <nil key="highlightedColor"/>
-                                                            <color key="shadowColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                                            <size key="shadowOffset" width="0.0" height="1"/>
+                                                            <color key="shadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                            <size key="shadowOffset" width="0.0" height="0.0"/>
                                                         </label>
                                                     </subviews>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                                 </view>
-                                                <view hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" id="QJm-Pi-FX8">
+                                                <view hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" id="QJm-Pi-FX8" userLabel="Swipe to Delete">
                                                     <rect key="frame" x="0.0" y="0.0" width="320" height="63"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <subviews>
-                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" image="linen.png" id="BnM-cM-nki" userLabel="Swipe Background">
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" id="BnM-cM-nki" userLabel="Swipe Background">
                                                             <rect key="frame" x="0.0" y="0.0" width="320" height="63"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                            <color key="backgroundColor" red="0.85490202900000001" green="0.13725490870000001" blue="0.1764705926" alpha="1" colorSpace="deviceRGB"/>
                                                         </imageView>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="kf5-r3-hgW">
                                                             <rect key="frame" x="10" y="9" width="44" height="44"/>
@@ -276,15 +278,10 @@
                                                     </subviews>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                                 </view>
-                                                <view clipsSubviews="YES" contentMode="scaleToFill" id="eOm-ys-kCc">
+                                                <view clipsSubviews="YES" contentMode="scaleToFill" id="eOm-ys-kCc" userLabel="Content View">
                                                     <rect key="frame" x="0.0" y="0.0" width="320" height="63"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <subviews>
-                                                        <view contentMode="scaleToFill" id="bxD-vm-pJQ" userLabel="Top Separator">
-                                                            <rect key="frame" x="0.0" y="0.0" width="320" height="1"/>
-                                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                        </view>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" id="8KU-oU-Q0M">
                                                             <rect key="frame" x="7" y="7.5" width="48" height="48"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
@@ -332,9 +329,10 @@
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                                             <color key="backgroundColor" white="0.87" alpha="1" colorSpace="calibratedWhite"/>
                                                         </view>
-                                                        <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" image="linen.png" id="6Gq-gU-Myh" userLabel="Download cover">
+                                                        <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" id="6Gq-gU-Myh" userLabel="Download cover">
                                                             <rect key="frame" x="0.0" y="0.0" width="320" height="63"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                            <color key="backgroundColor" red="0.80181961440000005" green="0.79792465729999995" blue="0.84116556190000003" alpha="1" colorSpace="calibratedRGB"/>
                                                             <accessibility key="accessibilityConfiguration" label="Downloading"/>
                                                         </imageView>
                                                     </subviews>
@@ -361,7 +359,6 @@
                                     <outlet property="swipeDeleteButton" destination="kf5-r3-hgW" id="sEI-4L-kfA"/>
                                     <outlet property="swipeLabel" destination="F4q-Se-dD6" id="rpT-uH-Qwm"/>
                                     <outlet property="titleLabel" destination="VKY-1k-7YD" id="1Xw-T0-B7x"/>
-                                    <outlet property="topLine" destination="bxD-vm-pJQ" id="VSG-aP-Hg9"/>
                                     <segue destination="21" kind="push" identifier="episodeDetail" id="YiW-0V-IC2"/>
                                 </connections>
                             </tableViewCell>
@@ -1197,7 +1194,7 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMinY="YES"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="1ob-E5-9tA">
-                                                <rect key="frame" x="9.9999999999999964" y="4" width="108" height="37"/>
+                                                <rect key="frame" x="10" y="4" width="108" height="37"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                 <accessibility key="accessibilityConfiguration" hint="Opens the quality selector." label="Quality"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
