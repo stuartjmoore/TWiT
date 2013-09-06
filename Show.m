@@ -250,8 +250,13 @@
 - (void)updateEpisodes
 {
     NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"number" ascending:NO];
-    Episode *episode = [[self.episodes sortedArrayUsingDescriptors:@[sortDescriptor]] firstObject];
-    BOOL forceUpdate = !episode.published;
+    NSPredicate *pred = [NSPredicate predicateWithFormat:@"self == %@", nil];
+    
+    NSArray *epsiodes = [self.episodes sortedArrayUsingDescriptors:@[sortDescriptor]];
+    NSArray *publishedDates = [[epsiodes subarrayWithRange:NSMakeRange(0, 9)] valueForKey:@"published"];
+    NSArray *notPublished = [publishedDates filteredArrayUsingPredicate:pred];
+    
+    BOOL forceUpdate = notPublished.count;
     
     for(Feed *feed in self.feeds)
     {
