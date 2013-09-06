@@ -644,7 +644,7 @@
     }
     if(tableView == self.tableView && section == 0 && UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPad)
     {
-        return (self.sectionVisible == TWSectionShows) ? 16 : 0;
+        return (self.sectionVisible == TWSectionShows) ? 6 : 0;
     }
     else if(tableView == self.scheduleTable)
     {
@@ -674,7 +674,7 @@
         else if(self.sectionVisible == TWSectionShows)
         {
             if(UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPad)
-                return (self.tableView.frame.size.width <= 448) ? 146 : 167;
+                return (self.tableView.frame.size.width <= 448) ? 146 : 172;
             else
                 return 105;
         }
@@ -863,8 +863,8 @@
             }
             else
             {
-                showsCell.spacing = 29;
-                showsCell.size = 138;
+                showsCell.spacing = 15;
+                showsCell.size = 157;
                 showsCell.columns = 4;
             }
         }
