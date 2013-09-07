@@ -9,23 +9,23 @@
             <objects>
                 <tableViewController title="Watch List" id="gxO-j5-wb0" customClass="TWMainViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="62" sectionHeaderHeight="22" sectionFooterHeight="22" id="RgZ-za-TvO">
-                        <rect key="frame" x="0.0" y="64" width="320" height="788"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <inset key="contentInset" minX="0.0" minY="-1" maxX="0.0" maxY="0.0"/>
                         <view key="tableHeaderView" contentMode="scaleToFill" id="Fxf-xO-36M">
-                            <rect key="frame" x="0.0" y="0.0" width="320" height="1"/>
+                            <rect key="frame" x="0.0" y="64" width="320" height="1"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </view>
                         <view key="tableFooterView" contentMode="scaleToFill" id="qAs-Q0-s3z">
-                            <rect key="frame" x="0.0" y="85" width="320" height="1"/>
+                            <rect key="frame" x="0.0" y="149" width="320" height="1"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         </view>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="episodeCell" id="oUS-au-4Gd" customClass="TWEpisodeCell">
-                                <rect key="frame" x="0.0" y="23" width="320" height="62"/>
+                                <rect key="frame" x="0.0" y="87" width="320" height="62"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="oUS-au-4Gd" id="63a-yh-z3I">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="62"/>
@@ -197,7 +197,7 @@
                             <outlet property="delegate" destination="gxO-j5-wb0" id="upT-Mg-j61"/>
                         </connections>
                     </tableView>
-                    <extendedEdge key="edgesForExtendedLayout"/>
+                    <extendedEdge key="edgesForExtendedLayout" top="YES"/>
                     <navigationItem key="navigationItem" title="Watch List" id="yPF-xx-YFE"/>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="number" keyPath="sectionVisible">
@@ -217,11 +217,11 @@
             <objects>
                 <tableViewController id="YrF-GZ-hqQ" customClass="TWShowViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="62" sectionHeaderHeight="22" sectionFooterHeight="22" id="16Z-BG-PaF">
-                        <rect key="frame" x="0.0" y="64" width="320" height="788"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <view key="tableHeaderView" contentMode="scaleToFill" id="XKs-YQ-Qv6">
-                            <rect key="frame" x="0.0" y="0.0" width="320" height="128"/>
+                            <rect key="frame" x="0.0" y="64" width="320" height="128"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <view clipsSubviews="YES" contentMode="scaleToFill" id="7hG-nw-r3k">
@@ -319,12 +319,12 @@
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </view>
                         <imageView key="tableFooterView" userInteractionEnabled="NO" contentMode="scaleToFill" image="separator-fade-top.png" id="wf2-VY-ASf">
-                            <rect key="frame" x="0.0" y="212" width="320" height="1"/>
+                            <rect key="frame" x="0.0" y="276" width="320" height="1"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                         </imageView>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="episodeCell" id="y2z-4c-RoU" customClass="TWEpisodeCell">
-                                <rect key="frame" x="0.0" y="150" width="320" height="62"/>
+                                <rect key="frame" x="0.0" y="214" width="320" height="62"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="y2z-4c-RoU" id="g2h-Qa-hVg">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="62"/>
@@ -397,7 +397,7 @@
                             <outlet property="delegate" destination="YrF-GZ-hqQ" id="gon-5s-INv"/>
                         </connections>
                     </tableView>
-                    <extendedEdge key="edgesForExtendedLayout"/>
+                    <extendedEdge key="edgesForExtendedLayout" top="YES"/>
                     <navigationItem key="navigationItem" id="raM-sV-ulU" customClass="TWNavigationItem">
                         <nil key="title"/>
                         <view key="titleView" contentMode="scaleToFill" id="9ej-aC-bDY">
@@ -618,7 +618,7 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMinY="YES"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Vbh-TM-bRV">
-                                                <rect key="frame" x="153.00000000000003" y="1" width="108" height="37"/>
+                                                <rect key="frame" x="153" y="1" width="108" height="37"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                                                 <accessibility key="accessibilityConfiguration" hint="Opens the quality selector." label="Quality"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
@@ -1162,7 +1162,7 @@
         <scene sceneID="Dqt-7A-3xg">
             <objects>
                 <navigationController storyboardIdentifier="masterController" definesPresentationContext="YES" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Kqv-Up-FkP" sceneMemberID="viewController">
-                    <extendedEdge key="edgesForExtendedLayout"/>
+                    <extendedEdge key="edgesForExtendedLayout" top="YES"/>
                     <splitViewMasterSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <navigationBar key="navigationBar" clipsSubviews="YES" contentMode="scaleToFill" id="kyl-gQ-6fA">
                         <autoresizingMask key="autoresizingMask"/>
@@ -1180,11 +1180,11 @@
             <objects>
                 <tableViewController id="jVi-vH-XBb" customClass="TWMainViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="150" sectionHeaderHeight="22" sectionFooterHeight="22" id="3Cj-DI-MTy">
-                        <rect key="frame" x="0.0" y="64" width="768" height="960"/>
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <view key="tableHeaderView" contentMode="scaleToFill" id="aUO-OJ-z3A">
-                            <rect key="frame" x="0.0" y="0.0" width="768" height="180"/>
+                            <rect key="frame" x="0.0" y="64" width="768" height="180"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <view clipsSubviews="YES" contentMode="scaleToFill" id="bcg-Uz-4q7">
@@ -1287,13 +1287,13 @@
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         </view>
                         <view key="tableFooterView" contentMode="scaleToFill" id="F7d-M4-5be">
-                            <rect key="frame" x="0.0" y="352" width="768" height="15"/>
+                            <rect key="frame" x="0.0" y="416" width="768" height="15"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </view>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="showsCell" id="No5-Ys-QF1" customClass="TWShowsCell">
-                                <rect key="frame" x="0.0" y="202" width="768" height="150"/>
+                                <rect key="frame" x="0.0" y="266" width="768" height="150"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="No5-Ys-QF1" id="vfV-DS-gfU">
                                     <rect key="frame" x="0.0" y="0.0" width="768" height="150"/>
@@ -1308,7 +1308,7 @@
                             <outlet property="delegate" destination="jVi-vH-XBb" id="D9I-IL-7Qp"/>
                         </connections>
                     </tableView>
-                    <extendedEdge key="edgesForExtendedLayout"/>
+                    <extendedEdge key="edgesForExtendedLayout" top="YES"/>
                     <navigationItem key="navigationItem" id="WUS-cH-ve8">
                         <nil key="title"/>
                         <view key="titleView" contentMode="scaleToFill" id="0ej-nS-rnN">
@@ -1349,7 +1349,7 @@
         <scene sceneID="Pfc-uH-ooX">
             <objects>
                 <navigationController storyboardIdentifier="detailController" definesPresentationContext="YES" useStoryboardIdentifierAsRestorationIdentifier="YES" id="unV-Eq-l85" sceneMemberID="viewController">
-                    <extendedEdge key="edgesForExtendedLayout"/>
+                    <extendedEdge key="edgesForExtendedLayout" top="YES"/>
                     <splitViewDetailSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="ujh-22-j7r">
                         <autoresizingMask key="autoresizingMask"/>

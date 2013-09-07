@@ -32,6 +32,8 @@
 #import "Episode.h"
 #import "Enclosure.h"
 
+#define NAVBAR_INSET 64
+
 @interface TWMainViewController ()
 - (void)configureCell:(UITableViewCell*)cell atIndexPath:(NSIndexPath*)indexPath;
 @end
@@ -549,10 +551,10 @@
         CGRect frame = self.headerView.frame;
         float sectionHeaderHeight = (UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPhone) ? 28 : 0;
 
-        if(newPoint.y < 0)
+        if(newPoint.y < -NAVBAR_INSET)
         {
-            frame.origin.y = newPoint.y;
-            frame.size.height = headerHeight-newPoint.y;
+            frame.origin.y = newPoint.y+NAVBAR_INSET;
+            frame.size.height = ceilf(headerHeight-newPoint.y-NAVBAR_INSET);
         }
         else
         {

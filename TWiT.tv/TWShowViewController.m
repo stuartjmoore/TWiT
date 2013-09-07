@@ -48,9 +48,9 @@
     else
     {
         liveGradient.colors = [NSArray arrayWithObjects:
-                               (id)[UIColor colorWithWhite:0.96f alpha:1].CGColor,
-                               (id)[UIColor colorWithWhite:0.96f alpha:0.9f].CGColor,
-                               (id)[UIColor colorWithWhite:0.96f alpha:0].CGColor, nil];
+                               (id)[UIColor colorWithWhite:1 alpha:1].CGColor,
+                               (id)[UIColor colorWithWhite:1 alpha:0.9f].CGColor,
+                               (id)[UIColor colorWithWhite:1 alpha:0].CGColor, nil];
     }
     
     [self.gradientView.layer addSublayer:liveGradient];
@@ -349,7 +349,7 @@
         }
         
         self.headerView.frame = frame;
-        self.tableView.scrollIndicatorInsets = UIEdgeInsetsMake(frame.size.height, 0, 0, 1);
+        self.tableView.scrollIndicatorInsets = UIEdgeInsetsMake(frame.size.height+NAVBAR_INSET, 0, 0, 1);
     }
 }
 
