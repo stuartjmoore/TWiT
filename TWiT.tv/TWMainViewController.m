@@ -275,6 +275,9 @@
             
             if(!episode.published)
             {
+                [episode.show updateEpisodes];
+                [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+                /*
                 NSString *title = [NSString stringWithFormat:@"%@ Needs Update", episode.show.titleAcronym];
                 NSString *message = [NSString stringWithFormat:@"%@ needs to be updated; iCloud doesn't sync full episodes. Open the show to get the lastest episodes.", episode.show.title];
                 UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title
@@ -284,6 +287,7 @@
                                                       otherButtonTitles:nil];
                 alert.tag = indexPath.row;
                 [alert show];
+                */
                 return nil;
             }
             
@@ -1201,6 +1205,9 @@
         
         if(!episode.published)
         {
+            [episode.show updateEpisodes];
+            [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+            /*
             [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
             
             NSString *title = [NSString stringWithFormat:@"%@ Needs Update", episode.show.titleAcronym];
@@ -1211,6 +1218,7 @@
                                                   cancelButtonTitle:@"Cancel"
                                                   otherButtonTitles:nil];
             [alert show];
+            */
             return NO;
         }
     }
