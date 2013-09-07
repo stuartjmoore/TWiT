@@ -1525,14 +1525,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = TWiT.tv/TWiT.tv.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: stuart Moore";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: stuart Moore (968599HPC6)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TWiT.tv/TWiT.tv-Prefix.pch";
 				INFOPLIST_FILE = "TWiT.tv/TWiT.tv-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "4097BEA9-7436-46EF-BBE4-4463511B07A9";
+				PROVISIONING_PROFILE = "CC657B76-7916-43FF-87FF-179E48AF73D1";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				WRAPPER_EXTENSION = app;
 			};
