@@ -207,7 +207,7 @@
 
 #pragma mark - Actions
 
-- (IBAction)scrollToNow:(UIButton*)sender
+- (IBAction)scrollToNow:(UIBarButtonItem*)sender
 {
     CGRect nowFrame = self.nowLine.frame;
     nowFrame.size.width = self.scrollView.bounds.size.width;

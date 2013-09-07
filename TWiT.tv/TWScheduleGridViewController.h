@@ -19,8 +19,7 @@
 
 @property (nonatomic, strong) UIView *nowLine;
 
-
-- (IBAction)scrollToNow:(UIButton*)sender;
+- (IBAction)scrollToNow:(UIBarButtonItem*)sender;
 
 - (IBAction)close:(UIBarButtonItem*)sender;
 

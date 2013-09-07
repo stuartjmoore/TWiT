@@ -1390,56 +1390,17 @@
                                 <rect key="frame" x="0.0" y="0.0" width="1024" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <items>
-                                    <navigationItem id="WgZ-Fg-Gfu">
-                                        <nil key="title"/>
-                                        <barButtonItem key="leftBarButtonItem" title="Done" id="E7d-Bn-wYG">
-                                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="x2D-Yy-0oE">
-                                                <rect key="frame" x="16" y="5" width="44" height="33"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <accessibility key="accessibilityConfiguration" hint="Closes the schedule." label="Close"/>
-                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="28"/>
-                                                <inset key="titleEdgeInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="3"/>
-                                                <size key="titleShadowOffset" width="0.0" height="1"/>
-                                                <state key="normal" title="×">
-                                                    <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <color key="titleShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <state key="highlighted">
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="close:" destination="cSi-6Y-xw2" eventType="touchUpInside" id="1Lc-0G-Jst"/>
-                                                    <action selector="close:" destination="fZx-vv-CDk" eventType="touchUpInside" id="Ost-yk-CQI"/>
-                                                </connections>
-                                            </button>
+                                    <navigationItem title="Schedule" id="zn9-Qo-OyZ">
+                                        <barButtonItem key="leftBarButtonItem" title="Done" id="sDl-uF-xoZ">
                                             <connections>
-                                                <action selector="close:" destination="fZx-vv-CDk" id="Gi6-7B-pgk"/>
+                                                <action selector="close:" destination="fZx-vv-CDk" id="fSU-rh-U5G"/>
                                             </connections>
                                         </barButtonItem>
-                                        <view key="titleView" contentMode="scaleToFill" id="jA8-3b-pf6">
-                                            <rect key="frame" x="112" y="6" width="800" height="33"/>
-                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                            <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" id="bmq-Wu-dpf">
-                                                    <rect key="frame" x="0.0" y="0.0" width="800" height="33"/>
-                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
-                                                    <size key="titleShadowOffset" width="0.0" height="1"/>
-                                                    <state key="normal" title="Schedule">
-                                                        <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                                        <color key="titleShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                    </state>
-                                                    <state key="highlighted">
-                                                        <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                                        <color key="titleShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                    </state>
-                                                    <connections>
-                                                        <action selector="scrollToNow:" destination="fZx-vv-CDk" eventType="touchUpInside" id="nEf-m6-rak"/>
-                                                    </connections>
-                                                </button>
-                                            </subviews>
-                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                        </view>
+                                        <barButtonItem key="rightBarButtonItem" title="Now" id="day-oh-YnM">
+                                            <connections>
+                                                <action selector="scrollToNow:" destination="fZx-vv-CDk" id="uih-sV-1ut"/>
+                                            </connections>
+                                        </barButtonItem>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
