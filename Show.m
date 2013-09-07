@@ -422,7 +422,7 @@
              
              Episode *episode = nil;
              
-             NSPredicate *predicate = [NSPredicate predicateWithFormat:@"title == %@ && number == %d", title, number];
+             NSPredicate *predicate = [NSPredicate predicateWithFormat:@"number == %d", number];
              NSSet *sameEpisode = [self.episodes filteredSetUsingPredicate:predicate];
              
              if(sameEpisode.count > 0)
