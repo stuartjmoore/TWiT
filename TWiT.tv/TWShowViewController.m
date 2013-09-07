@@ -287,7 +287,7 @@
             if(!episode.published)
             {
                 NSString *message = (indexPath.row >= 10)
-                                  ? @"Episodes older than 10 weeks aren’t available on TWiT’s servers anymore."
+                                  ? @"Episodes older than 10 weeks aren’t available in TWiT’s feeds anymore."
                                   : @"Uh-oh. We should be re-syncing as soon as possible.";
                 
                 
@@ -518,7 +518,7 @@
             [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
             
             NSString *message = (indexPath.row >= 10)
-                             ? @"Episodes older than 10 weeks aren’t available on TWiT’s servers anymore."
+                             ? @"Episodes older than 10 weeks aren’t available in TWiT’s feeds anymore."
                              : @"Uh-oh. We should be re-syncing as soon as possible.";
             
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Not Available"

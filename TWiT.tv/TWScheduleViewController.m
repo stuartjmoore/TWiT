@@ -51,7 +51,7 @@
     return [self.schedule.days[section] count];
 }
 
-- (float)tableView:(UITableView*)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+- (float)tableView:(UITableView*)tableView heightForRowAtIndexPath:(NSIndexPath*)indexPath
 {
     Event *show = self.schedule.days[indexPath.section][indexPath.row];
     float height = 50.0f*(show.duration/60.0f);
@@ -79,10 +79,8 @@
     UILabel *title = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, width, 19)];
     
     title.backgroundColor = [UIColor clearColor];
-    title.font = [UIFont boldSystemFontOfSize:12];
+    title.font = [UIFont systemFontOfSize:12];
     title.textAlignment = NSTextAlignmentCenter;
-    title.shadowColor = [UIColor colorWithWhite:1 alpha:1];
-    title.shadowOffset = CGSizeMake(0, 1);
     title.textColor = [UIColor colorWithWhite:132/255.0 alpha:1];
     
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
@@ -106,12 +104,10 @@
     
     [header addSubview:title];
     
-    
     UIView *botLine = [[UIView alloc] initWithFrame:CGRectMake(0, header.frame.size.height, width, 1)];
     botLine.autoresizingMask = UIViewAutoresizingFlexibleTopMargin;
-    botLine.backgroundColor = [UIColor whiteColor];
+    botLine.backgroundColor = [UIColor colorWithWhite:228/255.0 alpha:1];
     [header addSubview:botLine];
-    
     
     return header;
 }
@@ -121,10 +117,6 @@
     static NSString *CellIdentifier = @"scheduleCell";
     TWScheduleCell *cell = (TWScheduleCell*)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     float width = tableView.frame.size.width;
-    
-    UIView *topLine = [[UIView alloc] initWithFrame:CGRectMake(0, 0, width, 1)];
-    topLine.backgroundColor = [UIColor whiteColor];
-    [cell.contentView addSubview:topLine];
     
     UIView *botLine = [[UIView alloc] initWithFrame:CGRectMake(0, cell.contentView.frame.size.height-1, width, 1)];
     botLine.autoresizingMask = UIViewAutoresizingFlexibleTopMargin;
