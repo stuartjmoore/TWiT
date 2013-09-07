@@ -567,12 +567,6 @@
         UIEdgeInsets scrollerInsets = self.tableView.scrollIndicatorInsets;
         scrollerInsets.top = frame.size.height + sectionHeaderHeight;
         self.tableView.scrollIndicatorInsets = scrollerInsets;
-        
-        if(UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPhone)
-        {
-            //float offest = self.tableView.contentOffset.y-headerHeight;
-            //self.sectionHeader.layer.shadowOpacity = offest < 0 ? 0 : offest/20;
-        }
     }
 }
 
@@ -762,14 +756,7 @@
         UILabel *botLine = [[UILabel alloc] initWithFrame:CGRectMake(0, 27, 320, 1)];
         botLine.backgroundColor = [UIColor colorWithWhite:222/255.0 alpha:1];
         [self.sectionHeader addSubview:botLine];
-        /*
-        float headerHeight = self.tableView.tableHeaderView.frame.size.height;
-        float offest = self.tableView.contentOffset.y-headerHeight;
-        self.sectionHeader.layer.shadowOpacity = offest < 0 ? 0 : offest/20;
-        self.sectionHeader.layer.shadowColor = [[UIColor colorWithWhite:0 alpha:0.5f] CGColor];
-        self.sectionHeader.layer.shadowOffset = CGSizeMake(0, 3);
-        self.sectionHeader.layer.shadowRadius = 3;
-        */
+
         return self.sectionHeader;
     }
     else if(tableView == self.scheduleTable)
