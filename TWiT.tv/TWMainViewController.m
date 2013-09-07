@@ -63,11 +63,6 @@
     {
         liveGradient.startPoint = CGPointMake(0, 1);
         liveGradient.endPoint = CGPointMake(0, 0);
-        
-        self.navigationItem.backBarButtonItem = [UIBarButtonItem.alloc initWithImage:[UIImage imageNamed:@"navbar-back-twit-icon.png"]
-                                                                               style:UIBarButtonItemStyleBordered
-                                                                              target:nil
-                                                                              action:nil];
     }
     
     liveGradient.bounds = self.gradientView.bounds;
@@ -121,6 +116,14 @@
                                            selector:@selector(updateProgress:)
                                                name:@"enclosureDownloadDidFail"
                                              object:nil];
+    
+    if(UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPhone)
+    {
+        self.navigationItem.backBarButtonItem = [UIBarButtonItem.alloc initWithImage:[UIImage imageNamed:@"navbar-back-twit-icon.png"]
+                                                                               style:UIBarButtonItemStyleBordered
+                                                                              target:nil
+                                                                              action:nil];
+    }
 }
 
 #pragma mark - Actions
