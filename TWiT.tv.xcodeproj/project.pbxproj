@@ -138,10 +138,6 @@
 		176AF1911695E0DF00A35BFC /* Poster.m in Sources */ = {isa = PBXBuildFile; fileRef = 176AF1901695E0DF00A35BFC /* Poster.m */; };
 		177F1FAB16AAE9E800BFFA63 /* TWQualityCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 177F1FAA16AAE9E800BFFA63 /* TWQualityCell.m */; };
 		177F1FAF16AB25A900BFFA63 /* TWPlaybarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 177F1FAE16AB25A900BFFA63 /* TWPlaybarViewController.m */; };
-		17842B2D16A988BB00F03223 /* linen-button-delete.png in Resources */ = {isa = PBXBuildFile; fileRef = 17842B2916A988BB00F03223 /* linen-button-delete.png */; };
-		17842B2E16A988BB00F03223 /* linen-button-delete@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 17842B2A16A988BB00F03223 /* linen-button-delete@2x.png */; };
-		17842B2F16A988BB00F03223 /* linen-button.png in Resources */ = {isa = PBXBuildFile; fileRef = 17842B2B16A988BB00F03223 /* linen-button.png */; };
-		17842B3016A988BB00F03223 /* linen-button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 17842B2C16A988BB00F03223 /* linen-button@2x.png */; };
 		178D2D5916B817EC0097D605 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 178D2D5816B817EC0097D605 /* Default.png */; };
 		178D2D5C16B817F00097D605 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 178D2D5B16B817F00097D605 /* Default@2x.png */; };
 		178D2D5E16B817F40097D605 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 178D2D5D16B817F40097D605 /* Default-568h@2x.png */; };
@@ -386,10 +382,6 @@
 		177F1FAA16AAE9E800BFFA63 /* TWQualityCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWQualityCell.m; sourceTree = "<group>"; };
 		177F1FAD16AB25A900BFFA63 /* TWPlaybarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWPlaybarViewController.h; sourceTree = "<group>"; };
 		177F1FAE16AB25A900BFFA63 /* TWPlaybarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWPlaybarViewController.m; sourceTree = "<group>"; };
-		17842B2916A988BB00F03223 /* linen-button-delete.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "linen-button-delete.png"; sourceTree = "<group>"; };
-		17842B2A16A988BB00F03223 /* linen-button-delete@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "linen-button-delete@2x.png"; sourceTree = "<group>"; };
-		17842B2B16A988BB00F03223 /* linen-button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "linen-button.png"; sourceTree = "<group>"; };
-		17842B2C16A988BB00F03223 /* linen-button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "linen-button@2x.png"; sourceTree = "<group>"; };
 		1787B3BB16A58E7B00870B87 /* TWStreamViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWStreamViewController.h; sourceTree = "<group>"; };
 		178D2D5816B817EC0097D605 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		178D2D5B16B817F00097D605 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
@@ -559,10 +551,6 @@
 				170B9F8A1691CD540022FE4D /* icon-pause@2x.png */,
 				170B9F8B1691CD540022FE4D /* icon-play.png */,
 				170B9F8C1691CD540022FE4D /* icon-play@2x.png */,
-				17842B2916A988BB00F03223 /* linen-button-delete.png */,
-				17842B2A16A988BB00F03223 /* linen-button-delete@2x.png */,
-				17842B2B16A988BB00F03223 /* linen-button.png */,
-				17842B2C16A988BB00F03223 /* linen-button@2x.png */,
 				170B9F911691CD540022FE4D /* list-downloaded-icon.png */,
 				170B9F921691CD540022FE4D /* list-downloaded-icon@2x.png */,
 				170B9F951691CD540022FE4D /* main-header-button-up.png */,
@@ -1157,10 +1145,6 @@
 				17BD432316A08C8E00AE8260 /* toolbar-dark-ellipsis@2x.png in Resources */,
 				170B475B16A6A3AF00F7C3B5 /* show-selection.png in Resources */,
 				170B475C16A6A3AF00F7C3B5 /* show-selection@2x.png in Resources */,
-				17842B2D16A988BB00F03223 /* linen-button-delete.png in Resources */,
-				17842B2E16A988BB00F03223 /* linen-button-delete@2x.png in Resources */,
-				17842B2F16A988BB00F03223 /* linen-button.png in Resources */,
-				17842B3016A988BB00F03223 /* linen-button@2x.png in Resources */,
 				17B07F1016B59B2600B42CBF /* chatRoom.css in Resources */,
 				17144BD416B74DFB0050C696 /* episodes-table-empty.png in Resources */,
 				17144BD516B74DFB0050C696 /* episodes-table-empty@2x.png in Resources */,
