@@ -560,7 +560,7 @@
         self.headerView.frame = frame;
         
         UIEdgeInsets scrollerInsets = self.tableView.scrollIndicatorInsets;
-        scrollerInsets.top = frame.size.height + sectionHeaderHeight;
+        scrollerInsets.top = frame.size.height + sectionHeaderHeight + NAVBAR_INSET;
         self.tableView.scrollIndicatorInsets = scrollerInsets;
     }
 }
@@ -709,47 +709,43 @@
     if(tableView == self.tableView && section == 0 && UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPhone)
     {
         self.sectionHeader = [[UIView alloc] initWithFrame:CGRectMake(0, 0, width, 28)];
-        self.sectionHeader.backgroundColor = [UIColor colorWithWhite:244/255.0 alpha:1];
+        self.sectionHeader.backgroundColor = [UIColor whiteColor];
         
         UIImage *buttonUpBackground = [[UIImage imageNamed:@"main-header-button-up.png"] stretchableImageWithLeftCapWidth:4 topCapHeight:11];
         UIImage *buttonDownBackground = [[UIImage imageNamed:@"main-header-button.png"] stretchableImageWithLeftCapWidth:4 topCapHeight:11];
         
         UIButton *episodesButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        episodesButton.frame = CGRectMake(1, 2, 158, 24);
-        [episodesButton setTitle:@"EPISODES" forState:UIControlStateNormal];
+        episodesButton.frame = CGRectMake(2, 2, 157, 24);
+        [episodesButton setTitle:@"watch list" forState:UIControlStateNormal];
         episodesButton.tag = TWSectionEpisodes;
         episodesButton.selected = (self.sectionVisible == episodesButton.tag);
         [episodesButton addTarget:self action:@selector(switchVisibleSection:) forControlEvents:UIControlEventTouchUpInside];
-        [episodesButton setTitleShadowColor:[UIColor colorWithWhite:0 alpha:0.25f] forState:UIControlStateSelected];
-        [episodesButton setTitleShadowColor:[UIColor colorWithWhite:1 alpha:0.25f] forState:UIControlStateNormal];
         [episodesButton setBackgroundImage:buttonDownBackground forState:UIControlStateHighlighted];
         [episodesButton setBackgroundImage:buttonDownBackground forState:UIControlStateSelected];
         [episodesButton setBackgroundImage:buttonUpBackground forState:UIControlStateNormal];
         episodesButton.titleLabel.shadowOffset = CGSizeMake(0, 1);
-        [episodesButton setTitleColor:[UIColor colorWithWhite:132/255.0 alpha:1] forState:UIControlStateNormal];
-        [episodesButton setTitleColor:[UIColor colorWithWhite:244/255.0 alpha:1] forState:UIControlStateSelected];
-        [episodesButton.titleLabel setFont:[UIFont boldSystemFontOfSize:14]];
+        [episodesButton setTitleColor:self.view.window.tintColor forState:UIControlStateNormal];
+        [episodesButton setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
+        [episodesButton.titleLabel setFont:[UIFont systemFontOfSize:14]];
         [self.sectionHeader addSubview:episodesButton];
         
         UIButton *showsButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        showsButton.frame = CGRectMake(161, 2, 158, 24);
-        [showsButton setTitle:@"SHOWS" forState:UIControlStateNormal];
+        showsButton.frame = CGRectMake(161, 2, 157, 24);
+        [showsButton setTitle:@"all shows" forState:UIControlStateNormal];
         showsButton.tag = TWSectionShows;
         showsButton.selected = (self.sectionVisible == showsButton.tag);
         [showsButton addTarget:self action:@selector(switchVisibleSection:) forControlEvents:UIControlEventTouchUpInside];
-        [showsButton setTitleShadowColor:[UIColor colorWithWhite:1 alpha:0.25f] forState:UIControlStateNormal];
         [showsButton setBackgroundImage:buttonDownBackground forState:UIControlStateHighlighted];
         [showsButton setBackgroundImage:buttonDownBackground forState:UIControlStateSelected];
         [showsButton setBackgroundImage:buttonUpBackground forState:UIControlStateNormal];
         showsButton.titleLabel.shadowOffset = CGSizeMake(0, 1);
-        [showsButton setTitleColor:[UIColor colorWithWhite:132/255.0 alpha:1] forState:UIControlStateNormal];
-        [showsButton setTitleColor:[UIColor colorWithWhite:244/255.0 alpha:1] forState:UIControlStateSelected];
-        [showsButton setTitleShadowColor:[UIColor colorWithWhite:0 alpha:0.25f] forState:UIControlStateSelected];
-        [showsButton.titleLabel setFont:[UIFont boldSystemFontOfSize:14]];
+        [showsButton setTitleColor:self.view.window.tintColor forState:UIControlStateNormal];
+        [showsButton setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
+        [showsButton.titleLabel setFont:[UIFont systemFontOfSize:14]];
         [self.sectionHeader addSubview:showsButton];
         
-        UILabel *botLine = [[UILabel alloc] initWithFrame:CGRectMake(0, 27, 320, 1)];
-        botLine.backgroundColor = [UIColor colorWithWhite:222/255.0 alpha:1];
+        UILabel *botLine = [[UILabel alloc] initWithFrame:CGRectMake(0, 27.5f, 320, 0.5f)];
+        botLine.backgroundColor = [UIColor colorWithWhite:178/255.0 alpha:1];
         [self.sectionHeader addSubview:botLine];
 
         return self.sectionHeader;

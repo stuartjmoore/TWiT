@@ -6,9 +6,20 @@
       "filename" : "main-header-button-up.png"
     },
     {
+      "resizing" : {
+        "mode" : "3-part-horizontal",
+        "center" : {
+          "mode" : "fill",
+          "width" : 1
+        },
+        "capInsets" : {
+          "right" : 8,
+          "left" : 8
+        }
+      },
       "idiom" : "universal",
-      "scale" : "2x",
-      "filename" : "main-header-button-up@2x.png"
+      "filename" : "main-header-button-up@2x.png",
+      "scale" : "2x"
     }
   ],
   "info" : {
