@@ -827,9 +827,10 @@
                                                     <rect key="frame" x="0.0" y="61" width="320" height="1"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                                 </imageView>
-                                                <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" image="linen.png" id="Jj4-AV-aiV">
+                                                <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" id="Jj4-AV-aiV" userLabel="Download Cover">
                                                     <rect key="frame" x="0.0" y="0.0" width="320" height="62"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                    <color key="backgroundColor" red="0.80181961440000005" green="0.79792465729999995" blue="0.84116556190000003" alpha="1" colorSpace="calibratedRGB"/>
                                                 </imageView>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -1484,7 +1485,6 @@
         <image name="icon-play.png" width="55" height="55"/>
         <image name="linen-button-delete.png" width="16" height="22"/>
         <image name="linen-button.png" width="14" height="15"/>
-        <image name="linen.png" width="320" height="61"/>
         <image name="list-downloaded-icon.png" width="12" height="13"/>
         <image name="nav-bar-header-icon.png" width="154" height="44"/>
         <image name="navbar-pause.png" width="15" height="21"/>
@@ -1518,8 +1518,8 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="ev1-BP-H8c"/>
+        <segue reference="P5c-U6-ZVf"/>
         <segue reference="YiW-0V-IC2"/>
-        <segue reference="rrL-Yf-xFC"/>
+        <segue reference="ev1-BP-H8c"/>
     </inferredMetricsTieBreakers>
 </document>

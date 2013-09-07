@@ -1241,12 +1241,13 @@
     }
     else if([segue.identifier isEqualToString:@"playerDetail"])
     {
-        TWEpisodeCell *episodeCell = (TWEpisodeCell*)[[[[sender superview] superview] superview] superview];
+        TWEpisodeCell *episodeCell = (TWEpisodeCell*)[[[[[sender superview] superview] superview] superview] superview];
         Episode *episode = episodeCell.episode;
         NSSet *enclosures = [episode downloadedEnclosures];
         Enclosure *enclosure = enclosures.anyObject ?: [episode enclosureForType:TWTypeVideo andQuality:TWQualityHigh];
         
         [segue.destinationViewController setEnclosure:enclosure];
+        
     }
     else if([segue.identifier isEqualToString:@"liveAudioDetail"])
     {
