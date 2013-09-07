@@ -460,9 +460,13 @@
     else if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
     {
         TWNavigationContainer *navigationContainer = (TWNavigationContainer*)window.rootViewController;
-        TWNavigationController *navigationController = (TWNavigationController*)navigationContainer.masterController;
-        UIViewController *presented = navigationController.topViewController;
-        res = presented.supportedInterfaceOrientations;
+        
+        if([navigationContainer respondsToSelector:@selector(masterController)])
+        {
+            TWNavigationController *navigationController = (TWNavigationController*)navigationContainer.masterController;
+            UIViewController *presented = navigationController.topViewController;
+            res = presented.supportedInterfaceOrientations;
+        }
     }
     
     return res;
