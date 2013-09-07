@@ -336,7 +336,6 @@
         _player.shouldAutoplay = YES;
         _player.allowsAirPlay = YES;
         _player.scalingMode = MPMovieScalingModeAspectFit;
-        _player.backgroundView.backgroundColor = UIColor.whiteColor;
     }
     
     return _player;
@@ -344,7 +343,7 @@
 
 - (void)setNowPlaying:(id)nowPlaying
 {
-    if(self.player && [_nowPlaying isKindOfClass:Enclosure.class])
+    if(self.player && [_nowPlaying isKindOfClass:Enclosure.class] && self.player.currentPlaybackTime)
     {
         if(nowPlaying)
         {

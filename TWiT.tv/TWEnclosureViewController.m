@@ -168,7 +168,7 @@
 {
     if([notification.name isEqualToString:@"MPMoviePlayerLoadStateDidChangeNotification"])
     {
-        if(self.delegate.player.loadState != MPMovieLoadStateUnknown)
+        if(self.delegate.player.loadState == MPMovieLoadStatePlayable || self.delegate.player.loadState == MPMovieLoadStatePlaythroughOK)
         {
             self.toasterView.hidden = YES;
             [self.spinner stopAnimating];
@@ -288,9 +288,6 @@
         self.toolbarView.hidden = NO;
         
         [UIView animateWithDuration:0.3f delay:0 options:UIViewAnimationCurveEaseIn animations:^{
-//            if(UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPad)
-//                self.view.window.rootViewController.view.frame = UIScreen.mainScreen.applicationFrame;
-            
             self.navigationController.navigationBar.alpha = 1;
             self.navigationBar.alpha = 1;
             self.toolbarView.alpha = 1;
