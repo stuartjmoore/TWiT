@@ -1160,7 +1160,7 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMinY="YES"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="1ob-E5-9tA">
-                                                <rect key="frame" x="10" y="4" width="108" height="37"/>
+                                                <rect key="frame" x="9.9999999999999964" y="4" width="108" height="37"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                 <accessibility key="accessibilityConfiguration" hint="Opens the quality selector." label="Quality"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>

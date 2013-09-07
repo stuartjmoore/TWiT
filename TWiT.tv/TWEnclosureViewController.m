@@ -382,7 +382,9 @@
     self.delegate.player.initialPlaybackTime = startTime;
     
     self.infoView.hidden = NO;
-    self.infoAlbumArtView.image = (self.enclosure.type == TWTypeAudio) ? self.enclosure.episode.show.albumArt.image : self.enclosure.episode.poster.image;
+    self.infoAlbumArtView.image = (self.enclosure.type == TWTypeAudio)
+                                ? self.enclosure.episode.show.albumArt.image
+                                : self.enclosure.episode.poster.image;
     [self.qualityButton setTitle:enclosure.title forState:UIControlStateNormal];
 }
 
