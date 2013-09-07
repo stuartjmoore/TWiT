@@ -249,9 +249,18 @@
 
 - (void)updateEpisodes
 {
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"number" ascending:NO];
+    NSPredicate *pred = [NSPredicate predicateWithFormat:@"self == %@", nil];
+    
+    NSArray *epsiodes = [self.episodes sortedArrayUsingDescriptors:@[sortDescriptor]];
+    NSArray *publishedDates = [[epsiodes subarrayWithRange:NSMakeRange(0, epsiodes.count >= 9 ? 9 : epsiodes.count)] valueForKey:@"published"];
+    NSArray *notPublished = [publishedDates filteredArrayUsingPredicate:pred];
+    
+    BOOL forceUpdate = notPublished.count;
+    
     for(Feed *feed in self.feeds)
     {
-        if(feed.lastUpdated && feed.lastUpdated.timeIntervalSinceNow > -self.updateInterval)
+        if(!forceUpdate && feed.lastUpdated && feed.lastUpdated.timeIntervalSinceNow > -self.updateInterval)
             continue;
         
         if(self.threadCount == 0)
@@ -281,7 +290,7 @@
                     
                     NSDate *lastModified = [df dateFromString:lastModifiedString];
                     
-                    if(lastModified == nil || ![lastModified isEqualToDate:feed.lastUpdated])
+                    if(forceUpdate || (lastModified == nil || ![lastModified isEqualToDate:feed.lastUpdated]))
                     {
                         feed.lastUpdated = lastModified;
                         [self updatePodcastFeed:feed];
