@@ -358,18 +358,27 @@
         [[_nowPlaying episode] setLastTimecode:self.player.currentPlaybackTime];
     }
     
+    
     if(nowPlaying && [nowPlaying isKindOfClass:Enclosure.class])
     {
+        if([_nowPlaying isKindOfClass:Stream.class])
+            [self stop];
+        
         Enclosure *enclosure = (Enclosure*)nowPlaying;
         
         NSURL *url = enclosure.path ? [NSURL fileURLWithPath:enclosure.path] : [NSURL URLWithString:enclosure.url];
+        self.player.movieSourceType = enclosure.path ? MPMovieSourceTypeFile : MPMovieSourceTypeStreaming;
         self.player.contentURL = url;
         self.player.initialPlaybackTime = enclosure.episode.lastTimecode;
         [self play];
     }
     else if(nowPlaying && [nowPlaying isKindOfClass:Stream.class])
     {
+        if([_nowPlaying isKindOfClass:Enclosure.class])
+            [self stop];
+        
         Stream *stream = (Stream*)nowPlaying;
+        self.player.movieSourceType = MPMovieSourceTypeStreaming;
         self.player.contentURL = [NSURL URLWithString:stream.url];
         [self play];
     }
