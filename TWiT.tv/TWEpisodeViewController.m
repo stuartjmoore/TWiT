@@ -194,7 +194,8 @@
     [sheet addButtonWithTitle:@"Cancel"];
     sheet.cancelButtonIndex = sheet.numberOfButtons - 1;
     
-    [sheet showFromRect:self.segmentedButton.downloadButton.frame inView:self.segmentedButton animated:YES];
+    [sheet showFromRect:CGRectMake(self.segmentedButton.frame.size.width-22, 22, 1, 22)
+                 inView:self.segmentedButton animated:YES];
 }
 - (void)actionSheet:(UIActionSheet*)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
