@@ -313,7 +313,7 @@
 
 - (IBAction)openQualityPopover:(UIButton*)sender
 {
-    UIActionSheet *sheet = [[UIActionSheet alloc] initWithTitle:@"Choose Video Quality"
+    UIActionSheet *sheet = [[UIActionSheet alloc] initWithTitle:@"Video Quality"
                                                        delegate:self
                                               cancelButtonTitle:nil
                                          destructiveButtonTitle:nil

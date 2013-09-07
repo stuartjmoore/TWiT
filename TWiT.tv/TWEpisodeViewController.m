@@ -179,7 +179,7 @@
 
 - (void)downloadPressed:(TWSegmentedButton*)sender
 {
-    UIActionSheet *sheet = [[UIActionSheet alloc] initWithTitle:@"Choose Download Quality"
+    UIActionSheet *sheet = [[UIActionSheet alloc] initWithTitle:@"Download Quality"
                                                        delegate:self
                                               cancelButtonTitle:nil
                                          destructiveButtonTitle:nil
