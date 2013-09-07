@@ -332,10 +332,10 @@
     if(_player == nil)
     {
         _player = [[MPMoviePlayerController alloc] init];
+        _player.scalingMode = MPMovieScalingModeAspectFit;
         _player.controlStyle = MPMovieControlStyleNone;
         _player.shouldAutoplay = YES;
         _player.allowsAirPlay = YES;
-        _player.scalingMode = MPMovieScalingModeAspectFit;
     }
     
     return _player;
@@ -364,9 +364,8 @@
             [self stop];
         
         Enclosure *enclosure = (Enclosure*)nowPlaying;
-        
         NSURL *url = enclosure.path ? [NSURL fileURLWithPath:enclosure.path] : [NSURL URLWithString:enclosure.url];
-        self.player.movieSourceType = enclosure.path ? MPMovieSourceTypeFile : MPMovieSourceTypeStreaming;
+        
         self.player.contentURL = url;
         self.player.initialPlaybackTime = enclosure.episode.lastTimecode;
         [self play];
@@ -377,7 +376,7 @@
             [self stop];
         
         Stream *stream = (Stream*)nowPlaying;
-        self.player.movieSourceType = MPMovieSourceTypeStreaming;
+        
         self.player.contentURL = [NSURL URLWithString:stream.url];
         [self play];
     }
