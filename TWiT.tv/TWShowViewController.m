@@ -22,6 +22,8 @@
 #import "Episode.h"
 #import "Enclosure.h"
 
+#define NAVBAR_INSET 64
+
 @implementation TWShowViewController
 
 - (void)viewDidLoad
@@ -166,7 +168,7 @@
         self.tableView.scrollEnabled = YES;
         [UIView animateWithDuration:0.3f animations:^
         {
-            self.tableView.contentOffset = CGPointMake(0, 0);
+            self.tableView.contentOffset = CGPointMake(0, -NAVBAR_INSET);
             sender.transform = CGAffineTransformMakeRotation(0);
             [sender setImage:[UIImage imageNamed:@"toolbar-disclose"] forState:UIControlStateNormal];
         }];
@@ -334,10 +336,10 @@
     if(object == self.tableView)
     {
         CGRect frame = self.headerView.frame;
-        if(newPoint.y < 0)
+        if(newPoint.y < -NAVBAR_INSET)
         {
-            frame.origin.y = newPoint.y;
-            frame.size.height = ceilf(headerHeight-newPoint.y);
+            frame.origin.y = newPoint.y+NAVBAR_INSET;
+            frame.size.height = ceilf(headerHeight-newPoint.y-NAVBAR_INSET);
             
         }
         else
