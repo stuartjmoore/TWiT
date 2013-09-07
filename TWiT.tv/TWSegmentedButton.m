@@ -21,27 +21,21 @@
         self.isAccessibilityElement = NO;
         
         self.watchButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        //self.watchButton.frame = CGRectMake(0, 0, (self.frame.size.width-self.frame.size.height)/2.0f, self.frame.size.height);
         self.watchButton.autoresizingMask = (UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth);
         [self.watchButton setTitle:@"Watch" forState:UIControlStateNormal];
         [self.watchButton setBackgroundImage:[[UIImage imageNamed:@"button-blue-left.png"] stretchableImageWithLeftCapWidth:5 topCapHeight:0] forState:UIControlStateNormal];
-        self.watchButton.titleLabel.font = [UIFont fontWithName:@"Vollkorn-BoldItalic" size:20];
-        self.watchButton.titleLabel.shadowColor = UIColor.blackColor;
-        self.watchButton.titleLabel.shadowOffset = CGSizeMake(0, 1);
-        self.watchButton.titleEdgeInsets = UIEdgeInsetsMake(5, 0, 0, 0);
+        [self.watchButton setTitleColor:[UIColor colorWithRed:0.231 green:0.667 blue:0.816 alpha:1] forState:UIControlStateNormal];
+        self.watchButton.titleLabel.font = [UIFont systemFontOfSize:18];
         self.watchButton.accessibilityHint = @"Loads the episode video.";
         [self.watchButton addTarget:self action:@selector(watchButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:self.watchButton];
         
         self.listenButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        //self.listenButton.frame = CGRectMake(self.watchButton.frame.size.width, 0, (self.frame.size.width-self.frame.size.height)/2.0f, self.frame.size.height);
         self.listenButton.autoresizingMask = (UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth);
         [self.listenButton setTitle:@"Listen" forState:UIControlStateNormal];
         [self.listenButton setBackgroundImage:[[UIImage imageNamed:@"button-blue-mid.png"] stretchableImageWithLeftCapWidth:1 topCapHeight:0] forState:UIControlStateNormal];
-        self.listenButton.titleLabel.font = [UIFont fontWithName:@"Vollkorn-BoldItalic" size:20];
-        self.listenButton.titleLabel.shadowColor = UIColor.blackColor;
-        self.listenButton.titleLabel.shadowOffset = CGSizeMake(0, 1);
-        self.listenButton.titleEdgeInsets = UIEdgeInsetsMake(5, 0, 0, 0);
+        [self.listenButton setTitleColor:[UIColor colorWithRed:0.231 green:0.667 blue:0.816 alpha:1] forState:UIControlStateNormal];
+        self.listenButton.titleLabel.font = [UIFont systemFontOfSize:18];\
         self.listenButton.accessibilityHint = @"Loads the episode audio.";
         [self.listenButton addTarget:self action:@selector(listenButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:self.listenButton];
@@ -71,15 +65,13 @@
         [self addSubview:self.downloadButton];
         
         downloadingLabel = [[UILabel alloc] init];
-        downloadingLabel.frame = CGRectMake(0, 4, self.frame.size.width-self.frame.size.height, self.frame.size.height-4);
+        downloadingLabel.frame = CGRectMake(0, 0, self.frame.size.width-self.frame.size.height, self.frame.size.height);
         downloadingLabel.autoresizingMask = self.watchButton.autoresizingMask;
         downloadingLabel.hidden = YES;
         downloadingLabel.text = @"Downloading…";
-        downloadingLabel.font = [UIFont fontWithName:@"Vollkorn-BoldItalic" size:20];
-        downloadingLabel.shadowColor = UIColor.blackColor;
-        downloadingLabel.shadowOffset = CGSizeMake(0, 1);
+        downloadingLabel.font = [UIFont systemFontOfSize:18];
         downloadingLabel.backgroundColor = [UIColor clearColor];
-        downloadingLabel.textColor = [UIColor whiteColor];
+        downloadingLabel.textColor = [UIColor colorWithRed:0.231 green:0.667 blue:0.816 alpha:1];
         downloadingLabel.textAlignment = NSTextAlignmentCenter;
         [self addSubview:downloadingLabel];
     }
