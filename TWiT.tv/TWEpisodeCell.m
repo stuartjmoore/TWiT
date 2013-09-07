@@ -149,21 +149,4 @@
     [self.delegate tableView:self.table accessoryButtonTappedForRowWithIndexPath:self.indexPath];
 }
 
-- (IBAction)cancelSwipe:(UIButton*)sender
-{
-    [UIView animateWithDuration:0.5f animations:^{
-        self.contentView.frame = self.bounds;
-    } completion:^(BOOL fin){
-        self.swipeBackgroundView.hidden = YES;
-        self.swipeConfirmationView.hidden = YES;
-    }];
-}
-- (IBAction)deleteDownload:(UIButton*)sender
-{
-    if(!self.episode.watched)
-        self.episode.watched = YES;
-    
-    [self.episode deleteDownloads];
-}
-
 @end

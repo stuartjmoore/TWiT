@@ -63,14 +63,6 @@
 		170BA08A1691CD550022FE4D /* navbar-play@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 170B9FAD1691CD540022FE4D /* navbar-play@2x.png */; };
 		170BA08B1691CD550022FE4D /* navbar-stop.png in Resources */ = {isa = PBXBuildFile; fileRef = 170B9FAE1691CD540022FE4D /* navbar-stop.png */; };
 		170BA08C1691CD550022FE4D /* navbar-stop@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 170B9FAF1691CD540022FE4D /* navbar-stop@2x.png */; };
-		170BA08F1691CD550022FE4D /* popup-fav-off.png in Resources */ = {isa = PBXBuildFile; fileRef = 170B9FB21691CD540022FE4D /* popup-fav-off.png */; };
-		170BA0901691CD550022FE4D /* popup-fav-off@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 170B9FB31691CD540022FE4D /* popup-fav-off@2x.png */; };
-		170BA0911691CD550022FE4D /* popup-fav-on.png in Resources */ = {isa = PBXBuildFile; fileRef = 170B9FB41691CD540022FE4D /* popup-fav-on.png */; };
-		170BA0921691CD550022FE4D /* popup-fav-on@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 170B9FB51691CD540022FE4D /* popup-fav-on@2x.png */; };
-		170BA0931691CD550022FE4D /* popup-reminder-off.png in Resources */ = {isa = PBXBuildFile; fileRef = 170B9FB61691CD540022FE4D /* popup-reminder-off.png */; };
-		170BA0941691CD550022FE4D /* popup-reminder-off@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 170B9FB71691CD540022FE4D /* popup-reminder-off@2x.png */; };
-		170BA0951691CD550022FE4D /* popup-reminder-on.png in Resources */ = {isa = PBXBuildFile; fileRef = 170B9FB81691CD540022FE4D /* popup-reminder-on.png */; };
-		170BA0961691CD550022FE4D /* popup-reminder-on@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 170B9FB91691CD540022FE4D /* popup-reminder-on@2x.png */; };
 		170BA09F1691CD550022FE4D /* quality-view-disclosure.png in Resources */ = {isa = PBXBuildFile; fileRef = 170B9FC21691CD540022FE4D /* quality-view-disclosure.png */; };
 		170BA0A01691CD550022FE4D /* quality-view-disclosure@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 170B9FC31691CD540022FE4D /* quality-view-disclosure@2x.png */; };
 		170BA0A31691CD550022FE4D /* quick-play.png in Resources */ = {isa = PBXBuildFile; fileRef = 170B9FC61691CD540022FE4D /* quick-play.png */; };
@@ -304,14 +296,6 @@
 		170B9FAD1691CD540022FE4D /* navbar-play@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "navbar-play@2x.png"; sourceTree = "<group>"; };
 		170B9FAE1691CD540022FE4D /* navbar-stop.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "navbar-stop.png"; sourceTree = "<group>"; };
 		170B9FAF1691CD540022FE4D /* navbar-stop@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "navbar-stop@2x.png"; sourceTree = "<group>"; };
-		170B9FB21691CD540022FE4D /* popup-fav-off.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "popup-fav-off.png"; sourceTree = "<group>"; };
-		170B9FB31691CD540022FE4D /* popup-fav-off@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "popup-fav-off@2x.png"; sourceTree = "<group>"; };
-		170B9FB41691CD540022FE4D /* popup-fav-on.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "popup-fav-on.png"; sourceTree = "<group>"; };
-		170B9FB51691CD540022FE4D /* popup-fav-on@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "popup-fav-on@2x.png"; sourceTree = "<group>"; };
-		170B9FB61691CD540022FE4D /* popup-reminder-off.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "popup-reminder-off.png"; sourceTree = "<group>"; };
-		170B9FB71691CD540022FE4D /* popup-reminder-off@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "popup-reminder-off@2x.png"; sourceTree = "<group>"; };
-		170B9FB81691CD540022FE4D /* popup-reminder-on.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "popup-reminder-on.png"; sourceTree = "<group>"; };
-		170B9FB91691CD540022FE4D /* popup-reminder-on@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "popup-reminder-on@2x.png"; sourceTree = "<group>"; };
 		170B9FC21691CD540022FE4D /* quality-view-disclosure.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "quality-view-disclosure.png"; sourceTree = "<group>"; };
 		170B9FC31691CD540022FE4D /* quality-view-disclosure@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "quality-view-disclosure@2x.png"; sourceTree = "<group>"; };
 		170B9FC61691CD540022FE4D /* quick-play.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "quick-play.png"; sourceTree = "<group>"; };
@@ -597,14 +581,6 @@
 				170B9FAD1691CD540022FE4D /* navbar-play@2x.png */,
 				170B9FAE1691CD540022FE4D /* navbar-stop.png */,
 				170B9FAF1691CD540022FE4D /* navbar-stop@2x.png */,
-				170B9FB21691CD540022FE4D /* popup-fav-off.png */,
-				170B9FB31691CD540022FE4D /* popup-fav-off@2x.png */,
-				170B9FB41691CD540022FE4D /* popup-fav-on.png */,
-				170B9FB51691CD540022FE4D /* popup-fav-on@2x.png */,
-				170B9FB61691CD540022FE4D /* popup-reminder-off.png */,
-				170B9FB71691CD540022FE4D /* popup-reminder-off@2x.png */,
-				170B9FB81691CD540022FE4D /* popup-reminder-on.png */,
-				170B9FB91691CD540022FE4D /* popup-reminder-on@2x.png */,
 				170B9FC21691CD540022FE4D /* quality-view-disclosure.png */,
 				170B9FC31691CD540022FE4D /* quality-view-disclosure@2x.png */,
 				170B9FC61691CD540022FE4D /* quick-play.png */,
@@ -1067,15 +1043,7 @@
 				170BA08A1691CD550022FE4D /* navbar-play@2x.png in Resources */,
 				170BA08B1691CD550022FE4D /* navbar-stop.png in Resources */,
 				170BA08C1691CD550022FE4D /* navbar-stop@2x.png in Resources */,
-				170BA08F1691CD550022FE4D /* popup-fav-off.png in Resources */,
-				170BA0901691CD550022FE4D /* popup-fav-off@2x.png in Resources */,
-				170BA0911691CD550022FE4D /* popup-fav-on.png in Resources */,
 				17DE054217D8E7A8007E0F5A /* Images.xcassets in Resources */,
-				170BA0921691CD550022FE4D /* popup-fav-on@2x.png in Resources */,
-				170BA0931691CD550022FE4D /* popup-reminder-off.png in Resources */,
-				170BA0941691CD550022FE4D /* popup-reminder-off@2x.png in Resources */,
-				170BA0951691CD550022FE4D /* popup-reminder-on.png in Resources */,
-				170BA0961691CD550022FE4D /* popup-reminder-on@2x.png in Resources */,
 				170BA09F1691CD550022FE4D /* quality-view-disclosure.png in Resources */,
 				170BA0A01691CD550022FE4D /* quality-view-disclosure@2x.png in Resources */,
 				170BA0A31691CD550022FE4D /* quick-play.png in Resources */,

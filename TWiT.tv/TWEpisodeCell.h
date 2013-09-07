@@ -44,7 +44,4 @@
 
 - (IBAction)quickPlayPressed:(UIButton*)sender;
 
-- (IBAction)cancelSwipe:(UIButton*)sender;
-- (IBAction)deleteDownload:(UIButton*)sender;
-
 @end

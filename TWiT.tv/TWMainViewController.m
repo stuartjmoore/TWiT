@@ -182,18 +182,13 @@
     Episode *episode = cell.episode;
     CGRect frame = view.frame;
     
+    if(episode.downloadedEnclosures)
+        return;
+    
     if(recognizer.state == UIGestureRecognizerStateBegan)
     {
-        if(!episode.downloadedEnclosures)
-        {
-            cell.swipeBackgroundView.hidden = NO;
-            cell.swipeConfirmationView.hidden = YES;
-        }
-        else
-        {
-            cell.swipeBackgroundView.hidden = YES;
-            cell.swipeConfirmationView.hidden = NO;
-        }
+        cell.swipeBackgroundView.hidden = NO;
+        cell.swipeConfirmationView.hidden = YES;
     }
     else if(recognizer.state == UIGestureRecognizerStateChanged)
     {
@@ -794,20 +789,37 @@
     return header;
 }
 
+- (BOOL)tableView:(UITableView*)tableView canEditRowAtIndexPath:(NSIndexPath*)indexPath
+{
+    if(tableView != self.tableView || self.sectionVisible != TWSectionEpisodes)
+        return NO;
+    
+    Episode *episode = [self.fetchedEpisodesController objectAtIndexPath:indexPath];
+    return episode.downloadedEnclosures;
+}
+
+- (void)tableView:(UITableView*)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath*)indexPath
+{
+    if(editingStyle == UITableViewCellEditingStyleDelete)
+    {
+        if(tableView != self.tableView || self.sectionVisible != TWSectionEpisodes)
+            return;
+        
+        Episode *episode = [self.fetchedEpisodesController objectAtIndexPath:indexPath];
+        
+        if(!episode.watched)
+            episode.watched = YES;
+        
+        [episode deleteDownloads];
+    }
+}
+
 - (UITableViewCell*)tableView:(UITableView*)tableView cellForRowAtIndexPath:(NSIndexPath*)indexPath
 {
     if(tableView == self.tableView)
     {
         NSString *identifier = (self.sectionVisible == TWSectionEpisodes) ? @"episodeCell" : @"showsCell";
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
-
-        if(self.sectionVisible == TWSectionEpisodes)
-        {
-            UIPanGestureRecognizer *swipeRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(swipeEpisode:)];
-            swipeRecognizer.delegate = self;
-            swipeRecognizer.observationInfo = (__bridge void *)(cell);
-            [cell.contentView addGestureRecognizer:swipeRecognizer];
-        }
         
         [self configureCell:cell atIndexPath:indexPath];
         
@@ -836,6 +848,15 @@
     if([cell.reuseIdentifier isEqualToString:@"episodeCell"])
     {
         Episode *episode = [self.fetchedEpisodesController objectAtIndexPath:indexPath];
+        
+        if(self.sectionVisible == TWSectionEpisodes && !episode.downloadedEnclosures)
+        {
+            UIPanGestureRecognizer *swipeRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(swipeEpisode:)];
+            swipeRecognizer.delegate = self;
+            swipeRecognizer.observationInfo = (__bridge void *)(cell);
+            [cell.contentView addGestureRecognizer:swipeRecognizer];
+        }
+        
         TWEpisodeCell *episodeCell = (TWEpisodeCell*)cell;
         episodeCell.delegate = self;
         episodeCell.table = self.tableView;
