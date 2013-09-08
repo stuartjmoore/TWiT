@@ -1,14 +1,42 @@
 {
   "images" : [
     {
+      "resizing" : {
+        "mode" : "9-part",
+        "center" : {
+          "mode" : "fill",
+          "width" : 1,
+          "height" : 1
+        },
+        "capInsets" : {
+          "bottom" : 11,
+          "top" : 11,
+          "right" : 11,
+          "left" : 11
+        }
+      },
       "idiom" : "universal",
-      "scale" : "1x",
-      "filename" : "video-chat-button.png"
+      "filename" : "video-chat-button.png",
+      "scale" : "1x"
     },
     {
+      "resizing" : {
+        "mode" : "9-part",
+        "center" : {
+          "mode" : "fill",
+          "width" : 1,
+          "height" : 1
+        },
+        "capInsets" : {
+          "bottom" : 22,
+          "top" : 22,
+          "right" : 22,
+          "left" : 22
+        }
+      },
       "idiom" : "universal",
-      "scale" : "2x",
-      "filename" : "video-chat-button@2x.png"
+      "filename" : "video-chat-button@2x.png",
+      "scale" : "2x"
     }
   ],
   "info" : {

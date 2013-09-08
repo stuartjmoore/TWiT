@@ -1,14 +1,36 @@
 {
   "images" : [
     {
+      "resizing" : {
+        "mode" : "3-part-horizontal",
+        "center" : {
+          "mode" : "fill",
+          "width" : 1
+        },
+        "capInsets" : {
+          "right" : 1,
+          "left" : 4
+        }
+      },
       "idiom" : "universal",
-      "scale" : "1x",
-      "filename" : "button-blue-left.png"
+      "filename" : "button-blue-left.png",
+      "scale" : "1x"
     },
     {
+      "resizing" : {
+        "mode" : "3-part-horizontal",
+        "center" : {
+          "mode" : "fill",
+          "width" : 2
+        },
+        "capInsets" : {
+          "right" : 2,
+          "left" : 8
+        }
+      },
       "idiom" : "universal",
-      "scale" : "2x",
-      "filename" : "button-blue-left@2x.png"
+      "filename" : "button-blue-left@2x.png",
+      "scale" : "2x"
     }
   ],
   "info" : {

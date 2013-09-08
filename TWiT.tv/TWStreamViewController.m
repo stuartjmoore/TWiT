@@ -366,9 +366,6 @@
     {
         [self hideControls:YES];
         
-        UIImage *chatSendButtonBackground = [[self.chatSendButton backgroundImageForState:UIControlStateNormal] stretchableImageWithLeftCapWidth:11 topCapHeight:11];
-        [self.chatSendButton setBackgroundImage:chatSendButtonBackground forState:UIControlStateNormal];
-        
         UIAlertView *prompt = [[UIAlertView alloc] initWithTitle:@"TWiT Chat Room"
                                                          message:@""
                                                         delegate:self

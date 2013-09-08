@@ -1,14 +1,36 @@
 {
   "images" : [
     {
+      "resizing" : {
+        "mode" : "3-part-horizontal",
+        "center" : {
+          "mode" : "fill",
+          "width" : 1
+        },
+        "capInsets" : {
+          "right" : 1,
+          "left" : 5
+        }
+      },
       "idiom" : "universal",
-      "scale" : "1x",
-      "filename" : "button-blue-progress-background.png"
+      "filename" : "button-blue-progress-background.png",
+      "scale" : "1x"
     },
     {
+      "resizing" : {
+        "mode" : "3-part-horizontal",
+        "center" : {
+          "mode" : "fill",
+          "width" : 1
+        },
+        "capInsets" : {
+          "right" : 2,
+          "left" : 10
+        }
+      },
       "idiom" : "universal",
-      "scale" : "2x",
-      "filename" : "button-blue-progress-background@2x.png"
+      "filename" : "button-blue-progress-background@2x.png",
+      "scale" : "2x"
     }
   ],
   "info" : {

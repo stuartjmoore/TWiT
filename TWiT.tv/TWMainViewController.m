@@ -88,14 +88,6 @@
     [self.tableView addObserver:self forKeyPath:@"contentOffset"
                         options:(NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld)
                         context:NULL];
-    
-    UIImage *leftOrangeBackground = [self.watchButton backgroundImageForState:UIControlStateNormal];
-    leftOrangeBackground = [leftOrangeBackground stretchableImageWithLeftCapWidth:5 topCapHeight:0];
-    [self.watchButton setBackgroundImage:leftOrangeBackground forState:UIControlStateNormal];
-    
-    UIImage *rightOrangeBackground = [self.listenButton backgroundImageForState:UIControlStateNormal];
-    rightOrangeBackground = [rightOrangeBackground stretchableImageWithLeftCapWidth:1 topCapHeight:0];
-    [self.listenButton setBackgroundImage:rightOrangeBackground forState:UIControlStateNormal];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -711,8 +703,8 @@
         self.sectionHeader = [[UIView alloc] initWithFrame:CGRectMake(0, 0, width, 28)];
         self.sectionHeader.backgroundColor = [UIColor whiteColor];
         
-        UIImage *buttonUpBackground = [[UIImage imageNamed:@"main-header-button-up.png"] stretchableImageWithLeftCapWidth:4 topCapHeight:11];
-        UIImage *buttonDownBackground = [[UIImage imageNamed:@"main-header-button.png"] stretchableImageWithLeftCapWidth:4 topCapHeight:11];
+        UIImage *buttonUpBackground = [UIImage imageNamed:@"main-header-button-up"];
+        UIImage *buttonDownBackground = [UIImage imageNamed:@"main-header-button.png"];
         
         UIButton *episodesButton = [UIButton buttonWithType:UIButtonTypeCustom];
         episodesButton.frame = CGRectMake(2, 2, 157, 24);

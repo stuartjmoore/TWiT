@@ -57,9 +57,9 @@
     [self.airplayButtonView addSubview:airplayButton];
     self.airplayButtonView.backgroundColor = [UIColor clearColor];
     
-    [self.seekbar setMinimumTrackImage:[[UIImage imageNamed:@"video-seekbar-back.png"] stretchableImageWithLeftCapWidth:3 topCapHeight:3] forState:UIControlStateNormal];
-	[self.seekbar setMaximumTrackImage:[[UIImage imageNamed:@"video-seekbar-back.png"] stretchableImageWithLeftCapWidth:3 topCapHeight:3] forState:UIControlStateNormal];
-	[self.seekbar setThumbImage:[UIImage imageNamed:@"video-seekbar-thumb.png"] forState:UIControlStateNormal];
+    [self.seekbar setMinimumTrackImage:[UIImage imageNamed:@"video-seekbar-back"] forState:UIControlStateNormal];
+	[self.seekbar setMaximumTrackImage:[UIImage imageNamed:@"video-seekbar-back"] forState:UIControlStateNormal];
+	[self.seekbar setThumbImage:[UIImage imageNamed:@"video-seekbar-thumb"] forState:UIControlStateNormal];
     
     self.seekbar.value = (self.enclosure.episode.duration != 0) ? (float)self.enclosure.episode.lastTimecode / self.enclosure.episode.duration : 0;
     
