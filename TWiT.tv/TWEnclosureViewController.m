@@ -276,27 +276,11 @@
         return;
     
     hideUI = hide;
-    [self setNeedsStatusBarAppearanceUpdate];
     
-    if(!hide)
+    if(hide)
     {
-        self.navigationController.navigationBar.alpha = 0;
-        self.navigationBar.alpha = 0;
-        self.toolbarView.alpha = 0;
-        [self.navigationController setNavigationBarHidden:NO animated:NO];
-        self.navigationBar.hidden = NO;
-        self.toolbarView.hidden = NO;
-        
-        [UIView animateWithDuration:0.3f delay:0 options:UIViewAnimationCurveEaseIn animations:^{
-            self.navigationController.navigationBar.alpha = 1;
-            self.navigationBar.alpha = 1;
-            self.toolbarView.alpha = 1;
-        } completion:^(BOOL fin){
-        }];
-    }
-    else
-    {
-        [UIView animateWithDuration:0.3f delay:0 options:UIViewAnimationCurveEaseOut animations:^{
+        [UIView animateWithDuration:UINavigationControllerHideShowBarDuration animations:^{
+            [self setNeedsStatusBarAppearanceUpdate];
             self.navigationController.navigationBar.alpha = 0;
             self.navigationBar.alpha = 0;
             self.toolbarView.alpha = 0;
@@ -305,6 +289,23 @@
             self.navigationBar.hidden = YES;
             self.toolbarView.hidden = YES;
         }];
+    }
+    else
+    {
+        [UIView animateWithDuration:UINavigationControllerHideShowBarDuration animations:^{
+            [self setNeedsStatusBarAppearanceUpdate];
+        } completion:nil];
+            
+        [self.navigationController setNavigationBarHidden:NO animated:NO];
+        self.navigationController.navigationBar.alpha = 0;
+        self.navigationBar.hidden = NO;
+        self.toolbarView.hidden = NO;
+        
+        [UIView animateWithDuration:UINavigationControllerHideShowBarDuration animations:^{
+            self.navigationController.navigationBar.alpha = 1;
+            self.navigationBar.alpha = 1;
+            self.toolbarView.alpha = 1;
+        } completion:nil];
     }
 }
 
