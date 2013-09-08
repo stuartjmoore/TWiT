@@ -1162,11 +1162,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <view key="tableHeaderView" contentMode="scaleToFill" id="aUO-OJ-z3A">
+                        <view key="tableHeaderView" contentMode="scaleToFill" id="aUO-OJ-z3A" userLabel="Header">
                             <rect key="frame" x="0.0" y="64" width="768" height="180"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
-                                <view clipsSubviews="YES" contentMode="scaleToFill" id="bcg-Uz-4q7">
+                                <view clipsSubviews="YES" contentMode="scaleToFill" id="bcg-Uz-4q7" userLabel="headerView">
                                     <rect key="frame" x="0.0" y="0.0" width="768" height="180"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
@@ -1265,7 +1265,7 @@
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         </view>
-                        <view key="tableFooterView" contentMode="scaleToFill" id="F7d-M4-5be">
+                        <view key="tableFooterView" contentMode="scaleToFill" id="F7d-M4-5be" userLabel="Footer">
                             <rect key="frame" x="0.0" y="416" width="768" height="15"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
