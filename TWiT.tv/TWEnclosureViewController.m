@@ -27,6 +27,7 @@
 @implementation TWEnclosureViewController
 {
     BOOL hideUI;
+    UIColor *previousTint;
 }
 
 - (void)viewDidLoad
@@ -125,7 +126,8 @@
 
     if(UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPhone)
     {
-        [self.navigationController.navigationBar setBarStyle:UIBarStyleBlack];
+        previousTint = self.navigationController.navigationBar.tintColor;
+        self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
         self.navigationController.navigationBar.tintColor = UIColor.whiteColor;
     }
     
@@ -484,8 +486,8 @@
 
     if(UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPhone)
     {
-        [self.navigationController.navigationBar setBarStyle:UIBarStyleDefault];
-        self.navigationController.navigationBar.tintColor = self.view.tintColor;
+        self.navigationController.navigationBar.barStyle = UIBarStyleDefault;
+        self.navigationController.navigationBar.tintColor = previousTint;
     }
     
     [NSNotificationCenter.defaultCenter removeObserver:self name:MPMoviePlayerPlaybackStateDidChangeNotification

@@ -24,6 +24,7 @@
 @implementation TWStreamViewController
 {
     BOOL hideUI;
+    UIColor *previousTint;
 }
 
 - (void)viewDidLoad
@@ -102,7 +103,8 @@
     
     if(UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPhone)
     {
-        [self.navigationController.navigationBar setBarStyle:UIBarStyleBlack];
+        previousTint = self.navigationController.navigationBar.tintColor;
+        self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
         self.navigationController.navigationBar.tintColor = UIColor.whiteColor;
     }
     
@@ -141,6 +143,11 @@
 - (UIStatusBarStyle)preferredStatusBarStyle
 {
     return UIStatusBarStyleLightContent;
+}
+
+- (UIStatusBarAnimation)preferredStatusBarUpdateAnimation
+{
+    return UIStatusBarAnimationFade;
 }
 
 - (BOOL)prefersStatusBarHidden
@@ -263,30 +270,10 @@
     
     hideUI = hide;
     
-    [self setNeedsStatusBarAppearanceUpdate];
-    
-    if(!hide)
+    if(hide)
     {
-        self.navigationController.navigationBar.alpha = 0;
-        self.navigationBar.alpha = 0;
-        self.toolbarView.alpha = 0;
-        [self.navigationController setNavigationBarHidden:NO animated:NO];
-        self.navigationBar.hidden = NO;
-        self.toolbarView.hidden = NO;
-        
-        [UIView animateWithDuration:UINavigationControllerHideShowBarDuration delay:0 options:UIViewAnimationCurveEaseIn animations:^{
-            //if(UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPad)
-              //  self.view.window.rootViewController.view.frame = UIScreen.mainScreen.applicationFrame;
-            
-            self.navigationController.navigationBar.alpha = 1;
-            self.navigationBar.alpha = 1;
-            self.toolbarView.alpha = 1;
-        } completion:^(BOOL fin){
-        }];
-    }
-    else
-    {
-        [UIView animateWithDuration:UINavigationControllerHideShowBarDuration delay:0 options:UIViewAnimationCurveEaseOut animations:^{
+        [UIView animateWithDuration:UINavigationControllerHideShowBarDuration animations:^{
+            [self setNeedsStatusBarAppearanceUpdate];
             self.navigationController.navigationBar.alpha = 0;
             self.navigationBar.alpha = 0;
             self.toolbarView.alpha = 0;
@@ -295,6 +282,23 @@
             self.navigationBar.hidden = YES;
             self.toolbarView.hidden = YES;
         }];
+    }
+    else
+    {
+        [UIView animateWithDuration:UINavigationControllerHideShowBarDuration animations:^{
+            [self setNeedsStatusBarAppearanceUpdate];
+        } completion:nil];
+        
+        [self.navigationController setNavigationBarHidden:NO animated:NO];
+        self.navigationController.navigationBar.alpha = 0;
+        self.navigationBar.hidden = NO;
+        self.toolbarView.hidden = NO;
+        
+        [UIView animateWithDuration:UINavigationControllerHideShowBarDuration animations:^{
+            self.navigationController.navigationBar.alpha = 1;
+            self.navigationBar.alpha = 1;
+            self.toolbarView.alpha = 1;
+        } completion:nil];
     }
 }
 
@@ -671,8 +675,8 @@
 {
     if(UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPhone)
     {
-        [self.navigationController.navigationBar setBarStyle:UIBarStyleDefault];
-        self.navigationController.navigationBar.tintColor = self.view.tintColor;
+        self.navigationController.navigationBar.barStyle = UIBarStyleDefault;
+        self.navigationController.navigationBar.tintColor = previousTint;
     }
     
     [self.navigationController setNavigationBarHidden:NO animated:YES];
