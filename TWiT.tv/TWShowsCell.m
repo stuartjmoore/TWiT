@@ -52,7 +52,7 @@
     
     for(int column = 0, showsCount = self.shows.count; column < showsCount; column++)
     {
-        CGContextSetFillColorWithColor(context, self.window.tintColor.CGColor);
+        CGContextSetFillColorWithColor(context, self.tintColor.CGColor);
         CGRect frame = [self frameForColumn:column];
         CGContextFillRect(context, frame);
         

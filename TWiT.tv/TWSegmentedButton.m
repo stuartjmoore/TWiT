@@ -20,22 +20,18 @@
         self.backgroundColor = UIColor.clearColor;
         self.isAccessibilityElement = NO;
         
-        self.watchButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        self.watchButton = [UIButton buttonWithType:UIButtonTypeSystem];
         self.watchButton.autoresizingMask = (UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth);
         [self.watchButton setTitle:@"Watch" forState:UIControlStateNormal];
-        [self.watchButton setBackgroundImage:[UIImage imageNamed:@"button-blue-left"] forState:UIControlStateNormal];
-        [self.watchButton setTitleColor:[UIColor colorWithRed:0.231 green:0.667 blue:0.816 alpha:1] forState:UIControlStateNormal];
-        self.watchButton.titleLabel.font = [UIFont systemFontOfSize:18];
+        [self.watchButton setBackgroundImage:[[UIImage imageNamed:@"button-blue-left"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] forState:UIControlStateNormal];
         self.watchButton.accessibilityHint = @"Loads the episode video.";
         [self.watchButton addTarget:self action:@selector(watchButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:self.watchButton];
         
-        self.listenButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        self.listenButton = [UIButton buttonWithType:UIButtonTypeSystem];
         self.listenButton.autoresizingMask = (UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth);
         [self.listenButton setTitle:@"Listen" forState:UIControlStateNormal];
-        [self.listenButton setBackgroundImage:[UIImage imageNamed:@"button-blue-mid"] forState:UIControlStateNormal];
-        [self.listenButton setTitleColor:[UIColor colorWithRed:0.231 green:0.667 blue:0.816 alpha:1] forState:UIControlStateNormal];
-        self.listenButton.titleLabel.font = [UIFont systemFontOfSize:18];\
+        [self.listenButton setBackgroundImage:[[UIImage imageNamed:@"button-blue-mid"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] forState:UIControlStateNormal];
         self.listenButton.accessibilityHint = @"Loads the episode audio.";
         [self.listenButton addTarget:self action:@selector(listenButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:self.listenButton];
@@ -44,21 +40,21 @@
         progressBackgroundView.frame = CGRectMake(0, 0, self.frame.size.width-self.frame.size.height, self.frame.size.height);
         progressBackgroundView.autoresizingMask = self.watchButton.autoresizingMask;
         progressBackgroundView.hidden = YES;
-        progressBackgroundView.image = [UIImage imageNamed:@"button-blue-progress-background"];
+        progressBackgroundView.image = [[UIImage imageNamed:@"button-blue-progress-background"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
         [self addSubview:progressBackgroundView];
         
         progressFilledView = [[UIImageView alloc] init];
         progressFilledView.frame = CGRectMake(0, 0, 0, self.frame.size.height);
         progressFilledView.autoresizingMask = self.watchButton.autoresizingMask;
         progressFilledView.hidden = YES;
-        progressFilledView.image = [UIImage imageNamed:@"button-blue-progress-filled"];
+        progressFilledView.image = [[UIImage imageNamed:@"button-blue-progress-filled"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
         [self addSubview:progressFilledView];
         
-        self.downloadButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        self.downloadButton = [UIButton buttonWithType:UIButtonTypeSystem];
         self.downloadButton.frame = CGRectMake(self.frame.size.width-self.frame.size.height, 0, self.frame.size.height, self.frame.size.height);
         self.downloadButton.autoresizingMask = (UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleLeftMargin);
-        [self.downloadButton setBackgroundImage:[UIImage imageNamed:@"button-blue-right"] forState:UIControlStateNormal];
-        [self.downloadButton setImage:[UIImage imageNamed:@"download-icon.png"] forState:UIControlStateNormal];
+        [self.downloadButton setBackgroundImage:[[UIImage imageNamed:@"button-blue-right"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] forState:UIControlStateNormal];
+        [self.downloadButton setImage:[[UIImage imageNamed:@"download-icon"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] forState:UIControlStateNormal];
         self.downloadButton.accessibilityLabel = @"Dowload";
         self.downloadButton.accessibilityHint = @"Dowloads the episode.";
         [self.downloadButton addTarget:self action:@selector(downloadButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
@@ -69,9 +65,9 @@
         downloadingLabel.autoresizingMask = self.watchButton.autoresizingMask;
         downloadingLabel.hidden = YES;
         downloadingLabel.text = @"Downloading…";
-        downloadingLabel.font = [UIFont systemFontOfSize:18];
+        //downloadingLabel.font = [UIFont systemFontOfSize:18];
         downloadingLabel.backgroundColor = [UIColor clearColor];
-        downloadingLabel.textColor = [UIColor colorWithRed:0.231 green:0.667 blue:0.816 alpha:1];
+        downloadingLabel.textColor = self.tintColor;
         downloadingLabel.textAlignment = NSTextAlignmentCenter;
         [self addSubview:downloadingLabel];
     }
@@ -101,13 +97,13 @@
     if(!_watchEnabled)
     {
         self.listenButton.frame = CGRectMake(0, 0, self.frame.size.width-self.frame.size.height, self.frame.size.height);
-        [self.listenButton setBackgroundImage:[UIImage imageNamed:@"button-blue-left"] forState:UIControlStateNormal];
+        [self.listenButton setBackgroundImage:[[UIImage imageNamed:@"button-blue-left"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] forState:UIControlStateNormal];
     }
     else
     {
         self.listenButton.frame = CGRectMake(floorf((self.frame.size.width-self.frame.size.height)/2.0f), 0,
                                              ceilf((self.frame.size.width-self.frame.size.height)/2.0f), self.frame.size.height);
-        [self.listenButton setBackgroundImage:[UIImage imageNamed:@"button-blue-mid"] forState:UIControlStateNormal];
+        [self.listenButton setBackgroundImage:[[UIImage imageNamed:@"button-blue-mid"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] forState:UIControlStateNormal];
     }
 }
 
@@ -117,7 +113,8 @@
     
     if(buttonState == TWButtonSegmentDownload)
     {
-        [self.downloadButton setImage:[UIImage imageNamed:@"download-icon.png"] forState:UIControlStateNormal];
+        [self.downloadButton setImage:[[UIImage imageNamed:@"download-icon"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate]
+                             forState:UIControlStateNormal];
         self.downloadButton.accessibilityLabel = @"Dowload";
         self.downloadButton.accessibilityHint = @"Dowloads the episode.";
         
@@ -129,7 +126,8 @@
     }
     else if(buttonState == TWButtonSegmentCancel)
     {
-        [self.downloadButton setImage:[UIImage imageNamed:@"download-cancel-icon.png"] forState:UIControlStateNormal];
+        [self.downloadButton setImage:[[UIImage imageNamed:@"download-cancel-icon"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate]
+                             forState:UIControlStateNormal];
         self.downloadButton.accessibilityLabel = @"Cancel";
         self.downloadButton.accessibilityHint = @"Cancels the download.";
         
@@ -141,7 +139,8 @@
     }
     else if(buttonState == TWButtonSegmentDelete)
     {
-        [self.downloadButton setImage:[UIImage imageNamed:@"download-delete-icon.png"] forState:UIControlStateNormal];
+        [self.downloadButton setImage:[[UIImage imageNamed:@"download-delete-icon"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate]
+                             forState:UIControlStateNormal];
         self.downloadButton.accessibilityLabel = @"Delete";
         self.downloadButton.accessibilityHint = @"Deletes the download.";
         

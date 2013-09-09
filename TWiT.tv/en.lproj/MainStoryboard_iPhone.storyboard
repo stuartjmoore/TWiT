@@ -42,7 +42,6 @@
                     <extendedEdge key="edgesForExtendedLayout" top="YES"/>
                     <navigationBar key="navigationBar" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="4">
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="tintColor" red="0.1764705926" green="0.66666668650000005" blue="0.81960791349999995" alpha="1" colorSpace="deviceRGB"/>
                     </navigationBar>
                     <connections>
                         <segue destination="12" kind="relationship" relationship="rootViewController" id="19"/>
@@ -1454,7 +1453,7 @@
         <image name="video-toolbar-back.png" width="1" height="44"/>
         <image name="video-toolbar-double-back.png" width="1" height="88"/>
     </resources>
-    <color key="tintColor" red="0.17647059261798859" green="0.66666668653488159" blue="0.81960791349411011" alpha="1" colorSpace="deviceRGB"/>
+    <color key="tintColor" red="0.20392156862745098" green="0.66666666666666663" blue="0.82352941176470584" alpha="1" colorSpace="deviceRGB"/>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

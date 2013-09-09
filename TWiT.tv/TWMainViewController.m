@@ -113,7 +113,8 @@
     
     if(UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPhone)
     {
-        self.navigationItem.backBarButtonItem = [UIBarButtonItem.alloc initWithImage:[UIImage imageNamed:@"navbar-back-twit-icon.png"]
+        UIImage *backIcon = [[UIImage imageNamed:@"navbar-back-twit-icon"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+        self.navigationItem.backBarButtonItem = [UIBarButtonItem.alloc initWithImage:backIcon
                                                                                style:UIBarButtonItemStyleBordered
                                                                               target:nil
                                                                               action:nil];
@@ -703,8 +704,8 @@
         self.sectionHeader = [[UIView alloc] initWithFrame:CGRectMake(0, 0, width, 28)];
         self.sectionHeader.backgroundColor = [UIColor whiteColor];
         
-        UIImage *buttonUpBackground = [UIImage imageNamed:@"main-header-button-up"];
-        UIImage *buttonDownBackground = [UIImage imageNamed:@"main-header-button.png"];
+        UIImage *buttonUpBackground = [[UIImage imageNamed:@"main-header-button-up"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+        UIImage *buttonDownBackground = [[UIImage imageNamed:@"main-header-button.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
         
         UIButton *episodesButton = [UIButton buttonWithType:UIButtonTypeCustom];
         episodesButton.frame = CGRectMake(2, 2, 157, 24);
@@ -715,9 +716,8 @@
         [episodesButton setBackgroundImage:buttonDownBackground forState:UIControlStateHighlighted];
         [episodesButton setBackgroundImage:buttonDownBackground forState:UIControlStateSelected];
         [episodesButton setBackgroundImage:buttonUpBackground forState:UIControlStateNormal];
-        episodesButton.titleLabel.shadowOffset = CGSizeMake(0, 1);
-        [episodesButton setTitleColor:self.view.window.tintColor forState:UIControlStateNormal];
-        [episodesButton setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
+        [episodesButton setTitleColor:self.view.tintColor forState:UIControlStateNormal];
+        [episodesButton setTitleColor:UIColor.whiteColor forState:UIControlStateSelected];
         [episodesButton.titleLabel setFont:[UIFont systemFontOfSize:14]];
         [self.sectionHeader addSubview:episodesButton];
         
@@ -730,9 +730,8 @@
         [showsButton setBackgroundImage:buttonDownBackground forState:UIControlStateHighlighted];
         [showsButton setBackgroundImage:buttonDownBackground forState:UIControlStateSelected];
         [showsButton setBackgroundImage:buttonUpBackground forState:UIControlStateNormal];
-        showsButton.titleLabel.shadowOffset = CGSizeMake(0, 1);
-        [showsButton setTitleColor:self.view.window.tintColor forState:UIControlStateNormal];
-        [showsButton setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
+        [showsButton setTitleColor:self.view.tintColor forState:UIControlStateNormal];
+        [showsButton setTitleColor:UIColor.whiteColor forState:UIControlStateSelected];
         [showsButton.titleLabel setFont:[UIFont systemFontOfSize:14]];
         [self.sectionHeader addSubview:showsButton];
         

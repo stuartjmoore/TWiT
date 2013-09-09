@@ -28,8 +28,6 @@
 
 - (BOOL)application:(UIApplication*)application didFinishLaunchingWithOptions:(NSDictionary*)launchOptions
 {
-    self.window.tintColor = [UIColor colorWithRed:0.231 green:0.667 blue:0.816 alpha:1.000];
-    
     [AVAudioSession.sharedInstance setCategory:AVAudioSessionCategoryPlayback error:nil];
     [AVAudioSession.sharedInstance setActive:YES error:nil];
   

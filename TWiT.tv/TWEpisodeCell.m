@@ -96,7 +96,7 @@
     
     if(selected)
     {
-        self.contentView.backgroundColor = self.window.tintColor;
+        self.contentView.backgroundColor = self.tintColor;
         self.titleLabel.textColor = [UIColor whiteColor];
         self.subtitleLabel.textColor = [UIColor whiteColor];
         self.numberLabel.textColor = [UIColor whiteColor];

@@ -42,8 +42,8 @@
         
         if([lastViewController isKindOfClass:NSClassFromString(@"TWMainViewController")])
         {
-            UIImage *buttonIcon = [UIImage imageNamed:@"navbar-back-twit-icon-trans.png"];
-            lastViewController.navigationItem.backBarButtonItem = [UIBarButtonItem.alloc initWithImage:buttonIcon
+            UIImage *backIcon = [[UIImage imageNamed:@"navbar-back-twit-icon-trans"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+            lastViewController.navigationItem.backBarButtonItem = [UIBarButtonItem.alloc initWithImage:backIcon
                                                                                                  style:UIBarButtonItemStyleBordered
                                                                                                 target:nil action:nil];
         }
@@ -485,7 +485,7 @@
     if(UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPhone)
     {
         [self.navigationController.navigationBar setBarStyle:UIBarStyleDefault];
-        self.navigationController.navigationBar.tintColor = self.view.window.tintColor;
+        self.navigationController.navigationBar.tintColor = self.view.tintColor;
     }
     
     [NSNotificationCenter.defaultCenter removeObserver:self name:MPMoviePlayerPlaybackStateDidChangeNotification
