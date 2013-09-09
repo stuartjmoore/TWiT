@@ -561,11 +561,11 @@
                                         </connections>
                                     </button>
                                     <view contentMode="scaleToFill" id="Krh-EP-HSY">
-                                        <rect key="frame" x="720" y="3" width="414.00000000000006" height="37"/>
+                                        <rect key="frame" x="720" y="3" width="414" height="37"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMinY="YES"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Vbh-TM-bRV">
-                                                <rect key="frame" x="153.00000000000006" y="1" width="108" height="37"/>
+                                                <rect key="frame" x="153" y="1" width="108" height="37"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                                                 <accessibility key="accessibilityConfiguration" hint="Opens the quality selector." label="Quality"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
