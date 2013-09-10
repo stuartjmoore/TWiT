@@ -286,8 +286,8 @@
 				17E5116E168F496E00DCE89C /* TWiT_tv.xcdatamodeld */,
 				170B9FF81691CD550022FE4D /* Vollkorn-BoldItalic.ttf */,
 				17B07F0F16B59B2600B42CBF /* chatRoom.css */,
-				17C43AE61696DFD60066C79F /* Server Cache */,
 				17DE054117D8E7A8007E0F5A /* Images.xcassets */,
+				17C43AE61696DFD60066C79F /* Server Cache */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
