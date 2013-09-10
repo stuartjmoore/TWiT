@@ -44,7 +44,6 @@
         return;
     }
     
-    
     UIGraphicsBeginImageContextWithOptions(self.frame.size, YES, UIScreen.mainScreen.scale);
     CGContextRef context = UIGraphicsGetCurrentContext();
     CGContextSetFillColorWithColor(context, [UIColor whiteColor].CGColor);
@@ -89,8 +88,6 @@
         for(int column = 0, showsCount = weak.shows.count; column < showsCount; column++)
         {
             CGRect frame = [weak frameForColumn:column];
-            
-            //CGContextSetShadow(context, CGSizeMake(0, 2), 4);
             
             if(column < albumArtPathes.count && column < showTitles.count)
             {

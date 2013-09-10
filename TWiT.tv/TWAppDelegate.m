@@ -543,7 +543,7 @@
             {
                 NSSet *fetchedShows = [context fetchEntities:@"Show" withPredicate:@"titleAcronym == %@", showTitleAcronym];
                 Show *show = fetchedShows.anyObject;
-                
+              
                 if(show)
                 {
                     episode = [context insertEntity:@"Episode"];
@@ -559,10 +559,14 @@
                     [episode willChangeValueForKey:@"lastTimecode"];
                     [episode setPrimitiveValue:@(lastTimecode) forKey:@"lastTimecode"];
                     [episode didChangeValueForKey:@"lastTimecode"];
+                  
+                    // Add show ID to set
                 }
             }
         }
         [context save:nil];
+        
+        // Update all in set
     }
     else if(reasonForChange && reasonForChange.integerValue == NSUbiquitousKeyValueStoreQuotaViolationChange)
     {

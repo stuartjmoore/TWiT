@@ -204,7 +204,7 @@
     }
     else if(recognizer.state == UIGestureRecognizerStateEnded)
     {
-        float speed = [recognizer velocityInView:view].x;
+        CGFloat speed = [recognizer velocityInView:view].x;
         
         if(view.frame.origin.x > self.tableView.frame.size.width/2
         || view.frame.origin.x < -self.tableView.frame.size.width/2
@@ -212,7 +212,7 @@
         {
             cell.swipeLabel.text = @"Hiding…";
             
-            float animateSpeed = (self.tableView.frame.size.width-frame.origin.x)/speed;
+            CGFloat animateSpeed = (self.tableView.frame.size.width-frame.origin.x)/speed;
             
             if(view.frame.origin.x > self.tableView.frame.size.width/2)
                 frame.origin.x = self.tableView.frame.size.width;
@@ -514,7 +514,7 @@
     TWEpisodeCell *cell = (TWEpisodeCell*)[self.tableView cellForRowAtIndexPath:indexPath];
     
     if([notification.name isEqualToString:@"enclosureDownloadDidReceiveData"])
-        cell.progress = (enclosure.expectedLength != 0)? enclosure.downloadedLength/(float)enclosure.expectedLength : 0;
+        cell.progress = (enclosure.expectedLength != 0)? enclosure.downloadedLength/(CGFloat)enclosure.expectedLength : 0;
     else if([notification.name isEqualToString:@"enclosureDownloadDidFinish"]
     || [notification.name isEqualToString:@"enclosureDownloadDidFail"])
         cell.progress = 1;
@@ -532,12 +532,12 @@
 {
     UIAccessibilityPostNotification(UIAccessibilityLayoutChangedNotification, nil);
     CGPoint newPoint = [[change valueForKey:NSKeyValueChangeNewKey] CGPointValue];
-    float headerHeight = self.tableView.tableHeaderView.frame.size.height;
+    CGFloat headerHeight = self.tableView.tableHeaderView.frame.size.height;
     
     if(self.headerView && object == self.tableView)
     {
         CGRect frame = self.headerView.frame;
-        float sectionHeaderHeight = (UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPhone) ? 28 : 0;
+        CGFloat sectionHeaderHeight = (UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPhone) ? 28 : 0;
 
         if(newPoint.y < -NAVBAR_INSET)
         {
@@ -589,7 +589,7 @@
             
             if(sectionInfo.numberOfObjects == 0)
             {
-                float headerHeight = self.tableView.tableHeaderView.frame.size.height;
+                CGFloat headerHeight = self.tableView.tableHeaderView.frame.size.height;
                 
                 UIImageView *emptyView = [[UIImageView alloc] init];
                 emptyView.image = [UIImage imageNamed:@"episodes-table-empty.png"];
@@ -628,7 +628,7 @@
     return 0;
 }
 
-- (float)tableView:(UITableView*)tableView heightForHeaderInSection:(NSInteger)section
+- (CGFloat)tableView:(UITableView*)tableView heightForHeaderInSection:(NSInteger)section
 {
     if(tableView == self.tableView && section == 0 && UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPhone)
     {
@@ -657,7 +657,7 @@
     return 0;
 }
 
-- (float)tableView:(UITableView*)tableView heightForRowAtIndexPath:(NSIndexPath*)indexPath
+- (CGFloat)tableView:(UITableView*)tableView heightForRowAtIndexPath:(NSIndexPath*)indexPath
 {
     if(tableView == self.tableView)
     {
@@ -697,7 +697,7 @@
 
 - (UIView*)tableView:(UITableView*)tableView viewForHeaderInSection:(NSInteger)section
 {
-    float width = tableView.frame.size.width;
+    CGFloat width = tableView.frame.size.width;
     
     if(tableView == self.tableView && section == 0 && UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPhone)
     {
@@ -888,13 +888,13 @@
         {
             showsCell.icons = nil;
             id <NSFetchedResultsSectionInfo>sectionInfo = self.fetchedShowsController.sections[indexPath.section];
-            int num = sectionInfo.numberOfObjects;
-            int columns = showsCell.columns;
+            NSInteger num = sectionInfo.numberOfObjects;
+            NSInteger columns = showsCell.columns;
             
             NSMutableArray *shows = [NSMutableArray array];
-            for(int column = 0; column < columns; column++)
+            for(NSInteger column = 0; column < columns; column++)
             {
-                int index = indexPath.row*columns + column;
+                NSInteger index = indexPath.row*columns + column;
                 if(num > index)
                 {
                     NSIndexPath *columnedIndexPath = [NSIndexPath indexPathForRow:index inSection:indexPath.section];
@@ -947,7 +947,7 @@
     
     NSFetchedResultsController *controller = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest
                                                                                  managedObjectContext:self.managedObjectContext
-                                                                                   sectionNameKeyPath:nil cacheName:@"UnwatchedEpisodes"];
+                                                                                   sectionNameKeyPath:nil cacheName:@"UnwatchedEpisodesiOS7"];
     controller.delegate = self;
     self.fetchedEpisodesController = controller;
     
@@ -974,7 +974,7 @@
     
     NSFetchedResultsController *controller = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest
                                                                                  managedObjectContext:self.managedObjectContext
-                                                                                   sectionNameKeyPath:nil cacheName:@"Shows"];
+                                                                                   sectionNameKeyPath:nil cacheName:@"ShowsiOS7"];
     controller.delegate = self;
     self.fetchedShowsController = controller;
     
@@ -1092,10 +1092,10 @@
     
     if(self.showSelectedView)
     {
-        int columns = (UIInterfaceOrientationIsLandscape(fromInterfaceOrientation)) ? 3 : 4;
-        int index = self.showSelectedView.tag;
-        int row = index/columns;
-        int column = index%columns;
+        NSInteger columns = (UIInterfaceOrientationIsLandscape(fromInterfaceOrientation)) ? 3 : 4;
+        NSInteger index = self.showSelectedView.tag;
+        NSInteger row = index/columns;
+        NSInteger column = index%columns;
         
         NSIndexPath *indexPath = [NSIndexPath indexPathForRow:row inSection:0];
         TWShowsCell *showCell = (TWShowsCell*)[self.tableView cellForRowAtIndexPath:indexPath];
