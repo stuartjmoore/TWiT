@@ -818,6 +818,8 @@
         
         [self configureCell:cell atIndexPath:indexPath];
         
+        cell.backgroundColor = UIColor.clearColor;
+        
         return cell;
     }
     else if(tableView == self.scheduleTable)
@@ -829,6 +831,7 @@
         
         cell.textLabel.text = showEvent.time;
         cell.detailTextLabel.text = showEvent.title;
+        cell.backgroundColor = UIColor.clearColor;
         
         return cell;
     }
