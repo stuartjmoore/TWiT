@@ -475,6 +475,8 @@
     NSDictionary *userInfo = [notification userInfo];
     NSNumber *reasonForChange = [userInfo objectForKey:NSUbiquitousKeyValueStoreChangeReasonKey];
   
+    NSLog(@"updateiCloud %@", userInfo);
+    
     if(reasonForChange && reasonForChange.integerValue == NSUbiquitousKeyValueStoreInitialSyncChange)
     {
         NSUbiquitousKeyValueStore *store = [NSUbiquitousKeyValueStore defaultStore];
