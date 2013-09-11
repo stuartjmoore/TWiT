@@ -423,7 +423,7 @@
     [fetchRequest setSortDescriptors:@[sortDescriptor]];
     [fetchRequest setPredicate:predicate];
     
-    NSFetchedResultsController *controller = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.show.managedObjectContext sectionNameKeyPath:nil cacheName:[NSString stringWithFormat:@"EpisodesOf%@iOS7", self.show.title]];
+    NSFetchedResultsController *controller = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.show.managedObjectContext sectionNameKeyPath:nil cacheName:nil];
     controller.delegate = self;
     self.fetchedEpisodesController = controller;
     

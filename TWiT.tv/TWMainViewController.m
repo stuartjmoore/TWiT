@@ -810,6 +810,8 @@
         
         [self configureCell:cell atIndexPath:indexPath];
         
+        cell.backgroundColor = UIColor.clearColor;
+        
         return cell;
     }
     else if(tableView == self.scheduleTable)
@@ -821,7 +823,7 @@
         
         cell.textLabel.text = showEvent.time;
         cell.detailTextLabel.text = showEvent.title;
-      
+        
         return cell;
     }
     
@@ -947,7 +949,7 @@
     
     NSFetchedResultsController *controller = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest
                                                                                  managedObjectContext:self.managedObjectContext
-                                                                                   sectionNameKeyPath:nil cacheName:@"UnwatchedEpisodesiOS7"];
+                                                                                   sectionNameKeyPath:nil cacheName:nil];
     controller.delegate = self;
     self.fetchedEpisodesController = controller;
     
@@ -974,7 +976,7 @@
     
     NSFetchedResultsController *controller = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest
                                                                                  managedObjectContext:self.managedObjectContext
-                                                                                   sectionNameKeyPath:nil cacheName:@"ShowsiOS7"];
+                                                                                   sectionNameKeyPath:nil cacheName:nil];
     controller.delegate = self;
     self.fetchedShowsController = controller;
     
