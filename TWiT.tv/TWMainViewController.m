@@ -781,6 +781,9 @@
     if(tableView != self.tableView || self.sectionVisible != TWSectionEpisodes)
         return NO;
     
+    if([indexPath isEqual:[tableView indexPathForSelectedRow]])
+        return NO;
+    
     Episode *episode = [self.fetchedEpisodesController objectAtIndexPath:indexPath];
     return episode.downloadedEnclosures;
 }
