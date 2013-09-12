@@ -144,17 +144,14 @@
     {
         TWNavigationContainer *navigationContainer = (TWNavigationContainer*)self.window.rootViewController;
         navigationContainer.view = navigationContainer.view;
-        
-        TWNavigationController *navigationController = [navigationContainer.storyboard instantiateViewControllerWithIdentifier:@"navigationController"];
-        navigationContainer.masterController = navigationController;
-        navigationController.navigationContainer = navigationContainer;
-        TWMainViewController *controller = (TWMainViewController*)navigationController.topViewController;
+      
+        navigationContainer.masterController.navigationContainer = navigationContainer;
+      
+        TWMainViewController *controller = (TWMainViewController*)navigationContainer.masterController.topViewController;
         controller.managedObjectContext = self.managedObjectContext;
         controller.channel = self.channel;
-        
-        TWPlaybarViewController *playbarController = (TWPlaybarViewController*)[controller.storyboard instantiateViewControllerWithIdentifier:@"playbarController"];
-        navigationContainer.playbarController = playbarController;
-        playbarController.navigationContainer = navigationContainer;
+      
+        navigationContainer.playbarController.navigationContainer = navigationContainer;
     }
     
     return YES;

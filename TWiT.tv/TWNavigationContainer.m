@@ -7,35 +7,28 @@
 //
 
 #import "TWAppDelegate.h"
-
 #import "TWNavigationContainer.h"
+
+#import "TWNavigationController.h"
 #import "TWPlaybarViewController.h"
 
 @implementation TWNavigationContainer
 
-- (void)setMasterController:(UINavigationController*)masterController
+- (void)prepareForSegue:(UIStoryboardSegue*)segue sender:(id)sender
 {
-    _masterController = masterController;
-    
-    [self addChildViewController:masterController];
-    
-    masterController.view.frame = self.masterContainer.bounds;
-    [self.masterContainer addSubview:masterController.view];
-    [self.masterContainer sendSubviewToBack:masterController.view];
-    self.masterContainer.backgroundColor = [UIColor clearColor];
+    if([segue.identifier isEqualToString:@"masterEmbed"])
+    {
+        _masterController = segue.destinationViewController;
+        self.masterContainer.backgroundColor = [UIColor clearColor];
+    }
+    else if([segue.identifier isEqualToString:@"barEmbed"])
+    {
+        _playbarController = segue.destinationViewController;
+        self.playbarContainer.backgroundColor = [UIColor clearColor];
+    }
 }
 
-- (void)setPlaybarController:(TWPlaybarViewController*)playbarController
-{
-    _playbarController = playbarController;
-    
-    [self addChildViewController:playbarController];
-    
-    playbarController.view.frame = self.playbarContainer.bounds;
-    [self.playbarContainer addSubview:playbarController.view];
-    [self.playbarContainer sendSubviewToBack:playbarController.view];
-    self.playbarContainer.backgroundColor = [UIColor clearColor];
-}
+#pragma mark - Playbar
 
 - (void)showPlaybar
 {

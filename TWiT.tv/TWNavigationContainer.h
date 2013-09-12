@@ -8,11 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-@class TWPlaybarViewController;
+@class TWNavigationController, TWPlaybarViewController;
 
 @interface TWNavigationContainer : UIViewController
 
-@property (nonatomic, strong) UINavigationController *masterController;
+@property (nonatomic, strong) TWNavigationController *masterController;
 @property (nonatomic, strong) TWPlaybarViewController *playbarController;
 
 @property (nonatomic, weak) IBOutlet UIView *masterContainer, *playbarContainer;
