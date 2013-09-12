@@ -75,12 +75,8 @@
     NSURL *ubiq = [NSFileManager.defaultManager URLForUbiquityContainerIdentifier:nil];
     BOOL iCloudDisabled = [NSUserDefaults.standardUserDefaults boolForKey:@"icloud-disabled"];
   
-    NSLog(@"iCloudDisabled %d", iCloudDisabled);
-    
     if(ubiq && !iCloudDisabled)
     {
-        NSLog(@"Set-up iCloud");
-        
         NSUbiquitousKeyValueStore *store = [NSUbiquitousKeyValueStore defaultStore];
         [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(updateiCloud:)
                                                    name:NSUbiquitousKeyValueStoreDidChangeExternallyNotification
@@ -145,9 +141,9 @@
         TWNavigationContainer *navigationContainer = (TWNavigationContainer*)self.window.rootViewController;
         navigationContainer.view = navigationContainer.view;
       
-        TWMainViewController *controller = (TWMainViewController*)navigationContainer.masterController.topViewController;
-        controller.managedObjectContext = self.managedObjectContext;
-        controller.channel = self.channel;
+        TWMainViewController *mainController = (TWMainViewController*)navigationContainer.masterController.topViewController;
+        mainController.managedObjectContext = self.managedObjectContext;
+        mainController.channel = self.channel;
     }
     
     return YES;
