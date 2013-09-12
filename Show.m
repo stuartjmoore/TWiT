@@ -335,6 +335,7 @@
                  if([text hasPrefix:@"Leo Laporte - The Tech Guy "])
                  {
                      NSError *error;
+                   // TODO: Add ":" after "Guy"?
                      NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"Leo Laporte - The Tech Guy (\\d+)" options:NSRegularExpressionCaseInsensitive error:&error];
                      
                      if(!error)
