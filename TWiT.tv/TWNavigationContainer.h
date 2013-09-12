@@ -10,6 +10,8 @@
 
 @class TWNavigationController, TWPlaybarViewController;
 
+// TODO: Rename TWMasterViewContainer? TWMasterBarViewContainer?
+
 @interface TWNavigationContainer : UIViewController
 
 @property (nonatomic, strong) TWNavigationController *masterController;

@@ -24,7 +24,7 @@
                                     <segue destination="3" kind="embed" identifier="masterEmbed" id="xSj-EA-CEV"/>
                                 </connections>
                             </containerView>
-                            <containerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="11e-hg-6Vi" userLabel="Playbar Container">
+                            <containerView hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="11e-hg-6Vi" userLabel="Playbar Container">
                                 <rect key="frame" x="0.0" y="436" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -42,7 +42,7 @@
                             <constraint firstItem="11e-hg-6Vi" firstAttribute="leading" secondItem="WM3-HN-ucQ" secondAttribute="leading" id="Nsg-79-cBv"/>
                             <constraint firstItem="I8r-DB-5T1" firstAttribute="top" secondItem="11e-hg-6Vi" secondAttribute="bottom" id="RVG-fh-AVs"/>
                             <constraint firstItem="yry-4c-naO" firstAttribute="leading" secondItem="WM3-HN-ucQ" secondAttribute="leading" id="SPH-3z-laG"/>
-                            <constraint firstItem="yry-4c-naO" firstAttribute="top" secondItem="Zvd-eK-Ocw" secondAttribute="bottom" id="US9-6b-fWL"/>
+                            <constraint firstItem="yry-4c-naO" firstAttribute="top" secondItem="Zvd-eK-Ocw" secondAttribute="bottom" constant="-20" id="US9-6b-fWL"/>
                             <constraint firstAttribute="trailing" secondItem="11e-hg-6Vi" secondAttribute="trailing" id="bGV-9J-lcO"/>
                             <constraint firstItem="I8r-DB-5T1" firstAttribute="top" secondItem="yry-4c-naO" secondAttribute="bottom" id="zCC-2W-4qd"/>
                         </constraints>
@@ -899,7 +899,7 @@
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     </imageView>
                                     <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="2Ox-hJ-Dfa">
-                                        <rect key="frame" x="9" y="-4" width="302" height="29"/>
+                                        <rect key="frame" x="9" y="-4" width="302" height="34"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                         <accessibility key="accessibilityConfiguration" hint="Seeks the episode back and forth." label="Seek bar"/>
                                         <connections>
