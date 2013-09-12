@@ -145,13 +145,9 @@
         TWNavigationContainer *navigationContainer = (TWNavigationContainer*)self.window.rootViewController;
         navigationContainer.view = navigationContainer.view;
       
-        navigationContainer.masterController.navigationContainer = navigationContainer;
-      
         TWMainViewController *controller = (TWMainViewController*)navigationContainer.masterController.topViewController;
         controller.managedObjectContext = self.managedObjectContext;
         controller.channel = self.channel;
-      
-        navigationContainer.playbarController.navigationContainer = navigationContainer;
     }
     
     return YES;

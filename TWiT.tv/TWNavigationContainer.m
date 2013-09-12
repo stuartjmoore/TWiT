@@ -19,12 +19,12 @@
     if([segue.identifier isEqualToString:@"masterEmbed"])
     {
         _masterController = segue.destinationViewController;
-        self.masterContainer.backgroundColor = [UIColor clearColor];
+        self.masterController.navigationContainer = self;
     }
     else if([segue.identifier isEqualToString:@"barEmbed"])
     {
         _playbarController = segue.destinationViewController;
-        self.playbarContainer.backgroundColor = [UIColor clearColor];
+        self.playbarController.navigationContainer = self;
     }
 }
 
