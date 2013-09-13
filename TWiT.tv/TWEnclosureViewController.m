@@ -299,7 +299,7 @@
 - (void)userDidTapPlayer:(UIGestureRecognizer*)sender
 {
     if(self.infoView.hidden)
-        [self hideControls:!self.toolbarView.hidden];
+        [self hideControls:!hideUI];
     else
         [self play:nil];
 }
@@ -316,31 +316,28 @@
         [UIView animateWithDuration:UINavigationControllerHideShowBarDuration animations:^{
             [self setNeedsStatusBarAppearanceUpdate];
             self.navigationController.navigationBar.alpha = 0;
+            
             self.navigationBar.alpha = 0;
             self.toolbarView.alpha = 0;
-            [self.view layoutIfNeeded];
+            
         } completion:^(BOOL fin){
             [self.navigationController setNavigationBarHidden:YES animated:NO];
-            self.navigationBar.hidden = YES;
-            self.toolbarView.hidden = YES;
         }];
     }
     else
     {
-        /*[UIView animateWithDuration:UINavigationControllerHideShowBarDuration animations:^{
+        [UIView animateWithDuration:UINavigationControllerHideShowBarDuration animations:^{
             [self setNeedsStatusBarAppearanceUpdate];
-        } completion:nil];*/
+        } completion:nil];
             
         [self.navigationController setNavigationBarHidden:NO animated:NO];
         self.navigationController.navigationBar.alpha = 0;
-        self.navigationBar.hidden = NO;
-        self.toolbarView.hidden = NO;
         
         [UIView animateWithDuration:UINavigationControllerHideShowBarDuration animations:^{
             self.navigationController.navigationBar.alpha = 1;
+            
             self.navigationBar.alpha = 1;
             self.toolbarView.alpha = 1;
-            [self.view layoutIfNeeded];
         } completion:nil];
     }
 }
