@@ -47,6 +47,9 @@
         }
     }
     
+    hideUI = NO;
+    self.toolbarView.barStyle = UIBarStyleBlack;
+    
     MPVolumeView *airplayButton = [[MPVolumeView alloc] init];
     airplayButton.showsVolumeSlider = NO;
     airplayButton.frame = (CGRect){{0, (37-22)/2}, {38, 22}};

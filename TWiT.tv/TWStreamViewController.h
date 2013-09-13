@@ -22,7 +22,7 @@
 @property (nonatomic, weak) IBOutlet UIView *toasterView;
 @property (nonatomic, weak) IBOutlet UIActivityIndicatorView *spinner;
 
-@property (nonatomic, weak) IBOutlet UIView *toolbarView;
+@property (nonatomic, weak) IBOutlet UIToolbar *toolbarView;
 @property (nonatomic, weak) IBOutlet UIView *airplayButtonView;
 @property (nonatomic, weak) IBOutlet UIButton *qualityButton, *chatButton, *playButton;
 

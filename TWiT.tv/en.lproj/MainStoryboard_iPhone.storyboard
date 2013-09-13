@@ -1341,61 +1341,69 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <view userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GUQ-sI-WNG" userLabel="Info">
+                            <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GUQ-sI-WNG" userLabel="Info">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" fixedFrame="YES" image="generic.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="ecd-bD-VzR">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" image="generic.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="ecd-bD-VzR">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                         <accessibility key="accessibilityConfiguration" label="Album art">
                                             <bool key="isElement" value="YES"/>
                                         </accessibility>
                                     </imageView>
                                 </subviews>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="ecd-bD-VzR" secondAttribute="bottom" id="9gd-vU-EmT"/>
+                                    <constraint firstItem="ecd-bD-VzR" firstAttribute="leading" secondItem="GUQ-sI-WNG" secondAttribute="leading" id="DII-Hn-Rcj"/>
+                                    <constraint firstAttribute="bottom" secondItem="ecd-bD-VzR" secondAttribute="bottom" id="LJB-xS-gJV"/>
+                                    <constraint firstItem="ecd-bD-VzR" firstAttribute="leading" secondItem="GUQ-sI-WNG" secondAttribute="leading" id="bMv-43-55E"/>
+                                    <constraint firstAttribute="trailing" secondItem="ecd-bD-VzR" secondAttribute="trailing" id="bQx-30-sQZ"/>
+                                    <constraint firstItem="ecd-bD-VzR" firstAttribute="top" secondItem="GUQ-sI-WNG" secondAttribute="top" id="fm6-VJ-Sgv"/>
+                                    <constraint firstAttribute="trailing" secondItem="ecd-bD-VzR" secondAttribute="trailing" id="pIB-lM-fqy"/>
+                                    <constraint firstItem="ecd-bD-VzR" firstAttribute="top" secondItem="GUQ-sI-WNG" secondAttribute="top" id="vYi-pR-jjZ"/>
+                                </constraints>
                             </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="M8l-KG-2B8" userLabel="Toolbar">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="M8l-KG-2B8" userLabel="Toolbar" customClass="UIToolbar">
                                 <rect key="frame" x="0.0" y="436" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" image="video-toolbar-double-back" translatesAutoresizingMaskIntoConstraints="NO" id="wDf-Vr-Izj">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                    </imageView>
-                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="B5s-7z-YwS">
-                                        <rect key="frame" x="5" y="0.0" width="128" height="44"/>
-                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                        <subviews>
-                                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zUB-MM-lFt">
-                                                <rect key="frame" x="14" y="3" width="37" height="37"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                                            </view>
-                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HVH-uc-nCY">
-                                                <rect key="frame" x="75" y="4" width="37" height="37"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
-                                                <accessibility key="accessibilityConfiguration" hint="Loads the chat room." label="Chat Room"/>
-                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                                <state key="normal" image="video-chat-up">
-                                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <state key="highlighted">
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="openChatView:" destination="zgt-3C-NJF" eventType="touchUpInside" id="Ey8-wH-7qN"/>
-                                                </connections>
-                                            </button>
-                                        </subviews>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zUB-MM-lFt" userLabel="AirPlay">
+                                        <rect key="frame" x="19" y="3" width="37" height="37"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="37" id="T5M-6g-BPY"/>
+                                        </constraints>
                                     </view>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aEE-TI-3XS">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HVH-uc-nCY" userLabel="Chat">
+                                        <rect key="frame" x="80" y="4" width="37" height="37"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
+                                        <accessibility key="accessibilityConfiguration" hint="Loads the chat room." label="Chat Room"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="37" id="rlz-xh-YVS"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                        <state key="normal" image="video-chat-up">
+                                            <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <state key="highlighted">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="openChatView:" destination="zgt-3C-NJF" eventType="touchUpInside" id="Ey8-wH-7qN"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aEE-TI-3XS" userLabel="Play">
                                         <rect key="frame" x="142" y="2" width="37" height="37"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <accessibility key="accessibilityConfiguration" hint="Pauses and plays the stream." label="Pause"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="37" id="ReM-3Z-Cdh"/>
+                                        </constraints>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                         <state key="normal" image="navbar-play">
                                             <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -1409,32 +1417,43 @@
                                             <action selector="play:" destination="zgt-3C-NJF" eventType="touchUpInside" id="F5u-59-4XH"/>
                                         </connections>
                                     </button>
-                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dok-Af-eOL">
-                                        <rect key="frame" x="187" y="0.0" width="128" height="44"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMinY="YES"/>
-                                        <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1ob-E5-9tA">
-                                                <rect key="frame" x="10" y="4" width="108" height="37"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                <accessibility key="accessibilityConfiguration" hint="Opens the quality selector." label="Quality"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                                <inset key="imageEdgeInsets" minX="-5" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                                <state key="normal" title="Quality" image="quality-view-disclosure">
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <state key="highlighted">
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="openQualityPopover:" destination="zgt-3C-NJF" eventType="touchUpInside" id="Vgc-o9-hw8"/>
-                                                </connections>
-                                            </button>
-                                        </subviews>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                    </view>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1ob-E5-9tA" userLabel="Quality">
+                                        <rect key="frame" x="197" y="4" width="108" height="37"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <accessibility key="accessibilityConfiguration" hint="Opens the quality selector." label="Quality"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="37" id="ZX1-aC-qW7"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                        <inset key="imageEdgeInsets" minX="-5" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        <state key="normal" title="Quality" image="quality-view-disclosure">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <state key="highlighted">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="openQualityPopover:" destination="zgt-3C-NJF" eventType="touchUpInside" id="Vgc-o9-hw8"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="zUB-MM-lFt" secondAttribute="bottom" constant="4" id="1Eg-6i-ryA"/>
+                                    <constraint firstItem="aEE-TI-3XS" firstAttribute="leading" secondItem="HVH-uc-nCY" secondAttribute="trailing" constant="25" id="1Jw-UJ-kwW"/>
+                                    <constraint firstAttribute="bottom" secondItem="1ob-E5-9tA" secondAttribute="bottom" constant="3" id="2tj-lU-MEq"/>
+                                    <constraint firstAttribute="bottom" secondItem="HVH-uc-nCY" secondAttribute="bottom" constant="3" id="CBb-wS-guG"/>
+                                    <constraint firstItem="HVH-uc-nCY" firstAttribute="width" secondItem="zUB-MM-lFt" secondAttribute="width" id="IEw-cf-hqW"/>
+                                    <constraint firstAttribute="bottom" secondItem="aEE-TI-3XS" secondAttribute="bottom" constant="5" id="MbE-fn-8IW"/>
+                                    <constraint firstItem="zUB-MM-lFt" firstAttribute="leading" secondItem="M8l-KG-2B8" secondAttribute="leading" constant="19" id="TtW-Ln-ygb"/>
+                                    <constraint firstAttribute="height" constant="44" id="Xib-tJ-l5O"/>
+                                    <constraint firstAttribute="trailing" secondItem="1ob-E5-9tA" secondAttribute="trailing" constant="15" id="hcY-n3-JVe"/>
+                                    <constraint firstItem="1ob-E5-9tA" firstAttribute="leading" secondItem="aEE-TI-3XS" secondAttribute="trailing" constant="18" id="lli-1R-gk3"/>
+                                    <constraint firstItem="HVH-uc-nCY" firstAttribute="width" secondItem="aEE-TI-3XS" secondAttribute="width" id="nSB-8W-WOo"/>
+                                    <constraint firstAttribute="centerX" secondItem="aEE-TI-3XS" secondAttribute="centerX" constant="-0.5" id="pgi-b0-XTC"/>
+                                    <constraint firstItem="HVH-uc-nCY" firstAttribute="leading" secondItem="zUB-MM-lFt" secondAttribute="trailing" constant="24" id="tAw-47-2vs"/>
+                                </constraints>
                             </view>
                             <view hidden="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JGw-BU-0i2" userLabel="Chat">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
@@ -1517,7 +1536,7 @@
                                     <bool key="isElement" value="YES"/>
                                 </accessibility>
                             </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sHE-1Y-Nhf" userLabel="Toaster">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sHE-1Y-Nhf" userLabel="Toaster">
                                 <rect key="frame" x="122" y="201" width="77" height="77"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <subviews>
@@ -1527,30 +1546,59 @@
                                     </activityIndicatorView>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.75" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="77" id="FZQ-Sr-gqZ"/>
+                                    <constraint firstAttribute="height" constant="77" id="NO7-4d-H6D"/>
+                                </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="GUQ-sI-WNG" secondAttribute="trailing" id="9ex-Du-pf7"/>
+                            <constraint firstAttribute="centerX" secondItem="sHE-1Y-Nhf" secondAttribute="centerX" constant="-0.5" id="DFa-Rx-aqX"/>
+                            <constraint firstItem="Rzs-hG-QFc" firstAttribute="top" secondItem="GUQ-sI-WNG" secondAttribute="bottom" id="DKg-5e-Nef"/>
+                            <constraint firstAttribute="centerX" secondItem="GUQ-sI-WNG" secondAttribute="centerX" id="HiK-Pt-kBm"/>
+                            <constraint firstAttribute="trailing" secondItem="GUQ-sI-WNG" secondAttribute="trailing" id="JNw-63-kl3"/>
+                            <constraint firstItem="Rzs-hG-QFc" firstAttribute="top" secondItem="GUQ-sI-WNG" secondAttribute="bottom" id="VHM-ip-qe8"/>
+                            <constraint firstItem="Rzs-hG-QFc" firstAttribute="top" secondItem="GUQ-sI-WNG" secondAttribute="bottom" id="VTZ-Ix-Av7"/>
+                            <constraint firstItem="M8l-KG-2B8" firstAttribute="leading" secondItem="dfG-09-urO" secondAttribute="leading" id="YyV-P6-QkA"/>
+                            <constraint firstAttribute="centerY" secondItem="GUQ-sI-WNG" secondAttribute="centerY" id="e5e-7c-YXh"/>
+                            <constraint firstItem="7xv-Yc-b15" firstAttribute="top" secondItem="GUQ-sI-WNG" secondAttribute="bottom" constant="-416" id="hFC-uJ-zAe"/>
+                            <constraint firstItem="GUQ-sI-WNG" firstAttribute="leading" secondItem="dfG-09-urO" secondAttribute="leading" id="hkN-R0-3QC"/>
+                            <constraint firstAttribute="trailing" secondItem="M8l-KG-2B8" secondAttribute="trailing" id="kBI-PM-LEf"/>
+                            <constraint firstItem="Rzs-hG-QFc" firstAttribute="top" secondItem="M8l-KG-2B8" secondAttribute="bottom" id="mLA-Lb-zuZ"/>
+                            <constraint firstItem="7xv-Yc-b15" firstAttribute="top" secondItem="GUQ-sI-WNG" secondAttribute="bottom" constant="-416" id="rYd-F8-Rvq"/>
+                            <constraint firstItem="GUQ-sI-WNG" firstAttribute="leading" secondItem="dfG-09-urO" secondAttribute="leading" id="tUj-I5-ifI"/>
+                            <constraint firstItem="GUQ-sI-WNG" firstAttribute="top" secondItem="dfG-09-urO" secondAttribute="top" id="wS6-ug-xOA"/>
+                            <constraint firstAttribute="centerY" secondItem="sHE-1Y-Nhf" secondAttribute="centerY" constant="0.5" id="x0d-UT-wVr"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="1jj-Ju-3YP">
                         <nil key="title"/>
                         <view key="titleView" contentMode="scaleToFill" id="Wyp-rN-VNp">
-                            <rect key="frame" x="56" y="4" width="208" height="36"/>
+                            <rect key="frame" x="60" y="6" width="200" height="33"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                             <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="TWiT Live" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vtb-c9-jZa">
-                                    <rect key="frame" x="0.0" y="0.0" width="208" height="24"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="TWiT Live" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vtb-c9-jZa">
+                                    <rect key="frame" x="0.0" y="0.0" width="200" height="20"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="20" id="vjh-NM-gfP"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <nil key="highlightedColor"/>
                                     <color key="shadowColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                     <size key="shadowOffset" width="0.0" height="1"/>
                                 </label>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="Scheduled Show Title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u3L-jY-1xT">
-                                    <rect key="frame" x="0.0" y="18" width="208" height="18"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Scheduled Show Title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u3L-jY-1xT">
+                                    <rect key="frame" x="0.0" y="19" width="200" height="14"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="14" id="bhP-1U-2AC"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="11"/>
                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <nil key="highlightedColor"/>
                                     <color key="shadowColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
@@ -1559,6 +1607,14 @@
                             </subviews>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="bottom" secondItem="u3L-jY-1xT" secondAttribute="bottom" id="7Dp-0p-dfo"/>
+                                <constraint firstItem="vtb-c9-jZa" firstAttribute="top" secondItem="Wyp-rN-VNp" secondAttribute="top" id="8gH-JL-sgX"/>
+                                <constraint firstItem="u3L-jY-1xT" firstAttribute="leading" secondItem="Wyp-rN-VNp" secondAttribute="leading" id="GbL-fY-3PR"/>
+                                <constraint firstAttribute="trailing" secondItem="u3L-jY-1xT" secondAttribute="trailing" id="H65-Bd-5c0"/>
+                                <constraint firstAttribute="trailing" secondItem="vtb-c9-jZa" secondAttribute="trailing" id="gEy-I7-CnP"/>
+                                <constraint firstItem="vtb-c9-jZa" firstAttribute="leading" secondItem="Wyp-rN-VNp" secondAttribute="leading" id="tXz-Z8-5Nd"/>
+                            </constraints>
                         </view>
                     </navigationItem>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
@@ -1690,12 +1746,24 @@
         <image name="button-orange-left" width="7" height="38"/>
         <image name="button-orange-right" width="7" height="38"/>
         <image name="generic.jpg" width="228" height="228"/>
+        <image name="generic.jpg" width="228" height="228"/>
+        <image name="generic.jpg" width="228" height="228"/>
+        <image name="generic.jpg" width="228" height="228"/>
+        <image name="generic.jpg" width="228" height="228"/>
+        <image name="generic.jpg" width="228" height="228"/>
+        <image name="generic.jpg" width="228" height="228"/>
         <image name="icon-play" width="55" height="55"/>
+        <image name="list-downloaded-icon" width="12" height="13"/>
         <image name="list-downloaded-icon" width="12" height="13"/>
         <image name="nav-bar-header-icon" width="154" height="44"/>
         <image name="navbar-pause" width="15" height="21"/>
+        <image name="navbar-pause" width="15" height="21"/>
+        <image name="navbar-pause" width="15" height="21"/>
+        <image name="navbar-play" width="17" height="21"/>
+        <image name="navbar-play" width="17" height="21"/>
         <image name="navbar-play" width="17" height="21"/>
         <image name="navbar-stop" width="20" height="21"/>
+        <image name="quality-view-disclosure" width="5" height="5"/>
         <image name="quality-view-disclosure" width="5" height="5"/>
         <image name="quick-play" width="20" height="21"/>
         <image name="separator-fade-bottom" width="320" height="1"/>
@@ -1714,7 +1782,6 @@
         <image name="video-speed-fast.png" width="21" height="22"/>
         <image name="video-speed-normal" width="21" height="22"/>
         <image name="video-toolbar-back.png" width="1" height="44"/>
-        <image name="video-toolbar-double-back" width="1" height="88"/>
     </resources>
     <color key="tintColor" red="0.20392156862745098" green="0.66666666666666663" blue="0.82352941176470584" alpha="1" colorSpace="deviceRGB"/>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
