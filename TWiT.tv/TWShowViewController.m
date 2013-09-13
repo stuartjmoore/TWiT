@@ -157,6 +157,7 @@
             self.tableView.contentOffset = CGPointMake(0, -NAVBAR_INSET);
             sender.transform = CGAffineTransformMakeRotation(0);
             [sender setImage:[UIImage imageNamed:@"toolbar-disclose"] forState:UIControlStateNormal];
+            [self.headerView layoutIfNeeded];
         }];
     }
     else
@@ -167,6 +168,7 @@
             self.tableView.contentOffset = CGPointMake(0, -self.view.bounds.size.height+headerHeight);
             sender.transform = CGAffineTransformMakeRotation(M_PI);
             [sender setImage:[UIImage imageNamed:@"toolbar-disclose-up"] forState:UIControlStateNormal];
+            [self.headerView layoutIfNeeded];
         }];
     }
 }
