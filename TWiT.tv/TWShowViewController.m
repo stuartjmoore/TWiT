@@ -67,10 +67,6 @@
 {
     [super viewWillAppear:animated];
     
-    [self.tableView addObserver:self forKeyPath:@"contentOffset"
-                        options:(NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld)
-                        context:NULL];
-    
     [NSNotificationCenter.defaultCenter addObserver:self
                                            selector:@selector(updateProgress:)
                                                name:@"enclosureDownloadDidReceiveData"
@@ -315,19 +311,18 @@
 
 #pragma mark - Table
 
-- (void)observeValueForKeyPath:(NSString*)keyPath ofObject:(id)object change:(NSDictionary*)change context:(void*)context
+- (void)scrollViewDidScroll:(UIScrollView*)scrollView
 {
     UIAccessibilityPostNotification(UIAccessibilityLayoutChangedNotification, nil);
-    CGPoint newPoint = [[change valueForKey:NSKeyValueChangeNewKey] CGPointValue];
     float headerHeight = self.tableView.tableHeaderView.frame.size.height;
     
-    if(object == self.tableView)
+    if(scrollView == self.tableView)
     {
         CGRect frame = self.headerView.frame;
-        if(newPoint.y < -NAVBAR_INSET)
+        if(scrollView.contentOffset.y < -NAVBAR_INSET)
         {
-            frame.origin.y = newPoint.y+NAVBAR_INSET;
-            frame.size.height = ceilf(headerHeight-newPoint.y-NAVBAR_INSET);
+            frame.origin.y = scrollView.contentOffset.y + NAVBAR_INSET;
+            frame.size.height = ceilf(headerHeight - scrollView.contentOffset.y - NAVBAR_INSET);
             
         }
         else
@@ -337,7 +332,7 @@
         }
         
         self.headerView.frame = frame;
-        self.tableView.scrollIndicatorInsets = UIEdgeInsetsMake(frame.size.height+NAVBAR_INSET, 0, 0, 1);
+        self.tableView.scrollIndicatorInsets = UIEdgeInsetsMake(frame.size.height + NAVBAR_INSET, 0, 0, 1);
     }
 }
 
@@ -568,8 +563,6 @@
         TWMainViewController *showsViewController = (TWMainViewController*)self.splitViewContainer.detailController.topViewController;
         showsViewController.showSelectedView = nil;
     }
-    
-    [self.tableView removeObserver:self forKeyPath:@"contentOffset"];
     
     [NSNotificationCenter.defaultCenter removeObserver:self name:@"enclosureDownloadDidReceiveData" object:nil];
     [NSNotificationCenter.defaultCenter removeObserver:self name:@"enclosureDownloadDidFinish" object:nil];
