@@ -1243,13 +1243,13 @@
                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="centerX" secondItem="hyq-ZM-UU4" secondAttribute="centerX" constant="-1" id="ESy-Az-Chh"/>
-                            <constraint firstAttribute="centerY" secondItem="N1A-nM-fY5" secondAttribute="centerY" constant="-0.5" id="Je6-G3-buU"/>
+                            <constraint firstAttribute="centerY" secondItem="N1A-nM-fY5" secondAttribute="centerY" id="Je6-G3-buU"/>
                             <constraint firstItem="C6H-ll-aCQ" firstAttribute="leading" secondItem="kx4-iO-KN0" secondAttribute="leading" id="LgQ-86-0sJ"/>
                             <constraint firstAttribute="trailing" secondItem="pKp-YU-GKo" secondAttribute="trailing" id="Q9f-by-1Te"/>
                             <constraint firstAttribute="trailing" secondItem="C6H-ll-aCQ" secondAttribute="trailing" id="RWo-Qb-riF"/>
                             <constraint firstAttribute="centerY" secondItem="pKp-YU-GKo" secondAttribute="centerY" id="TRl-0n-HDp"/>
                             <constraint firstAttribute="centerX" secondItem="pKp-YU-GKo" secondAttribute="centerX" id="ZtK-7y-qet"/>
-                            <constraint firstAttribute="centerX" secondItem="N1A-nM-fY5" secondAttribute="centerX" constant="0.5" id="cy1-zu-iRX"/>
+                            <constraint firstAttribute="centerX" secondItem="N1A-nM-fY5" secondAttribute="centerX" id="cy1-zu-iRX"/>
                             <constraint firstAttribute="centerY" secondItem="hyq-ZM-UU4" secondAttribute="centerY" constant="-0.5" id="f3U-fn-36y"/>
                             <constraint firstItem="pKp-YU-GKo" firstAttribute="leading" secondItem="kx4-iO-KN0" secondAttribute="leading" id="gMK-zf-vAr"/>
                             <constraint firstItem="g2w-gj-2O9" firstAttribute="top" secondItem="C6H-ll-aCQ" secondAttribute="bottom" id="ncN-fs-wPT"/>
@@ -1745,24 +1745,12 @@
         <image name="button-orange-left" width="7" height="38"/>
         <image name="button-orange-right" width="7" height="38"/>
         <image name="generic.jpg" width="228" height="228"/>
-        <image name="generic.jpg" width="228" height="228"/>
-        <image name="generic.jpg" width="228" height="228"/>
-        <image name="generic.jpg" width="228" height="228"/>
-        <image name="generic.jpg" width="228" height="228"/>
-        <image name="generic.jpg" width="228" height="228"/>
-        <image name="generic.jpg" width="228" height="228"/>
         <image name="icon-play" width="55" height="55"/>
-        <image name="list-downloaded-icon" width="12" height="13"/>
         <image name="list-downloaded-icon" width="12" height="13"/>
         <image name="nav-bar-header-icon" width="154" height="44"/>
         <image name="navbar-pause" width="15" height="21"/>
-        <image name="navbar-pause" width="15" height="21"/>
-        <image name="navbar-pause" width="15" height="21"/>
-        <image name="navbar-play" width="17" height="21"/>
-        <image name="navbar-play" width="17" height="21"/>
         <image name="navbar-play" width="17" height="21"/>
         <image name="navbar-stop" width="20" height="21"/>
-        <image name="quality-view-disclosure" width="5" height="5"/>
         <image name="quality-view-disclosure" width="5" height="5"/>
         <image name="quick-play" width="20" height="21"/>
         <image name="separator-fade-bottom" width="320" height="1"/>
