@@ -490,7 +490,7 @@
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
-                            <view contentMode="scaleToFill" id="1Uf-aR-07j" userLabel="Toolbar">
+                            <view contentMode="scaleToFill" id="1Uf-aR-07j" userLabel="Toolbar" customClass="UIToolbar">
                                 <rect key="frame" x="0.0" y="724" width="1024" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <subviews>
@@ -1200,7 +1200,7 @@
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
                                                     <connections>
-                                                        <action selector="transitionToSchedule:" destination="jVi-vH-XBb" eventType="touchUpInside" id="ipO-tl-J77"/>
+                                                        <segue destination="fZx-vv-CDk" kind="modal" identifier="scheduleView" id="tnp-Rf-9Ti"/>
                                                     </connections>
                                                 </button>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="9Td-5y-PDc">
@@ -1645,7 +1645,7 @@
                                     <segue destination="Kqv-Up-FkP" kind="embed" identifier="masterEmbed" id="MeF-lG-oSD"/>
                                 </connections>
                             </containerView>
-                            <containerView contentMode="scaleToFill" id="GNP-j8-QeA" userLabel="Playbar Container">
+                            <containerView hidden="YES" contentMode="scaleToFill" id="GNP-j8-QeA" userLabel="Playbar Container">
                                 <rect key="frame" x="4" y="720" width="1016" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>

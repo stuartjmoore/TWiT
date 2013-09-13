@@ -1113,15 +1113,6 @@
 
 #pragma mark - Leave
 
-- (IBAction)transitionToSchedule:(UIButton*)sender
-{
-    TWSplitViewContainer *splitViewContainer = (TWSplitViewContainer*)self.navigationController.parentViewController;
-    TWScheduleGridViewController *scheduleController = [self.storyboard instantiateViewControllerWithIdentifier:@"scheduleController"];
-    scheduleController.schedule = self.channel.schedule;
-    
-    [splitViewContainer presentViewController:scheduleController animated:YES completion:^{}];
-}
-
 - (IBAction)transitionToLive:(UIButton*)sender
 {
     TWStreamViewController *liveController = [self.storyboard instantiateViewControllerWithIdentifier:@"liveController"];
