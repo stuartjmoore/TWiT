@@ -36,8 +36,8 @@
     self.titleLabel.text = episode.title;
     self.subtitleLabel.text = episode.show.title;
     
-    self.accessibilityHint = isPublished ? @"Opens the episode view." : @"Opens an error dialog.";
-    
+    self.accessibilityHint = isPublished ? @"Opens the episode view." : @"Syncs the episode.";
+    /*
     CGSize size = [self.titleLabel.text sizeWithAttributes:@{NSFontAttributeName: self.titleLabel.font}];
     
     if(size.width > self.titleLabel.frame.size.width)
@@ -66,7 +66,7 @@
         subtitleFrame.origin.y = 32;
         self.subtitleLabel.frame = subtitleFrame;
     }
-        
+    */
     if(self.selected)
     {
         self.numberLabel.textColor = [UIColor whiteColor];
