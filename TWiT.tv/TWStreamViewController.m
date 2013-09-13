@@ -77,20 +77,45 @@
     self.delegate.player.view.hidden = self.delegate.player.airPlayVideoActive;
     
     [self.qualityButton setTitle:self.stream.title forState:UIControlStateNormal];
-    UIImage *qualityImage = [self.qualityButton backgroundImageForState:UIControlStateNormal];
-    qualityImage = [qualityImage resizableImageWithCapInsets:UIEdgeInsetsMake(4, 4, 5, 4)];
-    [self.qualityButton setBackgroundImage:qualityImage forState:UIControlStateNormal];
     
-    self.delegate.player.view.frame = self.view.bounds;
-    self.delegate.player.view.autoresizingMask = 63;
+    
     [self.view addSubview:self.delegate.player.view];
     [self.view sendSubviewToBack:self.delegate.player.view];
     
+    NSLayoutConstraint *leftConstraint = [NSLayoutConstraint constraintWithItem:self.delegate.player.view
+                                                                      attribute:NSLayoutAttributeLeft
+                                                                      relatedBy:NSLayoutRelationEqual
+                                                                         toItem:self.view
+                                                                      attribute:NSLayoutAttributeLeft
+                                                                     multiplier:1
+                                                                       constant:0];
+    NSLayoutConstraint *rightConstraint = [NSLayoutConstraint constraintWithItem:self.delegate.player.view
+                                                                       attribute:NSLayoutAttributeRight
+                                                                       relatedBy:NSLayoutRelationEqual
+                                                                          toItem:self.view
+                                                                       attribute:NSLayoutAttributeRight
+                                                                      multiplier:1
+                                                                        constant:0];
+    NSLayoutConstraint *topConstraint = [NSLayoutConstraint constraintWithItem:self.delegate.player.view
+                                                                     attribute:NSLayoutAttributeTop
+                                                                     relatedBy:NSLayoutRelationEqual
+                                                                        toItem:self.view
+                                                                     attribute:NSLayoutAttributeTop
+                                                                    multiplier:1
+                                                                      constant:0];
+    NSLayoutConstraint *bottomConstraint = [NSLayoutConstraint constraintWithItem:self.delegate.player.view
+                                                                        attribute:NSLayoutAttributeBottom
+                                                                        relatedBy:NSLayoutRelationEqual
+                                                                           toItem:self.view
+                                                                        attribute:NSLayoutAttributeBottom
+                                                                       multiplier:1
+                                                                         constant:0];
+    
+    [self.view addConstraints:@[leftConstraint, rightConstraint, topConstraint, bottomConstraint]];
+    
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(userDidTapPlayer:)];
-    UIView *tapView = [[UIView alloc] initWithFrame:self.delegate.player.view.bounds];
-    [tapView setAutoresizingMask:63];
-    [tapView addGestureRecognizer:tap];
-    [self.delegate.player.view addSubview:tapView];
+    tap.delegate = self;
+    [self.delegate.player.view addGestureRecognizer:tap];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -244,21 +269,26 @@
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Sorry" message:@"Unable to load the live stream." delegate:nil cancelButtonTitle:nil otherButtonTitles:@"Okay", nil];
         [alert show];
     }
-}/*
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+}
+
+#pragma mark - gesture delegate
+
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch
 {
-    if(UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPad)
-        [self close:nil];
-    else
-        [self.navigationController popViewControllerAnimated:YES];
-}*/
+    return YES;
+}
+
+- (BOOL)gestureRecognizer:(UIGestureRecognizer*)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer*)otherGestureRecognizer
+{
+    return YES;
+}
 
 #pragma mark - Actions
 
 - (void)userDidTapPlayer:(UIGestureRecognizer*)sender
 {
     if(self.infoView.hidden)
-        [self hideControls:!self.toolbarView.hidden];
+        [self hideControls:!hideUI];
     else
         [self play:nil];
 }
@@ -275,12 +305,11 @@
         [UIView animateWithDuration:UINavigationControllerHideShowBarDuration animations:^{
             [self setNeedsStatusBarAppearanceUpdate];
             self.navigationController.navigationBar.alpha = 0;
+            
             self.navigationBar.alpha = 0;
             self.toolbarView.alpha = 0;
         } completion:^(BOOL fin){
             [self.navigationController setNavigationBarHidden:YES animated:NO];
-            self.navigationBar.hidden = YES;
-            self.toolbarView.hidden = YES;
         }];
     }
     else
@@ -291,11 +320,10 @@
         
         [self.navigationController setNavigationBarHidden:NO animated:NO];
         self.navigationController.navigationBar.alpha = 0;
-        self.navigationBar.hidden = NO;
-        self.toolbarView.hidden = NO;
         
         [UIView animateWithDuration:UINavigationControllerHideShowBarDuration animations:^{
             self.navigationController.navigationBar.alpha = 1;
+            
             self.navigationBar.alpha = 1;
             self.toolbarView.alpha = 1;
         } completion:nil];

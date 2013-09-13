@@ -98,12 +98,11 @@
     
     [self drawLabelsWithTime:self.enclosure.episode.lastTimecode andDuration:self.enclosure.episode.duration];
     
-    self.infoAlbumArtView.image = (self.enclosure.type == TWTypeAudio) ? self.enclosure.episode.show.albumArt.image : self.enclosure.episode.poster.image;
+    self.infoAlbumArtView.image = self.enclosure.type == TWTypeAudio
+                                ? self.enclosure.episode.show.albumArt.image
+                                : self.enclosure.episode.poster.image;
     
     [self.qualityButton setTitle:self.enclosure.title forState:UIControlStateNormal];
-    UIImage *qualityImage = [self.qualityButton backgroundImageForState:UIControlStateNormal];
-    qualityImage = [qualityImage resizableImageWithCapInsets:UIEdgeInsetsMake(4, 4, 5, 4)];
-    [self.qualityButton setBackgroundImage:qualityImage forState:UIControlStateNormal];
     
     
     [self.view addSubview:self.delegate.player.view];
@@ -139,7 +138,6 @@
                                                                  constant:0];
     
     [self.view addConstraints:@[leftConstraint, rightConstraint, topConstraint, bottomConstraint]];
-    
     
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(userDidTapPlayer:)];
     tap.delegate = self;
@@ -329,7 +327,6 @@
             
             self.navigationBar.alpha = 0;
             self.toolbarView.alpha = 0;
-            
         } completion:^(BOOL fin){
             [self.navigationController setNavigationBarHidden:YES animated:NO];
         }];
