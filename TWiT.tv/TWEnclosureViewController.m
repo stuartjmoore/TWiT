@@ -142,10 +142,8 @@
     
     
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(userDidTapPlayer:)];
-    UIView *tapView = [[UIView alloc] initWithFrame:self.delegate.player.view.bounds];
-    [tapView setAutoresizingMask:63];
-    [tapView addGestureRecognizer:tap];
-    [self.delegate.player.view addSubview:tapView];
+    tap.delegate = self;
+    [self.delegate.player.view addGestureRecognizer:tap];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -292,6 +290,18 @@
     dateFormat.AMSymbol = @"a";
     NSString *timeString = [dateFormat stringFromDate:endingTime];
     self.timeOfEndLabel.text = [NSString stringWithFormat:@"ends @ %@", timeString];
+}
+
+#pragma mark - gesture delegate
+
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch
+{
+    return YES;
+}
+
+- (BOOL)gestureRecognizer:(UIGestureRecognizer*)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer*)otherGestureRecognizer
+{
+    return YES;
 }
 
 #pragma mark - Actions

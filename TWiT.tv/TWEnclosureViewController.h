@@ -10,7 +10,7 @@
 
 @class TWSplitViewContainer, TWAppDelegate, Enclosure;
 
-@interface TWEnclosureViewController : UIViewController <UIActionSheetDelegate, UIAlertViewDelegate, UIBarPositioningDelegate>
+@interface TWEnclosureViewController : UIViewController <UIActionSheetDelegate, UIAlertViewDelegate, UIBarPositioningDelegate, UIGestureRecognizerDelegate>
 
 @property (nonatomic, weak) TWSplitViewContainer *splitViewContainer;
 @property (nonatomic, weak) TWAppDelegate *delegate;
