@@ -87,15 +87,18 @@
                             <rect key="frame" x="0.0" y="44" width="320" height="149"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             <subviews>
-                                <view clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7ZG-JS-fuA" userLabel="headerView">
+                                <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7ZG-JS-fuA" userLabel="headerView">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="149"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" fixedFrame="YES" image="generic.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="nYS-gc-BrI">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" image="generic.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="nYS-gc-BrI">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="148"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="148" id="GIY-nS-iPz"/>
+                                            </constraints>
                                         </imageView>
-                                        <view clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rxB-tU-cJ3" userLabel="Blackground">
+                                        <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rxB-tU-cJ3" userLabel="Blackground">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="149"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.59999999999999998" colorSpace="calibratedWhite"/>
@@ -167,10 +170,13 @@
                                                 <segue destination="t6z-Tc-dkI" kind="push" identifier="scheduleView" id="Cvm-qO-gzq"/>
                                             </connections>
                                         </button>
-                                        <tableView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceHorizontal="YES" scrollEnabled="NO" showsVerticalScrollIndicator="NO" indicatorStyle="white" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="20" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="al8-rz-t9s">
+                                        <tableView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" alwaysBounceHorizontal="YES" scrollEnabled="NO" showsVerticalScrollIndicator="NO" indicatorStyle="white" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="20" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="al8-rz-t9s">
                                             <rect key="frame" x="0.0" y="75" width="320" height="74"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="320" id="VfN-Nv-1kc"/>
+                                            </constraints>
                                             <prototypes>
                                                 <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="scheduleCell" textLabel="SRs-q7-rU2" detailTextLabel="W3z-Th-vKd" style="IBUITableViewCellStyleValue2" id="L6o-Z4-zLn">
                                                     <rect key="frame" x="0.0" y="22" width="320" height="20"/>
@@ -210,9 +216,28 @@
                                         </tableView>
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                    <constraints>
+                                        <constraint firstAttribute="centerY" secondItem="nYS-gc-BrI" secondAttribute="centerY" constant="0.5" id="0kB-oE-hA2"/>
+                                        <constraint firstItem="rxB-tU-cJ3" firstAttribute="leading" secondItem="7ZG-JS-fuA" secondAttribute="leading" id="3BL-FU-u4F"/>
+                                        <constraint firstItem="rxB-tU-cJ3" firstAttribute="top" secondItem="7ZG-JS-fuA" secondAttribute="top" id="4Fw-wH-ITl"/>
+                                        <constraint firstAttribute="trailing" secondItem="nYS-gc-BrI" secondAttribute="trailing" id="66g-6T-NRC"/>
+                                        <constraint firstAttribute="bottom" secondItem="rxB-tU-cJ3" secondAttribute="bottom" id="DRa-A4-7kc"/>
+                                        <constraint firstAttribute="trailing" secondItem="al8-rz-t9s" secondAttribute="trailing" id="Sdz-ll-Fef"/>
+                                        <constraint firstItem="al8-rz-t9s" firstAttribute="top" secondItem="7ZG-JS-fuA" secondAttribute="top" constant="75" id="bBa-UM-I78"/>
+                                        <constraint firstItem="al8-rz-t9s" firstAttribute="leading" secondItem="7ZG-JS-fuA" secondAttribute="leading" id="iqE-cb-jwB"/>
+                                        <constraint firstItem="nYS-gc-BrI" firstAttribute="leading" secondItem="7ZG-JS-fuA" secondAttribute="leading" id="ow3-JU-6tv"/>
+                                        <constraint firstAttribute="trailing" secondItem="rxB-tU-cJ3" secondAttribute="trailing" id="rGf-Fz-Cww"/>
+                                        <constraint firstAttribute="bottom" secondItem="al8-rz-t9s" secondAttribute="bottom" id="uLc-5F-BcH"/>
+                                    </constraints>
                                 </view>
                             </subviews>
                             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstItem="7ZG-JS-fuA" firstAttribute="leading" secondItem="oo9-mA-4kT" secondAttribute="leading" id="YXJ-8V-GUi"/>
+                                <constraint firstAttribute="bottom" secondItem="7ZG-JS-fuA" secondAttribute="bottom" id="ZOU-73-Y0K"/>
+                                <constraint firstAttribute="trailing" secondItem="7ZG-JS-fuA" secondAttribute="trailing" id="tkz-be-Jgu"/>
+                                <constraint firstItem="7ZG-JS-fuA" firstAttribute="top" secondItem="oo9-mA-4kT" secondAttribute="top" id="vh6-c2-DYq"/>
+                            </constraints>
                         </view>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="episodeCell" rowHeight="65" id="lJ0-d7-vTF" customClass="TWEpisodeCell">
@@ -252,7 +277,7 @@
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <subviews>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8KU-oU-Q0M">
-                                                            <rect key="frame" x="8" y="8" width="47" height="47"/>
+                                                            <rect key="frame" x="8" y="9" width="47" height="47"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                             <accessibility key="accessibilityConfiguration" label="Album art"/>
                                                         </imageView>
@@ -285,12 +310,12 @@
                                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         </view>
                                                         <imageView hidden="YES" userInteractionEnabled="NO" contentMode="center" fixedFrame="YES" image="list-downloaded-icon" translatesAutoresizingMaskIntoConstraints="NO" id="HFK-vo-Oac" userLabel="Downloaded Icon">
-                                                            <rect key="frame" x="268" y="25" width="12" height="13"/>
+                                                            <rect key="frame" x="268" y="26" width="12" height="13"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                             <accessibility key="accessibilityConfiguration" label="Downloaded"/>
                                                         </imageView>
                                                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vmx-CS-fNR" userLabel="Quick Play">
-                                                            <rect key="frame" x="271" y="10" width="44" height="44"/>
+                                                            <rect key="frame" x="271" y="11" width="44" height="44"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                             <accessibility key="accessibilityConfiguration" hint="Plays the episode." label="Play"/>
                                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
@@ -306,7 +331,7 @@
                                                             </connections>
                                                         </button>
                                                         <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZC5-tk-gIT" userLabel="Bottom Separator">
-                                                            <rect key="frame" x="0.0" y="61" width="320" height="1"/>
+                                                            <rect key="frame" x="0.0" y="64" width="320" height="1"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                                             <color key="backgroundColor" white="0.87" alpha="1" colorSpace="calibratedWhite"/>
                                                         </view>

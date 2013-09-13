@@ -22,6 +22,7 @@ typedef NS_ENUM(NSInteger, TWSection)
 @interface TWMainViewController : UITableViewController <NSFetchedResultsControllerDelegate,
                                                          UISplitViewControllerDelegate,
                                                          UIGestureRecognizerDelegate,
+                                                         UIScrollViewDelegate,
                                                          UIAlertViewDelegate,
                                                          TWiTShowGridCellDelegate>
 

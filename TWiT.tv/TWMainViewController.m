@@ -528,11 +528,18 @@
 
 #pragma mark - Table View
 
+- (void)scrollViewDidScroll:(UIScrollView*)scrollView
+{
+    NSLog(@"scrollView %@", scrollView);
+}
+
 - (void)observeValueForKeyPath:(NSString*)keyPath ofObject:(id)object change:(NSDictionary*)change context:(void*)context
 {
     UIAccessibilityPostNotification(UIAccessibilityLayoutChangedNotification, nil);
     CGPoint newPoint = [[change valueForKey:NSKeyValueChangeNewKey] CGPointValue];
     CGFloat headerHeight = self.tableView.tableHeaderView.frame.size.height;
+    
+    self.headerView.translatesAutoresizingMaskIntoConstraints = YES;
     
     if(self.headerView && object == self.tableView)
     {
@@ -662,7 +669,7 @@
     if(tableView == self.tableView)
     {
         if(self.sectionVisible == TWSectionEpisodes)
-            return 62;
+            return 65;
         else if(self.sectionVisible == TWSectionShows)
         {
             if(UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPad)
