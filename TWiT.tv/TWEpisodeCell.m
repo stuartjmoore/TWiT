@@ -37,57 +37,18 @@
     self.subtitleLabel.text = episode.show.title;
     
     self.accessibilityHint = isPublished ? @"Opens the episode view." : @"Syncs the episode.";
-    /*
-    CGSize size = [self.titleLabel.text sizeWithAttributes:@{NSFontAttributeName: self.titleLabel.font}];
-    
-    if(size.width > self.titleLabel.frame.size.width)
-    {
-        self.titleLabel.numberOfLines = 2;
-        
-        CGRect titleFrame = self.titleLabel.frame;
-        titleFrame.origin.y = 6;
-        titleFrame.size.height = 34;
-        self.titleLabel.frame = titleFrame;
-        
-        CGRect subtitleFrame = self.subtitleLabel.frame;
-        subtitleFrame.origin.y = 40;
-        self.subtitleLabel.frame = subtitleFrame;
-    }
-    else
-    {
-        self.titleLabel.numberOfLines = 1;
-        
-        CGRect titleFrame = self.titleLabel.frame;
-        titleFrame.origin.y = 13;
-        titleFrame.size.height = 20;
-        self.titleLabel.frame = titleFrame;
-        
-        CGRect subtitleFrame = self.subtitleLabel.frame;
-        subtitleFrame.origin.y = 32;
-        self.subtitleLabel.frame = subtitleFrame;
-    }
-    */
+
     if(self.selected)
-    {
         self.numberLabel.textColor = [UIColor whiteColor];
-    }
     else if(!episode.watched)
-    {
         self.numberLabel.textColor = [UIColor colorWithRed:239/255.0 green:79/255.0 blue:61/255.0 alpha:1];
-    }
     else
-    {
         self.numberLabel.textColor = [UIColor blackColor];
-    }
     
     if(self.selected)
-    {
         self.downloadedIcon.hidden = YES;
-    }
     else
-    {
         self.downloadedIcon.hidden = (!self.episode.downloadedEnclosures);
-    }
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
@@ -113,13 +74,9 @@
         self.subtitleLabel.textColor = [UIColor darkGrayColor];
         
         if(!self.episode.watched)
-        {
             self.numberLabel.textColor = [UIColor colorWithRed:239/255.0 green:79/255.0 blue:61/255.0 alpha:1];
-        }
         else
-        {
             self.numberLabel.textColor = [UIColor blackColor];
-        }
         
         self.topLine.hidden = NO;
         self.bottomLine.hidden = NO;
