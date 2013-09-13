@@ -105,10 +105,41 @@
     qualityImage = [qualityImage resizableImageWithCapInsets:UIEdgeInsetsMake(4, 4, 5, 4)];
     [self.qualityButton setBackgroundImage:qualityImage forState:UIControlStateNormal];
     
-    self.delegate.player.view.frame = self.view.bounds;
-    self.delegate.player.view.autoresizingMask = 63;
+    
     [self.view addSubview:self.delegate.player.view];
     [self.view sendSubviewToBack:self.delegate.player.view];
+    
+    NSLayoutConstraint *leftConstraint = [NSLayoutConstraint constraintWithItem:self.delegate.player.view
+                                                                  attribute:NSLayoutAttributeLeft
+                                                                  relatedBy:NSLayoutRelationEqual
+                                                                     toItem:self.view
+                                                                  attribute:NSLayoutAttributeLeft
+                                                                 multiplier:1
+                                                                   constant:0];
+    NSLayoutConstraint *rightConstraint = [NSLayoutConstraint constraintWithItem:self.delegate.player.view
+                                                                  attribute:NSLayoutAttributeRight
+                                                                  relatedBy:NSLayoutRelationEqual
+                                                                     toItem:self.view
+                                                                  attribute:NSLayoutAttributeRight
+                                                                 multiplier:1
+                                                                 constant:0];
+    NSLayoutConstraint *topConstraint = [NSLayoutConstraint constraintWithItem:self.delegate.player.view
+                                                                attribute:NSLayoutAttributeTop
+                                                                relatedBy:NSLayoutRelationEqual
+                                                                   toItem:self.view
+                                                                attribute:NSLayoutAttributeTop
+                                                               multiplier:1
+                                                                 constant:0];
+    NSLayoutConstraint *bottomConstraint = [NSLayoutConstraint constraintWithItem:self.delegate.player.view
+                                                                attribute:NSLayoutAttributeBottom
+                                                                relatedBy:NSLayoutRelationEqual
+                                                                   toItem:self.view
+                                                                attribute:NSLayoutAttributeBottom
+                                                               multiplier:1
+                                                                 constant:0];
+    
+    [self.view addConstraints:@[leftConstraint, rightConstraint, topConstraint, bottomConstraint]];
+    
     
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(userDidTapPlayer:)];
     UIView *tapView = [[UIView alloc] initWithFrame:self.delegate.player.view.bounds];
@@ -275,7 +306,7 @@
 
 - (void)hideControls:(BOOL)hide
 {
-    //if(hide == hideUI)
+    if(hide == hideUI)
         return;
     
     hideUI = hide;
@@ -287,6 +318,7 @@
             self.navigationController.navigationBar.alpha = 0;
             self.navigationBar.alpha = 0;
             self.toolbarView.alpha = 0;
+            [self.view layoutIfNeeded];
         } completion:^(BOOL fin){
             [self.navigationController setNavigationBarHidden:YES animated:NO];
             self.navigationBar.hidden = YES;
@@ -295,9 +327,9 @@
     }
     else
     {
-        [UIView animateWithDuration:UINavigationControllerHideShowBarDuration animations:^{
+        /*[UIView animateWithDuration:UINavigationControllerHideShowBarDuration animations:^{
             [self setNeedsStatusBarAppearanceUpdate];
-        } completion:nil];
+        } completion:nil];*/
             
         [self.navigationController setNavigationBarHidden:NO animated:NO];
         self.navigationController.navigationBar.alpha = 0;
@@ -308,6 +340,7 @@
             self.navigationController.navigationBar.alpha = 1;
             self.navigationBar.alpha = 1;
             self.toolbarView.alpha = 1;
+            [self.view layoutIfNeeded];
         } completion:nil];
     }
 }
@@ -516,7 +549,6 @@
     if(self.delegate.player.playbackState != MPMoviePlaybackStatePlaying)
         [self.delegate stop];
 
-    
     [super viewDidDisappear:animated];
 }
 

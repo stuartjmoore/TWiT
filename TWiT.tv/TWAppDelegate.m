@@ -323,6 +323,8 @@
         _player.controlStyle = MPMovieControlStyleNone;
         _player.shouldAutoplay = YES;
         _player.allowsAirPlay = YES;
+        
+        _player.view.translatesAutoresizingMaskIntoConstraints = NO;
     }
     
     return _player;
