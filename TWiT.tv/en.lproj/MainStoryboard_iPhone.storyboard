@@ -87,35 +87,29 @@
                             <rect key="frame" x="0.0" y="44" width="320" height="149"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             <subviews>
-                                <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7ZG-JS-fuA" userLabel="headerView">
+                                <view clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7ZG-JS-fuA" userLabel="headerView">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="149"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" image="generic.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="nYS-gc-BrI">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" fixedFrame="YES" image="generic.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="nYS-gc-BrI">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="148"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="148" id="Xxs-5v-lr6"/>
-                                            </constraints>
                                         </imageView>
-                                        <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rxB-tU-cJ3" userLabel="Blackground">
+                                        <view clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rxB-tU-cJ3" userLabel="Blackground">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="149"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.59999999999999998" colorSpace="calibratedWhite"/>
                                         </view>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Loading" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qic-N3-e3p">
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="Loading" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qic-N3-e3p">
                                             <rect key="frame" x="8" y="8" width="93" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" constant="93" id="pRG-q4-Bun"/>
-                                            </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                             <color key="shadowColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                             <size key="shadowOffset" width="0.0" height="1"/>
                                         </label>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Please Wait…" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3sf-ex-lxR">
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="Please Wait…" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3sf-ex-lxR">
                                             <rect key="frame" x="107" y="8" width="205" height="21"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
@@ -124,7 +118,7 @@
                                             <color key="shadowColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                             <size key="shadowOffset" width="0.0" height="1"/>
                                         </label>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CmN-RY-9dh">
+                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CmN-RY-9dh">
                                             <rect key="frame" x="20" y="31" width="155" height="38"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                             <accessibility key="accessibilityConfiguration" hint="Loads TWiT live video." label="Watch Live"/>
@@ -141,13 +135,10 @@
                                                 <segue destination="zgt-3C-NJF" kind="push" identifier="liveVideoDetail" id="rrL-Yf-xFC"/>
                                             </connections>
                                         </button>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c5B-oQ-fRL">
+                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c5B-oQ-fRL">
                                             <rect key="frame" x="175" y="31" width="93" height="38"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                                             <accessibility key="accessibilityConfiguration" hint="Loads TWiT live audio." label="Listen Live"/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" constant="93" id="IeT-nV-zoR"/>
-                                            </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                             <state key="normal" title="Listen" backgroundImage="button-orange-right">
                                                 <color key="titleColor" red="0.86666666670000003" green="0.13725490200000001" blue="0.1764705882" alpha="1" colorSpace="deviceRGB"/>
@@ -160,13 +151,10 @@
                                                 <segue destination="zgt-3C-NJF" kind="push" identifier="liveAudioDetail" id="P5c-U6-ZVf"/>
                                             </connections>
                                         </button>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eos-yo-FMm" userLabel="Button - Schedule">
+                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eos-yo-FMm" userLabel="Button - Schedule">
                                             <rect key="frame" x="275" y="31" width="38" height="38"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                                             <accessibility key="accessibilityConfiguration" hint="Opens the full schedule." label="Schedule"/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" constant="38" id="3X3-cr-EPM"/>
-                                            </constraints>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                             <state key="normal" image="toolbar-schedule-background">
                                                 <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -179,14 +167,10 @@
                                                 <segue destination="t6z-Tc-dkI" kind="push" identifier="scheduleView" id="Cvm-qO-gzq"/>
                                             </connections>
                                         </button>
-                                        <tableView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" alwaysBounceHorizontal="YES" scrollEnabled="NO" showsVerticalScrollIndicator="NO" indicatorStyle="white" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="20" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="al8-rz-t9s">
+                                        <tableView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceHorizontal="YES" scrollEnabled="NO" showsVerticalScrollIndicator="NO" indicatorStyle="white" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="20" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="al8-rz-t9s">
                                             <rect key="frame" x="0.0" y="75" width="320" height="74"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" constant="320" id="2TN-cd-ppg"/>
-                                                <constraint firstAttribute="height" constant="74" id="QKh-f1-eaC"/>
-                                            </constraints>
                                             <prototypes>
                                                 <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="scheduleCell" textLabel="SRs-q7-rU2" detailTextLabel="W3z-Th-vKd" style="IBUITableViewCellStyleValue2" id="L6o-Z4-zLn">
                                                     <rect key="frame" x="0.0" y="22" width="320" height="20"/>
@@ -226,42 +210,9 @@
                                         </tableView>
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                    <constraints>
-                                        <constraint firstItem="al8-rz-t9s" firstAttribute="leading" secondItem="rxB-tU-cJ3" secondAttribute="leading" id="5cu-yB-Da1"/>
-                                        <constraint firstItem="CmN-RY-9dh" firstAttribute="baseline" secondItem="c5B-oQ-fRL" secondAttribute="baseline" id="F5d-fY-I2k"/>
-                                        <constraint firstItem="CmN-RY-9dh" firstAttribute="bottom" secondItem="eos-yo-FMm" secondAttribute="bottom" id="FBd-f5-MZA"/>
-                                        <constraint firstAttribute="trailing" secondItem="eos-yo-FMm" secondAttribute="trailing" constant="7" id="GXf-95-wBK"/>
-                                        <constraint firstAttribute="bottom" secondItem="al8-rz-t9s" secondAttribute="bottom" id="Iav-LP-xjQ"/>
-                                        <constraint firstItem="qic-N3-e3p" firstAttribute="leading" secondItem="7ZG-JS-fuA" secondAttribute="leading" constant="8" id="Is3-vg-5AC"/>
-                                        <constraint firstItem="al8-rz-t9s" firstAttribute="trailing" secondItem="rxB-tU-cJ3" secondAttribute="trailing" id="Kex-Hd-c32"/>
-                                        <constraint firstItem="qic-N3-e3p" firstAttribute="top" secondItem="7ZG-JS-fuA" secondAttribute="top" constant="8" id="Lu2-4h-2XF"/>
-                                        <constraint firstItem="al8-rz-t9s" firstAttribute="leading" secondItem="7ZG-JS-fuA" secondAttribute="leading" id="Mxb-En-ADA"/>
-                                        <constraint firstItem="CmN-RY-9dh" firstAttribute="top" secondItem="c5B-oQ-fRL" secondAttribute="top" id="P2Y-9D-N09"/>
-                                        <constraint firstItem="nYS-gc-BrI" firstAttribute="top" secondItem="rxB-tU-cJ3" secondAttribute="top" id="TOd-I8-j7c"/>
-                                        <constraint firstItem="nYS-gc-BrI" firstAttribute="centerY" secondItem="rxB-tU-cJ3" secondAttribute="centerY" id="U4Y-hO-29S"/>
-                                        <constraint firstItem="CmN-RY-9dh" firstAttribute="leading" secondItem="7ZG-JS-fuA" secondAttribute="leading" constant="20" id="UMY-Xb-Ttr"/>
-                                        <constraint firstItem="qic-N3-e3p" firstAttribute="baseline" secondItem="3sf-ex-lxR" secondAttribute="baseline" id="YL6-vt-r5e"/>
-                                        <constraint firstAttribute="bottom" secondItem="rxB-tU-cJ3" secondAttribute="bottom" id="YM1-Bd-ey0"/>
-                                        <constraint firstItem="al8-rz-t9s" firstAttribute="trailing" secondItem="nYS-gc-BrI" secondAttribute="trailing" id="a1K-4U-7I7"/>
-                                        <constraint firstItem="CmN-RY-9dh" firstAttribute="top" secondItem="3sf-ex-lxR" secondAttribute="bottom" constant="2" id="bD9-qy-O2u"/>
-                                        <constraint firstAttribute="trailing" secondItem="al8-rz-t9s" secondAttribute="trailing" id="cN5-QO-WXD"/>
-                                        <constraint firstAttribute="trailing" secondItem="3sf-ex-lxR" secondAttribute="trailing" constant="8" id="d7d-lT-Z9M"/>
-                                        <constraint firstItem="CmN-RY-9dh" firstAttribute="top" secondItem="eos-yo-FMm" secondAttribute="top" id="dtj-Du-ZYA"/>
-                                        <constraint firstItem="qic-N3-e3p" firstAttribute="top" secondItem="3sf-ex-lxR" secondAttribute="top" id="eI8-Z4-S6a"/>
-                                        <constraint firstItem="al8-rz-t9s" firstAttribute="top" secondItem="CmN-RY-9dh" secondAttribute="bottom" constant="6" id="fTd-Lo-Wue"/>
-                                        <constraint firstItem="3sf-ex-lxR" firstAttribute="leading" secondItem="qic-N3-e3p" secondAttribute="trailing" constant="6" id="ldt-I6-Opm"/>
-                                        <constraint firstItem="CmN-RY-9dh" firstAttribute="top" secondItem="7ZG-JS-fuA" secondAttribute="top" constant="31" id="lkX-R3-GcP"/>
-                                        <constraint firstItem="c5B-oQ-fRL" firstAttribute="leading" secondItem="CmN-RY-9dh" secondAttribute="trailing" id="qAE-p1-K1f"/>
-                                        <constraint firstItem="al8-rz-t9s" firstAttribute="leading" secondItem="nYS-gc-BrI" secondAttribute="leading" id="qbu-Gp-jOg"/>
-                                        <constraint firstItem="eos-yo-FMm" firstAttribute="leading" secondItem="c5B-oQ-fRL" secondAttribute="trailing" constant="7" id="rEK-bq-ZOj"/>
-                                    </constraints>
                                 </view>
                             </subviews>
                             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                            <constraints>
-                                <constraint firstItem="7ZG-JS-fuA" firstAttribute="top" secondItem="oo9-mA-4kT" secondAttribute="top" id="Ssn-4s-QfU"/>
-                                <constraint firstItem="7ZG-JS-fuA" firstAttribute="leading" secondItem="oo9-mA-4kT" secondAttribute="leading" id="qhR-o5-mLa"/>
-                            </constraints>
                         </view>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="episodeCell" rowHeight="65" id="lJ0-d7-vTF" customClass="TWEpisodeCell">
@@ -1582,12 +1533,24 @@
         <image name="button-orange-left" width="7" height="38"/>
         <image name="button-orange-right" width="7" height="38"/>
         <image name="generic.jpg" width="228" height="228"/>
+        <image name="generic.jpg" width="228" height="228"/>
+        <image name="generic.jpg" width="228" height="228"/>
+        <image name="generic.jpg" width="228" height="228"/>
+        <image name="generic.jpg" width="228" height="228"/>
+        <image name="generic.jpg" width="228" height="228"/>
+        <image name="generic.jpg" width="228" height="228"/>
         <image name="icon-play" width="55" height="55"/>
+        <image name="list-downloaded-icon" width="12" height="13"/>
         <image name="list-downloaded-icon" width="12" height="13"/>
         <image name="nav-bar-header-icon" width="154" height="44"/>
         <image name="navbar-pause" width="15" height="21"/>
+        <image name="navbar-pause" width="15" height="21"/>
+        <image name="navbar-pause" width="15" height="21"/>
+        <image name="navbar-play" width="17" height="21"/>
+        <image name="navbar-play" width="17" height="21"/>
         <image name="navbar-play" width="17" height="21"/>
         <image name="navbar-stop" width="20" height="21"/>
+        <image name="quality-view-disclosure" width="5" height="5"/>
         <image name="quality-view-disclosure" width="5" height="5"/>
         <image name="quick-play" width="20" height="21"/>
         <image name="separator-fade-bottom" width="320" height="1"/>
@@ -1606,6 +1569,7 @@
         <image name="video-speed-fast.png" width="21" height="22"/>
         <image name="video-speed-normal" width="21" height="22"/>
         <image name="video-toolbar-back.png" width="1" height="44"/>
+        <image name="video-toolbar-double-back" width="1" height="88"/>
         <image name="video-toolbar-double-back" width="1" height="88"/>
     </resources>
     <color key="tintColor" red="0.20392156862745098" green="0.66666666666666663" blue="0.82352941176470584" alpha="1" colorSpace="deviceRGB"/>
