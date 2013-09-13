@@ -85,9 +85,7 @@
                                                name:@"ScheduleDidUpdate"
                                              object:self.channel.schedule];
     
-    [self.tableView addObserver:self forKeyPath:@"contentOffset"
-                        options:(NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld)
-                        context:NULL];
+    self.headerView.translatesAutoresizingMaskIntoConstraints = YES;
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -267,17 +265,7 @@
             {
                 [episode.show updateEpisodes];
                 [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
-                /*
-                NSString *title = [NSString stringWithFormat:@"%@ Needs Update", episode.show.titleAcronym];
-                NSString *message = [NSString stringWithFormat:@"%@ needs to be updated; iCloud doesn't sync full episodes. Open the show to get the lastest episodes.", episode.show.title];
-                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title
-                                                                message:message
-                                                               delegate:self
-                                                      cancelButtonTitle:@"Cancel"
-                                                      otherButtonTitles:nil];
-                alert.tag = indexPath.row;
-                [alert show];
-                */
+
                 return nil;
             }
             
@@ -530,26 +518,18 @@
 
 - (void)scrollViewDidScroll:(UIScrollView*)scrollView
 {
-    NSLog(@"scrollView %@", scrollView);
-}
-
-- (void)observeValueForKeyPath:(NSString*)keyPath ofObject:(id)object change:(NSDictionary*)change context:(void*)context
-{
     UIAccessibilityPostNotification(UIAccessibilityLayoutChangedNotification, nil);
-    CGPoint newPoint = [[change valueForKey:NSKeyValueChangeNewKey] CGPointValue];
     CGFloat headerHeight = self.tableView.tableHeaderView.frame.size.height;
     
-    self.headerView.translatesAutoresizingMaskIntoConstraints = YES;
-    
-    if(self.headerView && object == self.tableView)
+    if(self.headerView && scrollView == self.tableView)
     {
         CGRect frame = self.headerView.frame;
         CGFloat sectionHeaderHeight = (UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPhone) ? 28 : 0;
-
-        if(newPoint.y < -NAVBAR_INSET)
+        
+        if(scrollView.contentOffset.y < -NAVBAR_INSET)
         {
-            frame.origin.y = newPoint.y+NAVBAR_INSET;
-            frame.size.height = ceilf(headerHeight-newPoint.y-NAVBAR_INSET);
+            frame.origin.y = scrollView.contentOffset.y+NAVBAR_INSET;
+            frame.size.height = ceilf(headerHeight - scrollView.contentOffset.y - NAVBAR_INSET);
         }
         else
         {
@@ -924,6 +904,7 @@
         }
     }
 }
+
 - (void)showsCell:(TWShowsCell*)showsCell didDrawIconsAtIndexPath:(NSIndexPath*)indexPath;
 {
     if(!showsCell || !showsCell.icons || !showsCell.shows)
@@ -971,6 +952,7 @@
     
     return _fetchedEpisodesController;
 }
+
 - (NSFetchedResultsController*)fetchedShowsController
 {
     if(_fetchedShowsController != nil)
@@ -998,7 +980,6 @@
     
     return _fetchedShowsController;
 }
-
 
 - (void)controllerWillChangeContent:(NSFetchedResultsController*)controller
 {
@@ -1078,7 +1059,6 @@
     }
     else if(controller == self.fetchedShowsController && self.sectionVisible == TWSectionShows)
     {
-        //self.showsTableCache = nil;
         [self.tableView reloadData];
     }
 }
@@ -1093,10 +1073,12 @@
     if(self.showSelectedView)
         self.showSelectedView.hidden = YES;
 }
+
 - (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
 {
     
 }
+
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
 {
     if(self.sectionVisible == TWSectionShows)
@@ -1130,22 +1112,7 @@
 }
 
 #pragma mark - Leave
-/*
-- (void)alertView:(UIAlertView*)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-    if(buttonIndex == 1 && UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPad)
-    {
-        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:alertView.tag inSection:0];
-        Episode *episode = [self.fetchedEpisodesController objectAtIndexPath:indexPath];
-    }
-    else if(buttonIndex == 1 && UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPhone)
-    {
-        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:alertView.tag inSection:0];
-        Episode *episode = [self.fetchedEpisodesController objectAtIndexPath:indexPath];
-    }
 
-}
-*/
 - (IBAction)transitionToSchedule:(UIButton*)sender
 {
     TWSplitViewContainer *splitViewContainer = (TWSplitViewContainer*)self.navigationController.parentViewController;
@@ -1216,18 +1183,7 @@
         {
             [episode.show updateEpisodes];
             [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
-            /*
-            [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
-            
-            NSString *title = [NSString stringWithFormat:@"%@ Needs Update", episode.show.titleAcronym];
-            NSString *message = [NSString stringWithFormat:@"%@ needs to be updated; iCloud doesn't sync full episodes. Open the show to get the latest episodes.", episode.show.title];
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title
-                                                            message:message
-                                                           delegate:nil
-                                                  cancelButtonTitle:@"Cancel"
-                                                  otherButtonTitles:nil];
-            [alert show];
-            */
+
             return NO;
         }
     }
