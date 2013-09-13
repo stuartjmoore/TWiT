@@ -1533,24 +1533,12 @@
         <image name="button-orange-left" width="7" height="38"/>
         <image name="button-orange-right" width="7" height="38"/>
         <image name="generic.jpg" width="228" height="228"/>
-        <image name="generic.jpg" width="228" height="228"/>
-        <image name="generic.jpg" width="228" height="228"/>
-        <image name="generic.jpg" width="228" height="228"/>
-        <image name="generic.jpg" width="228" height="228"/>
-        <image name="generic.jpg" width="228" height="228"/>
-        <image name="generic.jpg" width="228" height="228"/>
         <image name="icon-play" width="55" height="55"/>
-        <image name="list-downloaded-icon" width="12" height="13"/>
         <image name="list-downloaded-icon" width="12" height="13"/>
         <image name="nav-bar-header-icon" width="154" height="44"/>
         <image name="navbar-pause" width="15" height="21"/>
-        <image name="navbar-pause" width="15" height="21"/>
-        <image name="navbar-pause" width="15" height="21"/>
-        <image name="navbar-play" width="17" height="21"/>
-        <image name="navbar-play" width="17" height="21"/>
         <image name="navbar-play" width="17" height="21"/>
         <image name="navbar-stop" width="20" height="21"/>
-        <image name="quality-view-disclosure" width="5" height="5"/>
         <image name="quality-view-disclosure" width="5" height="5"/>
         <image name="quick-play" width="20" height="21"/>
         <image name="separator-fade-bottom" width="320" height="1"/>
@@ -1570,7 +1558,6 @@
         <image name="video-speed-normal" width="21" height="22"/>
         <image name="video-toolbar-back.png" width="1" height="44"/>
         <image name="video-toolbar-double-back" width="1" height="88"/>
-        <image name="video-toolbar-double-back" width="1" height="88"/>
     </resources>
     <color key="tintColor" red="0.20392156862745098" green="0.66666666666666663" blue="0.82352941176470584" alpha="1" colorSpace="deviceRGB"/>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
@@ -1579,8 +1566,8 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="P5c-U6-ZVf"/>
         <segue reference="ev1-BP-H8c"/>
-        <segue reference="OfB-Q1-3Dp"/>
+        <segue reference="YiW-0V-IC2"/>
+        <segue reference="P5c-U6-ZVf"/>
     </inferredMetricsTieBreakers>
 </document>
