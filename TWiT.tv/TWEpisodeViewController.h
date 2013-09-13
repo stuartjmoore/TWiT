@@ -19,7 +19,7 @@
 @property (weak, nonatomic) IBOutlet TWPlayButton *playButton;
 @property (weak, nonatomic) IBOutlet UIView *gradientView;
 @property (weak, nonatomic) IBOutlet UILabel *dateLabel, *timeLabel, *numberLabel, *guestsLabel;
-@property (weak, nonatomic) IBOutlet UITextView *descLabel;
+@property (weak, nonatomic) IBOutlet UILabel *descLabel;
 @property (weak, nonatomic) IBOutlet TWSegmentedButton *segmentedButton;
 
 @property (nonatomic) BOOL unlockRotation;
