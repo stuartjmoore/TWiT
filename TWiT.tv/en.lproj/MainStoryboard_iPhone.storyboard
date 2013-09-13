@@ -630,27 +630,43 @@
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" fixedFrame="YES" text="Time" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="USi-yH-XaZ">
-                                            <rect key="frame" x="0.0" y="17.5" width="91" height="15"/>
+                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Time" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="USi-yH-XaZ">
+                                            <rect key="frame" x="8" y="17" width="84" height="15"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="84" id="2uw-5p-qql"/>
+                                            </constraints>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
                                             <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         </label>
-                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" fixedFrame="YES" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qcy-Nw-g7a">
-                                            <rect key="frame" x="99" y="17.5" width="221" height="15"/>
+                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qcy-Nw-g7a">
+                                            <rect key="frame" x="99" y="17" width="213" height="15"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="213" id="eOL-YY-pw1"/>
+                                            </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         </label>
-                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" fixedFrame="YES" text="Subtitle" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="06I-iU-RaG">
-                                            <rect key="frame" x="99" y="32" width="221" height="15"/>
+                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="213" translatesAutoresizingMaskIntoConstraints="NO" id="06I-iU-RaG">
+                                            <rect key="frame" x="99" y="32" width="213" height="15"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         </label>
                                     </subviews>
+                                    <constraints>
+                                        <constraint firstItem="06I-iU-RaG" firstAttribute="width" secondItem="Qcy-Nw-g7a" secondAttribute="width" id="13x-FS-b4x"/>
+                                        <constraint firstAttribute="centerY" secondItem="USi-yH-XaZ" secondAttribute="centerY" constant="0.5" id="21Y-E8-D8P"/>
+                                        <constraint firstItem="06I-iU-RaG" firstAttribute="top" secondItem="Qcy-Nw-g7a" secondAttribute="bottom" id="8sA-GS-wvo"/>
+                                        <constraint firstItem="Qcy-Nw-g7a" firstAttribute="leading" secondItem="USi-yH-XaZ" secondAttribute="trailing" constant="7" id="98b-Oo-aAo"/>
+                                        <constraint firstItem="USi-yH-XaZ" firstAttribute="leading" secondItem="5rL-hg-8gc" secondAttribute="leading" constant="8" id="U64-n2-UAN"/>
+                                        <constraint firstItem="06I-iU-RaG" firstAttribute="centerX" secondItem="Qcy-Nw-g7a" secondAttribute="centerX" id="p5l-NB-IxU"/>
+                                        <constraint firstAttribute="trailing" secondItem="Qcy-Nw-g7a" secondAttribute="trailing" constant="8" id="w2f-bW-1c6"/>
+                                        <constraint firstAttribute="centerY" secondItem="Qcy-Nw-g7a" secondAttribute="centerY" constant="0.5" id="xyR-MY-n4N"/>
+                                    </constraints>
                                 </tableViewCellContentView>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <connections>
@@ -1745,12 +1761,24 @@
         <image name="button-orange-left" width="7" height="38"/>
         <image name="button-orange-right" width="7" height="38"/>
         <image name="generic.jpg" width="228" height="228"/>
+        <image name="generic.jpg" width="228" height="228"/>
+        <image name="generic.jpg" width="228" height="228"/>
+        <image name="generic.jpg" width="228" height="228"/>
+        <image name="generic.jpg" width="228" height="228"/>
+        <image name="generic.jpg" width="228" height="228"/>
+        <image name="generic.jpg" width="228" height="228"/>
         <image name="icon-play" width="55" height="55"/>
+        <image name="list-downloaded-icon" width="12" height="13"/>
         <image name="list-downloaded-icon" width="12" height="13"/>
         <image name="nav-bar-header-icon" width="154" height="44"/>
         <image name="navbar-pause" width="15" height="21"/>
+        <image name="navbar-pause" width="15" height="21"/>
+        <image name="navbar-pause" width="15" height="21"/>
+        <image name="navbar-play" width="17" height="21"/>
+        <image name="navbar-play" width="17" height="21"/>
         <image name="navbar-play" width="17" height="21"/>
         <image name="navbar-stop" width="20" height="21"/>
+        <image name="quality-view-disclosure" width="5" height="5"/>
         <image name="quality-view-disclosure" width="5" height="5"/>
         <image name="quick-play" width="20" height="21"/>
         <image name="separator-fade-bottom" width="320" height="1"/>
