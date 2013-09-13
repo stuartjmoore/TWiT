@@ -51,6 +51,7 @@
     }
     
     hideUI = NO;
+    self.toolbarView.barStyle = UIBarStyleBlack;
     
     MPVolumeView *airplayButton = [[MPVolumeView alloc] init];
     airplayButton.showsVolumeSlider = NO;
@@ -274,7 +275,7 @@
 
 - (void)hideControls:(BOOL)hide
 {
-    if(hide == hideUI)
+    //if(hide == hideUI)
         return;
     
     hideUI = hide;
