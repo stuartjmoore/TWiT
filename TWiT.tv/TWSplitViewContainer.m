@@ -19,53 +19,31 @@
 
 @implementation TWSplitViewContainer
 
-- (void)setMasterController:(UINavigationController*)masterController
+- (void)prepareForSegue:(UIStoryboardSegue*)segue sender:(id)sender
 {
-    _masterController = masterController;
-    
-    [self addChildViewController:masterController];
-    
-    masterController.view.frame = self.masterContainer.bounds;
-    [self.masterContainer addSubview:masterController.view];
-    [self.masterContainer sendSubviewToBack:masterController.view];
-    self.masterContainer.backgroundColor = [UIColor clearColor];
-}
-
-- (void)setDetailController:(UINavigationController*)detailController
-{
-    _detailController = detailController;
-    
-    [self addChildViewController:detailController];
-    
-    detailController.view.frame = self.detailContainer.bounds;
-    [self.detailContainer addSubview:detailController.view];
-    [self.detailContainer sendSubviewToBack:detailController.view];
-    self.detailContainer.backgroundColor = [UIColor clearColor];
-}
-
-- (void)setModalController:(UINavigationController*)modalController
-{
-    _modalController = modalController;
-    
-    [self addChildViewController:modalController];
-    TWEpisodeViewController *episodeController = (TWEpisodeViewController*)modalController.topViewController;
-    episodeController.splitViewContainer = self;
-    
-    modalController.view.frame = self.modalFlyout.bounds;
-    [self.modalFlyout addSubview:modalController.view];
-    self.modalFlyout.backgroundColor = [UIColor clearColor];
-}
-
-- (void)setPlaybarController:(UIViewController*)playbarController
-{
-    _playbarController = playbarController;
-    
-    [self addChildViewController:playbarController];
-    
-    playbarController.view.frame = self.playbarContainer.bounds;
-    [self.playbarContainer addSubview:playbarController.view];
-    [self.playbarContainer sendSubviewToBack:playbarController.view];
-    self.playbarContainer.backgroundColor = [UIColor clearColor];
+    if([segue.identifier isEqualToString:@"masterEmbed"])
+    {
+        _masterController = segue.destinationViewController;
+        TWMainViewController *episodesController = (TWMainViewController*)self.masterController.topViewController;
+        episodesController.splitViewContainer = self;
+    }
+    else if([segue.identifier isEqualToString:@"detailEmbed"])
+    {
+        _detailController = segue.destinationViewController;
+        TWMainViewController *showsController = (TWMainViewController*)self.detailController.topViewController;
+        showsController.splitViewContainer = self;
+    }
+    else if([segue.identifier isEqualToString:@"modalEmbed"])
+    {
+        _modalController = segue.destinationViewController;
+        TWEpisodeViewController *episodeController = (TWEpisodeViewController*)self.modalController.topViewController;
+        episodeController.splitViewContainer = self;
+    }
+    else if([segue.identifier isEqualToString:@"barEmbed"])
+    {
+        _playbarController = segue.destinationViewController;
+        self.playbarController.splitViewContainer = self;
+    }
 }
 
 #pragma mark - Actions
@@ -220,7 +198,6 @@
         self.playbarContainer.hidden = YES;
         self.playbarContainer.alpha = 1;
         self.modalFlyout.frame = modalFrame;
-        // TODO: move insets setting to here?
     }];
     
     TWAppDelegate *delegate = (TWAppDelegate*)UIApplication.sharedApplication.delegate;

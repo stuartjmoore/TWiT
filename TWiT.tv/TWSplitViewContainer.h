@@ -8,10 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
+@class TWPlaybarViewController;
+
 @interface TWSplitViewContainer : UIViewController
 
 @property (nonatomic, strong) UINavigationController *masterController, *detailController, *modalController;
-@property (nonatomic, strong) UIViewController *playbarController;
+@property (nonatomic, strong) TWPlaybarViewController *playbarController;
 
 @property (nonatomic, weak) IBOutlet UIView *masterContainer, *detailContainer;
 @property (nonatomic, weak) IBOutlet UIView *modalContainer, *modalBlackground, *modalFlyout;

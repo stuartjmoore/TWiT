@@ -115,26 +115,13 @@
         TWSplitViewContainer *splitViewContainer = (TWSplitViewContainer*)self.window.rootViewController;
         splitViewContainer.view = splitViewContainer.view;
         
-        UINavigationController *masterController = [splitViewContainer.storyboard instantiateViewControllerWithIdentifier:@"masterController"];
-        TWMainViewController *episodesController = (TWMainViewController*)masterController.topViewController;
+        TWMainViewController *episodesController = (TWMainViewController*)splitViewContainer.masterController.topViewController;
         episodesController.managedObjectContext = self.managedObjectContext;
         episodesController.channel = self.channel;
-        episodesController.splitViewContainer = splitViewContainer;
-        splitViewContainer.masterController = masterController;
-
-        UINavigationController *detailController = [splitViewContainer.storyboard instantiateViewControllerWithIdentifier:@"detailController"];
-        TWMainViewController *showsController = (TWMainViewController*)detailController.topViewController;
+        
+        TWMainViewController *showsController = (TWMainViewController*)splitViewContainer.detailController.topViewController;
         showsController.managedObjectContext = self.managedObjectContext;
         showsController.channel = self.channel;
-        showsController.splitViewContainer = splitViewContainer;
-        splitViewContainer.detailController = detailController;
-        
-        UINavigationController *modalController = [splitViewContainer.storyboard instantiateViewControllerWithIdentifier:@"modalController"];
-        splitViewContainer.modalController = modalController;
-        
-        TWPlaybarViewController *playbarController = (TWPlaybarViewController*)[splitViewContainer.storyboard instantiateViewControllerWithIdentifier:@"playbarController"];
-        splitViewContainer.playbarController = playbarController;
-        playbarController.splitViewContainer = splitViewContainer;
     }
     else
     {
