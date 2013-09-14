@@ -140,11 +140,13 @@
 {
     if(UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPad)
     {
-        TWSplitViewContainer *splitViewContainer = (TWSplitViewContainer*)self.window.rootViewController;
-        TWMainViewController *showsController = (TWMainViewController*)splitViewContainer.detailController.topViewController;
+        //TWSplitViewContainer *splitViewContainer = (TWSplitViewContainer*)self.window.rootViewController;
+        //TWMainViewController *showsController = (TWMainViewController*)splitViewContainer.detailController.topViewController;
         
-        if([showsController respondsToSelector:@selector(transitionToLive:)])
-            [showsController transitionToLive:nil];
+        // TODO: Use segue to load live, probably simular to below
+        
+        //if([showsController respondsToSelector:@selector(transitionToLive:)])
+        //    [showsController transitionToLive:nil];
     }
     else
     {
@@ -161,11 +163,13 @@
 {
     if(UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPad)
     {
-        TWSplitViewContainer *splitViewContainer = (TWSplitViewContainer*)self.window.rootViewController;
-        TWMainViewController *showsController = (TWMainViewController*)splitViewContainer.detailController.topViewController;
+        //TWSplitViewContainer *splitViewContainer = (TWSplitViewContainer*)self.window.rootViewController;
+        //TWMainViewController *showsController = (TWMainViewController*)splitViewContainer.detailController.topViewController;
         
-        if([showsController respondsToSelector:@selector(transitionToLive:)])
-            [showsController transitionToLive:nil];
+        // TODO: Use segue to load live
+        
+        //if([showsController respondsToSelector:@selector(transitionToLive:)])
+        //    [showsController transitionToLive:nil];
     }
     else
     {

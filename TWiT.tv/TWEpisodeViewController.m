@@ -157,19 +157,16 @@
 
 - (void)watchPressed:(TWSegmentedButton*)sender
 {
-    if(UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPhone)
-        [self performSegueWithIdentifier:@"playerDetail" sender:sender.watchButton];
-    else
-        [self transitionToPlayer:sender.watchButton];
+    [self performSegueWithIdentifier:@"playerDetail" sender:sender.watchButton];
 }
 - (void)listenPressed:(TWSegmentedButton*)sender
 {
     if(UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPhone)
+    {
         [self performSegueWithIdentifier:@"playerDetail" sender:sender.listenButton];
+    }
     else
     {
-        //[self transitionToPlayer:sender.listenButton];
-        
         Enclosure *enclosure = [self.episode enclosureForType:TWTypeAudio andQuality:TWQualityAudio];
         TWAppDelegate *delegate = (TWAppDelegate*)UIApplication.sharedApplication.delegate;
         delegate.nowPlaying = enclosure;
@@ -260,75 +257,21 @@
 
 #pragma mark - Leave
 
-- (void)prepareForTransitionToPlayer:(TWEnclosureViewController*)playerController sender:(id)sender
+- (void)prepareForSegue:(UIStoryboardSegue*)segue sender:(id)sender
 {
     if(sender == self.playButton || sender == self.segmentedButton.watchButton)
     {
         NSSet *enclosures = [self.episode downloadedEnclosures];
         Enclosure *enclosure = enclosures.anyObject ?: [self.episode enclosureForType:TWTypeVideo andQuality:TWQualityHigh];
         
-        playerController.enclosure = enclosure;
+        [segue.destinationViewController setEnclosure:enclosure];
     }
     else if(sender == self.segmentedButton.listenButton)
     {
         Enclosure *enclosure = [self.episode enclosureForType:TWTypeAudio andQuality:TWQualityAudio];
         
-        playerController.enclosure = enclosure;
+        [segue.destinationViewController setEnclosure:enclosure];
     }
-}
-
-- (void)prepareForSegue:(UIStoryboardSegue*)segue sender:(id)sender
-{
-    [self prepareForTransitionToPlayer:segue.destinationViewController sender:sender];
-}
-
-- (IBAction)transitionToPlayer:(UIButton*)sender
-{
-    TWEnclosureViewController *playerController = [self.storyboard instantiateViewControllerWithIdentifier:@"playerController"];
-    playerController.splitViewContainer = self.splitViewContainer;
-    [self prepareForTransitionToPlayer:playerController sender:sender];
-    
-    playerController.view.frame = self.splitViewContainer.view.bounds;
-    playerController.view.autoresizingMask = 63;
-    [self.splitViewContainer.view addSubview:playerController.view];
-    [self.splitViewContainer.view sendSubviewToBack:playerController.view];
-    [self.splitViewContainer addChildViewController:playerController];
-    [self setNeedsStatusBarAppearanceUpdate];
-    
-    CGRect masterFrameOriginal = self.splitViewContainer.masterContainer.frame;
-    CGRect masterFrameAnimate = masterFrameOriginal;
-    masterFrameAnimate.origin.x -= masterFrameAnimate.size.width;
-    
-    CGRect detailFrameOriginal = self.splitViewContainer.detailContainer.frame;
-    CGRect detailFrameAnimate = detailFrameOriginal;
-    detailFrameAnimate.origin.x += detailFrameAnimate.size.width;
-    
-    CGRect modalFrameOriginal = self.splitViewContainer.detailContainer.frame;
-    CGRect modalFrameAnimate = modalFrameOriginal;
-    if(self.splitViewContainer.modalFlyout.frame.origin.x == 0)
-        modalFrameAnimate.origin.x += modalFrameAnimate.size.width;
-    
-    [UIView animateWithDuration:0.3f animations:^{
-        self.splitViewContainer.masterContainer.frame = masterFrameAnimate;
-        self.splitViewContainer.detailContainer.frame = detailFrameAnimate;
-        
-        if(self.splitViewContainer.modalFlyout.frame.origin.x == 0)
-            self.splitViewContainer.modalContainer.frame = modalFrameAnimate;
-    } completion:^(BOOL fin){
-        [self.splitViewContainer.view bringSubviewToFront:playerController.view];
-        
-        self.splitViewContainer.masterContainer.hidden = YES;
-        self.splitViewContainer.detailContainer.hidden = YES;
-        
-        if(self.splitViewContainer.modalFlyout.frame.origin.x == 0)
-            self.splitViewContainer.modalContainer.hidden = YES;
-        
-        self.splitViewContainer.masterContainer.frame = masterFrameOriginal;
-        self.splitViewContainer.detailContainer.frame = detailFrameOriginal;
-        
-        if(self.splitViewContainer.modalFlyout.frame.origin.x == 0)
-            self.splitViewContainer.modalContainer.frame = modalFrameOriginal;
-    }];
 }
 
 #pragma mark - Settings

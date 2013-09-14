@@ -33,6 +33,4 @@
 - (void)cancelPressed:(TWSegmentedButton*)sender;
 - (void)deletePressed:(TWSegmentedButton*)sender;
 
-- (IBAction)transitionToPlayer:(UIButton*)sender;
-
 @end

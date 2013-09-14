@@ -53,6 +53,4 @@ typedef NS_ENUM(NSInteger, TWSection)
 
 - (void)swipeEpisode:(UIPanGestureRecognizer*)recognizer;
 
-- (IBAction)transitionToLive:(UIButton*)sender;
-
 @end

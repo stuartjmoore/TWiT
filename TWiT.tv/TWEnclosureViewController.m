@@ -471,41 +471,10 @@
 
 - (IBAction)close:(UIBarButtonItem*)sender
 {
-    CGRect masterFrameOriginal = self.splitViewContainer.masterContainer.frame;
-    CGRect masterFrameAnimate = masterFrameOriginal;
-    masterFrameAnimate.origin.x -= masterFrameAnimate.size.width;
-    self.splitViewContainer.masterContainer.frame = masterFrameAnimate;
-    
-    CGRect detailFrameOriginal = self.splitViewContainer.detailContainer.frame;
-    CGRect detailFrameAnimate = detailFrameOriginal;
-    detailFrameAnimate.origin.x += detailFrameAnimate.size.width;
-    self.splitViewContainer.detailContainer.frame = detailFrameAnimate;
-    
-    CGRect modalFrameOriginal = self.splitViewContainer.modalContainer.frame;
-    CGRect modalFrameAnimate = modalFrameOriginal;
-    modalFrameAnimate.origin.x += modalFrameAnimate.size.width;
-    if(self.splitViewContainer.modalFlyout.frame.origin.x == 0)
-        self.splitViewContainer.modalContainer.frame = modalFrameAnimate;
-    
-    [self.splitViewContainer.view sendSubviewToBack:self.view];
-    
-    self.splitViewContainer.masterContainer.hidden = NO;
-    self.splitViewContainer.detailContainer.hidden = NO;
-    
-    if(self.splitViewContainer.modalFlyout.frame.origin.x == 0)
-        self.splitViewContainer.modalContainer.hidden = NO;
-    
-    [UIView animateWithDuration:0.3f animations:^{
-        self.splitViewContainer.masterContainer.frame = masterFrameOriginal;
-        self.splitViewContainer.detailContainer.frame = detailFrameOriginal;
-        
-        if(self.splitViewContainer.modalFlyout.frame.origin.x == 0)
-            self.splitViewContainer.modalContainer.frame = modalFrameOriginal;
-    } completion:^(BOOL fin){
-        [self.view removeFromSuperview];
-        [self removeFromParentViewController];
-        [(TWEpisodeViewController*)self.splitViewContainer.modalController.topViewController configureView];
-        [self.splitViewContainer setNeedsStatusBarAppearanceUpdate];
+    [self dismissViewControllerAnimated:YES completion:^{
+        if(self.delegate.player.playbackState == MPMoviePlaybackStatePlaying)
+            [self.splitViewContainer showPlaybar];
+            // TODO: make work
     }];
 }
 
@@ -539,8 +508,6 @@
     
     if(self.delegate.player.playbackState == MPMoviePlaybackStatePlaying)
     {
-        [self.splitViewContainer showPlaybar];
-        
         TWNavigationController *navigationController = (TWNavigationController*)self.navigationController;
         [navigationController.navigationContainer showPlaybar];
     }
