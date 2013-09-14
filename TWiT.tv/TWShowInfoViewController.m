@@ -20,11 +20,6 @@
     self.scheduleLabel.text = self.show.scheduleString;
     self.descLabel.text = self.show.desc;
     
-    UIImage *buttonImage = [self.emailButton backgroundImageForState:UIControlStateNormal];
-    buttonImage = [buttonImage resizableImageWithCapInsets:UIEdgeInsetsMake(18, 5, 18, 5)];
-    [self.emailButton setBackgroundImage:buttonImage forState:UIControlStateNormal];
-    [self.websiteButton setBackgroundImage:buttonImage forState:UIControlStateNormal];
-    
     self.emailButton.hidden = !self.show.email;
     self.websiteButton.hidden = !self.show.website;
 }

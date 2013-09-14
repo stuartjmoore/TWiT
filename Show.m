@@ -332,11 +332,10 @@
              {
                  NSString *text = [[[epiDic objectForKey:@"title"] objectForKey:@"text"] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
                  
-                 if([text hasPrefix:@"Leo Laporte - The Tech Guy "])
+                 if([feed.show.title isEqualToString:@"The Tech Guy"])
                  {
                      NSError *error;
-                   // TODO: Add ":" after "Guy"?
-                     NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"Leo Laporte - The Tech Guy (\\d+)" options:NSRegularExpressionCaseInsensitive error:&error];
+                     NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"Leo Laporte - The Tech Guy: (\\d+)" options:NSRegularExpressionCaseInsensitive error:&error];
                      
                      if(!error)
                      {
