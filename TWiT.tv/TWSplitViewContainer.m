@@ -143,6 +143,7 @@
     insets.bottom = height;
     showsTableViewController.tableView.scrollIndicatorInsets = insets;
     
+    
     CGRect modalFrame = self.modalFlyout.frame;
     modalFrame.size.height = self.modalContainer.bounds.size.height-height;
     self.modalFlyout.frame = modalFrame;
@@ -187,6 +188,7 @@
     insets = showsTableViewController.tableView.scrollIndicatorInsets;
     insets.bottom = height;
     showsTableViewController.tableView.scrollIndicatorInsets = insets;
+    
     
     CGRect modalFrame = self.modalFlyout.frame;
     modalFrame.size.height = self.modalContainer.bounds.size.height;

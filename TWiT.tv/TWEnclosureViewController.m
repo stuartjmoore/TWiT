@@ -471,10 +471,12 @@
 
 - (IBAction)close:(UIBarButtonItem*)sender
 {
+    if([self.presentingViewController isKindOfClass:TWSplitViewContainer.class])
+        self.splitViewContainer = (TWSplitViewContainer*)self.presentingViewController;
+    
     [self dismissViewControllerAnimated:YES completion:^{
         if(self.delegate.player.playbackState == MPMoviePlaybackStatePlaying)
             [self.splitViewContainer showPlaybar];
-            // TODO: make work
     }];
 }
 

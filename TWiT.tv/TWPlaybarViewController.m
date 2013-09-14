@@ -129,8 +129,10 @@
     }
     else if(UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPad)
     {
+        [self.splitViewContainer hidePlaybar];
+        
         [playerController setModalTransitionStyle:UIModalTransitionStyleFlipHorizontal];
-        [self presentViewController:playerController animated:YES completion:nil];
+        [self.splitViewContainer presentViewController:playerController animated:YES completion:nil];
     }
 }
 
