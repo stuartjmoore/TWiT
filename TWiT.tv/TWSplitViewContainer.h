@@ -16,7 +16,8 @@
 @property (nonatomic, strong) TWPlaybarViewController *playbarController;
 
 @property (nonatomic, weak) IBOutlet UIView *masterContainer, *detailContainer;
-@property (nonatomic, weak) IBOutlet UIView *modalContainer, *modalBlackground, *modalFlyout;
+@property (nonatomic, weak) IBOutlet UIView *modalContainer, *modalFlyout;
+@property (nonatomic, weak) IBOutlet UIToolbar *modalBlackground;
 @property (nonatomic, weak) IBOutlet UIView *playbarContainer;
 
 - (IBAction)didTapModalBackground:(UITapGestureRecognizer*)recognizer;

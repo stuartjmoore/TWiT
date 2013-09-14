@@ -38,6 +38,7 @@
         _modalController = segue.destinationViewController;
         TWEpisodeViewController *episodeController = (TWEpisodeViewController*)self.modalController.topViewController;
         episodeController.splitViewContainer = self;
+        self.modalBlackground.barStyle = UIBarStyleBlack;
     }
     else if([segue.identifier isEqualToString:@"barEmbed"])
     {
@@ -75,10 +76,8 @@
         CGRect frame = self.modalFlyout.frame;
         float x = [recognizer translationInView:self.modalFlyout].x;
         
-        if(x <= 0)
-            frame.origin.x = [recognizer translationInView:self.modalFlyout].x;
-        else
-            frame.origin.x = 0;
+        frame.origin.x = MIN(0, x);
+        self.modalBlackground.alpha = MAX(0, x / self.modalFlyout.frame.size.width + 1);
         
         self.modalFlyout.frame = frame;
     }
