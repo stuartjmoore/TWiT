@@ -756,7 +756,7 @@
         <scene sceneID="HhS-bP-Tb3">
             <objects>
                 <viewController storyboardIdentifier="playbarController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="mTC-ZA-0gL" customClass="TWPlaybarViewController" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="oGg-MR-L4z">
+                    <view key="view" contentMode="scaleToFill" id="oGg-MR-L4z" customClass="UIToolbar">
                         <rect key="frame" x="0.0" y="0.0" width="972" height="44"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -803,6 +803,7 @@
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
+                                <size key="shadowOffset" width="0.0" height="0.0"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Episode Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Ro7-er-WRE">
                                 <rect key="frame" x="96" y="21" width="824" height="21"/>
@@ -810,6 +811,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
+                                <size key="shadowOffset" width="0.0" height="0.0"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="sOm-Fv-jjS" userLabel="Stop Button">
                                 <rect key="frame" x="928" y="0.0" width="44" height="44"/>
@@ -828,7 +830,7 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" white="0.0" alpha="0.75" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <accessibility key="accessibilityConfiguration">
                             <bool key="isElement" value="YES"/>
                         </accessibility>
@@ -1608,7 +1610,7 @@
                             <containerView contentMode="scaleToFill" id="Rzf-Td-CbL" userLabel="Detail Container">
                                 <rect key="frame" x="320" y="0.0" width="704" height="768"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <segue destination="unV-Eq-l85" kind="embed" identifier="detailEmbed" id="Y5S-xl-KWs"/>
                                 </connections>
@@ -1628,7 +1630,7 @@
                                     <containerView contentMode="scaleToFill" id="Rjz-Aq-K6j" userLabel="Flyout View">
                                         <rect key="frame" x="-448" y="0.0" width="448" height="768"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" heightSizable="YES"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <connections>
                                             <outletCollection property="gestureRecognizers" destination="i4f-gT-t2j" appends="YES" id="FK0-8M-hqQ"/>
                                             <segue destination="uck-cN-szW" kind="embed" identifier="modalEmbed" id="gbI-Mt-RcM"/>
@@ -1640,7 +1642,7 @@
                             <containerView clipsSubviews="YES" contentMode="scaleToFill" id="m5a-So-Trc" userLabel="Master Container">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="768"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" heightSizable="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <segue destination="Kqv-Up-FkP" kind="embed" identifier="masterEmbed" id="MeF-lG-oSD"/>
                                 </connections>
@@ -1648,7 +1650,7 @@
                             <containerView hidden="YES" contentMode="scaleToFill" id="GNP-j8-QeA" userLabel="Playbar Container">
                                 <rect key="frame" x="4" y="720" width="1016" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <segue destination="mTC-ZA-0gL" kind="embed" identifier="barEmbed" id="YDh-48-CUR"/>
                                 </connections>
