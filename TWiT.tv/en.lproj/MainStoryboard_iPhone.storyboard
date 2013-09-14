@@ -1047,9 +1047,7 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="xop-pu-rMR" secondAttribute="trailing" id="3ve-hS-zzw"/>
-                                    <constraint firstItem="xop-pu-rMR" firstAttribute="width" secondItem="pKp-YU-GKo" secondAttribute="width" id="F0G-w6-n1u"/>
                                     <constraint firstAttribute="bottom" secondItem="xop-pu-rMR" secondAttribute="bottom" id="Ygc-WA-Snt"/>
-                                    <constraint firstItem="xop-pu-rMR" firstAttribute="height" secondItem="pKp-YU-GKo" secondAttribute="height" id="fY6-6V-9k3"/>
                                     <constraint firstItem="xop-pu-rMR" firstAttribute="top" secondItem="pKp-YU-GKo" secondAttribute="top" id="jdH-3O-4o4"/>
                                     <constraint firstItem="xop-pu-rMR" firstAttribute="leading" secondItem="pKp-YU-GKo" secondAttribute="leading" id="zA1-Xe-7Fp"/>
                                 </constraints>
