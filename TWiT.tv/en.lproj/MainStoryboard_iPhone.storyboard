@@ -1261,13 +1261,12 @@
                             <constraint firstItem="C6H-ll-aCQ" firstAttribute="leading" secondItem="kx4-iO-KN0" secondAttribute="leading" id="LgQ-86-0sJ"/>
                             <constraint firstAttribute="trailing" secondItem="pKp-YU-GKo" secondAttribute="trailing" id="Q9f-by-1Te"/>
                             <constraint firstAttribute="trailing" secondItem="C6H-ll-aCQ" secondAttribute="trailing" id="RWo-Qb-riF"/>
-                            <constraint firstAttribute="centerY" secondItem="pKp-YU-GKo" secondAttribute="centerY" id="TRl-0n-HDp"/>
-                            <constraint firstAttribute="centerX" secondItem="pKp-YU-GKo" secondAttribute="centerX" id="ZtK-7y-qet"/>
+                            <constraint firstItem="pKp-YU-GKo" firstAttribute="top" secondItem="kx4-iO-KN0" secondAttribute="top" id="Rl4-QG-8AQ"/>
                             <constraint firstAttribute="centerX" secondItem="N1A-nM-fY5" secondAttribute="centerX" id="cy1-zu-iRX"/>
                             <constraint firstAttribute="centerY" secondItem="hyq-ZM-UU4" secondAttribute="centerY" constant="-0.5" id="f3U-fn-36y"/>
                             <constraint firstItem="pKp-YU-GKo" firstAttribute="leading" secondItem="kx4-iO-KN0" secondAttribute="leading" id="gMK-zf-vAr"/>
                             <constraint firstItem="g2w-gj-2O9" firstAttribute="top" secondItem="C6H-ll-aCQ" secondAttribute="bottom" id="ncN-fs-wPT"/>
-                            <constraint firstItem="g2w-gj-2O9" firstAttribute="top" secondItem="pKp-YU-GKo" secondAttribute="bottom" id="wVd-Ec-Q4Y"/>
+                            <constraint firstItem="g2w-gj-2O9" firstAttribute="top" secondItem="pKp-YU-GKo" secondAttribute="bottom" id="xXA-Hh-aWJ"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="HR3-2E-48f">

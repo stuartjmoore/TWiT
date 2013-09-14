@@ -40,6 +40,8 @@
     
     if(UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPhone)
     {
+        self.headerView.translatesAutoresizingMaskIntoConstraints = YES;
+        
         liveGradient.colors = [NSArray arrayWithObjects:
                                (id)[UIColor colorWithWhite:0 alpha:1].CGColor,
                                (id)[UIColor colorWithWhite:0 alpha:0.6f].CGColor,
@@ -54,8 +56,6 @@
     }
     
     [self.gradientView.layer addSublayer:liveGradient];
-    
-    self.headerView.translatesAutoresizingMaskIntoConstraints = YES;
     
     self.navigationItem.backBarButtonItem = [UIBarButtonItem.alloc initWithTitle:self.show.titleAcronym
                                                                            style:UIBarButtonItemStyleBordered
@@ -275,6 +275,8 @@
         }
         
         self.headerView.frame = frame;
+        [self.headerView layoutIfNeeded];
+        
         self.tableView.scrollIndicatorInsets = UIEdgeInsetsMake(frame.size.height + NAVBAR_INSET, 0, 0, 1);
     }
 }

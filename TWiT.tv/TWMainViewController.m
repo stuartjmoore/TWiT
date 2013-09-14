@@ -470,7 +470,7 @@
         
         if(scrollView.contentOffset.y < -NAVBAR_INSET)
         {
-            frame.origin.y = scrollView.contentOffset.y+NAVBAR_INSET;
+            frame.origin.y = scrollView.contentOffset.y + NAVBAR_INSET;
             frame.size.height = ceilf(headerHeight - scrollView.contentOffset.y - NAVBAR_INSET);
         }
         else
