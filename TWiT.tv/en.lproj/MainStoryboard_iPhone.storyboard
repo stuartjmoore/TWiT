@@ -1052,7 +1052,7 @@
                                     <constraint firstItem="xop-pu-rMR" firstAttribute="leading" secondItem="pKp-YU-GKo" secondAttribute="leading" id="zA1-Xe-7Fp"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="N1A-nM-fY5" userLabel="Toaster">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="N1A-nM-fY5" userLabel="Toaster" customClass="UIToolbar">
                                 <rect key="frame" x="121" y="202" width="77" height="77"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <subviews>
@@ -1061,13 +1061,13 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                     </activityIndicatorView>
                                 </subviews>
-                                <color key="backgroundColor" white="0.0" alpha="0.75" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="77" id="2Sh-I0-Tcc"/>
                                     <constraint firstAttribute="height" constant="77" id="XRg-Uu-g6a"/>
                                 </constraints>
                             </view>
-                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hyq-ZM-UU4" userLabel="Timecode">
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hyq-ZM-UU4" userLabel="Timecode" customClass="UIToolbar">
                                 <rect key="frame" x="59" y="202" width="204" height="77"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <subviews>
@@ -1079,7 +1079,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" white="0.0" alpha="0.75" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="77" id="9Oe-dG-sp5"/>
                                     <constraint firstAttribute="width" constant="204" id="dqu-XR-TXJ"/>
@@ -1256,12 +1256,12 @@
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="pKp-YU-GKo" firstAttribute="top" secondItem="kx4-iO-KN0" secondAttribute="top" id="BsA-R8-6PZ"/>
                             <constraint firstAttribute="centerX" secondItem="hyq-ZM-UU4" secondAttribute="centerX" constant="-1" id="ESy-Az-Chh"/>
                             <constraint firstAttribute="centerY" secondItem="N1A-nM-fY5" secondAttribute="centerY" id="Je6-G3-buU"/>
                             <constraint firstItem="C6H-ll-aCQ" firstAttribute="leading" secondItem="kx4-iO-KN0" secondAttribute="leading" id="LgQ-86-0sJ"/>
                             <constraint firstAttribute="trailing" secondItem="pKp-YU-GKo" secondAttribute="trailing" id="Q9f-by-1Te"/>
                             <constraint firstAttribute="trailing" secondItem="C6H-ll-aCQ" secondAttribute="trailing" id="RWo-Qb-riF"/>
-                            <constraint firstItem="pKp-YU-GKo" firstAttribute="top" secondItem="kx4-iO-KN0" secondAttribute="top" id="Rl4-QG-8AQ"/>
                             <constraint firstAttribute="centerX" secondItem="N1A-nM-fY5" secondAttribute="centerX" id="cy1-zu-iRX"/>
                             <constraint firstAttribute="centerY" secondItem="hyq-ZM-UU4" secondAttribute="centerY" constant="-0.5" id="f3U-fn-36y"/>
                             <constraint firstItem="pKp-YU-GKo" firstAttribute="leading" secondItem="kx4-iO-KN0" secondAttribute="leading" id="gMK-zf-vAr"/>
@@ -1661,7 +1661,7 @@
                         <viewControllerLayoutGuide type="top" id="ZjR-RD-Icv"/>
                         <viewControllerLayoutGuide type="bottom" id="WIO-XG-mfK"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="OSG-qg-zZw">
+                    <view key="view" contentMode="scaleToFill" id="OSG-qg-zZw" customClass="UIToolbar">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -1733,7 +1733,7 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <accessibility key="accessibilityConfiguration">
                             <bool key="isElement" value="YES"/>
                         </accessibility>

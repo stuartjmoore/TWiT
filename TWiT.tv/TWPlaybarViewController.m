@@ -27,8 +27,6 @@
 
 - (void)viewDidLoad
 {
-    self.view.layer.cornerRadius = 4;
-    
     if([self.view isKindOfClass:UIToolbar.class])
     {
         UIToolbar *blurgroundView = (UIToolbar*)self.view;

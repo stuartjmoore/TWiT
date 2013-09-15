@@ -69,8 +69,6 @@
     self.titleLabel.text = self.enclosure.episode.show.title;
     self.subtitleLabel.text = self.enclosure.episode.title;
     
-    self.toasterView.layer.cornerRadius = 6;
-    
     self.delegate = (TWAppDelegate*)UIApplication.sharedApplication.delegate;
     
     if(!self.delegate.nowPlaying || ![self.delegate.nowPlaying isKindOfClass:Enclosure.class]

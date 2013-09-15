@@ -59,8 +59,6 @@
     self.titleLabel.font = [UIFont fontWithName:@"Vollkorn-BoldItalic" size:self.titleLabel.font.pointSize];
     [self updateTitle];
     
-    self.toasterView.layer.cornerRadius = 6;
-    
     self.delegate = (TWAppDelegate*)UIApplication.sharedApplication.delegate;
     
     if(!self.delegate.nowPlaying || ![self.delegate.nowPlaying isKindOfClass:Stream.class]
