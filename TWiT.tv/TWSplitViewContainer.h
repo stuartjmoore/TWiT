@@ -20,6 +20,8 @@
 @property (nonatomic, weak) IBOutlet UIToolbar *modalBlackground;
 @property (nonatomic, weak) IBOutlet UIView *playbarContainer;
 
+@property (nonatomic, weak) IBOutlet NSLayoutConstraint *modalLeftContraint;
+
 - (IBAction)didTapModalBackground:(UITapGestureRecognizer*)recognizer;
 - (IBAction)didPanModalFlyout:(UIPanGestureRecognizer*)recognizer;
 

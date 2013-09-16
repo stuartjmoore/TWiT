@@ -150,16 +150,15 @@
 {
     if(!self.modalContainer.hidden)
         return;
-        
+    
     self.modalBlackground.alpha = 0;
     self.modalContainer.hidden = NO;
     
-    CGRect frame = self.modalFlyout.frame;
-    frame.origin.x = 0;
+    self.modalLeftContraint.constant = 0;
     
     [UIView animateWithDuration:0.3f animations:^{
         self.modalBlackground.alpha = 1;
-        self.modalFlyout.frame = frame;
+        [self.modalContainer layoutIfNeeded];
     }];
 }
 
@@ -168,11 +167,10 @@
     if(self.modalContainer.hidden)
         return;
     
-    CGRect frame = self.modalFlyout.frame;
-    frame.origin.x = -frame.size.width;
+    self.modalLeftContraint.constant = -448;
     
     [UIView animateWithDuration:0.3f animations:^{
-        self.modalFlyout.frame = frame;
+        [self.modalContainer layoutIfNeeded];
         self.modalBlackground.alpha = 0;
     } completion:^(BOOL fin){
         self.modalContainer.hidden = YES;
@@ -197,13 +195,12 @@
     }
     else if(recognizer.state == UIGestureRecognizerStateChanged)
     {
-        CGRect frame = self.modalFlyout.frame;
-        float x = [recognizer translationInView:self.modalFlyout].x;
+        CGFloat x = [recognizer translationInView:self.modalFlyout].x;
         
-        frame.origin.x = MIN(0, x);
+        self.modalLeftContraint.constant = MIN(0, MAX(x, -448));
+        [self.modalContainer layoutIfNeeded];
+        
         self.modalBlackground.alpha = MAX(0, x / self.modalFlyout.frame.size.width + 1);
-        
-        self.modalFlyout.frame = frame;
     }
     else if(recognizer.state == UIGestureRecognizerStateEnded)
     {
@@ -220,10 +217,11 @@
         }
         else
         {
-            CGRect frame = self.modalFlyout.frame;
-            frame.origin.x = 0;
-            [UIView animateWithDuration:0.5f animations:^{
-                self.modalFlyout.frame = frame;
+            self.modalLeftContraint.constant = 0;
+            
+            [UIView animateWithDuration:0.3f animations:^{
+                self.modalBlackground.alpha = 1;
+                [self.modalContainer layoutIfNeeded];
             }];
         }
     }

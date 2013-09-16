@@ -2102,6 +2102,7 @@
                         <outlet property="modalBlackground" destination="GNb-iH-O53" id="yBk-dE-Q70"/>
                         <outlet property="modalContainer" destination="dDZ-yF-lG4" id="fde-2l-lqb"/>
                         <outlet property="modalFlyout" destination="Rjz-Aq-K6j" id="xO7-GR-vuq"/>
+                        <outlet property="modalLeftContraint" destination="gxu-bP-GDb" id="amd-7i-1pq"/>
                         <outlet property="playbarContainer" destination="GNP-j8-QeA" id="ytA-2V-myn"/>
                     </connections>
                 </viewController>
