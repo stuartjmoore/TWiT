@@ -676,7 +676,7 @@
                                     <outlet property="delegate" destination="tGz-71-90E" id="PhS-wk-g8S"/>
                                 </connections>
                             </navigationBar>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PpB-c5-kDB" userLabel="Toaster">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PpB-c5-kDB" userLabel="Toaster" customClass="UIToolbar">
                                 <rect key="frame" x="473" y="346" width="77" height="77"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <subviews>
@@ -910,8 +910,8 @@
                             <constraint firstItem="x7i-LG-Jo0" firstAttribute="leading" secondItem="D0Y-HG-P0f" secondAttribute="leading" id="Drz-FQ-VHM"/>
                             <constraint firstAttribute="trailing" secondItem="x7i-LG-Jo0" secondAttribute="trailing" id="Em9-XW-FWy"/>
                             <constraint firstAttribute="trailing" secondItem="GWQ-lC-oVj" secondAttribute="trailing" id="GRy-85-psn"/>
-                            <constraint firstAttribute="centerX" secondItem="PpB-c5-kDB" secondAttribute="centerX" constant="0.5" id="Gjp-XN-w8q"/>
-                            <constraint firstAttribute="centerY" secondItem="PpB-c5-kDB" secondAttribute="centerY" constant="-0.5" id="STf-1Z-Yo9"/>
+                            <constraint firstAttribute="centerX" secondItem="PpB-c5-kDB" secondAttribute="centerX" id="Gjp-XN-w8q"/>
+                            <constraint firstAttribute="centerY" secondItem="PpB-c5-kDB" secondAttribute="centerY" id="STf-1Z-Yo9"/>
                             <constraint firstItem="q1S-sS-dwk" firstAttribute="top" secondItem="x7i-LG-Jo0" secondAttribute="bottom" constant="43" id="V0d-vL-Xvd"/>
                             <constraint firstItem="q1S-sS-dwk" firstAttribute="top" secondItem="1Uf-aR-07j" secondAttribute="bottom" id="a68-J0-9xl"/>
                             <constraint firstItem="q1S-sS-dwk" firstAttribute="top" secondItem="946-gR-GAZ" secondAttribute="bottom" id="eEi-UZ-Mmk"/>
@@ -1186,7 +1186,7 @@
                                     <outlet property="delegate" destination="Dal-NS-I4L" id="26t-5w-oOl"/>
                                 </connections>
                             </navigationBar>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zem-4G-HpK" userLabel="Toaster">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zem-4G-HpK" userLabel="Toaster" customClass="UIToolbar">
                                 <rect key="frame" x="473" y="346" width="77" height="77"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <subviews>
@@ -1201,7 +1201,7 @@
                                     <constraint firstAttribute="width" constant="77" id="fjh-F3-fHL"/>
                                 </constraints>
                             </view>
-                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vM2-hJ-FAW" userLabel="Timecode">
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vM2-hJ-FAW" userLabel="Timecode" customClass="UIToolbar">
                                 <rect key="frame" x="410" y="346" width="204" height="77"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <subviews>
@@ -1390,7 +1390,7 @@
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="centerY" secondItem="zem-4G-HpK" secondAttribute="centerY" constant="-0.5" id="5O8-Lm-SxB"/>
+                            <constraint firstAttribute="centerY" secondItem="zem-4G-HpK" secondAttribute="centerY" id="5O8-Lm-SxB"/>
                             <constraint firstAttribute="trailing" secondItem="mr0-Di-f7I" secondAttribute="trailing" id="6z0-BN-bOg"/>
                             <constraint firstItem="yek-Cs-cXI" firstAttribute="top" secondItem="bBb-db-Eo2" secondAttribute="bottom" constant="88" id="BTU-zD-jHD"/>
                             <constraint firstAttribute="trailing" secondItem="bBb-db-Eo2" secondAttribute="trailing" id="Bzz-s1-dvp"/>
@@ -1400,8 +1400,8 @@
                             <constraint firstItem="bBb-db-Eo2" firstAttribute="top" secondItem="rzy-ca-4BZ" secondAttribute="bottom" constant="44" id="VxZ-rR-77a"/>
                             <constraint firstItem="yek-Cs-cXI" firstAttribute="top" secondItem="Epv-9G-FA8" secondAttribute="bottom" id="ZQU-Bq-KCH"/>
                             <constraint firstItem="bBb-db-Eo2" firstAttribute="leading" secondItem="266-dj-C27" secondAttribute="leading" id="bex-2g-VIt"/>
-                            <constraint firstAttribute="centerX" secondItem="zem-4G-HpK" secondAttribute="centerX" constant="0.5" id="e3K-by-oJA"/>
-                            <constraint firstAttribute="centerY" secondItem="vM2-hJ-FAW" secondAttribute="centerY" constant="-0.5" id="guA-xS-tzp"/>
+                            <constraint firstAttribute="centerX" secondItem="zem-4G-HpK" secondAttribute="centerX" id="e3K-by-oJA"/>
+                            <constraint firstAttribute="centerY" secondItem="vM2-hJ-FAW" secondAttribute="centerY" id="guA-xS-tzp"/>
                             <constraint firstItem="mr0-Di-f7I" firstAttribute="leading" secondItem="266-dj-C27" secondAttribute="leading" id="h5o-fn-gVy"/>
                             <constraint firstItem="mr0-Di-f7I" firstAttribute="top" secondItem="rzy-ca-4BZ" secondAttribute="bottom" id="kWP-vo-v87"/>
                         </constraints>
