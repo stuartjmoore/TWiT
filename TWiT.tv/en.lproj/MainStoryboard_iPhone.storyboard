@@ -1068,7 +1068,7 @@
                                 </constraints>
                             </view>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hyq-ZM-UU4" userLabel="Timecode" customClass="UIToolbar">
-                                <rect key="frame" x="59" y="202" width="204" height="77"/>
+                                <rect key="frame" x="58" y="202" width="204" height="77"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="-:--:--" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D0u-o3-o0i">
@@ -1090,7 +1090,7 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <subviews>
                                     <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="2Ox-hJ-Dfa">
-                                        <rect key="frame" x="9" y="-4" width="304" height="34"/>
+                                        <rect key="frame" x="8" y="-4" width="304" height="34"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                         <accessibility key="accessibilityConfiguration" hint="Seeks the episode back and forth." label="Seek bar"/>
                                         <connections>
@@ -1100,7 +1100,7 @@
                                         </connections>
                                     </slider>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="-:--:--" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KZk-Py-pqO">
-                                        <rect key="frame" x="11" y="22" width="31" height="16"/>
+                                        <rect key="frame" x="10" y="22" width="31" height="16"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="16" id="vZi-4T-Smh"/>
@@ -1121,7 +1121,7 @@
                                         <size key="shadowOffset" width="0.0" height="1"/>
                                     </label>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="-:--:--" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tCj-YC-Tn8">
-                                        <rect key="frame" x="278" y="22" width="31" height="16"/>
+                                        <rect key="frame" x="279" y="22" width="31" height="16"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="16" id="zav-m9-zaS"/>
@@ -1229,7 +1229,7 @@
                                     <constraint firstAttribute="bottom" secondItem="HeG-jk-7oC" secondAttribute="bottom" constant="5" id="4nP-2U-5AH"/>
                                     <constraint firstItem="LPg-tw-JCI" firstAttribute="leading" secondItem="C6H-ll-aCQ" secondAttribute="leading" constant="5" id="4nh-rc-jLz"/>
                                     <constraint firstItem="LPg-tw-JCI" firstAttribute="width" secondItem="2tA-WO-fRc" secondAttribute="width" id="8Yj-LP-fO3"/>
-                                    <constraint firstItem="KZk-Py-pqO" firstAttribute="leading" secondItem="C6H-ll-aCQ" secondAttribute="leading" constant="11" id="Cqs-YI-yfQ"/>
+                                    <constraint firstItem="KZk-Py-pqO" firstAttribute="leading" secondItem="C6H-ll-aCQ" secondAttribute="leading" constant="10" id="Cqs-YI-yfQ"/>
                                     <constraint firstAttribute="bottom" secondItem="2tA-WO-fRc" secondAttribute="bottom" constant="5" id="O8q-6l-euv"/>
                                     <constraint firstItem="NyF-GD-hKP" firstAttribute="width" secondItem="LPg-tw-JCI" secondAttribute="width" id="Olm-6D-Jbb"/>
                                     <constraint firstAttribute="trailing" secondItem="HeG-jk-7oC" secondAttribute="trailing" constant="20" id="QWo-wQ-2cI"/>
@@ -1239,11 +1239,11 @@
                                     <constraint firstAttribute="bottom" secondItem="LPg-tw-JCI" secondAttribute="bottom" constant="5" id="YEf-xe-J8C"/>
                                     <constraint firstItem="KZk-Py-pqO" firstAttribute="top" secondItem="C6H-ll-aCQ" secondAttribute="top" constant="22" id="YFe-hT-3by"/>
                                     <constraint firstItem="tCj-YC-Tn8" firstAttribute="top" secondItem="C6H-ll-aCQ" secondAttribute="top" constant="22" id="aue-nn-F6l"/>
-                                    <constraint firstAttribute="trailing" secondItem="2Ox-hJ-Dfa" secondAttribute="trailing" constant="9" id="dAv-g3-DRP"/>
+                                    <constraint firstAttribute="trailing" secondItem="2Ox-hJ-Dfa" secondAttribute="trailing" constant="10" id="dAv-g3-DRP"/>
                                     <constraint firstItem="9Sz-QQ-muz" firstAttribute="leading" secondItem="NyF-GD-hKP" secondAttribute="trailing" constant="9" id="faS-9y-EF2"/>
                                     <constraint firstItem="XIg-yO-9vc" firstAttribute="top" secondItem="C6H-ll-aCQ" secondAttribute="top" constant="22" id="fdj-wo-aNo"/>
-                                    <constraint firstAttribute="trailing" secondItem="tCj-YC-Tn8" secondAttribute="trailing" constant="11" id="fvs-0W-4bA"/>
-                                    <constraint firstItem="2Ox-hJ-Dfa" firstAttribute="leading" secondItem="C6H-ll-aCQ" secondAttribute="leading" constant="11" id="kui-Li-wob"/>
+                                    <constraint firstAttribute="trailing" secondItem="tCj-YC-Tn8" secondAttribute="trailing" constant="10" id="fvs-0W-4bA"/>
+                                    <constraint firstItem="2Ox-hJ-Dfa" firstAttribute="leading" secondItem="C6H-ll-aCQ" secondAttribute="leading" constant="10" id="kui-Li-wob"/>
                                     <constraint firstItem="NyF-GD-hKP" firstAttribute="leading" secondItem="LPg-tw-JCI" secondAttribute="trailing" constant="8" id="ngC-xf-u09"/>
                                     <constraint firstAttribute="height" constant="88" id="sOD-gn-Npi"/>
                                     <constraint firstItem="2tA-WO-fRc" firstAttribute="leading" secondItem="9Sz-QQ-muz" secondAttribute="trailing" constant="9" id="sWW-1g-P7s"/>
@@ -1257,13 +1257,13 @@
                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="pKp-YU-GKo" firstAttribute="top" secondItem="kx4-iO-KN0" secondAttribute="top" id="BsA-R8-6PZ"/>
-                            <constraint firstAttribute="centerX" secondItem="hyq-ZM-UU4" secondAttribute="centerX" constant="-1" id="ESy-Az-Chh"/>
+                            <constraint firstAttribute="centerX" secondItem="hyq-ZM-UU4" secondAttribute="centerX" id="ESy-Az-Chh"/>
                             <constraint firstAttribute="centerY" secondItem="N1A-nM-fY5" secondAttribute="centerY" id="Je6-G3-buU"/>
                             <constraint firstItem="C6H-ll-aCQ" firstAttribute="leading" secondItem="kx4-iO-KN0" secondAttribute="leading" id="LgQ-86-0sJ"/>
                             <constraint firstAttribute="trailing" secondItem="pKp-YU-GKo" secondAttribute="trailing" id="Q9f-by-1Te"/>
                             <constraint firstAttribute="trailing" secondItem="C6H-ll-aCQ" secondAttribute="trailing" id="RWo-Qb-riF"/>
                             <constraint firstAttribute="centerX" secondItem="N1A-nM-fY5" secondAttribute="centerX" id="cy1-zu-iRX"/>
-                            <constraint firstAttribute="centerY" secondItem="hyq-ZM-UU4" secondAttribute="centerY" constant="-0.5" id="f3U-fn-36y"/>
+                            <constraint firstAttribute="centerY" secondItem="hyq-ZM-UU4" secondAttribute="centerY" id="f3U-fn-36y"/>
                             <constraint firstItem="pKp-YU-GKo" firstAttribute="leading" secondItem="kx4-iO-KN0" secondAttribute="leading" id="gMK-zf-vAr"/>
                             <constraint firstItem="g2w-gj-2O9" firstAttribute="top" secondItem="C6H-ll-aCQ" secondAttribute="bottom" id="ncN-fs-wPT"/>
                             <constraint firstItem="g2w-gj-2O9" firstAttribute="top" secondItem="pKp-YU-GKo" secondAttribute="bottom" id="xXA-Hh-aWJ"/>
@@ -1376,6 +1376,21 @@
                                     <constraint firstItem="ecd-bD-VzR" firstAttribute="top" secondItem="GUQ-sI-WNG" secondAttribute="top" id="fm6-VJ-Sgv"/>
                                     <constraint firstAttribute="trailing" secondItem="ecd-bD-VzR" secondAttribute="trailing" id="pIB-lM-fqy"/>
                                     <constraint firstItem="ecd-bD-VzR" firstAttribute="top" secondItem="GUQ-sI-WNG" secondAttribute="top" id="vYi-pR-jjZ"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sHE-1Y-Nhf" userLabel="Toaster" customClass="UIToolbar">
+                                <rect key="frame" x="122" y="201" width="77" height="77"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" hidesWhenStopped="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="LJJ-xm-kov">
+                                        <rect key="frame" x="20" y="20" width="37" height="37"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                    </activityIndicatorView>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.75" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="77" id="FZQ-Sr-gqZ"/>
+                                    <constraint firstAttribute="height" constant="77" id="NO7-4d-H6D"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="M8l-KG-2B8" userLabel="Toolbar" customClass="UIToolbar">
@@ -1502,12 +1517,12 @@
                                         <rect key="frame" x="0.0" y="436" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                         <subviews>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" image="video-toolbar-back.png" translatesAutoresizingMaskIntoConstraints="NO" id="DVD-pt-AE0">
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" image="video-toolbar-back" translatesAutoresizingMaskIntoConstraints="NO" id="DVD-pt-AE0">
                                                 <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <rect key="contentStretch" x="0.48648648649999998" y="0.47499999999999998" width="0.0" height="0.0"/>
                                             </imageView>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" image="video-chat-textfield.png" translatesAutoresizingMaskIntoConstraints="NO" id="ISR-Go-N1x">
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" image="video-chat-textfield" translatesAutoresizingMaskIntoConstraints="NO" id="ISR-Go-N1x">
                                                 <rect key="frame" x="0.0" y="2" width="320" height="40"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
                                                 <rect key="contentStretch" x="0.48648648649999998" y="0.47499999999999998" width="0.0" height="0.0"/>
@@ -1528,7 +1543,7 @@
                                                 <accessibility key="accessibilityConfiguration" hint="Sends your message to the chat room." label="Send"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
                                                 <size key="titleShadowOffset" width="0.0" height="1"/>
-                                                <state key="normal" title="Send" backgroundImage="video-chat-button.png">
+                                                <state key="normal" title="Send" backgroundImage="video-chat-button">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <color key="titleShadowColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
@@ -1547,21 +1562,6 @@
                                 <accessibility key="accessibilityConfiguration" label="Chat room">
                                     <bool key="isElement" value="YES"/>
                                 </accessibility>
-                            </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sHE-1Y-Nhf" userLabel="Toaster">
-                                <rect key="frame" x="122" y="201" width="77" height="77"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                <subviews>
-                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" hidesWhenStopped="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="LJJ-xm-kov">
-                                        <rect key="frame" x="20" y="20" width="37" height="37"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                    </activityIndicatorView>
-                                </subviews>
-                                <color key="backgroundColor" white="0.0" alpha="0.75" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="77" id="FZQ-Sr-gqZ"/>
-                                    <constraint firstAttribute="height" constant="77" id="NO7-4d-H6D"/>
-                                </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
@@ -1776,12 +1776,12 @@
         <image name="toolbar-remind-on.png" width="26" height="24"/>
         <image name="toolbar-schedule-background" width="22" height="25"/>
         <image name="video-30sec" width="19" height="22"/>
-        <image name="video-chat-button.png" width="23" height="23"/>
-        <image name="video-chat-textfield.png" width="37" height="40"/>
+        <image name="video-chat-button" width="23" height="23"/>
+        <image name="video-chat-textfield" width="37" height="40"/>
         <image name="video-chat-up" width="21" height="22"/>
         <image name="video-speed-fast.png" width="21" height="22"/>
         <image name="video-speed-normal" width="21" height="22"/>
-        <image name="video-toolbar-back.png" width="1" height="44"/>
+        <image name="video-toolbar-back" width="1" height="44"/>
     </resources>
     <color key="tintColor" red="0.20392156862745098" green="0.66666666666666663" blue="0.82352941176470584" alpha="1" colorSpace="deviceRGB"/>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
