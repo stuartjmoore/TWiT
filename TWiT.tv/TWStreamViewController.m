@@ -50,6 +50,7 @@
     hideUI = NO;
     self.toolbarView.barStyle = UIBarStyleBlack;
     self.toasterView.barStyle = UIBarStyleBlack;
+    self.chatToolbarView.barStyle = UIBarStyleBlack;
     
     MPVolumeView *airplayButton = [[MPVolumeView alloc] init];
     airplayButton.showsVolumeSlider = NO;

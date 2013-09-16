@@ -1103,7 +1103,7 @@
                                         <rect key="frame" x="10" y="22" width="31" height="16"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="16" id="vZi-4T-Smh"/>
+                                            <constraint firstAttribute="width" constant="31" id="o4z-ra-USU"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
@@ -1123,9 +1123,6 @@
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="-:--:--" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tCj-YC-Tn8">
                                         <rect key="frame" x="279" y="22" width="31" height="16"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="16" id="zav-m9-zaS"/>
-                                        </constraints>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
@@ -1223,32 +1220,32 @@
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
+                                    <constraint firstItem="9Sz-QQ-muz" firstAttribute="top" secondItem="XIg-yO-9vc" secondAttribute="bottom" constant="8" symbolic="YES" id="0dg-Xp-aO9"/>
                                     <constraint firstItem="HeG-jk-7oC" firstAttribute="leading" secondItem="2tA-WO-fRc" secondAttribute="trailing" constant="13" id="210-qS-CiI"/>
                                     <constraint firstItem="LPg-tw-JCI" firstAttribute="width" secondItem="NyF-GD-hKP" secondAttribute="width" id="2E3-Ij-S7y"/>
                                     <constraint firstAttribute="bottom" secondItem="NyF-GD-hKP" secondAttribute="bottom" constant="5" id="46K-Xt-50d"/>
                                     <constraint firstAttribute="bottom" secondItem="HeG-jk-7oC" secondAttribute="bottom" constant="5" id="4nP-2U-5AH"/>
                                     <constraint firstItem="LPg-tw-JCI" firstAttribute="leading" secondItem="C6H-ll-aCQ" secondAttribute="leading" constant="5" id="4nh-rc-jLz"/>
+                                    <constraint firstItem="XIg-yO-9vc" firstAttribute="centerX" secondItem="2tA-WO-fRc" secondAttribute="centerX" id="6oK-eb-AJl"/>
                                     <constraint firstItem="LPg-tw-JCI" firstAttribute="width" secondItem="2tA-WO-fRc" secondAttribute="width" id="8Yj-LP-fO3"/>
                                     <constraint firstItem="HeG-jk-7oC" firstAttribute="top" secondItem="2Ox-hJ-Dfa" secondAttribute="bottom" constant="17" id="8vM-aB-7xu"/>
-                                    <constraint firstItem="KZk-Py-pqO" firstAttribute="leading" secondItem="C6H-ll-aCQ" secondAttribute="leading" constant="10" id="Cqs-YI-yfQ"/>
-                                    <constraint firstItem="2Ox-hJ-Dfa" firstAttribute="trailing" secondItem="tCj-YC-Tn8" secondAttribute="trailing" id="Lpp-GL-qM6"/>
+                                    <constraint firstItem="KZk-Py-pqO" firstAttribute="leading" secondItem="C6H-ll-aCQ" secondAttribute="leading" constant="10" id="Bo6-LB-pCf"/>
+                                    <constraint firstItem="XIg-yO-9vc" firstAttribute="baseline" secondItem="KZk-Py-pqO" secondAttribute="baseline" id="IpT-sX-KDp"/>
                                     <constraint firstAttribute="bottom" secondItem="2tA-WO-fRc" secondAttribute="bottom" constant="5" id="O8q-6l-euv"/>
                                     <constraint firstItem="NyF-GD-hKP" firstAttribute="width" secondItem="LPg-tw-JCI" secondAttribute="width" id="Olm-6D-Jbb"/>
                                     <constraint firstAttribute="trailing" secondItem="HeG-jk-7oC" secondAttribute="trailing" constant="20" id="QWo-wQ-2cI"/>
-                                    <constraint firstAttribute="centerX" secondItem="XIg-yO-9vc" secondAttribute="centerX" id="VEO-a1-5F3"/>
                                     <constraint firstItem="LPg-tw-JCI" firstAttribute="width" secondItem="9Sz-QQ-muz" secondAttribute="width" id="W3T-cX-0Yn"/>
                                     <constraint firstItem="NyF-GD-hKP" firstAttribute="width" secondItem="9Sz-QQ-muz" secondAttribute="width" id="YBm-5s-VMG"/>
                                     <constraint firstAttribute="bottom" secondItem="LPg-tw-JCI" secondAttribute="bottom" constant="5" id="YEf-xe-J8C"/>
-                                    <constraint firstItem="KZk-Py-pqO" firstAttribute="top" secondItem="C6H-ll-aCQ" secondAttribute="top" constant="22" id="YFe-hT-3by"/>
-                                    <constraint firstItem="tCj-YC-Tn8" firstAttribute="top" secondItem="C6H-ll-aCQ" secondAttribute="top" constant="22" id="aue-nn-F6l"/>
                                     <constraint firstItem="9Sz-QQ-muz" firstAttribute="leading" secondItem="NyF-GD-hKP" secondAttribute="trailing" constant="9" id="faS-9y-EF2"/>
-                                    <constraint firstItem="XIg-yO-9vc" firstAttribute="top" secondItem="C6H-ll-aCQ" secondAttribute="top" constant="22" id="fdj-wo-aNo"/>
-                                    <constraint firstAttribute="trailing" secondItem="tCj-YC-Tn8" secondAttribute="trailing" constant="10" id="fvs-0W-4bA"/>
-                                    <constraint firstItem="2Ox-hJ-Dfa" firstAttribute="leading" secondItem="KZk-Py-pqO" secondAttribute="leading" id="jui-6l-raa"/>
                                     <constraint firstItem="NyF-GD-hKP" firstAttribute="leading" secondItem="LPg-tw-JCI" secondAttribute="trailing" constant="8" id="ngC-xf-u09"/>
+                                    <constraint firstItem="XIg-yO-9vc" firstAttribute="centerX" secondItem="2Ox-hJ-Dfa" secondAttribute="centerX" id="nj2-JT-SQe"/>
+                                    <constraint firstItem="KZk-Py-pqO" firstAttribute="leading" secondItem="2Ox-hJ-Dfa" secondAttribute="leading" id="qYr-tj-VKX"/>
+                                    <constraint firstItem="XIg-yO-9vc" firstAttribute="baseline" secondItem="tCj-YC-Tn8" secondAttribute="baseline" id="s4g-jw-9Bh"/>
                                     <constraint firstAttribute="height" constant="88" id="sOD-gn-Npi"/>
                                     <constraint firstItem="2tA-WO-fRc" firstAttribute="leading" secondItem="9Sz-QQ-muz" secondAttribute="trailing" constant="9" id="sWW-1g-P7s"/>
                                     <constraint firstAttribute="bottom" secondItem="9Sz-QQ-muz" secondAttribute="bottom" constant="5" id="uLc-CL-wne"/>
+                                    <constraint firstItem="tCj-YC-Tn8" firstAttribute="trailing" secondItem="2Ox-hJ-Dfa" secondAttribute="trailing" id="xkC-tk-TUR"/>
                                     <constraint firstAttribute="centerX" secondItem="2tA-WO-fRc" secondAttribute="centerX" constant="-0.5" id="yUq-N6-Gep"/>
                                 </constraints>
                             </view>
@@ -1513,15 +1510,10 @@
                                             <action selector="openChatView:" destination="zgt-3C-NJF" eventType="touchUpInside" id="dm5-sG-azL"/>
                                         </connections>
                                     </button>
-                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ufE-OI-ldD">
+                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ufE-OI-ldD" userLabel="Toolbar" customClass="UIToolbar">
                                         <rect key="frame" x="0.0" y="436" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                         <subviews>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" image="video-toolbar-back" translatesAutoresizingMaskIntoConstraints="NO" id="DVD-pt-AE0">
-                                                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                                <rect key="contentStretch" x="0.48648648649999998" y="0.47499999999999998" width="0.0" height="0.0"/>
-                                            </imageView>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" image="video-chat-textfield" translatesAutoresizingMaskIntoConstraints="NO" id="ISR-Go-N1x">
                                                 <rect key="frame" x="0.0" y="2" width="320" height="40"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
@@ -1636,6 +1628,7 @@
                         <outlet property="chatButton" destination="HVH-uc-nCY" id="X6h-o4-WXa"/>
                         <outlet property="chatField" destination="VXC-8R-woC" id="JOt-SY-FKn"/>
                         <outlet property="chatSendButton" destination="jkG-Jr-k2r" id="AaQ-oT-ThC"/>
+                        <outlet property="chatToolbarView" destination="ufE-OI-ldD" id="GDY-tq-Ze4"/>
                         <outlet property="chatView" destination="JGw-BU-0i2" id="q8d-Ly-Dm4"/>
                         <outlet property="chatWebView" destination="13t-DU-I27" id="ftf-zV-UCa"/>
                         <outlet property="infoAlbumArtView" destination="ecd-bD-VzR" id="5rX-B7-dF6"/>
@@ -1767,8 +1760,8 @@
         <image name="quality-view-disclosure" width="5" height="5"/>
         <image name="quick-play" width="20" height="21"/>
         <image name="separator-fade-bottom" width="320" height="1"/>
-        <image name="toolbar-disclose" width="27" height="17"/>
-        <image name="toolbar-email" width="26" height="17"/>
+        <image name="toolbar-disclose" width="28" height="16"/>
+        <image name="toolbar-email" width="21" height="21"/>
         <image name="toolbar-fav-off" width="27" height="24"/>
         <image name="toolbar-fav-on.png" width="27" height="24"/>
         <image name="toolbar-phone" width="22" height="21"/>
@@ -1781,7 +1774,6 @@
         <image name="video-chat-up" width="21" height="22"/>
         <image name="video-speed-fast.png" width="21" height="22"/>
         <image name="video-speed-normal" width="21" height="22"/>
-        <image name="video-toolbar-back" width="1" height="44"/>
     </resources>
     <color key="tintColor" red="0.20392156862745098" green="0.66666666666666663" blue="0.82352941176470584" alpha="1" colorSpace="deviceRGB"/>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

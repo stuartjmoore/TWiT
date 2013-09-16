@@ -31,8 +31,9 @@
 
 @property (nonatomic, weak) IBOutlet UIView *chatView;
 @property (nonatomic, weak) IBOutlet UIWebView *chatWebView;
+@property (nonatomic, weak) IBOutlet UIToolbar *chatToolbarView;
+@property (nonatomic, weak) IBOutlet UITextField *chatField;
 @property (nonatomic, weak) IBOutlet UIButton *chatSendButton;
-@property (nonatomic, weak) IBOutlet  UITextField *chatField;
 @property (nonatomic, strong) NSString *chatNick, *chatPass;
 
 - (void)playerStateChanged:(NSNotification*)notification;

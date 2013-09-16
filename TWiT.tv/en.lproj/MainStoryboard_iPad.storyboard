@@ -821,15 +821,10 @@
                                             <action selector="openChatView:" destination="tGz-71-90E" eventType="touchUpInside" id="AwV-x6-xPd"/>
                                         </connections>
                                     </button>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fXf-CH-tee" userLabel="Chat Toolbar">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fXf-CH-tee" userLabel="Chat Toolbar" customClass="UIToolbar">
                                         <rect key="frame" x="0.0" y="724" width="1024" height="44"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                         <subviews>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="video-toolbar-back" translatesAutoresizingMaskIntoConstraints="NO" id="d82-Qr-w41">
-                                                <rect key="frame" x="0.0" y="0.0" width="1024" height="44"/>
-                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                                <rect key="contentStretch" x="0.48648648649999998" y="0.47499999999999998" width="0.0" height="0.0"/>
-                                            </imageView>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="video-chat-textfield" translatesAutoresizingMaskIntoConstraints="NO" id="hNO-Uy-ySx">
                                                 <rect key="frame" x="0.0" y="2" width="1024" height="40"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -870,20 +865,16 @@
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="trailing" secondItem="hNO-Uy-ySx" secondAttribute="trailing" id="0az-h2-fLo"/>
-                                            <constraint firstItem="d82-Qr-w41" firstAttribute="top" secondItem="fXf-CH-tee" secondAttribute="top" id="8cu-Ng-TXf"/>
                                             <constraint firstAttribute="bottom" secondItem="RNf-Lr-eIp" secondAttribute="bottom" constant="10" id="8xY-q9-Sq9"/>
                                             <constraint firstAttribute="trailing" secondItem="RNf-Lr-eIp" secondAttribute="trailing" constant="8" id="Rls-E8-44t"/>
-                                            <constraint firstAttribute="trailing" secondItem="d82-Qr-w41" secondAttribute="trailing" id="Tr0-Eq-3eK"/>
                                             <constraint firstItem="6MR-kX-6YA" firstAttribute="top" secondItem="fXf-CH-tee" secondAttribute="top" constant="9" id="Vwh-lB-uaB"/>
                                             <constraint firstAttribute="height" constant="44" id="YjM-36-6XG"/>
-                                            <constraint firstItem="d82-Qr-w41" firstAttribute="leading" secondItem="fXf-CH-tee" secondAttribute="leading" id="Ypj-yI-k0o"/>
                                             <constraint firstItem="hNO-Uy-ySx" firstAttribute="leading" secondItem="fXf-CH-tee" secondAttribute="leading" id="ZaT-9D-iE0"/>
                                             <constraint firstAttribute="bottom" secondItem="hNO-Uy-ySx" secondAttribute="bottom" constant="2" id="dBH-Uh-rc4"/>
                                             <constraint firstItem="hNO-Uy-ySx" firstAttribute="top" secondItem="fXf-CH-tee" secondAttribute="top" constant="2" id="noj-HX-SZd"/>
                                             <constraint firstItem="6MR-kX-6YA" firstAttribute="leading" secondItem="fXf-CH-tee" secondAttribute="leading" constant="15" id="nqr-vq-sUf"/>
                                             <constraint firstAttribute="bottom" secondItem="6MR-kX-6YA" secondAttribute="bottom" constant="9" id="qho-Fe-iY0"/>
                                             <constraint firstItem="RNf-Lr-eIp" firstAttribute="top" secondItem="fXf-CH-tee" secondAttribute="top" constant="10" id="tEh-AO-3ye"/>
-                                            <constraint firstAttribute="bottom" secondItem="d82-Qr-w41" secondAttribute="bottom" id="txp-Hb-oK6"/>
                                             <constraint firstItem="RNf-Lr-eIp" firstAttribute="leading" secondItem="6MR-kX-6YA" secondAttribute="trailing" constant="17" id="xZ2-Rf-XmZ"/>
                                         </constraints>
                                     </view>
@@ -931,6 +922,7 @@
                         <outlet property="chatButton" destination="hM4-Rg-lUh" id="d9a-cE-yYE"/>
                         <outlet property="chatField" destination="6MR-kX-6YA" id="oak-Mi-QL0"/>
                         <outlet property="chatSendButton" destination="RNf-Lr-eIp" id="jTo-cG-koE"/>
+                        <outlet property="chatToolbarView" destination="fXf-CH-tee" id="cR0-i6-feU"/>
                         <outlet property="chatView" destination="946-gR-GAZ" id="3br-tr-9dp"/>
                         <outlet property="chatWebView" destination="U6T-G6-1ee" id="CZh-43-Mos"/>
                         <outlet property="infoAlbumArtView" destination="Pn9-Xd-TdY" id="hJw-Rp-Rwf"/>
