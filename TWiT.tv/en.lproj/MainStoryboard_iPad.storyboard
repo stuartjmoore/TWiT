@@ -781,9 +781,9 @@
                                     <constraint firstAttribute="bottom" secondItem="27M-bl-NYD" secondAttribute="bottom" constant="4" id="gNc-Gm-dOM"/>
                                     <constraint firstItem="hM4-Rg-lUh" firstAttribute="leading" secondItem="27M-bl-NYD" secondAttribute="trailing" constant="97" id="hQs-Ma-FpL"/>
                                     <constraint firstAttribute="centerX" secondItem="hu1-mi-1Bn" secondAttribute="centerX" id="ifH-rN-RWv"/>
-                                    <constraint firstAttribute="trailing" secondItem="Vbh-TM-bRV" secondAttribute="trailing" constant="180" id="jLc-fG-0Z5"/>
                                     <constraint firstItem="hu1-mi-1Bn" firstAttribute="leading" secondItem="hM4-Rg-lUh" secondAttribute="trailing" constant="98" id="jcN-Yy-Uw2"/>
-                                    <constraint firstItem="Vbh-TM-bRV" firstAttribute="leading" secondItem="hu1-mi-1Bn" secondAttribute="trailing" constant="180" id="k5j-MR-0cr"/>
+                                    <constraint firstItem="Vbh-TM-bRV" firstAttribute="leading" secondItem="hu1-mi-1Bn" secondAttribute="trailing" priority="704" constant="180" id="k5j-MR-0cr"/>
+                                    <constraint firstAttribute="trailing" secondItem="Vbh-TM-bRV" secondAttribute="trailing" priority="708" constant="180" id="rto-QR-kov"/>
                                 </constraints>
                             </view>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="946-gR-GAZ" userLabel="Chat">
