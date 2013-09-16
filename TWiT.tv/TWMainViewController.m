@@ -240,17 +240,7 @@
     {
         if([tableView.indexPathForSelectedRow isEqual:indexPath])
         {
-            CGRect frame = self.splitViewContainer.modalFlyout.frame;
-            frame.origin.x = -frame.size.width;
-            
-            [UIView animateWithDuration:0.3f animations:^{
-                self.splitViewContainer.modalFlyout.frame = frame;
-                self.splitViewContainer.modalBlackground.alpha = 0;
-            } completion:^(BOOL fin){
-                self.splitViewContainer.modalContainer.hidden = YES;
-                self.splitViewContainer.modalBlackground.alpha = 1;
-            }];
-            
+            [self.splitViewContainer hideModalFlyout];
             [tableView deselectRowAtIndexPath:indexPath animated:NO];
         }
         else
@@ -269,20 +259,7 @@
             
             episodeController.episode = episode;
             
-            if(self.splitViewContainer.modalContainer.hidden)
-            {
-                self.splitViewContainer.modalBlackground.alpha = 0;
-                self.splitViewContainer.modalContainer.hidden = NO;
-                
-                CGRect frame = self.splitViewContainer.modalFlyout.frame;
-                frame.origin.x = 0;
-                
-                [UIView animateWithDuration:0.3f animations:^{
-                    self.splitViewContainer.modalBlackground.alpha = 1;
-                    self.splitViewContainer.modalFlyout.frame = frame;
-                }];
-            }
-            
+            [self.splitViewContainer showModalFlyout];
             [tableView selectRowAtIndexPath:indexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
         }
         return nil;
@@ -962,20 +939,8 @@
                 break;
                 
             case NSFetchedResultsChangeDelete:
-                
                 if([indexPath isEqual:self.tableView.indexPathForSelectedRow])
-                {
-                    CGRect frame = self.splitViewContainer.modalFlyout.frame;
-                    frame.origin.x -= frame.size.width;
-                    
-                    [UIView animateWithDuration:0.3f animations:^{
-                        self.splitViewContainer.modalFlyout.frame = frame;
-                        self.splitViewContainer.modalBlackground.alpha = 0;
-                    } completion:^(BOOL fin){
-                        self.splitViewContainer.modalContainer.hidden = YES;
-                        self.splitViewContainer.modalBlackground.alpha = 1;
-                    }];
-                }
+                    [self.splitViewContainer hideModalFlyout];
                 
                 [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationTop];
                 

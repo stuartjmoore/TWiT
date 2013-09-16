@@ -23,7 +23,10 @@
 - (IBAction)didTapModalBackground:(UITapGestureRecognizer*)recognizer;
 - (IBAction)didPanModalFlyout:(UIPanGestureRecognizer*)recognizer;
 
-- (void)hidePlaybar;
 - (void)showPlaybar;
+- (void)hidePlaybar;
+
+- (void)showModalFlyout;
+- (void)hideModalFlyout;
 
 @end
