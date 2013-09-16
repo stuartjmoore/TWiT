@@ -17,7 +17,6 @@
 		17056202169B192D00E59244 /* tsh-poster.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 170561FE169B192A00E59244 /* tsh-poster.jpg */; };
 		17056203169B192D00E59244 /* twil-poster.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 170561FF169B192C00E59244 /* twil-poster.jpg */; };
 		170B476016A6A9C900F7C3B5 /* TWShowInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 170B475F16A6A9C900F7C3B5 /* TWShowInfoViewController.m */; };
-		170BA0D51691CD550022FE4D /* Vollkorn-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 170B9FF81691CD550022FE4D /* Vollkorn-BoldItalic.ttf */; };
 		170BA15B1691D0FC0022FE4D /* TWMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 170BA15A1691D0FC0022FE4D /* TWMainViewController.m */; };
 		170BA15D1691D5E70022FE4D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 170BA15C1691D5E70022FE4D /* QuartzCore.framework */; };
 		170E02A8169324480072CFA6 /* TWEpisodeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 170E02A7169324480072CFA6 /* TWEpisodeCell.m */; };
@@ -134,6 +133,7 @@
 		170E02A7169324480072CFA6 /* TWEpisodeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWEpisodeCell.m; sourceTree = "<group>"; };
 		170E02A9169328910072CFA6 /* TWShowsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWShowsCell.h; sourceTree = "<group>"; };
 		170E02AA169328910072CFA6 /* TWShowsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWShowsCell.m; sourceTree = "<group>"; };
+		1733C8AD17E7CED90090C97A /* Vollkorn-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Vollkorn-BoldItalic.ttf"; path = "Resources/Vollkorn-BoldItalic.ttf"; sourceTree = SOURCE_ROOT; };
 		1734B54C175140C4006745A1 /* omgcraft600.1353196800.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = omgcraft600.1353196800.jpg; sourceTree = "<group>"; };
 		1734B54D175140C4006745A1 /* yt600.1353196800.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = yt600.1353196800.jpg; sourceTree = "<group>"; };
 		1734B550175140F3006745A1 /* omg-poster.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "omg-poster.jpg"; sourceTree = "<group>"; };
@@ -285,6 +285,7 @@
 				17A31E1316ADDB6400B71343 /* Settings.bundle */,
 				17E5116E168F496E00DCE89C /* TWiT_tv.xcdatamodeld */,
 				170B9FF81691CD550022FE4D /* Vollkorn-BoldItalic.ttf */,
+				1733C8AD17E7CED90090C97A /* Vollkorn-BoldItalic.ttf */,
 				17B07F0F16B59B2600B42CBF /* chatRoom.css */,
 				17DE054117D8E7A8007E0F5A /* Images.xcassets */,
 				17C43AE61696DFD60066C79F /* Server Cache */,
@@ -599,7 +600,6 @@
 				17E5116A168F496E00DCE89C /* MainStoryboard_iPhone.storyboard in Resources */,
 				17E5116D168F496E00DCE89C /* MainStoryboard_iPad.storyboard in Resources */,
 				17DE054217D8E7A8007E0F5A /* Images.xcassets in Resources */,
-				170BA0D51691CD550022FE4D /* Vollkorn-BoldItalic.ttf in Resources */,
 				17C43B381696DFD60066C79F /* aaa600.1353196800.jpg in Resources */,
 				17C43B391696DFD60066C79F /* byb600.1353196800.jpg in Resources */,
 				17C43B3A1696DFD60066C79F /* dgw600.1353196800.jpg in Resources */,
