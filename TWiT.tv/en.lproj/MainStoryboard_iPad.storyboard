@@ -615,21 +615,10 @@
                                 <items>
                                     <navigationItem id="fkg-XZ-Ybx">
                                         <nil key="title"/>
-                                        <barButtonItem key="leftBarButtonItem" id="maP-ax-XLp">
-                                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="tOP-lx-9wT">
-                                                <rect key="frame" x="16" y="5" width="44" height="33"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <accessibility key="accessibilityConfiguration" hint="Closes the live stream." label="Close"/>
-                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="28"/>
-                                                <inset key="titleEdgeInsets" minX="0.0" minY="-4" maxX="0.0" maxY="0.0"/>
-                                                <size key="titleShadowOffset" width="0.0" height="1"/>
-                                                <state key="normal" title="×"/>
-                                                <connections>
-                                                    <action selector="close:" destination="tGz-71-90E" eventType="touchUpInside" id="1nw-0Y-6XN"/>
-                                                    <action selector="close:" destination="fZx-vv-CDk" eventType="touchUpInside" id="QoJ-sx-zgV"/>
-                                                    <action selector="close:" destination="cSi-6Y-xw2" eventType="touchUpInside" id="i2X-zi-iN9"/>
-                                                </connections>
-                                            </button>
+                                        <barButtonItem key="leftBarButtonItem" title="Close" id="iSS-si-7Qo">
+                                            <connections>
+                                                <action selector="close:" destination="tGz-71-90E" id="erK-wG-xEI"/>
+                                            </connections>
                                         </barButtonItem>
                                         <view key="titleView" contentMode="scaleToFill" id="mpi-p2-FAX">
                                             <rect key="frame" x="112" y="4" width="800" height="36"/>
@@ -695,10 +684,6 @@
                                 <rect key="frame" x="0.0" y="724" width="1024" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" image="video-toolbar-back" translatesAutoresizingMaskIntoConstraints="NO" id="cQ5-W0-Gb9">
-                                        <rect key="frame" x="0.0" y="0.0" width="1024" height="44"/>
-                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                    </imageView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="27M-bl-NYD" userLabel="AirPlay">
                                         <rect key="frame" x="97" y="3" width="88" height="37"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
@@ -2137,7 +2122,6 @@
         <image name="video-chat-up" width="21" height="22"/>
         <image name="video-speed-fast.png" width="21" height="22"/>
         <image name="video-speed-normal" width="21" height="22"/>
-        <image name="video-toolbar-back" width="1" height="44"/>
     </resources>
     <color key="tintColor" red="0.1764705926" green="0.66666668650000005" blue="0.81960791349999995" alpha="1" colorSpace="deviceRGB"/>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
