@@ -42,7 +42,7 @@
 - (NSArray*)scheduleDates
 {
     NSMutableArray *dates = [NSMutableArray array];
-    int day, hour, minute;
+    int day = 0, hour = 0, minute = 0;
     
     if([self.schedule rangeOfString:@"@"].location != NSNotFound)
     {

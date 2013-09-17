@@ -833,7 +833,7 @@
     NSDictionary *rowCache = self.showsTableCache[cacheKey];
     
     rowCache = @{ @"icons" : showsCell.icons, @"shows" : showsCell.shows };
-    [self.showsTableCache setObject:rowCache forKey:cacheKey];
+    self.showsTableCache[cacheKey] = rowCache;
     
     [showsCell setNeedsDisplay];
 }
