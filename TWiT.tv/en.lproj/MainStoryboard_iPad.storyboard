@@ -602,6 +602,14 @@
                                     <constraint firstAttribute="bottom" secondItem="Pn9-Xd-TdY" secondAttribute="bottom" id="xfJ-bk-4Hw"/>
                                 </constraints>
                             </view>
+                            <containerView hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="B2z-tG-A5g" userLabel="Chat">
+                                <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <segue destination="1nq-kU-wy5" kind="embed" identifier="chatEmbed" id="GPQ-GO-GM5"/>
+                                </connections>
+                            </containerView>
                             <navigationBar contentMode="scaleToFill" barStyle="black" translatesAutoresizingMaskIntoConstraints="NO" id="GWQ-lC-oVj">
                                 <rect key="frame" x="0.0" y="0.0" width="1024" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
@@ -771,130 +779,23 @@
                                     <constraint firstAttribute="trailing" secondItem="Vbh-TM-bRV" secondAttribute="trailing" priority="708" constant="180" id="rto-QR-kov"/>
                                 </constraints>
                             </view>
-                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="946-gR-GAZ" userLabel="Chat">
-                                <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <subviews>
-                                    <webView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="U6T-G6-1ee">
-                                        <rect key="frame" x="0.0" y="0.0" width="1024" height="724"/>
-                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                        <color key="backgroundColor" white="0.0" alpha="0.35000000000000003" colorSpace="calibratedWhite"/>
-                                        <dataDetectorType key="dataDetectorTypes"/>
-                                        <connections>
-                                            <outlet property="delegate" destination="tGz-71-90E" id="fv6-Or-nuv"/>
-                                        </connections>
-                                    </webView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wf6-Su-3yA">
-                                        <rect key="frame" x="0.0" y="0.0" width="41" height="32"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <accessibility key="accessibilityConfiguration" hint="closes the chat room." label="Close chat"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="32" id="rk4-s8-pOU"/>
-                                            <constraint firstAttribute="width" constant="41" id="vq1-Cb-yEr"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="28"/>
-                                        <inset key="titleEdgeInsets" minX="0.0" minY="-4" maxX="0.0" maxY="0.0"/>
-                                        <size key="titleShadowOffset" width="0.0" height="1"/>
-                                        <state key="normal" title="×">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            <color key="titleShadowColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <state key="highlighted">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="openChatView:" destination="tGz-71-90E" eventType="touchUpInside" id="AwV-x6-xPd"/>
-                                        </connections>
-                                    </button>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fXf-CH-tee" userLabel="Chat Toolbar" customClass="UIToolbar">
-                                        <rect key="frame" x="0.0" y="724" width="1024" height="44"/>
-                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                        <subviews>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="video-chat-textfield" translatesAutoresizingMaskIntoConstraints="NO" id="hNO-Uy-ySx">
-                                                <rect key="frame" x="0.0" y="2" width="1024" height="40"/>
-                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                                <rect key="contentStretch" x="0.48648648649999998" y="0.47499999999999998" width="0.0" height="0.0"/>
-                                            </imageView>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="6MR-kX-6YA" userLabel="Text Field">
-                                                <rect key="frame" x="15" y="9" width="921" height="26"/>
-                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                                <accessibility key="accessibilityConfiguration" hint="Opens the keyboard." label="Message"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits" keyboardAppearance="alert" returnKeyType="done"/>
-                                                <connections>
-                                                    <outlet property="delegate" destination="tGz-71-90E" id="X8r-JA-j6N"/>
-                                                </connections>
-                                            </textField>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RNf-Lr-eIp">
-                                                <rect key="frame" x="953" y="10" width="63" height="24"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
-                                                <accessibility key="accessibilityConfiguration" hint="Sends your message to the chat room." label="Send"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="24" id="mEs-bn-d6Z"/>
-                                                    <constraint firstAttribute="width" constant="63" id="pVN-GS-HT9"/>
-                                                </constraints>
-                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
-                                                <size key="titleShadowOffset" width="0.0" height="1"/>
-                                                <state key="normal" title="Send" backgroundImage="video-chat-button">
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <color key="titleShadowColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <state key="highlighted">
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="sendChatMessage:" destination="tGz-71-90E" eventType="touchUpInside" id="DQJ-DU-AXI"/>
-                                                </connections>
-                                            </button>
-                                        </subviews>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                        <constraints>
-                                            <constraint firstAttribute="trailing" secondItem="hNO-Uy-ySx" secondAttribute="trailing" id="0az-h2-fLo"/>
-                                            <constraint firstAttribute="bottom" secondItem="RNf-Lr-eIp" secondAttribute="bottom" constant="10" id="8xY-q9-Sq9"/>
-                                            <constraint firstAttribute="trailing" secondItem="RNf-Lr-eIp" secondAttribute="trailing" constant="8" id="Rls-E8-44t"/>
-                                            <constraint firstItem="6MR-kX-6YA" firstAttribute="top" secondItem="fXf-CH-tee" secondAttribute="top" constant="9" id="Vwh-lB-uaB"/>
-                                            <constraint firstAttribute="height" constant="44" id="YjM-36-6XG"/>
-                                            <constraint firstItem="hNO-Uy-ySx" firstAttribute="leading" secondItem="fXf-CH-tee" secondAttribute="leading" id="ZaT-9D-iE0"/>
-                                            <constraint firstAttribute="bottom" secondItem="hNO-Uy-ySx" secondAttribute="bottom" constant="2" id="dBH-Uh-rc4"/>
-                                            <constraint firstItem="hNO-Uy-ySx" firstAttribute="top" secondItem="fXf-CH-tee" secondAttribute="top" constant="2" id="noj-HX-SZd"/>
-                                            <constraint firstItem="6MR-kX-6YA" firstAttribute="leading" secondItem="fXf-CH-tee" secondAttribute="leading" constant="15" id="nqr-vq-sUf"/>
-                                            <constraint firstAttribute="bottom" secondItem="6MR-kX-6YA" secondAttribute="bottom" constant="9" id="qho-Fe-iY0"/>
-                                            <constraint firstItem="RNf-Lr-eIp" firstAttribute="top" secondItem="fXf-CH-tee" secondAttribute="top" constant="10" id="tEh-AO-3ye"/>
-                                            <constraint firstItem="RNf-Lr-eIp" firstAttribute="leading" secondItem="6MR-kX-6YA" secondAttribute="trailing" constant="17" id="xZ2-Rf-XmZ"/>
-                                        </constraints>
-                                    </view>
-                                </subviews>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstItem="fXf-CH-tee" firstAttribute="top" secondItem="U6T-G6-1ee" secondAttribute="bottom" id="8il-Ym-iqt"/>
-                                    <constraint firstAttribute="trailing" secondItem="fXf-CH-tee" secondAttribute="trailing" id="BwO-k7-l8c"/>
-                                    <constraint firstItem="U6T-G6-1ee" firstAttribute="top" secondItem="946-gR-GAZ" secondAttribute="top" id="H1Z-mn-bpa"/>
-                                    <constraint firstItem="Wf6-Su-3yA" firstAttribute="top" secondItem="946-gR-GAZ" secondAttribute="top" id="IMU-wp-twL"/>
-                                    <constraint firstItem="fXf-CH-tee" firstAttribute="leading" secondItem="946-gR-GAZ" secondAttribute="leading" id="Kih-70-n5L"/>
-                                    <constraint firstAttribute="bottom" secondItem="fXf-CH-tee" secondAttribute="bottom" id="QbX-B5-bp4"/>
-                                    <constraint firstItem="fXf-CH-tee" firstAttribute="top" secondItem="U6T-G6-1ee" secondAttribute="bottom" id="SRM-YM-LOh"/>
-                                    <constraint firstAttribute="trailing" secondItem="U6T-G6-1ee" secondAttribute="trailing" id="gwc-2P-Ek1"/>
-                                    <constraint firstItem="U6T-G6-1ee" firstAttribute="leading" secondItem="946-gR-GAZ" secondAttribute="leading" id="tqc-u4-22i"/>
-                                    <constraint firstItem="Wf6-Su-3yA" firstAttribute="leading" secondItem="946-gR-GAZ" secondAttribute="leading" id="zEE-0V-QVG"/>
-                                </constraints>
-                            </view>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="B2z-tG-A5g" firstAttribute="leading" secondItem="D0Y-HG-P0f" secondAttribute="leading" id="3gS-kW-MfG"/>
                             <constraint firstItem="GWQ-lC-oVj" firstAttribute="top" secondItem="8RE-zw-clq" secondAttribute="bottom" id="CH3-kG-AUa"/>
-                            <constraint firstItem="946-gR-GAZ" firstAttribute="leading" secondItem="D0Y-HG-P0f" secondAttribute="leading" id="CVG-2f-Hgq"/>
+                            <constraint firstAttribute="bottom" secondItem="B2z-tG-A5g" secondAttribute="bottom" id="CSi-9f-XCd"/>
                             <constraint firstItem="x7i-LG-Jo0" firstAttribute="leading" secondItem="D0Y-HG-P0f" secondAttribute="leading" id="Drz-FQ-VHM"/>
                             <constraint firstAttribute="trailing" secondItem="x7i-LG-Jo0" secondAttribute="trailing" id="Em9-XW-FWy"/>
+                            <constraint firstItem="B2z-tG-A5g" firstAttribute="top" secondItem="D0Y-HG-P0f" secondAttribute="top" id="FU5-WW-8u7"/>
                             <constraint firstAttribute="trailing" secondItem="GWQ-lC-oVj" secondAttribute="trailing" id="GRy-85-psn"/>
                             <constraint firstAttribute="centerX" secondItem="PpB-c5-kDB" secondAttribute="centerX" id="Gjp-XN-w8q"/>
                             <constraint firstAttribute="centerY" secondItem="PpB-c5-kDB" secondAttribute="centerY" id="STf-1Z-Yo9"/>
                             <constraint firstItem="q1S-sS-dwk" firstAttribute="top" secondItem="x7i-LG-Jo0" secondAttribute="bottom" constant="43" id="V0d-vL-Xvd"/>
                             <constraint firstItem="q1S-sS-dwk" firstAttribute="top" secondItem="1Uf-aR-07j" secondAttribute="bottom" id="a68-J0-9xl"/>
-                            <constraint firstItem="q1S-sS-dwk" firstAttribute="top" secondItem="946-gR-GAZ" secondAttribute="bottom" id="eEi-UZ-Mmk"/>
-                            <constraint firstAttribute="trailing" secondItem="946-gR-GAZ" secondAttribute="trailing" id="hKv-i1-Nux"/>
                             <constraint firstItem="1Uf-aR-07j" firstAttribute="leading" secondItem="D0Y-HG-P0f" secondAttribute="leading" id="izt-Y8-qaO"/>
+                            <constraint firstAttribute="trailing" secondItem="B2z-tG-A5g" secondAttribute="trailing" id="lnp-wd-lGv"/>
                             <constraint firstAttribute="trailing" secondItem="1Uf-aR-07j" secondAttribute="trailing" id="rW8-Qu-ZTJ"/>
-                            <constraint firstItem="946-gR-GAZ" firstAttribute="top" secondItem="8RE-zw-clq" secondAttribute="bottom" id="sbv-2Q-gpe"/>
                             <constraint firstItem="x7i-LG-Jo0" firstAttribute="top" secondItem="8RE-zw-clq" secondAttribute="bottom" constant="44" id="x95-G6-cnk"/>
                             <constraint firstItem="GWQ-lC-oVj" firstAttribute="leading" secondItem="D0Y-HG-P0f" secondAttribute="leading" id="zEq-aQ-boR"/>
                         </constraints>
@@ -905,11 +806,8 @@
                     <connections>
                         <outlet property="airplayButtonView" destination="27M-bl-NYD" id="wQj-aZ-TSf"/>
                         <outlet property="chatButton" destination="hM4-Rg-lUh" id="d9a-cE-yYE"/>
-                        <outlet property="chatField" destination="6MR-kX-6YA" id="oak-Mi-QL0"/>
-                        <outlet property="chatSendButton" destination="RNf-Lr-eIp" id="jTo-cG-koE"/>
-                        <outlet property="chatToolbarView" destination="fXf-CH-tee" id="cR0-i6-feU"/>
-                        <outlet property="chatView" destination="946-gR-GAZ" id="3br-tr-9dp"/>
-                        <outlet property="chatWebView" destination="U6T-G6-1ee" id="CZh-43-Mos"/>
+                        <outlet property="chatView" destination="B2z-tG-A5g" id="ghW-FE-q4A"/>
+                        <outlet property="chatViewBottom" destination="CSi-9f-XCd" id="zZn-xZ-3Bk"/>
                         <outlet property="infoAlbumArtView" destination="Pn9-Xd-TdY" id="hJw-Rp-Rwf"/>
                         <outlet property="infoView" destination="x7i-LG-Jo0" id="tIS-Sa-stR"/>
                         <outlet property="navigationBar" destination="GWQ-lC-oVj" id="yzj-ha-qC9"/>
@@ -1410,6 +1308,124 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Efp-QF-f7V" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2978" y="1533"/>
+        </scene>
+        <!--Chat View Controller-->
+        <scene sceneID="rQf-L0-1pa">
+            <objects>
+                <viewController id="1nq-kU-wy5" customClass="TWChatViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="MBI-sL-emr"/>
+                        <viewControllerLayoutGuide type="bottom" id="eGL-IV-4yr"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ZsD-Ij-UNB">
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <webView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="U6T-G6-1ee">
+                                <rect key="frame" x="0.0" y="0.0" width="1024" height="724"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.35000000000000003" colorSpace="calibratedWhite"/>
+                                <dataDetectorType key="dataDetectorTypes"/>
+                                <connections>
+                                    <outlet property="delegate" destination="1nq-kU-wy5" id="AYD-eI-272"/>
+                                </connections>
+                            </webView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wf6-Su-3yA">
+                                <rect key="frame" x="0.0" y="0.0" width="41" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <accessibility key="accessibilityConfiguration" hint="closes the chat room." label="Close chat"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="32" id="D6e-sc-r1y"/>
+                                    <constraint firstAttribute="width" constant="41" id="jpi-WX-rwq"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="28"/>
+                                <inset key="titleEdgeInsets" minX="0.0" minY="-4" maxX="0.0" maxY="0.0"/>
+                                <size key="titleShadowOffset" width="0.0" height="1"/>
+                                <state key="normal" title="×">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="close:" destination="1nq-kU-wy5" eventType="touchUpInside" id="a18-2R-xkl"/>
+                                </connections>
+                            </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fXf-CH-tee" userLabel="Chat Toolbar" customClass="UIToolbar">
+                                <rect key="frame" x="0.0" y="724" width="1024" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <subviews>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="6MR-kX-6YA" userLabel="Text Field">
+                                        <rect key="frame" x="15" y="9" width="921" height="26"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                        <color key="backgroundColor" white="1" alpha="0.80000000000000004" colorSpace="calibratedWhite"/>
+                                        <accessibility key="accessibilityConfiguration" hint="Opens the keyboard." label="Message"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" keyboardAppearance="alert" returnKeyType="done"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="1nq-kU-wy5" id="x5c-jd-MMM"/>
+                                        </connections>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RNf-Lr-eIp">
+                                        <rect key="frame" x="953" y="10" width="63" height="24"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
+                                        <accessibility key="accessibilityConfiguration" hint="Sends your message to the chat room." label="Send"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="63" id="ejB-MS-f10"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                        <state key="normal" title="Send">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <state key="highlighted">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="sendChatMessage:" destination="1nq-kU-wy5" eventType="touchUpInside" id="HKt-Xy-bdu"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="RNf-Lr-eIp" secondAttribute="trailing" constant="8" id="Fij-7j-vAA"/>
+                                    <constraint firstAttribute="height" constant="44" id="JOa-zh-vCz"/>
+                                    <constraint firstItem="6MR-kX-6YA" firstAttribute="leading" secondItem="fXf-CH-tee" secondAttribute="leading" constant="15" id="P66-AY-H4j"/>
+                                    <constraint firstItem="RNf-Lr-eIp" firstAttribute="leading" secondItem="6MR-kX-6YA" secondAttribute="trailing" constant="17" id="SWf-CQ-VIg"/>
+                                    <constraint firstItem="6MR-kX-6YA" firstAttribute="top" secondItem="fXf-CH-tee" secondAttribute="top" constant="9" id="Smz-eH-94d"/>
+                                    <constraint firstItem="RNf-Lr-eIp" firstAttribute="top" secondItem="fXf-CH-tee" secondAttribute="top" constant="10" id="VjN-py-Tih"/>
+                                    <constraint firstAttribute="bottom" secondItem="RNf-Lr-eIp" secondAttribute="bottom" constant="10" id="eos-CX-1Di"/>
+                                    <constraint firstAttribute="bottom" secondItem="6MR-kX-6YA" secondAttribute="bottom" constant="9" id="y1w-nE-uCx"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="fXf-CH-tee" secondAttribute="trailing" id="0Mx-cG-kWX"/>
+                            <constraint firstAttribute="trailing" secondItem="U6T-G6-1ee" secondAttribute="trailing" id="6mE-u2-enA"/>
+                            <constraint firstItem="U6T-G6-1ee" firstAttribute="leading" secondItem="ZsD-Ij-UNB" secondAttribute="leading" id="7Jr-hK-2qa"/>
+                            <constraint firstItem="fXf-CH-tee" firstAttribute="leading" secondItem="ZsD-Ij-UNB" secondAttribute="leading" id="BVo-Ao-OCI"/>
+                            <constraint firstItem="U6T-G6-1ee" firstAttribute="leading" secondItem="Wf6-Su-3yA" secondAttribute="leading" id="NnL-gN-9bE"/>
+                            <constraint firstItem="U6T-G6-1ee" firstAttribute="top" secondItem="Wf6-Su-3yA" secondAttribute="top" id="RDy-LK-pXA"/>
+                            <constraint firstItem="eGL-IV-4yr" firstAttribute="top" secondItem="fXf-CH-tee" secondAttribute="bottom" id="VyI-ap-Xdy"/>
+                            <constraint firstItem="fXf-CH-tee" firstAttribute="top" secondItem="U6T-G6-1ee" secondAttribute="bottom" id="ZR2-v5-8AR"/>
+                            <constraint firstItem="U6T-G6-1ee" firstAttribute="top" secondItem="ZsD-Ij-UNB" secondAttribute="top" id="tKU-iP-eaX"/>
+                        </constraints>
+                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                    </view>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                    <connections>
+                        <outlet property="chatField" destination="6MR-kX-6YA" id="aGJ-zD-XFJ"/>
+                        <outlet property="chatSendButton" destination="RNf-Lr-eIp" id="DZJ-sJ-bIW"/>
+                        <outlet property="chatToolbarView" destination="fXf-CH-tee" id="F71-vv-e2X"/>
+                        <outlet property="chatWebView" destination="U6T-G6-1ee" id="dcA-k3-p3Q"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="GJ8-ts-Afl" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4105" y="537"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Dqt-7A-3xg">
@@ -2117,8 +2133,6 @@
         <image name="toolbar-dark-remind-on.png" width="26" height="24"/>
         <image name="toolbar-schedule-background" width="22" height="25"/>
         <image name="video-30sec" width="19" height="22"/>
-        <image name="video-chat-button" width="23" height="23"/>
-        <image name="video-chat-textfield" width="37" height="40"/>
         <image name="video-chat-up" width="21" height="22"/>
         <image name="video-speed-fast.png" width="21" height="22"/>
         <image name="video-speed-normal" width="21" height="22"/>

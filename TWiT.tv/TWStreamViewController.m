@@ -10,6 +10,7 @@
 #import "UIAlertView+block.h"
 
 #import "TWStreamViewController.h"
+#import "TWChatViewController.h"
 #import "TWNavigationContainer.h"
 #import "TWNavigationController.h"
 #import "TWSplitViewContainer.h"
@@ -50,7 +51,6 @@
     hideUI = NO;
     self.toolbarView.barStyle = UIBarStyleBlack;
     self.toasterView.barStyle = UIBarStyleBlack;
-    self.chatToolbarView.barStyle = UIBarStyleBlack;
     
     MPVolumeView *airplayButton = [[MPVolumeView alloc] init];
     airplayButton.showsVolumeSlider = NO;
@@ -154,6 +154,11 @@
                                              object:self.delegate.player];
     
     [NSNotificationCenter.defaultCenter addObserver:self
+                                           selector:@selector(hideChatRoom:)
+                                               name:@"chatRoomDidHide"
+                                             object:self.chatViewController];
+    
+    [NSNotificationCenter.defaultCenter addObserver:self
                                            selector:@selector(keyboardWillShow:)
                                                name:UIKeyboardWillShowNotification
                                              object:nil];
@@ -167,6 +172,16 @@
 {
     [super viewDidAppear:animated];
 }
+
+- (void)prepareForSegue:(UIStoryboardSegue*)segue sender:(id)sender
+{
+    if([segue.identifier isEqualToString:@"chatEmbed"])
+    {
+        _chatViewController = segue.destinationViewController;
+    }
+}
+
+#pragma mark - Settings
 
 - (UIStatusBarStyle)preferredStatusBarStyle
 {
@@ -187,6 +202,8 @@
 {
     return UIBarPositionTopAttached;
 }
+
+#pragma mark - Update View
 
 - (void)updateTitle
 {
@@ -298,7 +315,7 @@
 
 - (void)hideControls:(BOOL)hide
 {
-    if(hide == hideUI || !self.chatView.hidden)
+    if(hide == hideUI)
         return;
     
     hideUI = hide;
@@ -306,13 +323,17 @@
     if(hide)
     {
         [UIView animateWithDuration:UINavigationControllerHideShowBarDuration animations:^{
-            [self setNeedsStatusBarAppearanceUpdate];
             self.navigationController.navigationBar.alpha = 0;
             
             self.navigationBar.alpha = 0;
             self.toolbarView.alpha = 0;
         } completion:^(BOOL fin){
             [self.navigationController setNavigationBarHidden:YES animated:NO];
+            
+            [UIView animateWithDuration:UINavigationControllerHideShowBarDuration animations:^{
+                hideUI = hide;
+                [self setNeedsStatusBarAppearanceUpdate];
+            } completion:nil];
         }];
     }
     else
@@ -397,10 +418,8 @@
 
 - (void)loadChatRoom
 {
-    if(self.chatView.hidden && !self.chatWebView.request)
+    if(self.chatView.hidden && !self.chatViewController.isChatLoaded)
     {
-        [self hideControls:YES];
-        
         UIAlertView *prompt = [[UIAlertView alloc] initWithTitle:@"TWiT Chat Room"
                                                          message:@""
                                                         delegate:self
@@ -425,234 +444,73 @@
     else if(self.chatView.hidden)
     {
         [self hideControls:YES];
-        
         self.chatView.hidden = NO;
-        [UIView animateWithDuration:0.3 delay:0 options:0 animations:^{
-            [self layoutChatViewWithKeyboardSize:CGSizeZero];
-        } completion:^(BOOL fin){}];
-    }
-    else
-    {
-        [self.chatField resignFirstResponder];
-        
-        self.chatView.hidden = YES;
-        [UIView animateWithDuration:0.3 delay:0 options:0 animations:^{
-            [self layoutChatViewWithKeyboardSize:CGSizeZero];
-        } completion:^(BOOL fin){
-        }];
-        
-        [self hideControls:NO];
     }
 }
+
 - (void)alertView:(UIAlertView*)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     if(buttonIndex == 0)
-    {
-        [self hideControls:NO];
         return;
-    }
+    
+    NSString *chatNick = @"";
     
     if(![[[alertView textFieldAtIndex:0] text] isEqualToString:@""])
     {
-        self.chatNick = [[alertView textFieldAtIndex:0] text];
-        [NSUserDefaults.standardUserDefaults setObject:self.chatNick forKey:@"chat-nick"];
+        chatNick = [[alertView textFieldAtIndex:0] text];
+        [NSUserDefaults.standardUserDefaults setObject:chatNick forKey:@"chat-nick"];
         [NSUserDefaults.standardUserDefaults synchronize];
     }
     else
     {
-        self.chatNick = [NSString stringWithFormat:@"iOS_%d", arc4random()%9999];
+        chatNick = [NSString stringWithFormat:@"iOS_%d", arc4random()%9999];
     }
     
-    NSString *urlString = [NSString stringWithFormat:@"http://webchat.twit.tv/?nick=%@&channels=twitlive&uio=MT1mYWxzZSY3PWZhbHNlJjM9ZmFsc2UmMTA9dHJ1ZSYxMz1mYWxzZSYxND1mYWxzZQ23", self.chatNick];
-    [self.chatWebView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:urlString]]];
-    self.chatWebView.hidden = YES;
-    if([self.chatWebView respondsToSelector:@selector(scrollView)])
-        self.chatWebView.scrollView.scrollEnabled = NO;
-    else
-        [self.chatWebView.subviews.lastObject setScrollEnabled:NO];
-    
-    [UIView animateWithDuration:0.3 delay:0 options:0 animations:^{
-        [self layoutChatViewWithKeyboardSize:CGSizeZero];
-    } completion:^(BOOL fin){}];
-    
+    [self hideControls:YES];
+    [self.chatViewController loadWithNickname:chatNick];
     self.chatView.hidden = NO;
 }
 
-- (void)webViewDidFinishLoad:(UIWebView*)webView
+- (void)hideChatRoom:(NSNotification*)notification
 {
-    NSString *loginJS = @"javascript:(function evilGenius(){\
-                        document.getElementsByTagName('input')[0].click();\
-                        })();";
-    
-    [webView stringByEvaluatingJavaScriptFromString:loginJS];
-    
-    
-    NSString *path = [NSBundle.mainBundle.resourcePath stringByAppendingPathComponent:@"chatRoom.css"];
-    NSString *css = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
-    css = [css stringByReplacingOccurrencesOfString:@"\"" withString:@"\\\""];
-    css = [css stringByReplacingOccurrencesOfString:@"\n" withString:@" "];
-    css = [css stringByReplacingOccurrencesOfString:@"\r" withString:@" "];
-    
-    NSString *styleJS = [NSString stringWithFormat:@"javascript:(function evilGenius(){\
-                         var s=document.createElement(\"style\");\
-                         s.setAttribute(\"type\",\"text/css\");\
-                         s.innerHTML=\"%@\";\
-                         document.getElementsByTagName(\"head\")[0].appendChild(s);\
-                         })();", css];
-    
-    [webView stringByEvaluatingJavaScriptFromString:styleJS];
-    
-    
-    webView.hidden = NO;
-}
-
-- (IBAction)sendChatMessage:(UIButton*)sender
-{
-    NSString *messageJS = [NSString stringWithFormat:@"javascript:(function evilGenius(){\
-                    document.forms[0].elements[0].value = '%@';\
-                    document.getElementsByTagName('input')[1].click();\
-                    })();", self.chatField.text];
-    
-    [self.chatWebView stringByEvaluatingJavaScriptFromString:messageJS];
-    self.chatField.text = @"";
+    self.chatView.hidden = YES;
+    [self hideControls:NO];
 }
 
 - (void)keyboardWillShow:(NSNotification*)notification
 {
-    if(self.chatView.hidden)
-        return;
-    
     float duration = [notification.userInfo[UIKeyboardAnimationDurationUserInfoKey] floatValue];
     float curve = [notification.userInfo[UIKeyboardAnimationCurveUserInfoKey] floatValue];
     CGRect frame = [notification.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
     
-    CGSize keyboardSize = CGSizeZero;
-    keyboardSize.height = UIInterfaceOrientationIsPortrait(self.interfaceOrientation) ? frame.size.height : frame.size.width;
+    self.chatViewBottom.constant = UIInterfaceOrientationIsPortrait(self.interfaceOrientation) ? frame.size.height : frame.size.width;
+    
+    [self.view setNeedsUpdateConstraints];
     
     [UIView animateWithDuration:duration delay:0 options:curve animations:^{
-        [self layoutChatViewWithKeyboardSize:keyboardSize];
-    } completion:^(BOOL fin){}];
+        [self.view setNeedsLayout];
+    } completion:nil];
 }
 
 - (void)keyboardWillHide:(NSNotification*)notification
 {
-    if(self.chatView.hidden)
-        return;
-    
     float duration = [notification.userInfo[UIKeyboardAnimationDurationUserInfoKey] floatValue];
     float curve = [notification.userInfo[UIKeyboardAnimationCurveUserInfoKey] floatValue];
     
-    [UIView animateWithDuration:duration delay:0 options:curve animations:^{
-        [self layoutChatViewWithKeyboardSize:CGSizeZero];
-    } completion:^(BOOL fin){}];
-}
-
-- (void)layoutChatViewWithKeyboardSize:(CGSize)keyboardSize
-{
-    if(self.chatView.hidden)
-    {
-        self.delegate.player.view.frame = self.view.bounds;
-    }
-    else if(!self.infoView.hidden)
-    {
-        CGRect chatFrame = self.view.bounds;
-        chatFrame.size.height -= keyboardSize.height;
-        self.chatView.frame = chatFrame;
-    }
-    else if(UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPad)
-    {
-        CGRect playerFrame = self.view.bounds;
-        playerFrame.size.height = playerFrame.size.width * (9.0f/16.0f);
-        self.delegate.player.view.frame = playerFrame;
-        
-        CGRect chatFrame = self.view.bounds;
-        
-        if(keyboardSize.height == 0)
-            chatFrame.origin.y = playerFrame.size.height;
-        else
-            chatFrame.origin.y = UIInterfaceOrientationIsPortrait(self.interfaceOrientation) ? playerFrame.size.height : 0;
+    self.chatViewBottom.constant = 0;
     
-        chatFrame.size.height = self.view.bounds.size.height - chatFrame.origin.y - keyboardSize.height;
-        self.chatView.frame = chatFrame;
-    }
-    else
-    {
-        if(UIInterfaceOrientationIsPortrait(self.interfaceOrientation))
-        {
-            CGRect playerFrame = self.view.bounds;
-            playerFrame.size.height = playerFrame.size.width * (9.0f/16.0f);
-            self.delegate.player.view.frame = playerFrame;
-            
-            CGRect chatFrame = self.view.bounds;
-            
-            if(keyboardSize.height == 0)
-            {
-                chatFrame.origin.y = playerFrame.size.height;
-                chatFrame.size.height -= playerFrame.size.height;
-            }
-            else
-            {
-                chatFrame.size.height -= keyboardSize.height;
-            }
-            
-            self.chatView.frame = chatFrame;
-        }
-        else
-        {
-            CGRect chatFrame = self.view.bounds;
-            
-            if(keyboardSize.height == 0)
-            {
-                self.delegate.player.view.frame = self.view.bounds;
-            }
-            else
-            {
-                CGRect playerFrame = self.view.bounds;
-                playerFrame.origin.y -= keyboardSize.height / 2.0f;
-                playerFrame.size.height = playerFrame.size.width * (9.0f/16.0f);
-                self.delegate.player.view.frame = playerFrame;
-            }
-            
-            chatFrame.size.height -= keyboardSize.height;
-            self.chatView.frame = chatFrame;
-        }
-    }
-}
-
-- (BOOL)webView:(UIWebView*)webView shouldStartLoadWithRequest:(NSURLRequest*)request navigationType:(UIWebViewNavigationType)navigationType
-{
-    if([request.URL.absoluteString hasPrefix:@"http://webchat.twit.tv/"])
-    {
-        return YES;
-    }
-    else
-    {
-        [UIAlertView alertViewWithTitle:@"Open in Browser?"
-                                message:[NSString stringWithFormat:@"%@", request.URL.host]
-                      cancelButtonTitle:@"Cancel"
-                      otherButtonTitles:@[@"Open"]
-                              onDismiss:^(int buttonIndex) {
-                                  [UIApplication.sharedApplication openURL:request.URL];
-                              }
-                               onCancel:^(){}];
-        
-        return NO;
-    }
-}
-
-- (BOOL)textFieldShouldReturn:(UITextField*)textField
-{
-    [textField resignFirstResponder];
-    return YES;
+    [self.view setNeedsUpdateConstraints];
+    
+    [UIView animateWithDuration:duration delay:0 options:curve animations:^{
+        [self.view setNeedsLayout];
+    } completion:nil];
 }
 
 #pragma mark - Rotate
 
 - (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)orientation duration:(NSTimeInterval)duration
 {
-    [self layoutChatViewWithKeyboardSize:CGSizeZero];
-    
-    if(self.infoView.hidden)
+    if(self.infoView.hidden && self.chatView.hidden)
         [self hideControls:!UIInterfaceOrientationIsPortrait(orientation)];
 }
 
@@ -683,12 +541,6 @@
     }
     
     [self.navigationController setNavigationBarHidden:NO animated:YES];
-    [UIApplication.sharedApplication setStatusBarHidden:NO withAnimation:UIStatusBarAnimationSlide];
-    
-    // when self.player.loadState == MPMovieLoadStateUnknown, observers are not removed
-    //   nonForcedSubtitleDisplayEnabled
-    //   presentationSize
-    //   AVPlayerItem
     
     [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(updateTitle) object:nil];
     
@@ -700,6 +552,8 @@
                                                 object:self.delegate.player];
     [NSNotificationCenter.defaultCenter removeObserver:self name:MPMoviePlayerIsAirPlayVideoActiveDidChangeNotification
                                                 object:self.delegate.player];
+    
+    [NSNotificationCenter.defaultCenter removeObserver:self name:@"chatRoomDidHide" object:self.chatViewController];
     
     [NSNotificationCenter.defaultCenter removeObserver:self name:UIKeyboardWillShowNotification object:nil];
     [NSNotificationCenter.defaultCenter removeObserver:self name:UIKeyboardWillHideNotification object:nil];

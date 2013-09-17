@@ -25,6 +25,7 @@
 		1733C8B017E7CF580090C97A /* Show.m in Sources */ = {isa = PBXBuildFile; fileRef = 1733C8AF17E7CF580090C97A /* Show.m */; };
 		1733C8B317E7CF610090C97A /* Feed.m in Sources */ = {isa = PBXBuildFile; fileRef = 1733C8B217E7CF610090C97A /* Feed.m */; };
 		1733C8B617E7CF6A0090C97A /* Episode.m in Sources */ = {isa = PBXBuildFile; fileRef = 1733C8B517E7CF6A0090C97A /* Episode.m */; };
+		1733C8B917E7D6460090C97A /* TWChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1733C8B817E7D6460090C97A /* TWChatViewController.m */; };
 		1734B54E175140C4006745A1 /* omgcraft600.1353196800.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1734B54C175140C4006745A1 /* omgcraft600.1353196800.jpg */; };
 		1734B54F175140C4006745A1 /* yt600.1353196800.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1734B54D175140C4006745A1 /* yt600.1353196800.jpg */; };
 		1734B552175140F3006745A1 /* omg-poster.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1734B550175140F3006745A1 /* omg-poster.jpg */; };
@@ -139,6 +140,8 @@
 		1733C8B217E7CF610090C97A /* Feed.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Feed.m; sourceTree = "<group>"; };
 		1733C8B417E7CF6A0090C97A /* Episode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Episode.h; sourceTree = "<group>"; };
 		1733C8B517E7CF6A0090C97A /* Episode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Episode.m; sourceTree = "<group>"; };
+		1733C8B717E7D6460090C97A /* TWChatViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWChatViewController.h; sourceTree = "<group>"; };
+		1733C8B817E7D6460090C97A /* TWChatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWChatViewController.m; sourceTree = "<group>"; };
 		1734B54C175140C4006745A1 /* omgcraft600.1353196800.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = omgcraft600.1353196800.jpg; sourceTree = "<group>"; };
 		1734B54D175140C4006745A1 /* yt600.1353196800.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = yt600.1353196800.jpg; sourceTree = "<group>"; };
 		1734B550175140F3006745A1 /* omg-poster.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "omg-poster.jpg"; sourceTree = "<group>"; };
@@ -501,6 +504,8 @@
 				17E51175168F496E00DCE89C /* TWEpisodeViewController.m */,
 				1787B3BB16A58E7B00870B87 /* TWStreamViewController.h */,
 				170453B516B9B2E20041230D /* TWStreamViewController.m */,
+				1733C8B717E7D6460090C97A /* TWChatViewController.h */,
+				1733C8B817E7D6460090C97A /* TWChatViewController.m */,
 				17C477F616A192B40058E6C4 /* TWEnclosureViewController.h */,
 				17C477F716A192B40058E6C4 /* TWEnclosureViewController.m */,
 				177F1FAD16AB25A900BFFA63 /* TWPlaybarViewController.h */,
@@ -694,6 +699,7 @@
 				1733C8B617E7CF6A0090C97A /* Episode.m in Sources */,
 				177F1FAF16AB25A900BFFA63 /* TWPlaybarViewController.m in Sources */,
 				17CBC39B16B2F76D00F1F9EC /* TWNavigationController.m in Sources */,
+				1733C8B917E7D6460090C97A /* TWChatViewController.m in Sources */,
 				17CBC39E16B2FCCC00F1F9EC /* TWNavigationItem.m in Sources */,
 				1749FCE816B440A10087CC3A /* TWNavigationContainer.m in Sources */,
 				17B07F1416B5BFAE00B42CBF /* UIAlertView+block.m in Sources */,

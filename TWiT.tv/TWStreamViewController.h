@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@class TWAppDelegate, TWSplitViewContainer, Stream;
+@class TWAppDelegate, TWSplitViewContainer, Stream, TWChatViewController;
 
 @interface TWStreamViewController : UIViewController <UIWebViewDelegate, UITextFieldDelegate, UIActionSheetDelegate, UIAlertViewDelegate, UIBarPositioningDelegate, UIGestureRecognizerDelegate>
 
@@ -30,18 +30,13 @@
 @property (nonatomic, weak) IBOutlet UIImageView *infoAlbumArtView;
 
 @property (nonatomic, weak) IBOutlet UIView *chatView;
-@property (nonatomic, weak) IBOutlet UIWebView *chatWebView;
-@property (nonatomic, weak) IBOutlet UIToolbar *chatToolbarView;
-@property (nonatomic, weak) IBOutlet UITextField *chatField;
-@property (nonatomic, weak) IBOutlet UIButton *chatSendButton;
-@property (nonatomic, strong) NSString *chatNick, *chatPass;
+@property (nonatomic, weak) TWChatViewController *chatViewController;
+@property (nonatomic, weak) IBOutlet NSLayoutConstraint *chatViewBottom;
 
 - (void)playerStateChanged:(NSNotification*)notification;
 
 - (IBAction)play:(UIButton*)sender;
 - (IBAction)openChatView:(UIButton*)sender;
 - (IBAction)openQualityPopover:(UIButton*)sender;
-
-- (IBAction)sendChatMessage:(UIButton*)sender;
 
 @end

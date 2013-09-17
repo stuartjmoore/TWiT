@@ -10,11 +10,17 @@
 
 @implementation TWNavigationController
 
-#pragma mark - Rotate
+#pragma mark - Settings
 
 - (BOOL)shouldAutorotate;
 {
     return YES;
+}
+
+- (UIBarPosition)positionForBar:(id<UIBarPositioning>)bar
+{
+    NSLog(@"positionForBar");
+    return UIBarPositionTopAttached;
 }
 
 - (NSUInteger)supportedInterfaceOrientations

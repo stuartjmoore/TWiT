@@ -40,10 +40,10 @@
                         <constraints>
                             <constraint firstItem="11e-hg-6Vi" firstAttribute="leading" secondItem="WM3-HN-ucQ" secondAttribute="leading" id="Nsg-79-cBv"/>
                             <constraint firstItem="I8r-DB-5T1" firstAttribute="top" secondItem="11e-hg-6Vi" secondAttribute="bottom" id="RVG-fh-AVs"/>
+                            <constraint firstItem="yry-4c-naO" firstAttribute="leading" secondItem="WM3-HN-ucQ" secondAttribute="leading" id="YCr-BF-pr0"/>
                             <constraint firstAttribute="trailing" secondItem="11e-hg-6Vi" secondAttribute="trailing" id="bGV-9J-lcO"/>
                             <constraint firstItem="yry-4c-naO" firstAttribute="bottom" secondItem="11e-hg-6Vi" secondAttribute="bottom" id="lby-Cv-CXL"/>
-                            <constraint firstItem="yry-4c-naO" firstAttribute="trailing" secondItem="11e-hg-6Vi" secondAttribute="trailing" id="uhh-2q-N6y"/>
-                            <constraint firstItem="yry-4c-naO" firstAttribute="leading" secondItem="11e-hg-6Vi" secondAttribute="leading" id="xK8-oU-OMc"/>
+                            <constraint firstAttribute="trailing" secondItem="yry-4c-naO" secondAttribute="trailing" id="sDJ-Nn-HSl"/>
                             <constraint firstItem="yry-4c-naO" firstAttribute="top" secondItem="WM3-HN-ucQ" secondAttribute="top" id="ys4-nt-Y9G"/>
                         </constraints>
                     </view>
@@ -66,6 +66,9 @@
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
                     <navigationBar key="navigationBar" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="4">
                         <autoresizingMask key="autoresizingMask"/>
+                        <connections>
+                            <outlet property="delegate" destination="3" id="pyI-C1-Ifn"/>
+                        </connections>
                     </navigationBar>
                     <connections>
                         <segue destination="12" kind="relationship" relationship="rootViewController" id="19"/>
@@ -1032,11 +1035,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pKp-YU-GKo" userLabel="Info">
+                            <view userInteractionEnabled="NO" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pKp-YU-GKo" userLabel="Info">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" image="generic.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="xop-pu-rMR">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" misplaced="YES" image="generic.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="xop-pu-rMR">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <accessibility key="accessibilityConfiguration" label="Album art">
@@ -1052,7 +1055,7 @@
                                     <constraint firstItem="xop-pu-rMR" firstAttribute="leading" secondItem="pKp-YU-GKo" secondAttribute="leading" id="zA1-Xe-7Fp"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="N1A-nM-fY5" userLabel="Toaster" customClass="UIToolbar">
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="N1A-nM-fY5" userLabel="Toaster" customClass="UIToolbar">
                                 <rect key="frame" x="121" y="202" width="77" height="77"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <subviews>
@@ -1067,7 +1070,7 @@
                                     <constraint firstAttribute="height" constant="77" id="XRg-Uu-g6a"/>
                                 </constraints>
                             </view>
-                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hyq-ZM-UU4" userLabel="Timecode" customClass="UIToolbar">
+                            <view hidden="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hyq-ZM-UU4" userLabel="Timecode" customClass="UIToolbar">
                                 <rect key="frame" x="58" y="202" width="204" height="77"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <subviews>
@@ -1085,11 +1088,11 @@
                                     <constraint firstAttribute="width" constant="204" id="dqu-XR-TXJ"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="C6H-ll-aCQ" userLabel="Toolbar" customClass="UIToolbar">
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="C6H-ll-aCQ" userLabel="Toolbar" customClass="UIToolbar">
                                 <rect key="frame" x="0.0" y="392" width="320" height="88"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <subviews>
-                                    <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="2Ox-hJ-Dfa">
+                                    <slider opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="2Ox-hJ-Dfa">
                                         <rect key="frame" x="8" y="-4" width="304" height="34"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                         <accessibility key="accessibilityConfiguration" hint="Seeks the episode back and forth." label="Seek bar"/>
@@ -1111,7 +1114,7 @@
                                         <color key="shadowColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                         <size key="shadowOffset" width="0.0" height="1"/>
                                     </label>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Loading…" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XIg-yO-9vc">
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" misplaced="YES" text="Loading…" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XIg-yO-9vc">
                                         <rect key="frame" x="131" y="22" width="58" height="16"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
@@ -1120,7 +1123,7 @@
                                         <color key="shadowColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                         <size key="shadowOffset" width="0.0" height="1"/>
                                     </label>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="-:--:--" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tCj-YC-Tn8">
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" misplaced="YES" text="-:--:--" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tCj-YC-Tn8">
                                         <rect key="frame" x="279" y="22" width="31" height="16"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
@@ -1137,7 +1140,7 @@
                                             <constraint firstAttribute="height" constant="37" id="py2-SN-vpY"/>
                                         </constraints>
                                     </view>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NyF-GD-hKP" userLabel="Speed">
+                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NyF-GD-hKP" userLabel="Speed">
                                         <rect key="frame" x="50" y="46" width="37" height="37"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <accessibility key="accessibilityConfiguration" hint="Speeds up episode playback." label="Speed"/>
@@ -1157,7 +1160,7 @@
                                             <action selector="toggleSpeed:" destination="cwj-qn-kQX" eventType="touchUpInside" id="g6Y-K5-0sw"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Sz-QQ-muz" userLabel="Rewind">
+                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Sz-QQ-muz" userLabel="Rewind">
                                         <rect key="frame" x="96" y="46" width="37" height="37"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                                         <accessibility key="accessibilityConfiguration" hint="Rewinds 30 seconds." label="Rewind"/>
@@ -1176,7 +1179,7 @@
                                             <action selector="rewind:" destination="cwj-qn-kQX" eventType="touchUpInside" id="7V1-0O-pat"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2tA-WO-fRc" userLabel="Play">
+                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2tA-WO-fRc" userLabel="Play">
                                         <rect key="frame" x="142" y="46" width="37" height="37"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <constraints>
@@ -1196,7 +1199,7 @@
                                             <action selector="play:" destination="cwj-qn-kQX" eventType="touchUpInside" id="l1c-hy-d3L"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HeG-jk-7oC" userLabel="Quality">
+                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HeG-jk-7oC" userLabel="Quality">
                                         <rect key="frame" x="192" y="46" width="108" height="37"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <accessibility key="accessibilityConfiguration" hint="Opens the quality selector." label="Quality"/>
@@ -1375,6 +1378,14 @@
                                     <constraint firstItem="ecd-bD-VzR" firstAttribute="top" secondItem="GUQ-sI-WNG" secondAttribute="top" id="vYi-pR-jjZ"/>
                                 </constraints>
                             </view>
+                            <containerView hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gT0-Qq-gTt" userLabel="Chat">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <segue destination="JV0-IW-tEi" kind="embed" identifier="chatEmbed" id="HQv-59-dWO"/>
+                                </connections>
+                            </containerView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sHE-1Y-Nhf" userLabel="Toaster" customClass="UIToolbar">
                                 <rect key="frame" x="122" y="201" width="77" height="77"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
@@ -1479,89 +1490,17 @@
                                     <constraint firstItem="HVH-uc-nCY" firstAttribute="leading" secondItem="zUB-MM-lFt" secondAttribute="trailing" constant="24" id="tAw-47-2vs"/>
                                 </constraints>
                             </view>
-                            <view hidden="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JGw-BU-0i2" userLabel="Chat">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <subviews>
-                                    <webView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="13t-DU-I27">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="436"/>
-                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                        <color key="backgroundColor" white="0.0" alpha="0.29999999999999999" colorSpace="calibratedWhite"/>
-                                        <dataDetectorType key="dataDetectorTypes"/>
-                                        <connections>
-                                            <outlet property="delegate" destination="zgt-3C-NJF" id="QMb-0P-5YH"/>
-                                        </connections>
-                                    </webView>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hBQ-jZ-gv2">
-                                        <rect key="frame" x="0.0" y="0.0" width="41" height="32"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <accessibility key="accessibilityConfiguration" hint="Closes the chat room." label="Close chat"/>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="28"/>
-                                        <inset key="titleEdgeInsets" minX="0.0" minY="-4" maxX="0.0" maxY="0.0"/>
-                                        <size key="titleShadowOffset" width="0.0" height="1"/>
-                                        <state key="normal" title="×">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            <color key="titleShadowColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <state key="highlighted">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="openChatView:" destination="zgt-3C-NJF" eventType="touchUpInside" id="dm5-sG-azL"/>
-                                        </connections>
-                                    </button>
-                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ufE-OI-ldD" userLabel="Toolbar" customClass="UIToolbar">
-                                        <rect key="frame" x="0.0" y="436" width="320" height="44"/>
-                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                        <subviews>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" image="video-chat-textfield" translatesAutoresizingMaskIntoConstraints="NO" id="ISR-Go-N1x">
-                                                <rect key="frame" x="0.0" y="2" width="320" height="40"/>
-                                                <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
-                                                <rect key="contentStretch" x="0.48648648649999998" y="0.47499999999999998" width="0.0" height="0.0"/>
-                                            </imageView>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="VXC-8R-woC">
-                                                <rect key="frame" x="12" y="9" width="229" height="26"/>
-                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                                <accessibility key="accessibilityConfiguration" label="Message"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits" keyboardAppearance="alert" returnKeyType="done"/>
-                                                <connections>
-                                                    <outlet property="delegate" destination="zgt-3C-NJF" id="lJ6-S0-bzV"/>
-                                                </connections>
-                                            </textField>
-                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jkG-Jr-k2r">
-                                                <rect key="frame" x="249" y="10" width="63" height="24"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
-                                                <accessibility key="accessibilityConfiguration" hint="Sends your message to the chat room." label="Send"/>
-                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
-                                                <size key="titleShadowOffset" width="0.0" height="1"/>
-                                                <state key="normal" title="Send" backgroundImage="video-chat-button">
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <color key="titleShadowColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <state key="highlighted">
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="sendChatMessage:" destination="zgt-3C-NJF" eventType="touchUpInside" id="TOU-ut-JXK"/>
-                                                </connections>
-                                            </button>
-                                        </subviews>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                    </view>
-                                </subviews>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <accessibility key="accessibilityConfiguration" label="Chat room">
-                                    <bool key="isElement" value="YES"/>
-                                </accessibility>
-                            </view>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="gT0-Qq-gTt" firstAttribute="top" secondItem="dfG-09-urO" secondAttribute="top" id="1bq-BZ-MQI"/>
+                            <constraint firstAttribute="bottom" secondItem="gT0-Qq-gTt" secondAttribute="bottom" id="9ar-5s-k6f"/>
                             <constraint firstAttribute="trailing" secondItem="GUQ-sI-WNG" secondAttribute="trailing" id="9ex-Du-pf7"/>
+                            <constraint firstItem="gT0-Qq-gTt" firstAttribute="leading" secondItem="dfG-09-urO" secondAttribute="leading" id="CFM-TM-bCq"/>
                             <constraint firstAttribute="centerX" secondItem="sHE-1Y-Nhf" secondAttribute="centerX" constant="-0.5" id="DFa-Rx-aqX"/>
                             <constraint firstItem="Rzs-hG-QFc" firstAttribute="top" secondItem="GUQ-sI-WNG" secondAttribute="bottom" id="DKg-5e-Nef"/>
+                            <constraint firstAttribute="trailing" secondItem="gT0-Qq-gTt" secondAttribute="trailing" id="Db4-Ye-mBX"/>
                             <constraint firstAttribute="centerX" secondItem="GUQ-sI-WNG" secondAttribute="centerX" id="HiK-Pt-kBm"/>
                             <constraint firstAttribute="trailing" secondItem="GUQ-sI-WNG" secondAttribute="trailing" id="JNw-63-kl3"/>
                             <constraint firstItem="Rzs-hG-QFc" firstAttribute="top" secondItem="GUQ-sI-WNG" secondAttribute="bottom" id="VHM-ip-qe8"/>
@@ -1626,11 +1565,8 @@
                     <connections>
                         <outlet property="airplayButtonView" destination="zUB-MM-lFt" id="m4H-M6-STF"/>
                         <outlet property="chatButton" destination="HVH-uc-nCY" id="X6h-o4-WXa"/>
-                        <outlet property="chatField" destination="VXC-8R-woC" id="JOt-SY-FKn"/>
-                        <outlet property="chatSendButton" destination="jkG-Jr-k2r" id="AaQ-oT-ThC"/>
-                        <outlet property="chatToolbarView" destination="ufE-OI-ldD" id="GDY-tq-Ze4"/>
-                        <outlet property="chatView" destination="JGw-BU-0i2" id="q8d-Ly-Dm4"/>
-                        <outlet property="chatWebView" destination="13t-DU-I27" id="ftf-zV-UCa"/>
+                        <outlet property="chatView" destination="gT0-Qq-gTt" id="ybz-MK-KRC"/>
+                        <outlet property="chatViewBottom" destination="9ar-5s-k6f" id="qW1-hh-KG2"/>
                         <outlet property="infoAlbumArtView" destination="ecd-bD-VzR" id="5rX-B7-dF6"/>
                         <outlet property="infoView" destination="GUQ-sI-WNG" id="lVC-j2-YmJ"/>
                         <outlet property="playButton" destination="aEE-TI-3XS" id="17s-B5-3yh"/>
@@ -1746,6 +1682,123 @@
             </objects>
             <point key="canvasLocation" x="-450" y="738"/>
         </scene>
+        <!--Chat View Controller-->
+        <scene sceneID="58C-dp-jtg">
+            <objects>
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="JV0-IW-tEi" customClass="TWChatViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="gCt-JI-gPU"/>
+                        <viewControllerLayoutGuide type="bottom" id="ldx-uO-GvK"/>
+                    </layoutGuides>
+                    <view key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="SwH-ls-ISi">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <webView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="13t-DU-I27">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="436"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.29999999999999999" colorSpace="calibratedWhite"/>
+                                <dataDetectorType key="dataDetectorTypes"/>
+                                <connections>
+                                    <outlet property="delegate" destination="JV0-IW-tEi" id="DEV-an-wcn"/>
+                                </connections>
+                            </webView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hBQ-jZ-gv2">
+                                <rect key="frame" x="0.0" y="0.0" width="41" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <accessibility key="accessibilityConfiguration" hint="Closes the chat room." label="Close chat"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="32" id="KaT-To-Hpz"/>
+                                    <constraint firstAttribute="width" constant="41" id="eT1-MG-mCt"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="28"/>
+                                <inset key="titleEdgeInsets" minX="0.0" minY="-4" maxX="0.0" maxY="0.0"/>
+                                <state key="normal" title="×">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="close:" destination="JV0-IW-tEi" eventType="touchUpInside" id="rYi-ou-HIt"/>
+                                </connections>
+                            </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ufE-OI-ldD" userLabel="Toolbar" customClass="UIToolbar">
+                                <rect key="frame" x="0.0" y="436" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <subviews>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="VXC-8R-woC" userLabel="Input">
+                                        <rect key="frame" x="12" y="9" width="229" height="26"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                        <color key="backgroundColor" white="1" alpha="0.80000000000000004" colorSpace="calibratedWhite"/>
+                                        <accessibility key="accessibilityConfiguration" label="Message"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" keyboardAppearance="alert" returnKeyType="done"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="JV0-IW-tEi" id="6aq-VW-gg0"/>
+                                        </connections>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jkG-Jr-k2r">
+                                        <rect key="frame" x="249" y="10" width="63" height="24"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
+                                        <accessibility key="accessibilityConfiguration" hint="Sends your message to the chat room." label="Send"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="24" id="EXq-1X-MOi"/>
+                                            <constraint firstAttribute="width" constant="63" id="gds-nx-vik"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                        <state key="normal" title="Send">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <state key="highlighted">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="sendChatMessage:" destination="JV0-IW-tEi" eventType="touchUpInside" id="6wV-On-p42"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="VXC-8R-woC" secondAttribute="bottom" constant="9" id="0Dc-te-DEn"/>
+                                    <constraint firstAttribute="height" constant="44" id="3qG-qB-8hi"/>
+                                    <constraint firstItem="jkG-Jr-k2r" firstAttribute="top" secondItem="ufE-OI-ldD" secondAttribute="top" constant="10" id="6sn-74-CLG"/>
+                                    <constraint firstItem="jkG-Jr-k2r" firstAttribute="leading" secondItem="VXC-8R-woC" secondAttribute="trailing" constant="8" id="Dvw-vo-Bp9"/>
+                                    <constraint firstAttribute="trailing" secondItem="jkG-Jr-k2r" secondAttribute="trailing" constant="8" id="Fut-aQ-zac"/>
+                                    <constraint firstItem="VXC-8R-woC" firstAttribute="leading" secondItem="ufE-OI-ldD" secondAttribute="leading" constant="12" id="Fvi-KT-KK0"/>
+                                    <constraint firstItem="VXC-8R-woC" firstAttribute="top" secondItem="ufE-OI-ldD" secondAttribute="top" constant="9" id="Lee-Ku-fHC"/>
+                                    <constraint firstItem="jkG-Jr-k2r" firstAttribute="leading" secondItem="VXC-8R-woC" secondAttribute="trailing" constant="8" id="fLV-Mq-G3D"/>
+                                    <constraint firstAttribute="bottom" secondItem="jkG-Jr-k2r" secondAttribute="bottom" constant="10" id="oro-06-5Vv"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="13t-DU-I27" firstAttribute="top" secondItem="hBQ-jZ-gv2" secondAttribute="top" id="0uh-k1-g9e"/>
+                            <constraint firstAttribute="trailing" secondItem="ufE-OI-ldD" secondAttribute="trailing" id="Hbe-4L-Vv2"/>
+                            <constraint firstAttribute="trailing" secondItem="13t-DU-I27" secondAttribute="trailing" id="PzF-eg-XYU"/>
+                            <constraint firstItem="ufE-OI-ldD" firstAttribute="top" secondItem="13t-DU-I27" secondAttribute="bottom" id="bYI-2h-944"/>
+                            <constraint firstAttribute="bottom" secondItem="ufE-OI-ldD" secondAttribute="bottom" id="dna-Fi-WqI"/>
+                            <constraint firstItem="13t-DU-I27" firstAttribute="leading" secondItem="SwH-ls-ISi" secondAttribute="leading" id="uLr-Gj-k0A"/>
+                            <constraint firstItem="13t-DU-I27" firstAttribute="leading" secondItem="hBQ-jZ-gv2" secondAttribute="leading" id="veb-OS-VWd"/>
+                            <constraint firstItem="13t-DU-I27" firstAttribute="top" secondItem="SwH-ls-ISi" secondAttribute="top" id="yKF-DI-boF"/>
+                            <constraint firstItem="ufE-OI-ldD" firstAttribute="leading" secondItem="SwH-ls-ISi" secondAttribute="leading" id="zAU-VH-Sev"/>
+                        </constraints>
+                    </view>
+                    <toolbarItems/>
+                    <connections>
+                        <outlet property="chatField" destination="VXC-8R-woC" id="Giq-C6-8fJ"/>
+                        <outlet property="chatSendButton" destination="jkG-Jr-k2r" id="F4K-RL-rix"/>
+                        <outlet property="chatToolbarView" destination="ufE-OI-ldD" id="Xpl-Nc-5sn"/>
+                        <outlet property="chatWebView" destination="13t-DU-I27" id="e7V-FG-AOQ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Oi9-ih-yXX" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1915" y="-615"/>
+        </scene>
     </scenes>
     <resources>
         <image name="button-orange-left" width="7" height="38"/>
@@ -1769,8 +1822,6 @@
         <image name="toolbar-remind-on.png" width="26" height="24"/>
         <image name="toolbar-schedule-background" width="22" height="25"/>
         <image name="video-30sec" width="19" height="22"/>
-        <image name="video-chat-button" width="23" height="23"/>
-        <image name="video-chat-textfield" width="37" height="40"/>
         <image name="video-chat-up" width="21" height="22"/>
         <image name="video-speed-fast.png" width="21" height="22"/>
         <image name="video-speed-normal" width="21" height="22"/>

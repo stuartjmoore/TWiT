@@ -317,22 +317,26 @@
     if(hide == hideUI)
         return;
     
-    hideUI = hide;
-    
     if(hide)
     {
         [UIView animateWithDuration:UINavigationControllerHideShowBarDuration animations:^{
-            [self setNeedsStatusBarAppearanceUpdate];
             self.navigationController.navigationBar.alpha = 0;
             
             self.navigationBar.alpha = 0;
             self.toolbarView.alpha = 0;
         } completion:^(BOOL fin){
             [self.navigationController setNavigationBarHidden:YES animated:NO];
+            
+            [UIView animateWithDuration:UINavigationControllerHideShowBarDuration animations:^{
+                hideUI = hide;
+                [self setNeedsStatusBarAppearanceUpdate];
+            } completion:nil];
         }];
     }
     else
     {
+        hideUI = hide;
+        
         [UIView animateWithDuration:UINavigationControllerHideShowBarDuration animations:^{
             [self setNeedsStatusBarAppearanceUpdate];
         } completion:nil];
