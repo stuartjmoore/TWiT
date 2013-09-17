@@ -20,8 +20,6 @@
 {
     self.chatNick = nickname;
 
-    // TODO: UNDO:
-    //NSString *urlString = [NSString stringWithFormat:@"http://webchat.twit.tv/?nick=%@&uio=MT1mYWxzZSY3PWZhbHNlJjM9ZmFsc2UmMTA9dHJ1ZSYxMz1mYWxzZSYxND1mYWxzZQ23", self.chatNick];
     NSString *urlString = [NSString stringWithFormat:@"http://webchat.twit.tv/?nick=%@&channels=twitlive&uio=MT1mYWxzZSY3PWZhbHNlJjM9ZmFsc2UmMTA9dHJ1ZSYxMz1mYWxzZSYxND1mYWxzZQ23", self.chatNick];
     
     [self.chatWebView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:urlString]]];
