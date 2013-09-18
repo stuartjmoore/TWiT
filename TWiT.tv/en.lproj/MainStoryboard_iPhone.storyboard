@@ -776,7 +776,7 @@
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 </view>
-                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tpu-un-zzf">
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tpu-un-zzf" userLabel="Fav">
                                                     <rect key="frame" x="20" y="8" width="44" height="44"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                     <accessibility key="accessibilityConfiguration" hint="Favorites this show." label="Favorite"/>
@@ -793,7 +793,7 @@
                                                         <action selector="setFavorite:" destination="Gce-uE-xEB" eventType="touchUpInside" id="g4J-Fc-neM"/>
                                                     </connections>
                                                 </button>
-                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kb3-St-Jcf">
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kb3-St-Jcf" userLabel="Remind">
                                                     <rect key="frame" x="78" y="8" width="44" height="44"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                     <accessibility key="accessibilityConfiguration" hint="Reminds you when this show airs." label="Remind"/>
@@ -810,7 +810,7 @@
                                                         <action selector="setReminder:" destination="Gce-uE-xEB" eventType="touchUpInside" id="9kr-8K-Isl"/>
                                                     </connections>
                                                 </button>
-                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4l9-QF-ZVI">
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4l9-QF-ZVI" userLabel="Disclose">
                                                     <rect key="frame" x="138" y="8" width="44" height="44"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                     <accessibility key="accessibilityConfiguration" hint="Expands the information view." label="More Info"/>
@@ -826,7 +826,7 @@
                                                         <action selector="openDetailView:" destination="Gce-uE-xEB" eventType="touchUpInside" id="4rU-Wg-wWo"/>
                                                     </connections>
                                                 </button>
-                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pSW-Z1-63b">
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pSW-Z1-63b" userLabel="Email">
                                                     <rect key="frame" x="198" y="8" width="44" height="44"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                                                     <accessibility key="accessibilityConfiguration" hint="Emails this show." label="Email"/>
@@ -842,7 +842,7 @@
                                                         <action selector="email:" destination="Gce-uE-xEB" eventType="touchUpInside" id="cKG-WF-3rF"/>
                                                     </connections>
                                                 </button>
-                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BGQ-R4-EEs">
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BGQ-R4-EEs" userLabel="Phone">
                                                     <rect key="frame" x="256" y="8" width="44" height="44"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                                                     <accessibility key="accessibilityConfiguration" hint="Calls this show." label="Call"/>
@@ -1837,8 +1837,8 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="YiW-0V-IC2"/>
         <segue reference="ev1-BP-H8c"/>
         <segue reference="P5c-U6-ZVf"/>
+        <segue reference="OfB-Q1-3Dp"/>
     </inferredMetricsTieBreakers>
 </document>

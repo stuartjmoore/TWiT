@@ -493,6 +493,7 @@
         NSManagedObjectContext *context = self.managedObjectContext;
         NSUbiquitousKeyValueStore *store = [NSUbiquitousKeyValueStore defaultStore];
         NSArray *changedKeys = [userInfo objectForKey:NSUbiquitousKeyValueStoreChangedKeysKey];
+        NSMutableSet *showsToUpdate = [NSMutableSet new];
         
         for(NSString *key in changedKeys)
         {
@@ -543,14 +544,14 @@
                     [episode willChangeValueForKey:@"lastTimecode"];
                     [episode setPrimitiveValue:@(lastTimecode) forKey:@"lastTimecode"];
                     [episode didChangeValueForKey:@"lastTimecode"];
-                  
-                    // Add show ID to set
+                    
+                    [showsToUpdate addObject:show];
                 }
             }
         }
         [context save:nil];
         
-        // Update all in set
+        [showsToUpdate makeObjectsPerformSelector:@selector(updateEpisodes)];
     }
     else if(reasonForChange && reasonForChange.integerValue == NSUbiquitousKeyValueStoreQuotaViolationChange)
     {
