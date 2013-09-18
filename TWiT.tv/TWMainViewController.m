@@ -268,10 +268,10 @@
     return indexPath;
 }
 
-- (void)tableView:(UITableView*)tableView didSelectColumn:(int)column AtIndexPath:(NSIndexPath*)indexPath
+- (void)tableView:(UITableView*)tableView didSelectColumn:(NSInteger)column AtIndexPath:(NSIndexPath*)indexPath
 {
     TWShowsCell *showCell = (TWShowsCell*)[self.tableView cellForRowAtIndexPath:indexPath];
-    int index = indexPath.row*showCell.columns + column;
+    NSInteger index = indexPath.row*showCell.columns + column;
     NSIndexPath *showIndexPath = [NSIndexPath indexPathForRow:index inSection:indexPath.section];
  
     if(UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPhone)
@@ -517,8 +517,8 @@
         else if(self.sectionVisible == TWSectionShows)
         {
             sectionInfo = self.fetchedShowsController.sections[section];
-            int num = sectionInfo.numberOfObjects;
-            int columns = 3;
+            NSInteger num = sectionInfo.numberOfObjects;
+            NSInteger columns = 3;
             
             if(UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPad)
                 columns = (self.tableView.frame.size.width <= 448) ? 3 : 4;

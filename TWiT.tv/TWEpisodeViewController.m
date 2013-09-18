@@ -47,7 +47,7 @@
     [super viewWillAppear:animated];
     self.unlockRotation = NO;
     
-    self.playButton.percentage = (self.episode.duration != 0) ? (float)self.episode.lastTimecode/self.episode.duration : 0;
+    self.playButton.percentage = (self.episode.duration != 0) ? (CGFloat)self.episode.lastTimecode/self.episode.duration : 0;
     
     [NSNotificationCenter.defaultCenter addObserver:self
                                            selector:@selector(updateProgress:)
@@ -115,7 +115,7 @@
         else
             self.timeLabel.accessibilityLabel = [NSString stringWithFormat:@"Length: %d hours and %d minutes", hours, minutes];
         
-        self.playButton.percentage = (self.episode.duration != 0) ? (float)self.episode.lastTimecode/(float)self.episode.duration : 0;
+        self.playButton.percentage = (self.episode.duration != 0) ? (CGFloat)self.episode.lastTimecode/(CGFloat)self.episode.duration : 0;
    
         
         self.segmentedButton.buttonState = self.episode.downloadedEnclosures ? TWButtonSegmentDelete : TWButtonSegmentDownload;
@@ -220,7 +220,7 @@
         if(self.segmentedButton.buttonState != TWButtonSegmentCancel)
             self.segmentedButton.buttonState = TWButtonSegmentCancel;
         
-        self.segmentedButton.progress = (enclosure.expectedLength != 0)? enclosure.downloadedLength/(float)enclosure.expectedLength : 0;
+        self.segmentedButton.progress = (enclosure.expectedLength != 0)? enclosure.downloadedLength/(CGFloat)enclosure.expectedLength : 0;
     }
     else if([notification.name isEqualToString:@"enclosureDownloadDidFinish"])
     {

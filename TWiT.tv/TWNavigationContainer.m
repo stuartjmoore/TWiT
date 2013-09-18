@@ -36,7 +36,7 @@
         return;
     
     [self.playbarController updateView];
-    float height = self.playbarContainer.frame.size.height;
+    CGFloat height = self.playbarContainer.frame.size.height;
     
     CGRect masterFrame = self.masterContainer.frame;
     masterFrame.size.height = self.view.frame.size.height - height;

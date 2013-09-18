@@ -16,10 +16,10 @@
 - (BOOL)isBeforeNow;
 - (BOOL)isAfterNow;
 
-- (float)floatTime;
+- (CGFloat)floatTime;
 
-+ (int)dayFromName:(NSString*)name;
-+ (NSString*)longNameFromDay:(int)day;
-+ (NSString*)shortNameFromDay:(int)day;
++ (NSInteger)dayFromName:(NSString*)name;
++ (NSString*)longNameFromDay:(NSInteger)day;
++ (NSString*)shortNameFromDay:(NSInteger)day;
 
 @end

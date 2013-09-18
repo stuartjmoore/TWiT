@@ -53,7 +53,7 @@
 {
     [self.scrollView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
     
-    for(int hour = 0; hour < 24; hour++)
+    for(NSInteger hour = 0; hour < 24; hour++)
     {
         CGRect frame = CGRectMake(hour*hourWidth, 0, hourWidth, timeHeight);
         
@@ -73,7 +73,7 @@
         /*
         BOOL is24Hour = [NSDate is24Hour];
         NSString *suffix = is24Hour ? @"" : (hour < 12 ? @"a" : @"p");
-        int maxHour = is24Hour ? 24 : 12;
+        NSInteger maxHour = is24Hour ? 24 : 12;
         
         NSString *timeTitle = (hour < maxHour) ? [NSString stringWithFormat:@"%d:00%@", hour, suffix]
                                                : [NSString stringWithFormat:@"%d:00%@", hour-maxHour, suffix];
@@ -97,11 +97,11 @@
         
     }
     
-    float minX = self.scrollView.contentSize.width, maxX = 0;
+    CGFloat minX = self.scrollView.contentSize.width, maxX = 0;
     
     for(NSArray *day in self.schedule.days)
     {
-        int i = [self.schedule.days indexOfObject:day];
+        NSInteger i = [self.schedule.days indexOfObject:day];
         for(Event *event in day)
         {
             NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
@@ -118,7 +118,7 @@
             else if(i == 6)
                 self.day6Label.text = [dateFormatter stringFromDate:event.start];
             
-            float height = (self.scrollView.bounds.size.height-timeHeight)/7.0f;
+            CGFloat height = (self.scrollView.bounds.size.height-timeHeight)/7.0f;
             CGRect frame = CGRectMake(event.start.floatTime*hourWidth, timeHeight+i*height, event.duration/60.0f*hourWidth, height);
             
             if(frame.origin.x < minX)
@@ -180,7 +180,7 @@
     [self.nowLine removeFromSuperview];
     self.nowLine = [[UIView alloc] init];
     self.nowLine.backgroundColor = [UIColor colorWithRed:52.0/255 green:170.0/255 blue:210.0/255 alpha:1];
-    float height = (self.scrollView.bounds.size.height-timeHeight)/7.0f;
+    CGFloat height = (self.scrollView.bounds.size.height-timeHeight)/7.0f;
     self.nowLine.frame = CGRectMake(now.floatTime*hourWidth, timeHeight/2.0f, 1, height+timeHeight);
     [self.scrollView addSubview:self.nowLine];
     
@@ -189,8 +189,8 @@
     nowFrame.size.width = self.scrollView.bounds.size.width;
     nowFrame.origin.x -= self.scrollView.bounds.size.width/2.0f;
     
-    float minX = -self.scrollView.contentInset.left;
-    float maxX = self.scrollView.contentInset.right+self.scrollView.contentSize.width;
+    CGFloat minX = -self.scrollView.contentInset.left;
+    CGFloat maxX = self.scrollView.contentInset.right+self.scrollView.contentSize.width;
     
     if(nowFrame.origin.x < minX)
         minX = nowFrame.origin.x;

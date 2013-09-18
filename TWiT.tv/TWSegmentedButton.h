@@ -28,7 +28,7 @@ NS_OPTIONS(NSInteger, TWButtonSegment) {
 @property (nonatomic) SEL watchSelector, listenSelector, downloadSelector, cancelSelector, deleteSelector;
 
 @property (nonatomic) enum TWButtonSegment buttonState;
-@property (nonatomic) float progress;
+@property (nonatomic) CGFloat progress;
 @property (nonatomic) BOOL watchEnabled, listenEnabled;
 - (void)addTarget:(id)target action:(SEL)action forButton:(enum TWButtonSegment)buttonType;
 

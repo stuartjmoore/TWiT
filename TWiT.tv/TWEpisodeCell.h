@@ -35,7 +35,7 @@
 @property (nonatomic, weak) IBOutlet UIImageView *downloadedIcon;
 @property (nonatomic, weak) IBOutlet UIButton *quickPlayButton;
 
-@property (nonatomic) float progress;
+@property (nonatomic) CGFloat progress;
 @property (nonatomic, weak) IBOutlet UIImageView *downloadBackground;
 
 @property (nonatomic, weak) IBOutlet UIView *swipeBackgroundView, *swipeConfirmationView;

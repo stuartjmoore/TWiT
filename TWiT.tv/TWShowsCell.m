@@ -11,9 +11,9 @@
 
 @implementation TWShowsCell
 
-- (CGRect)frameForColumn:(int)column
+- (CGRect)frameForColumn:(NSInteger)column
 {
-    float x = self.spacing+column*(self.size+self.spacing);
+    CGFloat x = self.spacing + column * (self.size + self.spacing);
     return CGRectMake(x, self.spacing/2, self.size, self.size);
 }
 
@@ -49,7 +49,7 @@
     CGContextSetFillColorWithColor(context, [UIColor whiteColor].CGColor);
     CGContextFillRect(context, self.bounds);
     
-    for(int column = 0, showsCount = self.shows.count; column < showsCount; column++)
+    for(NSInteger column = 0, showsCount = self.shows.count; column < showsCount; column++)
     {
         CGContextSetFillColorWithColor(context, self.tintColor.CGColor);
         CGRect frame = [self frameForColumn:column];
@@ -85,7 +85,7 @@
         
         self.accessibleElements = [NSMutableArray array];
         
-        for(int column = 0, showsCount = weak.shows.count; column < showsCount; column++)
+        for(NSInteger column = 0, showsCount = weak.shows.count; column < showsCount; column++)
         {
             CGRect frame = [weak frameForColumn:column];
             
@@ -129,7 +129,7 @@
     UITouch *touch = touches.anyObject;
     CGPoint location = [touch locationInView:self];
     
-    for(int column = 0, showsCount = self.shows.count; column < showsCount; column++)
+    for(NSInteger column = 0, showsCount = self.shows.count; column < showsCount; column++)
     {
         if(CGRectContainsPoint([self frameForColumn:column], location))
         {   

@@ -55,7 +55,7 @@
         return;
     
     [(TWPlaybarViewController*)self.playbarController updateView];
-    float height = self.playbarContainer.frame.size.height + 4 + 4;
+    CGFloat height = self.playbarContainer.frame.size.height + 4 + 4;
     
     UITableViewController *episodesTableViewController = (UITableViewController*)self.masterController.topViewController;
     UITableViewController *showsTableViewController = (UITableViewController*)self.detailController.topViewController;
@@ -102,7 +102,7 @@
     if(self.playbarContainer.hidden)
         return;
     
-    float height = 0;
+    CGFloat height = 0;
     
     UITableViewController *episodesTableViewController = (UITableViewController*)self.masterController.topViewController;
     UITableViewController *showsTableViewController = (UITableViewController*)self.detailController.topViewController;
@@ -203,7 +203,7 @@
     }
     else if(recognizer.state == UIGestureRecognizerStateEnded)
     {
-        float speed = [recognizer velocityInView:self.modalFlyout].x;
+        CGFloat speed = [recognizer velocityInView:self.modalFlyout].x;
         
         if(self.modalFlyout.frame.origin.x > self.modalFlyout.frame.size.width/2
         || self.modalFlyout.frame.origin.x < -self.modalFlyout.frame.size.width/2

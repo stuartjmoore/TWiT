@@ -33,7 +33,7 @@
     
     if(self.schedule.days.count > 0)
     {
-        int row = [self.schedule.days[0] indexOfObject:self.schedule.currentShow];
+        NSInteger row = [self.schedule.days[0] indexOfObject:self.schedule.currentShow];
         NSIndexPath *indexPath = [NSIndexPath indexPathForRow:row inSection:0];
         [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:NO];
     }
@@ -51,15 +51,15 @@
     return [self.schedule.days[section] count];
 }
 
-- (float)tableView:(UITableView*)tableView heightForRowAtIndexPath:(NSIndexPath*)indexPath
+- (CGFloat)tableView:(UITableView*)tableView heightForRowAtIndexPath:(NSIndexPath*)indexPath
 {
     Event *show = self.schedule.days[indexPath.section][indexPath.row];
-    float height = 50.0f*(show.duration/60.0f);
+    CGFloat height = 50.0f*(show.duration/60.0f);
 
     return height;
 }
 
-- (float)tableView:(UITableView*)tableView heightForHeaderInSection:(NSInteger)section
+- (CGFloat)tableView:(UITableView*)tableView heightForHeaderInSection:(NSInteger)section
 {
     if(self.schedule.days.count <= section)
         return 0;
@@ -71,7 +71,7 @@
 
 - (UIView*)tableView:(UITableView*)tableView viewForHeaderInSection:(NSInteger)section
 {
-    float width = tableView.frame.size.width;
+    CGFloat width = tableView.frame.size.width;
     
     UIView *header = [[UIView alloc] initWithFrame:CGRectMake(0, 0, width, 21)];
     header.backgroundColor = [UIColor colorWithWhite:237/255.0 alpha:1];
@@ -116,7 +116,7 @@
 {
     static NSString *CellIdentifier = @"scheduleCell";
     TWScheduleCell *cell = (TWScheduleCell*)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    float width = tableView.frame.size.width;
+    CGFloat width = tableView.frame.size.width;
     
     UIView *botLine = [[UIView alloc] initWithFrame:CGRectMake(0, cell.contentView.frame.size.height-1, width, 1)];
     botLine.autoresizingMask = UIViewAutoresizingFlexibleTopMargin;

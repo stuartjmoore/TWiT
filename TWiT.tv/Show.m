@@ -42,13 +42,13 @@
 - (NSArray*)scheduleDates
 {
     NSMutableArray *dates = [NSMutableArray array];
-    int day = 0, hour = 0, minute = 0;
+    NSInteger day = 0, hour = 0, minute = 0;
     
     if([self.schedule rangeOfString:@"@"].location != NSNotFound)
     {
         NSArray *daysAndTime = [self.schedule componentsSeparatedByString:@"@"];
         
-        int time = [daysAndTime[1] intValue];
+        NSInteger time = [daysAndTime[1] intValue];
         hour = time/100;
         minute = time%100;
         
@@ -102,12 +102,12 @@
         NSArray *daysAndTime = [scheduleString componentsSeparatedByString:@"@"];
         scheduleString = @"";
         
-        int TZDiff = ([[NSTimeZone timeZoneWithName:@"America/Los_Angeles"] secondsFromGMT]
-                      - NSTimeZone.localTimeZone.secondsFromGMT)/60/60*100;
+        NSInteger TZDiff = ([[NSTimeZone timeZoneWithName:@"America/Los_Angeles"] secondsFromGMT]
+                            - NSTimeZone.localTimeZone.secondsFromGMT)/60/60*100;
         
         //[[NSTimeZone timeZoneWithName:@"Europe/London"] secondsFromGMT]
         
-        int time = [daysAndTime[1] intValue];
+        NSInteger time = [daysAndTime[1] intValue];
         time -= TZDiff;
         BOOL nextDay = NO;
         if(time >= 2400)
@@ -135,8 +135,8 @@
         /*
         BOOL is24Hour = [NSDate is24Hour];
         NSString *suffix = is24Hour ? @"" : (time/100 < 12 ? @"a" : @"p");
-        int maxHour = is24Hour ? 24 : 12;
-        int midnightHour = is24Hour ? 0 : 12;
+        NSInteger maxHour = is24Hour ? 24 : 12;
+        NSInteger midnightHour = is24Hour ? 0 : 12;
         
         if(time/100 == 0)
             timeString = [NSString stringWithFormat:@"%.2d:%.2d%@", midnightHour, time%100, suffix];
@@ -325,7 +325,7 @@
          
          for(NSDictionary *epiDic in episodes)
          {
-             int number = 0;
+             NSInteger number = 0;
              NSString *title = @"";
              
              if([[epiDic objectForKey:@"title"] objectForKey:@"text"])
@@ -389,8 +389,8 @@
              
              NSString *durationString = [[[epiDic objectForKey:@"itunes:duration"] objectForKey:@"text"] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
              NSArray *durationArray = [[[durationString componentsSeparatedByString:@":"] reverseObjectEnumerator] allObjects];
-             int duration = 0;
-             for(int i = 0; i < durationArray.count; i++)
+             NSInteger duration = 0;
+             for(NSInteger i = 0; i < durationArray.count; i++)
                  duration += [[durationArray objectAtIndex:i] intValue]*pow(60, i);
              
              NSString *summary = [[epiDic objectForKey:@"description"] objectForKey:@"text"];

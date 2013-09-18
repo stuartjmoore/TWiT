@@ -42,10 +42,10 @@
         
         BOOL isUpdated = NO;
         
-        for(int i = 0; i < lastVersionNumbers.count || i < checkVersionNumbers.count; i++)
+        for(NSInteger i = 0; i < lastVersionNumbers.count || i < checkVersionNumbers.count; i++)
         {
-            int lastNumber = (i < lastVersionNumbers.count)?[lastVersionNumbers[i] intValue]:0;
-            int checkNumber = (i < checkVersionNumbers.count)?[checkVersionNumbers[i] intValue]:0;
+            NSInteger lastNumber = (i < lastVersionNumbers.count)?[lastVersionNumbers[i] intValue]:0;
+            NSInteger checkNumber = (i < checkVersionNumbers.count)?[checkVersionNumbers[i] intValue]:0;
             
             if(lastNumber < checkNumber)
             {
@@ -503,7 +503,7 @@
             NSNumber *number = episodeDict[@"number"];
             
             bool watched = [[episodeDict valueForKey:@"watched"] boolValue];
-            int lastTimecode = [[episodeDict valueForKey:@"lastTimecode"] intValue];
+            NSInteger lastTimecode = [[episodeDict valueForKey:@"lastTimecode"] intValue];
             
             NSSet *fetchedEpisodes = [context fetchEntities:@"Episode"
                                               withPredicate:@"show.titleAcronym == %@ && title == %@ && number == %@",
@@ -566,7 +566,7 @@
             return [date1 compare:date2];
         }];
         
-        for(int i = 0; i < sortedArray.count/3; i++)
+        for(NSInteger i = 0; i < sortedArray.count/3; i++)
         {
             NSDictionary *episode = sortedArray[i];
             NSString *key = [NSString stringWithFormat:@"%@:%@", episode[@"show.titleAcronym"], episode[@"number"]];

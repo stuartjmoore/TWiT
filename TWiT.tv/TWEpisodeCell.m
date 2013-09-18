@@ -85,12 +85,12 @@
     }
 }
 
-- (void)setProgress:(float)progress
+- (void)setProgress:(CGFloat)progress
 {
     _progress = progress;
     
     CGRect frame = self.contentView.frame;
-    float width = frame.size.width * progress;
+    CGFloat width = frame.size.width * progress;
     
     frame.origin.x = width;
     frame.size.width -= width;

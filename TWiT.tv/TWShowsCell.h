@@ -11,7 +11,7 @@
 @class Show, TWShowsCell;
 
 @protocol TWiTShowGridCellDelegate <NSObject>
-- (void)tableView:(UITableView*)tableView didSelectColumn:(int)column AtIndexPath:(NSIndexPath*)indexPath;
+- (void)tableView:(UITableView*)tableView didSelectColumn:(NSInteger)column AtIndexPath:(NSIndexPath*)indexPath;
 - (void)showsCell:(TWShowsCell*)showsCell didDrawIconsAtIndexPath:(NSIndexPath*)indexPath;
 @end
 
@@ -28,7 +28,7 @@
 
 @property (nonatomic, strong) NSMutableArray *accessibleElements;
 
-- (CGRect)frameForColumn:(int)column;
+- (CGRect)frameForColumn:(NSInteger)column;
 
 - (void)didDrawIcons;
 

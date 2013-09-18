@@ -165,7 +165,7 @@
                                 message:[NSString stringWithFormat:@"%@", request.URL.host]
                       cancelButtonTitle:@"Cancel"
                       otherButtonTitles:@[@"Open"]
-                              onDismiss:^(int buttonIndex) {
+                              onDismiss:^(NSInteger buttonIndex) {
                                   [UIApplication.sharedApplication openURL:request.URL];
                               }
                                onCancel:^(){}];

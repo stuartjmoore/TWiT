@@ -70,7 +70,7 @@
     Event *currentShow = nil;
     
     BOOL tryTomorrow = YES;
-    int i = 0;
+    NSInteger i = 0;
     do
     {
         NSArray *today = self.days[i];
@@ -95,7 +95,7 @@
     
     for(NSArray *day in self.days)
     {
-        int index = [day indexOfObject:event];
+        NSInteger index = [day indexOfObject:event];
         
         if(index == NSNotFound)
             continue;
@@ -109,7 +109,7 @@
         }
         else
         {
-            int dayIndex = [self.days indexOfObject:day];
+            NSInteger dayIndex = [self.days indexOfObject:day];
             
             dayIndex++;
             

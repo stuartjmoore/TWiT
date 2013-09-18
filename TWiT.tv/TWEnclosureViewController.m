@@ -34,7 +34,7 @@
 {
     if(UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPhone)
     {
-        int count = self.navigationController.viewControllers.count;
+        NSInteger count = self.navigationController.viewControllers.count;
         
         if(count < 2)
             return;
@@ -69,7 +69,7 @@
 	[self.seekbar setMaximumTrackImage:[UIImage imageNamed:@"video-seekbar-back"] forState:UIControlStateNormal];
 	[self.seekbar setThumbImage:[UIImage imageNamed:@"video-seekbar-thumb"] forState:UIControlStateNormal];
     
-    self.seekbar.value = (self.enclosure.episode.duration != 0) ? (float)self.enclosure.episode.lastTimecode / self.enclosure.episode.duration : 0;
+    self.seekbar.value = (self.enclosure.episode.duration != 0) ? (CGFloat)self.enclosure.episode.lastTimecode / self.enclosure.episode.duration : 0;
     
     self.titleLabel.font = [UIFont fontWithName:@"Vollkorn-BoldItalic" size:self.titleLabel.font.pointSize];
     self.titleLabel.text = self.enclosure.episode.show.title;
@@ -229,7 +229,7 @@
     else if([notification.name isEqualToString:@"MPMoviePlayerPlaybackDidFinishNotification"]
     && [[notification.userInfo objectForKey:@"MPMoviePlayerPlaybackDidFinishReasonUserInfoKey"] intValue] != 0)
     {
-        TWQuality quality = (TWQuality)(((int)self.enclosure.quality) - 1);
+        TWQuality quality = (TWQuality)(((NSInteger)self.enclosure.quality) - 1);
         
         if(quality >= 0)
         {
@@ -283,8 +283,8 @@
     hours = (remaining / 3600);
     self.timeRemainingLabel.text = [NSString stringWithFormat:@"%01i:%02i:%02i", hours, minutes, seconds];
     
-    float rate = self.speedButton.selected ? fastSpeed : 1;
-    float secondsLeft = remaining/rate;
+    CGFloat rate = self.speedButton.selected ? fastSpeed : 1;
+    CGFloat secondsLeft = remaining/rate;
     NSDate *endingTime = [[NSDate date] dateByAddingTimeInterval:secondsLeft];
     NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
     dateFormat.dateFormat = @"h:mma";

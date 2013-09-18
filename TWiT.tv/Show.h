@@ -26,7 +26,7 @@
 @property (nonatomic, strong) Channel *channel;
 @property (nonatomic, strong) NSSet *episodes, *feeds;
 
-@property (nonatomic) int threadCount;
+@property (nonatomic) NSInteger threadCount;
 
 - (Poster*)poster;
 - (NSArray*)scheduleDates;

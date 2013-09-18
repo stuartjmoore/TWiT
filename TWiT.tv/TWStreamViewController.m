@@ -32,7 +32,7 @@
 {
     if(UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPhone)
     {
-        int count = self.navigationController.viewControllers.count;
+        NSInteger count = self.navigationController.viewControllers.count;
         
         if(count < 2)
             return;
@@ -271,7 +271,7 @@
     else if([notification.name isEqualToString:@"MPMoviePlayerPlaybackDidFinishNotification"]
     && [[notification.userInfo objectForKey:@"MPMoviePlayerPlaybackDidFinishReasonUserInfoKey"] intValue] != 0)
     {
-        TWQuality quality = (TWQuality)(((int)self.stream.quality) - 1);
+        TWQuality quality = (TWQuality)(((NSInteger)self.stream.quality) - 1);
 
         if(quality >= 0)
         {
@@ -507,8 +507,8 @@
 
 - (void)keyboardWillShow:(NSNotification*)notification
 {
-    float duration = [notification.userInfo[UIKeyboardAnimationDurationUserInfoKey] floatValue];
-    float curve = [notification.userInfo[UIKeyboardAnimationCurveUserInfoKey] floatValue];
+    CGFloat duration = [notification.userInfo[UIKeyboardAnimationDurationUserInfoKey] floatValue];
+    CGFloat curve = [notification.userInfo[UIKeyboardAnimationCurveUserInfoKey] floatValue];
     CGRect frame = [notification.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
     
     self.chatViewBottom.constant = UIInterfaceOrientationIsPortrait(self.interfaceOrientation) ? frame.size.height : frame.size.width;
@@ -522,8 +522,8 @@
 
 - (void)keyboardWillHide:(NSNotification*)notification
 {
-    float duration = [notification.userInfo[UIKeyboardAnimationDurationUserInfoKey] floatValue];
-    float curve = [notification.userInfo[UIKeyboardAnimationCurveUserInfoKey] floatValue];
+    CGFloat duration = [notification.userInfo[UIKeyboardAnimationDurationUserInfoKey] floatValue];
+    CGFloat curve = [notification.userInfo[UIKeyboardAnimationCurveUserInfoKey] floatValue];
     
     self.chatViewBottom.constant = 0;
     

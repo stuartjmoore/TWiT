@@ -10,7 +10,7 @@
 
 @interface TWPlayButton : UIButton
 
-@property (nonatomic) float percentage;
+@property (nonatomic) CGFloat percentage;
 
 @end
 

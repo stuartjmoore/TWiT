@@ -170,7 +170,7 @@
 
 #pragma mark - Download
 
-- (void)setProgress:(float)progress
+- (void)setProgress:(CGFloat)progress
 {
     _progress = progress;
     

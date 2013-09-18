@@ -47,20 +47,20 @@
     return [self timeIntervalSinceNow] /*- 86400*/ > 0;
 }
 
-- (float)floatTime
+- (CGFloat)floatTime
 {
     NSDateFormatter *hourFormatter = [[NSDateFormatter alloc] init];
     [hourFormatter setDateFormat:@"H"];
-    float hour = [[hourFormatter stringFromDate:self] floatValue];
+    CGFloat hour = [[hourFormatter stringFromDate:self] floatValue];
     
     NSDateFormatter *minuteFormatter = [[NSDateFormatter alloc] init];
     [minuteFormatter setDateFormat:@"m"];
-    float minute = [[minuteFormatter stringFromDate:self] floatValue] / 60.0f;
+    CGFloat minute = [[minuteFormatter stringFromDate:self] floatValue] / 60.0f;
     
     return hour + minute;
 }
 
-+ (int)dayFromName:(NSString*)name
++ (NSInteger)dayFromName:(NSString*)name
 {
     if([name isEqualToString:@"SU"])
         return 1;
@@ -80,7 +80,7 @@
     return -1;
 }
 
-+ (NSString*)longNameFromDay:(int)day
++ (NSString*)longNameFromDay:(NSInteger)day
 {
     if(day == 1)
         return @"Sundays";
@@ -99,7 +99,7 @@
     
     return @"";
 }
-+ (NSString*)shortNameFromDay:(int)day
++ (NSString*)shortNameFromDay:(NSInteger)day
 {
     if(day == 1)
         return @"Sun";

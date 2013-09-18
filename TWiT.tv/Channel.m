@@ -354,10 +354,10 @@
                              interval:NULL
                               forDate:startDate];
                 
-                int daysAway = [[calendar components:NSDayCalendarUnit
-                                            fromDate:fromDate
-                                              toDate:toDate
-                                             options:0] day];
+                NSInteger daysAway = [[calendar components:NSDayCalendarUnit
+                                                  fromDate:fromDate
+                                                    toDate:toDate
+                                                   options:0] day];
                 
                 if(daysAway < 0)
                     continue;

@@ -10,7 +10,7 @@
 
 @implementation TWPlayButton
 
-- (void)setPercentage:(float)percentage
+- (void)setPercentage:(CGFloat)percentage
 {
     _percentage = percentage;
     [self setNeedsDisplay];
