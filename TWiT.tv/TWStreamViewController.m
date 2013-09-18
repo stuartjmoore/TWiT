@@ -444,7 +444,7 @@
     else if(self.chatView.hidden)
     {
         [self hideControls:YES];
-        self.chatView.hidden = NO;
+        self.chatView.hidden = NO; // TODO: make function and fade
     }
 }
 
@@ -468,12 +468,12 @@
     
     [self hideControls:YES];
     [self.chatViewController loadWithNickname:chatNick];
-    self.chatView.hidden = NO;
+    self.chatView.hidden = NO; // TODO: make function and fade
 }
 
 - (void)hideChatRoom:(NSNotification*)notification
 {
-    self.chatView.hidden = YES;
+    self.chatView.hidden = YES; // TODO: make function and fade
     [self hideControls:NO];
 }
 
@@ -510,7 +510,7 @@
 
 - (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)orientation duration:(NSTimeInterval)duration
 {
-    if(self.infoView.hidden && self.chatView.hidden)
+    if(self.infoView.hidden && self.chatView.hidden) // TODO: make functions to test state
         [self hideControls:!UIInterfaceOrientationIsPortrait(orientation)];
 }
 
