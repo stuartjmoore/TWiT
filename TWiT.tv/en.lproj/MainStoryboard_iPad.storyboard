@@ -363,7 +363,7 @@
                                                             <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                             <size key="shadowOffset" width="0.0" height="1"/>
                                                         </label>
-                                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="subtitle" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="228" translatesAutoresizingMaskIntoConstraints="NO" id="Stt-PG-vDt" userLabel="Subtitle">
+                                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="subtitle" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Stt-PG-vDt" userLabel="Subtitle">
                                                             <rect key="frame" x="0.0" y="18" width="228" height="15"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
@@ -1901,22 +1901,43 @@
                                     <constraint firstAttribute="width" constant="448" id="the-H7-7QZ"/>
                                 </constraints>
                             </view>
-                            <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" text="1888" textAlignment="center" lineBreakMode="middleTruncation" minimumFontSize="18" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QzM-Dl-19k">
-                                <rect key="frame" x="8" y="258" width="51" height="51"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eAK-F6-xQK">
+                                <rect key="frame" x="8" y="258" width="432" height="51"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" text="Guests &amp; Guests" lineBreakMode="tailTruncation" numberOfLines="2" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="373" translatesAutoresizingMaskIntoConstraints="NO" id="Wrw-gN-UZa">
-                                <rect key="frame" x="67" y="258" width="373" height="51"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                                <subviews>
+                                    <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" text="1888" textAlignment="center" lineBreakMode="middleTruncation" minimumFontSize="18" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QzM-Dl-19k">
+                                        <rect key="frame" x="0.0" y="0.0" width="51" height="51"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="51" id="eAm-GT-aTQ"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" text="Guests &amp; Guests" lineBreakMode="tailTruncation" numberOfLines="2" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="373" translatesAutoresizingMaskIntoConstraints="NO" id="Wrw-gN-UZa">
+                                        <rect key="frame" x="59" y="0.0" width="373" height="51"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="Wrw-gN-UZa" secondAttribute="bottom" id="04k-CL-mNs"/>
+                                    <constraint firstItem="QzM-Dl-19k" firstAttribute="top" secondItem="eAK-F6-xQK" secondAttribute="top" id="9QT-Rf-w1D"/>
+                                    <constraint firstItem="Wrw-gN-UZa" firstAttribute="leading" secondItem="QzM-Dl-19k" secondAttribute="trailing" constant="8" id="CDu-hJ-46x"/>
+                                    <constraint firstAttribute="bottom" secondItem="QzM-Dl-19k" secondAttribute="bottom" id="GcS-ff-jai"/>
+                                    <constraint firstItem="Wrw-gN-UZa" firstAttribute="top" secondItem="eAK-F6-xQK" secondAttribute="top" id="Gfz-YH-eFI"/>
+                                    <constraint firstItem="QzM-Dl-19k" firstAttribute="leading" secondItem="eAK-F6-xQK" secondAttribute="leading" id="IKi-K2-CJC"/>
+                                    <constraint firstAttribute="trailing" secondItem="Wrw-gN-UZa" secondAttribute="trailing" id="Qlw-0R-jyp"/>
+                                    <constraint firstAttribute="centerY" secondItem="Wrw-gN-UZa" secondAttribute="centerY" id="UZy-Bb-wgl"/>
+                                    <constraint firstAttribute="height" constant="51" id="x4O-Va-rWw"/>
+                                </constraints>
+                            </view>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Descripiton" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="417" translatesAutoresizingMaskIntoConstraints="NO" id="KCa-ZW-geT">
                                 <rect key="frame" x="16" y="310" width="417" height="20"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -1939,11 +1960,14 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="kjq-cp-IGP" firstAttribute="top" secondItem="kvo-gx-pdu" secondAttribute="bottom" constant="16" id="C2X-d6-6Gt"/>
-                            <constraint firstItem="KCa-ZW-geT" firstAttribute="top" secondItem="4Gu-bz-hvO" secondAttribute="bottom" constant="60" id="Dtq-Ue-2ky"/>
+                            <constraint firstItem="KCa-ZW-geT" firstAttribute="top" secondItem="eAK-F6-xQK" secondAttribute="bottom" constant="1" id="IKp-gF-V0k"/>
                             <constraint firstItem="kvo-gx-pdu" firstAttribute="leading" secondItem="tRV-vS-88x" secondAttribute="leading" constant="16" id="PCd-1S-nlz"/>
                             <constraint firstItem="4Gu-bz-hvO" firstAttribute="leading" secondItem="tRV-vS-88x" secondAttribute="leading" id="PhU-Qj-aut"/>
                             <constraint firstAttribute="trailing" secondItem="kvo-gx-pdu" secondAttribute="trailing" constant="15" id="WPO-uj-QjQ"/>
+                            <constraint firstAttribute="trailing" secondItem="eAK-F6-xQK" secondAttribute="trailing" constant="8" id="Zcu-Bq-9K7"/>
+                            <constraint firstItem="eAK-F6-xQK" firstAttribute="top" secondItem="4Gu-bz-hvO" secondAttribute="bottom" constant="8" id="b1I-5k-BFp"/>
                             <constraint firstAttribute="trailing" secondItem="KCa-ZW-geT" secondAttribute="trailing" constant="15" id="iLN-wJ-DbN"/>
+                            <constraint firstItem="eAK-F6-xQK" firstAttribute="leading" secondItem="tRV-vS-88x" secondAttribute="leading" constant="8" id="mKT-B7-W4l"/>
                             <constraint firstItem="4Gu-bz-hvO" firstAttribute="top" secondItem="Ley-8d-dgo" secondAttribute="bottom" id="mb1-vq-L5c"/>
                             <constraint firstItem="KCa-ZW-geT" firstAttribute="leading" secondItem="tRV-vS-88x" secondAttribute="leading" constant="16" id="pRI-ko-pMW"/>
                             <constraint firstAttribute="trailing" secondItem="4Gu-bz-hvO" secondAttribute="trailing" id="xtb-Oa-pi6"/>
