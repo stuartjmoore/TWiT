@@ -19,7 +19,6 @@
 
 - (UIBarPosition)positionForBar:(id<UIBarPositioning>)bar
 {
-    NSLog(@"positionForBar");
     return UIBarPositionTopAttached;
 }
 
