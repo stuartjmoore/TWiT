@@ -14,6 +14,10 @@
 - (void)viewDidLoad
 {
     self.chatToolbarView.barStyle = UIBarStyleBlack;
+    
+    UIView *paddingView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 5, self.chatField.frame.size.height)];
+    self.chatField.leftView = paddingView;
+    self.chatField.leftViewMode = UITextFieldViewModeAlways;
 }
 
 - (void)loadWithNickname:(NSString*)nickname

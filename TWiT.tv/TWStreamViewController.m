@@ -154,7 +154,7 @@
                                              object:self.delegate.player];
     
     [NSNotificationCenter.defaultCenter addObserver:self
-                                           selector:@selector(hideChatRoom:)
+                                           selector:@selector(chatRoomDidHide:)
                                                name:@"chatRoomDidHide"
                                              object:self.chatViewController];
     
@@ -418,7 +418,7 @@
 
 - (void)loadChatRoom
 {
-    if(self.chatView.hidden && !self.chatViewController.isChatLoaded)
+    if(self.chatRoomIsHidden && !self.chatViewController.isChatLoaded)
     {
         UIAlertView *prompt = [[UIAlertView alloc] initWithTitle:@"TWiT Chat Room"
                                                          message:@""
@@ -441,10 +441,10 @@
         
         [prompt show];
     }
-    else if(self.chatView.hidden)
+    else if(self.chatRoomIsHidden)
     {
         [self hideControls:YES];
-        self.chatView.hidden = NO; // TODO: make function and fade
+        [self hideChatRoom:NO];
     }
 }
 
@@ -468,12 +468,38 @@
     
     [self hideControls:YES];
     [self.chatViewController loadWithNickname:chatNick];
-    self.chatView.hidden = NO; // TODO: make function and fade
+    [self hideChatRoom:NO];
 }
 
-- (void)hideChatRoom:(NSNotification*)notification
+- (void)hideChatRoom:(BOOL)hide
 {
-    self.chatView.hidden = YES; // TODO: make function and fade
+    if(hide)
+    {
+        [UIView animateWithDuration:UINavigationControllerHideShowBarDuration animations:^{
+            self.chatView.alpha = 0;
+        } completion:^(BOOL fin){
+            self.chatView.hidden = YES;
+        }];
+    }
+    else
+    {
+        self.chatView.hidden = NO;
+        self.chatView.alpha = 0;
+        
+        [UIView animateWithDuration:UINavigationControllerHideShowBarDuration animations:^{
+            self.chatView.alpha = 1;
+        }];
+    }
+}
+
+- (BOOL)chatRoomIsHidden
+{
+    return (self.chatView.hidden);
+}
+
+- (void)chatRoomDidHide:(NSNotification*)notification
+{
+    [self hideChatRoom:YES];
     [self hideControls:NO];
 }
 
@@ -488,7 +514,7 @@
     [self.view setNeedsUpdateConstraints];
     
     [UIView animateWithDuration:duration delay:0 options:curve animations:^{
-        [self.view setNeedsLayout];
+        [self.view layoutIfNeeded];
     } completion:nil];
 }
 
@@ -502,7 +528,7 @@
     [self.view setNeedsUpdateConstraints];
     
     [UIView animateWithDuration:duration delay:0 options:curve animations:^{
-        [self.view setNeedsLayout];
+        [self.view layoutIfNeeded];
     } completion:nil];
 }
 
@@ -510,7 +536,7 @@
 
 - (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)orientation duration:(NSTimeInterval)duration
 {
-    if(self.infoView.hidden && self.chatView.hidden) // TODO: make functions to test state
+    if(self.infoView.hidden && self.chatRoomIsHidden)
         [self hideControls:!UIInterfaceOrientationIsPortrait(orientation)];
 }
 

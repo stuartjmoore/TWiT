@@ -602,7 +602,7 @@
                                     <constraint firstAttribute="bottom" secondItem="Pn9-Xd-TdY" secondAttribute="bottom" id="xfJ-bk-4Hw"/>
                                 </constraints>
                             </view>
-                            <containerView hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="B2z-tG-A5g" userLabel="Chat">
+                            <containerView hidden="YES" alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="B2z-tG-A5g" userLabel="Chat">
                                 <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -1356,13 +1356,13 @@
                                 <rect key="frame" x="0.0" y="724" width="1024" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <subviews>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="6MR-kX-6YA" userLabel="Text Field">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter Message…" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="6MR-kX-6YA" userLabel="Text Field">
                                         <rect key="frame" x="15" y="9" width="921" height="26"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                         <color key="backgroundColor" white="1" alpha="0.80000000000000004" colorSpace="calibratedWhite"/>
                                         <accessibility key="accessibilityConfiguration" hint="Opens the keyboard." label="Message"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" keyboardAppearance="alert" returnKeyType="done"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences" keyboardAppearance="alert" returnKeyType="done"/>
                                         <connections>
                                             <outlet property="delegate" destination="1nq-kU-wy5" id="x5c-jd-MMM"/>
                                         </connections>

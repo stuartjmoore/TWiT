@@ -39,4 +39,8 @@
 - (IBAction)openChatView:(UIButton*)sender;
 - (IBAction)openQualityPopover:(UIButton*)sender;
 
+- (void)hideChatRoom:(BOOL)hide;
+- (BOOL)chatRoomIsHidden;
+- (void)chatRoomDidHide:(NSNotification*)notification;
+
 @end
