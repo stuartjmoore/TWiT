@@ -53,7 +53,11 @@
     hideUI = NO;
     self.toolbarView.barStyle = UIBarStyleBlack;
     self.toasterView.barStyle = UIBarStyleBlack;
+    self.toasterView.clipsToBounds = YES;
+    self.toasterView.layer.cornerRadius = 7;
     self.timePopupView.barStyle = UIBarStyleBlack;
+    self.timePopupView.clipsToBounds = YES;
+    self.timePopupView.layer.cornerRadius = 7;
     
     MPVolumeView *airplayButton = [[MPVolumeView alloc] init];
     airplayButton.showsVolumeSlider = NO;
