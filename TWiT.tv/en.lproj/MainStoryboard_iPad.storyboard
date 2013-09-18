@@ -2012,10 +2012,10 @@
                                 <rect key="frame" x="320" y="0.0" width="704" height="768"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GNb-iH-O53" userLabel="Blurground" customClass="UIToolbar">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GNb-iH-O53" userLabel="Black-ground">
                                         <rect key="frame" x="0.0" y="0.0" width="704" height="768"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.48999999999999999" colorSpace="calibratedWhite"/>
                                         <connections>
                                             <outletCollection property="gestureRecognizers" destination="cWT-CR-CXT" appends="YES" id="fNa-pn-vrZ"/>
                                         </connections>

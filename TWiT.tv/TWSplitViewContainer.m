@@ -38,7 +38,6 @@
         _modalController = segue.destinationViewController;
         TWEpisodeViewController *episodeController = (TWEpisodeViewController*)self.modalController.topViewController;
         episodeController.splitViewContainer = self;
-        self.modalBlackground.barStyle = UIBarStyleBlack;
     }
     else if([segue.identifier isEqualToString:@"barEmbed"])
     {

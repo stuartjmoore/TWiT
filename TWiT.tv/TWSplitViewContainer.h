@@ -17,7 +17,7 @@
 
 @property (nonatomic, weak) IBOutlet UIView *masterContainer, *detailContainer;
 @property (nonatomic, weak) IBOutlet UIView *modalContainer, *modalFlyout;
-@property (nonatomic, weak) IBOutlet UIToolbar *modalBlackground;
+@property (nonatomic, weak) IBOutlet UIView *modalBlackground;
 @property (nonatomic, weak) IBOutlet UIView *playbarContainer;
 
 @property (nonatomic, weak) IBOutlet NSLayoutConstraint *modalLeftContraint;
