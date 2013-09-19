@@ -87,7 +87,8 @@
             MPMediaItemPropertyArtist : self.enclosure.episode.show.hosts,
             MPMediaItemPropertyArtwork : [[MPMediaItemArtwork alloc] initWithImage:self.enclosure.episode.show.albumArt.image],
             MPMediaItemPropertyGenre : @"Podcast",
-            MPMediaItemPropertyTitle : self.enclosure.episode.title
+            MPMediaItemPropertyTitle : self.enclosure.episode.title,
+            MPMediaItemPropertyMediaType : self.enclosure.type == TWTypeAudio ? @(MPMediaTypePodcast) : @(MPMediaTypeVideoPodcast)
         };
     }
     else
@@ -292,6 +293,12 @@
     dateFormat.AMSymbol = @"a";
     NSString *timeString = [dateFormat stringFromDate:endingTime];
     self.timeOfEndLabel.text = [NSString stringWithFormat:@"ends @ %@", timeString];
+    
+    MPNowPlayingInfoCenter *center = MPNowPlayingInfoCenter.defaultCenter;
+    NSMutableDictionary *playingInfo = [NSMutableDictionary dictionaryWithDictionary:center.nowPlayingInfo];
+    playingInfo[MPMediaItemPropertyPlaybackDuration] = @(self.delegate.player.duration);
+    playingInfo[MPNowPlayingInfoPropertyElapsedPlaybackTime] = @(self.delegate.player.currentPlaybackTime);
+    center.nowPlayingInfo = playingInfo;
 }
 
 #pragma mark - gesture delegate
