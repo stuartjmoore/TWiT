@@ -40,7 +40,6 @@
 
 @property (nonatomic, weak) IBOutlet UIView *swipeBackgroundView, *swipeConfirmationView;
 @property (nonatomic, weak) IBOutlet UILabel *swipeLabel;
-@property (nonatomic, weak) IBOutlet UIButton *swipeCancelButton, *swipeDeleteButton;
 
 - (IBAction)quickPlayPressed:(UIButton*)sender;
 

@@ -14,10 +14,13 @@
 
 - (void)awakeFromNib
 {
-    UIImage *swipeButtonBackground = [self.swipeCancelButton backgroundImageForState:UIControlStateNormal];
-    swipeButtonBackground = [swipeButtonBackground resizableImageWithCapInsets:UIEdgeInsetsMake(6, 6, 7, 6)];
-    [self.swipeCancelButton setBackgroundImage:swipeButtonBackground forState:UIControlStateNormal];
-    [self.swipeDeleteButton setBackgroundImage:swipeButtonBackground forState:UIControlStateNormal];
+    UIImage *quickPlayImage = [self.quickPlayButton imageForState:UIControlStateNormal];
+    quickPlayImage = [quickPlayImage imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+    [self.quickPlayButton setImage:quickPlayImage forState:UIControlStateNormal];
+    
+    UIImage *downloadedIconImage = self.downloadedIcon.image;
+    downloadedIconImage = [downloadedIconImage imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+    self.downloadedIcon.image = downloadedIconImage;
 }
 
 - (void)setEpisode:(Episode*)episode
@@ -83,6 +86,14 @@
         self.quickPlayButton.hidden = NO;
         self.downloadedIcon.hidden = (!self.episode.downloadedEnclosures);
     }
+}
+
+- (void)tintColorDidChange
+{
+    if(self.selected)
+        self.contentView.backgroundColor = self.tintColor;
+    else
+        self.contentView.backgroundColor = [UIColor whiteColor];
 }
 
 - (void)setProgress:(CGFloat)progress
