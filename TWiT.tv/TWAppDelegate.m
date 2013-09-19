@@ -31,10 +31,9 @@
     [AVAudioSession.sharedInstance setCategory:AVAudioSessionCategoryPlayback error:nil];
     [AVAudioSession.sharedInstance setActive:YES error:nil];
   
-  
-    NSString *lastVersionString = [NSUserDefaults.standardUserDefaults objectForKey:@"settings-version"];
+    //NSString *lastVersionString = [NSUserDefaults.standardUserDefaults objectForKey:@"settings-version"];
     NSString *currVersionString = NSBundle.mainBundle.infoDictionary[@"CFBundleShortVersionString"];
-    
+    /*
     if(lastVersionString && ![lastVersionString isEqualToString:currVersionString])
     {
         NSArray *lastVersionNumbers = [lastVersionString componentsSeparatedByString:@"."];
@@ -64,7 +63,8 @@
             }
         }
     }
-
+    */
+    
     [self deleteUserDataIfSet];
     
     [NSUserDefaults.standardUserDefaults setBool:YES forKey:@"paid"]; // TODO: Delete when you enable in-app.
