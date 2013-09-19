@@ -19,15 +19,15 @@
                             <containerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yry-4c-naO" userLabel="Master Container">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <segue destination="3" kind="embed" identifier="masterEmbed" id="xSj-EA-CEV"/>
                                 </connections>
                             </containerView>
-                            <containerView hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="11e-hg-6Vi" userLabel="Playbar Container">
+                            <containerView hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="11e-hg-6Vi" userLabel="Playbar Container">
                                 <rect key="frame" x="0.0" y="436" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="zbD-sd-eRD"/>
                                 </constraints>
@@ -42,14 +42,15 @@
                             <constraint firstItem="I8r-DB-5T1" firstAttribute="top" secondItem="11e-hg-6Vi" secondAttribute="bottom" id="RVG-fh-AVs"/>
                             <constraint firstItem="yry-4c-naO" firstAttribute="leading" secondItem="WM3-HN-ucQ" secondAttribute="leading" id="YCr-BF-pr0"/>
                             <constraint firstAttribute="trailing" secondItem="11e-hg-6Vi" secondAttribute="trailing" id="bGV-9J-lcO"/>
-                            <constraint firstItem="yry-4c-naO" firstAttribute="bottom" secondItem="11e-hg-6Vi" secondAttribute="bottom" id="lby-Cv-CXL"/>
                             <constraint firstAttribute="trailing" secondItem="yry-4c-naO" secondAttribute="trailing" id="sDJ-Nn-HSl"/>
                             <constraint firstItem="yry-4c-naO" firstAttribute="top" secondItem="WM3-HN-ucQ" secondAttribute="top" id="ys4-nt-Y9G"/>
+                            <constraint firstAttribute="bottom" secondItem="yry-4c-naO" secondAttribute="bottom" id="zqb-sk-uUd"/>
                         </constraints>
                     </view>
                     <nil key="simulatedStatusBarMetrics"/>
                     <nil key="simulatedTopBarMetrics"/>
                     <connections>
+                        <outlet property="masterBottomConstraint" destination="zqb-sk-uUd" id="MZ8-94-FTd"/>
                         <outlet property="masterContainer" destination="yry-4c-naO" id="4R4-Xc-DeR"/>
                         <outlet property="playbarContainer" destination="11e-hg-6Vi" id="Onk-YC-zLx"/>
                     </connections>
@@ -62,7 +63,6 @@
         <scene sceneID="11">
             <objects>
                 <navigationController storyboardIdentifier="navigationController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="3" customClass="TWNavigationController" sceneMemberID="viewController">
-                    <extendedEdge key="edgesForExtendedLayout" top="YES"/>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
                     <navigationBar key="navigationBar" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="4">
                         <autoresizingMask key="autoresizingMask"/>
@@ -70,6 +70,10 @@
                             <outlet property="delegate" destination="3" id="pyI-C1-Ifn"/>
                         </connections>
                     </navigationBar>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="q7T-Xb-sVq">
+                        <rect key="frame" x="0.0" y="416" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </toolbar>
                     <connections>
                         <segue destination="12" kind="relationship" relationship="rootViewController" id="19"/>
                     </connections>
@@ -414,7 +418,6 @@
                             <outlet property="delegate" destination="12" id="15"/>
                         </connections>
                     </tableView>
-                    <extendedEdge key="edgesForExtendedLayout" top="YES"/>
                     <navigationItem key="navigationItem" title="TWiT" id="36" customClass="TWNavigationItem">
                         <view key="titleView" contentMode="scaleToFill" id="4vc-3D-1C4">
                             <rect key="frame" x="60" y="1" width="200" height="43"/>
@@ -694,7 +697,6 @@
                             <outlet property="delegate" destination="t6z-Tc-dkI" id="cLv-kQ-50c"/>
                         </connections>
                     </tableView>
-                    <extendedEdge key="edgesForExtendedLayout" top="YES"/>
                     <navigationItem key="navigationItem" title="Schedule" id="RRV-PK-C4J" customClass="TWNavigationItem">
                         <view key="titleView" contentMode="scaleToFill" id="1yU-yK-7oI">
                             <rect key="frame" x="60" y="6" width="200" height="33"/>
@@ -998,7 +1000,6 @@
                             <outlet property="delegate" destination="Gce-uE-xEB" id="Mkk-Io-rZ3"/>
                         </connections>
                     </tableView>
-                    <extendedEdge key="edgesForExtendedLayout" top="YES"/>
                     <navigationItem key="navigationItem" id="Asz-4h-TSi" customClass="TWNavigationItem">
                         <view key="titleView" contentMode="scaleToFill" id="xBb-OW-Zro">
                             <rect key="frame" x="60" y="6" width="200" height="33"/>

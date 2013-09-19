@@ -36,18 +36,17 @@
         return;
     
     [self.playbarController updateView];
-    CGFloat height = self.playbarContainer.frame.size.height;
     
-    CGRect masterFrame = self.masterContainer.frame;
-    masterFrame.size.height = self.view.frame.size.height - height;
-    self.masterContainer.frame = masterFrame;
+    self.masterBottomConstraint.constant = self.playbarContainer.frame.size.height;
+    [self.masterContainer setNeedsUpdateConstraints];
+    [self.masterContainer updateConstraintsIfNeeded];
     
-    self.playbarContainer.alpha = 0;
     self.playbarContainer.hidden = NO;
+    self.playbarContainer.alpha = 0;
     [UIView animateWithDuration:0.3f animations:^{
         self.playbarContainer.alpha = 1;
-    } completion:^(BOOL fin){
-    }];
+        [self.masterContainer layoutIfNeeded];
+    } completion:nil];
     
     TWAppDelegate *delegate = (TWAppDelegate*)UIApplication.sharedApplication.delegate;
     [NSNotificationCenter.defaultCenter addObserver:self.playbarController
@@ -61,12 +60,13 @@
     if(self.playbarContainer.hidden)
         return;
     
-    CGRect masterFrame = self.masterContainer.frame;
-    masterFrame.size.height = self.view.frame.size.height;
-    self.masterContainer.frame = masterFrame;
+    self.masterBottomConstraint.constant = 0;
+    [self.masterContainer setNeedsUpdateConstraints];
+    [self.masterContainer updateConstraintsIfNeeded];
     
     [UIView animateWithDuration:0.3f animations:^{
         self.playbarContainer.alpha = 0;
+        [self.masterContainer layoutIfNeeded];
     } completion:^(BOOL fin){
         self.playbarContainer.hidden = YES;
         self.playbarContainer.alpha = 1;
