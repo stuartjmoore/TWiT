@@ -272,8 +272,11 @@
                                                                      cachePolicy:NSURLRequestReloadIgnoringLocalCacheData
                                                                  timeoutInterval:60.0f];
         [headerRequest setHTTPMethod:@"HEAD"];
-        [NSURLConnection sendAsynchronousRequest:headerRequest queue:NSOperationQueue.mainQueue
-        completionHandler:^(NSURLResponse *response, NSData *data, NSError *error)
+        
+        NSURLSessionConfiguration *defaultConfigObject = [NSURLSessionConfiguration ephemeralSessionConfiguration];
+        
+        NSURLSession *delegateFreeSession = [NSURLSession sessionWithConfiguration:defaultConfigObject delegate:nil delegateQueue:NSOperationQueue.mainQueue];
+        [[delegateFreeSession dataTaskWithRequest:headerRequest completionHandler:^(NSData *data, NSURLResponse *response, NSError *error)
         {
             NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse*)response;
             if([httpResponse respondsToSelector:@selector(allHeaderFields)])
@@ -300,17 +303,17 @@
             }
             
             [self finishUpdate];
-        }];
+        }] resume];
     }
 }
 
 - (void)updatePodcastFeed:(Feed*)feed
 {
-    NSURLRequest *urlRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:feed.url]
-                                                cachePolicy:NSURLRequestReloadIgnoringLocalCacheData
-                                            timeoutInterval:60.0f];
-    [NSURLConnection sendAsynchronousRequest:urlRequest queue:[NSOperationQueue mainQueue]
-    completionHandler:^(NSURLResponse *response, NSData *data, NSError *error)
+    NSURLSessionConfiguration *defaultConfigObject = [NSURLSessionConfiguration ephemeralSessionConfiguration];
+    defaultConfigObject.timeoutIntervalForResource = 60;
+    
+    NSURLSession *delegateFreeSession = [NSURLSession sessionWithConfiguration:defaultConfigObject delegate:nil delegateQueue:NSOperationQueue.mainQueue];
+    [[delegateFreeSession dataTaskWithURL:[NSURL URLWithString:feed.url] completionHandler:^(NSData *data, NSURLResponse *response, NSError *error)
     {
         [self finishUpdate];
          
@@ -513,7 +516,7 @@
          }
          
          [context save:nil];
-     }];
+     }] resume];
 }
 
 - (void)finishUpdate
