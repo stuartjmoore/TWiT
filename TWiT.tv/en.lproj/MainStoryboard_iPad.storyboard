@@ -26,11 +26,11 @@
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="65"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dbJ-Ve-V2x">
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dbJ-Ve-V2x" userLabel="View (remove?)">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="65"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
-                                                <view hidden="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="21U-c9-pyi" userLabel="Swipe to Hide">
+                                                <view hidden="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="21U-c9-pyi" userLabel="Underneath">
                                                     <rect key="frame" x="0.0" y="0.0" width="320" height="65"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <subviews>
@@ -51,7 +51,7 @@
                                                     </subviews>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                                 </view>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zcs-hv-6al" userLabel="Content View">
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zcs-hv-6al" userLabel="Main View">
                                                     <rect key="frame" x="0.0" y="0.0" width="320" height="65"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <subviews>
@@ -94,7 +94,7 @@
                                                                     <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                     <size key="shadowOffset" width="0.0" height="1"/>
                                                                 </label>
-                                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="subtitle" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="200" translatesAutoresizingMaskIntoConstraints="NO" id="UCK-EK-sBQ" userLabel="Subtitle">
+                                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="subtitle" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UCK-EK-sBQ" userLabel="Subtitle">
                                                                     <rect key="frame" x="0.0" y="25" width="200" height="15"/>
                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
@@ -114,11 +114,6 @@
                                                                 <constraint firstAttribute="trailing" secondItem="mbu-G3-BoA" secondAttribute="trailing" id="nC1-Hh-gjJ"/>
                                                             </constraints>
                                                         </view>
-                                                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3ip-5s-7o3" userLabel="Bottom Separator">
-                                                            <rect key="frame" x="0.0" y="64" width="320" height="1"/>
-                                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                                            <color key="backgroundColor" white="0.87" alpha="1" colorSpace="calibratedWhite"/>
-                                                        </view>
                                                         <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4yL-Yr-Pvn" userLabel="Download cover">
                                                             <rect key="frame" x="0.0" y="0.0" width="320" height="65"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -133,13 +128,24 @@
                                                         <constraint firstAttribute="centerY" secondItem="ZCS-Bh-Hhn" secondAttribute="centerY" constant="-0.5" id="rFG-GM-07X"/>
                                                     </constraints>
                                                 </view>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3ip-5s-7o3" userLabel="Bottom Separator">
+                                                    <rect key="frame" x="0.0" y="64" width="320" height="1"/>
+                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                                    <color key="backgroundColor" white="0.87" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="1" id="L9v-b7-2Wf"/>
+                                                    </constraints>
+                                                </view>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                             <constraints>
                                                 <constraint firstAttribute="trailing" secondItem="zcs-hv-6al" secondAttribute="trailing" id="Lru-Qt-5Nx"/>
+                                                <constraint firstAttribute="bottom" secondItem="3ip-5s-7o3" secondAttribute="bottom" id="Nrq-cY-NET"/>
                                                 <constraint firstItem="zcs-hv-6al" firstAttribute="leading" secondItem="dbJ-Ve-V2x" secondAttribute="leading" id="aOZ-bL-oqy"/>
                                                 <constraint firstAttribute="bottom" secondItem="zcs-hv-6al" secondAttribute="bottom" id="d0N-zP-pIr"/>
+                                                <constraint firstItem="3ip-5s-7o3" firstAttribute="leading" secondItem="dbJ-Ve-V2x" secondAttribute="leading" id="gW5-Sk-j7d"/>
                                                 <constraint firstItem="zcs-hv-6al" firstAttribute="top" secondItem="dbJ-Ve-V2x" secondAttribute="top" id="iK9-lP-6hd"/>
+                                                <constraint firstAttribute="trailing" secondItem="3ip-5s-7o3" secondAttribute="trailing" id="r5j-HC-fxe"/>
                                             </constraints>
                                         </view>
                                     </subviews>
@@ -2170,6 +2176,6 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="pXr-PZ-dqA"/>
+        <segue reference="XF6-fa-mOW"/>
     </inferredMetricsTieBreakers>
 </document>
