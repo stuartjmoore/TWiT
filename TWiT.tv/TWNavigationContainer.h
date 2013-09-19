@@ -18,6 +18,7 @@
 @property (nonatomic, strong) TWPlaybarViewController *playbarController;
 
 @property (nonatomic, weak) IBOutlet UIView *masterContainer, *playbarContainer;
+@property (nonatomic, weak) IBOutlet NSLayoutConstraint *masterBottomConstraint;
 
 - (void)hidePlaybar;
 - (void)showPlaybar;
