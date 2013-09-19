@@ -26,8 +26,17 @@
 
 @synthesize managedObjectContext = _managedObjectContext, managedObjectModel = _managedObjectModel, persistentStoreCoordinator = _persistentStoreCoordinator;
 
+- (BOOL)application:(UIApplication*)application willFinishLaunchingWithOptions:(NSDictionary*)launchOptions
+{
+    return YES;
+}
+
 - (BOOL)application:(UIApplication*)application didFinishLaunchingWithOptions:(NSDictionary*)launchOptions
 {
+    NSDictionary *appDefaults = @{ @"settings-show-badge" : @YES };
+    [NSUserDefaults.standardUserDefaults registerDefaults:appDefaults];
+    
+    
     [AVAudioSession.sharedInstance setCategory:AVAudioSessionCategoryPlayback error:nil];
     [AVAudioSession.sharedInstance setActive:YES error:nil];
   
@@ -186,14 +195,10 @@
 
 - (void)applicationWillEnterForeground:(UIApplication *)application
 {
-    // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
 }
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
-    // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-    
     [self deleteUserDataIfSet];
-    
     
     for(Show *show in self.channel.shows)
         if(show.favorite)
@@ -233,16 +238,32 @@
 
 - (void)applicationWillResignActive:(UIApplication*)application
 {
-    // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
-    // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
+    BOOL showBadge = [NSUserDefaults.standardUserDefaults boolForKey:@"settings-show-badge"];
+    
+    if(showBadge)
+    {
+        NSFetchRequest *request = [[NSFetchRequest alloc] init];
+        NSEntityDescription *entity = [NSEntityDescription entityForName:@"Episode" inManagedObjectContext:self.managedObjectContext];
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"watched = NO OR ANY enclosures.path != nil"];
+        
+        [request setEntity:entity];
+        [request setPredicate:predicate];
+        request.includesSubentities = NO;
+        
+        NSError *err;
+        NSUInteger count = [self.managedObjectContext countForFetchRequest:request error:&err];
+        
+        UIApplication.sharedApplication.applicationIconBadgeNumber = (count == NSNotFound) ? 0 : count;
+    }
+    else
+    {
+        UIApplication.sharedApplication.applicationIconBadgeNumber = 0;
+    }
     
     [self saveContext];
 }
 - (void)applicationDidEnterBackground:(UIApplication*)application
 {
-    // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
-    // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
-    
     [self performSelector:@selector(play) withObject:nil afterDelay:0.005];
     
     if([self.nowPlaying isKindOfClass:Enclosure.class])
@@ -261,7 +282,6 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application
 {
-    // Saves changes in the application's managed object context before the application terminates.
     [self saveContext];
 }
 
