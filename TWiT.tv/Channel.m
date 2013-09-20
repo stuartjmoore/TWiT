@@ -136,9 +136,6 @@
         // ---
         
         BOOL downloadFromServer = (!lastModifiedLocal) || ([lastModifiedLocal laterDate:lastModifiedServer] == lastModifiedServer);
-      
-        
-        NSLog(@"downloadFromServer? %@", downloadFromServer?@"yes":@"no");
         
         if(downloadFromServer)
         {

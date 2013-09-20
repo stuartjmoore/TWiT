@@ -143,53 +143,53 @@
     
     if(downloadFromServer)
     {
-        NSString *sessionId = [NSString stringWithFormat:@"com.stuartjmoore.twit.pro.album-art.%@", self.show.titleAcronym.lowercaseString];
+        NSURLSessionConfiguration *downloadConfig = [NSURLSessionConfiguration defaultSessionConfiguration];
+        NSURLSession *downloadSession = [NSURLSession sessionWithConfiguration:downloadConfig delegate:nil delegateQueue:NSOperationQueue.mainQueue];
         
-        NSURLSessionConfiguration *defaultConfigObject = [NSURLSessionConfiguration backgroundSessionConfiguration:sessionId];
-        NSURLSession *delegateFreeSession = [NSURLSession sessionWithConfiguration:defaultConfigObject delegate:self delegateQueue:NSOperationQueue.mainQueue];
+        __block AlbumArt *weak = self;
         
-        [[delegateFreeSession downloadTaskWithURL:url] resume];
-    }
-}
-
-
-- (void)URLSession:(NSURLSession*)session downloadTask:(NSURLSessionDownloadTask*)downloadTask didWriteData:(int64_t)bytesWritten totalBytesWritten:(int64_t)totalBytesWritten totalBytesExpectedToWrite:(int64_t)totalBytesExpectedToWrite
-{
-    
-}
-
-- (void)URLSession:(NSURLSession*)session downloadTask:(NSURLSessionDownloadTask*)downloadTask didResumeAtOffset:(int64_t)fileOffset expectedTotalBytes:(int64_t)expectedTotalBytes
-{
-    
-}
-
-- (void)URLSession:(NSURLSession*)session downloadTask:(NSURLSessionDownloadTask*)downloadTask didFinishDownloadingToURL:(NSURL*)location
-{
-    NSURL *url = downloadTask.originalRequest.URL;
-    NSString *cachedDir = [[self.applicationDocumentsDirectory URLByAppendingPathComponent:folder] path];
-    NSString *cachedPath = [cachedDir stringByAppendingPathComponent:url.lastPathComponent];
-    
-    if([NSFileManager.defaultManager fileExistsAtPath:cachedPath])
-        [NSFileManager.defaultManager removeItemAtPath:cachedPath error:nil];
-    
-    // TODO: Shrink file to largest needed size on iPhone and iPad
-    
-    if([NSFileManager.defaultManager moveItemAtPath:location.path toPath:cachedPath error:nil])
-    {
-        self.path = cachedPath;
-        
-        if(url.fragment)
+        [[downloadSession downloadTaskWithURL:url completionHandler:^(NSURL *location, NSURLResponse *response, NSError *error)
         {
-            NSDate *lastModified = [NSDate dateWithTimeIntervalSince1970:url.fragment.floatValue];
-            NSDictionary *fileAttributes = [NSDictionary dictionaryWithObject:lastModified forKey:NSFileModificationDate];
-            [NSFileManager.defaultManager setAttributes:fileAttributes ofItemAtPath:cachedPath error:nil];
-        }
-    }
-}
+            if(error)
+            {
+                if(weak.faultingState)
+                    return;
 
-- (void)URLSession:(NSURLSession*)session task:(NSURLSessionTask*)downloadTask didCompleteWithError:(NSError*)error
-{
-    [NSNotificationCenter.defaultCenter postNotificationName:@"albumArtDidChange" object:self.show];
+                [weak willChangeValueForKey:@"url"];
+                [weak setPrimitiveValue:nil forKey:@"url"];
+                [weak didChangeValueForKey:@"url"];
+
+                return;
+            }
+            
+            NSString *cachedDir = [[self.applicationDocumentsDirectory URLByAppendingPathComponent:folder] path];
+            
+            if(![NSFileManager.defaultManager fileExistsAtPath:cachedDir])
+                [NSFileManager.defaultManager createDirectoryAtPath:cachedDir withIntermediateDirectories:NO attributes:nil error:nil];
+            
+            NSURL *url = response.URL;
+            NSString *cachedPath = [cachedDir stringByAppendingPathComponent:url.lastPathComponent];
+            
+            if([NSFileManager.defaultManager fileExistsAtPath:cachedPath])
+                [NSFileManager.defaultManager removeItemAtPath:cachedPath error:nil];
+            
+            // TODO: Shrink file to largest needed size on iPhone and iPad
+            
+            if([NSFileManager.defaultManager moveItemAtPath:location.path toPath:cachedPath error:nil])
+            {
+                weak.path = cachedPath;
+                
+                if(url.fragment)
+                {
+                    NSDate *lastModified = [NSDate dateWithTimeIntervalSince1970:url.fragment.floatValue];
+                    NSDictionary *fileAttributes = [NSDictionary dictionaryWithObject:lastModified forKey:NSFileModificationDate];
+                    [NSFileManager.defaultManager setAttributes:fileAttributes ofItemAtPath:cachedPath error:nil];
+                }
+                
+                [NSNotificationCenter.defaultCenter postNotificationName:@"albumArtDidChange" object:self.show];
+            }
+        }] resume];
+    }
 }
 
 #pragma mark - Kill

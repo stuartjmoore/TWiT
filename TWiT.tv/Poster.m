@@ -139,36 +139,42 @@
 
 - (void)downloadPosterFromURL:(NSURL*)url
 {
-    NSString *cachedDir = [[self.applicationCachesDirectory URLByAppendingPathComponent:folder] path];
-    NSString *cachedPath = [cachedDir stringByAppendingPathComponent:url.lastPathComponent];
-    
-    if(![NSFileManager.defaultManager fileExistsAtPath:cachedDir])
-        [NSFileManager.defaultManager createDirectoryAtPath:cachedDir withIntermediateDirectories:NO attributes:nil error:nil];
+    NSURLSessionConfiguration *downloadConfig = [NSURLSessionConfiguration defaultSessionConfiguration];
+    NSURLSession *downloadSession = [NSURLSession sessionWithConfiguration:downloadConfig delegate:nil delegateQueue:NSOperationQueue.mainQueue];
     
     __block Poster *weak = self;
     
-    NSURLRequest *urlRequest = [NSURLRequest requestWithURL:url];
-    [NSURLConnection sendAsynchronousRequest:urlRequest queue:NSOperationQueue.mainQueue
-    completionHandler:^(NSURLResponse *response, NSData *data, NSError *error)
+    [[downloadSession downloadTaskWithURL:url completionHandler:^(NSURL *location, NSURLResponse *response, NSError *error)
     {
-        NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse*)response;
-        if([httpResponse respondsToSelector:@selector(statusCode)] && httpResponse.statusCode == 200)
-        {
-            weak.path = cachedPath;
-            [data writeToFile:cachedPath atomically:NO];
-            
-            [NSNotificationCenter.defaultCenter postNotificationName:@"posterDidChange" object:self.episode];
-        }
-        else
+        if(error)
         {
             if(weak.faultingState)
                 return;
-                
+            
             [weak willChangeValueForKey:@"url"];
             [weak setPrimitiveValue:nil forKey:@"url"];
             [weak didChangeValueForKey:@"url"];
+            
+            return;
         }
-    }];
+        
+        NSString *cachedDir = [[self.applicationCachesDirectory URLByAppendingPathComponent:folder] path];
+
+        if(![NSFileManager.defaultManager fileExistsAtPath:cachedDir])
+            [NSFileManager.defaultManager createDirectoryAtPath:cachedDir withIntermediateDirectories:NO attributes:nil error:nil];
+        
+        NSURL *url = response.URL;
+        NSString *cachedPath = [cachedDir stringByAppendingPathComponent:url.lastPathComponent];
+        
+        if([NSFileManager.defaultManager fileExistsAtPath:cachedPath])
+            [NSFileManager.defaultManager removeItemAtPath:cachedPath error:nil];
+        
+        if([NSFileManager.defaultManager moveItemAtPath:location.path toPath:cachedPath error:nil])
+        {
+            weak.path = cachedPath;
+            [NSNotificationCenter.defaultCenter postNotificationName:@"posterDidChange" object:self.episode];
+        }
+    }] resume];
 }
 
 - (NSURL*)applicationCachesDirectory

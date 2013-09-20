@@ -242,11 +242,7 @@
 
 - (void)application:(UIApplication*)application handleEventsForBackgroundURLSession:(NSString*)identifier completionHandler:(void(^)())completionHandler
 {
-    NSLog(@"identifier %@", identifier);
-    
     NSArray *identifierParts = [identifier componentsSeparatedByString:@"."];
-    
-    NSLog(@"identifierParts %@", identifierParts);
     
     if(identifierParts.count == 8 && [identifierParts[4] isEqualToString:@"enclosure"])
     {
@@ -258,8 +254,6 @@
         NSEntityDescription *enclosure = [NSEntityDescription entityForName:@"Enclosure" inManagedObjectContext:self.managedObjectContext];
         NSPredicate *predicate = [NSPredicate predicateWithFormat:@"episode.show.titleAcronym ==[c] %@ AND episode.number == %@ AND quality == %@",
                                   titleAcronym, epNumber, enclosureQuality];
-        
-        NSLog(@"%@", predicate);
         
         request.entity = enclosure;
         request.predicate = predicate;
