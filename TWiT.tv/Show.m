@@ -426,7 +426,8 @@
                      guests = [guests stringByReplacingCharactersInRange:r withString:@""];
              }
              
-             NSString *posterURL = [NSString stringWithFormat:@"http://twit.tv/files/imagecache/slideshow-slide/%@%.4d.jpg", self.titleAcronym.lowercaseString, number];
+             NSString *posterURL = [NSString stringWithFormat:@"http://twit.tv/files/imagecache/slideshow-slide/spiros_%@_%.4djpg.jpg",
+                                    self.titleAcronym.lowercaseString, number];
              
              NSString *enclosureURL = [[epiDic objectForKey:@"enclosure"] objectForKey:@"url"];
              NSString *website = [[epiDic objectForKey:@"comments"] objectForKey:@"text"];
