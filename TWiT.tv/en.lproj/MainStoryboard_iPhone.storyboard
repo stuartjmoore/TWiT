@@ -255,7 +255,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="65"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="54R-Rn-wkL">
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="54R-Rn-wkL" userLabel="TODO: Remove me">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="65"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
@@ -344,9 +344,9 @@
                                                             <color key="backgroundColor" white="0.87" alpha="1" colorSpace="calibratedWhite"/>
                                                         </view>
                                                         <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6Gq-gU-Myh" userLabel="Download cover">
-                                                            <rect key="frame" x="0.0" y="0.0" width="320" height="65"/>
+                                                            <rect key="frame" x="320" y="0.0" width="0.0" height="65"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                                            <color key="backgroundColor" red="0.80181961440000005" green="0.79792465729999995" blue="0.84116556190000003" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <color key="backgroundColor" red="0.80181961440000005" green="0.79792465729999995" blue="0.84116556190000003" alpha="0.75" colorSpace="calibratedRGB"/>
                                                             <accessibility key="accessibilityConfiguration" label="Downloading"/>
                                                         </imageView>
                                                     </subviews>
@@ -960,9 +960,9 @@
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                         </imageView>
                                         <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Jj4-AV-aiV" userLabel="Download Cover">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="65"/>
+                                            <rect key="frame" x="320" y="0.0" width="0.0" height="65"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                            <color key="backgroundColor" red="0.80181961440000005" green="0.79792465729999995" blue="0.84116556190000003" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="backgroundColor" red="0.80181961440000005" green="0.79792465729999995" blue="0.84116556190000003" alpha="0.75" colorSpace="calibratedRGB"/>
                                         </imageView>
                                     </subviews>
                                     <constraints>

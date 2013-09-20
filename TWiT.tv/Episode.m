@@ -15,7 +15,7 @@
 @dynamic desc, downloadedQuality, downloadState, duration, guests, lastTimecode, number;
 @dynamic published, title, watched, website, enclosures, poster, show;
 
-@synthesize downloadedEnclosures = _downloadedEnclosures;
+@synthesize downloadedEnclosures = _downloadedEnclosures, downloadingEnclosures = _downloadingEnclosures;
 
 - (NSString*)durationString
 {
@@ -83,6 +83,17 @@
     return enclosures;
 }
 
+- (NSSet*)downloadingEnclosures
+{
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"downloadTask != nil"];
+    NSSet *enclosures = [self.enclosures filteredSetUsingPredicate:predicate];
+    
+    if(enclosures.count == 0)
+        return nil;
+    
+    return enclosures;
+}
+
 - (void)downloadEnclosure:(Enclosure*)enclosure
 {
     [enclosure download];
@@ -90,9 +101,7 @@
 
 - (void)cancelDownloads
 {
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"downloadTask != nil"];
-    NSSet *enclosures = [self.enclosures filteredSetUsingPredicate:predicate];
-    [enclosures makeObjectsPerformSelector:@selector(cancelDownload)];
+    [self.downloadingEnclosures makeObjectsPerformSelector:@selector(cancelDownload)];
 }
 
 - (void)deleteDownloads

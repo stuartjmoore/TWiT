@@ -109,9 +109,11 @@
         
         self.favoriteButton.selected = self.show.favorite;
         self.remindButton.selected = self.show.remind;
+        
         self.emailButton.hidden = !self.show.email;
-        self.phoneButton.hidden = !self.show.phone;
-
+        self.phoneButton.hidden = ([UIApplication.sharedApplication canOpenURL:[NSURL URLWithString:@"tel:+11111"]]) ? !self.show.phone : YES;
+        
+        /*
         for (NSInteger i = 0; i < [self.tableView numberOfSections]; i++)
         {
             for (NSInteger j = 0; j < [self.tableView numberOfRowsInSection:i]; j++)
@@ -121,6 +123,7 @@
                 cell.progress = 1;
             }
         }
+        */
         
         self.fetchedEpisodesController = nil;
         [self.tableView reloadData];
@@ -269,7 +272,7 @@
     return sectionInfo.numberOfObjects;
 }
 
-- (UITableViewCell *)tableView:(UITableView*)tableView cellForRowAtIndexPath:(NSIndexPath*)indexPath
+- (UITableViewCell*)tableView:(UITableView*)tableView cellForRowAtIndexPath:(NSIndexPath*)indexPath
 {
     NSString *identifier = @"episodeCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];

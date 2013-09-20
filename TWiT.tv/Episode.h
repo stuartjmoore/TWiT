@@ -27,7 +27,7 @@
 @property (nonatomic, strong) Poster *poster;
 @property (nonatomic, strong) Show *show;
 
-@property (nonatomic, strong) NSSet *downloadedEnclosures;
+@property (nonatomic, strong) NSSet *downloadedEnclosures, *downloadingEnclosures;
 
 - (NSString*)durationString;
 - (NSString*)publishedString;

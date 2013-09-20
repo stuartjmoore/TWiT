@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4510" systemVersion="12E55" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="SRf-Qj-T0f">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4510" systemVersion="12F37" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="SRf-Qj-T0f">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3742"/>
     </dependencies>
@@ -26,7 +26,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="65"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dbJ-Ve-V2x" userLabel="View (remove?)">
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dbJ-Ve-V2x" userLabel="TODO: remove">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="65"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
@@ -115,9 +115,9 @@
                                                             </constraints>
                                                         </view>
                                                         <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4yL-Yr-Pvn" userLabel="Download cover">
-                                                            <rect key="frame" x="0.0" y="0.0" width="320" height="65"/>
+                                                            <rect key="frame" x="320" y="0.0" width="0.0" height="65"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                                            <color key="backgroundColor" red="0.80181961440000005" green="0.79792465729999995" blue="0.84116556190000003" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <color key="backgroundColor" red="0.80181961440000005" green="0.79792465729999995" blue="0.84116556190000003" alpha="0.75" colorSpace="calibratedRGB"/>
                                                             <accessibility key="accessibilityConfiguration" label="Downloading"/>
                                                         </imageView>
                                                     </subviews>
@@ -394,14 +394,14 @@
                                                     <rect key="frame" x="300" y="26" width="12" height="13"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                 </imageView>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" image="separator-fade-bottom" translatesAutoresizingMaskIntoConstraints="NO" id="lX7-re-d1d">
+                                                <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yoN-I4-xvn" userLabel="Download Cover">
+                                                    <rect key="frame" x="320" y="0.0" width="0.0" height="65"/>
+                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                    <color key="backgroundColor" red="0.80181961440000005" green="0.79792465729999995" blue="0.84116556190000003" alpha="0.75" colorSpace="calibratedRGB"/>
+                                                </imageView>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" image="separator-fade-bottom" translatesAutoresizingMaskIntoConstraints="NO" id="lX7-re-d1d" userLabel="Bottom Sepator">
                                                     <rect key="frame" x="0.0" y="64" width="320" height="1"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                                </imageView>
-                                                <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yoN-I4-xvn">
-                                                    <rect key="frame" x="0.0" y="0.0" width="320" height="65"/>
-                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                                    <color key="backgroundColor" red="0.80181961440000005" green="0.79792465729999995" blue="0.84116556190000003" alpha="1" colorSpace="calibratedRGB"/>
                                                 </imageView>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>

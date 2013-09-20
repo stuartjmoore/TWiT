@@ -130,7 +130,7 @@
 {
     [self.downloadTask cancel];
     
-    NSError *error = [NSError errorWithDomain:@"user-cancelled" code:1 userInfo:nil];
+    NSError *error = [NSError errorWithDomain:@"user-canceled" code:1 userInfo:nil];
     [self closeDownloadWithError:error];
 }
 

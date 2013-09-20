@@ -291,7 +291,7 @@
             
             if(currentShow == selectedShow)
             {
-                // TODO: Crashes
+                // Crashes
                 //self.showSelectedView = nil;
                 //[masterController popToRootViewControllerAnimated:YES];
             }
@@ -847,8 +847,9 @@
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"Episode" inManagedObjectContext:self.managedObjectContext];
     NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"published" ascending:NO];
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"watched = NO OR ANY enclosures.path != nil"]; //AND published != nil
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"watched == NO OR ANY enclosures.path != nil"];
     
+    //?  AND published != nil
     //?  OR ANY enclosures.downloadTask != nil
     
     [fetchRequest setFetchBatchSize:10];

@@ -52,6 +52,9 @@
         self.downloadedIcon.hidden = YES;
     else
         self.downloadedIcon.hidden = (!self.episode.downloadedEnclosures);
+    
+    if(!self.episode.downloadingEnclosures)
+        self.progress = 1;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
