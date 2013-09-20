@@ -220,7 +220,7 @@
         if(self.segmentedButton.buttonState != TWButtonSegmentCancel)
             self.segmentedButton.buttonState = TWButtonSegmentCancel;
         
-        self.segmentedButton.progress = (enclosure.expectedLength != 0)? enclosure.downloadedLength/(CGFloat)enclosure.expectedLength : 0;
+        self.segmentedButton.progress = enclosure.downloadedPercentage;
     }
     else if([notification.name isEqualToString:@"enclosureDownloadDidFinish"])
     {

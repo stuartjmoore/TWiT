@@ -407,7 +407,7 @@
         [self performSelector:@selector(redrawSchedule:) withObject:nil afterDelay:currentShow.start.timeIntervalSinceNow];
     else if([self.liveTimeLabel.text isEqualToString:@"Live"])
         [self performSelector:@selector(redrawSchedule:) withObject:nil afterDelay:currentShow.end.timeIntervalSinceNow];
-        // Redraw for iPad progress view?
+        // TODO: Redraw for iPad progress view?
 }
 
 - (void)updateProgress:(NSNotification*)notification
@@ -421,9 +421,8 @@
     TWEpisodeCell *cell = (TWEpisodeCell*)[self.tableView cellForRowAtIndexPath:indexPath];
     
     if([notification.name isEqualToString:@"enclosureDownloadDidReceiveData"])
-        cell.progress = (enclosure.expectedLength != 0)? enclosure.downloadedLength/(CGFloat)enclosure.expectedLength : 0;
-    else if([notification.name isEqualToString:@"enclosureDownloadDidFinish"]
-    || [notification.name isEqualToString:@"enclosureDownloadDidFail"])
+        cell.progress = enclosure.downloadedPercentage;
+    else if([notification.name isEqualToString:@"enclosureDownloadDidFinish"] || [notification.name isEqualToString:@"enclosureDownloadDidFail"])
         cell.progress = 1;
 }
 
@@ -850,7 +849,7 @@
     NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"published" ascending:NO];
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"watched = NO OR ANY enclosures.path != nil"]; //AND published != nil
     
-    //?  OR ANY enclosures.downloadConnection != nil
+    //?  OR ANY enclosures.downloadTask != nil
     
     [fetchRequest setFetchBatchSize:10];
     [fetchRequest setEntity:entity];

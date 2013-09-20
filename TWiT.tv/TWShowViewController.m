@@ -306,7 +306,7 @@
     TWEpisodeCell *cell = (TWEpisodeCell*)[self.tableView cellForRowAtIndexPath:indexPath];
     
     if([notification.name isEqualToString:@"enclosureDownloadDidReceiveData"])
-        cell.progress = (enclosure.expectedLength != 0)? enclosure.downloadedLength/(CGFloat)enclosure.expectedLength : 0;
+        cell.progress = enclosure.downloadedPercentage;
     else if([notification.name isEqualToString:@"enclosureDownloadDidFinish"] || [notification.name isEqualToString:@"enclosureDownloadDidFail"])
         cell.progress = 1;
 }

@@ -13,7 +13,7 @@
 
 @class Episode;
 
-@interface Enclosure : NSManagedObject <NSURLConnectionDelegate>
+@interface Enclosure : NSManagedObject <NSURLConnectionDelegate, NSURLSessionDownloadDelegate>
 
 @property (nonatomic, strong) NSString *title, *subtitle;
 @property (nonatomic, strong) NSString *url, *path;
@@ -21,15 +21,14 @@
 @property (nonatomic) TWType type;
 @property (nonatomic, strong) Episode *episode;
 
-@property (nonatomic, strong) NSFileHandle *downloadingFile;
-@property (nonatomic) long long expectedLength, downloadedLength;
-@property (nonatomic, strong) NSString *downloadPath;
-@property (nonatomic, strong) NSURLConnection *downloadConnection;
-@property (nonatomic) UIBackgroundTaskIdentifier downloadTaskID;
+@property (nonatomic, strong) NSURLSession *downloadSession;
+@property (nonatomic, strong) NSURLSessionDownloadTask *downloadTask;
+@property (nonatomic, copy) void (^backgroundSessionCompletionHandler)();
+@property (nonatomic) CGFloat downloadedPercentage;
 
 - (void)download;
 - (void)cancelDownload;
-- (void)closeDownload;
+- (void)closeDownloadWithError:(NSError*)error;
 - (void)deleteDownload;
 
 @end

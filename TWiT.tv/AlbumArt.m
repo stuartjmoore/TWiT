@@ -85,14 +85,11 @@
 
 - (void)downloadAlbumArtFromURL:(NSURL*)url
 {
-    NSLog(@"downloadAlbumArtFromURL");
-    
     NSString *cachedDir = [[self.applicationDocumentsDirectory URLByAppendingPathComponent:folder] path];
     NSString *cachedPath = [cachedDir stringByAppendingPathComponent:url.lastPathComponent];
     
     if(![NSFileManager.defaultManager fileExistsAtPath:cachedDir])
     {
-        NSLog(@"downloadAlbumArtFromURL - create folder");
         [NSFileManager.defaultManager createDirectoryAtPath:cachedDir withIntermediateDirectories:NO attributes:nil error:nil];
         
         NSURL *cachedURL = [NSURL fileURLWithPath:cachedDir];
@@ -109,8 +106,6 @@
         
         if([NSFileManager.defaultManager fileExistsAtPath:resourcePath] && ![NSFileManager.defaultManager fileExistsAtPath:cachedPath])
         {
-            NSLog(@"downloadAlbumArtFromURL - copy resource");
-            
             self.path = cachedPath;
             [NSFileManager.defaultManager copyItemAtPath:resourcePath toPath:cachedPath error:nil];
             
@@ -144,18 +139,15 @@
         downloadFromServer = (!lastModifiedLocal) || ([lastModifiedLocal laterDate:lastModifiedServer] == lastModifiedServer);
     }
     
-    NSLog(@"downloadFromServer? - %@", downloadFromServer?@"yes":@"no");
-    
     // ---
     
     if(downloadFromServer)
     {
-        NSString *sessionId = [NSString stringWithFormat:@"com.stuartjmoore.twit.pro.%@.albumArt", self.show.titleAcronym.lowercaseString];
+        NSString *sessionId = [NSString stringWithFormat:@"com.stuartjmoore.twit.pro.album-art.%@", self.show.titleAcronym.lowercaseString];
         
         NSURLSessionConfiguration *defaultConfigObject = [NSURLSessionConfiguration backgroundSessionConfiguration:sessionId];
         NSURLSession *delegateFreeSession = [NSURLSession sessionWithConfiguration:defaultConfigObject delegate:self delegateQueue:NSOperationQueue.mainQueue];
         
-        NSLog(@"downloadTaskWithURL %@", url);
         [[delegateFreeSession downloadTaskWithURL:url] resume];
     }
 }
@@ -171,29 +163,20 @@
     
 }
 
--(void)URLSession:(NSURLSession*)session downloadTask:(NSURLSessionDownloadTask*)downloadTask didFinishDownloadingToURL:(NSURL*)location
+- (void)URLSession:(NSURLSession*)session downloadTask:(NSURLSessionDownloadTask*)downloadTask didFinishDownloadingToURL:(NSURL*)location
 {
-    NSLog(@"location %@", location);
-    
     NSURL *url = downloadTask.originalRequest.URL;
-    
-    NSLog(@"url %@", url);
-    
     NSString *cachedDir = [[self.applicationDocumentsDirectory URLByAppendingPathComponent:folder] path];
     NSString *cachedPath = [cachedDir stringByAppendingPathComponent:url.lastPathComponent];
-    
-    NSLog(@"cachedPath %@", cachedPath);
-    
-    // TODO: Shrink file to largest needed size on iPhone and iPad
     
     if([NSFileManager.defaultManager fileExistsAtPath:cachedPath])
         [NSFileManager.defaultManager removeItemAtPath:cachedPath error:nil];
     
+    // TODO: Shrink file to largest needed size on iPhone and iPad
+    
     if([NSFileManager.defaultManager moveItemAtPath:location.path toPath:cachedPath error:nil])
     {
         self.path = cachedPath;
-        
-        NSLog(@"moveItemAtURL");
         
         if(url.fragment)
         {
@@ -202,7 +185,10 @@
             [NSFileManager.defaultManager setAttributes:fileAttributes ofItemAtPath:cachedPath error:nil];
         }
     }
-    
+}
+
+- (void)URLSession:(NSURLSession*)session task:(NSURLSessionTask*)downloadTask didCompleteWithError:(NSError*)error
+{
     [NSNotificationCenter.defaultCenter postNotificationName:@"albumArtDidChange" object:self.show];
 }
 

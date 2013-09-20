@@ -72,18 +72,6 @@
 
 #pragma mark - Download
 
-- (void)downloadEnclosure:(Enclosure*)enclosure
-{
-    [enclosure download];
-}
-
-- (void)cancelDownloads
-{
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"downloadConnection != nil"];
-    NSSet *enclosures = [self.enclosures filteredSetUsingPredicate:predicate];
-    [enclosures makeObjectsPerformSelector:@selector(cancelDownload)];
-}
-
 - (NSSet*)downloadedEnclosures
 {
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"path != nil"];
@@ -91,9 +79,22 @@
     
     if(enclosures.count == 0)
         return nil;
-        
+    
     return enclosures;
 }
+
+- (void)downloadEnclosure:(Enclosure*)enclosure
+{
+    [enclosure download];
+}
+
+- (void)cancelDownloads
+{
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"downloadTask != nil"];
+    NSSet *enclosures = [self.enclosures filteredSetUsingPredicate:predicate];
+    [enclosures makeObjectsPerformSelector:@selector(cancelDownload)];
+}
+
 - (void)deleteDownloads
 {
     [self.downloadedEnclosures makeObjectsPerformSelector:@selector(deleteDownload)];

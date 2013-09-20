@@ -8,6 +8,7 @@
 
 #import "Enclosure.h"
 #import "Episode.h"
+#import "Show.h"
 
 #define folder @"Downloads.nosync"
 
@@ -15,9 +16,9 @@
 
 @dynamic path, quality, subtitle, title, type, url, episode;
 
-@synthesize downloadPath = _downloadPath, downloadTaskID = _downloadTaskID;
-@synthesize downloadingFile = _downloadingFile, downloadConnection = _downloadConnection;
-@synthesize expectedLength = _expectedLength, downloadedLength = _downloadedLength;
+@synthesize downloadSession = _downloadSession, downloadTask = _downloadTask;
+@synthesize backgroundSessionCompletionHandler = _backgroundSessionCompletionHandler;
+@synthesize downloadedPercentage = _downloadedPercentage;
 
 - (void)prepareForDeletion
 {
@@ -45,100 +46,92 @@
 
 - (void)download
 {
+    if(self.downloadTask)
+        return;
+    
+    NSString *sessionId = [NSString stringWithFormat:@"com.stuartjmoore.twit.pro.enclosure.%@.%d.%d",
+                           self.episode.show.titleAcronym.lowercaseString,
+                           self.episode.number,
+                           self.quality];
+    
     NSURL *url = [NSURL URLWithString:self.url];
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+    NSURLSessionConfiguration *downloadConfig = [NSURLSessionConfiguration backgroundSessionConfiguration:sessionId];
+    self.downloadSession = [NSURLSession sessionWithConfiguration:downloadConfig delegate:self delegateQueue:NSOperationQueue.mainQueue];
     
-    self.downloadConnection = [NSURLConnection connectionWithRequest:request delegate:self];
-    self.downloadTaskID = [UIApplication.sharedApplication beginBackgroundTaskWithExpirationHandler:^{
-        [self cancelDownload];
-    }];
+    self.downloadTask = [self.downloadSession downloadTaskWithURL:url];
+    [self.downloadTask resume];
     
-    if(!self.downloadConnection)
-    {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Network Error!" message:@"Please check your internet connection"  delegate:nil cancelButtonTitle:@"Okay" otherButtonTitles:nil];
-        
-        [alert show];
-    }
+    self.downloadedPercentage = 0;
+    UIApplication.sharedApplication.networkActivityIndicatorVisible = YES;
 }
 
--(void)connection:(NSURLConnection*)connection didReceiveResponse:(NSURLResponse*)response
+- (void)URLSession:(NSURLSession*)session downloadTask:(NSURLSessionDownloadTask*)downloadTask didResumeAtOffset:(int64_t)fileOffset expectedTotalBytes:(int64_t)expectedTotalBytes
 {
-    UIApplication.sharedApplication.networkActivityIndicatorVisible = YES;
     
-    NSURL *url = [NSURL URLWithString:self.url];
-    NSString *downloadDir = [[self.applicationDocumentsDirectory URLByAppendingPathComponent:folder] path];
-    NSString *downloadPath = [downloadDir stringByAppendingPathComponent:url.lastPathComponent];
-    
-    if(![NSFileManager.defaultManager fileExistsAtPath:downloadDir])
-    {
-        [NSFileManager.defaultManager createDirectoryAtPath:downloadDir withIntermediateDirectories:NO attributes:nil error:nil];
-        
-        NSURL *downloadURL = [NSURL fileURLWithPath:downloadDir];
-        [downloadURL setResourceValue:@YES forKey:NSURLIsExcludedFromBackupKey error:nil];
-    }
-    
-    if (![NSFileManager.defaultManager fileExistsAtPath:downloadPath])
-        [NSFileManager.defaultManager createFileAtPath:downloadPath contents:nil attributes:nil];
-    
-    self.downloadPath = downloadPath;
-    self.expectedLength = response.expectedContentLength;
-    self.downloadedLength = 0;
-    
-    self.downloadingFile = [NSFileHandle fileHandleForWritingAtPath:self.downloadPath];
-    [self.downloadingFile seekToEndOfFile];
 }
--(void)connection:(NSURLConnection*)connection didReceiveData:(NSData*)data
+
+#pragma mark Progress
+
+- (void)URLSession:(NSURLSession*)session downloadTask:(NSURLSessionDownloadTask*)downloadTask didWriteData:(int64_t)bytesWritten totalBytesWritten:(int64_t)totalBytesWritten totalBytesExpectedToWrite:(int64_t)totalBytesExpectedToWrite
 {
-    [self.downloadingFile seekToEndOfFile];
-    [self.downloadingFile writeData:data];
-    
-    self.downloadedLength += data.length;
-    
+    self.downloadedPercentage = (double)totalBytesWritten / (double)totalBytesExpectedToWrite;
     [NSNotificationCenter.defaultCenter postNotificationName:@"enclosureDownloadDidReceiveData" object:self];
 }
 
-- (void)cancelDownload
+#pragma mark Finish
+
+-(void)URLSession:(NSURLSession*)session downloadTask:(NSURLSessionDownloadTask*)downloadTask didFinishDownloadingToURL:(NSURL*)location
 {
-    [self.downloadConnection cancel];
+    NSURL *url = downloadTask.originalRequest.URL;
+    NSString *downloadDir = [[self.applicationDocumentsDirectory URLByAppendingPathComponent:folder] path];
+    NSString *downloadPath = [downloadDir stringByAppendingPathComponent:url.lastPathComponent];
     
-    if([NSFileManager.defaultManager fileExistsAtPath:self.downloadPath])
-        [NSFileManager.defaultManager removeItemAtPath:self.downloadPath error:nil];
+    if([NSFileManager.defaultManager fileExistsAtPath:downloadPath])
+        [NSFileManager.defaultManager removeItemAtPath:downloadPath error:nil];
     
-    [self closeDownload];
-    [NSNotificationCenter.defaultCenter postNotificationName:@"enclosureDownloadDidFail" object:self];
+    if([NSFileManager.defaultManager moveItemAtPath:location.path toPath:downloadPath error:nil])
+    {
+        [self.episode willChangeValueForKey:@"enclosures"];
+        self.path = downloadPath;
+        [self.managedObjectContext save:nil];
+        [self.episode didChangeValueForKey:@"enclosures"];
+    }
 }
--(void)connection:(NSURLConnection*)connection didFailWithError:(NSError*)error
+
+- (void)URLSession:(NSURLSession*)session task:(NSURLSessionTask*)downloadTask didCompleteWithError:(NSError*)error
 {
-    if([NSFileManager.defaultManager fileExistsAtPath:self.downloadPath])
-        [NSFileManager.defaultManager removeItemAtPath:self.downloadPath error:nil];
+    [self closeDownloadWithError:error];
     
-    [self closeDownload];
-    [NSNotificationCenter.defaultCenter postNotificationName:@"enclosureDownloadDidFail" object:self];
+    [self.downloadSession getTasksWithCompletionHandler:^(NSArray *dataTasks, NSArray *uploadTasks, NSArray *downTasks)
+    {
+        if(dataTasks.count + uploadTasks.count + downTasks.count == 0 && self.backgroundSessionCompletionHandler)
+        {
+            void (^completionHandler)() = self.backgroundSessionCompletionHandler;
+            self.backgroundSessionCompletionHandler = nil;
+            completionHandler();
+        }
+    }];
 }
--(void)connectionDidFinishLoading:(NSURLConnection*)connection
-{
-    [self.episode willChangeValueForKey:@"enclosures"];
-    self.path = self.downloadPath;
-    [self.managedObjectContext save:nil];
-    [self.episode didChangeValueForKey:@"enclosures"];
-    
-    [self closeDownload];
-    [NSNotificationCenter.defaultCenter postNotificationName:@"enclosureDownloadDidFinish" object:self];
-}
-- (void)closeDownload
+
+- (void)closeDownloadWithError:(NSError*)error
 {
     UIApplication.sharedApplication.networkActivityIndicatorVisible = NO;
     
-    [UIApplication.sharedApplication endBackgroundTask:self.downloadTaskID];
+    self.downloadTask = nil;
+    self.downloadedPercentage = 0;
     
-    self.downloadPath = nil;
+    NSString *notificationName = error ? @"enclosureDownloadDidFail" : @"enclosureDownloadDidFinish";
+    [NSNotificationCenter.defaultCenter postNotificationName:notificationName object:self];
+}
+
+#pragma mark Actions
+
+- (void)cancelDownload
+{
+    [self.downloadTask cancel];
     
-    self.expectedLength = 0;
-    self.downloadedLength = 0;
-    
-    [self.downloadingFile closeFile];
-    self.downloadingFile = nil;
-    self.downloadConnection = nil;
+    NSError *error = [NSError errorWithDomain:@"user-cancelled" code:1 userInfo:nil];
+    [self closeDownloadWithError:error];
 }
 
 - (void)deleteDownload
@@ -148,7 +141,6 @@
     
     [self.episode willChangeValueForKey:@"enclosures"];
     self.path = nil;
-    //[self.managedObjectContext save:nil];
     [self.episode didChangeValueForKey:@"enclosures"];
 }
 

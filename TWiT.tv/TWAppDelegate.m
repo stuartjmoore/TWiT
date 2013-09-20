@@ -240,11 +240,46 @@
 
 #pragma mark - Downloads
 
-- (void)application:(UIApplication*)application handleEventsForBackgroundURLSession:(NSString*)identifier completionHandler:(void (^)())completionHandler
+- (void)application:(UIApplication*)application handleEventsForBackgroundURLSession:(NSString*)identifier completionHandler:(void(^)())completionHandler
 {
     NSLog(@"identifier %@", identifier);
     
-    completionHandler();
+    NSArray *identifierParts = [identifier componentsSeparatedByString:@"."];
+    
+    NSLog(@"identifierParts %@", identifierParts);
+    
+    if(identifierParts.count == 8 && [identifierParts[4] isEqualToString:@"enclosure"])
+    {
+        NSString *titleAcronym = identifierParts[5];
+        NSString *epNumber = identifierParts[6];
+        NSString *enclosureQuality = identifierParts[7];
+        
+        NSFetchRequest *request = [[NSFetchRequest alloc] init];
+        NSEntityDescription *enclosure = [NSEntityDescription entityForName:@"Enclosure" inManagedObjectContext:self.managedObjectContext];
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"episode.show.titleAcronym ==[c] %@ AND episode.number == %@ AND quality == %@",
+                                  titleAcronym, epNumber, enclosureQuality];
+        
+        NSLog(@"%@", predicate);
+        
+        request.entity = enclosure;
+        request.predicate = predicate;
+        request.includesSubentities = NO;
+        request.fetchLimit = 1;
+        
+        NSError *error;
+        
+        NSArray *enclosures = [self.managedObjectContext executeFetchRequest:request error:&error];
+        
+        if(!error)
+        {
+            Enclosure *enclosure = enclosures.firstObject;
+            enclosure.backgroundSessionCompletionHandler = completionHandler;
+        }
+        else
+        {
+            NSLog(@"error %@", error);
+        }
+    }
 }
 
 #pragma mark - Notifications
