@@ -110,7 +110,7 @@
             if(error)
                 return;
             
-            lastModifiedLocal = [NSDate dateWithTimeIntervalSince1970:1376587279]; // REPLACE WITH SERVER’S DATE ABOVE!
+            lastModifiedLocal = [NSDate dateWithTimeIntervalSince1970:1379682582]; // REPLACE WITH SERVER’S DATE ABOVE!
             
             NSDictionary *fileAttributes = [NSDictionary dictionaryWithObject:lastModifiedLocal forKey:NSFileModificationDate];
             
@@ -137,6 +137,9 @@
         
         BOOL downloadFromServer = (!lastModifiedLocal) || ([lastModifiedLocal laterDate:lastModifiedServer] == lastModifiedServer);
       
+        
+        NSLog(@"downloadFromServer? %@", downloadFromServer?@"yes":@"no");
+        
         if(downloadFromServer)
         {
             NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
@@ -213,6 +216,8 @@
     {
         NSSet *fetchedShows = [self.managedObjectContext fetchEntities:@"Show" withPredicate:@"title == %@", [showDictionary objectForKey:@"title"]];
         Show *show = fetchedShows.anyObject ?: [self.managedObjectContext insertEntity:@"Show"];
+        
+        NSLog(@"update %@", show.title);
         
         NSString *pubDate = [showDictionary objectForKey:@"pubdate"];
         NSDateFormatter *df = [[NSDateFormatter alloc] init];

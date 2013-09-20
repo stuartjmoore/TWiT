@@ -54,7 +54,6 @@
 		17C43B3F1696DFD60066C79F /* htg600.1353196800.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 17C43AEF1696DFD60066C79F /* htg600.1353196800.jpg */; };
 		17C43B401696DFD60066C79F /* ifive600.1353196800.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 17C43AF01696DFD60066C79F /* ifive600.1353196800.jpg */; };
 		17C43B411696DFD60066C79F /* ipad600.1353196800.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 17C43AF11696DFD60066C79F /* ipad600.1353196800.jpg */; };
-		17C43B421696DFD60066C79F /* kh600.1353196800.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 17C43AF21696DFD60066C79F /* kh600.1353196800.jpg */; };
 		17C43B431696DFD60066C79F /* mbw600.1353196800.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 17C43AF31696DFD60066C79F /* mbw600.1353196800.jpg */; };
 		17C43B441696DFD60066C79F /* nsfw600.1353196800.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 17C43AF41696DFD60066C79F /* nsfw600.1353196800.jpg */; };
 		17C43B451696DFD60066C79F /* sn600.1353196800.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 17C43AF51696DFD60066C79F /* sn600.1353196800.jpg */; };
@@ -97,6 +96,7 @@
 		17D1B6B216A1CAC800B05C12 /* TWPlayButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 17D1B6B116A1CAC800B05C12 /* TWPlayButton.m */; };
 		17D1B6B516A1D38A00B05C12 /* TWSegmentedButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 17D1B6B416A1D38A00B05C12 /* TWSegmentedButton.m */; };
 		17D5D3D917EC766B0052617B /* Vollkorn-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1733C8AD17E7CED90090C97A /* Vollkorn-BoldItalic.ttf */; };
+		17D5D3DB17EC7EE80052617B /* kh600.1380000000.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 17D5D3DA17EC7EE80052617B /* kh600.1380000000.jpg */; };
 		17DE054217D8E7A8007E0F5A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 17DE054117D8E7A8007E0F5A /* Images.xcassets */; };
 		17E5114F168F496E00DCE89C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17E5114E168F496E00DCE89C /* UIKit.framework */; };
 		17E51151168F496E00DCE89C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17E51150168F496E00DCE89C /* Foundation.framework */; };
@@ -187,7 +187,6 @@
 		17C43AEF1696DFD60066C79F /* htg600.1353196800.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = htg600.1353196800.jpg; sourceTree = "<group>"; };
 		17C43AF01696DFD60066C79F /* ifive600.1353196800.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = ifive600.1353196800.jpg; sourceTree = "<group>"; };
 		17C43AF11696DFD60066C79F /* ipad600.1353196800.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = ipad600.1353196800.jpg; sourceTree = "<group>"; };
-		17C43AF21696DFD60066C79F /* kh600.1353196800.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = kh600.1353196800.jpg; sourceTree = "<group>"; };
 		17C43AF31696DFD60066C79F /* mbw600.1353196800.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = mbw600.1353196800.jpg; sourceTree = "<group>"; };
 		17C43AF41696DFD60066C79F /* nsfw600.1353196800.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = nsfw600.1353196800.jpg; sourceTree = "<group>"; };
 		17C43AF51696DFD60066C79F /* sn600.1353196800.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = sn600.1353196800.jpg; sourceTree = "<group>"; };
@@ -237,6 +236,7 @@
 		17D1B6B116A1CAC800B05C12 /* TWPlayButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWPlayButton.m; sourceTree = "<group>"; };
 		17D1B6B316A1D38A00B05C12 /* TWSegmentedButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWSegmentedButton.h; sourceTree = "<group>"; };
 		17D1B6B416A1D38A00B05C12 /* TWSegmentedButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWSegmentedButton.m; sourceTree = "<group>"; };
+		17D5D3DA17EC7EE80052617B /* kh600.1380000000.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = kh600.1380000000.jpg; sourceTree = "<group>"; };
 		17DE054117D8E7A8007E0F5A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		17E5114A168F496E00DCE89C /* TWiT.tv.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TWiT.tv.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		17E5114E168F496E00DCE89C /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -369,7 +369,7 @@
 				17C43AEF1696DFD60066C79F /* htg600.1353196800.jpg */,
 				17C43AF01696DFD60066C79F /* ifive600.1353196800.jpg */,
 				17C43AF11696DFD60066C79F /* ipad600.1353196800.jpg */,
-				17C43AF21696DFD60066C79F /* kh600.1353196800.jpg */,
+				17D5D3DA17EC7EE80052617B /* kh600.1380000000.jpg */,
 				17C43AF31696DFD60066C79F /* mbw600.1353196800.jpg */,
 				17C43AF41696DFD60066C79F /* nsfw600.1353196800.jpg */,
 				17C43AF51696DFD60066C79F /* sn600.1353196800.jpg */,
@@ -603,6 +603,7 @@
 				1711F7B616C6A5C200B5CA32 /* Settings.bundle in Resources */,
 				17E5115B168F496E00DCE89C /* InfoPlist.strings in Resources */,
 				17E5116A168F496E00DCE89C /* MainStoryboard_iPhone.storyboard in Resources */,
+				17D5D3DB17EC7EE80052617B /* kh600.1380000000.jpg in Resources */,
 				17E5116D168F496E00DCE89C /* MainStoryboard_iPad.storyboard in Resources */,
 				17DE054217D8E7A8007E0F5A /* Images.xcassets in Resources */,
 				17C43B381696DFD60066C79F /* aaa600.1353196800.jpg in Resources */,
@@ -615,7 +616,6 @@
 				17C43B3F1696DFD60066C79F /* htg600.1353196800.jpg in Resources */,
 				17C43B401696DFD60066C79F /* ifive600.1353196800.jpg in Resources */,
 				17C43B411696DFD60066C79F /* ipad600.1353196800.jpg in Resources */,
-				17C43B421696DFD60066C79F /* kh600.1353196800.jpg in Resources */,
 				17C43B431696DFD60066C79F /* mbw600.1353196800.jpg in Resources */,
 				17C43B441696DFD60066C79F /* nsfw600.1353196800.jpg in Resources */,
 				17C43B451696DFD60066C79F /* sn600.1353196800.jpg in Resources */,
