@@ -96,6 +96,7 @@
 		17CBC39E16B2FCCC00F1F9EC /* TWNavigationItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 17CBC39D16B2FCCC00F1F9EC /* TWNavigationItem.m */; };
 		17D1B6B216A1CAC800B05C12 /* TWPlayButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 17D1B6B116A1CAC800B05C12 /* TWPlayButton.m */; };
 		17D1B6B516A1D38A00B05C12 /* TWSegmentedButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 17D1B6B416A1D38A00B05C12 /* TWSegmentedButton.m */; };
+		17D5D3D917EC766B0052617B /* Vollkorn-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1733C8AD17E7CED90090C97A /* Vollkorn-BoldItalic.ttf */; };
 		17DE054217D8E7A8007E0F5A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 17DE054117D8E7A8007E0F5A /* Images.xcassets */; };
 		17E5114F168F496E00DCE89C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17E5114E168F496E00DCE89C /* UIKit.framework */; };
 		17E51151168F496E00DCE89C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17E51150168F496E00DCE89C /* Foundation.framework */; };
@@ -598,6 +599,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				17D5D3D917EC766B0052617B /* Vollkorn-BoldItalic.ttf in Resources */,
 				1711F7B616C6A5C200B5CA32 /* Settings.bundle in Resources */,
 				17E5115B168F496E00DCE89C /* InfoPlist.strings in Resources */,
 				17E5116A168F496E00DCE89C /* MainStoryboard_iPhone.storyboard in Resources */,
@@ -769,8 +771,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = TWiT.tv/TWiT.tv.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: stuart Moore (R5J4HRBT3L)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: stuart Moore (R5J4HRBT3L)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TWiT.tv/TWiT.tv-Prefix.pch";
 				INFOPLIST_FILE = "TWiT.tv/TWiT.tv-Info.plist";
@@ -846,8 +848,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = TWiT.tv/TWiT.tv.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: stuart Moore (R5J4HRBT3L)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: stuart Moore (R5J4HRBT3L)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TWiT.tv/TWiT.tv-Prefix.pch";
 				INFOPLIST_FILE = "TWiT.tv/TWiT.tv-Info.plist";
