@@ -13,7 +13,7 @@
 
 @class Episode;
 
-@interface Enclosure : NSManagedObject <NSURLConnectionDelegate, NSURLSessionDownloadDelegate>
+@interface Enclosure : NSManagedObject <NSURLSessionDownloadDelegate>
 
 @property (nonatomic, strong) NSString *title, *subtitle;
 @property (nonatomic, strong) NSString *url, *path;

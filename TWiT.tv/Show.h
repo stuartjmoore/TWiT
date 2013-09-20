@@ -26,15 +26,14 @@
 @property (nonatomic, strong) Channel *channel;
 @property (nonatomic, strong) NSSet *episodes, *feeds;
 
-@property (nonatomic) NSInteger threadCount;
-
 - (Poster*)poster;
 - (NSArray*)scheduleDates;
 - (NSString*)scheduleString;
 
 - (void)updateEpisodes;
-- (void)updatePodcastFeed:(Feed*)feed;
-- (void)finishUpdate;
+- (void)updateEpisodesWithCompletionHandler:(void(^)(UIBackgroundFetchResult))completionHandler;
+- (void)updatePodcastFeed:(Feed*)feed withCompletionHandler:(void(^)(UIBackgroundFetchResult))completionHandler;
+- (void)finishUpdateWithCompletionHandler:(void(^)(UIBackgroundFetchResult))completionHandler;
 
 @end
 

@@ -20,9 +20,10 @@
 
 @implementation Show
 
-@dynamic desc, email, favorite, hosts, phone, published, remind, schedule, sort, updateInterval, title, titleAcronym, titleInSchedule, website, albumArt, channel, episodes, feeds;
+static NSInteger threadCount;
+static BOOL anyUpdates;
 
-@synthesize threadCount = _threadCount;
+@dynamic desc, email, favorite, hosts, phone, published, remind, schedule, sort, updateInterval, title, titleAcronym, titleInSchedule, website, albumArt, channel, episodes, feeds;
 
 - (Poster*)poster
 {
@@ -249,6 +250,11 @@
 
 - (void)updateEpisodes
 {
+    [self updateEpisodesWithCompletionHandler:nil];
+}
+
+- (void)updateEpisodesWithCompletionHandler:(void(^)(UIBackgroundFetchResult))completionHandler
+{
     NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"number" ascending:NO];
     NSPredicate *pred = [NSPredicate predicateWithFormat:@"self == %@", nil];
     
@@ -263,10 +269,13 @@
         if(!forceUpdate && feed.lastUpdated && feed.lastUpdated.timeIntervalSinceNow > -self.updateInterval)
             continue;
         
-        if(self.threadCount == 0)
+        if(threadCount == 0)
+        {
+            anyUpdates = NO;
             UIApplication.sharedApplication.networkActivityIndicatorVisible = YES;
+        }
         
-        self.threadCount++;
+        threadCount++;
         
         NSMutableURLRequest *headerRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:feed.url]
                                                                      cachePolicy:NSURLRequestReloadIgnoringLocalCacheData
@@ -296,18 +305,18 @@
                     if(forceUpdate || (lastModified == nil || ![lastModified isEqualToDate:feed.lastUpdated]))
                     {
                         feed.lastUpdated = lastModified;
-                        [self updatePodcastFeed:feed];
+                        [self updatePodcastFeed:feed withCompletionHandler:completionHandler];
                         return;
                     }
                 }
             }
             
-            [self finishUpdate];
+            [self finishUpdateWithCompletionHandler:completionHandler];
         }] resume];
     }
 }
 
-- (void)updatePodcastFeed:(Feed*)feed
+- (void)updatePodcastFeed:(Feed*)feed withCompletionHandler:(void(^)(UIBackgroundFetchResult))completionHandler
 {
     NSURLSessionConfiguration *defaultConfigObject = [NSURLSessionConfiguration ephemeralSessionConfiguration];
     defaultConfigObject.timeoutIntervalForResource = 60;
@@ -315,7 +324,7 @@
     NSURLSession *delegateFreeSession = [NSURLSession sessionWithConfiguration:defaultConfigObject delegate:nil delegateQueue:NSOperationQueue.mainQueue];
     [[delegateFreeSession dataTaskWithURL:[NSURL URLWithString:feed.url] completionHandler:^(NSData *data, NSURLResponse *response, NSError *error)
     {
-        [self finishUpdate];
+        [self finishUpdateWithCompletionHandler:completionHandler];
          
          if(error)
             return;
@@ -474,6 +483,7 @@
                      }
                  }
                  
+                 anyUpdates = YES;
                  episode = [context insertEntity:@"Episode"];
                  
                  [self addEpisodesObject:episode];
@@ -499,7 +509,7 @@
                  }
                  else
                  {
-                     // store in iCloud
+                     // TODO: store in iCloud
                      episode.watched = watched;
                  }
              }
@@ -520,14 +530,17 @@
      }] resume];
 }
 
-- (void)finishUpdate
+- (void)finishUpdateWithCompletionHandler:(void(^)(UIBackgroundFetchResult))completionHandler
 {
-    self.threadCount--;
+    threadCount--;
     
-    if(self.threadCount == 0)
+    if(threadCount == 0)
     {
         UIApplication.sharedApplication.networkActivityIndicatorVisible = NO;
         [self.managedObjectContext save:nil];
+        
+        if(completionHandler)
+            completionHandler(anyUpdates ? UIBackgroundFetchResultNewData : UIBackgroundFetchResultNoData);
     }
 }
 

@@ -33,6 +33,8 @@
 
 - (BOOL)application:(UIApplication*)application didFinishLaunchingWithOptions:(NSDictionary*)launchOptions
 {
+    [UIApplication.sharedApplication setMinimumBackgroundFetchInterval:UIApplicationBackgroundFetchIntervalMinimum];
+    
     NSDictionary *appDefaults = @{ @"settings-show-badge" : @YES };
     [NSUserDefaults.standardUserDefaults registerDefaults:appDefaults];
     
@@ -299,6 +301,15 @@
         TWMainViewController *controller = (TWMainViewController*)navigationController.topViewController;
         [controller performSegueWithIdentifier:@"liveVideoDetail" sender:nil];
     }
+}
+
+#pragma mark - Fetch
+
+- (void)application:(UIApplication*)application performFetchWithCompletionHandler:(void(^)(UIBackgroundFetchResult))completionHandler
+{
+    for(Show *show in self.channel.shows)
+        if(show.favorite)
+            [show updateEpisodesWithCompletionHandler:completionHandler];
 }
 
 #pragma mark - URL Scheme
