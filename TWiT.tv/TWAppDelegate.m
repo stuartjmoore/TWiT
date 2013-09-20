@@ -40,6 +40,7 @@
     [AVAudioSession.sharedInstance setCategory:AVAudioSessionCategoryPlayback error:nil];
     [AVAudioSession.sharedInstance setActive:YES error:nil];
   
+    
     //NSString *lastVersionString = [NSUserDefaults.standardUserDefaults objectForKey:@"settings-version"];
     NSString *currVersionString = NSBundle.mainBundle.infoDictionary[@"CFBundleShortVersionString"];
     /*
@@ -145,54 +146,6 @@
     return YES;
 }
 
-- (void)application:(UIApplication*)application didReceiveLocalNotification:(UILocalNotification*)notification
-{
-    if(UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPad)
-    {
-        //TWSplitViewContainer *splitViewContainer = (TWSplitViewContainer*)self.window.rootViewController;
-        //TWMainViewController *showsController = (TWMainViewController*)splitViewContainer.detailController.topViewController;
-        
-        // TODO: Use segue to load live, probably simular to below
-        
-        //if([showsController respondsToSelector:@selector(transitionToLive:)])
-        //    [showsController transitionToLive:nil];
-    }
-    else
-    {
-        TWNavigationContainer *navigationContainer = (TWNavigationContainer*)self.window.rootViewController;
-        TWNavigationController *navigationController = (TWNavigationController*)navigationContainer.masterController;
-        [navigationController popToRootViewControllerAnimated:NO];
-        
-        TWMainViewController *controller = (TWMainViewController*)navigationController.topViewController;
-        [controller performSegueWithIdentifier:@"liveVideoDetail" sender:nil];
-    }
-}
-
-- (BOOL)application:(UIApplication*)application openURL:(NSURL*)url sourceApplication:(NSString*)sourceApplication annotation:(id)annotation
-{
-    if(UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPad)
-    {
-        //TWSplitViewContainer *splitViewContainer = (TWSplitViewContainer*)self.window.rootViewController;
-        //TWMainViewController *showsController = (TWMainViewController*)splitViewContainer.detailController.topViewController;
-        
-        // TODO: Use segue to load live
-        
-        //if([showsController respondsToSelector:@selector(transitionToLive:)])
-        //    [showsController transitionToLive:nil];
-    }
-    else
-    {
-        TWNavigationContainer *navigationContainer = (TWNavigationContainer*)self.window.rootViewController;
-        TWNavigationController *navigationController = (TWNavigationController*)navigationContainer.masterController;
-        [navigationController popToRootViewControllerAnimated:NO];
-        
-        TWMainViewController *controller = (TWMainViewController*)navigationController.topViewController;
-        [controller performSegueWithIdentifier:@"liveVideoDetail" sender:nil];
-    }
-    
-    return YES;
-}
-
 - (void)applicationWillEnterForeground:(UIApplication *)application
 {
 }
@@ -283,6 +236,67 @@
 - (void)applicationWillTerminate:(UIApplication *)application
 {
     [self saveContext];
+}
+
+#pragma mark - Downloads
+
+- (void)application:(UIApplication*)application handleEventsForBackgroundURLSession:(NSString*)identifier completionHandler:(void (^)())completionHandler
+{
+    NSLog(@"identifier %@", identifier);
+    
+    completionHandler();
+}
+
+#pragma mark - Notifications
+
+- (void)application:(UIApplication*)application didReceiveLocalNotification:(UILocalNotification*)notification
+{
+    if(UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPad)
+    {
+        //TWSplitViewContainer *splitViewContainer = (TWSplitViewContainer*)self.window.rootViewController;
+        //TWMainViewController *showsController = (TWMainViewController*)splitViewContainer.detailController.topViewController;
+        
+        // TODO: Use segue to load live, probably simular to below
+        
+        //if([showsController respondsToSelector:@selector(transitionToLive:)])
+        //    [showsController transitionToLive:nil];
+    }
+    else
+    {
+        TWNavigationContainer *navigationContainer = (TWNavigationContainer*)self.window.rootViewController;
+        TWNavigationController *navigationController = (TWNavigationController*)navigationContainer.masterController;
+        [navigationController popToRootViewControllerAnimated:NO];
+        
+        TWMainViewController *controller = (TWMainViewController*)navigationController.topViewController;
+        [controller performSegueWithIdentifier:@"liveVideoDetail" sender:nil];
+    }
+}
+
+#pragma mark - URL Scheme
+
+- (BOOL)application:(UIApplication*)application openURL:(NSURL*)url sourceApplication:(NSString*)sourceApplication annotation:(id)annotation
+{
+    if(UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPad)
+    {
+        //TWSplitViewContainer *splitViewContainer = (TWSplitViewContainer*)self.window.rootViewController;
+        //TWMainViewController *showsController = (TWMainViewController*)splitViewContainer.detailController.topViewController;
+        
+        // TODO: Use segue to load live
+        
+        //if([showsController respondsToSelector:@selector(transitionToLive:)])
+        //    [showsController transitionToLive:nil];
+    }
+    else
+    {
+        TWNavigationContainer *navigationContainer = (TWNavigationContainer*)self.window.rootViewController;
+        TWNavigationController *navigationController = (TWNavigationController*)navigationContainer.masterController;
+        [navigationController popToRootViewControllerAnimated:NO];
+        
+        TWMainViewController *controller = (TWMainViewController*)navigationController.topViewController;
+        [controller performSegueWithIdentifier:@"liveVideoDetail" sender:nil];
+    }
+    
+    return YES;
 }
 
 #pragma mark - Helpers

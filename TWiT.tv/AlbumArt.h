@@ -11,7 +11,7 @@
 
 @class Show;
 
-@interface AlbumArt : NSManagedObject
+@interface AlbumArt : NSManagedObject <NSURLSessionDownloadDelegate>
 
 @property (nonatomic, retain) NSString *path, *url;
 @property (nonatomic, retain) Show *show;
