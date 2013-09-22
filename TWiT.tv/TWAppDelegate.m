@@ -15,6 +15,7 @@
 
 #import "NSManagedObjectContext+ConvenienceMethods.h"
 #import "NSDate+comparisons.h"
+#import "UIAlertView+block.h"
 
 #import "Channel.h"
 #import "Show.h"
@@ -258,6 +259,23 @@
         
         if([controller respondsToSelector:@selector(redrawSchedule:)])
             [controller redrawSchedule:nil];
+    }
+    
+    BOOL ignoresReminder = [NSUserDefaults.standardUserDefaults boolForKey:@"remind-never"];
+    
+    if(!ignoresReminder && [UIDevice.currentDevice.systemVersion compare:@"7.0" options:NSNumericSearch] != NSOrderedAscending)
+    {
+        [UIAlertView alertViewWithTitle:@"Unsupported Version" message:@"This app is not supported on iOS 7; please upgrade to TWiT Pro." cancelButtonTitle:@"Don’t Remind Me" otherButtonTitles:@[@"Upgrade to TWiT Pro", @"Remind Me Next Time"] onDismiss:^(int index)
+        {
+            if(index == 0)
+            {
+                [UIApplication.sharedApplication openURL:[NSURL URLWithString:@"itms-apps://itunes.apple.com/us/app/id704479896"]];
+            }
+        } onCancel:^
+        {
+            [NSUserDefaults.standardUserDefaults setBool:YES forKey:@"remind-never"];
+            [NSUserDefaults.standardUserDefaults synchronize];
+        }];
     }
 }
 
