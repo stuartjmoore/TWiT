@@ -43,44 +43,11 @@
     [AVAudioSession.sharedInstance setActive:YES error:nil];
   
     
-    //NSString *lastVersionString = [NSUserDefaults.standardUserDefaults objectForKey:@"settings-version"];
-    NSString *currVersionString = NSBundle.mainBundle.infoDictionary[@"CFBundleShortVersionString"];
-    /*
-    if(lastVersionString && ![lastVersionString isEqualToString:currVersionString])
-    {
-        NSArray *lastVersionNumbers = [lastVersionString componentsSeparatedByString:@"."];
-        NSArray *checkVersionNumbers = [@"4.1" componentsSeparatedByString:@"."];
-        
-        BOOL isUpdated = NO;
-        
-        for(NSInteger i = 0; i < lastVersionNumbers.count || i < checkVersionNumbers.count; i++)
-        {
-            NSInteger lastNumber = (i < lastVersionNumbers.count)?[lastVersionNumbers[i] intValue]:0;
-            NSInteger checkNumber = (i < checkVersionNumbers.count)?[checkVersionNumbers[i] intValue]:0;
-            
-            if(lastNumber < checkNumber)
-            {
-                isUpdated = YES;
-                break;
-            }
-        }
-        
-        if(isUpdated)
-        {
-            NSLog(@"Delete error data.");
-            for(NSString *file in [NSFileManager.defaultManager contentsOfDirectoryAtPath:self.applicationDocumentsDirectory.path error:nil])
-            {
-                NSString *filePath = [self.applicationDocumentsDirectory.path stringByAppendingPathComponent:file];
-                [NSFileManager.defaultManager removeItemAtPath:filePath error:nil];
-            }
-        }
-    }
-    */
-    
     [self deleteUserDataIfSet];
     
-    [NSUserDefaults.standardUserDefaults setBool:YES forKey:@"paid"]; // TODO: Delete when you enable in-app.
+    NSString *currVersionString = NSBundle.mainBundle.infoDictionary[@"CFBundleShortVersionString"];
     [NSUserDefaults.standardUserDefaults setObject:currVersionString forKey:@"settings-version"];
+    [NSUserDefaults.standardUserDefaults setBool:YES forKey:@"paid"];
     [NSUserDefaults.standardUserDefaults synchronize];
   
     
@@ -94,7 +61,7 @@
                                                    name:NSUbiquitousKeyValueStoreDidChangeExternallyNotification
                                                  object:store];
 
-        [store setBool:YES forKey:@"paid"]; // TODO: Delete when you enable in-app.
+        [store setBool:YES forKey:@"paid"];
         [store synchronize];
     }
     else if(ubiq && iCloudDisabled)
