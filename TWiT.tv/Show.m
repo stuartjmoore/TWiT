@@ -288,26 +288,22 @@ static BOOL anyUpdates;
         [[delegateFreeSession dataTaskWithRequest:headerRequest completionHandler:^(NSData *data, NSURLResponse *response, NSError *error)
         {
             NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse*)response;
-            if([httpResponse respondsToSelector:@selector(allHeaderFields)])
+            if([httpResponse respondsToSelector:@selector(allHeaderFields)] && httpResponse.statusCode == 200)
             {
-                if(httpResponse.statusCode == 200)
+                NSDictionary *metaData = [httpResponse allHeaderFields];
+                NSString *lastModifiedString = [metaData objectForKey:@"Last-Modified"];
+                
+                NSDateFormatter *df = [[NSDateFormatter alloc] init];
+                df.timeZone = [NSTimeZone timeZoneWithAbbreviation:@"GMT"];
+                df.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US"];
+                df.dateFormat = @"EEE',' dd MMM yyyy HH':'mm':'ss 'GMT'";
+                
+                NSDate *lastModified = [df dateFromString:lastModifiedString];
+                
+                if(forceUpdate || (lastModified == nil || ![lastModified isEqualToDate:feed.lastUpdated]))
                 {
-                    NSDictionary *metaData = [httpResponse allHeaderFields];
-                    NSString *lastModifiedString = [metaData objectForKey:@"Last-Modified"];
-                    
-                    NSDateFormatter *df = [[NSDateFormatter alloc] init];
-                    df.timeZone = [NSTimeZone timeZoneWithAbbreviation:@"GMT"];
-                    df.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US"];
-                    df.dateFormat = @"EEE',' dd MMM yyyy HH':'mm':'ss 'GMT'";
-                    
-                    NSDate *lastModified = [df dateFromString:lastModifiedString];
-                    
-                    if(forceUpdate || (lastModified == nil || ![lastModified isEqualToDate:feed.lastUpdated]))
-                    {
-                        feed.lastUpdated = lastModified;
-                        [self updatePodcastFeed:feed withCompletionHandler:completionHandler];
-                        return;
-                    }
+                    [self updatePodcastFeed:feed withCompletionHandler:completionHandler];
+                    return;
                 }
             }
             
@@ -324,209 +320,229 @@ static BOOL anyUpdates;
     NSURLSession *delegateFreeSession = [NSURLSession sessionWithConfiguration:defaultConfigObject delegate:nil delegateQueue:NSOperationQueue.mainQueue];
     [[delegateFreeSession dataTaskWithURL:[NSURL URLWithString:feed.url] completionHandler:^(NSData *data, NSURLResponse *response, NSError *error)
     {
-        [self finishUpdateWithCompletionHandler:completionHandler];
-         
-         if(error)
+        NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse*)response;
+        if(error || ([httpResponse respondsToSelector:@selector(allHeaderFields)] && httpResponse.statusCode != 200))
+        {
+            NSLog(@"update error: %@, httpResponse: %@", error, httpResponse);
+            [self finishUpdateWithCompletionHandler:completionHandler];
             return;
-         
-         BOOL firstLoad = (self.episodes.count == 0);
+        }
         
-         NSManagedObjectContext *context = self.managedObjectContext;
-         NSDictionary *RSS = [XMLReader dictionaryForXMLData:data];
-         NSArray *episodes = [[[RSS objectForKey:@"rss"] objectForKey:@"channel"] objectForKey:@"item"];
-         
-         for(NSDictionary *epiDic in episodes)
-         {
-             NSInteger number = 0;
-             NSString *title = @"";
-             
-             if([[epiDic objectForKey:@"title"] objectForKey:@"text"])
-             {
-                 NSString *text = [[[epiDic objectForKey:@"title"] objectForKey:@"text"] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-                 
-                 if([feed.show.title isEqualToString:@"The Tech Guy"])
-                 {
-                     NSError *error;
-                     NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"Leo Laporte - The Tech Guy: (\\d+)" options:NSRegularExpressionCaseInsensitive error:&error];
-                     
-                     if(!error)
-                     {
-                         NSTextCheckingResult *results = [regex firstMatchInString:text options:0 range:NSMakeRange(0, text.length)];
-                         number = [[text substringWithRange:[results rangeAtIndex:1]] intValue];
-                         title  = [NSString stringWithFormat:@"Episode #%d", number];
-                     }
-                     else
-                     {
-                         number = 0;
-                         title  = @"";
-                     }
-                 }
-                 else if([feed.show.title isEqualToString:@"OMGcraft"])
-                 {
-                     NSString *commentsString = [[epiDic objectForKey:@"comments"] objectForKey:@"text"];
-                     
-                     NSError *error;
-                     NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"http://twit.tv/omgcraft/(\\d+)" options:NSRegularExpressionCaseInsensitive error:&error];
-                     NSTextCheckingResult *results = [regex firstMatchInString:commentsString options:0 range:NSMakeRange(0, commentsString.length)];
-                     
-                     number = [[commentsString substringWithRange:[results rangeAtIndex:1]] intValue];
-                     title = text;
-                 }
-                 else
-                 {
-                     NSError *error;
-                     NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@".* (\\d+) ?: (.*)" options:NSRegularExpressionCaseInsensitive error:&error];
-                     
-                     if(!error)
-                     {
-                         NSTextCheckingResult *results = [regex firstMatchInString:text options:0 range:NSMakeRange(0, text.length)];
-                         number = [[text substringWithRange:[results rangeAtIndex:1]] intValue];
-                         title  = [text substringWithRange:[results rangeAtIndex:2]];
-                     }
-                     else
-                     {
-                         number = 0;
-                         title  = @"";
-                     }
-                 }
-             }
-             
-             NSString *desc = [[[epiDic objectForKey:@"itunes:subtitle"] objectForKey:@"text"] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-             desc = [desc stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-             
-             NSString *pubDateString = [[epiDic objectForKey:@"pubDate"] objectForKey:@"text"];
-             NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
-             [dateFormat setDateFormat:@"EEE, dd MMM yyyy HH:mm:ss Z"];
-             NSDate *published = [dateFormat dateFromString:pubDateString];
-             
-             NSString *durationString = [[[epiDic objectForKey:@"itunes:duration"] objectForKey:@"text"] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-             NSArray *durationArray = [[[durationString componentsSeparatedByString:@":"] reverseObjectEnumerator] allObjects];
-             NSInteger duration = 0;
-             for(NSInteger i = 0; i < durationArray.count; i++)
-                 duration += [[durationArray objectAtIndex:i] intValue]*pow(60, i);
-             
-             NSString *summary = [[epiDic objectForKey:@"description"] objectForKey:@"text"];
-             NSString *guests;
-             if(summary)
-             {
-                 NSRegularExpression *guestRegex = [NSRegularExpression regularExpressionWithPattern:@"<p><b>Guests?:</b> (.*?)</p>" options:NSRegularExpressionCaseInsensitive error:NULL];
-                 NSTextCheckingResult *guestResults = [guestRegex firstMatchInString:summary options:0 range:NSMakeRange(0, [summary length])];
-                 
-                 if(guestResults.numberOfRanges > 0)
-                     guests = [summary substringWithRange:[guestResults rangeAtIndex:1]];
-                 
-                 if(!guests)
-                 {
-                     NSRegularExpression *guestRegex = [NSRegularExpression regularExpressionWithPattern:@"<p><b>Hosts?:</b> (.*?)</p>" options:NSRegularExpressionCaseInsensitive error:NULL];
-                     NSTextCheckingResult *guestResults = [guestRegex firstMatchInString:summary options:0 range:NSMakeRange(0, [summary length])];
-                     
-                     if(guestResults.numberOfRanges > 0)
-                         guests = [summary substringWithRange:[guestResults rangeAtIndex:1]];
-                 }
-                 
-                 if(!guests)
-                     guests = self.hosts;
-                 
-                 if(!guests)
-                     guests = @"";
-                 
-                 NSRange r;
-                 while((r = [guests rangeOfString:@"<[^>]+>" options:NSRegularExpressionSearch]).location != NSNotFound)
-                     guests = [guests stringByReplacingCharactersInRange:r withString:@""];
-             }
-             
-             NSString *posterURL = [NSString stringWithFormat:@"http://twit.tv/files/imagecache/slideshow-slide/spiros_%@_%.4djpg.jpg",
-                                    self.titleAcronym.lowercaseString, number];
-             
-             NSString *enclosureURL = [[epiDic objectForKey:@"enclosure"] objectForKey:@"url"];
-             NSString *website = [[epiDic objectForKey:@"comments"] objectForKey:@"text"];
-             
-             
-             Episode *episode = nil;
-             
-             NSPredicate *predicate = [NSPredicate predicateWithFormat:@"number == %d", number];
-             NSSet *sameEpisode = [self.episodes filteredSetUsingPredicate:predicate];
-             
-             if(sameEpisode.count > 0)
-             {
-                 episode = sameEpisode.anyObject;
-                 
-                 if(!episode.published)
-                 {
-                     episode.title = title;
-                     episode.published = published;
-                     episode.desc = desc;
-                     episode.duration = duration;
-                     episode.guests = guests;
-                     episode.website = website;
-                     
-                     Poster *poster = [context insertEntity:@"Poster"];
-                     poster.url = posterURL;
-                     episode.poster = poster;
-                 }
-             }
-             else
-             {
-                 if(self.episodes.count >= MAX_EPISODES)
-                 {
-                     NSSortDescriptor *descriptor = [NSSortDescriptor sortDescriptorWithKey:@"published" ascending:NO];
-                     NSArray *sortedEpisodes = [self.episodes sortedArrayUsingDescriptors:@[descriptor]];
-                     Episode *oldestEpisode = sortedEpisodes.lastObject;
-                     
-                     if([published compare:oldestEpisode.published] == NSOrderedAscending)
-                     {
-                         continue;
-                     }
-                     else
-                     {
-                         [self.managedObjectContext deleteObject:oldestEpisode];
-                     }
-                 }
-                 
-                 anyUpdates = YES;
-                 episode = [context insertEntity:@"Episode"];
-                 
-                 [self addEpisodesObject:episode];
-                 episode.title = title;
-                 episode.number = number;
-                 episode.published = published;
-                 episode.desc = desc;
-                 episode.duration = duration;
-                 episode.guests = guests;
-                 episode.website = website;
-                 
-                 Poster *poster = [context insertEntity:@"Poster"];
-                 poster.url = posterURL;
-                 episode.poster = poster;
-                 
-                 bool watched = firstLoad ?: !self.favorite;
-                 
-                 if(watched)
-                 {
-                     [episode willChangeValueForKey:@"watched"];
-                     [episode setPrimitiveValue:@(watched) forKey:@"watched"];
-                     [episode didChangeValueForKey:@"watched"];
-                 }
-                 else
-                 {
-                     // TODO: store in iCloud
-                     episode.watched = watched;
-                 }
-             }
-             
-             NSPredicate *pred = [NSPredicate predicateWithFormat:@"quality == %d", feed.quality];
-             NSSet *enclosures = [episode.enclosures filteredSetUsingPredicate:pred];
-             
-             Enclosure *enclosure = (enclosures.count == 0) ? [context insertEntity:@"Enclosure"] : enclosures.anyObject;
-             enclosure.url = enclosureURL;
-             enclosure.title = feed.title;
-             enclosure.subtitle = feed.subtitle;
-             enclosure.quality = feed.quality;
-             enclosure.type = feed.type;
-             [episode addEnclosuresObject:enclosure];
-         }
-         
-         [context save:nil];
+        BOOL firstLoad = (self.episodes.count == 0);
+        
+        NSManagedObjectContext *context = self.managedObjectContext;
+        NSDictionary *RSS = [XMLReader dictionaryForXMLData:data];
+        NSArray *episodes = [[[RSS objectForKey:@"rss"] objectForKey:@"channel"] objectForKey:@"item"];
+        
+        for(NSDictionary *epiDic in episodes)
+        {
+            NSInteger number = 0;
+            NSString *title = @"";
+            
+            if([[epiDic objectForKey:@"title"] objectForKey:@"text"])
+            {
+                NSString *text = [[[epiDic objectForKey:@"title"] objectForKey:@"text"] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+                
+                if([feed.show.title isEqualToString:@"The Tech Guy"])
+                {
+                    NSError *error;
+                    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"Leo Laporte - The Tech Guy: (\\d+)" options:NSRegularExpressionCaseInsensitive error:&error];
+                    
+                    if(!error)
+                    {
+                        NSTextCheckingResult *results = [regex firstMatchInString:text options:0 range:NSMakeRange(0, text.length)];
+                        number = [[text substringWithRange:[results rangeAtIndex:1]] intValue];
+                        title  = [NSString stringWithFormat:@"Episode #%d", number];
+                    }
+                    else
+                    {
+                        number = 0;
+                        title  = @"";
+                    }
+                }
+                else if([feed.show.title isEqualToString:@"OMGcraft"])
+                {
+                    NSString *commentsString = [[epiDic objectForKey:@"comments"] objectForKey:@"text"];
+                    
+                    NSError *error;
+                    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"http://twit.tv/omgcraft/(\\d+)" options:NSRegularExpressionCaseInsensitive error:&error];
+                    NSTextCheckingResult *results = [regex firstMatchInString:commentsString options:0 range:NSMakeRange(0, commentsString.length)];
+                    
+                    number = [[commentsString substringWithRange:[results rangeAtIndex:1]] intValue];
+                    title = text;
+                }
+                else
+                {
+                    NSError *error;
+                    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@".* (\\d+) ?: (.*)" options:NSRegularExpressionCaseInsensitive error:&error];
+                    
+                    if(!error)
+                    {
+                        NSTextCheckingResult *results = [regex firstMatchInString:text options:0 range:NSMakeRange(0, text.length)];
+                        number = [[text substringWithRange:[results rangeAtIndex:1]] intValue];
+                        title  = [text substringWithRange:[results rangeAtIndex:2]];
+                    }
+                    else
+                    {
+                        number = 0;
+                        title  = @"";
+                    }
+                }
+            }
+            
+            NSString *desc = [[[epiDic objectForKey:@"itunes:subtitle"] objectForKey:@"text"] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+            desc = [desc stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+            
+            NSString *pubDateString = [[epiDic objectForKey:@"pubDate"] objectForKey:@"text"];
+            NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+            [dateFormat setDateFormat:@"EEE, dd MMM yyyy HH:mm:ss Z"];
+            NSDate *published = [dateFormat dateFromString:pubDateString];
+            
+            NSString *durationString = [[[epiDic objectForKey:@"itunes:duration"] objectForKey:@"text"] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+            NSArray *durationArray = [[[durationString componentsSeparatedByString:@":"] reverseObjectEnumerator] allObjects];
+            NSInteger duration = 0;
+            for(NSInteger i = 0; i < durationArray.count; i++)
+                duration += [[durationArray objectAtIndex:i] intValue]*pow(60, i);
+            
+            NSString *summary = [[epiDic objectForKey:@"description"] objectForKey:@"text"];
+            NSString *guests;
+            if(summary)
+            {
+                NSRegularExpression *guestRegex = [NSRegularExpression regularExpressionWithPattern:@"<p><b>Guests?:</b> (.*?)</p>" options:NSRegularExpressionCaseInsensitive error:NULL];
+                NSTextCheckingResult *guestResults = [guestRegex firstMatchInString:summary options:0 range:NSMakeRange(0, [summary length])];
+                
+                if(guestResults.numberOfRanges > 0)
+                    guests = [summary substringWithRange:[guestResults rangeAtIndex:1]];
+                
+                if(!guests)
+                {
+                    NSRegularExpression *guestRegex = [NSRegularExpression regularExpressionWithPattern:@"<p><b>Hosts?:</b> (.*?)</p>" options:NSRegularExpressionCaseInsensitive error:NULL];
+                    NSTextCheckingResult *guestResults = [guestRegex firstMatchInString:summary options:0 range:NSMakeRange(0, [summary length])];
+                    
+                    if(guestResults.numberOfRanges > 0)
+                        guests = [summary substringWithRange:[guestResults rangeAtIndex:1]];
+                }
+                
+                if(!guests)
+                    guests = self.hosts;
+                
+                if(!guests)
+                    guests = @"";
+                
+                NSRange r;
+                while((r = [guests rangeOfString:@"<[^>]+>" options:NSRegularExpressionSearch]).location != NSNotFound)
+                    guests = [guests stringByReplacingCharactersInRange:r withString:@""];
+            }
+            
+            NSString *posterURL = [NSString stringWithFormat:@"http://twit.tv/files/imagecache/slideshow-slide/spiros_%@_%.4djpg.jpg",
+                                   self.titleAcronym.lowercaseString, number];
+            
+            NSString *enclosureURL = [[epiDic objectForKey:@"enclosure"] objectForKey:@"url"];
+            NSString *website = [[epiDic objectForKey:@"comments"] objectForKey:@"text"];
+            
+            
+            Episode *episode = nil;
+            
+            NSPredicate *predicate = [NSPredicate predicateWithFormat:@"number == %d", number];
+            NSSet *sameEpisode = [self.episodes filteredSetUsingPredicate:predicate];
+            
+            if(sameEpisode.count > 0)
+            {
+                episode = sameEpisode.anyObject;
+                
+                if(!episode.published)
+                {
+                    episode.title = title;
+                    episode.published = published;
+                    episode.desc = desc;
+                    episode.duration = duration;
+                    episode.guests = guests;
+                    episode.website = website;
+                    
+                    Poster *poster = [context insertEntity:@"Poster"];
+                    poster.url = posterURL;
+                    episode.poster = poster;
+                }
+            }
+            else
+            {
+                if(self.episodes.count >= MAX_EPISODES)
+                {
+                    NSSortDescriptor *descriptor = [NSSortDescriptor sortDescriptorWithKey:@"published" ascending:NO];
+                    NSArray *sortedEpisodes = [self.episodes sortedArrayUsingDescriptors:@[descriptor]];
+                    Episode *oldestEpisode = sortedEpisodes.lastObject;
+                    
+                    if([published compare:oldestEpisode.published] == NSOrderedAscending)
+                    {
+                        continue;
+                    }
+                    else
+                    {
+                        [self.managedObjectContext deleteObject:oldestEpisode];
+                    }
+                }
+                
+                anyUpdates = YES;
+                episode = [context insertEntity:@"Episode"];
+                
+                [self addEpisodesObject:episode];
+                episode.title = title;
+                episode.number = number;
+                episode.published = published;
+                episode.desc = desc;
+                episode.duration = duration;
+                episode.guests = guests;
+                episode.website = website;
+                
+                Poster *poster = [context insertEntity:@"Poster"];
+                poster.url = posterURL;
+                episode.poster = poster;
+                
+                bool watched = firstLoad ?: !self.favorite;
+                
+                if(watched)
+                {
+                    [episode willChangeValueForKey:@"watched"];
+                    [episode setPrimitiveValue:@(watched) forKey:@"watched"];
+                    [episode didChangeValueForKey:@"watched"];
+                }
+                else
+                {
+                    // TODO: store in iCloud
+                    episode.watched = watched;
+                }
+            }
+            
+            NSPredicate *pred = [NSPredicate predicateWithFormat:@"quality == %d", feed.quality];
+            NSSet *enclosures = [episode.enclosures filteredSetUsingPredicate:pred];
+            
+            Enclosure *enclosure = (enclosures.count == 0) ? [context insertEntity:@"Enclosure"] : enclosures.anyObject;
+            enclosure.url = enclosureURL;
+            enclosure.title = feed.title;
+            enclosure.subtitle = feed.subtitle;
+            enclosure.quality = feed.quality;
+            enclosure.type = feed.type;
+            [episode addEnclosuresObject:enclosure];
+        }
+        
+        if([httpResponse respondsToSelector:@selector(allHeaderFields)] && httpResponse.statusCode == 200)
+        {
+            NSDictionary *metaData = [httpResponse allHeaderFields];
+            NSString *lastModifiedString = [metaData objectForKey:@"Last-Modified"];
+            
+            NSDateFormatter *df = [[NSDateFormatter alloc] init];
+            df.timeZone = [NSTimeZone timeZoneWithAbbreviation:@"GMT"];
+            df.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US"];
+            df.dateFormat = @"EEE',' dd MMM yyyy HH':'mm':'ss 'GMT'";
+            
+            NSDate *lastModified = [df dateFromString:lastModifiedString];
+            feed.lastUpdated = lastModified;
+            
+            NSLog(@"updated: %@", lastModified);
+        }
+        
+        [context save:nil];
+        [self finishUpdateWithCompletionHandler:completionHandler];
      }] resume];
 }
 
