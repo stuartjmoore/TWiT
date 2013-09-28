@@ -31,6 +31,8 @@
     {
         UIToolbar *blurgroundView = (UIToolbar*)self.view;
         blurgroundView.barStyle = UIBarStyleBlack;
+        blurgroundView.clipsToBounds = YES;
+        blurgroundView.layer.cornerRadius = 3;
     }
 }
 
