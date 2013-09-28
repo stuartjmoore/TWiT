@@ -34,4 +34,6 @@
 - (void)saveContext;
 - (NSURL*)applicationDocumentsDirectory;
 
+- (void)updateBadgeCount;
+
 @end

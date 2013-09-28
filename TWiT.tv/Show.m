@@ -6,6 +6,8 @@
 //  Copyright (c) 2013 Stuart Moore. All rights reserved.
 //
 
+#import "TWAppDelegate.h"
+
 #import "NSManagedObjectContext+ConvenienceMethods.h"
 #import "NSDate+comparisons.h"
 #import "XMLReader.h"
@@ -552,7 +554,9 @@ static BOOL anyUpdates;
     
     if(threadCount == 0)
     {
+        [(TWAppDelegate*)UIApplication.sharedApplication.delegate updateBadgeCount];
         UIApplication.sharedApplication.networkActivityIndicatorVisible = NO;
+        
         [self.managedObjectContext save:nil];
         
         if(completionHandler)

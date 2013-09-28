@@ -160,28 +160,7 @@
 
 - (void)applicationWillResignActive:(UIApplication*)application
 {
-    BOOL showBadge = [NSUserDefaults.standardUserDefaults boolForKey:@"settings-show-badge"];
-    
-    if(showBadge)
-    {
-        NSFetchRequest *request = [[NSFetchRequest alloc] init];
-        NSEntityDescription *entity = [NSEntityDescription entityForName:@"Episode" inManagedObjectContext:self.managedObjectContext];
-        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"watched = NO OR ANY enclosures.path != nil"];
-        
-        [request setEntity:entity];
-        [request setPredicate:predicate];
-        request.includesSubentities = NO;
-        
-        NSError *err;
-        NSUInteger count = [self.managedObjectContext countForFetchRequest:request error:&err];
-        
-        UIApplication.sharedApplication.applicationIconBadgeNumber = (count == NSNotFound) ? 0 : count;
-    }
-    else
-    {
-        UIApplication.sharedApplication.applicationIconBadgeNumber = 0;
-    }
-    
+    [self updateBadgeCount];
     [self saveContext];
 }
 - (void)applicationDidEnterBackground:(UIApplication*)application
@@ -307,6 +286,31 @@
 }
 
 #pragma mark - Helpers
+
+- (void)updateBadgeCount
+{
+    BOOL showBadge = [NSUserDefaults.standardUserDefaults boolForKey:@"settings-show-badge"];
+    
+    if(showBadge)
+    {
+        NSFetchRequest *request = [[NSFetchRequest alloc] init];
+        NSEntityDescription *entity = [NSEntityDescription entityForName:@"Episode" inManagedObjectContext:self.managedObjectContext];
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"watched = NO OR ANY enclosures.path != nil"];
+        
+        [request setEntity:entity];
+        [request setPredicate:predicate];
+        request.includesSubentities = NO;
+        
+        NSError *err;
+        NSUInteger count = [self.managedObjectContext countForFetchRequest:request error:&err];
+        
+        UIApplication.sharedApplication.applicationIconBadgeNumber = (count == NSNotFound) ? 0 : count;
+    }
+    else
+    {
+        UIApplication.sharedApplication.applicationIconBadgeNumber = 0;
+    }
+}
 
 - (void)deleteUserDataIfSet
 {
