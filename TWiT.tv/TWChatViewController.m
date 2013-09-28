@@ -28,11 +28,7 @@
     
     [self.chatWebView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:urlString]]];
     self.chatWebView.hidden = YES;
-    
-    if([self.chatWebView respondsToSelector:@selector(scrollView)])
-        self.chatWebView.scrollView.scrollEnabled = NO;
-    else
-        [self.chatWebView.subviews.lastObject setScrollEnabled:NO];
+    self.chatWebView.scrollView.scrollEnabled = NO;
 }
 
 - (void)webViewDidFinishLoad:(UIWebView*)webView
