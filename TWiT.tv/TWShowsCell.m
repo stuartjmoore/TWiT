@@ -54,19 +54,16 @@
         CGContextSetFillColorWithColor(context, self.tintColor.CGColor);
         CGRect frame = [self frameForColumn:column];
         CGContextFillRect(context, frame);
-        
         CGContextSetRGBFillColor(context, 255/255.0f, 255/255.0f, 255/255.0f, 1.0f);
-        //[[self.shows[column] title] drawInRect:frame withAttributes:@{}];
-        //[[self.shows[column] title] drawInRect:frame withFont:[UIFont boldSystemFontOfSize:14] lineBreakMode:NSLineBreakByWordWrapping alignment:NSTextAlignmentCenter];
     }
+    
     self.icons = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     [self setNeedsDisplayInRect:self.bounds];
     
-    
     __block NSMutableArray *albumArtPathes = [NSMutableArray array];
     __block NSMutableArray *showTitles = [NSMutableArray array];
-    __block TWShowsCell *weak = self;
+    __weak TWShowsCell *weak = self;
     
     for(Show *show in self.shows)
     {
@@ -83,7 +80,7 @@
         CGContextFillRect(context, weak.bounds);
         weak.icons = UIGraphicsGetImageFromCurrentImageContext();
         
-        self.accessibleElements = [NSMutableArray array];
+        weak.accessibleElements = [NSMutableArray array];
         
         for(NSInteger column = 0, showsCount = weak.shows.count; column < showsCount; column++)
         {
@@ -99,7 +96,7 @@
                 element.accessibilityFrame = frame;
                 element.accessibilityLabel = showTitles[column];
                 element.accessibilityHint = @"Opens the show view.";
-                [self.accessibleElements addObject:element];
+                [weak.accessibleElements addObject:element];
             }
         }
         
