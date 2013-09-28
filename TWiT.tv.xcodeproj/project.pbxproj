@@ -44,7 +44,8 @@
 		17AFF029169462EA0053A33C /* TWShowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 17AFF028169462EA0053A33C /* TWShowViewController.m */; };
 		17B07F1016B59B2600B42CBF /* chatRoom.css in Resources */ = {isa = PBXBuildFile; fileRef = 17B07F0F16B59B2600B42CBF /* chatRoom.css */; };
 		17B07F1416B5BFAE00B42CBF /* UIAlertView+block.m in Sources */ = {isa = PBXBuildFile; fileRef = 17B07F1316B5BFAE00B42CBF /* UIAlertView+block.m */; };
-		17C43B381696DFD60066C79F /* aaa600.1353196800.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 17C43AE81696DFD60066C79F /* aaa600.1353196800.jpg */; };
+		17C293D917F7167400907CDD /* kh600.1380254400.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 17C293D817F7167400907CDD /* kh600.1380254400.jpg */; };
+		17C293DB17F7167800907CDD /* aaa600.1380254400.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 17C293DA17F7167800907CDD /* aaa600.1380254400.jpg */; };
 		17C43B391696DFD60066C79F /* byb600.1353196800.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 17C43AE91696DFD60066C79F /* byb600.1353196800.jpg */; };
 		17C43B3A1696DFD60066C79F /* dgw600.1353196800.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 17C43AEA1696DFD60066C79F /* dgw600.1353196800.jpg */; };
 		17C43B3B1696DFD60066C79F /* floss600.1353196800.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 17C43AEB1696DFD60066C79F /* floss600.1353196800.jpg */; };
@@ -96,7 +97,6 @@
 		17D1B6B216A1CAC800B05C12 /* TWPlayButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 17D1B6B116A1CAC800B05C12 /* TWPlayButton.m */; };
 		17D1B6B516A1D38A00B05C12 /* TWSegmentedButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 17D1B6B416A1D38A00B05C12 /* TWSegmentedButton.m */; };
 		17D5D3D917EC766B0052617B /* Vollkorn-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1733C8AD17E7CED90090C97A /* Vollkorn-BoldItalic.ttf */; };
-		17D5D3DB17EC7EE80052617B /* kh600.1380000000.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 17D5D3DA17EC7EE80052617B /* kh600.1380000000.jpg */; };
 		17DE054217D8E7A8007E0F5A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 17DE054117D8E7A8007E0F5A /* Images.xcassets */; };
 		17E5114F168F496E00DCE89C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17E5114E168F496E00DCE89C /* UIKit.framework */; };
 		17E51151168F496E00DCE89C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17E51150168F496E00DCE89C /* Foundation.framework */; };
@@ -177,7 +177,8 @@
 		17B07F0F16B59B2600B42CBF /* chatRoom.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; name = chatRoom.css; path = Resources/chatRoom.css; sourceTree = SOURCE_ROOT; };
 		17B07F1216B5BFAE00B42CBF /* UIAlertView+block.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIAlertView+block.h"; sourceTree = "<group>"; };
 		17B07F1316B5BFAE00B42CBF /* UIAlertView+block.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIAlertView+block.m"; sourceTree = "<group>"; };
-		17C43AE81696DFD60066C79F /* aaa600.1353196800.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = aaa600.1353196800.jpg; sourceTree = "<group>"; };
+		17C293D817F7167400907CDD /* kh600.1380254400.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = kh600.1380254400.jpg; sourceTree = "<group>"; };
+		17C293DA17F7167800907CDD /* aaa600.1380254400.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = aaa600.1380254400.jpg; sourceTree = "<group>"; };
 		17C43AE91696DFD60066C79F /* byb600.1353196800.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = byb600.1353196800.jpg; sourceTree = "<group>"; };
 		17C43AEA1696DFD60066C79F /* dgw600.1353196800.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = dgw600.1353196800.jpg; sourceTree = "<group>"; };
 		17C43AEB1696DFD60066C79F /* floss600.1353196800.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = floss600.1353196800.jpg; sourceTree = "<group>"; };
@@ -236,7 +237,6 @@
 		17D1B6B116A1CAC800B05C12 /* TWPlayButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWPlayButton.m; sourceTree = "<group>"; };
 		17D1B6B316A1D38A00B05C12 /* TWSegmentedButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWSegmentedButton.h; sourceTree = "<group>"; };
 		17D1B6B416A1D38A00B05C12 /* TWSegmentedButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWSegmentedButton.m; sourceTree = "<group>"; };
-		17D5D3DA17EC7EE80052617B /* kh600.1380000000.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = kh600.1380000000.jpg; sourceTree = "<group>"; };
 		17DE054117D8E7A8007E0F5A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		17E5114A168F496E00DCE89C /* TWiT.tv.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TWiT.tv.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		17E5114E168F496E00DCE89C /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -359,7 +359,7 @@
 			children = (
 				1734B54C175140C4006745A1 /* omgcraft600.1353196800.jpg */,
 				1734B54D175140C4006745A1 /* yt600.1353196800.jpg */,
-				17C43AE81696DFD60066C79F /* aaa600.1353196800.jpg */,
+				17C293DA17F7167800907CDD /* aaa600.1380254400.jpg */,
 				17C43AE91696DFD60066C79F /* byb600.1353196800.jpg */,
 				17C43AEA1696DFD60066C79F /* dgw600.1353196800.jpg */,
 				17C43AEB1696DFD60066C79F /* floss600.1353196800.jpg */,
@@ -369,7 +369,7 @@
 				17C43AEF1696DFD60066C79F /* htg600.1353196800.jpg */,
 				17C43AF01696DFD60066C79F /* ifive600.1353196800.jpg */,
 				17C43AF11696DFD60066C79F /* ipad600.1353196800.jpg */,
-				17D5D3DA17EC7EE80052617B /* kh600.1380000000.jpg */,
+				17C293D817F7167400907CDD /* kh600.1380254400.jpg */,
 				17C43AF31696DFD60066C79F /* mbw600.1353196800.jpg */,
 				17C43AF41696DFD60066C79F /* nsfw600.1353196800.jpg */,
 				17C43AF51696DFD60066C79F /* sn600.1353196800.jpg */,
@@ -603,10 +603,8 @@
 				1711F7B616C6A5C200B5CA32 /* Settings.bundle in Resources */,
 				17E5115B168F496E00DCE89C /* InfoPlist.strings in Resources */,
 				17E5116A168F496E00DCE89C /* MainStoryboard_iPhone.storyboard in Resources */,
-				17D5D3DB17EC7EE80052617B /* kh600.1380000000.jpg in Resources */,
 				17E5116D168F496E00DCE89C /* MainStoryboard_iPad.storyboard in Resources */,
 				17DE054217D8E7A8007E0F5A /* Images.xcassets in Resources */,
-				17C43B381696DFD60066C79F /* aaa600.1353196800.jpg in Resources */,
 				17C43B391696DFD60066C79F /* byb600.1353196800.jpg in Resources */,
 				17C43B3A1696DFD60066C79F /* dgw600.1353196800.jpg in Resources */,
 				17C43B3B1696DFD60066C79F /* floss600.1353196800.jpg in Resources */,
@@ -648,12 +646,14 @@
 				17C43BA116971BC20066C79F /* twig-poster.jpg in Resources */,
 				17C43BA316971C140066C79F /* ttg-poster.jpg in Resources */,
 				17C43BA516971C3F0066C79F /* sn-poster.jpg in Resources */,
+				17C293D917F7167400907CDD /* kh600.1380254400.jpg in Resources */,
 				17C43BA716971C850066C79F /* specials-poster.jpg in Resources */,
 				170561F7169B18BD00E59244 /* dgw-poster.jpg in Resources */,
 				170561F9169B18C200E59244 /* htg-poster.jpg in Resources */,
 				17056200169B192D00E59244 /* byb-poster.jpg in Resources */,
 				17056201169B192D00E59244 /* floss-poster.jpg in Resources */,
 				17056202169B192D00E59244 /* tsh-poster.jpg in Resources */,
+				17C293DB17F7167800907CDD /* aaa600.1380254400.jpg in Resources */,
 				17056203169B192D00E59244 /* twil-poster.jpg in Resources */,
 				17B07F1016B59B2600B42CBF /* chatRoom.css in Resources */,
 				1734B54E175140C4006745A1 /* omgcraft600.1353196800.jpg in Resources */,
