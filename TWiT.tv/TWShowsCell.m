@@ -53,8 +53,12 @@
     {
         CGContextSetFillColorWithColor(context, self.tintColor.CGColor);
         CGRect frame = [self frameForColumn:column];
+        
+        CGContextSetFillColorWithColor(context, self.tintColor.CGColor);
         CGContextFillRect(context, frame);
-        CGContextSetRGBFillColor(context, 255/255.0f, 255/255.0f, 255/255.0f, 1.0f);
+        
+        [[self.shows[column] title] drawInRect:frame withAttributes:@{NSForegroundColorAttributeName: UIColor.whiteColor,
+                                                                      NSFontAttributeName: [UIFont preferredFontForTextStyle:UIFontTextStyleHeadline]}];
     }
     
     self.icons = UIGraphicsGetImageFromCurrentImageContext();
@@ -86,9 +90,9 @@
         {
             CGRect frame = [weak frameForColumn:column];
             
-            if(column < albumArtPathes.count && column < showTitles.count)
+            if(column < albumArtPathes.count && column < showTitles.count && [UIImage imageWithContentsOfFile:albumArtPathes[column]])
             {
-                UIImage *image = [UIImage imageWithContentsOfFile:albumArtPathes[column]] ?: [UIImage imageNamed:@"generic.jpg"];
+                UIImage *image = [UIImage imageWithContentsOfFile:albumArtPathes[column]];
                 [image drawInRect:frame];
                 
                 UIAccessibilityElement *element = [[UIAccessibilityElement alloc] initWithAccessibilityContainer:self];
