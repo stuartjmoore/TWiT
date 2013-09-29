@@ -91,7 +91,7 @@
             df.timeZone = [NSTimeZone timeZoneWithAbbreviation:@"GMT"];
             lastModifiedServer = [df dateFromString:lastModifiedString];
             
-            //NSLog(@"lastModifiedServer: %f", lastModifiedServer.timeIntervalSince1970); // SERVER’S DATE FOR BELOW!
+            NSLog(@"lastModifiedServer: %f", lastModifiedServer.timeIntervalSince1970); // SERVER’S DATE FOR BELOW!
         }
         @catch(NSException *e)
         {
