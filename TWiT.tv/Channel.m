@@ -214,7 +214,7 @@
         NSSet *fetchedShows = [self.managedObjectContext fetchEntities:@"Show" withPredicate:@"title == %@", [showDictionary objectForKey:@"title"]];
         Show *show = fetchedShows.anyObject ?: [self.managedObjectContext insertEntity:@"Show"];
         
-        NSLog(@"update %@", show.title);
+        NSLog(@"update show %@ in channel", show.title);
         
         NSString *pubDate = [showDictionary objectForKey:@"pubdate"];
         NSDateFormatter *df = [[NSDateFormatter alloc] init];
