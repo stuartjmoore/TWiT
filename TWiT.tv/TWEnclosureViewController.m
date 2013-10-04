@@ -32,6 +32,8 @@
 
 - (void)viewDidLoad
 {
+    self.navigationController.interactivePopGestureRecognizer.enabled = NO;
+    
     if(UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPhone)
     {
         NSInteger count = self.navigationController.viewControllers.count;
@@ -497,6 +499,8 @@
 
 - (void)viewWillDisappear:(BOOL)animated
 {
+    self.navigationController.interactivePopGestureRecognizer.enabled = YES;
+    
     [NSNotificationCenter.defaultCenter addObserver:self.enclosure.episode
                                            selector:@selector(updatePoster:)
                                                name:MPMoviePlayerThumbnailImageRequestDidFinishNotification
