@@ -34,11 +34,11 @@
     {
         NSInteger interval = self.start.timeIntervalSinceNow;
         
-        if(self.start.isTomorrow) // 24 hours away
+        /*if(self.start.isTomorrow) // 24 hours away
         {
             string = @"Tomorrow";
         }
-        else if(interval > 5*60*60) // More than 5 hours away
+        else*/ if(interval > 5*60*60) // More than 5 hours away
         {
             string = self.time;
         }
@@ -50,11 +50,35 @@
         }
         else // 10 minutes away
         {
-            string = @"Pre-show";
+            string = @"pre-show";
         }
     }
     
     return string;
+}
+
+- (NSString*)untilStringWithPrevious:(Event*)previous
+{
+    if([previous.until isEqualToString:@"Live"] || self.start.isTomorrow)
+        return self.until;
+    else if([previous.until isEqualToString:@"Tomorrow"])
+        return @"After That";
+    else
+        return self.time;
+}
+
+- (CGFloat)percentageElapsed
+{
+    if(self.start.isBeforeNow && self.end.isAfterNow)
+    {
+        NSTimeInterval secondsElasped = self.start.timeIntervalSinceNow;
+        NSTimeInterval secondsDuration = [self.start timeIntervalSinceDate:self.end];
+        return (secondsDuration != 0) ? secondsElasped/secondsDuration : 0;
+    }
+    else
+    {
+        return 0;
+    }
 }
 
 @end

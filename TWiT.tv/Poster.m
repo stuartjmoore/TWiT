@@ -22,8 +22,20 @@
 - (UIImage*)image
 {
     NSString *_path = self.path ?: self.episode.show.poster.path;
+    UIImage *poster = [UIImage imageWithContentsOfFile:_path];
     
-    return [UIImage imageWithContentsOfFile:_path];
+    if(!poster)
+    {
+        NSString *resourceName = [NSString stringWithFormat:@"%@-poster.jpg", self.episode.show.titleAcronym.lowercaseString];
+        NSString *resourcePath = [NSBundle.mainBundle.resourcePath stringByAppendingPathComponent:resourceName];
+        
+        if([NSFileManager.defaultManager fileExistsAtPath:resourcePath])
+            poster = [UIImage imageWithContentsOfFile:resourcePath];
+        else
+            poster = self.episode.show.albumArt.image;
+    }
+    
+    return poster;
 }
 
 - (void)setImage:(UIImage*)image

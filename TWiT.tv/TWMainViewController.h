@@ -40,7 +40,7 @@ typedef NS_ENUM(NSInteger, TWSection)
 @property (strong, nonatomic) UIImageView *showSelectedView;
 
 @property (weak, nonatomic) IBOutlet UIView *headerView, *gradientView;
-@property (weak, nonatomic) IBOutlet UIButton *watchButton, *listenButton;
+@property (weak, nonatomic) IBOutlet UIToolbar *blurground;
 @property (weak, nonatomic) IBOutlet TWPlayButton *playButton;
 @property (weak, nonatomic) IBOutlet UILabel *liveTimeLabel, *liveTitleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *nextTimeLabel, *nextTitleLabel;

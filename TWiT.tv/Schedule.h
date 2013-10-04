@@ -20,6 +20,9 @@
 
 - (NSString*)until;
 - (NSString*)time;
+- (NSString*)untilStringWithPrevious:(Event*)previous;
+
+- (CGFloat)percentageElapsed;
 
 @end
 

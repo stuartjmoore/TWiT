@@ -74,6 +74,8 @@
                             (id)[UIColor colorWithWhite:0 alpha:0].CGColor, nil];
     [self.gradientView.layer addSublayer:liveGradient];
 
+    self.blurground.barStyle = UIBarStyleBlack;
+    self.blurground.clipsToBounds = YES;
     
     [NSNotificationCenter.defaultCenter addObserver:self
                                            selector:@selector(albumArtDidChange:)
@@ -352,62 +354,30 @@
         return;
     
     Event *currentShow = self.channel.schedule.currentShow;
-    self.liveTimeLabel.text = currentShow.until;
-    self.liveTitleLabel.text = currentShow.title;
+    
+    Show *show = currentShow.show ?: self.channel.shows.anyObject;
+    self.livePosterView.image = show.poster.image;
     
     if(UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPad)
     {
+        self.liveTimeLabel.text = currentShow.until;
+        self.liveTitleLabel.text = currentShow.title;
+        
         Event *nextShow = [self.channel.schedule showAfterShow:currentShow];
-        
-        if([self.liveTimeLabel.text isEqualToString:@"Live"] || nextShow.start.isTomorrow)
-            self.nextTimeLabel.text = nextShow.until;
-        else if([self.liveTimeLabel.text isEqualToString:@"Tomorrow"])
-            self.nextTimeLabel.text = @"After That";
-        else
-            self.nextTimeLabel.text = nextShow.time;
-        
+        self.nextTimeLabel.text = [nextShow untilStringWithPrevious:currentShow];
         self.nextTitleLabel.text = nextShow.title;
-    }
-    
-    Show *show = currentShow.show ?: self.channel.shows.anyObject;
-    
-    UIImage *livePoster = show.poster.image;
-    if(!livePoster)
-    {
-        NSString *resourceName = [NSString stringWithFormat:@"%@-poster.jpg", show.titleAcronym.lowercaseString];
-        NSString *resourcePath = [NSBundle.mainBundle.resourcePath stringByAppendingPathComponent:resourceName];
-        
-        if([NSFileManager.defaultManager fileExistsAtPath:resourcePath])
-            livePoster = [UIImage imageWithContentsOfFile:resourcePath];
-        else
-            livePoster = show.albumArt.image;
-    }
-    self.livePosterView.image = livePoster;
-    
-    self.liveAlbumArtView.image = (currentShow.show) ? show.albumArt.image : [UIImage imageNamed:@"generic.jpg"];
-    
-    if(currentShow.start.isBeforeNow && currentShow.end.isAfterNow)
-    {
-        NSTimeInterval secondsElasped = currentShow.start.timeIntervalSinceNow;
-        NSTimeInterval secondsDuration = [currentShow.start timeIntervalSinceDate:currentShow.end];
-        self.playButton.percentage = (secondsDuration != 0) ? secondsElasped/secondsDuration : 0;
+
+        self.liveAlbumArtView.image = currentShow.show ? currentShow.show.albumArt.image : [UIImage imageNamed:@"generic.jpg"];
+        self.playButton.percentage = currentShow.percentageElapsed;
     }
     else
     {
-        self.playButton.percentage = 0;
+        [self.scheduleTable reloadData];
     }
     
-    [self.scheduleTable reloadData];
-    
+    // TODO: Optimize
     [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(redrawSchedule:) object:nil];
-    
-    if([self.liveTimeLabel.text hasSuffix:@"m"] || [self.nextTimeLabel.text hasSuffix:@"m"])
-        [self performSelector:@selector(redrawSchedule:) withObject:nil afterDelay:60];
-    else if([self.liveTimeLabel.text isEqualToString:@"Pre-show"])
-        [self performSelector:@selector(redrawSchedule:) withObject:nil afterDelay:currentShow.start.timeIntervalSinceNow];
-    else if([self.liveTimeLabel.text isEqualToString:@"Live"])
-        [self performSelector:@selector(redrawSchedule:) withObject:nil afterDelay:currentShow.end.timeIntervalSinceNow];
-        // TODO: Redraw for iPad progress view?
+    [self performSelector:@selector(redrawSchedule:) withObject:nil afterDelay:60];
 }
 
 - (void)updateProgress:(NSNotification*)notification
@@ -545,11 +515,27 @@
     }
     else if(tableView == self.scheduleTable)
     {
+      /*
         if(self.channel.schedule.days.count <= section)
             return 0;
         
         if([self.channel.schedule.days[section] count] == 0)
             return 0;
+        
+        Event *firstShow = self.channel.schedule.days[section][0];
+        
+        if(firstShow.start.isToday)
+        {
+            return 0;
+        }
+        else if(firstShow.start.isTomorrow && section > 0)
+        {
+            Event *yesterdaysLastShow = [self.channel.schedule.days[section--] lastObject];
+            
+            if(yesterdaysLastShow.end.isAfterNow)
+                return 0;
+        }
+        */
         
         Event *firstShow = self.channel.schedule.days[section][0];
         
@@ -578,6 +564,7 @@
     }
     else if(tableView == self.scheduleTable)
     {
+      /*
         if(indexPath.section == 0 && indexPath.row == 0)
             return 0;
         
@@ -589,11 +576,11 @@
         if(indexPath.row == 0)
             return 20;
         
-        Event *reviousShowEvent = self.channel.schedule.days[indexPath.section][indexPath.row];
+        Event *previousShowEvent = self.channel.schedule.days[indexPath.section][indexPath.row];
             
-        if(reviousShowEvent.start.isBeforeNow)
+        if(previousShowEvent.start.isBeforeNow)
             return 0;
-        
+        */
         return 20;
     }
     
@@ -606,14 +593,14 @@
     
     if(tableView == self.tableView && section == 0 && UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPhone)
     {
-        self.sectionHeader = [[UIView alloc] initWithFrame:CGRectMake(0, 0, width, 28)];
-        self.sectionHeader.backgroundColor = [UIColor whiteColor];
+        self.sectionHeader = [[UINavigationBar alloc] initWithFrame:CGRectMake(0, 0, width, 28)];
+        //self.sectionHeader.backgroundColor = [UIColor whiteColor];
         
         UIImage *buttonUpBackground = [[UIImage imageNamed:@"main-header-button-up"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
         UIImage *buttonDownBackground = [[UIImage imageNamed:@"main-header-button.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
         
         UIButton *episodesButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        episodesButton.frame = CGRectMake(2, 2, 157, 24);
+        episodesButton.frame = CGRectMake(2, 3, 157, 23);
         [episodesButton setTitle:@"watch list" forState:UIControlStateNormal];
         episodesButton.tag = TWSectionEpisodes;
         episodesButton.selected = (self.sectionVisible == episodesButton.tag);
@@ -627,7 +614,7 @@
         [self.sectionHeader addSubview:episodesButton];
         
         UIButton *showsButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        showsButton.frame = CGRectMake(161, 2, 157, 24);
+        showsButton.frame = CGRectMake(161, 3, 157, 23);
         [showsButton setTitle:@"all shows" forState:UIControlStateNormal];
         showsButton.tag = TWSectionShows;
         showsButton.selected = (self.sectionVisible == showsButton.tag);
@@ -640,38 +627,39 @@
         [showsButton.titleLabel setFont:[UIFont systemFontOfSize:14]];
         [self.sectionHeader addSubview:showsButton];
         
-        UILabel *botLine = [[UILabel alloc] initWithFrame:CGRectMake(0, 27.5f, 320, 0.5f)];
-        botLine.backgroundColor = [UIColor colorWithWhite:178/255.0 alpha:1];
-        [self.sectionHeader addSubview:botLine];
-
         return self.sectionHeader;
     }
     else if(tableView == self.scheduleTable)
     {
+      /*
         if(self.channel.schedule.days.count <= section)
             return nil;
         
         if([self.channel.schedule.days[section] count] == 0)
             return nil;
-        
+        */
         Event *showEvent = self.channel.schedule.days[section][0];
-        
+        /*
         if(showEvent.start.isToday)
             return nil;
-            
+        */
         UIView *header = [[UIView alloc] initWithFrame:CGRectMake(0, 0, width, 20)];
-        UILabel *headerLabel = [[UILabel alloc] initWithFrame:CGRectMake(107, 0, width-107, 20)];
+        UILabel *headerLabel = [[UILabel alloc] initWithFrame:CGRectMake(112, 0, width-112, 20)];
        
         headerLabel.backgroundColor = [UIColor clearColor];
         headerLabel.textColor = [UIColor whiteColor];
         headerLabel.font = [UIFont systemFontOfSize:12];
         
-        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-        [dateFormatter setDateFormat:@"EEEE"];
-        headerLabel.text = [dateFormatter stringFromDate:showEvent.start];
-        
         if(showEvent.start.isTomorrow)
             headerLabel.text = @"Tomorrow";
+        else if(showEvent.start.isToday)
+            headerLabel.text = @"Today";
+        else
+        {
+            NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+            [dateFormatter setDateFormat:@"EEEE"];
+            headerLabel.text = [dateFormatter stringFromDate:showEvent.start];
+        }
         
         [header addSubview:headerLabel];
         return header;
@@ -729,7 +717,11 @@
         
         Event *showEvent = self.channel.schedule.days[indexPath.section][indexPath.row];
         
-        cell.textLabel.text = showEvent.time;
+        if(indexPath.section == 0 && indexPath.row == 0)
+            cell.textLabel.text = showEvent.until;
+        else
+            cell.textLabel.text = showEvent.time;
+        
         cell.detailTextLabel.text = showEvent.title;
         
         return cell;
