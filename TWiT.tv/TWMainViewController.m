@@ -515,9 +515,7 @@
     }
     else if(tableView == self.scheduleTable)
     {
-        Event *firstShow = self.channel.schedule.days[section][0];
-        
-        if(firstShow.start.isToday)
+        if(section == 0)
             return 0;
         
         return 20;
