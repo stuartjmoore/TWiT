@@ -515,28 +515,6 @@
     }
     else if(tableView == self.scheduleTable)
     {
-      /*
-        if(self.channel.schedule.days.count <= section)
-            return 0;
-        
-        if([self.channel.schedule.days[section] count] == 0)
-            return 0;
-        
-        Event *firstShow = self.channel.schedule.days[section][0];
-        
-        if(firstShow.start.isToday)
-        {
-            return 0;
-        }
-        else if(firstShow.start.isTomorrow && section > 0)
-        {
-            Event *yesterdaysLastShow = [self.channel.schedule.days[section--] lastObject];
-            
-            if(yesterdaysLastShow.end.isAfterNow)
-                return 0;
-        }
-        */
-        
         Event *firstShow = self.channel.schedule.days[section][0];
         
         if(firstShow.start.isToday)
@@ -564,23 +542,11 @@
     }
     else if(tableView == self.scheduleTable)
     {
-      /*
-        if(indexPath.section == 0 && indexPath.row == 0)
-            return 0;
-        
         Event *showEvent = self.channel.schedule.days[indexPath.section][indexPath.row];
         
-        if(showEvent.start.isBeforeNow)
+        if(indexPath.section == 0 && showEvent.end.isBeforeNow)
             return 0;
-        
-        if(indexPath.row == 0)
-            return 20;
-        
-        Event *previousShowEvent = self.channel.schedule.days[indexPath.section][indexPath.row];
-            
-        if(previousShowEvent.start.isBeforeNow)
-            return 0;
-        */
+
         return 20;
     }
     
@@ -721,22 +687,22 @@
         {
             if(showEvent.end.isBeforeNow)
             {
-                cell.textLabel.text = @"over"; // @"";
+                cell.textLabel.text = @"over";
             }
             else
             {
                 if(indexPath.row == 0)
                 {
-                    cell.textLabel.text = @"first"; // showEvent.until;
+                    cell.textLabel.text = showEvent.until;
                 }
                 else
                 {
                     Event *prevEvent = self.channel.schedule.days[indexPath.section][indexPath.row-1];
                     
                     if(prevEvent.end.isBeforeNow)
-                        cell.textLabel.text = @"next"; // showEvent.until;
+                        cell.textLabel.text = showEvent.until;
                     else
-                        cell.textLabel.text = @"later"; // showEvent.time;
+                        cell.textLabel.text = showEvent.time;
                 }
             }
         }

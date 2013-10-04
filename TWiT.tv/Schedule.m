@@ -50,7 +50,7 @@
         }
         else // 10 minutes away
         {
-            string = @"pre-show";
+            string = @"Preshow";
         }
     }
     
