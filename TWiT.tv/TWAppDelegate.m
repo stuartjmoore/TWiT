@@ -192,6 +192,8 @@
 {
     NSArray *identifierParts = [identifier componentsSeparatedByString:@"."];
     
+    NSLog(@"%@", identifierParts);
+    
     if(identifierParts.count == 8 && [identifierParts[4] isEqualToString:@"enclosure"])
     {
         NSString *titleAcronym = identifierParts[5];

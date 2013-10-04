@@ -84,6 +84,10 @@
 {
     NSURL *url = downloadTask.originalRequest.URL;
     NSString *downloadDir = [[self.applicationDocumentsDirectory URLByAppendingPathComponent:folder] path];
+    
+    if(![NSFileManager.defaultManager fileExistsAtPath:downloadDir])
+        [NSFileManager.defaultManager createDirectoryAtPath:downloadDir withIntermediateDirectories:NO attributes:nil error:nil];
+    
     NSString *downloadPath = [downloadDir stringByAppendingPathComponent:url.lastPathComponent];
     
     if([NSFileManager.defaultManager fileExistsAtPath:downloadPath])
@@ -102,15 +106,18 @@
 {
     [self closeDownloadWithError:error];
     
-    [self.downloadSession getTasksWithCompletionHandler:^(NSArray *dataTasks, NSArray *uploadTasks, NSArray *downTasks)
+    if(self.backgroundSessionCompletionHandler)
     {
-        if(dataTasks.count + uploadTasks.count + downTasks.count == 0 && self.backgroundSessionCompletionHandler)
+        [self.downloadSession getTasksWithCompletionHandler:^(NSArray *dataTasks, NSArray *uploadTasks, NSArray *downTasks)
         {
-            void (^completionHandler)() = self.backgroundSessionCompletionHandler;
-            self.backgroundSessionCompletionHandler = nil;
-            completionHandler();
-        }
-    }];
+            if(dataTasks.count + uploadTasks.count + downTasks.count == 0)
+            {
+                void (^completionHandler)() = self.backgroundSessionCompletionHandler;
+                self.backgroundSessionCompletionHandler = nil;
+                completionHandler();
+            }
+        }];
+    }
 }
 
 - (void)closeDownloadWithError:(NSError*)error

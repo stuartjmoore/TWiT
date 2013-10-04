@@ -14,6 +14,7 @@
 - (BOOL)isTomorrow;
 
 - (BOOL)isBeforeNow;
+- (BOOL)isNow;
 - (BOOL)isAfterNow;
 
 - (CGFloat)floatTime;

@@ -717,10 +717,33 @@
         
         Event *showEvent = self.channel.schedule.days[indexPath.section][indexPath.row];
         
-        if(indexPath.section == 0 && indexPath.row == 0)
-            cell.textLabel.text = showEvent.until;
+        if(indexPath.section == 0)
+        {
+            if(showEvent.end.isBeforeNow)
+            {
+                cell.textLabel.text = @"over"; // @"";
+            }
+            else
+            {
+                if(indexPath.row == 0)
+                {
+                    cell.textLabel.text = @"first"; // showEvent.until;
+                }
+                else
+                {
+                    Event *prevEvent = self.channel.schedule.days[indexPath.section][indexPath.row-1];
+                    
+                    if(prevEvent.end.isBeforeNow)
+                        cell.textLabel.text = @"next"; // showEvent.until;
+                    else
+                        cell.textLabel.text = @"later"; // showEvent.time;
+                }
+            }
+        }
         else
+        {
             cell.textLabel.text = showEvent.time;
+        }
         
         cell.detailTextLabel.text = showEvent.title;
         
