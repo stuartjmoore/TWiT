@@ -227,10 +227,9 @@
             {
                 NSString *message = (indexPath.row >= 10)
                                   ? @"Episodes older than 10 weeks aren’t available in TWiT’s feeds anymore."
-                                  : @"Uh-oh. We should be re-syncing as soon as possible.";
+                                  : @"If you’re online, shake to force a refresh.";
                 
-                
-                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Not Available"
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Uh-oh"
                                                                 message:message
                                                                delegate:nil
                                                       cancelButtonTitle:@"Cancel"
