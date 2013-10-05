@@ -1048,6 +1048,7 @@
         Episode *episode = episodeCell.episode;
         NSSet *enclosures = [episode downloadedEnclosures];
         Enclosure *enclosure = enclosures.anyObject ?: [episode enclosureForType:TWTypeVideo andQuality:TWQualityHigh];
+        enclosure = enclosure ?: [episode enclosureForType:TWTypeAudio andQuality:TWQualityAudio];
         
         [segue.destinationViewController setEnclosure:enclosure];
     }
