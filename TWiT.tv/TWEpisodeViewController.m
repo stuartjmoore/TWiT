@@ -263,6 +263,7 @@
     {
         NSSet *enclosures = [self.episode downloadedEnclosures];
         Enclosure *enclosure = enclosures.anyObject ?: [self.episode enclosureForType:TWTypeVideo andQuality:TWQualityHigh];
+        enclosure = enclosure ?: [self.episode enclosureForType:TWTypeAudio andQuality:TWQualityAudio];
         
         [segue.destinationViewController setEnclosure:enclosure];
     }
