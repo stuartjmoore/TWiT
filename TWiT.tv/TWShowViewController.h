@@ -20,6 +20,7 @@
 @property (strong, nonatomic) NSFetchedResultsController *fetchedEpisodesController;
 
 @property (weak, nonatomic) IBOutlet UIView *headerView, *gradientView;
+@property (weak, nonatomic) IBOutlet UIToolbar *blurgroundView;
 @property (weak, nonatomic) IBOutlet UIButton *favoriteButton, *remindButton;
 @property (weak, nonatomic) IBOutlet UIButton *emailButton, *phoneButton;
 

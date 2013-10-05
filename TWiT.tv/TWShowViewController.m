@@ -41,6 +41,8 @@
     if(UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPhone)
     {
         self.headerView.translatesAutoresizingMaskIntoConstraints = YES;
+        self.blurgroundView.barStyle = UIBarStyleBlack;
+        self.blurgroundView.clipsToBounds = YES;
         
         liveGradient.colors = [NSArray arrayWithObjects:
                                (id)[UIColor colorWithWhite:0 alpha:1].CGColor,

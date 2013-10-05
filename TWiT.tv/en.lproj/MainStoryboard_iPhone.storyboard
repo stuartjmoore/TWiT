@@ -704,10 +704,9 @@
                                                 <constraint firstAttribute="height" constant="155" id="B64-Rc-KWB"/>
                                             </constraints>
                                         </imageView>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5en-C1-wzx" userLabel="Blackground">
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5en-C1-wzx" userLabel="Blackground" customClass="UIToolbar">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="155"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                            <color key="backgroundColor" white="0.0" alpha="0.59999999999999998" colorSpace="calibratedWhite"/>
                                         </view>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" image="generic.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="6cJ-5V-8Lf">
                                             <rect key="frame" x="8" y="8" width="96" height="96"/>
@@ -980,6 +979,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="albumArt" destination="6cJ-5V-8Lf" id="6zD-cZ-B6j"/>
+                        <outlet property="blurgroundView" destination="5en-C1-wzx" id="xCz-ci-BJg"/>
                         <outlet property="descLabel" destination="5Ri-gY-EC7" id="KKM-eo-01b"/>
                         <outlet property="emailButton" destination="pSW-Z1-63b" id="vBf-5j-flu"/>
                         <outlet property="favoriteButton" destination="Tpu-un-zzf" id="KYN-dZ-fYB"/>
