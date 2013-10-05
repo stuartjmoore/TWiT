@@ -1477,8 +1477,8 @@
                                                 <constraint firstAttribute="height" constant="180" id="Rx2-vG-oC7"/>
                                             </constraints>
                                         </imageView>
-                                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aCL-Qq-7W9" userLabel="Gradient">
-                                            <rect key="frame" x="0.0" y="0.0" width="450" height="1024"/>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aCL-Qq-7W9" userLabel="Gradient" customClass="UIToolbar">
+                                            <rect key="frame" x="0.0" y="0.0" width="703" height="180"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
@@ -1601,8 +1601,12 @@
                                     <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                     <constraints>
                                         <constraint firstAttribute="trailing" secondItem="gjT-7C-mjb" secondAttribute="trailing" id="1qW-bA-YvE"/>
+                                        <constraint firstAttribute="bottom" secondItem="aCL-Qq-7W9" secondAttribute="bottom" id="5p0-dc-gtA"/>
                                         <constraint firstAttribute="centerX" secondItem="cLX-kZ-yEI" secondAttribute="centerX" id="94d-8K-Ll5"/>
+                                        <constraint firstItem="aCL-Qq-7W9" firstAttribute="leading" secondItem="bcg-Uz-4q7" secondAttribute="leading" id="Evv-4M-0zV"/>
                                         <constraint firstItem="cLX-kZ-yEI" firstAttribute="leading" secondItem="bcg-Uz-4q7" secondAttribute="leading" id="K7o-mn-IPd"/>
+                                        <constraint firstAttribute="trailing" secondItem="aCL-Qq-7W9" secondAttribute="trailing" id="SEs-bi-6kk"/>
+                                        <constraint firstItem="aCL-Qq-7W9" firstAttribute="top" secondItem="bcg-Uz-4q7" secondAttribute="top" id="iUv-6t-rzP"/>
                                         <constraint firstAttribute="centerY" secondItem="gjT-7C-mjb" secondAttribute="centerY" id="jaE-Dq-bch"/>
                                         <constraint firstAttribute="trailing" secondItem="cLX-kZ-yEI" secondAttribute="trailing" id="jpC-Ga-BVP"/>
                                         <constraint firstAttribute="centerY" secondItem="cLX-kZ-yEI" secondAttribute="centerY" id="pQT-Q5-m4V"/>
@@ -1662,7 +1666,7 @@
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
                     <connections>
-                        <outlet property="gradientView" destination="aCL-Qq-7W9" id="HGG-6l-ZSv"/>
+                        <outlet property="blurground" destination="aCL-Qq-7W9" id="Sor-Ag-9FC"/>
                         <outlet property="headerView" destination="bcg-Uz-4q7" id="ulq-dJ-ZuY"/>
                         <outlet property="liveAlbumArtView" destination="JEJ-Fw-pN9" id="NQ6-zu-N1w"/>
                         <outlet property="livePosterView" destination="gjT-7C-mjb" id="Frl-KJ-P9N"/>

@@ -51,7 +51,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+    /*
     CAGradientLayer *liveGradient = [CAGradientLayer layer];
     liveGradient.anchorPoint = CGPointMake(0, 0);
     liveGradient.position = CGPointMake(0, 0);
@@ -73,7 +73,7 @@
                             (id)[UIColor colorWithWhite:0 alpha:0.6f].CGColor,
                             (id)[UIColor colorWithWhite:0 alpha:0].CGColor, nil];
     [self.gradientView.layer addSublayer:liveGradient];
-
+     */
     self.blurground.barStyle = UIBarStyleBlack;
     self.blurground.clipsToBounds = YES;
     
