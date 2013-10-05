@@ -67,6 +67,7 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
+    [self becomeFirstResponder];
     [super viewWillAppear:animated];
     
     [NSNotificationCenter.defaultCenter addObserver:self
@@ -191,6 +192,21 @@
     NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"telprompt://%@", self.show.phone]];
     [UIApplication.sharedApplication openURL:url];
 }
+
+#pragma mark Shake
+
+- (BOOL)canBecomeFirstResponder
+{
+    return YES;
+}
+
+- (void)motionEnded:(UIEventSubtype)motion withEvent:(UIEvent*)event
+{
+    if(event.subtype == UIEventSubtypeMotionShake)
+        [self.show forceUpdateEpisodes];
+}
+
+#pragma mark Episodes
 
 - (NSIndexPath*)tableView:(UITableView*)tableView willSelectRowAtIndexPath:(NSIndexPath*)indexPath
 {
@@ -486,6 +502,7 @@
     [NSNotificationCenter.defaultCenter removeObserver:self name:@"enclosureDownloadDidFail" object:nil];
     
     [super viewWillDisappear:animated];
+    [self resignFirstResponder];
 }
 
 - (void)didReceiveMemoryWarning

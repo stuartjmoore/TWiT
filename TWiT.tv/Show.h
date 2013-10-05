@@ -31,7 +31,9 @@
 - (NSString*)scheduleString;
 
 - (void)updateEpisodes;
+- (void)forceUpdateEpisodes;
 - (void)updateEpisodesWithCompletionHandler:(void(^)(UIBackgroundFetchResult))completionHandler;
+- (void)updateEpisodesWithCompletionHandler:(void(^)(UIBackgroundFetchResult))completionHandler forceUpdate:(BOOL)forceUpdate;
 - (void)updatePodcastFeed:(Feed*)feed withCompletionHandler:(void(^)(UIBackgroundFetchResult))completionHandler;
 - (void)finishUpdateWithCompletionHandler:(void(^)(UIBackgroundFetchResult))completionHandler;
 

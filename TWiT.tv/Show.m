@@ -255,6 +255,11 @@ static BOOL anyUpdates;
     [self updateEpisodesWithCompletionHandler:nil];
 }
 
+- (void)forceUpdateEpisodes
+{
+    [self updateEpisodesWithCompletionHandler:nil forceUpdate:YES];
+}
+
 - (void)updateEpisodesWithCompletionHandler:(void(^)(UIBackgroundFetchResult))completionHandler
 {
     NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"number" ascending:NO];
@@ -265,7 +270,11 @@ static BOOL anyUpdates;
     NSArray *notPublished = [publishedDates filteredArrayUsingPredicate:pred];
     
     BOOL forceUpdate = notPublished.count;
-    
+    [self updateEpisodesWithCompletionHandler:completionHandler forceUpdate:forceUpdate];
+}
+
+- (void)updateEpisodesWithCompletionHandler:(void(^)(UIBackgroundFetchResult))completionHandler forceUpdate:(BOOL)forceUpdate
+{
     for(Feed *feed in self.feeds)
     {
         if(!forceUpdate && feed.lastUpdated && feed.lastUpdated.timeIntervalSinceNow > -self.updateInterval)
