@@ -11,6 +11,6 @@
 
 @implementation Feed
 
-@dynamic lastUpdated, quality, subtitle, title, type, url, show;
+@dynamic lastUpdated, lastEnclosureDate, quality, subtitle, title, type, url, show;
 
 @end

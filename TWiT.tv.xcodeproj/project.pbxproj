@@ -164,6 +164,7 @@
 		176AF18D1695DFE900A35BFC /* Enclosure.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Enclosure.m; sourceTree = "<group>"; };
 		176AF18F1695E0DF00A35BFC /* Poster.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Poster.h; sourceTree = "<group>"; };
 		176AF1901695E0DF00A35BFC /* Poster.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Poster.m; sourceTree = "<group>"; };
+		176EBC071805D78600B44F24 /* TWiT_tv 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = file; path = "TWiT_tv 2.xcdatamodel"; sourceTree = "<group>"; };
 		177F1FA916AAE9E800BFFA63 /* TWQualityCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWQualityCell.h; sourceTree = "<group>"; };
 		177F1FAA16AAE9E800BFFA63 /* TWQualityCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWQualityCell.m; sourceTree = "<group>"; };
 		177F1FAD16AB25A900BFFA63 /* TWPlaybarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWPlaybarViewController.h; sourceTree = "<group>"; };
@@ -909,9 +910,10 @@
 		17E5116E168F496E00DCE89C /* TWiT_tv.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				176EBC071805D78600B44F24 /* TWiT_tv 2.xcdatamodel */,
 				17E5116F168F496E00DCE89C /* TWiT_tv.xcdatamodel */,
 			);
-			currentVersion = 17E5116F168F496E00DCE89C /* TWiT_tv.xcdatamodel */;
+			currentVersion = 176EBC071805D78600B44F24 /* TWiT_tv 2.xcdatamodel */;
 			path = TWiT_tv.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

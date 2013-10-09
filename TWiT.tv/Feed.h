@@ -31,7 +31,7 @@ typedef NS_ENUM(int16_t, TWType)
 @property (nonatomic, strong) NSString *title, *subtitle, *url;
 @property (nonatomic) TWQuality quality;
 @property (nonatomic) TWType type;
-@property (nonatomic, strong) NSDate *lastUpdated;
+@property (nonatomic, strong) NSDate *lastUpdated, *lastEnclosureDate;
 @property (nonatomic, strong) Show *show;
 
 @end

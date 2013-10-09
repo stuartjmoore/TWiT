@@ -277,7 +277,7 @@ static BOOL anyUpdates;
 {
     for(Feed *feed in self.feeds)
     {
-        if(!forceUpdate && feed.lastUpdated && feed.lastUpdated.timeIntervalSinceNow > -self.updateInterval)
+        if(!forceUpdate && feed.lastEnclosureDate && feed.lastEnclosureDate.timeIntervalSinceNow > -self.updateInterval)
             continue;
         
         if(threadCount == 0)
@@ -534,6 +534,8 @@ static BOOL anyUpdates;
             enclosure.quality = feed.quality;
             enclosure.type = feed.type;
             [episode addEnclosuresObject:enclosure];
+            
+            feed.lastEnclosureDate = [published laterDate:feed.lastEnclosureDate];
         }
         
         if([httpResponse respondsToSelector:@selector(allHeaderFields)] && httpResponse.statusCode == 200)
@@ -548,8 +550,6 @@ static BOOL anyUpdates;
             
             NSDate *lastModified = [df dateFromString:lastModifiedString];
             feed.lastUpdated = lastModified;
-            
-            NSLog(@"updated: %@", lastModified);
         }
         
         [context save:nil];
