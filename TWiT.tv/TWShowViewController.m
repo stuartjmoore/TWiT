@@ -99,13 +99,7 @@
     {
         self.title = self.show.title;
         self.albumArt.image = self.show.albumArt.image;
-        self.posterView.image = self.show.poster.image;
-        
-        if(!self.posterView.image)
-        {
-            NSString *resourceName = [NSString stringWithFormat:@"%@-poster.jpg", self.show.titleAcronym.lowercaseString];
-            self.posterView.image = [UIImage imageNamed:resourceName];
-        }
+        self.posterView.image = self.show.albumArt.image;
         
         self.scheduleLabel.text = self.show.scheduleString;
         self.descLabel.text = self.show.desc;
@@ -115,19 +109,7 @@
         
         self.emailButton.hidden = !self.show.email;
         self.phoneButton.hidden = ([UIApplication.sharedApplication canOpenURL:[NSURL URLWithString:@"tel:+11111"]]) ? !self.show.phone : YES;
-        
-        /*
-        for (NSInteger i = 0; i < [self.tableView numberOfSections]; i++)
-        {
-            for (NSInteger j = 0; j < [self.tableView numberOfRowsInSection:i]; j++)
-            {
-                NSIndexPath *indexPath = [NSIndexPath indexPathForRow:j inSection:i];
-                TWEpisodeCell *cell = (TWEpisodeCell*)[self.tableView cellForRowAtIndexPath:indexPath];
-                cell.progress = 1;
-            }
-        }
-        */
-        
+
         self.fetchedEpisodesController = nil;
         [self.tableView reloadData];
     }
