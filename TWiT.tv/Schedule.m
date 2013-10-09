@@ -46,7 +46,11 @@
         {
             NSInteger minutes = (interval / 60) % 60;
             NSInteger hours = (interval / 3600);
-            string = [NSString stringWithFormat:@"%ih %02im", hours, minutes];
+            
+            if(hours > 0)
+                string = [NSString stringWithFormat:@"%ih %02im", hours, minutes];
+            else
+                string = [NSString stringWithFormat:@"%02im", minutes];
         }
         else // 10 minutes away
         {
