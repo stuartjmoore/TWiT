@@ -410,7 +410,10 @@
     NSArray *sortedEnclosures = [self.enclosure.episode.enclosures sortedArrayUsingDescriptors:@[descriptor]];
 
     for(Enclosure *enclosure in sortedEnclosures)
-        [sheet addButtonWithTitle:[NSString stringWithFormat:@"%@ - %@", enclosure.title, enclosure.subtitle]];
+    {
+        NSString *prefix = (enclosure == self.enclosure) ? @"✓" : @"";
+        [sheet addButtonWithTitle:[NSString stringWithFormat:@"%@ %@ - %@", prefix, enclosure.title, enclosure.subtitle]];
+    }
     
     [sheet addButtonWithTitle:@"Cancel"];
     sheet.cancelButtonIndex = sheet.numberOfButtons - 1;

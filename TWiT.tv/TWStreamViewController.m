@@ -383,8 +383,11 @@
     NSArray *sortedStreams = [self.stream.channel.streams sortedArrayUsingDescriptors:@[descriptor]];
     
     for(Stream *stream in sortedStreams)
-        [sheet addButtonWithTitle:[NSString stringWithFormat:@"%@ - %@", stream.title, stream.subtitle]];
-    
+    {
+        NSString *prefix = (stream == self.stream) ? @"✓" : @"";
+        [sheet addButtonWithTitle:[NSString stringWithFormat:@"%@ %@ - %@", prefix, stream.title, stream.subtitle]];
+    }
+        
     [sheet addButtonWithTitle:@"Cancel"];
     sheet.cancelButtonIndex = sheet.numberOfButtons - 1;
     
