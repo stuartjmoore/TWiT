@@ -165,7 +165,12 @@
 }
 - (void)applicationDidEnterBackground:(UIApplication*)application
 {
-    [self performSelector:@selector(play) withObject:nil afterDelay:0.005];
+    if(self.player.playbackState == MPMoviePlaybackStatePlaying)
+    {
+        // TODO: Test on device
+        [self performSelector:@selector(play) withObject:nil afterDelay:0.005f];
+    }
+    
     
     if([self.nowPlaying isKindOfClass:Enclosure.class])
     {
