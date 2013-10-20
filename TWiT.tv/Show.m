@@ -464,7 +464,7 @@ static BOOL anyUpdates;
                 if(!episode.published)
                 {
                     episode.title = title;
-                    episode.published = published;
+                    episode.published = published ?: [NSDate date];
                     episode.desc = desc;
                     episode.duration = duration;
                     episode.guests = guests;
@@ -499,7 +499,7 @@ static BOOL anyUpdates;
                 [self addEpisodesObject:episode];
                 episode.title = title;
                 episode.number = number;
-                episode.published = published;
+                episode.published = published ?: [NSDate date];
                 episode.desc = desc;
                 episode.duration = duration;
                 episode.guests = guests;
