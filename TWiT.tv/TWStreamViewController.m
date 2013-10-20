@@ -513,7 +513,7 @@
 - (void)keyboardWillShow:(NSNotification*)notification
 {
     CGFloat duration = [notification.userInfo[UIKeyboardAnimationDurationUserInfoKey] floatValue];
-    CGFloat curve = [notification.userInfo[UIKeyboardAnimationCurveUserInfoKey] floatValue];
+    NSInteger curve = [notification.userInfo[UIKeyboardAnimationCurveUserInfoKey] integerValue];
     CGRect frame = [notification.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
     
     self.chatViewBottom.constant = UIInterfaceOrientationIsPortrait(self.interfaceOrientation) ? frame.size.height : frame.size.width;
