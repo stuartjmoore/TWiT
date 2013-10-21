@@ -419,7 +419,7 @@ static BOOL anyUpdates;
             NSString *guests;
             if(summary)
             {
-                NSRegularExpression *guestRegex = [NSRegularExpression regularExpressionWithPattern:@"<p><b>Guests?:</b> (.*?)</p>" options:NSRegularExpressionCaseInsensitive error:NULL];
+                NSRegularExpression *guestRegex = [NSRegularExpression regularExpressionWithPattern:@"<p><strong>Guests?:</strong> (.*?)</p>" options:NSRegularExpressionCaseInsensitive error:NULL];
                 NSTextCheckingResult *guestResults = [guestRegex firstMatchInString:summary options:0 range:NSMakeRange(0, [summary length])];
                 
                 if(guestResults.numberOfRanges > 0)
@@ -427,7 +427,7 @@ static BOOL anyUpdates;
                 
                 if(!guests)
                 {
-                    NSRegularExpression *guestRegex = [NSRegularExpression regularExpressionWithPattern:@"<p><b>Hosts?:</b> (.*?)</p>" options:NSRegularExpressionCaseInsensitive error:NULL];
+                    NSRegularExpression *guestRegex = [NSRegularExpression regularExpressionWithPattern:@"<p><strong>Hosts?:</strong> (.*?)</p>" options:NSRegularExpressionCaseInsensitive error:NULL];
                     NSTextCheckingResult *guestResults = [guestRegex firstMatchInString:summary options:0 range:NSMakeRange(0, [summary length])];
                     
                     if(guestResults.numberOfRanges > 0)
