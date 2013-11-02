@@ -160,18 +160,14 @@
 
 - (void)applicationWillResignActive:(UIApplication*)application
 {
+    if(self.player.playbackState == MPMoviePlaybackStatePlaying)
+        [self performSelector:@selector(play) withObject:nil afterDelay:0.005f];
+        
     [self updateBadgeCount];
     [self saveContext];
 }
 - (void)applicationDidEnterBackground:(UIApplication*)application
 {
-    if(self.player.playbackState == MPMoviePlaybackStatePlaying)
-    {
-        // TODO: Test on device
-        [self performSelector:@selector(play) withObject:nil afterDelay:0.005f];
-    }
-    
-    
     if([self.nowPlaying isKindOfClass:Enclosure.class])
     {
         [NSNotificationCenter.defaultCenter addObserver:[self.nowPlaying episode]
@@ -186,7 +182,7 @@
     [self saveContext];
 }
 
-- (void)applicationWillTerminate:(UIApplication *)application
+- (void)applicationWillTerminate:(UIApplication*)application
 {
     [self saveContext];
 }

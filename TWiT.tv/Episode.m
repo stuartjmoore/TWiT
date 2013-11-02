@@ -158,8 +158,6 @@
     
     if(ubiq && !iCloudDisabled)
     {
-        NSLog(@"Store timecode");
-        
         NSUbiquitousKeyValueStore *store = [NSUbiquitousKeyValueStore defaultStore];
         
         NSString *key = [NSString stringWithFormat:@"%@:%@", self.show.titleAcronym, @(self.number)];
