@@ -22,6 +22,7 @@
 		170E02A8169324480072CFA6 /* TWEpisodeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 170E02A7169324480072CFA6 /* TWEpisodeCell.m */; };
 		170E02AB169328910072CFA6 /* TWShowsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 170E02AA169328910072CFA6 /* TWShowsCell.m */; };
 		1711F7B616C6A5C200B5CA32 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 17A31E1316ADDB6400B71343 /* Settings.bundle */; };
+		17201D1918294E18003BE080 /* Keys.plist in Resources */ = {isa = PBXBuildFile; fileRef = 17201D1818294E18003BE080 /* Keys.plist */; };
 		1733C8B017E7CF580090C97A /* Show.m in Sources */ = {isa = PBXBuildFile; fileRef = 1733C8AF17E7CF580090C97A /* Show.m */; };
 		1733C8B317E7CF610090C97A /* Feed.m in Sources */ = {isa = PBXBuildFile; fileRef = 1733C8B217E7CF610090C97A /* Feed.m */; };
 		1733C8B617E7CF6A0090C97A /* Episode.m in Sources */ = {isa = PBXBuildFile; fileRef = 1733C8B517E7CF6A0090C97A /* Episode.m */; };
@@ -134,6 +135,7 @@
 		170E02A7169324480072CFA6 /* TWEpisodeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWEpisodeCell.m; sourceTree = "<group>"; };
 		170E02A9169328910072CFA6 /* TWShowsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWShowsCell.h; sourceTree = "<group>"; };
 		170E02AA169328910072CFA6 /* TWShowsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWShowsCell.m; sourceTree = "<group>"; };
+		17201D1818294E18003BE080 /* Keys.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Keys.plist; path = Resources/Keys.plist; sourceTree = SOURCE_ROOT; };
 		1733C8AD17E7CED90090C97A /* Vollkorn-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Vollkorn-BoldItalic.ttf"; path = "Resources/Vollkorn-BoldItalic.ttf"; sourceTree = SOURCE_ROOT; };
 		1733C8AE17E7CF580090C97A /* Show.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Show.h; sourceTree = "<group>"; };
 		1733C8AF17E7CF580090C97A /* Show.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Show.m; sourceTree = "<group>"; };
@@ -164,7 +166,7 @@
 		176AF18D1695DFE900A35BFC /* Enclosure.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Enclosure.m; sourceTree = "<group>"; };
 		176AF18F1695E0DF00A35BFC /* Poster.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Poster.h; sourceTree = "<group>"; };
 		176AF1901695E0DF00A35BFC /* Poster.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Poster.m; sourceTree = "<group>"; };
-		176EBC071805D78600B44F24 /* TWiT_tv 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = file; path = "TWiT_tv 2.xcdatamodel"; sourceTree = "<group>"; };
+		176EBC071805D78600B44F24 /* TWiT_tv 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "TWiT_tv 2.xcdatamodel"; sourceTree = "<group>"; };
 		177F1FA916AAE9E800BFFA63 /* TWQualityCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWQualityCell.h; sourceTree = "<group>"; };
 		177F1FAA16AAE9E800BFFA63 /* TWQualityCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWQualityCell.m; sourceTree = "<group>"; };
 		177F1FAD16AB25A900BFFA63 /* TWPlaybarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWPlaybarViewController.h; sourceTree = "<group>"; };
@@ -290,6 +292,7 @@
 				17E5116E168F496E00DCE89C /* TWiT_tv.xcdatamodeld */,
 				1733C8AD17E7CED90090C97A /* Vollkorn-BoldItalic.ttf */,
 				17B07F0F16B59B2600B42CBF /* chatRoom.css */,
+				17201D1818294E18003BE080 /* Keys.plist */,
 				17DE054117D8E7A8007E0F5A /* Images.xcassets */,
 				17C43AE61696DFD60066C79F /* Server Cache */,
 			);
@@ -654,6 +657,7 @@
 				17056200169B192D00E59244 /* byb-poster.jpg in Resources */,
 				17056201169B192D00E59244 /* floss-poster.jpg in Resources */,
 				17056202169B192D00E59244 /* tsh-poster.jpg in Resources */,
+				17201D1918294E18003BE080 /* Keys.plist in Resources */,
 				17C293DB17F7167800907CDD /* aaa600.1380254400.jpg in Resources */,
 				17056203169B192D00E59244 /* twil-poster.jpg in Resources */,
 				17B07F1016B59B2600B42CBF /* chatRoom.css in Resources */,
