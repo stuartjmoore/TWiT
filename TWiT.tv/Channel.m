@@ -14,6 +14,8 @@
 #import "Show.h"
 #import "AlbumArt.h"
 
+#define SERVER_HOST @"twitserver-stuartjmoore.rhcloud.com"
+
 @implementation Channel
 
 @dynamic desc, published, scheduleURL, title, website, shows, streams;
@@ -214,7 +216,10 @@
         NSSet *fetchedShows = [self.managedObjectContext fetchEntities:@"Show" withPredicate:@"title == %@", [showDictionary objectForKey:@"title"]];
         Show *show = fetchedShows.anyObject ?: [self.managedObjectContext insertEntity:@"Show"];
         
-        NSLog(@"update show %@ in channel", show.title);
+        if(!show.title)
+            NSLog(@"add show %@ to channel", showDictionary[@"title"]);
+        else
+            NSLog(@"update show %@ in channel", show.title);
         
         NSString *pubDate = [showDictionary objectForKey:@"pubdate"];
         NSDateFormatter *df = [[NSDateFormatter alloc] init];
@@ -269,27 +274,56 @@
 
 - (void)reloadSchedule
 {
-    self.schedule = [[Schedule alloc] init];
-    NSMutableArray *schedule = [NSMutableArray array];
+    [self reloadScheduleFromServer];
+}
     
-    NSDate *startMin = [NSDate date];
-    NSDate *startMax = [startMin dateByAddingTimeInterval:60*60*24*7];
+- (void)reloadScheduleFromServer
+{
+    self.schedule = [[Schedule alloc] init];
+    self.schedule.days = [NSArray array];
     
     NSDateFormatter *dateFormatterLocal = [[NSDateFormatter alloc] init];
-    [dateFormatterLocal setTimeZone:[NSTimeZone localTimeZone]];
+    [dateFormatterLocal setTimeZone:NSTimeZone.localTimeZone];
     [dateFormatterLocal setDateFormat:@"yyyy-MM-dd"];
-    NSString *startMinString = [dateFormatterLocal stringFromDate:startMin];
-    NSString *startMaxString = [dateFormatterLocal stringFromDate:startMax];
     
-    NSURL *JSONURLString = [NSURL URLWithString:[NSString stringWithFormat:@"http://www.google.com/calendar/feeds/mg877fp19824mj30g497frm74o@group.calendar.google.com/public/embed?ctz=America%%2FLos_Angeles&start-min=%@T00%%3A00%%3A00-08%%3A00&start-max=%@T00%%3A00%%3A00-08%%3A00&singleevents=true&max-results=720&alt=json", startMinString, startMaxString]];
+    NSDate *todaysDate = NSDate.date;
+    NSString *startMinString = [dateFormatterLocal stringFromDate:todaysDate];
+    NSString *startMaxString = [dateFormatterLocal stringFromDate:[todaysDate dateByAddingTimeInterval:60*60*24*7]];
+
+    NSURL *scheduleURL = [NSURL URLWithString:[NSString stringWithFormat:@"http://%@/schedule?from=%@&to=%@", SERVER_HOST, startMinString, startMaxString]];
     
-    NSURLRequest *urlRequest = [NSURLRequest requestWithURL:JSONURLString];
+    [self reloadScheduleWithURL:scheduleURL];
+}
+
+- (void)reloadScheduleFromGoogle
+{
+    self.schedule = [[Schedule alloc] init];
+    self.schedule.days = [NSArray array];
+    
+    NSDateFormatter *dateFormatterLocal = [[NSDateFormatter alloc] init];
+    [dateFormatterLocal setTimeZone:NSTimeZone.localTimeZone];
+    [dateFormatterLocal setDateFormat:@"yyyy-MM-dd"];
+    
+    NSDate *todaysDate = NSDate.date;
+    NSString *startMinString = [dateFormatterLocal stringFromDate:todaysDate];
+    NSString *startMaxString = [dateFormatterLocal stringFromDate:[todaysDate dateByAddingTimeInterval:60*60*24*7]];
+
+    NSURL *scheduleURL = [NSURL URLWithString:[NSString stringWithFormat:@"http://www.google.com/calendar/feeds/mg877fp19824mj30g497frm74o@group.calendar.google.com/public/embed?ctz=America%%2FLos_Angeles&start-min=%@T00%%3A00%%3A00-08%%3A00&start-max=%@T00%%3A00%%3A00-08%%3A00&singleevents=true&max-results=720&alt=json", startMinString, startMaxString]];
+    
+    [self reloadScheduleWithURL:scheduleURL];
+}
+    
+- (void)reloadScheduleWithURL:(NSURL*)scheduleURL
+{
+    NSURLRequest *urlRequest = [NSURLRequest requestWithURL:scheduleURL];
     [NSURLConnection sendAsynchronousRequest:urlRequest queue:NSOperationQueue.mainQueue
     completionHandler:^(NSURLResponse *response, NSData *data, NSError *error)
     {
         NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse*)response;
-        if([httpResponse respondsToSelector:@selector(statusCode)] && httpResponse.statusCode == 200)
+        if(!error && [httpResponse respondsToSelector:@selector(statusCode)] && httpResponse.statusCode == 200)
         {
+            NSMutableArray *schedule = [NSMutableArray array];
+            
             NSDictionary *JSON = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
             NSArray *showEntries = JSON[@"feed"][@"entry"];
             
@@ -389,13 +423,13 @@
             }
             
             self.schedule.days = [NSArray arrayWithArray:schedule];
+            [NSNotificationCenter.defaultCenter postNotificationName:@"ScheduleDidUpdate" object:self.schedule userInfo:nil];
         }
-        else
+        else if([scheduleURL.host isEqualToString:SERVER_HOST])
         {
-            self.schedule.days = [NSArray array];
+            [self reloadScheduleFromGoogle];
         }
         
-        [NSNotificationCenter.defaultCenter postNotificationName:@"ScheduleDidUpdate" object:self.schedule userInfo:nil];
     }];
 }
 
