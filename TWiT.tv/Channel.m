@@ -290,7 +290,8 @@
     NSString *startMinString = [dateFormatterLocal stringFromDate:todaysDate];
     NSString *startMaxString = [dateFormatterLocal stringFromDate:[todaysDate dateByAddingTimeInterval:60*60*24*7]];
 
-    NSURL *scheduleURL = [NSURL URLWithString:[NSString stringWithFormat:@"http://%@/schedule?from=%@&to=%@", SERVER_HOST, startMinString, startMaxString]];
+    NSString *scheduleString = [NSString stringWithFormat:@"https://%@/schedule?from=%@&to=%@", SERVER_HOST, startMinString, startMaxString];
+    NSURL *scheduleURL = [NSURL URLWithString:scheduleString];
     
     [self reloadScheduleWithURL:scheduleURL];
 }
@@ -325,6 +326,15 @@
             NSMutableArray *schedule = [NSMutableArray array];
             
             NSDictionary *JSON = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+            
+            BOOL success = [JSON[@"success"] boolValue];
+            
+            if(!success && [scheduleURL.host isEqualToString:SERVER_HOST])
+            {
+                [self reloadScheduleFromGoogle];
+                return;
+            }
+            
             NSArray *showEntries = JSON[@"feed"][@"entry"];
             
             NSCalendar *calendar = NSCalendar.currentCalendar;
