@@ -13,6 +13,7 @@
 #import "TWNavigationController.h"
 
 #import "TWMainViewController.h"
+#import "TWWatchListController.h"
 #import "TWStreamViewController.h"
 #import "TWEnclosureViewController.h"
 
@@ -314,18 +315,18 @@
         }
         else
         {
-            if(!self.showSelectedView)
-                self.showSelectedView = [[UIImageView alloc] init];
-            
             CGRect frame = [showCell frameForColumn:column];
             frame = [showCell convertRect:frame toView:self.tableView];
             frame = CGRectInset(frame, -11, -11);
             frame.origin.y += 1;
+            
+            self.showSelectedView = self.showSelectedView ?: [[UIImageView alloc] init];
             self.showSelectedView.frame = frame;
             self.showSelectedView.tag = index;
             
-            TWMainViewController *episodesController = (TWMainViewController*)masterController.topViewController;
-            [episodesController performSegueWithIdentifier:@"showDetail" sender:showIndexPath];
+            TWWatchListController *episodesController = (TWWatchListController*)masterController.topViewController;
+            Show *selectedShow = [self.fetchedShowsController objectAtIndexPath:showIndexPath];
+            [episodesController performSegueWithIdentifier:@"showDetail" sender:selectedShow];
         }
     }
 }
