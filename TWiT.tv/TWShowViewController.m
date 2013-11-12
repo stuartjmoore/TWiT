@@ -10,7 +10,7 @@
 
 #import "TWSplitViewContainer.h"
 #import "TWNavigationController.h"
-#import "TWMainViewController.h"
+#import "TWShowsViewController.h"
 #import "TWShowViewController.h"
 #import "TWEpisodeViewController.h"
 #import "TWEnclosureViewController.h"
@@ -473,9 +473,6 @@
             [self.splitViewContainer hideModalFlyout];
             [self.tableView deselectRowAtIndexPath:self.tableView.indexPathForSelectedRow animated:NO];
         }
-        
-        TWMainViewController *showsViewController = (TWMainViewController*)self.splitViewContainer.detailController.topViewController;
-        showsViewController.showSelectedView = nil;
     }
     
     [NSNotificationCenter.defaultCenter removeObserver:self name:@"enclosureDownloadDidReceiveData" object:nil];

@@ -445,13 +445,16 @@
             }
             
             self.schedule.days = [NSArray arrayWithArray:schedule];
-            [NSNotificationCenter.defaultCenter postNotificationName:@"ScheduleDidUpdate" object:self.schedule userInfo:nil];
+            [NSNotificationCenter.defaultCenter postNotificationName:@"ScheduleDidUpdate" object:self.schedule userInfo:@{@"scheduleDidSucceed": @YES}];
         }
         else if([scheduleURL.host isEqualToString:SERVER_HOST])
         {
             [self reloadScheduleFromGoogle];
         }
-        
+        else
+        {
+            [NSNotificationCenter.defaultCenter postNotificationName:@"ScheduleDidUpdate" object:self.schedule userInfo:@{@"scheduleDidSucceed": @NO}];
+        }
     }];
 }
 

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1703C3201832A4D0006E796D /* TWLargeHeaderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1703C31F1832A4D0006E796D /* TWLargeHeaderCell.m */; };
 		170453B616B9B2E20041230D /* TWStreamViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 170453B516B9B2E20041230D /* TWStreamViewController.m */; };
 		170561E2169AD61800E59244 /* NSDate+comparisons.m in Sources */ = {isa = PBXBuildFile; fileRef = 170561E1169AD61800E59244 /* NSDate+comparisons.m */; };
 		170561F0169AFD2F00E59244 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 170561EF169AFD2F00E59244 /* MessageUI.framework */; };
@@ -46,6 +47,8 @@
 		17B07F1016B59B2600B42CBF /* chatRoom.css in Resources */ = {isa = PBXBuildFile; fileRef = 17B07F0F16B59B2600B42CBF /* chatRoom.css */; };
 		17B07F1416B5BFAE00B42CBF /* UIAlertView+block.m in Sources */ = {isa = PBXBuildFile; fileRef = 17B07F1316B5BFAE00B42CBF /* UIAlertView+block.m */; };
 		17B745D7182FF26900A3C75E /* TWWatchListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 17B745D6182FF26900A3C75E /* TWWatchListController.m */; };
+		17B745DA182FFBE200A3C75E /* TWShowsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 17B745D9182FFBE200A3C75E /* TWShowsViewController.m */; };
+		17B745DD183000B600A3C75E /* TWShowCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 17B745DC183000B600A3C75E /* TWShowCell.m */; };
 		17C293D917F7167400907CDD /* kh600.1380254400.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 17C293D817F7167400907CDD /* kh600.1380254400.jpg */; };
 		17C293DB17F7167800907CDD /* aaa600.1380254400.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 17C293DA17F7167800907CDD /* aaa600.1380254400.jpg */; };
 		17C43B391696DFD60066C79F /* byb600.1353196800.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 17C43AE91696DFD60066C79F /* byb600.1353196800.jpg */; };
@@ -118,6 +121,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1703C31E1832A4D0006E796D /* TWLargeHeaderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWLargeHeaderCell.h; sourceTree = "<group>"; };
+		1703C31F1832A4D0006E796D /* TWLargeHeaderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWLargeHeaderCell.m; sourceTree = "<group>"; };
 		170453B516B9B2E20041230D /* TWStreamViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWStreamViewController.m; sourceTree = "<group>"; };
 		170561E0169AD61800E59244 /* NSDate+comparisons.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+comparisons.h"; sourceTree = "<group>"; };
 		170561E1169AD61800E59244 /* NSDate+comparisons.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+comparisons.m"; sourceTree = "<group>"; };
@@ -183,6 +188,10 @@
 		17B07F1316B5BFAE00B42CBF /* UIAlertView+block.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIAlertView+block.m"; sourceTree = "<group>"; };
 		17B745D5182FF26900A3C75E /* TWWatchListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWWatchListController.h; sourceTree = "<group>"; };
 		17B745D6182FF26900A3C75E /* TWWatchListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWWatchListController.m; sourceTree = "<group>"; };
+		17B745D8182FFBE200A3C75E /* TWShowsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWShowsViewController.h; sourceTree = "<group>"; };
+		17B745D9182FFBE200A3C75E /* TWShowsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWShowsViewController.m; sourceTree = "<group>"; };
+		17B745DB183000B600A3C75E /* TWShowCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWShowCell.h; sourceTree = "<group>"; };
+		17B745DC183000B600A3C75E /* TWShowCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWShowCell.m; sourceTree = "<group>"; };
 		17C293D817F7167400907CDD /* kh600.1380254400.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = kh600.1380254400.jpg; sourceTree = "<group>"; };
 		17C293DA17F7167800907CDD /* aaa600.1380254400.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = aaa600.1380254400.jpg; sourceTree = "<group>"; };
 		17C43AE91696DFD60066C79F /* byb600.1353196800.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = byb600.1353196800.jpg; sourceTree = "<group>"; };
@@ -446,6 +455,10 @@
 			children = (
 				170E02A6169324480072CFA6 /* TWEpisodeCell.h */,
 				170E02A7169324480072CFA6 /* TWEpisodeCell.m */,
+				17B745DB183000B600A3C75E /* TWShowCell.h */,
+				17B745DC183000B600A3C75E /* TWShowCell.m */,
+				1703C31E1832A4D0006E796D /* TWLargeHeaderCell.h */,
+				1703C31F1832A4D0006E796D /* TWLargeHeaderCell.m */,
 				170E02A9169328910072CFA6 /* TWShowsCell.h */,
 				170E02AA169328910072CFA6 /* TWShowsCell.m */,
 				17C5A01E169EC7FF0043A781 /* TWScheduleCell.h */,
@@ -506,6 +519,8 @@
 				170BA15A1691D0FC0022FE4D /* TWMainViewController.m */,
 				17B745D5182FF26900A3C75E /* TWWatchListController.h */,
 				17B745D6182FF26900A3C75E /* TWWatchListController.m */,
+				17B745D8182FFBE200A3C75E /* TWShowsViewController.h */,
+				17B745D9182FFBE200A3C75E /* TWShowsViewController.m */,
 				17AFF027169462EA0053A33C /* TWShowViewController.h */,
 				17AFF028169462EA0053A33C /* TWShowViewController.m */,
 				170B475E16A6A9C900F7C3B5 /* TWShowInfoViewController.h */,
@@ -693,6 +708,7 @@
 				176AF17D1695CC3300A35BFC /* Channel.m in Sources */,
 				176AF1851695DDB100A35BFC /* XMLReader.m in Sources */,
 				1733C8B317E7CF610090C97A /* Feed.m in Sources */,
+				17B745DD183000B600A3C75E /* TWShowCell.m in Sources */,
 				176AF18E1695DFE900A35BFC /* Enclosure.m in Sources */,
 				176AF1911695E0DF00A35BFC /* Poster.m in Sources */,
 				176380A716960E280060D076 /* Stream.m in Sources */,
@@ -700,6 +716,8 @@
 				17C43B931696FC220066C79F /* NSManagedObjectContext+ConvenienceMethods.m in Sources */,
 				170561E2169AD61800E59244 /* NSDate+comparisons.m in Sources */,
 				17F668D1169B34FC00525F65 /* TWScheduleViewController.m in Sources */,
+				1703C3201832A4D0006E796D /* TWLargeHeaderCell.m in Sources */,
+				17B745DA182FFBE200A3C75E /* TWShowsViewController.m in Sources */,
 				179D814A169D4A1500B54E1B /* Schedule.m in Sources */,
 				175ECB0B169DF54F0013DB90 /* TWSplitViewContainer.m in Sources */,
 				17C5A020169EC7FF0043A781 /* TWScheduleCell.m in Sources */,

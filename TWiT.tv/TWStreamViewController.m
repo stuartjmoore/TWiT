@@ -290,14 +290,15 @@
             }
         }
         
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Sorry" message:@"Unable to load the live stream." delegate:nil cancelButtonTitle:nil otherButtonTitles:@"Okay", nil];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Sorry" message:@"Unable to load the live stream." delegate:self
+                                              cancelButtonTitle:nil otherButtonTitles:@"Okay", nil];
         [alert show];
     }
 }
 
 #pragma mark - gesture delegate
 
-- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch
+- (BOOL)gestureRecognizer:(UIGestureRecognizer*)gestureRecognizer shouldReceiveTouch:(UITouch*)touch
 {
     return YES;
 }
@@ -457,25 +458,32 @@
 
 - (void)alertView:(UIAlertView*)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    if(buttonIndex == 0)
-        return;
-    
-    NSString *chatNick = @"";
-    
-    if(![[[alertView textFieldAtIndex:0] text] isEqualToString:@""])
+    if([alertView.title isEqualToString:@"TWiT Chat Room"])
     {
-        chatNick = [[alertView textFieldAtIndex:0] text];
-        [NSUserDefaults.standardUserDefaults setObject:chatNick forKey:@"chat-nick"];
-        [NSUserDefaults.standardUserDefaults synchronize];
+        if(buttonIndex == 0)
+            return;
+        
+        NSString *chatNick = @"";
+        
+        if(![[[alertView textFieldAtIndex:0] text] isEqualToString:@""])
+        {
+            chatNick = [[alertView textFieldAtIndex:0] text];
+            [NSUserDefaults.standardUserDefaults setObject:chatNick forKey:@"chat-nick"];
+            [NSUserDefaults.standardUserDefaults synchronize];
+        }
+        else
+        {
+            chatNick = [NSString stringWithFormat:@"iOS_%d", arc4random()%9999];
+        }
+        
+        [self hideControls:YES];
+        [self.chatViewController loadWithNickname:chatNick];
+        [self hideChatRoom:NO];
     }
-    else
+    else if([alertView.title isEqualToString:@"Sorry"])
     {
-        chatNick = [NSString stringWithFormat:@"iOS_%d", arc4random()%9999];
+        [self close:nil];
     }
-    
-    [self hideControls:YES];
-    [self.chatViewController loadWithNickname:chatNick];
-    [self hideChatRoom:NO];
 }
 
 - (void)hideChatRoom:(BOOL)hide
@@ -556,13 +564,20 @@
 
 - (IBAction)close:(UIBarButtonItem*)sender
 {
-    if([self.presentingViewController isKindOfClass:TWSplitViewContainer.class])
-        self.splitViewContainer = (TWSplitViewContainer*)self.presentingViewController;
-    
-    [self dismissViewControllerAnimated:YES completion:^{
-        if(self.delegate.player.playbackState == MPMoviePlaybackStatePlaying)
-            [self.splitViewContainer showPlaybar];
-    }];
+    if(UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPhone)
+    {
+        [self.navigationController popToRootViewControllerAnimated:YES];
+    }
+    else
+    {
+        if([self.presentingViewController isKindOfClass:TWSplitViewContainer.class])
+            self.splitViewContainer = (TWSplitViewContainer*)self.presentingViewController;
+        
+        [self dismissViewControllerAnimated:YES completion:^{
+            if(self.delegate.player.playbackState == MPMoviePlaybackStatePlaying)
+                [self.splitViewContainer showPlaybar];
+        }];
+    }
 }
 
 - (void)viewWillDisappear:(BOOL)animated

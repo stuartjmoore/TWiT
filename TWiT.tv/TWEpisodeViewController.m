@@ -11,6 +11,7 @@
 #import "TWAppDelegate.h"
 
 #import "TWSplitViewContainer.h"
+#import "TWNavigationContainer.h"
 #import "TWNavigationController.h"
 #import "TWEpisodeViewController.h"
 #import "TWEnclosureViewController.h"
@@ -161,15 +162,17 @@
 }
 - (void)listenPressed:(TWSegmentedButton*)sender
 {
+    Enclosure *enclosure = [self.episode enclosureForType:TWTypeAudio andQuality:TWQualityAudio];
+    TWAppDelegate *delegate = (TWAppDelegate*)UIApplication.sharedApplication.delegate;
+    delegate.nowPlaying = enclosure;
+    
     if(UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPhone)
     {
-        [self performSegueWithIdentifier:@"playerDetail" sender:sender.listenButton];
+        TWNavigationController *navigationController = (TWNavigationController*)self.navigationController;
+        [navigationController.navigationContainer showPlaybar];
     }
     else
     {
-        Enclosure *enclosure = [self.episode enclosureForType:TWTypeAudio andQuality:TWQualityAudio];
-        TWAppDelegate *delegate = (TWAppDelegate*)UIApplication.sharedApplication.delegate;
-        delegate.nowPlaying = enclosure;
         [self.splitViewContainer showPlaybar];
     }
 }

@@ -491,30 +491,40 @@
 
 - (IBAction)close:(UIBarButtonItem*)sender
 {
-    if([self.presentingViewController isKindOfClass:TWSplitViewContainer.class])
-        self.splitViewContainer = (TWSplitViewContainer*)self.presentingViewController;
-    
-    [self dismissViewControllerAnimated:YES completion:^{
-        if(self.delegate.player.playbackState == MPMoviePlaybackStatePlaying)
-            [self.splitViewContainer showPlaybar];
-    }];
+    if(UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPhone)
+    {
+        [self.navigationController popToRootViewControllerAnimated:YES];
+    }
+    else
+    {
+        if([self.presentingViewController isKindOfClass:TWSplitViewContainer.class])
+            self.splitViewContainer = (TWSplitViewContainer*)self.presentingViewController;
+        
+        [self dismissViewControllerAnimated:YES completion:^{
+            if(self.delegate.player.playbackState == MPMoviePlaybackStatePlaying)
+                [self.splitViewContainer showPlaybar];
+        }];
+    }
 }
 
 - (void)viewWillDisappear:(BOOL)animated
 {
     self.navigationController.interactivePopGestureRecognizer.enabled = YES;
     
-    [NSNotificationCenter.defaultCenter addObserver:self.enclosure.episode
-                                           selector:@selector(updatePoster:)
-                                               name:MPMoviePlayerThumbnailImageRequestDidFinishNotification
-                                             object:nil];
-    [self.delegate.player requestThumbnailImagesAtTimes:@[@(self.delegate.player.currentPlaybackTime)] timeOption:MPMovieTimeOptionNearestKeyFrame];
-    
-    self.enclosure.episode.lastTimecode = self.delegate.player.currentPlaybackTime;
-    
-    if(self.delegate.player.currentPlaybackTime / self.delegate.player.duration >= 0.85f)
-        self.enclosure.episode.watched = YES;
+    if(self.delegate.player.currentPlaybackTime > 0)
+    {
+        [NSNotificationCenter.defaultCenter addObserver:self.enclosure.episode
+                                               selector:@selector(updatePoster:)
+                                                   name:MPMoviePlayerThumbnailImageRequestDidFinishNotification
+                                                 object:nil];
+        [self.delegate.player requestThumbnailImagesAtTimes:@[@(self.delegate.player.currentPlaybackTime)] timeOption:MPMovieTimeOptionNearestKeyFrame];
 
+        self.enclosure.episode.lastTimecode = self.delegate.player.currentPlaybackTime;
+        
+        if(self.delegate.player.currentPlaybackTime / self.delegate.player.duration >= 0.85f)
+            self.enclosure.episode.watched = YES;
+    }
+    
     if(UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPhone)
     {
         self.navigationController.navigationBar.barStyle = UIBarStyleDefault;

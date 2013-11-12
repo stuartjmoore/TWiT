@@ -11,6 +11,8 @@
 #import "TWNavigationContainer.h"
 #import "TWNavigationController.h"
 #import "TWMainViewController.h"
+#import "TWShowsViewController.h"
+#import "TWWatchListController.h"
 #import "TWPlaybarViewController.h"
 
 #import "NSManagedObjectContext+ConvenienceMethods.h"
@@ -94,11 +96,11 @@
         TWSplitViewContainer *splitViewContainer = (TWSplitViewContainer*)self.window.rootViewController;
         splitViewContainer.view = splitViewContainer.view;
         
-        TWMainViewController *episodesController = (TWMainViewController*)splitViewContainer.masterController.topViewController;
+        TWWatchListController *episodesController = (TWWatchListController*)splitViewContainer.masterController.topViewController;
         episodesController.managedObjectContext = self.managedObjectContext;
         episodesController.channel = self.channel;
         
-        TWMainViewController *showsController = (TWMainViewController*)splitViewContainer.detailController.topViewController;
+        TWShowsViewController *showsController = (TWShowsViewController*)splitViewContainer.detailController.topViewController;
         showsController.managedObjectContext = self.managedObjectContext;
         showsController.channel = self.channel;
     }
@@ -142,7 +144,7 @@
     {
         TWSplitViewContainer *splitViewContainer = (TWSplitViewContainer*)self.window.rootViewController;
         UINavigationController *detailController = splitViewContainer.detailController;
-        TWMainViewController *showsController = (TWMainViewController*)detailController.topViewController;
+        TWShowsViewController *showsController = (TWShowsViewController*)detailController.topViewController;
         
         if([showsController respondsToSelector:@selector(redrawSchedule:)])
             [showsController redrawSchedule:nil];

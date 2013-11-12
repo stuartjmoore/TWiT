@@ -10,7 +10,8 @@
 
 #import "TWAppDelegate.h"
 #import "TWSplitViewContainer.h"
-#import "TWMainViewController.h"
+#import "TWShowsViewController.h"
+#import "TWWatchListController.h"
 #import "TWEpisodeViewController.h"
 #import "TWPlaybarViewController.h"
 
@@ -24,13 +25,13 @@
     if([segue.identifier isEqualToString:@"masterEmbed"])
     {
         _masterController = segue.destinationViewController;
-        TWMainViewController *episodesController = (TWMainViewController*)self.masterController.topViewController;
+        TWWatchListController *episodesController = (TWWatchListController*)self.masterController.topViewController;
         episodesController.splitViewContainer = self;
     }
     else if([segue.identifier isEqualToString:@"detailEmbed"])
     {
         _detailController = segue.destinationViewController;
-        TWMainViewController *showsController = (TWMainViewController*)self.detailController.topViewController;
+        TWShowsViewController *showsController = (TWShowsViewController*)self.detailController.topViewController;
         showsController.splitViewContainer = self;
     }
     else if([segue.identifier isEqualToString:@"modalEmbed"])
@@ -58,7 +59,7 @@
     CGFloat height = self.playbarContainer.frame.size.height + 4 + 4;
     
     UITableViewController *episodesTableViewController = (UITableViewController*)self.masterController.topViewController;
-    UITableViewController *showsTableViewController = (UITableViewController*)self.detailController.topViewController;
+    UICollectionViewController *showsTableViewController = (UICollectionViewController*)self.detailController.topViewController;
     
     
     UIEdgeInsets insets = episodesTableViewController.tableView.contentInset;
@@ -70,13 +71,13 @@
     episodesTableViewController.tableView.scrollIndicatorInsets = insets;
     
     
-    insets = showsTableViewController.tableView.contentInset;
+    insets = showsTableViewController.collectionView.contentInset;
     insets.bottom = height;
-    showsTableViewController.tableView.contentInset = insets;
+    showsTableViewController.collectionView.contentInset = insets;
     
-    insets = showsTableViewController.tableView.scrollIndicatorInsets;
+    insets = showsTableViewController.collectionView.scrollIndicatorInsets;
     insets.bottom = height;
-    showsTableViewController.tableView.scrollIndicatorInsets = insets;
+    showsTableViewController.collectionView.scrollIndicatorInsets = insets;
     
     
     CGRect modalFrame = self.modalFlyout.frame;
@@ -105,7 +106,7 @@
     CGFloat height = 0;
     
     UITableViewController *episodesTableViewController = (UITableViewController*)self.masterController.topViewController;
-    UITableViewController *showsTableViewController = (UITableViewController*)self.detailController.topViewController;
+    UICollectionViewController *showsTableViewController = (UICollectionViewController*)self.detailController.topViewController;
     
     
     UIEdgeInsets insets = episodesTableViewController.tableView.contentInset;
@@ -117,13 +118,13 @@
     episodesTableViewController.tableView.scrollIndicatorInsets = insets;
     
     
-    insets = showsTableViewController.tableView.contentInset;
+    insets = showsTableViewController.collectionView.contentInset;
     insets.bottom = height;
-    showsTableViewController.tableView.contentInset = insets;
+    showsTableViewController.collectionView.contentInset = insets;
     
-    insets = showsTableViewController.tableView.scrollIndicatorInsets;
+    insets = showsTableViewController.collectionView.scrollIndicatorInsets;
     insets.bottom = height;
-    showsTableViewController.tableView.scrollIndicatorInsets = insets;
+    showsTableViewController.collectionView.scrollIndicatorInsets = insets;
     
     
     CGRect modalFrame = self.modalFlyout.frame;
