@@ -50,29 +50,16 @@
 {
     [super viewWillAppear:animated];
     [self redrawSchedule:nil];
-    
-    if(UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPhone)
-    {
-        UIImage *backIcon = [[UIImage imageNamed:@"navbar-back-twit-icon"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-        self.navigationItem.backBarButtonItem = [UIBarButtonItem.alloc initWithImage:backIcon
-                                                                               style:UIBarButtonItemStyleBordered
-                                                                              target:nil
-                                                                              action:nil];
-    }
 }
 
 #pragma mark - Actions
 
 - (void)collectionView:(UICollectionView*)collectionView didSelectItemAtIndexPath:(NSIndexPath*)indexPath
 {
-    Show *selectedShow = [self.fetchedShowsController objectAtIndexPath:indexPath];
-    
-    if(UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPhone)
+    if(UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPad)
     {
-        [self performSegueWithIdentifier:@"showDetail" sender:selectedShow];
-    }
-    else
-    {
+        Show *selectedShow = [self.fetchedShowsController objectAtIndexPath:indexPath];
+        
         TWSplitViewContainer *splitViewContainer = (TWSplitViewContainer*)self.view.window.rootViewController;
         UINavigationController *masterController = (UINavigationController*)splitViewContainer.masterController;
         
@@ -390,13 +377,9 @@
 {
     if([segue.identifier isEqualToString:@"showDetail"])
     {
-        NSIndexPath *indexPath = (NSIndexPath*)sender;
+        NSIndexPath *indexPath = self.collectionView.indexPathsForSelectedItems.lastObject;
         Show *show = [self.fetchedShowsController objectAtIndexPath:indexPath];
         [show updateEpisodes];
-        
-        if(UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPad)
-            [segue.destinationViewController setSplitViewContainer:self.splitViewContainer];
-        
         [segue.destinationViewController setShow:show];
     }
     else if([segue.identifier isEqualToString:@"scheduleView"])

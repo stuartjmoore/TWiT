@@ -10,6 +10,7 @@
 
 #import "TWWatchListController.h"
 #import "TWSplitViewContainer.h"
+#import "TWShowsViewController.h"
 #import "TWEpisodeViewController.h"
 #import "TWEnclosureViewController.h"
 #import "TWStreamViewController.h"
@@ -631,6 +632,12 @@
         Episode *episode = [self.fetchedEpisodesController objectAtIndexPath:indexPath];
         
         [segue.destinationViewController setEpisode:episode];
+    }
+    else if([segue.identifier isEqualToString:@"showsDetail"])
+    {
+        TWShowsViewController *showsController = segue.destinationViewController;
+        showsController.managedObjectContext = self.managedObjectContext;
+        showsController.channel = self.channel;
     }
     else if([segue.identifier isEqualToString:@"showDetail"])
     {

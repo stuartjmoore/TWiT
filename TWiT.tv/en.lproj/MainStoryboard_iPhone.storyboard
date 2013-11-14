@@ -378,6 +378,11 @@
                             </subviews>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         </view>
+                        <barButtonItem key="rightBarButtonItem" title="Shows" id="6Ap-Ev-Qe8">
+                            <connections>
+                                <segue destination="CQa-hr-Ofb" kind="push" identifier="showsDetail" id="bGo-ez-aeZ"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="blurground" destination="fOd-PG-5Or" id="KzJ-WF-33Y"/>
@@ -714,7 +719,59 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="17" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="459" y="64"/>
+            <point key="canvasLocation" x="518" y="948"/>
+        </scene>
+        <!--Shows View Controller - Shows-->
+        <scene sceneID="ViV-b4-8i8">
+            <objects>
+                <collectionViewController autoresizesArchivedViewToFullSize="NO" id="CQa-hr-Ofb" customClass="TWShowsViewController" sceneMemberID="viewController">
+                    <collectionView key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" id="2bQ-Id-hth">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="5" minimumInteritemSpacing="5" id="1nP-Rm-pfT">
+                            <size key="itemSize" width="100" height="100"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="5" minY="5" maxX="5" maxY="5"/>
+                        </collectionViewFlowLayout>
+                        <cells>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="showCell" id="4ec-28-0TX" customClass="TWShowCell">
+                                <rect key="frame" x="5" y="69" width="100" height="100"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="pEV-MF-mO3">
+                                            <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                        </imageView>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="pEV-MF-mO3" secondAttribute="trailing" id="Lfy-qw-1Au"/>
+                                    <constraint firstItem="pEV-MF-mO3" firstAttribute="leading" secondItem="4ec-28-0TX" secondAttribute="leading" id="a5d-BR-mwT"/>
+                                    <constraint firstAttribute="bottom" secondItem="pEV-MF-mO3" secondAttribute="bottom" id="l3e-DK-ZRl"/>
+                                    <constraint firstItem="pEV-MF-mO3" firstAttribute="top" secondItem="4ec-28-0TX" secondAttribute="top" id="vhR-T7-2BK"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="albumView" destination="pEV-MF-mO3" id="lAP-MG-nc1"/>
+                                    <segue destination="Gce-uE-xEB" kind="push" identifier="showDetail" id="Ok0-A6-xte"/>
+                                </connections>
+                            </collectionViewCell>
+                        </cells>
+                        <connections>
+                            <outlet property="dataSource" destination="CQa-hr-Ofb" id="w5P-qG-92P"/>
+                            <outlet property="delegate" destination="CQa-hr-Ofb" id="cii-Ib-kQ5"/>
+                        </connections>
+                    </collectionView>
+                    <navigationItem key="navigationItem" title="Shows" id="X5q-iB-DLe"/>
+                </collectionViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ZJc-32-gIg" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="459" y="249"/>
         </scene>
         <!--Episode View Controller - Detail-->
         <scene sceneID="24">
@@ -998,7 +1055,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <view key="tableHeaderView" contentMode="scaleToFill" id="8Yg-Gf-H26" userLabel="Header">
-                            <rect key="frame" x="0.0" y="0.0" width="320" height="155"/>
+                            <rect key="frame" x="0.0" y="64" width="320" height="155"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kLx-nB-Fvb" userLabel="headerView">
@@ -1176,7 +1233,7 @@
                         </view>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="episodeCell" id="0zh-Fg-sgv" customClass="TWEpisodeCell">
-                                <rect key="frame" x="0.0" y="177" width="320" height="65"/>
+                                <rect key="frame" x="0.0" y="241" width="320" height="65"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="0zh-Fg-sgv" id="GAH-MM-yQA">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="65"/>
@@ -2117,9 +2174,10 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
+        <segue reference="7Bv-Py-0mH"/>
         <segue reference="mPj-Zf-Rc7"/>
         <segue reference="Sfx-Cl-ofB"/>
-        <segue reference="sZl-03-BeM"/>
-        <segue reference="IE0-Rf-dMp"/>
+        <segue reference="Ok0-A6-xte"/>
+        <segue reference="OfB-Q1-3Dp"/>
     </inferredMetricsTieBreakers>
 </document>
