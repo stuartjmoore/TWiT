@@ -10,7 +10,6 @@
 #import "TWSplitViewContainer.h"
 #import "TWNavigationContainer.h"
 #import "TWNavigationController.h"
-#import "TWMainViewController.h"
 #import "TWShowsViewController.h"
 #import "TWWatchListController.h"
 #import "TWPlaybarViewController.h"
@@ -109,7 +108,7 @@
         TWNavigationContainer *navigationContainer = (TWNavigationContainer*)self.window.rootViewController;
         navigationContainer.view = navigationContainer.view;
       
-        TWMainViewController *mainController = (TWMainViewController*)navigationContainer.masterController.topViewController;
+        TWWatchListController *mainController = (TWWatchListController*)navigationContainer.masterController.topViewController;
         mainController.managedObjectContext = self.managedObjectContext;
         mainController.channel = self.channel;
     }
@@ -153,7 +152,7 @@
     {
         TWNavigationContainer *navigationContainer = (TWNavigationContainer*)self.window.rootViewController;
         TWNavigationController *navigationController = (TWNavigationController*)navigationContainer.masterController;
-        TWMainViewController *controller = (TWMainViewController*)navigationController.topViewController;
+        TWWatchListController *controller = (TWWatchListController*)navigationController.topViewController;
         
         if([controller respondsToSelector:@selector(redrawSchedule:)])
             [controller redrawSchedule:nil];
@@ -249,7 +248,7 @@
         TWNavigationController *navigationController = (TWNavigationController*)navigationContainer.masterController;
         [navigationController popToRootViewControllerAnimated:NO];
         
-        TWMainViewController *controller = (TWMainViewController*)navigationController.topViewController;
+        TWWatchListController *controller = (TWWatchListController*)navigationController.topViewController;
         [controller performSegueWithIdentifier:@"liveVideoDetail" sender:nil];
     }
 }
@@ -283,7 +282,7 @@
         TWNavigationController *navigationController = (TWNavigationController*)navigationContainer.masterController;
         [navigationController popToRootViewControllerAnimated:NO];
         
-        TWMainViewController *controller = (TWMainViewController*)navigationController.topViewController;
+        TWWatchListController *controller = (TWWatchListController*)navigationController.topViewController;
         [controller performSegueWithIdentifier:@"liveVideoDetail" sender:nil];
     }
     

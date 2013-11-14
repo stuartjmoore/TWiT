@@ -24,4 +24,6 @@
 @property (weak, nonatomic) IBOutlet UIImageView *livePosterView;
 @property (weak, nonatomic) IBOutlet UITableView *scheduleTable;
 
+- (void)redrawSchedule:(NSNotification*)notification;
+
 @end

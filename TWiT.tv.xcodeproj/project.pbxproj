@@ -18,7 +18,6 @@
 		17056202169B192D00E59244 /* tsh-poster.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 170561FE169B192A00E59244 /* tsh-poster.jpg */; };
 		17056203169B192D00E59244 /* twil-poster.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 170561FF169B192C00E59244 /* twil-poster.jpg */; };
 		170B476016A6A9C900F7C3B5 /* TWShowInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 170B475F16A6A9C900F7C3B5 /* TWShowInfoViewController.m */; };
-		170BA15B1691D0FC0022FE4D /* TWMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 170BA15A1691D0FC0022FE4D /* TWMainViewController.m */; };
 		170BA15D1691D5E70022FE4D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 170BA15C1691D5E70022FE4D /* QuartzCore.framework */; };
 		170E02A8169324480072CFA6 /* TWEpisodeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 170E02A7169324480072CFA6 /* TWEpisodeCell.m */; };
 		170E02AB169328910072CFA6 /* TWShowsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 170E02AA169328910072CFA6 /* TWShowsCell.m */; };
@@ -135,7 +134,6 @@
 		170561FF169B192C00E59244 /* twil-poster.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "twil-poster.jpg"; sourceTree = "<group>"; };
 		170B475E16A6A9C900F7C3B5 /* TWShowInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWShowInfoViewController.h; sourceTree = "<group>"; };
 		170B475F16A6A9C900F7C3B5 /* TWShowInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWShowInfoViewController.m; sourceTree = "<group>"; };
-		170BA15A1691D0FC0022FE4D /* TWMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWMainViewController.m; sourceTree = "<group>"; };
 		170BA15C1691D5E70022FE4D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		170E02A6169324480072CFA6 /* TWEpisodeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWEpisodeCell.h; sourceTree = "<group>"; };
 		170E02A7169324480072CFA6 /* TWEpisodeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWEpisodeCell.m; sourceTree = "<group>"; };
@@ -267,7 +265,6 @@
 		17E51169168F496E00DCE89C /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
 		17E5116C168F496E00DCE89C /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPad.storyboard; sourceTree = "<group>"; };
 		17E5116F168F496E00DCE89C /* TWiT_tv.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TWiT_tv.xcdatamodel; sourceTree = "<group>"; };
-		17E51171168F496E00DCE89C /* TWMainViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TWMainViewController.h; sourceTree = "<group>"; };
 		17E51174168F496E00DCE89C /* TWEpisodeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TWEpisodeViewController.h; sourceTree = "<group>"; };
 		17E51175168F496E00DCE89C /* TWEpisodeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TWEpisodeViewController.m; sourceTree = "<group>"; };
 		17F668CF169B34FC00525F65 /* TWScheduleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWScheduleViewController.h; sourceTree = "<group>"; };
@@ -515,8 +512,6 @@
 				17CBC39A16B2F76D00F1F9EC /* TWNavigationController.m */,
 				17E51168168F496E00DCE89C /* MainStoryboard_iPhone.storyboard */,
 				17E5116B168F496E00DCE89C /* MainStoryboard_iPad.storyboard */,
-				17E51171168F496E00DCE89C /* TWMainViewController.h */,
-				170BA15A1691D0FC0022FE4D /* TWMainViewController.m */,
 				17B745D5182FF26900A3C75E /* TWWatchListController.h */,
 				17B745D6182FF26900A3C75E /* TWWatchListController.m */,
 				17B745D8182FFBE200A3C75E /* TWShowsViewController.h */,
@@ -699,7 +694,6 @@
 				17E51161168F496E00DCE89C /* TWAppDelegate.m in Sources */,
 				17E51170168F496E00DCE89C /* TWiT_tv.xcdatamodeld in Sources */,
 				17E51176168F496E00DCE89C /* TWEpisodeViewController.m in Sources */,
-				170BA15B1691D0FC0022FE4D /* TWMainViewController.m in Sources */,
 				170E02A8169324480072CFA6 /* TWEpisodeCell.m in Sources */,
 				170E02AB169328910072CFA6 /* TWShowsCell.m in Sources */,
 				17B745D7182FF26900A3C75E /* TWWatchListController.m in Sources */,
