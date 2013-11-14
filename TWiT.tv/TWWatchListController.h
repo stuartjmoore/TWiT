@@ -19,4 +19,9 @@
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (strong, nonatomic) NSFetchedResultsController *fetchedEpisodesController;
 
+@property (weak, nonatomic) IBOutlet UIView *headerView;
+@property (weak, nonatomic) IBOutlet UIToolbar *blurground;
+@property (weak, nonatomic) IBOutlet UIImageView *livePosterView;
+@property (weak, nonatomic) IBOutlet UITableView *scheduleTable;
+
 @end

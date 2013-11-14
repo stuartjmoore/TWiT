@@ -6,18 +6,23 @@
 //  Copyright (c) 2013 Stuart Moore. All rights reserved.
 //
 
+#import "NSDate+comparisons.h"
+
 #import "TWWatchListController.h"
 #import "TWSplitViewContainer.h"
 #import "TWEpisodeViewController.h"
 #import "TWEnclosureViewController.h"
 #import "TWStreamViewController.h"
 
+#import "Schedule.h"
 #import "Channel.h"
 #import "Show.h"
 #import "Episode.h"
 #import "Enclosure.h"
 
 #import "TWEpisodeCell.h"
+
+#define NAVBAR_INSET 64
 
 @interface TWWatchListController ()
 
@@ -28,6 +33,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.blurground.barStyle = UIBarStyleBlack;
+    self.blurground.clipsToBounds = YES;
+    
+    self.headerView.translatesAutoresizingMaskIntoConstraints = YES;
     
     [NSNotificationCenter.defaultCenter addObserver:self
                                            selector:@selector(redrawSchedule:)
@@ -161,7 +171,15 @@
 #pragma mark - Notifications
 
 - (void)redrawSchedule:(NSNotification*)notification
-{/*
+{
+    BOOL didSucceed = [notification.userInfo[@"scheduleDidSucceed"] boolValue];
+    
+    if(notification && !didSucceed)
+    {
+        // TODO: can't load notice.
+        return;
+    }
+    
     if(!self.channel.schedule || self.channel.schedule.days.count == 0)
         return;
     
@@ -170,27 +188,12 @@
     Show *show = currentShow.show ?: self.channel.shows.anyObject;
     self.livePosterView.image = show.poster.image;
     
-    if(UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPad)
-    {
-        self.liveTimeLabel.text = currentShow.until;
-        self.liveTitleLabel.text = currentShow.title;
-        
-        Event *nextShow = [self.channel.schedule showAfterShow:currentShow];
-        self.nextTimeLabel.text = [nextShow untilStringWithPrevious:currentShow];
-        self.nextTitleLabel.text = nextShow.title;
-        
-        self.liveAlbumArtView.image = currentShow.show ? currentShow.show.albumArt.image : [UIImage imageNamed:@"generic.jpg"];
-        self.playButton.percentage = currentShow.percentageElapsed;
-    }
-    else
-    {
-        [self.scheduleTable reloadData];
-    }
+    [self.scheduleTable reloadData];
     
     // TODO: Optimize
     [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(redrawSchedule:) object:nil];
     [self performSelector:@selector(redrawSchedule:) withObject:nil afterDelay:60];
-  */}
+}
 
 - (void)updateProgress:(NSNotification*)notification
 {
@@ -208,7 +211,7 @@
 #pragma mark - Table Delegate
 
 - (void)scrollViewDidScroll:(UIScrollView*)scrollView
-{/*
+{
     UIAccessibilityPostNotification(UIAccessibilityLayoutChangedNotification, nil);
     CGFloat headerHeight = self.tableView.tableHeaderView.frame.size.height;
     
@@ -234,7 +237,7 @@
         scrollerInsets.top = frame.size.height + sectionHeaderHeight + NAVBAR_INSET;
         self.tableView.scrollIndicatorInsets = scrollerInsets;
     }
-*/}
+}
 
 - (NSIndexPath*)tableView:(UITableView*)tableView willSelectRowAtIndexPath:(NSIndexPath*)indexPath
 {
@@ -277,11 +280,11 @@
     if(tableView == self.tableView)
     {
         return self.fetchedEpisodesController.sections.count;
-    }/*
+    }
     else if(tableView == self.scheduleTable)
     {
         return self.channel.schedule.days.count;
-    }*/
+    }
     
     return 0;
 }
@@ -316,11 +319,11 @@
         }
         
         return sectionInfo.numberOfObjects;
-    }/*
+    }
     else if(tableView == self.scheduleTable)
     {
         return [self.channel.schedule.days[section] count];
-    }*/
+    }
     
     return 0;
 }
@@ -335,7 +338,7 @@
     if(tableView == self.tableView)
     {
         return 65;
-    }/*
+    }
     else if(tableView == self.scheduleTable)
     {
         Event *showEvent = self.channel.schedule.days[indexPath.section][indexPath.row];
@@ -344,16 +347,16 @@
             return 0;
         
         return 20;
-    }*/
+    }
     
     return 0;
 }
 
 - (UIView*)tableView:(UITableView*)tableView viewForHeaderInSection:(NSInteger)section
 {
-    /*
     if(tableView == self.scheduleTable)
     {
+        CGFloat width = tableView.frame.size.width;
         Event *showEvent = self.channel.schedule.days[section][0];
      
         UIView *header = [[UIView alloc] initWithFrame:CGRectMake(0, 0, width, 20)];
@@ -377,7 +380,7 @@
         [header addSubview:headerLabel];
         return header;
     }
-    */
+    
     UIView *header = [[UIView alloc] init];
     return header;
 }
@@ -422,7 +425,7 @@
         cell.backgroundColor = UIColor.clearColor;
         
         return cell;
-    }/*
+    }
     else if(tableView == self.scheduleTable)
     {
         NSString *identifier = @"scheduleCell";
@@ -461,7 +464,7 @@
         cell.detailTextLabel.text = showEvent.title;
         
         return cell;
-    }*/
+    }
     
     return nil;
 }
