@@ -16,6 +16,7 @@
     _show = show;
     
     self.albumView.image = show.albumArt.image;
+    self.accessibilityLabel = show.title;
 }
 
 @end

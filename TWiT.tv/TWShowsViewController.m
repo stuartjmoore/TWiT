@@ -23,6 +23,9 @@
 #define NAVBAR_INSET 64
 
 @interface TWShowsViewController ()
+{
+    UIInterfaceOrientation lastOrientation;
+}
 
 @end
 
@@ -126,7 +129,7 @@
 {
     BOOL didSucceed = [notification.userInfo[@"scheduleDidSucceed"] boolValue];
     
-    if(!didSucceed)
+    if(notification && !didSucceed)
     {
         self.headerView.liveTimeLabel.text = @"Sorry";
         self.headerView.liveTitleLabel.text = @"Unable To Load Schedule";
@@ -219,6 +222,64 @@
     return 0;
 }
 
+- (CGSize)collectionView:(UICollectionView*)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath*)indexPath
+{
+    if(UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPad)
+    {
+        if(self.view.frame.size.width <= 448)
+            return CGSizeMake(138, 138);
+        else
+            return CGSizeMake(157, 157);
+    }
+    else
+    {
+        return CGSizeMake(100, 100);
+    }
+}
+
+- (UIEdgeInsets)collectionView:(UICollectionView*)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
+{
+    if(UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPad)
+    {
+        if(self.view.frame.size.width <= 448)
+            return UIEdgeInsetsMake(8, 8, 8, 8);
+        else
+            return UIEdgeInsetsMake(15, 15, 15, 15);
+    }
+    else
+    {
+        return UIEdgeInsetsMake(5, 5, 5, 5);
+    }
+}
+- (CGFloat)collectionView:(UICollectionView*)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section
+{
+    if(UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPad)
+    {
+        if(self.view.frame.size.width <= 448)
+            return 8;
+        else
+            return 15;
+    }
+    else
+    {
+        return 5;
+    }
+}
+- (CGFloat)collectionView:(UICollectionView*)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section
+{
+    if(UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPad)
+    {
+        if(self.view.frame.size.width <= 448)
+            return 9;
+        else
+            return 15;
+    }
+    else
+    {
+        return 5;
+    }
+}
+
 - (UICollectionReusableView*)collectionView:(UICollectionView*)collectionView viewForSupplementaryElementOfKind:(NSString*)kind atIndexPath:(NSIndexPath*)indexPath
 {
     TWLargeHeaderCell *reusableview = nil;
@@ -242,20 +303,26 @@
     NSString *identifier = @"showCell";
     UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:identifier forIndexPath:indexPath];
     
-    [self configureCell:cell atIndexPath:indexPath];
-    
-    cell.backgroundColor = UIColor.clearColor;
-    
-    return cell;
-}
-
-- (void)configureCell:(UICollectionViewCell*)cell atIndexPath:(NSIndexPath*)indexPath
-{
     Show *show = [self.fetchedShowsController objectAtIndexPath:indexPath];
     TWShowCell *showCell = (TWShowCell*)cell;
     
     showCell.show = show;
-    self.accessibilityLabel = show.title;
+    
+//    cell.backgroundColor = UIColor.clearColor;
+    
+    return cell;
+}
+
+#pragma mark - Rotation
+
+- (void)viewWillLayoutSubviews
+{
+    UIInterfaceOrientation orientation = UIApplication.sharedApplication.statusBarOrientation;
+    
+    if(orientation != lastOrientation)
+        [self.collectionView.collectionViewLayout invalidateLayout];
+    
+    lastOrientation = orientation;
 }
 
 #pragma mark - Fetched Results Controller

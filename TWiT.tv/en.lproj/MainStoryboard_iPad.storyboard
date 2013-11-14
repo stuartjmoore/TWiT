@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13A603" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="SRf-Qj-T0f">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3746"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
     </dependencies>
     <scenes>
         <!--Watch List Controller - Watch List-->
@@ -1835,9 +1835,12 @@
                             <rect key="frame" x="0.0" y="44" width="703" height="180"/>
                             <autoresizingMask key="autoresizingMask"/>
                             <subviews>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" image="generic.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="K0Y-ZK-dRz">
-                                    <rect key="frame" x="0.0" y="0.0" width="703" height="180"/>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" image="generic.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="K0Y-ZK-dRz">
+                                    <rect key="frame" x="0.0" y="-262" width="703" height="703"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="703" id="won-BQ-SEZ"/>
+                                    </constraints>
                                 </imageView>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="juk-kE-7pR" userLabel="Blur" customClass="UIToolbar">
                                     <rect key="frame" x="0.0" y="0.0" width="703" height="180"/>
@@ -1942,10 +1945,9 @@
                                 <constraint firstAttribute="bottom" secondItem="juk-kE-7pR" secondAttribute="bottom" id="RjA-1F-maq"/>
                                 <constraint firstItem="XQv-X5-gsE" firstAttribute="leading" secondItem="GCh-yU-UeT" secondAttribute="leading" id="Try-ZN-jwh"/>
                                 <constraint firstAttribute="centerY" secondItem="XQv-X5-gsE" secondAttribute="centerY" id="Una-Jp-d8X"/>
-                                <constraint firstAttribute="bottom" secondItem="K0Y-ZK-dRz" secondAttribute="bottom" id="VDq-jF-hyz"/>
-                                <constraint firstItem="K0Y-ZK-dRz" firstAttribute="top" secondItem="GCh-yU-UeT" secondAttribute="top" id="VPU-bV-EzU"/>
                                 <constraint firstAttribute="trailing" secondItem="XQv-X5-gsE" secondAttribute="trailing" id="aBp-cv-anW"/>
                                 <constraint firstItem="juk-kE-7pR" firstAttribute="leading" secondItem="GCh-yU-UeT" secondAttribute="leading" id="hpT-PW-vsg"/>
+                                <constraint firstAttribute="centerY" secondItem="K0Y-ZK-dRz" secondAttribute="centerY" id="m8Z-jG-2DB"/>
                                 <constraint firstAttribute="trailing" secondItem="K0Y-ZK-dRz" secondAttribute="trailing" id="ww0-pw-DAd"/>
                                 <constraint firstAttribute="trailing" secondItem="juk-kE-7pR" secondAttribute="trailing" id="z0I-Hf-QJ1"/>
                             </constraints>
