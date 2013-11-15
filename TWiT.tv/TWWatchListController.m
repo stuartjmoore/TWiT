@@ -331,7 +331,7 @@
 
 - (CGFloat)tableView:(UITableView*)tableView heightForHeaderInSection:(NSInteger)section
 {
-    return 0;
+    return (tableView == self.scheduleTable && section != 0)? 20 : 0;
 }
 
 - (CGFloat)tableView:(UITableView*)tableView heightForRowAtIndexPath:(NSIndexPath*)indexPath
