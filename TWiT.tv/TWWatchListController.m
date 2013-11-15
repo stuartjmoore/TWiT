@@ -326,8 +326,6 @@
         
         if(sectionInfo.numberOfObjects == 0)
         {
-            CGFloat headerHeight = self.tableView.tableHeaderView.frame.size.height;
-            
             UIImageView *emptyView = [[UIImageView alloc] init];
             emptyView.image = [UIImage imageNamed:@"episodes-table-empty.png"];
             emptyView.contentMode = UIViewContentModeScaleAspectFit;
@@ -335,7 +333,6 @@
             emptyView.center = self.tableView.center;
             
             CGPoint center = emptyView.center;
-            center.y += headerHeight/2.0f;
             emptyView.center = center;
             
             emptyView.autoresizingMask = (UIViewAutoresizingFlexibleBottomMargin|UIViewAutoresizingFlexibleTopMargin);

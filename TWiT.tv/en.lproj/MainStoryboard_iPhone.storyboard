@@ -1850,8 +1850,8 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="Sfx-Cl-ofB"/>
         <segue reference="sZl-03-BeM"/>
-        <segue reference="OfB-Q1-3Dp"/>
+        <segue reference="Sfx-Cl-ofB"/>
+        <segue reference="IE0-Rf-dMp"/>
     </inferredMetricsTieBreakers>
 </document>
