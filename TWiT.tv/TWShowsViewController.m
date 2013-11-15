@@ -6,6 +6,8 @@
 //  Copyright (c) 2013 Stuart Moore. All rights reserved.
 //
 
+#import "NSDate+comparisons.h"
+
 #import "TWShowsViewController.h"
 #import "TWSplitViewContainer.h"
 #import "TWWatchListController.h"
@@ -38,10 +40,11 @@
                                                name:@"albumArtDidChange"
                                              object:nil];
     
-    [NSNotificationCenter.defaultCenter addObserver:self
-                                           selector:@selector(redrawSchedule:)
-                                               name:@"ScheduleDidUpdate"
-                                             object:self.channel.schedule];
+    if(UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPad)
+        [NSNotificationCenter.defaultCenter addObserver:self
+                                               selector:@selector(redrawSchedule:)
+                                                   name:@"ScheduleDidUpdate"
+                                                 object:self.channel.schedule];
     
     self.headerView.translatesAutoresizingMaskIntoConstraints = YES;
 }
@@ -49,7 +52,9 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self redrawSchedule:nil];
+    
+    if(UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPad)
+        [self redrawSchedule:nil];
 }
 
 #pragma mark - Actions
@@ -114,6 +119,9 @@
 
 - (void)redrawSchedule:(NSNotification*)notification
 {
+    if(UIDevice.currentDevice.userInterfaceIdiom != UIUserInterfaceIdiomPad)
+        return;
+    
     BOOL didSucceed = [notification.userInfo[@"scheduleDidSucceed"] boolValue];
     
     if(notification && !didSucceed)
@@ -129,26 +137,41 @@
         return;
     
     Event *currentShow = self.channel.schedule.currentShow;
-    
     Show *show = currentShow.show ?: self.channel.shows.anyObject;
     self.headerView.livePosterView.image = show.poster.image;
+
+    self.headerView.liveTimeLabel.text = currentShow.until;
+    self.headerView.liveTitleLabel.text = currentShow.title;
     
-    if(UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPad)
+    Event *nextShow = [self.channel.schedule showAfterShow:currentShow];
+    self.headerView.nextTimeLabel.text = [nextShow untilStringWithPrevious:currentShow];
+    self.headerView.nextTitleLabel.text = nextShow.title;
+    
+    self.headerView.liveAlbumArtView.image = currentShow.show ? currentShow.show.albumArt.image : [UIImage imageNamed:@"generic.jpg"];
+    self.headerView.playButton.percentage = currentShow.percentageElapsed;
+    
+    NSTimeInterval updateDelay = 60;
+    
+    if(currentShow.start.isAfterNow)    // Starts soon
     {
-        self.headerView.liveTimeLabel.text = currentShow.until;
-        self.headerView.liveTitleLabel.text = currentShow.title;
+        NSInteger interval = currentShow.start.timeIntervalSinceNow;
         
+        if(interval > 5*60*60)          // More than 5 hours away
+            updateDelay = interval;
+        else if(interval > 10*60)       // 5 hours to 10 minutes away
+            updateDelay = 60;
+        else                            // 10 minutes away, Pre-show
+            updateDelay = interval;
+    }
+    else if(currentShow.end.isAfterNow) // Live
+    {
         Event *nextShow = [self.channel.schedule showAfterShow:currentShow];
-        self.headerView.nextTimeLabel.text = [nextShow untilStringWithPrevious:currentShow];
-        self.headerView.nextTitleLabel.text = nextShow.title;
-        
-        self.headerView.liveAlbumArtView.image = currentShow.show ? currentShow.show.albumArt.image : [UIImage imageNamed:@"generic.jpg"];
-        self.headerView.playButton.percentage = currentShow.percentageElapsed;
+        updateDelay = nextShow.end.timeIntervalSinceNow;
     }
     
-    // TODO: Optimize
+    NSLog(@"redrawSchedule: %f", updateDelay);
     [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(redrawSchedule:) object:nil];
-    [self performSelector:@selector(redrawSchedule:) withObject:nil afterDelay:60];
+    [self performSelector:@selector(redrawSchedule:) withObject:nil afterDelay:updateDelay];
 }
 
 - (void)albumArtDidChange:(NSNotification*)notification

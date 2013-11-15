@@ -40,16 +40,19 @@
     
     self.headerView.translatesAutoresizingMaskIntoConstraints = YES;
     
-    [NSNotificationCenter.defaultCenter addObserver:self
-                                           selector:@selector(redrawSchedule:)
-                                               name:@"ScheduleDidUpdate"
-                                             object:self.channel.schedule];
+    if(UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPhone)
+        [NSNotificationCenter.defaultCenter addObserver:self
+                                               selector:@selector(redrawSchedule:)
+                                                   name:@"ScheduleDidUpdate"
+                                                 object:self.channel.schedule];
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self redrawSchedule:nil];
+    
+    if(UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPhone)
+        [self redrawSchedule:nil];
     
     [NSNotificationCenter.defaultCenter addObserver:self
                                            selector:@selector(updateProgress:)
@@ -173,11 +176,14 @@
 
 - (void)redrawSchedule:(NSNotification*)notification
 {
+    if(UIDevice.currentDevice.userInterfaceIdiom != UIUserInterfaceIdiomPhone)
+        return;
+    
     BOOL didSucceed = [notification.userInfo[@"scheduleDidSucceed"] boolValue];
     
     if(notification && !didSucceed)
     {
-        // TODO: can't load notice.
+        // TODO: Show can't load notice.
         return;
     }
     
@@ -185,15 +191,33 @@
         return;
     
     Event *currentShow = self.channel.schedule.currentShow;
-    
     Show *show = currentShow.show ?: self.channel.shows.anyObject;
     self.livePosterView.image = show.poster.image;
     
     [self.scheduleTable reloadData];
     
-    // TODO: Optimize
+    NSTimeInterval updateDelay = 60;
+    
+    if(currentShow.start.isAfterNow)    // Starts soon
+    {
+        NSInteger interval = currentShow.start.timeIntervalSinceNow;
+        
+        if(interval > 5*60*60)          // More than 5 hours away
+            updateDelay = interval;
+        else if(interval > 10*60)       // 5 hours to 10 minutes away
+            updateDelay = 60;
+        else                            // 10 minutes away, Pre-show
+            updateDelay = interval;
+    }
+    else if(currentShow.end.isAfterNow) // Live
+    {
+        Event *nextShow = [self.channel.schedule showAfterShow:currentShow];
+        updateDelay = nextShow.end.timeIntervalSinceNow;
+    }
+    
+    NSLog(@"redrawSchedule: %f", updateDelay);
     [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(redrawSchedule:) object:nil];
-    [self performSelector:@selector(redrawSchedule:) withObject:nil afterDelay:60];
+    [self performSelector:@selector(redrawSchedule:) withObject:nil afterDelay:updateDelay];
 }
 
 - (void)updateProgress:(NSNotification*)notification
@@ -423,8 +447,6 @@
         
         [self configureCell:cell atIndexPath:indexPath];
         
-        cell.backgroundColor = UIColor.clearColor;
-        
         return cell;
     }
     else if(tableView == self.scheduleTable)
@@ -438,7 +460,7 @@
         {
             if(showEvent.end.isBeforeNow)
             {
-                cell.textLabel.text = @"over";
+                cell.textLabel.text = @"Ended";
             }
             else
             {
