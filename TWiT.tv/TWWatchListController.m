@@ -670,6 +670,18 @@
             
             [segue.destinationViewController setShow:show];
         }
+        else
+        {
+            TWEpisodeCell *episodeCell = (TWEpisodeCell*)[[[[[sender superview] superview] superview] superview] superview];
+            Episode *episode = episodeCell.episode;
+            Show *show = episode.show;
+            [show updateEpisodes];
+            
+            if(UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPad)
+                [segue.destinationViewController setSplitViewContainer:self.splitViewContainer];
+            
+            [segue.destinationViewController setShow:show];
+        }
     }
     else if([segue.identifier isEqualToString:@"scheduleView"])
     {

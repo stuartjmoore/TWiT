@@ -243,13 +243,24 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="320" height="65"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <subviews>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3dZ-nf-dRR">
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3dZ-nf-dRR" userLabel="Album Art View">
                                                             <rect key="frame" x="7" y="8.5" width="48" height="48"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                             <accessibility key="accessibilityConfiguration" label="Album art">
                                                                 <bool key="isElement" value="YES"/>
                                                             </accessibility>
                                                         </imageView>
+                                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2j5-WO-N3e" userLabel="Show Button">
+                                                            <rect key="frame" x="0.0" y="0.0" width="55" height="65"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                            <state key="normal">
+                                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                            </state>
+                                                            <connections>
+                                                                <segue destination="Gce-uE-xEB" kind="push" identifier="showDetail" id="GOM-Fh-vdJ"/>
+                                                            </connections>
+                                                        </button>
                                                         <imageView hidden="YES" userInteractionEnabled="NO" contentMode="center" fixedFrame="YES" image="list-downloaded-icon" translatesAutoresizingMaskIntoConstraints="NO" id="TJa-EA-Upt" userLabel="Downloaded Icon">
                                                             <rect key="frame" x="268" y="26" width="12" height="13"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
@@ -1851,6 +1862,7 @@
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="sZl-03-BeM"/>
+        <segue reference="GOM-Fh-vdJ"/>
         <segue reference="Sfx-Cl-ofB"/>
         <segue reference="IE0-Rf-dMp"/>
     </inferredMetricsTieBreakers>
