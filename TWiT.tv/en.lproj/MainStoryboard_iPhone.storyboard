@@ -265,7 +265,7 @@
                                                             <rect key="frame" x="268" y="26" width="12" height="13"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                         </imageView>
-                                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BLs-ev-CyP" userLabel="Quick Play">
+                                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BLs-ev-CyP" userLabel="Quick Play" customClass="TWQuickPlayButton">
                                                             <rect key="frame" x="271" y="10.5" width="44" height="44"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                             <accessibility key="accessibilityConfiguration" hint="Plays the episode." label="Play"/>
@@ -1881,9 +1881,9 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="OfB-Q1-3Dp"/>
-        <segue reference="GOM-Fh-vdJ"/>
+        <segue reference="IE0-Rf-dMp"/>
         <segue reference="sZl-03-BeM"/>
         <segue reference="Sfx-Cl-ofB"/>
+        <segue reference="GOM-Fh-vdJ"/>
     </inferredMetricsTieBreakers>
 </document>

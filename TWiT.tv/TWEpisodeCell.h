@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@class Episode;
+@class Episode, TWQuickPlayButton;
 
 @protocol TWiTEpisodeCellDelegate <NSObject>
 - (void)tableView:(UITableView*)tableView didSelectAccessoryAtIndexPath:(NSIndexPath*)indexPath;
@@ -34,7 +34,7 @@
 @property (nonatomic, weak) IBOutlet UILabel *subtitleLabel;
 
 @property (nonatomic, weak) IBOutlet UIImageView *downloadedIcon;
-@property (nonatomic, weak) IBOutlet UIButton *quickPlayButton;
+@property (nonatomic, weak) IBOutlet TWQuickPlayButton *quickPlayButton;
 
 @property (nonatomic) CGFloat progress;
 @property (nonatomic, weak) IBOutlet UIImageView *downloadBackground;

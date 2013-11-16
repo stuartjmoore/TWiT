@@ -22,6 +22,7 @@
 		170E02A8169324480072CFA6 /* TWEpisodeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 170E02A7169324480072CFA6 /* TWEpisodeCell.m */; };
 		170E02AB169328910072CFA6 /* TWShowsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 170E02AA169328910072CFA6 /* TWShowsCell.m */; };
 		1711F7B616C6A5C200B5CA32 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 17A31E1316ADDB6400B71343 /* Settings.bundle */; };
+		1715FCF11837E2280036D3DF /* TWQuickPlayButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 1715FCF01837E2280036D3DF /* TWQuickPlayButton.m */; };
 		17201D1918294E18003BE080 /* Keys.plist in Resources */ = {isa = PBXBuildFile; fileRef = 17201D1818294E18003BE080 /* Keys.plist */; };
 		1733C8B017E7CF580090C97A /* Show.m in Sources */ = {isa = PBXBuildFile; fileRef = 1733C8AF17E7CF580090C97A /* Show.m */; };
 		1733C8B317E7CF610090C97A /* Feed.m in Sources */ = {isa = PBXBuildFile; fileRef = 1733C8B217E7CF610090C97A /* Feed.m */; };
@@ -139,6 +140,8 @@
 		170E02A7169324480072CFA6 /* TWEpisodeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWEpisodeCell.m; sourceTree = "<group>"; };
 		170E02A9169328910072CFA6 /* TWShowsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWShowsCell.h; sourceTree = "<group>"; };
 		170E02AA169328910072CFA6 /* TWShowsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWShowsCell.m; sourceTree = "<group>"; };
+		1715FCEF1837E2280036D3DF /* TWQuickPlayButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWQuickPlayButton.h; sourceTree = "<group>"; };
+		1715FCF01837E2280036D3DF /* TWQuickPlayButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWQuickPlayButton.m; sourceTree = "<group>"; };
 		17201D1818294E18003BE080 /* Keys.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Keys.plist; path = Resources/Keys.plist; sourceTree = SOURCE_ROOT; };
 		1733C8AD17E7CED90090C97A /* Vollkorn-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Vollkorn-BoldItalic.ttf"; path = "Resources/Vollkorn-BoldItalic.ttf"; sourceTree = SOURCE_ROOT; };
 		1733C8AE17E7CF580090C97A /* Show.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Show.h; sourceTree = "<group>"; };
@@ -316,6 +319,8 @@
 				17CBC39D16B2FCCC00F1F9EC /* TWNavigationItem.m */,
 				17D1B6B016A1CAC800B05C12 /* TWPlayButton.h */,
 				17D1B6B116A1CAC800B05C12 /* TWPlayButton.m */,
+				1715FCEF1837E2280036D3DF /* TWQuickPlayButton.h */,
+				1715FCF01837E2280036D3DF /* TWQuickPlayButton.m */,
 				17D1B6B316A1D38A00B05C12 /* TWSegmentedButton.h */,
 				17D1B6B416A1D38A00B05C12 /* TWSegmentedButton.m */,
 			);
@@ -706,6 +711,7 @@
 				176AF18E1695DFE900A35BFC /* Enclosure.m in Sources */,
 				176AF1911695E0DF00A35BFC /* Poster.m in Sources */,
 				176380A716960E280060D076 /* Stream.m in Sources */,
+				1715FCF11837E2280036D3DF /* TWQuickPlayButton.m in Sources */,
 				176380AA16960FDD0060D076 /* AlbumArt.m in Sources */,
 				17C43B931696FC220066C79F /* NSManagedObjectContext+ConvenienceMethods.m in Sources */,
 				170561E2169AD61800E59244 /* NSDate+comparisons.m in Sources */,

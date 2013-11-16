@@ -7,6 +7,7 @@
 //
 
 #import "TWEpisodeCell.h"
+#import "TWQuickPlayButton.h"
 #import "Episode.h"
 #import "Show.h"
 
@@ -42,6 +43,7 @@
     self.albumArt.image = episode.show.albumArt.image;
     self.titleLabel.text = episode.title;
     self.subtitleLabel.text = episode.show.title;
+    self.quickPlayButton.percentage = (self.episode.duration != 0) ? (CGFloat)self.episode.lastTimecode/self.episode.duration : 0;
     
     self.accessibilityHint = isPublished ? @"Opens the episode view." : @"Syncs the episode.";
 
