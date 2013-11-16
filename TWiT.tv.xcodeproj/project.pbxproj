@@ -20,7 +20,6 @@
 		170B476016A6A9C900F7C3B5 /* TWShowInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 170B475F16A6A9C900F7C3B5 /* TWShowInfoViewController.m */; };
 		170BA15D1691D5E70022FE4D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 170BA15C1691D5E70022FE4D /* QuartzCore.framework */; };
 		170E02A8169324480072CFA6 /* TWEpisodeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 170E02A7169324480072CFA6 /* TWEpisodeCell.m */; };
-		170E02AB169328910072CFA6 /* TWShowsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 170E02AA169328910072CFA6 /* TWShowsCell.m */; };
 		1711F7B616C6A5C200B5CA32 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 17A31E1316ADDB6400B71343 /* Settings.bundle */; };
 		1715FCF11837E2280036D3DF /* TWQuickPlayButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 1715FCF01837E2280036D3DF /* TWQuickPlayButton.m */; };
 		17201D1918294E18003BE080 /* Keys.plist in Resources */ = {isa = PBXBuildFile; fileRef = 17201D1818294E18003BE080 /* Keys.plist */; };
@@ -138,8 +137,6 @@
 		170BA15C1691D5E70022FE4D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		170E02A6169324480072CFA6 /* TWEpisodeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWEpisodeCell.h; sourceTree = "<group>"; };
 		170E02A7169324480072CFA6 /* TWEpisodeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWEpisodeCell.m; sourceTree = "<group>"; };
-		170E02A9169328910072CFA6 /* TWShowsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWShowsCell.h; sourceTree = "<group>"; };
-		170E02AA169328910072CFA6 /* TWShowsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWShowsCell.m; sourceTree = "<group>"; };
 		1715FCEF1837E2280036D3DF /* TWQuickPlayButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWQuickPlayButton.h; sourceTree = "<group>"; };
 		1715FCF01837E2280036D3DF /* TWQuickPlayButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWQuickPlayButton.m; sourceTree = "<group>"; };
 		17201D1818294E18003BE080 /* Keys.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Keys.plist; path = Resources/Keys.plist; sourceTree = SOURCE_ROOT; };
@@ -461,8 +458,6 @@
 				17B745DC183000B600A3C75E /* TWShowCell.m */,
 				1703C31E1832A4D0006E796D /* TWLargeHeaderCell.h */,
 				1703C31F1832A4D0006E796D /* TWLargeHeaderCell.m */,
-				170E02A9169328910072CFA6 /* TWShowsCell.h */,
-				170E02AA169328910072CFA6 /* TWShowsCell.m */,
 				17C5A01E169EC7FF0043A781 /* TWScheduleCell.h */,
 				17C5A01F169EC7FF0043A781 /* TWScheduleCell.m */,
 				177F1FA916AAE9E800BFFA63 /* TWQualityCell.h */,
@@ -700,7 +695,6 @@
 				17E51170168F496E00DCE89C /* TWiT_tv.xcdatamodeld in Sources */,
 				17E51176168F496E00DCE89C /* TWEpisodeViewController.m in Sources */,
 				170E02A8169324480072CFA6 /* TWEpisodeCell.m in Sources */,
-				170E02AB169328910072CFA6 /* TWShowsCell.m in Sources */,
 				17B745D7182FF26900A3C75E /* TWWatchListController.m in Sources */,
 				17AFF029169462EA0053A33C /* TWShowViewController.m in Sources */,
 				1733C8B017E7CF580090C97A /* Show.m in Sources */,
