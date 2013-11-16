@@ -30,7 +30,31 @@
 - (NSString*)publishedString
 {
     NSDateFormatter *df = [[NSDateFormatter alloc] init];
-    df.dateFormat = @"MMM dd, yyyy";
+    df.dateFormat = @"EEEE, MMM dd";
+    
+    return [df stringFromDate:self.published];
+}
+
+- (NSString*)publishedMonth
+{
+    NSDateFormatter *df = [[NSDateFormatter alloc] init];
+    df.dateFormat = @"MMM";
+    
+    return [df stringFromDate:self.published];
+}
+
+- (NSString*)publishedDayName
+{
+    NSDateFormatter *df = [[NSDateFormatter alloc] init];
+    df.dateFormat = @"E";
+    
+    return [df stringFromDate:self.published];
+}
+
+- (NSString*)publishedDayNum
+{
+    NSDateFormatter *df = [[NSDateFormatter alloc] init];
+    df.dateFormat = @"dd";
     
     return [df stringFromDate:self.published];
 }

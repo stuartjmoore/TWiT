@@ -31,27 +31,21 @@
     self.titleLabel.enabled = isPublished;
     self.subtitleLabel.enabled = isPublished;
     self.numberLabel.enabled = isPublished;
+    self.dateWordLabel.enabled = isPublished;
+    self.dateNumLabel.enabled = isPublished;
     self.quickPlayButton.enabled = isPublished;
     self.albumArt.alpha = isPublished ? 1 : 0.5f;
     
     self.numberLabel.text = @(episode.number).stringValue;
+    self.dateWordLabel.text = [episode.show.titleAcronym isEqualToString:@"TNT"]? episode.publishedDayName : episode.publishedMonth;
+    self.dateNumLabel.text = episode.publishedDayNum;
     self.albumArt.image = episode.show.albumArt.image;
     self.titleLabel.text = episode.title;
     self.subtitleLabel.text = episode.show.title;
     
     self.accessibilityHint = isPublished ? @"Opens the episode view." : @"Syncs the episode.";
 
-    if(self.selected)
-        self.numberLabel.textColor = [UIColor whiteColor];
-    else if(!episode.watched)
-        self.numberLabel.textColor = [UIColor colorWithRed:239/255.0 green:79/255.0 blue:61/255.0 alpha:1];
-    else
-        self.numberLabel.textColor = [UIColor blackColor];
-    
-    if(self.selected)
-        self.downloadedIcon.hidden = YES;
-    else
-        self.downloadedIcon.hidden = (!self.episode.downloadedEnclosures);
+    [self setSelected:self.selected animated:NO];
     
     if(!self.episode.downloadingEnclosures)
         self.progress = 1;
@@ -67,6 +61,8 @@
         self.titleLabel.textColor = [UIColor whiteColor];
         self.subtitleLabel.textColor = [UIColor whiteColor];
         self.numberLabel.textColor = [UIColor whiteColor];
+        self.dateWordLabel.textColor = [UIColor whiteColor];
+        self.dateNumLabel.textColor = [UIColor whiteColor];
         
         self.topLine.hidden = YES;
         self.bottomLine.hidden = YES;
@@ -78,11 +74,9 @@
         self.contentView.backgroundColor = [UIColor whiteColor];
         self.titleLabel.textColor = [UIColor blackColor];
         self.subtitleLabel.textColor = [UIColor darkGrayColor];
-        
-        if(!self.episode.watched)
-            self.numberLabel.textColor = [UIColor colorWithRed:239/255.0 green:79/255.0 blue:61/255.0 alpha:1];
-        else
-            self.numberLabel.textColor = [UIColor blackColor];
+        self.numberLabel.textColor = (self.episode.watched)? UIColor.blackColor : [UIColor colorWithRed:239/255.0 green:79/255.0 blue:61/255.0 alpha:1];
+        self.dateWordLabel.textColor = (self.episode.watched)? UIColor.blackColor : [UIColor colorWithRed:239/255.0 green:79/255.0 blue:61/255.0 alpha:1];
+        self.dateNumLabel.textColor = (self.episode.watched)? UIColor.blackColor : [UIColor colorWithRed:239/255.0 green:79/255.0 blue:61/255.0 alpha:1];
         
         self.topLine.hidden = NO;
         self.bottomLine.hidden = NO;
@@ -96,7 +90,7 @@
     if(self.selected)
         self.contentView.backgroundColor = self.tintColor;
     else
-        self.contentView.backgroundColor = [UIColor whiteColor];
+        self.contentView.backgroundColor = UIColor.whiteColor;
 }
 
 - (void)setProgress:(CGFloat)progress
@@ -115,6 +109,7 @@
 
 #pragma mark - Actions
 
+// TODO: Remove? Using segues.
 - (IBAction)quickPlayPressed:(UIButton*)sender
 {
     [self.delegate tableView:self.table accessoryButtonTappedForRowWithIndexPath:self.indexPath];

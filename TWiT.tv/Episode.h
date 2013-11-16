@@ -31,6 +31,9 @@
 
 - (NSString*)durationString;
 - (NSString*)publishedString;
+- (NSString*)publishedMonth;
+- (NSString*)publishedDayName;
+- (NSString*)publishedDayNum;
 
 - (NSSet*)enclosuresForType:(enum TWType)type;
 - (Enclosure*)enclosureForQuality:(TWQuality)quality;
