@@ -708,24 +708,7 @@
                             <outlet property="delegate" destination="t6z-Tc-dkI" id="cLv-kQ-50c"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Schedule" id="RRV-PK-C4J" customClass="TWNavigationItem">
-                        <view key="titleView" contentMode="scaleToFill" id="1yU-yK-7oI">
-                            <rect key="frame" x="60" y="6" width="200" height="33"/>
-                            <autoresizingMask key="autoresizingMask"/>
-                            <subviews>
-                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="Schedule" textAlignment="center" lineBreakMode="middleTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4IP-dz-Eju">
-                                    <rect key="frame" x="0.0" y="0.0" width="200" height="33"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                    <accessibility key="accessibilityConfiguration" label="Schedule"/>
-                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
-                                    <nil key="highlightedColor"/>
-                                    <color key="shadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                    <size key="shadowOffset" width="0.0" height="0.0"/>
-                                </label>
-                            </subviews>
-                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                        </view>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Schedule" id="RRV-PK-C4J" customClass="TWNavigationItem"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6Zx-Ki-4AK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1030,23 +1013,7 @@
                             <outlet property="delegate" destination="Gce-uE-xEB" id="Mkk-Io-rZ3"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="Asz-4h-TSi" customClass="TWNavigationItem">
-                        <view key="titleView" contentMode="scaleToFill" id="xBb-OW-Zro">
-                            <rect key="frame" x="60" y="6" width="200" height="33"/>
-                            <autoresizingMask key="autoresizingMask"/>
-                            <subviews>
-                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="Show" textAlignment="center" lineBreakMode="tailTruncation" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="hyy-vn-c1L">
-                                    <rect key="frame" x="0.0" y="3" width="200" height="30"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
-                                    <nil key="highlightedColor"/>
-                                    <color key="shadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                    <size key="shadowOffset" width="0.0" height="0.0"/>
-                                </label>
-                            </subviews>
-                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                        </view>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Show" id="Asz-4h-TSi" customClass="TWNavigationItem"/>
                     <connections>
                         <outlet property="albumArt" destination="6cJ-5V-8Lf" id="6zD-cZ-B6j"/>
                         <outlet property="blurgroundView" destination="5en-C1-wzx" id="xCz-ci-BJg"/>
@@ -1881,9 +1848,9 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="IE0-Rf-dMp"/>
+        <segue reference="OfB-Q1-3Dp"/>
+        <segue reference="Ok0-A6-xte"/>
         <segue reference="sZl-03-BeM"/>
-        <segue reference="Sfx-Cl-ofB"/>
-        <segue reference="GOM-Fh-vdJ"/>
+        <segue reference="LjR-Ve-vnE"/>
     </inferredMetricsTieBreakers>
 </document>

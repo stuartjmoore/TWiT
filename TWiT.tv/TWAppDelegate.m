@@ -105,6 +105,10 @@
     }
     else
     {
+        NSMutableDictionary *titleBarAttributes = [NSMutableDictionary dictionaryWithDictionary:[UINavigationBar.appearance titleTextAttributes]];
+        [titleBarAttributes setValue:[UIFont fontWithName:@"Vollkorn-BoldItalic" size:18] forKey:NSFontAttributeName];
+        [UINavigationBar.appearance setTitleTextAttributes:titleBarAttributes];
+        
         TWNavigationContainer *navigationContainer = (TWNavigationContainer*)self.window.rootViewController;
         navigationContainer.view = navigationContainer.view;
       
