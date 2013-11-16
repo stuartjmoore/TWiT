@@ -315,10 +315,7 @@
     
     Show *show = [self.fetchedShowsController objectAtIndexPath:indexPath];
     TWShowCell *showCell = (TWShowCell*)cell;
-    
     showCell.show = show;
-    
-//    cell.backgroundColor = UIColor.clearColor;
     
     return cell;
 }

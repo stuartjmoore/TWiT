@@ -19,4 +19,13 @@
     self.accessibilityLabel = show.title;
 }
 
+- (void)setSelected:(BOOL)selected
+{
+    [super setSelected:selected];
+    
+    // Only iPad
+    // TODO: Re-select after rotation
+    // TODO: Un-select after show disapears
+}
+
 @end
