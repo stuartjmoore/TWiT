@@ -515,6 +515,12 @@
     }
     else if(tableView == self.scheduleTable)
     {
+        if(self.channel.schedule.days.count <= section)
+            return 0;
+      
+        if([self.channel.schedule.days[section] count] == 0)
+            return 0;
+      
         if(section == 0)
             return 0;
         
@@ -558,7 +564,6 @@
     if(tableView == self.tableView && section == 0 && UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPhone)
     {
         self.sectionHeader = [[UINavigationBar alloc] initWithFrame:CGRectMake(0, 0, width, 28)];
-        //self.sectionHeader.backgroundColor = [UIColor whiteColor];
         
         UIImage *buttonUpBackground = [[UIImage imageNamed:@"main-header-button-up"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
         UIImage *buttonDownBackground = [[UIImage imageNamed:@"main-header-button.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
@@ -595,13 +600,12 @@
     }
     else if(tableView == self.scheduleTable)
     {
-      /*
         if(self.channel.schedule.days.count <= section)
             return nil;
         
         if([self.channel.schedule.days[section] count] == 0)
             return nil;
-        */
+       
         Event *showEvent = self.channel.schedule.days[section][0];
         /*
         if(showEvent.start.isToday)
