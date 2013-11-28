@@ -311,7 +311,6 @@
 		170E02A4169322130072CFA6 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				17D1B6AE16A1CAA600B05C12 /* Cells */,
 				17CBC39C16B2FCCC00F1F9EC /* TWNavigationItem.h */,
 				17CBC39D16B2FCCC00F1F9EC /* TWNavigationItem.m */,
 				17D1B6B016A1CAC800B05C12 /* TWPlayButton.h */,
@@ -534,6 +533,7 @@
 				17F668D0169B34FC00525F65 /* TWScheduleViewController.m */,
 				17C477F216A18CF40058E6C4 /* TWScheduleGridViewController.h */,
 				17C477F316A18CF40058E6C4 /* TWScheduleGridViewController.m */,
+				17D1B6AE16A1CAA600B05C12 /* Cells */,
 				170E02A4169322130072CFA6 /* Views */,
 				17BB1CFF168F728C00221F7E /* Objects */,
 				17C43B8F1696FBCB0066C79F /* Catergories */,
