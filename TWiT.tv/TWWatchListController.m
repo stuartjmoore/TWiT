@@ -352,6 +352,12 @@
 
 - (CGFloat)tableView:(UITableView*)tableView heightForHeaderInSection:(NSInteger)section
 {
+    if(self.channel.schedule.days.count <= section)
+        return 0;
+    
+    if([self.channel.schedule.days[section] count] == 0)
+        return 0;
+    
     return (tableView == self.scheduleTable && section != 0)? 20 : 0;
 }
 
@@ -378,6 +384,12 @@
 {
     if(tableView == self.scheduleTable)
     {
+        if(self.channel.schedule.days.count <= section)
+            return nil;
+        
+        if([self.channel.schedule.days[section] count] == 0)
+            return nil;
+        
         CGFloat width = tableView.frame.size.width;
         Event *showEvent = self.channel.schedule.days[section][0];
      

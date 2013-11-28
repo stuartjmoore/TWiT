@@ -388,10 +388,15 @@
                         showSubtitle = @"";
                 }
                 
-                if(startTimeString.length > 20)
+                if(startTimeString.length <= 20)
+                    continue;
+                else
                     startTimeString = [startTimeString stringByReplacingOccurrencesOfString:@":" withString:@"" options:0
                                                                                       range:NSMakeRange(20, startTimeString.length-20)];
-                if(endTimeString.length > 20)
+                
+                if(endTimeString.length <= 20)
+                    continue;
+                else
                     endTimeString = [endTimeString stringByReplacingOccurrencesOfString:@":" withString:@"" options:0
                                                                                   range:NSMakeRange(20, endTimeString.length-20)];
                 
@@ -401,6 +406,9 @@
                 NSDate *startDate = [dateFormatter dateFromString:startTimeString];
                 NSDate *endDate = [dateFormatter dateFromString:endTimeString];
                 NSTimeInterval duration = [endDate timeIntervalSinceDate:startDate];
+                
+                if(!startDate || !endDate)
+                    continue;
                 
                 [calendar rangeOfUnit:NSDayCalendarUnit
                             startDate:&fromDate
