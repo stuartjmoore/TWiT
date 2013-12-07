@@ -326,6 +326,8 @@
         
         if(sectionInfo.numberOfObjects == 0)
         {
+            self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+            
             UIImageView *emptyView = [[UIImageView alloc] init];
             emptyView.image = [UIImage imageNamed:@"episodes-table-empty.png"];
             emptyView.contentMode = UIViewContentModeScaleAspectFit;
@@ -338,6 +340,10 @@
             emptyView.autoresizingMask = (UIViewAutoresizingFlexibleBottomMargin|UIViewAutoresizingFlexibleTopMargin);
             emptyView.tag = 98;
             [self.tableView addSubview:emptyView];
+        }
+        else
+        {
+            self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
         }
         
         return sectionInfo.numberOfObjects;

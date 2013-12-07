@@ -86,11 +86,12 @@
         <scene sceneID="ZHE-1i-7h5">
             <objects>
                 <tableViewController id="lUo-zo-E7d" customClass="TWWatchListController" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="65" sectionHeaderHeight="22" sectionFooterHeight="22" id="gdJ-AK-Jok">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="65" sectionHeaderHeight="22" sectionFooterHeight="22" id="gdJ-AK-Jok">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <inset key="scrollIndicatorInsets" minX="0.0" minY="208" maxX="0.0" maxY="0.0"/>
+                        <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         <color key="sectionIndexTrackingBackgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <view key="tableHeaderView" contentMode="scaleToFill" id="34X-lQ-XN7" userLabel="Header">
                             <rect key="frame" x="0.0" y="64" width="320" height="149"/>
@@ -212,23 +213,23 @@
                             </constraints>
                         </view>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" shouldIndentWhileEditing="NO" reuseIdentifier="episodeCell" id="cNF-oI-6aU" customClass="TWEpisodeCell">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" shouldIndentWhileEditing="NO" reuseIdentifier="episodeCell" id="cNF-oI-6aU" customClass="TWEpisodeCell">
                                 <rect key="frame" x="0.0" y="235" width="320" height="65"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="cNF-oI-6aU" id="eCc-or-axp">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="65"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pP1-tI-VHh" userLabel="TODO: remove">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="65"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
                                                 <view hidden="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hap-WV-87q" userLabel="Underneath">
-                                                    <rect key="frame" x="0.0" y="0.0" width="320" height="65"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <subviews>
                                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="Swipe to Hide" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2PC-UU-wK5">
-                                                            <rect key="frame" x="16" y="22" width="288" height="21"/>
+                                                            <rect key="frame" x="16" y="21.5" width="288" height="21"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -240,11 +241,11 @@
                                                     <color key="backgroundColor" red="0.98823535439999999" green="0.23529413339999999" blue="0.22352942819999999" alpha="1" colorSpace="deviceRGB"/>
                                                 </view>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xbs-sP-F5H" userLabel="Main View">
-                                                    <rect key="frame" x="0.0" y="0.0" width="320" height="65"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <subviews>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3dZ-nf-dRR" userLabel="Album Art View">
-                                                            <rect key="frame" x="7" y="8.5" width="48" height="48"/>
+                                                            <rect key="frame" x="7" y="8" width="48" height="48"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                             <accessibility key="accessibilityConfiguration" label="Album art">
                                                                 <bool key="isElement" value="YES"/>
@@ -262,11 +263,11 @@
                                                             </connections>
                                                         </button>
                                                         <imageView hidden="YES" userInteractionEnabled="NO" contentMode="center" fixedFrame="YES" image="list-downloaded-icon" translatesAutoresizingMaskIntoConstraints="NO" id="TJa-EA-Upt" userLabel="Downloaded Icon">
-                                                            <rect key="frame" x="268" y="26" width="12" height="13"/>
+                                                            <rect key="frame" x="268" y="25.5" width="12" height="13"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                         </imageView>
                                                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BLs-ev-CyP" userLabel="Quick Play" customClass="TWQuickPlayButton">
-                                                            <rect key="frame" x="271" y="10.5" width="44" height="44"/>
+                                                            <rect key="frame" x="271" y="10" width="44" height="44"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                             <accessibility key="accessibilityConfiguration" hint="Plays the episode." label="Play"/>
                                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
@@ -314,7 +315,7 @@
                                                             </constraints>
                                                         </view>
                                                         <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ap7-nP-bCL" userLabel="Download cover">
-                                                            <rect key="frame" x="320" y="0.0" width="0.0" height="65"/>
+                                                            <rect key="frame" x="320" y="0.0" width="0.0" height="64"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <color key="backgroundColor" red="0.80181961440000005" green="0.79792465729999995" blue="0.84116556190000003" alpha="0.75" colorSpace="calibratedRGB"/>
                                                             <accessibility key="accessibilityConfiguration" label="Downloading"/>
@@ -327,24 +328,13 @@
                                                         <constraint firstItem="Jg2-TK-d5n" firstAttribute="leading" secondItem="Xbs-sP-F5H" secondAttribute="leading" constant="64" id="sp1-xV-hO7"/>
                                                     </constraints>
                                                 </view>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rWx-VP-gAq" userLabel="Bottom Separator">
-                                                    <rect key="frame" x="0.0" y="64" width="320" height="1"/>
-                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                                    <color key="backgroundColor" white="0.87" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="1" id="9ow-WB-cdV"/>
-                                                    </constraints>
-                                                </view>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                             <constraints>
-                                                <constraint firstAttribute="bottom" secondItem="rWx-VP-gAq" secondAttribute="bottom" id="1EJ-Yh-dVd"/>
                                                 <constraint firstItem="Xbs-sP-F5H" firstAttribute="leading" secondItem="pP1-tI-VHh" secondAttribute="leading" id="Tmq-O0-6MC"/>
                                                 <constraint firstAttribute="trailing" secondItem="Xbs-sP-F5H" secondAttribute="trailing" id="aOs-B5-9fB"/>
-                                                <constraint firstAttribute="trailing" secondItem="rWx-VP-gAq" secondAttribute="trailing" id="baC-FK-exc"/>
                                                 <constraint firstAttribute="bottom" secondItem="Xbs-sP-F5H" secondAttribute="bottom" id="ieJ-yT-Cw4"/>
                                                 <constraint firstItem="Xbs-sP-F5H" firstAttribute="top" secondItem="pP1-tI-VHh" secondAttribute="top" id="j1i-7b-sdV"/>
-                                                <constraint firstItem="rWx-VP-gAq" firstAttribute="leading" secondItem="pP1-tI-VHh" secondAttribute="leading" id="oHN-Ri-dLV"/>
                                             </constraints>
                                         </view>
                                     </subviews>
@@ -358,7 +348,6 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <outlet property="albumArt" destination="3dZ-nf-dRR" id="LY7-bY-8uO"/>
-                                    <outlet property="bottomLine" destination="rWx-VP-gAq" id="vCO-iK-DLe"/>
                                     <outlet property="contentView" destination="Xbs-sP-F5H" id="ObQ-H8-4z4"/>
                                     <outlet property="downloadBackground" destination="Ap7-nP-bCL" id="2re-Oc-5vo"/>
                                     <outlet property="downloadedIcon" destination="TJa-EA-Upt" id="Yfl-9A-ZpP"/>
@@ -1848,9 +1837,9 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="OfB-Q1-3Dp"/>
-        <segue reference="Ok0-A6-xte"/>
+        <segue reference="IE0-Rf-dMp"/>
+        <segue reference="Sfx-Cl-ofB"/>
         <segue reference="sZl-03-BeM"/>
-        <segue reference="LjR-Ve-vnE"/>
+        <segue reference="GOM-Fh-vdJ"/>
     </inferredMetricsTieBreakers>
 </document>
