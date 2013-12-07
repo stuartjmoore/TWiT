@@ -154,7 +154,7 @@
     NSURLSessionConfiguration *downloadConfig = [NSURLSessionConfiguration defaultSessionConfiguration];
     NSURLSession *downloadSession = [NSURLSession sessionWithConfiguration:downloadConfig delegate:nil delegateQueue:NSOperationQueue.mainQueue];
     
-    __block Poster *weak = self;
+    __weak typeof(self) weak = self;
     
     [[downloadSession downloadTaskWithURL:url completionHandler:^(NSURL *location, NSURLResponse *response, NSError *error)
     {
@@ -184,7 +184,7 @@
         if([NSFileManager.defaultManager moveItemAtPath:location.path toPath:cachedPath error:nil])
         {
             weak.path = cachedPath;
-            [NSNotificationCenter.defaultCenter postNotificationName:@"posterDidChange" object:self.episode];
+            [NSNotificationCenter.defaultCenter postNotificationName:@"posterDidChange" object:weak.episode];
         }
     }] resume];
 }

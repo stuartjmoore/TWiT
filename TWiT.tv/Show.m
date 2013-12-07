@@ -295,6 +295,8 @@ static BOOL anyUpdates;
         
         NSURLSessionConfiguration *defaultConfigObject = [NSURLSessionConfiguration ephemeralSessionConfiguration];
         
+        __weak typeof(self) weak = self;
+        
         NSURLSession *delegateFreeSession = [NSURLSession sessionWithConfiguration:defaultConfigObject delegate:nil delegateQueue:NSOperationQueue.mainQueue];
         [[delegateFreeSession dataTaskWithRequest:headerRequest completionHandler:^(NSData *data, NSURLResponse *response, NSError *error)
         {
@@ -313,12 +315,12 @@ static BOOL anyUpdates;
                 
                 if(forceUpdate || (lastModified == nil || ![lastModified isEqualToDate:feed.lastUpdated]))
                 {
-                    [self updatePodcastFeed:feed withCompletionHandler:completionHandler];
+                    [weak updatePodcastFeed:feed withCompletionHandler:completionHandler];
                     return;
                 }
             }
             
-            [self finishUpdateWithCompletionHandler:completionHandler];
+            [weak finishUpdateWithCompletionHandler:completionHandler];
         }] resume];
     }
 }
@@ -328,6 +330,8 @@ static BOOL anyUpdates;
     NSURLSessionConfiguration *defaultConfigObject = [NSURLSessionConfiguration ephemeralSessionConfiguration];
     defaultConfigObject.timeoutIntervalForResource = 60;
     
+    __weak typeof(self) weak = self;
+    
     NSURLSession *delegateFreeSession = [NSURLSession sessionWithConfiguration:defaultConfigObject delegate:nil delegateQueue:NSOperationQueue.mainQueue];
     [[delegateFreeSession dataTaskWithURL:[NSURL URLWithString:feed.url] completionHandler:^(NSData *data, NSURLResponse *response, NSError *error)
     {
@@ -335,13 +339,13 @@ static BOOL anyUpdates;
         if(error || ([httpResponse respondsToSelector:@selector(allHeaderFields)] && httpResponse.statusCode != 200))
         {
             NSLog(@"update error: %@, httpResponse: %@", error, httpResponse);
-            [self finishUpdateWithCompletionHandler:completionHandler];
+            [weak finishUpdateWithCompletionHandler:completionHandler];
             return;
         }
         
-        BOOL firstLoad = (self.episodes.count == 0);
+        BOOL firstLoad = (weak.episodes.count == 0);
         
-        NSManagedObjectContext *context = self.managedObjectContext;
+        NSManagedObjectContext *context = weak.managedObjectContext;
         NSDictionary *RSS = [XMLReader dictionaryForXMLData:data];
         NSArray *episodes = [[[RSS objectForKey:@"rss"] objectForKey:@"channel"] objectForKey:@"item"];
         
@@ -436,7 +440,7 @@ static BOOL anyUpdates;
                 }
                 
                 if(!guests)
-                    guests = self.hosts;
+                    guests = weak.hosts;
                 
                 if(!guests)
                     guests = @"";
@@ -447,7 +451,7 @@ static BOOL anyUpdates;
             }
             
             NSString *posterURL = [NSString stringWithFormat:@"http://twit.tv/files/imagecache/slideshow-slide/spiros_%@_%.4djpg.jpg",
-                                   self.titleAcronym.lowercaseString, number];
+                                   weak.titleAcronym.lowercaseString, number];
             
             NSString *enclosureURL = [[epiDic objectForKey:@"enclosure"] objectForKey:@"url"];
             NSString *website = [[epiDic objectForKey:@"comments"] objectForKey:@"text"];
@@ -456,7 +460,7 @@ static BOOL anyUpdates;
             Episode *episode = nil;
             
             NSPredicate *predicate = [NSPredicate predicateWithFormat:@"number == %d", number];
-            NSSet *sameEpisode = [self.episodes filteredSetUsingPredicate:predicate];
+            NSSet *sameEpisode = [weak.episodes filteredSetUsingPredicate:predicate];
             
             if(sameEpisode.count > 0)
             {
@@ -478,10 +482,10 @@ static BOOL anyUpdates;
             }
             else
             {
-                if(self.episodes.count >= MAX_EPISODES)
+                if(weak.episodes.count >= MAX_EPISODES)
                 {
                     NSSortDescriptor *descriptor = [NSSortDescriptor sortDescriptorWithKey:@"published" ascending:NO];
-                    NSArray *sortedEpisodes = [self.episodes sortedArrayUsingDescriptors:@[descriptor]];
+                    NSArray *sortedEpisodes = [weak.episodes sortedArrayUsingDescriptors:@[descriptor]];
                     Episode *oldestEpisode = sortedEpisodes.lastObject;
                     
                     if([published compare:oldestEpisode.published] == NSOrderedAscending)
@@ -490,14 +494,14 @@ static BOOL anyUpdates;
                     }
                     else
                     {
-                        [self.managedObjectContext deleteObject:oldestEpisode];
+                        [weak.managedObjectContext deleteObject:oldestEpisode];
                     }
                 }
                 
                 anyUpdates = YES;
                 episode = [context insertEntity:@"Episode"];
                 
-                [self addEpisodesObject:episode];
+                [weak addEpisodesObject:episode];
                 episode.title = title;
                 episode.number = number;
                 episode.published = published ?: [NSDate date];
@@ -510,7 +514,7 @@ static BOOL anyUpdates;
                 poster.url = posterURL;
                 episode.poster = poster;
                 
-                bool watched = firstLoad ?: !self.favorite;
+                bool watched = firstLoad ?: !weak.favorite;
                 
                 if(watched)
                 {
@@ -554,7 +558,7 @@ static BOOL anyUpdates;
         }
         
         [context save:nil];
-        [self finishUpdateWithCompletionHandler:completionHandler];
+        [weak finishUpdateWithCompletionHandler:completionHandler];
      }] resume];
 }
 

@@ -86,10 +86,12 @@
     
     self.playbarContainer.alpha = 0;
     self.playbarContainer.hidden = NO;
+    
+    __weak typeof(self) weak = self;
+    
     [UIView animateWithDuration:0.3f animations:^{
-        self.playbarContainer.alpha = 1;
-    } completion:^(BOOL fin){
-    }];
+        weak.playbarContainer.alpha = 1;
+    } completion:nil];
     
     TWAppDelegate *delegate = (TWAppDelegate*)UIApplication.sharedApplication.delegate;
     [NSNotificationCenter.defaultCenter addObserver:self.playbarController
@@ -130,12 +132,14 @@
     CGRect modalFrame = self.modalFlyout.frame;
     modalFrame.size.height = self.modalContainer.bounds.size.height;
     
+    __weak typeof(self) weak = self;
+    
     [UIView animateWithDuration:0.3f animations:^{
-        self.playbarContainer.alpha = 0;
+        weak.playbarContainer.alpha = 0;
     } completion:^(BOOL fin){
-        self.playbarContainer.hidden = YES;
-        self.playbarContainer.alpha = 1;
-        self.modalFlyout.frame = modalFrame;
+        weak.playbarContainer.hidden = YES;
+        weak.playbarContainer.alpha = 1;
+        weak.modalFlyout.frame = modalFrame;
     }];
     
     TWAppDelegate *delegate = (TWAppDelegate*)UIApplication.sharedApplication.delegate;
@@ -156,9 +160,11 @@
     
     self.modalLeftContraint.constant = 0;
     
+    __weak typeof(self) weak = self;
+    
     [UIView animateWithDuration:0.3f animations:^{
-        self.modalBlackground.alpha = 1;
-        [self.modalContainer layoutIfNeeded];
+        weak.modalBlackground.alpha = 1;
+        [weak.modalContainer layoutIfNeeded];
     }];
 }
 
@@ -169,12 +175,14 @@
     
     self.modalLeftContraint.constant = -448;
     
+    __weak typeof(self) weak = self;
+    
     [UIView animateWithDuration:0.3f animations:^{
-        [self.modalContainer layoutIfNeeded];
-        self.modalBlackground.alpha = 0;
+        [weak.modalContainer layoutIfNeeded];
+        weak.modalBlackground.alpha = 0;
     } completion:^(BOOL fin){
-        self.modalContainer.hidden = YES;
-        self.modalBlackground.alpha = 1;
+        weak.modalContainer.hidden = YES;
+        weak.modalBlackground.alpha = 1;
     }];
 }
 
@@ -219,9 +227,11 @@
         {
             self.modalLeftContraint.constant = 0;
             
+            __weak typeof(self) weak = self;
+            
             [UIView animateWithDuration:0.3f animations:^{
-                self.modalBlackground.alpha = 1;
-                [self.modalContainer layoutIfNeeded];
+                weak.modalBlackground.alpha = 1;
+                [weak.modalContainer layoutIfNeeded];
             }];
         }
     }

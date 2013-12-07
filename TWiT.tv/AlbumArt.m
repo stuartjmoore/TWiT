@@ -146,7 +146,7 @@
         NSURLSessionConfiguration *downloadConfig = [NSURLSessionConfiguration defaultSessionConfiguration];
         NSURLSession *downloadSession = [NSURLSession sessionWithConfiguration:downloadConfig delegate:nil delegateQueue:NSOperationQueue.mainQueue];
         
-        __block AlbumArt *weak = self;
+        __weak typeof(self) weak = self;
         
         [[downloadSession downloadTaskWithURL:url completionHandler:^(NSURL *location, NSURLResponse *response, NSError *error)
         {
@@ -162,7 +162,7 @@
                 return;
             }
             
-            NSString *cachedDir = [[self.applicationDocumentsDirectory URLByAppendingPathComponent:folder] path];
+            NSString *cachedDir = [[weak.applicationDocumentsDirectory URLByAppendingPathComponent:folder] path];
             
             if(![NSFileManager.defaultManager fileExistsAtPath:cachedDir])
                 [NSFileManager.defaultManager createDirectoryAtPath:cachedDir withIntermediateDirectories:NO attributes:nil error:nil];
@@ -186,7 +186,7 @@
                     [NSFileManager.defaultManager setAttributes:fileAttributes ofItemAtPath:cachedPath error:nil];
                 }
                 
-                [NSNotificationCenter.defaultCenter postNotificationName:@"albumArtDidChange" object:self.show];
+                [NSNotificationCenter.defaultCenter postNotificationName:@"albumArtDidChange" object:weak.show];
             }
         }] resume];
     }

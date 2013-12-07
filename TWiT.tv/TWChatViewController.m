@@ -164,7 +164,7 @@
                               onDismiss:^(NSInteger buttonIndex) {
                                   [UIApplication.sharedApplication openURL:request.URL];
                               }
-                               onCancel:^(){}];
+                               onCancel:nil];
         
         return NO;
     }

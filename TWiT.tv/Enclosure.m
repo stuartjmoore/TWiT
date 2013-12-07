@@ -108,12 +108,14 @@
     
     if(self.backgroundSessionCompletionHandler)
     {
+        __weak typeof(self) weak = self;
+        
         [self.downloadSession getTasksWithCompletionHandler:^(NSArray *dataTasks, NSArray *uploadTasks, NSArray *downTasks)
         {
             if(dataTasks.count + uploadTasks.count + downTasks.count == 0)
             {
-                void (^completionHandler)() = self.backgroundSessionCompletionHandler;
-                self.backgroundSessionCompletionHandler = nil;
+                void (^completionHandler)() = weak.backgroundSessionCompletionHandler;
+                weak.backgroundSessionCompletionHandler = nil;
                 completionHandler();
             }
         }];

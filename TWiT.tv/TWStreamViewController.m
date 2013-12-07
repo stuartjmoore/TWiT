@@ -327,34 +327,38 @@
     
     if(hide)
     {
+        __weak typeof(self) weak = self;
+        
         [UIView animateWithDuration:UINavigationControllerHideShowBarDuration animations:^{
-            self.navigationController.navigationBar.alpha = 0;
+            weak.navigationController.navigationBar.alpha = 0;
             
-            self.navigationBar.alpha = 0;
-            self.toolbarView.alpha = 0;
+            weak.navigationBar.alpha = 0;
+            weak.toolbarView.alpha = 0;
         } completion:^(BOOL fin){
-            [self.navigationController setNavigationBarHidden:YES animated:NO];
+            [weak.navigationController setNavigationBarHidden:YES animated:NO];
             
             [UIView animateWithDuration:UINavigationControllerHideShowBarDuration animations:^{
                 hideUI = hide;
-                [self setNeedsStatusBarAppearanceUpdate];
+                [weak setNeedsStatusBarAppearanceUpdate];
             } completion:nil];
         }];
     }
     else
     {
+        __weak typeof(self) weak = self;
+        
         [UIView animateWithDuration:UINavigationControllerHideShowBarDuration animations:^{
-            [self setNeedsStatusBarAppearanceUpdate];
+            [weak setNeedsStatusBarAppearanceUpdate];
         } completion:nil];
         
         [self.navigationController setNavigationBarHidden:NO animated:NO];
         self.navigationController.navigationBar.alpha = 0;
         
         [UIView animateWithDuration:UINavigationControllerHideShowBarDuration animations:^{
-            self.navigationController.navigationBar.alpha = 1;
+            weak.navigationController.navigationBar.alpha = 1;
             
-            self.navigationBar.alpha = 1;
-            self.toolbarView.alpha = 1;
+            weak.navigationBar.alpha = 1;
+            weak.toolbarView.alpha = 1;
         } completion:nil];
     }
 }
@@ -490,10 +494,12 @@
 {
     if(hide)
     {
+        __weak typeof(self) weak = self;
+        
         [UIView animateWithDuration:UINavigationControllerHideShowBarDuration animations:^{
-            self.chatView.alpha = 0;
+            weak.chatView.alpha = 0;
         } completion:^(BOOL fin){
-            self.chatView.hidden = YES;
+            weak.chatView.hidden = YES;
         }];
     }
     else
@@ -501,8 +507,10 @@
         self.chatView.hidden = NO;
         self.chatView.alpha = 0;
         
+        __weak typeof(self) weak = self;
+        
         [UIView animateWithDuration:UINavigationControllerHideShowBarDuration animations:^{
-            self.chatView.alpha = 1;
+            weak.chatView.alpha = 1;
         }];
     }
 }
@@ -528,8 +536,10 @@
     
     [self.view setNeedsUpdateConstraints];
     
+    __weak typeof(self) weak = self;
+    
     [UIView animateWithDuration:duration delay:0 options:curve animations:^{
-        [self.view layoutIfNeeded];
+        [weak.view layoutIfNeeded];
     } completion:nil];
 }
 
@@ -542,8 +552,10 @@
     
     [self.view setNeedsUpdateConstraints];
     
+    __weak typeof(self) weak = self;
+    
     [UIView animateWithDuration:duration delay:0 options:curve animations:^{
-        [self.view layoutIfNeeded];
+        [weak.view layoutIfNeeded];
     } completion:nil];
 }
 
@@ -573,9 +585,11 @@
         if([self.presentingViewController isKindOfClass:TWSplitViewContainer.class])
             self.splitViewContainer = (TWSplitViewContainer*)self.presentingViewController;
         
+        __weak typeof(self) weak = self;
+        
         [self dismissViewControllerAnimated:YES completion:^{
-            if(self.delegate.player.playbackState == MPMoviePlaybackStatePlaying)
-                [self.splitViewContainer showPlaybar];
+            if(weak.delegate.player.playbackState == MPMoviePlaybackStatePlaying)
+                [weak.splitViewContainer showPlaybar];
         }];
     }
 }

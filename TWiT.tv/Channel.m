@@ -63,6 +63,8 @@
     NSString *cachedPath = [[self.applicationDocumentsDirectory URLByAppendingPathComponent:@"TWiT.json"] path];
     NSURL *url = [NSURL URLWithString:@"http://stuartjmoore.com/storage/TWiT.json"];
     
+    __weak typeof(self) weak = self;
+    
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
     [request setHTTPMethod:@"HEAD"];
     [NSURLConnection sendAsynchronousRequest:request queue:NSOperationQueue.mainQueue
@@ -164,12 +166,12 @@
                         return;
                 }
              
-                [self updateDatabase];
+                [weak updateDatabase];
             }];
         }
         else if(updateDatabase)
         {
-            [self updateDatabase];
+            [weak updateDatabase];
         }
     }];
 }
@@ -328,6 +330,8 @@
     
 - (void)reloadScheduleWithURL:(NSURL*)scheduleURL
 {
+    __weak typeof(self) weak = self;
+    
     NSURLRequest *urlRequest = [NSURLRequest requestWithURL:scheduleURL];
     [NSURLConnection sendAsynchronousRequest:urlRequest queue:NSOperationQueue.mainQueue
     completionHandler:^(NSURLResponse *response, NSData *data, NSError *error)
@@ -343,7 +347,7 @@
             
             if(!success && [scheduleURL.host isEqualToString:SERVER_HOST])
             {
-                [self reloadScheduleFromGoogle];
+                [weak reloadScheduleFromGoogle];
                 return;
             }
             
@@ -452,16 +456,16 @@
                  }];
             }
             
-            self.schedule.days = [NSArray arrayWithArray:schedule];
-            [NSNotificationCenter.defaultCenter postNotificationName:@"ScheduleDidUpdate" object:self.schedule userInfo:@{@"scheduleDidSucceed": @YES}];
+            weak.schedule.days = [NSArray arrayWithArray:schedule];
+            [NSNotificationCenter.defaultCenter postNotificationName:@"ScheduleDidUpdate" object:weak.schedule userInfo:@{@"scheduleDidSucceed": @YES}];
         }
         else if([scheduleURL.host isEqualToString:SERVER_HOST])
         {
-            [self reloadScheduleFromGoogle];
+            [weak reloadScheduleFromGoogle];
         }
         else
         {
-            [NSNotificationCenter.defaultCenter postNotificationName:@"ScheduleDidUpdate" object:self.schedule userInfo:@{@"scheduleDidSucceed": @NO}];
+            [NSNotificationCenter.defaultCenter postNotificationName:@"ScheduleDidUpdate" object:weak.schedule userInfo:@{@"scheduleDidSucceed": @NO}];
         }
     }];
 }

@@ -43,9 +43,12 @@
     
     self.playbarContainer.hidden = NO;
     self.playbarContainer.alpha = 0;
+    
+    __weak typeof(self) weak = self;
+    
     [UIView animateWithDuration:0.3f animations:^{
-        self.playbarContainer.alpha = 1;
-        [self.masterContainer layoutIfNeeded];
+        weak.playbarContainer.alpha = 1;
+        [weak.masterContainer layoutIfNeeded];
     } completion:nil];
     
     TWAppDelegate *delegate = (TWAppDelegate*)UIApplication.sharedApplication.delegate;
@@ -64,12 +67,14 @@
     [self.masterContainer setNeedsUpdateConstraints];
     [self.masterContainer updateConstraintsIfNeeded];
     
+    __weak typeof(self) weak = self;
+    
     [UIView animateWithDuration:0.3f animations:^{
-        self.playbarContainer.alpha = 0;
-        [self.masterContainer layoutIfNeeded];
+        weak.playbarContainer.alpha = 0;
+        [weak.masterContainer layoutIfNeeded];
     } completion:^(BOOL fin){
-        self.playbarContainer.hidden = YES;
-        self.playbarContainer.alpha = 1;
+        weak.playbarContainer.hidden = YES;
+        weak.playbarContainer.alpha = 1;
     }];
     
     TWAppDelegate *delegate = (TWAppDelegate*)UIApplication.sharedApplication.delegate;

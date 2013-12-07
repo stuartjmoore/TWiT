@@ -136,23 +136,29 @@
     if(self.tableView.contentOffset.y <= -self.view.bounds.size.height+headerHeight)
     {
         self.tableView.scrollEnabled = YES;
+        
+        __weak typeof(self) weak = self;
+        
         [UIView animateWithDuration:0.3f animations:^
         {
-            self.tableView.contentOffset = CGPointMake(0, -NAVBAR_INSET);
+            weak.tableView.contentOffset = CGPointMake(0, -NAVBAR_INSET);
             sender.transform = CGAffineTransformMakeRotation(0);
             [sender setImage:[UIImage imageNamed:@"toolbar-disclose"] forState:UIControlStateNormal];
-            [self.headerView layoutIfNeeded];
+            [weak.headerView layoutIfNeeded];
         }];
     }
     else
     {
         self.tableView.scrollEnabled = NO;
+        
+        __weak typeof(self) weak = self;
+        
         [UIView animateWithDuration:0.3f animations:^
         {
-            self.tableView.contentOffset = CGPointMake(0, -self.view.bounds.size.height+headerHeight);
+            weak.tableView.contentOffset = CGPointMake(0, -weak.view.bounds.size.height+headerHeight);
             sender.transform = CGAffineTransformMakeRotation(M_PI);
             [sender setImage:[UIImage imageNamed:@"toolbar-disclose-up"] forState:UIControlStateNormal];
-            [self.headerView layoutIfNeeded];
+            [weak.headerView layoutIfNeeded];
         }];
     }
 }

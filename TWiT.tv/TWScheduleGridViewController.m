@@ -235,7 +235,7 @@
 
 - (IBAction)close:(UIBarButtonItem*)sender
 {
-    [self dismissViewControllerAnimated:YES completion:^{}];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
