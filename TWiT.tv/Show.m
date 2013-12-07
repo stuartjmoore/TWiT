@@ -42,6 +42,13 @@ static BOOL anyUpdates;
     return nil;
 }
 
+- (UIImage*)defaultImage
+{
+    NSString *resourceName = [NSString stringWithFormat:@"%@-poster.jpg", self.titleAcronym.lowercaseString];
+    NSString *resourcePath = [NSBundle.mainBundle.resourcePath stringByAppendingPathComponent:resourceName];
+    return [UIImage imageWithContentsOfFile:resourcePath];
+}
+
 - (NSArray*)scheduleDates
 {
     NSMutableArray *dates = [NSMutableArray array];

@@ -138,8 +138,8 @@
     
     Event *currentShow = self.channel.schedule.currentShow;
     Show *show = currentShow.show ?: self.channel.shows.anyObject;
-    self.headerView.livePosterView.image = show.poster.image;
-
+    self.headerView.livePosterView.image = show.poster.image ?: show.defaultImage;
+    
     self.headerView.liveTimeLabel.text = currentShow.until;
     self.headerView.liveTitleLabel.text = currentShow.title;
     
@@ -169,7 +169,6 @@
         updateDelay = nextShow.end.timeIntervalSinceNow;
     }
     
-    NSLog(@"redrawSchedule: %f", updateDelay);
     [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(redrawSchedule:) object:nil];
     [self performSelector:@selector(redrawSchedule:) withObject:nil afterDelay:updateDelay];
 }
