@@ -12,6 +12,7 @@
 
 #pragma mark - Settings
 
+//TODO: That semicolon looks wrong
 - (BOOL)shouldAutorotate;
 {
     return YES;
