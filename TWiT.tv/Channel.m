@@ -114,7 +114,7 @@
             if(error)
                 return;
             
-            lastModifiedLocal = [NSDate dateWithTimeIntervalSince1970:1379682582]; // REPLACE WITH SERVER’S DATE ABOVE!
+            lastModifiedLocal = [NSDate dateWithTimeIntervalSince1970:1391734298]; // REPLACE WITH SERVER’S DATE ABOVE!
             
             NSDictionary *fileAttributes = [NSDictionary dictionaryWithObject:lastModifiedLocal forKey:NSFileModificationDate];
             
