@@ -59,7 +59,7 @@
     
     if(selected)
     {
-        self.contentView.backgroundColor = self.tintColor;
+        self.mainView.backgroundColor = self.tintColor;
         self.titleLabel.textColor = [UIColor whiteColor];
         self.subtitleLabel.textColor = [UIColor whiteColor];
         self.numberLabel.textColor = [UIColor whiteColor];
@@ -73,7 +73,7 @@
     }
     else
     {
-        self.contentView.backgroundColor = [UIColor whiteColor];
+        self.mainView.backgroundColor = [UIColor whiteColor];
         self.titleLabel.textColor = [UIColor blackColor];
         self.subtitleLabel.textColor = [UIColor darkGrayColor];
         self.numberLabel.textColor = (self.episode.watched)? UIColor.blackColor : [UIColor colorWithRed:239/255.0 green:79/255.0 blue:61/255.0 alpha:1];
@@ -90,16 +90,16 @@
 - (void)tintColorDidChange
 {
     if(self.selected)
-        self.contentView.backgroundColor = self.tintColor;
+        self.mainView.backgroundColor = self.tintColor;
     else
-        self.contentView.backgroundColor = UIColor.whiteColor;
+        self.mainView.backgroundColor = UIColor.whiteColor;
 }
 
 - (void)setProgress:(CGFloat)progress
 {
     _progress = progress;
     
-    CGRect frame = self.contentView.frame;
+    CGRect frame = self.mainView.frame;
     CGFloat width = frame.size.width * progress;
     
     frame.origin.x = width;

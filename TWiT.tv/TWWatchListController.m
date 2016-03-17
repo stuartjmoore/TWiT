@@ -458,7 +458,7 @@
     if(tableView == self.tableView)
     {
         NSString *identifier = @"episodeCell";
-        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
+        TWEpisodeCell *cell = (TWEpisodeCell*)[tableView dequeueReusableCellWithIdentifier:identifier];
         
         [self configureCell:cell atIndexPath:indexPath];
         
@@ -509,7 +509,7 @@
 
 #pragma mark - Configure
 
-- (void)configureCell:(UITableViewCell*)cell atIndexPath:(NSIndexPath*)indexPath
+- (void)configureCell:(TWEpisodeCell*)cell atIndexPath:(NSIndexPath*)indexPath
 {
     Episode *episode = [self.fetchedEpisodesController objectAtIndexPath:indexPath];
     
@@ -518,7 +518,7 @@
         UIPanGestureRecognizer *swipeRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(swipeEpisode:)];
         swipeRecognizer.delegate = self;
         swipeRecognizer.observationInfo = (__bridge void *)(cell);
-        [cell.contentView addGestureRecognizer:swipeRecognizer];
+        [cell.mainView addGestureRecognizer:swipeRecognizer];
     }
     
     TWEpisodeCell *episodeCell = (TWEpisodeCell*)cell;

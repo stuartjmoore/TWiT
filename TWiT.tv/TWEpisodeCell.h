@@ -22,7 +22,7 @@
 @property (nonatomic, strong) NSIndexPath *indexPath;
 @property (nonatomic, weak) UITableView *table;
 
-@property (nonatomic, weak) IBOutlet UIView *contentView;
+@property (nonatomic, weak) IBOutlet UIView *mainView;
 
 @property (nonatomic, weak) IBOutlet UIView *topLine, *bottomLine;
 

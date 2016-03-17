@@ -280,7 +280,7 @@
 - (UITableViewCell*)tableView:(UITableView*)tableView cellForRowAtIndexPath:(NSIndexPath*)indexPath
 {
     NSString *identifier = @"episodeCell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
+    TWEpisodeCell *cell = (TWEpisodeCell*)[tableView dequeueReusableCellWithIdentifier:identifier];
 
     [self configureCell:cell atIndexPath:indexPath];
     
@@ -289,7 +289,7 @@
 
 #pragma mark - Configure
 
-- (void)configureCell:(UITableViewCell*)cell atIndexPath:(NSIndexPath*)indexPath
+- (void)configureCell:(TWEpisodeCell*)cell atIndexPath:(NSIndexPath*)indexPath
 {
     if([cell.reuseIdentifier isEqualToString:@"episodeCell"])
     {
