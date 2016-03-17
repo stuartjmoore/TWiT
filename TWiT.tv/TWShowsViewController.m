@@ -382,7 +382,7 @@
 
 #pragma mark - Setttings
 
-- (NSUInteger)supportedInterfaceOrientations
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations
 {
     if(UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPad)
         return UIInterfaceOrientationMaskAll;

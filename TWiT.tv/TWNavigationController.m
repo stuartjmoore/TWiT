@@ -23,7 +23,7 @@
     return UIBarPositionTopAttached;
 }
 
-- (NSUInteger)supportedInterfaceOrientations
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations
 {
     if([self.topViewController respondsToSelector:@selector(supportedInterfaceOrientations)])
         return self.topViewController.supportedInterfaceOrientations;
