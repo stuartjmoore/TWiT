@@ -23,3 +23,5 @@ Pods
 
 # Project
 Resources/Keys.plist
+
+*.xccheckout

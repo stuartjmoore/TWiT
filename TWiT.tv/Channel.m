@@ -361,7 +361,7 @@
             {
                 if([showEntry objectForKey:@"gd$when"] == nil)
                     continue;
-                
+              
                 NSString *showTitle = [[showEntry objectForKey:@"title"] objectForKey:@"$t"];
                 NSString *showSubtitle = @"";
                 NSString *startTimeString = [[[showEntry objectForKey:@"gd$when"] lastObject] objectForKey:@"startTime"];
@@ -397,7 +397,7 @@
                 else
                     startTimeString = [startTimeString stringByReplacingOccurrencesOfString:@":" withString:@"" options:0
                                                                                       range:NSMakeRange(20, startTimeString.length-20)];
-                
+
                 if(endTimeString.length <= 20)
                     continue;
                 else
@@ -413,7 +413,7 @@
                 
                 if(!startDate || !endDate)
                     continue;
-                
+
                 [calendar rangeOfUnit:NSDayCalendarUnit
                             startDate:&fromDate
                              interval:NULL

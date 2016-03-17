@@ -396,6 +396,7 @@
             return nil;
         
         CGFloat width = tableView.frame.size.width;
+
         Event *showEvent = self.channel.schedule.days[section][0];
      
         UIView *header = [[UIView alloc] initWithFrame:CGRectMake(0, 0, width, 20)];
