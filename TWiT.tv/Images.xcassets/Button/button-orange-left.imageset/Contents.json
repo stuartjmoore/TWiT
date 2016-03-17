@@ -4,10 +4,10 @@
       "resizing" : {
         "mode" : "3-part-horizontal",
         "center" : {
-          "mode" : "fill",
+          "mode" : "tile",
           "width" : 1
         },
-        "capInsets" : {
+        "cap-insets" : {
           "right" : 2,
           "left" : 4
         }
@@ -20,10 +20,10 @@
       "resizing" : {
         "mode" : "3-part-horizontal",
         "center" : {
-          "mode" : "fill",
+          "mode" : "tile",
           "width" : 1
         },
-        "capInsets" : {
+        "cap-insets" : {
           "right" : 4,
           "left" : 8
         }
@@ -31,6 +31,10 @@
       "idiom" : "universal",
       "filename" : "button-orange-left@2x.png",
       "scale" : "2x"
+    },
+    {
+      "idiom" : "universal",
+      "scale" : "3x"
     }
   ],
   "info" : {
