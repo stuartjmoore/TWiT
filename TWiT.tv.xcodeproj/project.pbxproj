@@ -580,7 +580,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = TW;
-				LastUpgradeCheck = 0450;
+				LastUpgradeCheck = 0720;
 				ORGANIZATIONNAME = "Stuart Moore";
 				TargetAttributes = {
 					17E51149168F496E00DCE89C = {
@@ -796,6 +796,7 @@
 				GCC_PREFIX_HEADER = "TWiT.tv/TWiT.tv-Prefix.pch";
 				INFOPLIST_FILE = "TWiT.tv/TWiT.tv-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.stuartjmoore.twit.pro;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "DEC84798-50B0-41C9-8BE6-12811307710F";
@@ -815,6 +816,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer: stuart Moore (R5J4HRBT3L)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -873,6 +875,7 @@
 				GCC_PREFIX_HEADER = "TWiT.tv/TWiT.tv-Prefix.pch";
 				INFOPLIST_FILE = "TWiT.tv/TWiT.tv-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.stuartjmoore.twit.pro;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "DEC84798-50B0-41C9-8BE6-12811307710F";
@@ -892,6 +895,7 @@
 				GCC_PREFIX_HEADER = "TWiT.tv/TWiT.tv-Prefix.pch";
 				INFOPLIST_FILE = "TWiT.tv/TWiT.tv-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.stuartjmoore.twit.pro;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "BF29B7D4-2512-4346-8A64-89A68A903601";
