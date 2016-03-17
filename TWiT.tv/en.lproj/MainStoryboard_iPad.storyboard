@@ -1027,8 +1027,8 @@
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vM2-hJ-FAW" userLabel="Timecode" customClass="UIToolbar">
                                 <rect key="frame" x="410" y="346" width="204" height="77"/>
                                 <subviews>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="-:--:--" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9wc-x5-gAZ">
-                                        <rect key="frame" x="51" y="13" width="103" height="51"/>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-:--:--" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9wc-x5-gAZ">
+                                        <rect key="frame" x="45" y="13" width="114" height="50.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="42"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
@@ -1045,8 +1045,8 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Epv-9G-FA8" userLabel="Toolbar" customClass="UIToolbar">
                                 <rect key="frame" x="0.0" y="680" width="1024" height="88"/>
                                 <subviews>
-                                    <slider opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="TRX-l4-8w3" userLabel="Seekbar">
-                                        <rect key="frame" x="9" y="-3" width="1006" height="34"/>
+                                    <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="TRX-l4-8w3" userLabel="Seekbar">
+                                        <rect key="frame" x="9" y="-3" width="1006" height="31"/>
                                         <accessibility key="accessibilityConfiguration" hint="Seeks the episode back and forth." label="Seek bar"/>
                                         <connections>
                                             <action selector="seekEnd:" destination="Dal-NS-I4L" eventType="touchUpInside" id="QQj-Z9-XMh"/>
@@ -1054,8 +1054,8 @@
                                             <action selector="seeking:" destination="Dal-NS-I4L" eventType="valueChanged" id="yiv-S8-rfq"/>
                                         </connections>
                                     </slider>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" misplaced="YES" text="-:--:--" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dTm-NM-z2A">
-                                        <rect key="frame" x="11" y="24" width="31" height="16"/>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="-:--:--" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dTm-NM-z2A">
+                                        <rect key="frame" x="11" y="24" width="37.5" height="16"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="16" id="RVY-N0-C98"/>
                                         </constraints>
@@ -1065,8 +1065,8 @@
                                         <color key="shadowColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                         <size key="shadowOffset" width="0.0" height="1"/>
                                     </label>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" misplaced="YES" text="Loading…" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A8f-AW-Vep">
-                                        <rect key="frame" x="483" y="24" width="58" height="16"/>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Loading…" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A8f-AW-Vep">
+                                        <rect key="frame" x="482" y="24" width="59" height="16"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="16" id="d0t-11-0P5"/>
                                         </constraints>
@@ -1076,8 +1076,8 @@
                                         <color key="shadowColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                         <size key="shadowOffset" width="0.0" height="1"/>
                                     </label>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" misplaced="YES" text="-:--:--" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ntp-Ax-A02">
-                                        <rect key="frame" x="982" y="24" width="31" height="16"/>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="-:--:--" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ntp-Ax-A02">
+                                        <rect key="frame" x="975" y="24" width="37.5" height="16"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="16" id="HxW-5A-Bli"/>
                                         </constraints>
@@ -1864,7 +1864,7 @@
                     <navigationItem key="navigationItem" id="Hsv-xE-SNo">
                         <nil key="title"/>
                         <view key="titleView" contentMode="scaleToFill" id="GlS-Ve-0cX">
-                            <rect key="frame" x="275" y="0.0" width="154" height="44"/>
+                            <rect key="frame" x="274.5" y="0.0" width="154" height="44"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="nav-bar-header-icon" translatesAutoresizingMaskIntoConstraints="NO" id="B9l-4H-o5P">
