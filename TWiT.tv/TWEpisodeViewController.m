@@ -110,11 +110,11 @@
         NSInteger minutes = (self.episode.duration/60)%60;
         
         if(hours == 0)
-            self.timeLabel.accessibilityLabel = [NSString stringWithFormat:@"Length: %d minutes", minutes];
+            self.timeLabel.accessibilityLabel = [NSString stringWithFormat:@"Length: %zd minutes", minutes];
         else if(hours == 1)
-            self.timeLabel.accessibilityLabel = [NSString stringWithFormat:@"Length: one hour and %d minutes", minutes];
+            self.timeLabel.accessibilityLabel = [NSString stringWithFormat:@"Length: one hour and %zd minutes", minutes];
         else
-            self.timeLabel.accessibilityLabel = [NSString stringWithFormat:@"Length: %d hours and %d minutes", hours, minutes];
+            self.timeLabel.accessibilityLabel = [NSString stringWithFormat:@"Length: %zd hours and %zd minutes", hours, minutes];
         
         self.playButton.percentage = (self.episode.duration != 0) ? (CGFloat)self.episode.lastTimecode/(CGFloat)self.episode.duration : 0;
    

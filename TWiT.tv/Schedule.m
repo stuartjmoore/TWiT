@@ -48,9 +48,9 @@
             NSInteger hours = (interval / 3600);
             
             if(hours > 0)
-                string = [NSString stringWithFormat:@"%ih %02im", hours, minutes];
+                string = [NSString stringWithFormat:@"%zih %02zim", hours, minutes];
             else
-                string = [NSString stringWithFormat:@"%02im", minutes];
+                string = [NSString stringWithFormat:@"%02zim", minutes];
         }
         else // 10 minutes away
         {

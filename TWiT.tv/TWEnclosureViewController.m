@@ -277,14 +277,14 @@
     NSInteger seconds = time % 60;
     NSInteger minutes = (time / 60) % 60;
     NSInteger hours = (time / 3600);
-    self.timeElapsedLabel.text = [NSString stringWithFormat:@"%01i:%02i:%02i", hours, minutes, seconds];
+    self.timeElapsedLabel.text = [NSString stringWithFormat:@"%01zi:%02zi:%02zi", hours, minutes, seconds];
     self.timePopupLabel.text = self.timeElapsedLabel.text;
     
     NSInteger remaining = duration-time;
     seconds = remaining % 60;
     minutes = (remaining / 60) % 60;
     hours = (remaining / 3600);
-    self.timeRemainingLabel.text = [NSString stringWithFormat:@"%01i:%02i:%02i", hours, minutes, seconds];
+    self.timeRemainingLabel.text = [NSString stringWithFormat:@"%01zi:%02zi:%02zi", hours, minutes, seconds];
     
     CGFloat rate = self.speedButton.selected ? fastSpeed : 1;
     CGFloat secondsLeft = remaining/rate;

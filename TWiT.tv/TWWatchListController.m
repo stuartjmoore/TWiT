@@ -84,7 +84,7 @@
     UIView *cell = recognizer.view;
     CGPoint translation = [recognizer translationInView:cell.superview];
     
-    if(fabsf(translation.x) > fabsf(translation.y))
+    if(ABS(translation.x) > ABS(translation.y))
         return YES;
     
     return NO;

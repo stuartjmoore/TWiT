@@ -374,7 +374,7 @@ static BOOL anyUpdates;
                     {
                         NSTextCheckingResult *results = [regex firstMatchInString:text options:0 range:NSMakeRange(0, text.length)];
                         number = [[text substringWithRange:[results rangeAtIndex:1]] intValue];
-                        title  = [NSString stringWithFormat:@"Episode #%d", number];
+                        title  = [NSString stringWithFormat:@"Episode #%zd", number];
                     }
                     else
                     {
@@ -457,7 +457,7 @@ static BOOL anyUpdates;
                     guests = [guests stringByReplacingCharactersInRange:r withString:@""];
             }
             
-            NSString *posterURL = [NSString stringWithFormat:@"http://twit.tv/files/imagecache/slideshow-slide/spiros_%@_%.4djpg.jpg",
+            NSString *posterURL = [NSString stringWithFormat:@"http://twit.tv/files/imagecache/slideshow-slide/spiros_%@_%.4zdjpg.jpg",
                                    weak.titleAcronym.lowercaseString, number];
             
             NSString *enclosureURL = [[epiDic objectForKey:@"enclosure"] objectForKey:@"url"];
