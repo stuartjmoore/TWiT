@@ -29,7 +29,7 @@
 
 @interface Schedule : NSObject
 
-@property (nonatomic, strong) NSArray *days;
+@property (nonatomic, strong) NSArray<NSArray<Event *> *> *days;
 @property (nonatomic, strong) Event *currentShow;
 
 - (Event*)showAfterShow:(Event*)event;
