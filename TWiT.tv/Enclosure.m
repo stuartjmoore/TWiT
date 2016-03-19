@@ -55,7 +55,7 @@
                            self.quality];
     
     NSURL *url = [NSURL URLWithString:self.url];
-    NSURLSessionConfiguration *downloadConfig = [NSURLSessionConfiguration backgroundSessionConfiguration:sessionId];
+    NSURLSessionConfiguration *downloadConfig = [NSURLSessionConfiguration backgroundSessionConfigurationWithIdentifier:sessionId];
     self.downloadSession = [NSURLSession sessionWithConfiguration:downloadConfig delegate:self delegateQueue:NSOperationQueue.mainQueue];
     
     self.downloadTask = [self.downloadSession downloadTaskWithURL:url];

@@ -71,7 +71,7 @@
     {
         UIImage *backIcon = [[UIImage imageNamed:@"navbar-back-twit-icon"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
         self.navigationItem.backBarButtonItem = [UIBarButtonItem.alloc initWithImage:backIcon
-                                                                               style:UIBarButtonItemStyleBordered
+                                                                               style:UIBarButtonItemStylePlain
                                                                               target:nil
                                                                               action:nil];
     }

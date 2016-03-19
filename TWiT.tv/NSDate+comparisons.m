@@ -13,7 +13,7 @@
 - (BOOL)isToday
 {
     NSCalendar *cal = [NSCalendar currentCalendar];
-    NSInteger components = (NSEraCalendarUnit|NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit);
+    NSInteger components = (NSCalendarUnitEra|NSCalendarUnitYear|NSCalendarUnitMonth|NSCalendarUnitDay);
     
     NSDateComponents *startTimeComponents = [cal components:components fromDate:self];
     NSDate *simpleSelf = [cal dateFromComponents:startTimeComponents];
@@ -26,7 +26,7 @@
 - (BOOL)isTomorrow
 {
     NSCalendar *cal = [NSCalendar currentCalendar];
-    NSInteger components = (NSEraCalendarUnit|NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit);
+    NSInteger components = (NSCalendarUnitEra|NSCalendarUnitYear|NSCalendarUnitMonth|NSCalendarUnitDay);
     
     NSDateComponents *startTimeComponents = [cal components:components fromDate:self];
     NSDate *simpleSelf = [cal dateFromComponents:startTimeComponents];

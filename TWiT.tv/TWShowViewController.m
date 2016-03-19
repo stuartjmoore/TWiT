@@ -60,7 +60,7 @@
     [self.gradientView.layer addSublayer:liveGradient];
     
     self.navigationItem.backBarButtonItem = [UIBarButtonItem.alloc initWithTitle:self.show.titleAcronym
-                                                                           style:UIBarButtonItemStyleBordered
+                                                                           style:UIBarButtonItemStylePlain
                                                                           target:nil
                                                                           action:nil];
 }

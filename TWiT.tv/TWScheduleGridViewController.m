@@ -57,8 +57,8 @@
     {
         CGRect frame = CGRectMake(hour*hourWidth, 0, hourWidth, timeHeight);
         
-        NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
-        unsigned unitFlags = NSYearCalendarUnit | NSMonthCalendarUnit |  NSDayCalendarUnit;
+        NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
+        unsigned unitFlags = NSCalendarUnitYear | NSCalendarUnitMonth |  NSCalendarUnitDay;
         NSDateComponents *comps = [gregorian components:unitFlags fromDate:[NSDate date]];
         [comps setHour:hour];
         NSDate *hourDate = [gregorian dateFromComponents:comps];

@@ -45,7 +45,7 @@
         {
             UIImage *backIcon = [[UIImage imageNamed:@"navbar-back-twit-icon-trans"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
             lastViewController.navigationItem.backBarButtonItem = [UIBarButtonItem.alloc initWithImage:backIcon
-                                                                                                 style:UIBarButtonItemStyleBordered
+                                                                                                 style:UIBarButtonItemStylePlain
                                                                                                 target:nil action:nil];
         }
     }
@@ -532,7 +532,7 @@
     NSInteger curve = [notification.userInfo[UIKeyboardAnimationCurveUserInfoKey] integerValue];
     CGRect frame = [notification.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
     
-    self.chatViewBottom.constant = UIInterfaceOrientationIsPortrait(self.interfaceOrientation) ? frame.size.height : frame.size.width;
+    self.chatViewBottom.constant = UIInterfaceOrientationIsPortrait(UIApplication.sharedApplication.statusBarOrientation) ? frame.size.height : frame.size.width;
     
     [self.view setNeedsUpdateConstraints];
     

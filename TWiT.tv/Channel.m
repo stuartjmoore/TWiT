@@ -414,17 +414,17 @@
                 if(!startDate || !endDate)
                     continue;
 
-                [calendar rangeOfUnit:NSDayCalendarUnit
+                [calendar rangeOfUnit:NSCalendarUnitDay
                             startDate:&fromDate
                              interval:NULL
                               forDate:[NSDate date]];
                 
-                [calendar rangeOfUnit:NSDayCalendarUnit
+                [calendar rangeOfUnit:NSCalendarUnitDay
                             startDate:&toDate
                              interval:NULL
                               forDate:startDate];
                 
-                NSInteger daysAway = [[calendar components:NSDayCalendarUnit
+                NSInteger daysAway = [[calendar components:NSCalendarUnitDay
                                                   fromDate:fromDate
                                                     toDate:toDate
                                                    options:0] day];

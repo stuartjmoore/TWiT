@@ -127,8 +127,8 @@ static BOOL anyUpdates;
         }
         
         
-        NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
-        unsigned unitFlags = NSYearCalendarUnit | NSMonthCalendarUnit |  NSDayCalendarUnit;
+        NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
+        unsigned unitFlags = NSCalendarUnitYear | NSCalendarUnitMonth |  NSCalendarUnitDay;
         NSDateComponents *comps = [gregorian components:unitFlags fromDate:[NSDate date]];
         [comps setHour:time/100];
         [comps setMinute:time%100];
@@ -237,7 +237,7 @@ static BOOL anyUpdates;
         for(NSDate *fireDate in self.scheduleDates)
         {
             UILocalNotification *notification = [[UILocalNotification alloc] init];
-            notification.repeatInterval = NSWeekCalendarUnit;
+            notification.repeatInterval = NSCalendarUnitWeekOfYear;
             notification.fireDate = fireDate;
             
             notification.soundName = UILocalNotificationDefaultSoundName;
