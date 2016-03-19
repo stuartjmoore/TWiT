@@ -41,6 +41,10 @@
 		177F1FAB16AAE9E800BFFA63 /* TWQualityCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 177F1FAA16AAE9E800BFFA63 /* TWQualityCell.m */; };
 		177F1FAF16AB25A900BFFA63 /* TWPlaybarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 177F1FAE16AB25A900BFFA63 /* TWPlaybarViewController.m */; };
 		179D814A169D4A1500B54E1B /* Schedule.m in Sources */ = {isa = PBXBuildFile; fileRef = 179D8149169D4A1500B54E1B /* Schedule.m */; };
+		17A004F51C9CD9D500FF6D7E /* NSDate+Calendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A004F41C9CD9D500FF6D7E /* NSDate+Calendar.swift */; };
+		17A004F71C9CDADD00FF6D7E /* ScheduleClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A004F61C9CDADD00FF6D7E /* ScheduleClient.swift */; };
+		17A004F91C9CDAF200FF6D7E /* ScheduleEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A004F81C9CDAF200FF6D7E /* ScheduleEvent.swift */; };
+		17A004FB1C9CDB0600FF6D7E /* ScheduleDuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A004FA1C9CDB0600FF6D7E /* ScheduleDuration.swift */; };
 		17AFF029169462EA0053A33C /* TWShowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 17AFF028169462EA0053A33C /* TWShowViewController.m */; };
 		17B07F1016B59B2600B42CBF /* chatRoom.css in Resources */ = {isa = PBXBuildFile; fileRef = 17B07F0F16B59B2600B42CBF /* chatRoom.css */; };
 		17B07F1416B5BFAE00B42CBF /* UIAlertView+block.m in Sources */ = {isa = PBXBuildFile; fileRef = 17B07F1316B5BFAE00B42CBF /* UIAlertView+block.m */; };
@@ -176,6 +180,11 @@
 		1787B3BB16A58E7B00870B87 /* TWStreamViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWStreamViewController.h; sourceTree = "<group>"; };
 		179D8148169D4A1500B54E1B /* Schedule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Schedule.h; sourceTree = "<group>"; };
 		179D8149169D4A1500B54E1B /* Schedule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Schedule.m; sourceTree = "<group>"; };
+		17A004F11C9CD96800FF6D7E /* TWiT.tv-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TWiT.tv-Bridging-Header.h"; sourceTree = "<group>"; };
+		17A004F41C9CD9D500FF6D7E /* NSDate+Calendar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDate+Calendar.swift"; sourceTree = "<group>"; };
+		17A004F61C9CDADD00FF6D7E /* ScheduleClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ScheduleClient.swift; path = "Schedule API/ScheduleClient.swift"; sourceTree = "<group>"; };
+		17A004F81C9CDAF200FF6D7E /* ScheduleEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ScheduleEvent.swift; path = "Schedule API/ScheduleEvent.swift"; sourceTree = "<group>"; };
+		17A004FA1C9CDB0600FF6D7E /* ScheduleDuration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ScheduleDuration.swift; path = "Schedule API/ScheduleDuration.swift"; sourceTree = "<group>"; };
 		17A31E1316ADDB6400B71343 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		17AFF027169462EA0053A33C /* TWShowViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWShowViewController.h; sourceTree = "<group>"; };
 		17AFF028169462EA0053A33C /* TWShowViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWShowViewController.m; sourceTree = "<group>"; };
@@ -366,6 +375,16 @@
 			name = Controllers;
 			sourceTree = "<group>";
 		};
+		17A004F01C9CD93100FF6D7E /* Schedule API */ = {
+			isa = PBXGroup;
+			children = (
+				17A004FA1C9CDB0600FF6D7E /* ScheduleDuration.swift */,
+				17A004F81C9CDAF200FF6D7E /* ScheduleEvent.swift */,
+				17A004F61C9CDADD00FF6D7E /* ScheduleClient.swift */,
+			);
+			name = "Schedule API";
+			sourceTree = "<group>";
+		};
 		17BB1CFF168F728C00221F7E /* Objects */ = {
 			isa = PBXGroup;
 			children = (
@@ -476,6 +495,7 @@
 				17C43B921696FC220066C79F /* NSManagedObjectContext+ConvenienceMethods.m */,
 				170561E0169AD61800E59244 /* NSDate+comparisons.h */,
 				170561E1169AD61800E59244 /* NSDate+comparisons.m */,
+				17A004F41C9CD9D500FF6D7E /* NSDate+Calendar.swift */,
 				17B07F1216B5BFAE00B42CBF /* UIAlertView+block.h */,
 				17B07F1316B5BFAE00B42CBF /* UIAlertView+block.m */,
 			);
@@ -535,12 +555,14 @@
 		17E51156168F496E00DCE89C /* TWiT.tv */ = {
 			isa = PBXGroup;
 			children = (
+				17A004F11C9CD96800FF6D7E /* TWiT.tv-Bridging-Header.h */,
 				17E5115F168F496E00DCE89C /* TWAppDelegate.h */,
 				17E51160168F496E00DCE89C /* TWAppDelegate.m */,
 				17A004EF1C9CD91500FF6D7E /* Controllers */,
 				17D1B6AE16A1CAA600B05C12 /* Cells */,
 				170E02A4169322130072CFA6 /* Views */,
 				17BB1CFF168F728C00221F7E /* Objects */,
+				17A004F01C9CD93100FF6D7E /* Schedule API */,
 				17C43B8F1696FBCB0066C79F /* Catergories */,
 				170BA1271691CD5B0022FE4D /* Resources */,
 				17E51157168F496E00DCE89C /* Supporting Files */,
@@ -696,7 +718,9 @@
 			files = (
 				17E5115D168F496E00DCE89C /* main.m in Sources */,
 				17E51161168F496E00DCE89C /* TWAppDelegate.m in Sources */,
+				17A004FB1C9CDB0600FF6D7E /* ScheduleDuration.swift in Sources */,
 				17E51170168F496E00DCE89C /* TWiT_tv.xcdatamodeld in Sources */,
+				17A004F71C9CDADD00FF6D7E /* ScheduleClient.swift in Sources */,
 				17E51176168F496E00DCE89C /* TWEpisodeViewController.m in Sources */,
 				170E02A8169324480072CFA6 /* TWEpisodeCell.m in Sources */,
 				17B745D7182FF26900A3C75E /* TWWatchListController.m in Sources */,
@@ -712,6 +736,7 @@
 				1715FCF11837E2280036D3DF /* TWQuickPlayButton.m in Sources */,
 				176380AA16960FDD0060D076 /* AlbumArt.m in Sources */,
 				17C43B931696FC220066C79F /* NSManagedObjectContext+ConvenienceMethods.m in Sources */,
+				17A004F51C9CD9D500FF6D7E /* NSDate+Calendar.swift in Sources */,
 				170561E2169AD61800E59244 /* NSDate+comparisons.m in Sources */,
 				17F668D1169B34FC00525F65 /* TWScheduleViewController.m in Sources */,
 				1703C3201832A4D0006E796D /* TWLargeHeaderCell.m in Sources */,
@@ -732,6 +757,7 @@
 				17CBC39E16B2FCCC00F1F9EC /* TWNavigationItem.m in Sources */,
 				1749FCE816B440A10087CC3A /* TWNavigationContainer.m in Sources */,
 				17B07F1416B5BFAE00B42CBF /* UIAlertView+block.m in Sources */,
+				17A004F91C9CDAF200FF6D7E /* ScheduleEvent.swift in Sources */,
 				170453B616B9B2E20041230D /* TWStreamViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -797,6 +823,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = TWiT.tv/TWiT.tv.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -804,10 +831,12 @@
 				GCC_PREFIX_HEADER = "TWiT.tv/TWiT.tv-Prefix.pch";
 				INFOPLIST_FILE = "TWiT.tv/TWiT.tv-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.stuartjmoore.twit.pro;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "DEC84798-50B0-41C9-8BE6-12811307710F";
+				SWIFT_OBJC_BRIDGING_HEADER = "TWiT.tv/TWiT.tv-Bridging-Header.h";
 				WRAPPER_EXTENSION = app;
 			};
 			name = "Ad Hoc";
@@ -876,6 +905,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = TWiT.tv/TWiT.tv.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -883,10 +913,13 @@
 				GCC_PREFIX_HEADER = "TWiT.tv/TWiT.tv-Prefix.pch";
 				INFOPLIST_FILE = "TWiT.tv/TWiT.tv-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.stuartjmoore.twit.pro;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "DEC84798-50B0-41C9-8BE6-12811307710F";
+				SWIFT_OBJC_BRIDGING_HEADER = "TWiT.tv/TWiT.tv-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -896,6 +929,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = TWiT.tv/TWiT.tv.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -903,10 +937,12 @@
 				GCC_PREFIX_HEADER = "TWiT.tv/TWiT.tv-Prefix.pch";
 				INFOPLIST_FILE = "TWiT.tv/TWiT.tv-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.stuartjmoore.twit.pro;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "BF29B7D4-2512-4346-8A64-89A68A903601";
+				SWIFT_OBJC_BRIDGING_HEADER = "TWiT.tv/TWiT.tv-Bridging-Header.h";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
