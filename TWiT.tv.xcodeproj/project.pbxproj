@@ -45,6 +45,7 @@
 		17A004F71C9CDADD00FF6D7E /* ScheduleClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A004F61C9CDADD00FF6D7E /* ScheduleClient.swift */; };
 		17A004F91C9CDAF200FF6D7E /* ScheduleEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A004F81C9CDAF200FF6D7E /* ScheduleEvent.swift */; };
 		17A004FB1C9CDB0600FF6D7E /* ScheduleDuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A004FA1C9CDB0600FF6D7E /* ScheduleDuration.swift */; };
+		17A004FD1C9CE26600FF6D7E /* ScheduleConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A004FC1C9CE26600FF6D7E /* ScheduleConverter.swift */; };
 		17AFF029169462EA0053A33C /* TWShowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 17AFF028169462EA0053A33C /* TWShowViewController.m */; };
 		17B07F1016B59B2600B42CBF /* chatRoom.css in Resources */ = {isa = PBXBuildFile; fileRef = 17B07F0F16B59B2600B42CBF /* chatRoom.css */; };
 		17B07F1416B5BFAE00B42CBF /* UIAlertView+block.m in Sources */ = {isa = PBXBuildFile; fileRef = 17B07F1316B5BFAE00B42CBF /* UIAlertView+block.m */; };
@@ -185,6 +186,7 @@
 		17A004F61C9CDADD00FF6D7E /* ScheduleClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ScheduleClient.swift; path = "Schedule API/ScheduleClient.swift"; sourceTree = "<group>"; };
 		17A004F81C9CDAF200FF6D7E /* ScheduleEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ScheduleEvent.swift; path = "Schedule API/ScheduleEvent.swift"; sourceTree = "<group>"; };
 		17A004FA1C9CDB0600FF6D7E /* ScheduleDuration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ScheduleDuration.swift; path = "Schedule API/ScheduleDuration.swift"; sourceTree = "<group>"; };
+		17A004FC1C9CE26600FF6D7E /* ScheduleConverter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ScheduleConverter.swift; path = "Schedule API/ScheduleConverter.swift"; sourceTree = "<group>"; };
 		17A31E1316ADDB6400B71343 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		17AFF027169462EA0053A33C /* TWShowViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWShowViewController.h; sourceTree = "<group>"; };
 		17AFF028169462EA0053A33C /* TWShowViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWShowViewController.m; sourceTree = "<group>"; };
@@ -381,6 +383,7 @@
 				17A004FA1C9CDB0600FF6D7E /* ScheduleDuration.swift */,
 				17A004F81C9CDAF200FF6D7E /* ScheduleEvent.swift */,
 				17A004F61C9CDADD00FF6D7E /* ScheduleClient.swift */,
+				17A004FC1C9CE26600FF6D7E /* ScheduleConverter.swift */,
 			);
 			name = "Schedule API";
 			sourceTree = "<group>";
@@ -739,6 +742,7 @@
 				17A004F51C9CD9D500FF6D7E /* NSDate+Calendar.swift in Sources */,
 				170561E2169AD61800E59244 /* NSDate+comparisons.m in Sources */,
 				17F668D1169B34FC00525F65 /* TWScheduleViewController.m in Sources */,
+				17A004FD1C9CE26600FF6D7E /* ScheduleConverter.swift in Sources */,
 				1703C3201832A4D0006E796D /* TWLargeHeaderCell.m in Sources */,
 				17B745DA182FFBE200A3C75E /* TWShowsViewController.m in Sources */,
 				179D814A169D4A1500B54E1B /* Schedule.m in Sources */,

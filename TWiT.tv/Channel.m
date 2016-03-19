@@ -6,6 +6,8 @@
 //  Copyright (c) 2013 Stuart Moore. All rights reserved.
 //
 
+#import "TWiT_tv-Swift.h"
+
 #import "NSManagedObjectContext+ConvenienceMethods.h"
 
 #import "Schedule.h"
@@ -331,7 +333,11 @@
 - (void)reloadScheduleWithURL:(NSURL*)scheduleURL
 {
     __weak typeof(self) weak = self;
-    
+
+    [ScheduleConverter week:^(Schedule *schedule) {
+        NSLog(@"ScheduleConverter: %@", schedule);
+    }];
+
     NSURLRequest *urlRequest = [NSURLRequest requestWithURL:scheduleURL];
     [NSURLConnection sendAsynchronousRequest:urlRequest queue:NSOperationQueue.mainQueue
     completionHandler:^(NSURLResponse *response, NSData *data, NSError *error)
