@@ -13,6 +13,7 @@ class ScheduleConverter: NSObject {
     class func weekWithShows(shows: Set<Show>, completion: (Schedule) -> Void) {
         ScheduleClient().week { (week) in
             let schedule = Schedule()
+            schedule.days = []
 
             schedule.days = week.map { (day) -> [Event] in
                 day.map { (scheduleEvent) -> Event in
