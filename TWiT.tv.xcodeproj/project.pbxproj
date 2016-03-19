@@ -46,6 +46,7 @@
 		17A004F91C9CDAF200FF6D7E /* ScheduleEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A004F81C9CDAF200FF6D7E /* ScheduleEvent.swift */; };
 		17A004FB1C9CDB0600FF6D7E /* ScheduleDuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A004FA1C9CDB0600FF6D7E /* ScheduleDuration.swift */; };
 		17A004FD1C9CE26600FF6D7E /* ScheduleConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A004FC1C9CE26600FF6D7E /* ScheduleConverter.swift */; };
+		17A004FF1C9CE75700FF6D7E /* Keys.plist in Resources */ = {isa = PBXBuildFile; fileRef = 17A004FE1C9CE75700FF6D7E /* Keys.plist */; };
 		17AFF029169462EA0053A33C /* TWShowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 17AFF028169462EA0053A33C /* TWShowViewController.m */; };
 		17B07F1016B59B2600B42CBF /* chatRoom.css in Resources */ = {isa = PBXBuildFile; fileRef = 17B07F0F16B59B2600B42CBF /* chatRoom.css */; };
 		17B07F1416B5BFAE00B42CBF /* UIAlertView+block.m in Sources */ = {isa = PBXBuildFile; fileRef = 17B07F1316B5BFAE00B42CBF /* UIAlertView+block.m */; };
@@ -187,6 +188,7 @@
 		17A004F81C9CDAF200FF6D7E /* ScheduleEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ScheduleEvent.swift; path = "Schedule API/ScheduleEvent.swift"; sourceTree = "<group>"; };
 		17A004FA1C9CDB0600FF6D7E /* ScheduleDuration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ScheduleDuration.swift; path = "Schedule API/ScheduleDuration.swift"; sourceTree = "<group>"; };
 		17A004FC1C9CE26600FF6D7E /* ScheduleConverter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ScheduleConverter.swift; path = "Schedule API/ScheduleConverter.swift"; sourceTree = "<group>"; };
+		17A004FE1C9CE75700FF6D7E /* Keys.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Keys.plist; path = Resources/Keys.plist; sourceTree = SOURCE_ROOT; };
 		17A31E1316ADDB6400B71343 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		17AFF027169462EA0053A33C /* TWShowViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWShowViewController.h; sourceTree = "<group>"; };
 		17AFF028169462EA0053A33C /* TWShowViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWShowViewController.m; sourceTree = "<group>"; };
@@ -308,6 +310,7 @@
 			children = (
 				17A31E1316ADDB6400B71343 /* Settings.bundle */,
 				17E5116E168F496E00DCE89C /* TWiT_tv.xcdatamodeld */,
+				17A004FE1C9CE75700FF6D7E /* Keys.plist */,
 				1733C8AD17E7CED90090C97A /* Vollkorn-BoldItalic.ttf */,
 				17B07F0F16B59B2600B42CBF /* chatRoom.css */,
 				17DE054117D8E7A8007E0F5A /* Images.xcassets */,
@@ -702,6 +705,7 @@
 				17056200169B192D00E59244 /* byb-poster.jpg in Resources */,
 				17056201169B192D00E59244 /* floss-poster.jpg in Resources */,
 				17056202169B192D00E59244 /* tsh-poster.jpg in Resources */,
+				17A004FF1C9CE75700FF6D7E /* Keys.plist in Resources */,
 				17C293DB17F7167800907CDD /* aaa600.1380254400.jpg in Resources */,
 				17056203169B192D00E59244 /* twil-poster.jpg in Resources */,
 				17B07F1016B59B2600B42CBF /* chatRoom.css in Resources */,

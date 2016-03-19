@@ -283,33 +283,7 @@
     
 - (void)reloadScheduleFromServer
 {
-    NSString *keysPath = [NSBundle.mainBundle pathForResource:@"Keys" ofType:@"plist"];
-    NSDictionary *keys = [NSDictionary dictionaryWithContentsOfFile:keysPath];
-    
-    if(!keys)
-    {
-        // Access to my server is not open sourced
-        // Gotta manage the load somehow
-        [self reloadScheduleFromGoogle];
-        return;
-    }
-    
-    self.schedule = [[Schedule alloc] init];
-    self.schedule.days = [NSArray array];
-    
-    NSDateFormatter *dateFormatterLocal = [[NSDateFormatter alloc] init];
-    [dateFormatterLocal setTimeZone:NSTimeZone.localTimeZone];
-    [dateFormatterLocal setDateFormat:@"yyyy-MM-dd"];
-    
-    NSDate *todaysDate = NSDate.date;
-    NSString *startMinString = [dateFormatterLocal stringFromDate:todaysDate];
-    NSString *startMaxString = [dateFormatterLocal stringFromDate:[todaysDate dateByAddingTimeInterval:60*60*24*7]];
-    
-    NSString *scheduleString = [NSString stringWithFormat:@"https://%@/schedule?from=%@&to=%@&key=%@",
-                                SERVER_HOST, startMinString, startMaxString, keys[@"SERVER_KEY"]];
-    NSURL *scheduleURL = [NSURL URLWithString:scheduleString];
-    
-    [self reloadScheduleWithURL:scheduleURL];
+    [self reloadScheduleFromGoogle];
 }
 
 - (void)reloadScheduleFromGoogle
