@@ -61,6 +61,13 @@
 				<key>NSThirdPartyExceptionAllowsInsecureHTTPLoads</key>
 				<true/>
 			</dict>
+			<key>podtrac.com</key>
+			<dict>
+				<key>NSIncludesSubdomains</key>
+				<true/>
+				<key>NSThirdPartyExceptionAllowsInsecureHTTPLoads</key>
+				<true/>
+			</dict>
 			<key>stuartjmoore.com</key>
 			<dict>
 				<key>NSIncludesSubdomains</key>
