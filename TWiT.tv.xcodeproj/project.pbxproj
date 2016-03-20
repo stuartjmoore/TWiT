@@ -20,7 +20,6 @@
 		170B476016A6A9C900F7C3B5 /* TWShowInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 170B475F16A6A9C900F7C3B5 /* TWShowInfoViewController.m */; };
 		170BA15D1691D5E70022FE4D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 170BA15C1691D5E70022FE4D /* QuartzCore.framework */; };
 		170E02A8169324480072CFA6 /* TWEpisodeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 170E02A7169324480072CFA6 /* TWEpisodeCell.m */; };
-		170FE2541C9E1A0B00F07350 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 170FE2531C9E1A0B00F07350 /* LaunchScreen.storyboard */; };
 		1711F7B616C6A5C200B5CA32 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 17A31E1316ADDB6400B71343 /* Settings.bundle */; };
 		1715FCF11837E2280036D3DF /* TWQuickPlayButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 1715FCF01837E2280036D3DF /* TWQuickPlayButton.m */; };
 		1733C8B017E7CF580090C97A /* Show.m in Sources */ = {isa = PBXBuildFile; fileRef = 1733C8AF17E7CF580090C97A /* Show.m */; };
@@ -143,7 +142,6 @@
 		170BA15C1691D5E70022FE4D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		170E02A6169324480072CFA6 /* TWEpisodeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWEpisodeCell.h; sourceTree = "<group>"; };
 		170E02A7169324480072CFA6 /* TWEpisodeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWEpisodeCell.m; sourceTree = "<group>"; };
-		170FE2531C9E1A0B00F07350 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = Resources/LaunchScreen.storyboard; sourceTree = SOURCE_ROOT; };
 		1715FCEF1837E2280036D3DF /* TWQuickPlayButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWQuickPlayButton.h; sourceTree = "<group>"; };
 		1715FCF01837E2280036D3DF /* TWQuickPlayButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWQuickPlayButton.m; sourceTree = "<group>"; };
 		1733C8AD17E7CED90090C97A /* Vollkorn-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Vollkorn-BoldItalic.ttf"; path = "Resources/Vollkorn-BoldItalic.ttf"; sourceTree = SOURCE_ROOT; };
@@ -312,7 +310,6 @@
 			children = (
 				17A31E1316ADDB6400B71343 /* Settings.bundle */,
 				17E5116E168F496E00DCE89C /* TWiT_tv.xcdatamodeld */,
-				170FE2531C9E1A0B00F07350 /* LaunchScreen.storyboard */,
 				17A004FE1C9CE75700FF6D7E /* Keys.plist */,
 				1733C8AD17E7CED90090C97A /* Vollkorn-BoldItalic.ttf */,
 				17B07F0F16B59B2600B42CBF /* chatRoom.css */,
@@ -672,7 +669,6 @@
 				17C43B431696DFD60066C79F /* mbw600.1353196800.jpg in Resources */,
 				17C43B441696DFD60066C79F /* nsfw600.1353196800.jpg in Resources */,
 				17C43B451696DFD60066C79F /* sn600.1353196800.jpg in Resources */,
-				170FE2541C9E1A0B00F07350 /* LaunchScreen.storyboard in Resources */,
 				17C43B461696DFD60066C79F /* specials600.1353196800.jpg in Resources */,
 				17C43B471696DFD60066C79F /* tnt600.1353196800.jpg in Resources */,
 				17C43B481696DFD60066C79F /* tri600.1353196800.jpg in Resources */,
@@ -834,6 +830,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = TWiT.tv/TWiT.tv.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -915,6 +912,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = TWiT.tv/TWiT.tv.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -938,6 +936,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = TWiT.tv/TWiT.tv.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
