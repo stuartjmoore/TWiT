@@ -939,8 +939,8 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = TWiT.tv/TWiT.tv.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TWiT.tv/TWiT.tv-Prefix.pch";
 				INFOPLIST_FILE = "TWiT.tv/TWiT.tv-Info.plist";
@@ -949,7 +949,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.stuartjmoore.twit.pro;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "BF29B7D4-2512-4346-8A64-89A68A903601";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "TWiT.tv/TWiT.tv-Bridging-Header.h";
 				WRAPPER_EXTENSION = app;
 			};
